@@ -1,0 +1,11 @@
+# Requirements
+PyYAML
+pylibyaml
+pypng
+colorama
+spimdisasm>=1.17.0
+rabbitizer>=1.2.0
+pygfxd
+tqdm
+intervaltree
+n64img

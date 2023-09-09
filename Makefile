@@ -29,6 +29,7 @@ LD_SCRIPT := $(TARGET).ld
 LD_MAP := $(BUILD_DIR)/$(TARGET).map
 ASM_DIRS := asm asm/data asm/libultra asm/libultra/os asm/libultra/io asm/libultra/gu asm/libultra/libc asm/libultra/al asm/libultra/audio
 DATA_DIRS := bin assets
+SRC_DIRS := $(shell find src -type d)
 
 C_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 S_FILES := $(foreach dir,$(ASM_DIRS),$(wildcard $(dir)/*.s))
@@ -85,7 +86,7 @@ OBJDUMP_FLAGS := -d -r -z -Mreg-names=32
 INC_DIRS := include include/PR include/audio .
 IINCS := $(foreach d,$(INC_DIRS),-I$d)
 # defines for SGI IDO
-CDEFS := -D_LANGUAGE_C -DF3DEX_GBI_2 -DNDEBUG 
+CDEFS := -D_LANGUAGE_C -DF3DEX_GBI_2 -DNDEBUG -D_FINALROM -DBUILD_VERSION=VERSION_H
 
 ifneq ($(RUN_CC_CHECK),0)
   CHECK_WARNINGS := -Wall -Wextra
@@ -117,6 +118,10 @@ LDFLAGS = -T undefined_syms_auto.txt -T undefined_funcs_auto.txt -T $(BUILD_DIR)
 ######################## Targets #############################
 
 $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(DATA_DIRS) $(COMPRESSED_DIRS) $(MAP_DIRS) $(BGM_DIRS),$(shell mkdir -p build/$(dir)))
+
+# Libultra O1 files
+build/src/libultra/os/%.c.o: CC := $(CC_OLD)
+build/src/libultra/os/%.c.o: OPTFLAGS := -O1
 
 ######################## Build #############################
 

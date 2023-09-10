@@ -145,7 +145,7 @@ segments:
     - [0x3A3A0, asm, libultra/io/pfsdeletefile]
     - [0x3A9B0, asm] # TODO: Identify
     - [0x3AA20, asm] # TODO: Identify
-    - [0x3AB60, asm] # TODO: Identify
+    - [0x3AB60, c, libultra/unknown/3AB60] # TODO: Identify
     - [0x3ACA0, asm, libultra/io/motor]
     - [0x3B440, asm, libultra/libc/string]
     - [0x3B4E0, hasm, libultra/os/setsr]

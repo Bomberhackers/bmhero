@@ -122,6 +122,8 @@ $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(DATA_DIRS) $(COMPRESSED_DIRS) $(MAP_DIRS
 # Libultra O1 files
 build/src/libultra/os/%.c.o: CC := $(CC_OLD)
 build/src/libultra/os/%.c.o: OPTFLAGS := -O1
+build/src/libultra/io/%.c.o: CC := $(CC_OLD)
+build/src/libultra/io/%.c.o: OPTFLAGS := -O1
 
 ######################## Build #############################
 

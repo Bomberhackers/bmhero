@@ -65,10 +65,12 @@ extern "C" {
  *
  */
 
-#define OS_NSEC_TO_CYCLES(n)	(((u64)(n)*(OS_CPU_COUNTER/15625000LL))/(1000000000LL/15625000LL))
-#define OS_USEC_TO_CYCLES(n)	(((u64)(n)*(OS_CPU_COUNTER/15625LL))/(1000000LL/15625LL))
-#define OS_CYCLES_TO_NSEC(c)	(((u64)(c)*(1000000000LL/15625000LL))/(OS_CPU_COUNTER/15625000LL))
-#define OS_CYCLES_TO_USEC(c)	(((u64)(c)*(1000000LL/15625LL))/(OS_CPU_COUNTER/15625LL))
+extern u64 osClockRate;
+
+#define OS_NSEC_TO_CYCLES(n)    (((u64)(n)*(osClockRate))/1000000000LL)
+#define OS_USEC_TO_CYCLES(n)    (((u64)(n)*(osClockRate))/1000000LL)
+#define OS_CYCLES_TO_NSEC(c)    (((u64)(c)*1000000000LL)/(osClockRate))
+#define OS_CYCLES_TO_USEC(c)    (((u64)(c)*1000000LL)/(osClockRate))
 
 /* OS_K?_TO_PHYSICAL macro bug fix for CodeWarrior */
 #ifndef __MWERKS__

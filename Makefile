@@ -76,7 +76,7 @@ CC_OLD = tools/ido_recomp/$(HOST_OS)/5.3/cc
 ASMPROC = python3 tools/asmproc/build.py
 ASMPROC_FLAGS :=
 
-MIPS_VERSION := -mips2
+MIPS_VERSION := -mips1
 
 OPTFLAGS := -g
 
@@ -122,12 +122,16 @@ $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(DATA_DIRS) $(COMPRESSED_DIRS) $(MAP_DIRS
 # Libultra O1 files
 build/src/libultra/os/%.c.o: CC := $(CC_OLD)
 build/src/libultra/os/%.c.o: OPTFLAGS := -O1
+build/src/libultra/os/%.c.o: MIPS_VERSION := -mips2
 build/src/libultra/io/%.c.o: CC := $(CC_OLD)
 build/src/libultra/io/%.c.o: OPTFLAGS := -O1
+build/src/libultra/io/%.c.o: MIPS_VERSION := -mips2
 build/src/libultra/unknown/%.c.o: CC := $(CC_OLD)
 build/src/libultra/unknown/%.c.o: OPTFLAGS := -O1
+build/src/libultra/unknown/%.c.o: MIPS_VERSION := -mips2
 build/src/libultra/gu/%.c.o: CC := $(CC_OLD)
 build/src/libultra/gu/%.c.o: OPTFLAGS := -O3
+build/src/libultra/gu/%.c.o: MIPS_VERSION := -mips2
 
 ######################## Build #############################
 

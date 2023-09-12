@@ -38,7 +38,7 @@ segments:
     - [0xF280, asm]
     - [0x10AB0, asm]
     - [0x12AF0, asm]
-    - [0x15700, asm]
+    - [0x15700, c, 15700]
     - [0x15A80, asm]
     - [0x17930, asm]
     - [0x1FAB0, asm]

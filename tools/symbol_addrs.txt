@@ -385,3 +385,6 @@ osViModePalLan1 = 0x8004B950;
 osViModeMpalLan1 = 0x8004B9A0;
 osViModeNtscLan1 = 0x8004B9F0;
 __osDiskHandle = 0x8005A854;
+__libm_qnan_f = 0x8004C6C0;
+xseed = 0x8004B500;
+guMtxL2F = 0x800362A8;

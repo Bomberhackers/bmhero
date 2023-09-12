@@ -126,6 +126,8 @@ build/src/libultra/io/%.c.o: CC := $(CC_OLD)
 build/src/libultra/io/%.c.o: OPTFLAGS := -O1
 build/src/libultra/unknown/%.c.o: CC := $(CC_OLD)
 build/src/libultra/unknown/%.c.o: OPTFLAGS := -O1
+build/src/libultra/gu/%.c.o: CC := $(CC_OLD)
+build/src/libultra/gu/%.c.o: OPTFLAGS := -O3
 
 ######################## Build #############################
 

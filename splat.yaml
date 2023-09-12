@@ -33,7 +33,7 @@ segments:
     - [0x1050, asm]
     - [0x38D0, asm]
     - [0xDD20, asm]
-    - [0xEE20, asm]
+    - [0xEE20, c, EE20]
     - [0xEFE0, asm]
     - [0xF280, asm]
     - [0x10AB0, asm]

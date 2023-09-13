@@ -5,8 +5,7 @@ extern s32* D_8004A370;
 extern s32 D_8004BBB0;
 extern s32 D_80380000;
 
-// memset?
-void* func_8000E220(void* dest, u32 c, s32 size) 
+void* memset(void* dest, u32 c, s32 size) 
 {
     u8 *dest_new = (u8*)dest;
     
@@ -17,8 +16,7 @@ void* func_8000E220(void* dest, u32 c, s32 size)
     return dest;
 }
 
-// memcpy?
-void* func_8000E274(void* dest, u32* src, s32 size)
+void* memmove(void* dest, u32* src, s32 size)
 {
     u32 Unk00 = (u32)dest; //C
     u32 Unk01 = (u32)src; //8

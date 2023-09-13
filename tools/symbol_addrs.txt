@@ -388,3 +388,5 @@ __osDiskHandle = 0x8005A854;
 __libm_qnan_f = 0x8004C6C0;
 xseed = 0x8004B500;
 guMtxL2F = 0x800362A8;
+memset = 0x8000E220;
+memmove = 0x8000E274;

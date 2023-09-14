@@ -33,12 +33,12 @@ segments:
     - [0x1050, asm]
     - [0x38D0, asm]
     - [0xDD20, asm]
-    - [0xEE20, asm]
-    - [0xEFE0, asm]
+    - [0xEE20, c, EE20]
+    - [0xEFE0, c, EFE0]
     - [0xF280, asm]
     - [0x10AB0, asm]
     - [0x12AF0, asm]
-    - [0x15700, asm]
+    - [0x15700, c, 15700]
     - [0x15A80, asm]
     - [0x17930, asm]
     - [0x1FAB0, asm]
@@ -145,7 +145,7 @@ segments:
     - [0x39EA0, c, libultra/io/pfsreadwritefile]
     - [0x3A3A0, c, libultra/io/pfsdeletefile]
     - [0x3A9B0, asm] # TODO: Identify
-    - [0x3AA20, asm] # TODO: Identify
+    - [0x3AA20, c, libultra/unknown/3AA20] # TODO: Identify
     - [0x3AB60, c, libultra/unknown/3AB60] # TODO: Identify
     - [0x3ACA0, c, libultra/io/motor]
     - [0x3B440, asm, libultra/libc/string]

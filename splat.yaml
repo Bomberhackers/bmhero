@@ -61,7 +61,7 @@ segments:
     - [0x322C0, hasm, libultra/os/invalidcache]
     - [0x32370, c, libultra/io/pidma]
     - [0x32480, c, libultra/os/recvmesg]
-    - [0x325C0, asm] # TODO: Identify
+    - [0x325C0, c, libultra/os/createmesgqueue]
     - [0x325F0, c, libultra/io/visetyscale]
     - [0x32650, c, libultra/io/viblack]
     - [0x326C0, c, libultra/io/vimgr]
@@ -162,7 +162,7 @@ segments:
     - [0x3C060, c, libultra/os/thread]
     - [0x3C0A0, c, libultra/io/cartrominit]
     - [0x3C190, c, libultra/io/leodiskinit]
-    - [0x3C290, asm] # TODO: Identify
+    - [0x3C290, asm, libultra/io/piacs]
     - [0x3C350, c, libultra/os/getthreadpri]
     - [0x3C370, c, libultra/io/pirawdma]
     - [0x3C450, c, libultra/io/epirawdma]
@@ -170,7 +170,8 @@ segments:
     - [0x3CB10, c, libultra/os/jammesg]
     - [0x3CC60, c, libultra/io/pigetcmdq]
     - [0x3CC90, c, libultra/io/vi]
-    - [0x3CDD0, asm] # TODO: Identify
+    - [0x3CDD0, c, libultra/os/timerintr]
+    - [0x3D1D0, asm, libultra/io/vigetcurrcontext]
     - [0x3D1E0, c, libultra/io/viswapcontext]
     - [0x3D540, hasm, libultra/os/getcount]
     - [0x3D550, c, libultra/io/spgetstat]
@@ -208,7 +209,8 @@ segments:
     - [0x431D0, c, libultra/os/gettime]
     - [0x43260, c, libultra/os/settimer]
     - [0x43340, c, libultra/io/sirawdma]
-    - [0x433F0, asm] # TODO: Identify
+    - [0x433F0, asm, libultra/io/siacs]
+    - [0x434B0, asm, libultra/io/pfsgetstatus]
     - [0x435C0, c, libultra/io/contpfs]
     - [0x44320, c, libultra/io/contramread]
     - [0x446B0, c, libultra/io/pfschecker]
@@ -219,8 +221,8 @@ segments:
     - [0x45E20, c, libultra/io/leointerrupt]
     - [0x466A0, c, libultra/os/destroythread]
     - [0x467A0, c, libultra/os/resetglobalintmask]
-    - [0x46800, asm] # TODO: Identify
-    - [0x46850, asm] # TODO: Identify
+    - [0x46800, asm, libultra/io/epirawwrite]
+    - [0x46850, asm, libultra/io/epirawread]
     - [0x468A0, c, libultra/os/setglobalintmask]
     - [0x468F0, c, libultra/os/yieldthread]
     - [0x46940, hasm, libultra/os/setcompare]
@@ -246,7 +248,8 @@ segments:
     - [0x4C170, .data, libultra/os/thread]
     - [0x4C190, data]
     - [0x4C1A0, .data, libultra/io/vi]
-    - [0x4C210, data]
+    - [0x4C210, data] # this is libultra/os/timerintr, but there is a big bss issue that we cant fix
+    - [0x4C220, data]
     - [0x4C640, rodata]
     - [0x4C670, rodata]
     - [0x4C6A0, rodata]
@@ -285,6 +288,8 @@ segments:
     - {vram: 0x8005A400, type: .bss, name: libultra/io/sptask}
     - {vram: 0x8005A440, type: .bss, name: libultra/gu/rotate}
     - {vram: 0x8005A450, type: .bss, name: libultra/io/controller}
+    - {vram: 0x8005A4E0, type: .bss, name: bss_pad_3}
+    - {vram: 0x8005A8A0, type: .bss, name: libultra/os/timerintr} # bss issue
   - [0x4DFF0]
     
   - [0x4DFF0, bin, rom_bin_4D7E0] # RSP is here + rest of ROM

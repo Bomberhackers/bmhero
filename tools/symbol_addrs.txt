@@ -408,3 +408,6 @@ osEepromLongWrite = 0x80039E20;
 osEepromWrite = 0x80044890;
 osEepromRead = 0x80044D70;
 osEepromLongRead = 0x80039F60;
+__osPackEepWriteData = 0x80044A40;
+__osEepPifRam = 0x8005A8E0;
+__osPackEepReadData = 0x80044F60;

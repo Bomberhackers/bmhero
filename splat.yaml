@@ -246,6 +246,8 @@ segments:
     - [0x489D0, c, libultra/libc/ldiv]
 
     - [0x48B60, data] # data and rodata
+    - [0x494F0, bin, gspF3DEX_fifoTextStart_2] # some RSP stuff around 0x494F0. seems to be the latter part of gspF3DEX_fifoTextStart
+    - [0x4A060, data]
     - [0x4C090, .data, libultra/os/initialize]
     - [0x4C0B0, .data, libultra/io/pimgr]
     - [0x4C0E0, .data, libultra/io/vimgr]
@@ -298,8 +300,7 @@ segments:
     - [0x4D490, .rodata, libultra/audio/seq]
     - [0x4D4A0, .rodata, libultra/audio/reverb]
     - [0x4D4D0, .rodata, libultra/libc/xldtob]
-    - [0x4D530, rodata] # definitely not part of libultra. not sure what this is.
-    - [0x4D7E0, bin]
+    - [0x4D530, bin, gspF3DEX_fifoTextStart_1] # F3DEX2.. but only part of it? Modified F3DEX2?
     - [0x4DFF0]
     
     # bss begins here I guess

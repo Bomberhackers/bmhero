@@ -46,7 +46,15 @@ segments:
     - [0x25810, asm]
     - [0x26CE0, asm]
     - [0x2BF00, asm]
+    
+    # while this file is definitely libultra's synstartvoiceparam, it seems
+    # to be a modified one, and it starts way earlier than libultra's starting
+    # point later. The source for this file is provided on the N64 SDK OS CD,
+    # so the developers may have actually modified the source for this file, thus
+    # moving this file into the "game" source earlier than the libultra source.
     - [0x30390, c, libultra/audio/synstartvoiceparam]
+    
+    # this area still seems to be part of the "game" source and not libultra.
     - [0x30480, asm]
     - [0x30FF0, asm]
     - [0x31660, asm]
@@ -268,7 +276,7 @@ segments:
     - [0x4C860, rodata]
     - [0x4C9B0, rodata]
     - [0x4CA40, rodata]
-    - [0x4CC10, rodata] # related to exceptasm. dont think i can move this yet without sorting the exceptasm issue
+    - [0x4CC10, rodata, libultra/os/setintmask]
     - [0x4CC90, .rodata, libultra/audio/csplayer]
     - [0x4CED0, .rodata, libultra/audio/cseq]
     - [0x4CEE0, .rodata, libultra/audio/cents2ratio]
@@ -279,7 +287,7 @@ segments:
     - [0x4CFE0, .rodata, libultra/libc/llcvt]
     - [0x4CFF0, .rodata, libultra/gu/perspective]
     - [0x4D000, .rodata, libultra/gu/rotate]
-    - [0x4D010, rodata] # actual exceptasm rodata
+    - [0x4D010, rodata, libultra/os/exceptasm]
     - [0x4D060, .rodata, libultra/io/devmgr]
     - [0x4D080, .rodata, libultra/audio/seqplayer]
     - [0x4D2C0, rodata, libultra/gu/libm_vals]
@@ -290,7 +298,7 @@ segments:
     - [0x4D490, .rodata, libultra/audio/seq]
     - [0x4D4A0, .rodata, libultra/audio/reverb]
     - [0x4D4D0, .rodata, libultra/libc/xldtob]
-    - [0x4D530, rodata]
+    - [0x4D530, rodata] # definitely not part of libultra. not sure what this is.
     - [0x4D7E0, bin]
     - [0x4DFF0]
     

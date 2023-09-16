@@ -411,3 +411,5 @@ osEepromLongRead = 0x80039F60;
 __osPackEepWriteData = 0x80044A40;
 __osEepPifRam = 0x8005A8E0;
 __osPackEepReadData = 0x80044F60;
+alSynStartVoiceParams = 0x8002F790;
+alCSPNew = 0x800337A0;

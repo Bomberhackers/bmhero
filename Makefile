@@ -83,7 +83,7 @@ OPTFLAGS := -g
 OBJDUMP_FLAGS := -d -r -z -Mreg-names=32
 
 # include locations
-INC_DIRS := include include/PR include/audio .
+INC_DIRS := include include/PR include/audio include/ido .
 IINCS := $(foreach d,$(INC_DIRS),-I$d)
 # defines for SGI IDO
 CDEFS := -D_LANGUAGE_C -DF3DEX_GBI_2 -DNDEBUG -D_FINALROM -DBUILD_VERSION=VERSION_H
@@ -129,6 +129,9 @@ build/src/libultra/io/%.c.o: MIPS_VERSION := -mips2
 build/src/libultra/gu/%.c.o: CC := $(CC_OLD)
 build/src/libultra/gu/%.c.o: OPTFLAGS := -O3
 build/src/libultra/gu/%.c.o: MIPS_VERSION := -mips2
+build/src/libultra/audio/%.c.o: CC := $(CC_OLD)
+build/src/libultra/audio/%.c.o: OPTFLAGS := -O3
+build/src/libultra/audio/%.c.o: MIPS_VERSION := -mips2
 build/src/libultra/libc/ldiv.c.o: CC := $(CC_OLD)
 build/src/libultra/libc/ldiv.c.o: OPTFLAGS := -O3
 build/src/libultra/libc/ldiv.c.o: MIPS_VERSION := -mips2

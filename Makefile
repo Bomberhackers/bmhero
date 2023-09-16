@@ -119,19 +119,34 @@ LDFLAGS = -T undefined_syms_auto.txt -T undefined_funcs_auto.txt -T $(BUILD_DIR)
 
 $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(DATA_DIRS) $(COMPRESSED_DIRS) $(MAP_DIRS) $(BGM_DIRS),$(shell mkdir -p build/$(dir)))
 
-# Libultra O1 files
+# Libultra files
 build/src/libultra/os/%.c.o: CC := $(CC_OLD)
 build/src/libultra/os/%.c.o: OPTFLAGS := -O1
 build/src/libultra/os/%.c.o: MIPS_VERSION := -mips2
 build/src/libultra/io/%.c.o: CC := $(CC_OLD)
 build/src/libultra/io/%.c.o: OPTFLAGS := -O1
 build/src/libultra/io/%.c.o: MIPS_VERSION := -mips2
-build/src/libultra/unknown/%.c.o: CC := $(CC_OLD)
-build/src/libultra/unknown/%.c.o: OPTFLAGS := -O1
-build/src/libultra/unknown/%.c.o: MIPS_VERSION := -mips2
 build/src/libultra/gu/%.c.o: CC := $(CC_OLD)
 build/src/libultra/gu/%.c.o: OPTFLAGS := -O3
 build/src/libultra/gu/%.c.o: MIPS_VERSION := -mips2
+build/src/libultra/libc/ldiv.c.o: CC := $(CC_OLD)
+build/src/libultra/libc/ldiv.c.o: OPTFLAGS := -O3
+build/src/libultra/libc/ldiv.c.o: MIPS_VERSION := -mips2
+build/src/libultra/libc/ll.c.o: OPTFLAGS := -O1
+build/src/libultra/libc/ll.c.o: MIPS_VERSION := -mips3 -32
+build/src/libultra/libc/llcvt.c.o: OPTFLAGS := -O1
+build/src/libultra/libc/llcvt.c.o: MIPS_VERSION := -mips3 -32
+build/src/libultra/libc/xprintf.c.o: CC := $(CC_OLD)
+build/src/libultra/libc/xprintf.c.o: OPTFLAGS := -O3
+build/src/libultra/libc/xldtob.c.o: CC := $(CC_OLD)
+build/src/libultra/libc/xldtob.c.o: OPTFLAGS := -O3
+build/src/libultra/libc/xlitob.c.o: CC := $(CC_OLD)
+build/src/libultra/libc/xlitob.c.o: OPTFLAGS := -O3
+build/src/libultra/libc/string.c.o: CC := $(CC_OLD)
+build/src/libultra/libc/string.c.o: OPTFLAGS := -O3
+build/src/libultra/libc/sprintf.c.o: CC := $(CC_OLD)
+build/src/libultra/libc/sprintf.c.o: OPTFLAGS := -O3
+build/src/libultra/libc/%.c.o: MIPS_VERSION := -mips2
 
 ######################## Build #############################
 

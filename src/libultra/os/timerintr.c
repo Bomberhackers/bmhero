@@ -6,16 +6,11 @@
 // The rest cannot be declared here, as they will be put above this symbol, which
 // doesnt match.
 OSTime __osCurrentTime;
-
-/** 
- * Can't for the life of me migrate these to bss for the above issue.
- * extern OSTime __osCurrentTime;
- * extern u32 __osBaseCounter;
- * extern u32 __osViIntrCount;
- * extern u32 __osTimerCounter;
- * extern OSTimer __osBaseTimer;
- */
-extern OSTimer* __osTimerList; // .data
+u32 __osBaseCounter;
+u32 __osViIntrCount;
+u32 __osTimerCounter;
+OSTimer __osBaseTimer;
+OSTimer* __osTimerList = &__osBaseTimer;
 
 #ifndef _FINALROM
 OSMesgQueue __osProfTimerQ ALIGNED(8);

@@ -3,8 +3,6 @@
 #include "controller.h"
 #include "siint.h"
 
-extern u32 D_8005A91C;
-
 void __osPackEepWriteData(u8 address, u8* buffer);
 s32 osEepromWrite(OSMesgQueue *mq, u8 address, u8 *buffer) {
     s32 ret = 0;
@@ -37,7 +35,7 @@ s32 osEepromWrite(OSMesgQueue *mq, u8 address, u8 *buffer) {
         __osEepPifRam.ramarray[i] = 255;
     }
 
-    D_8005A91C = 0;
+    __osEepPifRam.pifstatus = 0;
     ret = __osSiRawStartDma(OS_READ, &__osEepPifRam);
     __osContLastCmd = 5;
     osRecvMesg(mq, NULL, OS_MESG_BLOCK);

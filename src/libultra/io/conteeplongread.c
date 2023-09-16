@@ -1,8 +1,6 @@
 #include "PR/os_internal.h"
 #include "controller.h"
 
-extern OSTimer D_8005A498;
-
 s32 osEepromLongRead(OSMesgQueue* mq, u8 address, u8* buffer, int length) {
     s32 ret = 0;
 
@@ -16,7 +14,7 @@ s32 osEepromLongRead(OSMesgQueue* mq, u8 address, u8* buffer, int length) {
         address++;
         buffer += EEPROM_BLOCK_SIZE;
 
-        osSetTimer(&D_8005A498, (0x2EE0 * osClockRate) / 0xF4240, 0, &__osEepromTimerQ, &__osEepromTimerMsg);
+        osSetTimer(&__osEepromTimer, (0x2EE0 * osClockRate) / 0xF4240, 0, &__osEepromTimerQ, &__osEepromTimerMsg);
         osRecvMesg(&__osEepromTimerQ, 0, 1);
     }
 

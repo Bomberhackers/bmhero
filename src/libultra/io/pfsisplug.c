@@ -3,7 +3,7 @@
 #include "controller.h"
 #include "siint.h"
 
-extern OSPifRam __osPfsPifRam ALIGNED(16);
+OSPifRam __osPfsPifRam ALIGNED(16);
 
 s32 osPfsIsPlug(OSMesgQueue* mq, u8* pattern) {
     s32 ret = 0;

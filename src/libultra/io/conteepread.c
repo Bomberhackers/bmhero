@@ -9,8 +9,6 @@ s32 __osEepromRead16K;
 #endif
 void __osPackEepReadData(u8 address);
 
-extern u32 D_8005A91C;
-
 s32 osEepromRead(OSMesgQueue *mq, u8 address, u8 *buffer) {
     s32 ret = 0;
     int i = 0;
@@ -35,7 +33,7 @@ s32 osEepromRead(OSMesgQueue *mq, u8 address, u8 *buffer) {
     for (i = 0; i < 0x10; i++) {
         __osEepPifRam.ramarray[i] = 0xFF;
     }
-    D_8005A91C = 0;
+    __osEepPifRam.pifstatus = 0;
     ret = __osSiRawStartDma(OS_READ, &__osEepPifRam);
     __osContLastCmd = 4;
     osRecvMesg(mq, NULL, OS_MESG_BLOCK);

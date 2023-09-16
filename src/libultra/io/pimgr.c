@@ -4,8 +4,8 @@
 #include "piint.h"
 #include "PR/rdb.h"
 
-extern OSThread piThread ALIGNED(8);
-extern char piThreadStack[OS_PIM_STACKSIZE] ALIGNED(16);
+OSThread piThread ALIGNED(8);
+char piThreadStack[OS_PIM_STACKSIZE] ALIGNED(16);
 
 #ifndef _FINALROM
 static OSThread ramromThread ALIGNED(8);
@@ -17,8 +17,8 @@ static OSMesg freeRamromBuf[1];
 static void ramromMain(void*);
 #endif
 
-extern OSMesgQueue piEventQueue ALIGNED(8);
-extern OSMesg piEventBuf[1];
+OSMesgQueue piEventQueue ALIGNED(8);
+OSMesg piEventBuf[1];
 
 OSDevMgr __osPiDevMgr = { 0 };
 OSPiHandle* __osPiTable = NULL;

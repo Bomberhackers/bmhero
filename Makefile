@@ -40,6 +40,8 @@ O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.c.o)) \
            $(foreach file,$(S_FILES),$(BUILD_DIR)/$(file:.s=.s.o)) \
            $(foreach file,$(DATA_FILES),$(BUILD_DIR)/$(file:.bin=.bin.o)) \
 
+DECOMP_C_OBJS := $(filter %.c.o,$(filter-out $(BUILD_DIR)/src/libultra%,$(O_FILES)))
+DECOMP_BMHERO := $(DECOMP_C_OBJS)
 DEP_FILES := $(O_FILES:.o=.d) $(DECOMP_C_OBJS:.o=.asmproc.d)
 
 SPLAT_YAML := splat.yaml
@@ -150,6 +152,9 @@ build/src/libultra/libc/string.c.o: OPTFLAGS := -O3
 build/src/libultra/libc/sprintf.c.o: CC := $(CC_OLD)
 build/src/libultra/libc/sprintf.c.o: OPTFLAGS := -O3
 build/src/libultra/libc/%.c.o: MIPS_VERSION := -mips2
+
+# run ASM-processor on non-libultra source files
+$(DECOMP_BMHERO): CC := $(ASMPROC) $(ASMPROC_FLAGS) $(CC) -- $(AS) $(ASFLAGS) --
 
 ######################## Build #############################
 

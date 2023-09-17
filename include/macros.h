@@ -1,6 +1,10 @@
 #ifndef __MACROS_H__
 #define __MACROS_H__
 
+#ifndef __sgi
+#define GLOBAL_ASM(...)
+#endif
+
 #define ALIGNED(x) __attribute__((aligned(x)))
 
 #define ARRLEN(x) ((s32)(sizeof(x) / sizeof(x[0])))

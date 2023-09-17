@@ -1,8 +1,70 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/main.s")
+// externs;
+extern void thread1_idle(void* arg);
+extern void thread6_func(void* arg);
+extern u32 D_8004A280;
+extern u32 D_8004A384;
+extern u32 D_8016524C;
+extern void func_8005BAD0();
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/thread1_idle.s")
+// .bss start
+u8 D_8004D3F0[0x320];
+u8 D_8004D710[0x18];
+u8 D_8004D728[0x18];
+u8 D_8004D740[0x8];
+u8 D_8004D748[0x288];
+u8 D_8004D9D0[0x8];
+u8 D_8004D9D8[0x2000];
+u8 D_8004F9D8[0x1B0];
+u8 gIdleThread[0x1B0];
+u8 D_8004FD38[0x1000];
+u64 D_80050D38[0x200]; // needs to be same file to match
+u64 gIdleThreadStack[0x200];
+u32 D_80052D38; // unk
+
+void main(void* arg) {
+    int i;
+    u8 padding[0x44];
+    u8 *ptr;
+
+    // clears code segment in RAM. Whats the need to do this, when a soft reset does this anyway?
+    for (ptr = (u8*)func_8005BAD0; (u32)ptr < (u32)0x80400000; ptr++) {
+        *ptr = 0;
+    }
+    if (D_8004A280 != 0) {
+        osTvType = 0;
+    }
+    osInitialize();
+    for (ptr = (u8* )0x80200000; (u32)ptr < (u32)0x80225800; ptr++) {
+        *ptr = 0;
+    }
+    for (ptr = (u8* )0x80225800; (u32)ptr < (u32)0x8024B000; ptr++) {
+        *ptr = 0;
+    }
+    for (i = 0; i < 0x200U; i++) {
+        D_80050D38[i] = 0;
+        gIdleThreadStack[i] = 0;
+    }
+    D_8016524C = 0;
+
+    func_8000E3E0(0);
+    osCreateThread(&gIdleThread, 1, &thread1_idle, arg, (u8*)&gIdleThreadStack + 0x1000, 10);
+    osStartThread(&gIdleThread);
+}
+
+void thread1_idle(void* arg) {
+    osCreatePiManager(150, &D_8004D710, &D_8004D3F0, 200);
+    osCreateThread(&D_8004F9D8, 6, thread6_func, arg, (u8*)&D_80050D38 + 0x1000, 0xA);
+    if (D_8004A384 == 0) {
+        osStartThread(&D_8004F9D8);
+    }
+    osSetThreadPri(NULL, 0);
+
+    // thread loop
+    while(1)
+        ;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_8000068C.s")
 

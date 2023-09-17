@@ -305,7 +305,8 @@ segments:
     - [0x4DFF0]
     
     # bss begins here I guess
-    - {start: 0x4DFF0, vram: 0x8004D3F0, type: bss, name: bss_pad}
+    - {start: 0x4DFF0, vram: 0x8004D3F0, type: .bss, name: boot/1050}
+    - {start: 0x4DFF0, vram: 0x80052D40, type:  bss, name: bss_pad}
     - {start: 0x4DFF0, vram: 0x80057F80, type: .bss, name: libultra/os/initialize}
     - {start: 0x4DFF0, vram: 0x80057F90, type: .bss, name: libultra/io/pimgr}
     - {start: 0x4DFF0, vram: 0x80059160, type: .bss, name: libultra/io/vimgr}

@@ -1,6 +1,29 @@
 #include "common.h"
 
+struct UnkStruct80001CF0 {
+    s16 unk0;
+    char filler2[0x1E];
+    s16 unk20;
+    char filler22[0x40-0x22];
+    OSMesgQueue unk40;
+    OSMesg unk58;
+    char filler5C[0x1C];
+    OSMesgQueue unk78;
+    OSMesg unk90;
+    char filler94[0x1C];
+    OSThread unkB0;
+    u32 unk260;
+    u32 unk264;
+    u32 unk268;
+    u32 unk26C;
+    u32 unk270;
+    u32 unk274;
+    u32 unk278;
+    u32 unk27C;
+};
+
 void thread6_func(void* arg);
+void func_80001CF0(struct UnkStruct80001CF0* arg0, void* arg1, s32 arg2, u8 arg3, u8 arg4);
 
 // extern functions
 extern void func_8005BAD0();
@@ -126,14 +149,7 @@ extern s32 D_8016E428;
 extern s32 D_801765EC;
 extern s32 osViClock;
 
-struct UnkStruct8004A770 {
-    char filler0[0x530];
-    u32 unk530;
-    char filler534[0x10];
-    u32 unk544;
-};
-
-extern struct UnkStruct8004A770 D_8004A770[];
+extern OSViMode D_8004A770[];
 
 // .bss start
 u8 D_8004D3F0[0x320];
@@ -529,8 +545,8 @@ void thread6_func(void* arg) {
     func_8001DFC8();
     if (D_8004A280 != 0) {
         osViSetYScale(0.8333f);
-        D_8004A770[0].unk530 = 0x250270;
-        D_8004A770[0].unk544 = 0x250270;
+        D_8004A770[16].fldRegs[0].vStart = 0x250270;
+        D_8004A770[16].fldRegs[1].vStart = 0x250270;
         osViClock = 0x02F5B2D2;
     }
     func_80025E28();
@@ -596,7 +612,31 @@ void thread6_func(void* arg) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80001CF0.s")
+void func_80001FF4(void*);                          /* extern */
+
+void func_80001CF0(struct UnkStruct80001CF0* arg0, void* arg1, s32 arg2, u8 arg3, u8 arg4) {
+    arg0->unk274 = 0;
+    arg0->unk278 = 0;
+    arg0->unk260 = 0;
+    arg0->unk27C = 0;
+    arg0->unk264 = 0;
+    arg0->unk268 = 0;
+    arg0->unk26C = 0;
+    arg0->unk270 = 0;
+    arg0->unk0 = 1;
+    arg0->unk20 = 4;
+    osCreateMesgQueue(&arg0->unk40, &arg0->unk58, 8);
+    osCreateMesgQueue(&arg0->unk78, &arg0->unk90, 8);
+    osCreateViManager(0xFE);
+    osViSetMode(&D_8004A770[arg3]);
+    osViBlack(1U);
+    osSetEventMesg(4U, &arg0->unk40, (void* )0x29B);
+    osSetEventMesg(9U, &arg0->unk40, (void* )0x29C);
+    osSetEventMesg(0xEU, &arg0->unk40, (void* )0x29D);
+    osViSetEvent(&arg0->unk40, (void* )0x29A, (u32) arg4);
+    osCreateThread(&arg0->unkB0, 4, func_80001FF4, arg0, arg1, arg2);
+    osStartThread(&arg0->unkB0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80001E78.s")
 

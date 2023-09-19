@@ -22,9 +22,6 @@ struct UnkStruct80001CF0 {
     u32 unk27C;
 };
 
-void thread6_func(void* arg);
-void func_80001CF0(struct UnkStruct80001CF0* arg0, void* arg1, s32 arg2, u8 arg3, u8 arg4);
-
 // extern functions
 extern void func_8005BAD0();
 extern void thread1_idle(void* arg);
@@ -47,6 +44,9 @@ s32 func_8002F738();                                  /* extern */
 s32 func_8005E230(s32);                               /* extern */
 s32 func_80083180(s32);                               /* extern */
 u32 func_800FE898();                                /* extern */
+s32 func_80002130(void*);                             /* extern */
+s32 func_800022A0(void*);                             /* extern */
+s32 func_80002424(void*);                             /* extern */
 
 // extern symbols
 extern u32 D_8004A280;
@@ -126,6 +126,11 @@ struct UnkStruct80340000 {
     char filler0[0x18170];
 }; // size = 0x18170
 
+struct UnkStruct260 {
+    u32 unk0;
+    OSMesg unk4;
+};
+
 extern struct UnkStruct80340000 D_80340000[2];
 
 extern s32 D_80134224;
@@ -164,7 +169,14 @@ u8 gIdleThread[0x1B0];
 u8 D_8004FD38[0x1000];
 u64 D_80050D38[0x200]; // needs to be same file to match
 u64 gIdleThreadStack[0x200];
-u32 D_80052D38; // unk
+u32 D_80052D38[2];
+
+// functions
+void thread6_func(void* arg);
+void func_80001CF0(struct UnkStruct80001CF0* arg0, void* arg1, s32 arg2, u8 arg3, u8 arg4);
+void func_80001E78(struct UnkStruct80001CF0* arg0, u32* arg1, s32 arg2);
+OSMesgQueue *func_80001FDC(struct UnkStruct80001CF0 *arg0);
+void thread4_func(void*);
 
 void main(void* arg) {
     int i;
@@ -612,8 +624,6 @@ void thread6_func(void* arg) {
     }
 }
 
-void func_80001FF4(void*);                          /* extern */
-
 void func_80001CF0(struct UnkStruct80001CF0* arg0, void* arg1, s32 arg2, u8 arg3, u8 arg4) {
     arg0->unk274 = 0;
     arg0->unk278 = 0;
@@ -634,17 +644,78 @@ void func_80001CF0(struct UnkStruct80001CF0* arg0, void* arg1, s32 arg2, u8 arg3
     osSetEventMesg(9U, &arg0->unk40, (void* )0x29C);
     osSetEventMesg(0xEU, &arg0->unk40, (void* )0x29D);
     osViSetEvent(&arg0->unk40, (void* )0x29A, (u32) arg4);
-    osCreateThread(&arg0->unkB0, 4, func_80001FF4, arg0, arg1, arg2);
+    osCreateThread(&arg0->unkB0, 4, thread4_func, arg0, arg1, arg2);
     osStartThread(&arg0->unkB0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80001E78.s")
+void func_80001E78(struct UnkStruct80001CF0* arg0, u32* arg1, s32 arg2) {
+    u32 mask = osSetIntMask(1);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80001EF0.s")
+    arg1[1] = arg2;
+    arg1[0] = (void* ) arg0->unk260;
+    arg0->unk260 = arg1;
+    osSetIntMask(mask);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80001FDC.s")
+void func_80001EF0(struct UnkStruct80001CF0* arg0, u32** arg1) {
+    u32* sp24;
+    u32* sp20;
+    u32 sp1C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80001FF4.s")
+    sp24 = arg0->unk260;
+    sp20 = NULL;
+    sp1C = osSetIntMask(1U);
+    while (sp24 != NULL) {
+        if ((u32)sp24 == (u32)arg1) {
+            if (sp20 != NULL) {
+                *sp20 = *arg1;
+            } else {
+                arg0->unk260 = (u32* ) *arg1;
+            }
+            break;
+        }
+        sp20 = sp24;
+        sp24 = *sp24;
+    }
+    osSetIntMask(sp1C);
+}
+
+OSMesgQueue *func_80001FDC(struct UnkStruct80001CF0 *arg0) {
+    return &arg0->unk78;
+}
+
+void thread4_func(void* arg) {
+    OSMesg mesg;
+    struct UnkStruct80001CF0* sp28 = arg;
+    struct UnkStruct260* sp24;
+
+    // thread loop
+    while(1) {
+        osRecvMesg(&sp28->unk40, &mesg, 1);
+        switch ((s32)mesg) {                                 /* irregular */
+        case 0x29A:
+            func_80002130(sp28);
+            break;
+        case 0x29B:
+            func_800022A0(sp28);
+            break;
+        case 0x29C:
+            func_80002424(sp28);
+            break;
+        case 0x29D: {
+            if((sp24 = sp28->unk260) != 0) {
+                do {
+                    osSendMesg(sp24->unk4, &sp28->unk20, 0);
+                } while ((sp24 = sp24->unk0) != 0);
+            }
+            D_8016524C = 1;
+            osViSetYScale(1.0f);
+            osViBlack(1U);
+            break;
+        }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80002130.s")
 

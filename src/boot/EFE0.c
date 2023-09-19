@@ -1,10 +1,5 @@
 #include <ultra64.h>
 
-extern s32 D_8004A380;
-extern s32 D_8004A384;
-extern s32 D_8004A388;
-extern s32 D_8004A38C;
-
 /**
  * Seems to parse a string of arguments, possibly treating the game like an executable at one
  * point.

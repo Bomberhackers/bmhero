@@ -436,10 +436,40 @@ segments:
     - [0x126730, rodata]
     - [0x126750, rodata]
     - [0x126C50, rodata]
+
+    # these are probably other sections but we dont have them ID'd yet.
+  - name: unk_bin
+    type: bin
+    bss_size: 0x0
+    start: 0x126CB0
+    vram: 0x0 # idk
+    subsegments:
     - [0x126CB0, bin]
     - [0x127FF0, bin]
-    - [0x128D20, bin]
-    
+
+  - name: code_extra_0
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x128D20
+    vram: 0x80280000
+    exclusive_ram_id: id5
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x128D20, asm]
+    - [0x133DA0, data]
+    - [0x134370, rodata]
+
+  - name: code_extra_1
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x134440
+    vram: 0x80280000
+    exclusive_ram_id: id5
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x134440, asm]
+    - [0x138160, data]
+
   # Rest of ROM
-  - [0x128D20, bin]
+  - [0x138360, bin]
   - [0xC00000]

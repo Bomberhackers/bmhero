@@ -193,7 +193,7 @@ void func_80000964(void) {
 }
 
 void func_80000BE8(void) {
-    func_8000068C(&D_4DFF0, &func_8005BAD0, (u32)&D_126CB0 - (u32)&D_4DFF0);
+    func_8000068C(&game_ROM_START, &game_TEXT_START, (u32)&game_ROM_END - (u32)&game_ROM_START);
 }
 
 void func_80000C2C(void) {

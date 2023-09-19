@@ -50,8 +50,6 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/4DFF0/func_8005F9EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/4DFF0/func_8005FA90.s")
-
 #pragma GLOBAL_ASM("asm/nonmatchings/code/4DFF0/func_8005FAA0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/4DFF0/func_8005FAB8.s")

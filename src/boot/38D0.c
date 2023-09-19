@@ -8,23 +8,35 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80002E1C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80002F7C.s")
+s32 func_80002F7C(void) {
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80002F94.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80003058.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80003158.s")
+s32 func_80003158(void) {
+    return 0x18;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80003170.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_800031B4.s")
+s32 func_800031B4(void) {
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_800031CC.s")
+s32 func_800031CC(void) {
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_800031E4.s")
+s32 func_800031E4(void) {
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_800031FC.s")
+s32 func_800031FC(void) {
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80003214.s")
 

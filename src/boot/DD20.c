@@ -6,7 +6,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/DD20/func_8000D818.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/DD20/func_8000D834.s")
+s32 func_8000D834(void) {
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/DD20/func_8000D84C.s")
 

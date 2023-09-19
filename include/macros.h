@@ -1,7 +1,7 @@
 #ifndef __MACROS_H__
 #define __MACROS_H__
 
-#ifndef __sgi
+#ifdef __GNUC__
 #define GLOBAL_ASM(...)
 #endif
 

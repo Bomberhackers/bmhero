@@ -37,4 +37,8 @@
 #include <PR/ultraerror.h>
 #include <PR/ultralog.h>
 
+#include "macros.h"
+#include "functions.h"
+#include "variables.h"
+
 #endif

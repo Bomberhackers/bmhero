@@ -93,7 +93,7 @@ CDEFS := -D_LANGUAGE_C -DF3DEX_GBI_2 -DNDEBUG -D_FINALROM -DBUILD_VERSION=VERSIO
 ifneq ($(RUN_CC_CHECK),0)
   CHECK_WARNINGS := -Wall -Wextra
   CHECK_DEFS := -D_MIPS_SZLONG=32 -DNON_MATCHING
-  CHECK_FLAGS := -fno-builtin -funsigned-char -fdiagnostics-color -std=gnu89 $(CDEFS) $(CHECK_DEFS) $(IINCS) -nostdinc
+  CHECK_FLAGS := -fno-builtin -funsigned-char -fdiagnostics-color -std=gnu89 $(CDEFS) $(CHECK_DEFS) $(IINCS) -nostdinc -Wno-unknown-pragmas
   CC_CHECK := gcc -fsyntax-only
 
   ifeq ($(HOST_OS),linux)

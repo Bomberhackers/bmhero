@@ -48,7 +48,7 @@ void main(void* arg) {
     }
     D_8016524C = 0;
 
-    func_8000E3E0(0);
+    HS_ParseArg(NULL);
     osCreateThread(&gIdleThread, 1, &thread1_idle, arg, (u8*)&gIdleThreadStack + 0x1000, 10);
     osStartThread(&gIdleThread);
 }

@@ -23,6 +23,20 @@ extern s32 D_80165284;
 extern s32 D_8016E098;
 extern s32 D_8016E0A0;
 
+// extern ROM labels
+extern u8 D_4DFF0[];
+extern u8 D_126CB0[];
+extern u8 D_147BB0[];
+extern u8 D_14C540[];
+extern u8 D_1528A0[];
+extern u8 D_153B70[];
+extern u8 D_156F90[];
+extern u8 D_157520[];
+extern u8 D_157A00[];
+extern u8 D_15A0F0[];
+extern u8 D_15A7D0[];
+extern u8 D_15C0D0[];
+
 struct UnkStruct80340000 {
     char filler0[0x18170];
 }; // size = 0x18170
@@ -87,37 +101,38 @@ void thread1_idle(void* arg) {
         ;
 }
 
-void func_8000068C(u32 arg0, void* arg1, s32 arg2) {
-    OSIoMesg sp40;
-    void* sp3C;
+void func_8000068C(void *start, void* func, s32 size) {
+    OSIoMesg ioMesg;
+    OSMesg dummy;
     u8 padding[4];
-    s32 sp34;
-    s32 sp30;
-    u32 sp2C;
-    u8* sp28;
+    s32 size_loc;
+    s32 size_amount;
+    u8* start_loc;
+    u8* func_loc;
 
-    osWritebackDCache(arg1, arg2);
-    osInvalICache(arg1, arg2);
-    osInvalDCache(arg1, arg2);
-    sp2C = arg0;
-    sp28 = arg1;
-    sp34 = arg2;
-    if (sp34 != 0) {
+    osWritebackDCache(func, size);
+    osInvalICache(func, size);
+    osInvalDCache(func, size);
+    start_loc = start;
+    func_loc = func;
+    size_loc = size;
+    if (size_loc != 0) {
         do {
-            if (sp34 < 0x4001) {
-                sp30 = sp34;
+            // load in 0x4000 chunks.
+            if (size_loc <= 0x4000) {
+                size_amount = size_loc;
             } else {
-                sp30 = 0x4000;
+                size_amount = 0x4000;
             }
-            osPiStartDma(&sp40, 0, 0, sp2C, sp28, (u32) sp30, &D_8004D728);
-            osRecvMesg(&D_8004D728, &sp3C, 1);
-            sp34 -= sp30;
-            sp2C += sp30;
-            sp28 += sp30;
-        } while (sp34 != 0);
+            osPiStartDma(&ioMesg, 0, 0, start_loc, func_loc, size_amount, &D_8004D728);
+            osRecvMesg(&D_8004D728, &dummy, 1);
+            size_loc -= size_amount;
+            start_loc += size_amount;
+            func_loc += size_amount;
+        } while (size_loc != 0);
     }
-    osInvalICache(arg1, arg2);
-    osInvalDCache(arg1, arg2);
+    osInvalICache(func, size);
+    osInvalDCache(func, size);
 }
 
 void func_800007F4(void) {
@@ -205,23 +220,49 @@ void func_80000964(void) {
     func_8001EE64();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80000BE8.s")
+void func_80000BE8(void) {
+    func_8000068C(&D_4DFF0, &func_8005BAD0, (u32)&D_126CB0 - (u32)&D_4DFF0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80000C2C.s")
+void func_80000C2C(void) {
+    func_8000068C(&D_147BB0, 0x80320000, (u32)&D_14C540 - (u32)&D_147BB0);
+    func_8000068C(&D_14C540, 0x80330000, (u32)&D_1528A0 - (u32)&D_14C540);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80000C8C.s")
+void func_80000C8C(void) {
+    func_8000068C(&D_147BB0, 0x80320000, (u32)&D_14C540 - (u32)&D_147BB0);
+    func_8000068C(&D_1528A0, 0x80330000, (u32)&D_153B70 - (u32)&D_1528A0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80000CEC.s")
+void func_80000CEC(void) {
+    func_8000068C(&D_147BB0, 0x80320000, (u32)&D_14C540 - (u32)&D_147BB0);
+    func_8000068C(&D_153B70, 0x80330000, (u32)&D_156F90 - (u32)&D_153B70);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80000D4C.s")
+void func_80000D4C(void) {
+    func_8000068C(&D_147BB0, 0x80320000, (u32)&D_14C540 - (u32)&D_147BB0);
+    func_8000068C(&D_156F90, 0x80330000, (u32)&D_157520 - (u32)&D_156F90);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80000DAC.s")
+void func_80000DAC(void) {
+    func_8000068C(&D_147BB0, 0x80320000, (u32)&D_14C540 - (u32)&D_147BB0);
+    func_8000068C(&D_157520, 0x80330000, (u32)&D_157A00 - (u32)&D_157520);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80000E0C.s")
+void func_80000E0C(void) {
+    func_8000068C(&D_147BB0, 0x80320000, (u32)&D_14C540 - (u32)&D_147BB0);
+    func_8000068C(&D_157A00, 0x80330000, (u32)&D_15A0F0 - (u32)&D_157A00);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80000E6C.s")
+void func_80000E6C(void) {
+    func_8000068C(&D_147BB0, 0x80320000, (u32)&D_14C540 - (u32)&D_147BB0);
+    func_8000068C(&D_15A0F0, 0x80330000, (u32)&D_15A7D0 - (u32)&D_15A0F0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80000ECC.s")
+void func_80000ECC(void) {
+    func_8000068C(&D_147BB0, 0x80320000, (u32)&D_14C540 - (u32)&D_147BB0);
+    func_8000068C(&D_15A7D0, 0x80330000, (u32)&D_15C0D0 - (u32)&D_15A7D0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80000F2C.s")
 

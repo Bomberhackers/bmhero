@@ -1,5 +1,13 @@
 #include "common.h"
 
+struct UnkInputStruct80001CF0 {
+    u32 unk0;
+    u32 unk4;
+    u32 unk8;
+    char filler8[0x4];
+    OSTask unk10;
+};
+
 struct UnkStruct80001CF0 {
     s16 unk0;
     char filler2[0x1E];
@@ -17,18 +25,10 @@ struct UnkStruct80001CF0 {
     u32 unk268;
     u32 unk26C;
     u32 unk270;
-    u32 unk274;
+    struct UnkInputStruct80001CF0 *unk274;
     u32 unk278;
     u32 unk27C;
     u32 unk280;
-};
-
-struct UnkInputStruct80001CF0 {
-    u32 unk0;
-    u32 unk4;
-    u32 unk8;
-    char filler8[0x4];
-    OSTask unk10;
 };
 
 struct UnkStruct80340000 {
@@ -38,6 +38,38 @@ struct UnkStruct80340000 {
 struct UnkStruct260 {
     u32 unk0;
     OSMesg unk4;
+};
+
+struct UnkStruct80002424 {
+    char filler0[0x4];
+    u32 unk4;
+    u32 unk8;
+    void *unkC;
+    u32 unk10;
+    char filler14[0x3C];
+    OSMesgQueue *unk50;
+    OSMesg unk54;
+};
+
+struct UnkStruct8000265C {
+    u32 unk0;
+    u32 unk4;
+    u32 unk8;
+    char fillerC[0x4];
+    u32 unk10;
+};
+
+struct UnkStruct800026F4_Arg1 {
+    char filler0[0x4];
+    u32 unk4;
+    char filler8[0x8];
+    OSTask unk10;
+};
+
+struct UnkStruct800026F4_Arg2 {
+    char filler0[0x38];
+    u32 unk38;
+    u64 *unk3C;
 };
 
 // extern functions
@@ -62,13 +94,13 @@ s32 func_8002F738();                                  /* extern */
 s32 func_8005E230(s32);                               /* extern */
 s32 func_80083180(s32);                               /* extern */
 u32 func_800FE898();                                /* extern */
-s32 func_80002424(void*);                             /* extern */
-s32 func_80002574(void*, void*);                      /* extern */
-s32 func_800026F4(void*, s32, s32);                   /* extern */
 s32 func_80002890(void*, s32*, s32*, s32);          /* extern */
 
 // extern symbols
 extern u32 D_8004A280;
+extern s32 D_8004A294;
+extern s32 D_8004A298;
+extern s32 D_8004A29C;
 extern u32 D_8004A384;
 extern u32 D_8016524C;
 extern OSMesgQueue D_8016E0B8;
@@ -189,6 +221,11 @@ OSMesgQueue *func_80001FDC(struct UnkStruct80001CF0 *arg0);
 void thread4_func(void*);
 void func_80002130(struct UnkStruct80001CF0* arg0);
 void func_800022A0(struct UnkStruct80001CF0* arg0);
+void func_80002424(struct UnkStruct80001CF0* arg0);
+s32 func_80002574(s32 arg0, struct UnkStruct80002424* arg1);
+void func_8000265C(struct UnkStruct80001CF0* arg0, struct UnkStruct8000265C* arg1);
+void func_800026F4(struct UnkStruct80001CF0* arg0, struct UnkStruct800026F4_Arg1* arg1, struct UnkStruct800026F4_Arg2* arg2);
+void func_8000281C(struct UnkStruct80001CF0* arg0);
 
 void main(void* arg) {
     int i;
@@ -742,7 +779,7 @@ void func_80002130(struct UnkStruct80001CF0* arg0) {
     arg0->unk27C++;
     if (osRecvMesg(&arg0->unk78, &sp2C, 0) != -1) {
         do {
-            func_8000265C(arg0, sp2C);
+            func_8000265C(arg0, (struct UnkStruct8000265C*)sp2C); // TODO: Fix aliasing
         } while (osRecvMesg(&arg0->unk78, &sp2C, 0) != -1);
     }
     if ((arg0->unk280 != 0) && (arg0->unk274 != 0)) {
@@ -787,16 +824,108 @@ void func_800022A0(struct UnkStruct80001CF0* arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80002424.s")
+void func_80002424(struct UnkStruct80001CF0* arg0) {
+    struct UnkStruct80002424* sp24;
+    s32 sp20;
+    s32 sp1C;
+    s32 sp18;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_800024F4.s")
+    sp20 = 0;
+    sp1C = 0;
+    sp24 = arg0->unk278;
+    arg0->unk278 = 0;
+    sp24->unk4 = (s32) (sp24->unk4 & ~1);
+    func_80002574(arg0, sp24);
+    sp18 = ((arg0->unk274 == 0) * 2) | (arg0->unk278 == 0);
+    if (func_80002890(arg0, &sp20, &sp1C, sp18) != sp18) {
+        func_800026F4(arg0, sp20, sp1C);
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80002574.s")
+s32 func_800024F4(s32 arg0) {
+    s32 sp2C = 0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_8000265C.s")
+    if (arg0 != 0) {
+        void *buf, *buf2; // weird, but ok
+        if ((buf = osViGetCurrentFramebuffer()) != (buf2 = osViGetNextFramebuffer())) {
+            return 0;
+        }
+        return arg0;
+    }
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_800026F4.s")
+s32 func_80002574(s32 arg0, struct UnkStruct80002424* arg1) {
+    s32 sp1C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_8000281C.s")
+    if (!(arg1->unk4 & 3)) {
+        sp1C = osSendMesg(arg1->unk50, arg1->unk54, 1);
+        if (arg1->unk10 == 1) {
+            if ((arg1->unk8 & 0x40) && (arg1->unk8 & 0x20)) {
+                if (D_8004A29C != 0) {
+                    osViBlack(0U);
+                    D_8004A29C = 0;
+                }
+                osViSwapBuffer(arg1->unkC);
+            }
+        }
+        return 1;
+    }
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80002890.s")
+void func_8000265C(struct UnkStruct80001CF0* arg0, struct UnkStruct8000265C* arg1) {
+    s32 sp4 = arg1->unk10;
+
+    if (sp4 == 2) {
+        if (arg0->unk26C != 0) {
+            **(u32**)&arg0->unk26C = arg1; // TODO: Fix
+        } else {
+            arg0->unk264 = arg1;
+        }
+        arg0->unk26C = arg1;
+        arg0->unk280 = 1;
+    } else {
+        if (arg0->unk270 != 0) {
+            **(u32**)&arg0->unk270 = arg1; // TODO: Fix
+        } else {
+            arg0->unk268 = arg1;
+        }
+        arg0->unk270 = arg1;
+    }
+    arg1->unk0 = 0;
+    arg1->unk4 = (s32) (arg1->unk8 & 3);
+}
+
+void func_800026F4(struct UnkStruct80001CF0* arg0, struct UnkStruct800026F4_Arg1* arg1, struct UnkStruct800026F4_Arg2* arg2) {
+    s32 sp1C;
+    u64* temp_t9;
+
+    if (arg1 != NULL) {
+        if (*(s32*)&arg1->unk10 == 2) {
+            osWritebackDCacheAll();
+        }
+        arg1->unk4 &= ~0x30;
+        osSpTaskLoad(&arg1->unk10);
+        osSpTaskStartGo(&arg1->unk10);
+        arg0->unk274 = arg1;
+        if ((u32)arg1 == (u32)arg2) {
+            arg0->unk278 = arg2;
+        }
+    }
+    if ((arg2 != NULL) && ((u32)arg2 != (u32)arg1)) {
+        sp1C = osDpSetNextBuffer(arg2->unk38, *arg2->unk3C);
+        D_8004A294 = 1;
+        D_8004A298 = 0;
+        arg0->unk278 = arg2;
+    }
+}
+
+void func_8000281C(struct UnkStruct80001CF0* arg0) {
+    if (arg0->unk274->unk10.t.type == 1) {
+        arg0->unk274->unk4 = (s32) (arg0->unk274->unk4 | 0x10);
+        osSpTaskYield();
+    } else {
+        
+    }
+}

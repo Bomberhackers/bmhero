@@ -40,10 +40,21 @@ extern u8 D_160560[];
 extern u8 D_167950[];
 extern u8 D_16D650[];
 extern u8 D_175420[];
+extern u8 D_184EE0[];
+extern u8 D_189940[];
+extern u8 D_194F10[];
+extern u8 D_198140[];
+extern u8 D_19C610[];
+extern u8 D_1A89C0[];
 extern u8 D_1C73D0[];
 extern u8 D_1C8320[];
 extern u8 D_1C90D0[];
 extern u8 D_1C9940[];
+extern u8 D_1CA830[];
+extern u8 D_1CA9B0[];
+extern u8 D_1CAA50[];
+extern u8 D_1CAB90[];
+extern u8 D_1CBF80[];
 extern u8 D_20F5B0[];
 extern u8 D_2193A0[];
 
@@ -310,15 +321,30 @@ void func_80001120(void) {
     func_8000068C(&D_1C90D0, 0x8032E000, (u32)&D_1C9940 - (u32)&D_1C90D0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80001184.s")
+void func_80001184(void) {
+    func_8000068C(&D_175420, 0x80330000, (u32)&D_184EE0 - (u32)&D_175420);
+    func_8000068C(&D_1C9940, 0x8032E000, (u32)&D_1CA830 - (u32)&D_1C9940);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_800011E8.s")
+void func_800011E8(void) {
+    func_8000068C(&D_189940, 0x80330000, (u32)&D_194F10 - (u32)&D_189940);
+    func_8000068C(&D_1CA830, 0x8032E000, (u32)&D_1CA9B0 - (u32)&D_1CA830);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_8000124C.s")
+void func_8000124C(void) {
+    func_8000068C(&D_194F10, 0x80330000, (u32)&D_198140 - (u32)&D_194F10);
+    func_8000068C(&D_1CA9B0, 0x8032E000, (u32)&D_1CAA50 - (u32)&D_1CA9B0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_800012B0.s")
+void func_800012B0(void) {
+    func_8000068C(&D_198140, 0x80330000, (u32)&D_19C610 - (u32)&D_198140);
+    func_8000068C(&D_1CAA50, 0x8032E000, (u32)&D_1CAB90 - (u32)&D_1CAA50);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80001314.s")
+void func_80001314(void) {
+    func_8000068C(&D_19C610, 0x80330000, (u32)&D_1A89C0 - (u32)&D_19C610);
+    func_8000068C(&D_1CAB90, 0x8032E000, (u32)&D_1CBF80 - (u32)&D_1CAB90);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80001378.s")
 

@@ -252,7 +252,39 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001DEDC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001DFC8.s")
+void func_8001DFC8(void) {
+    s32 sp1C;
+    u16 i;
+
+    D_8016E27C = 0;
+    osCreateMesgQueue(&D_801776B0, &D_801776CC, 1);
+    osSetEventMesg(5U, &D_801776B0, (void* )1);
+    sp1C = osContInit(&D_801776B0, &D_8016E27C, &D_80177650);
+    if (sp1C != 0) {
+
+    }
+    for(i = 0; i < 4; i++) {
+        D_8016E300.unk00[i] = 0;
+        D_8016E300.unk20[i] = 0;
+        D_8016E300.unk10[i] = 0;
+        D_8016E300.unk30[i] = 0;
+        D_8016E300.unk3C[i] = 0;
+        D_8016E300.unk44[i] = 0;
+        D_8016E300.unk50[i] = 0;
+        D_8016E300.unk60[i] = 0;
+        D_8016E300.unk70[i] = 0;
+        D_8016E280.unk20[i] = 0;
+        D_8016E280.unk10[i] = 0;
+        D_8016E280.unk30[i] = 0;
+        D_8016E280.unk3C[i] = 0;
+        D_8016E280.unk44[i] = 0;
+        D_8016E280.unk50[i] = 0;
+        D_8016E280.unk60[i] = 0;
+        D_8016E280.unk70[i] = 0;
+    }
+    func_8001DEDC(0);
+    func_8001DC78();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001E1C0.s")
 

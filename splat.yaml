@@ -270,7 +270,7 @@ segments:
     - [0x4C5A0, .data, libultra/vimodes/vimodempallan1]
     - [0x4C5F0, .data, libultra/vimodes/vimodentsclan1]
     - [0x4C640, .data, libultra/libc/xlitob]
-    - [0x4C670, rodata]
+    - [0x4C670, .rodata, boot/1050]
     - [0x4C6A0, rodata]
     - [0x4C6C0, rodata]
     - [0x4C7B0, rodata]

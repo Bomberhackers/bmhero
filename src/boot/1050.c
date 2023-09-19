@@ -1,14 +1,29 @@
 #include "common.h"
 
+void thread6_func(void* arg);
+
 // extern functions
 extern void func_8005BAD0();
 extern void thread1_idle(void* arg);
-extern void thread6_func(void* arg);
 s32 func_8001D9E4(void*);
 s32 func_8001E80C();
 s32 func_8001ECA0();
 s32 func_8001EE64();
 s32 func_8001F9DC();
+s32 func_80016DD4();                                  /* extern */
+s32 func_80016E84();                                  /* extern */
+s32 func_80016F38(s32, s32, s32);                           /* extern */
+s32 func_8001D1F4();                                  /* extern */
+s32 func_8001D440();                                  /* extern */
+s32 func_8001DFC8();                                  /* extern */
+s32 func_8001F9DC();                                  /* extern */
+s32 func_8001FAD4();                                  /* extern */
+s32 func_80021158();                                  /* extern */
+s32 func_80025E28();                                  /* extern */
+s32 func_8002F738();                                  /* extern */
+s32 func_8005E230(s32);                               /* extern */
+s32 func_80083180(s32);                               /* extern */
+u32 func_800FE898();                                /* extern */
 
 // extern symbols
 extern u32 D_8004A280;
@@ -89,6 +104,36 @@ struct UnkStruct80340000 {
 }; // size = 0x18170
 
 extern struct UnkStruct80340000 D_80340000[2];
+
+extern s32 D_80134224;
+extern s32 D_80134228;
+extern s32 D_8016527C;
+extern s16 D_8016E092;
+extern s8 D_8016E134;
+extern s8 D_8016E3DC;
+extern s8 D_8016E3E4;
+extern s8 D_8016E3EC;
+extern s8 D_8016E3EE;
+extern s16 D_8016E3F4;
+extern s8 D_8016E3F7;
+extern s8 D_8016E3FC;
+extern s8 D_8016E404;
+extern s8 D_8016E40C;
+extern s8 D_8016E414;
+extern s16 D_8016E41C;
+extern s8 D_8016E424;
+extern s32 D_8016E428;
+extern s32 D_801765EC;
+extern s32 osViClock;
+
+struct UnkStruct8004A770 {
+    char filler0[0x530];
+    u32 unk530;
+    char filler534[0x10];
+    u32 unk544;
+};
+
+extern struct UnkStruct8004A770 D_8004A770[];
 
 // .bss start
 u8 D_8004D3F0[0x320];
@@ -474,7 +519,82 @@ void func_80001A64(void) {
     
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/thread6_func.s")
+void thread6_func(void* arg) {
+    u32 sp1C;
+
+    func_80000924();
+    func_800007F4();
+    func_80000BE8();
+    func_8001D440();
+    func_8001DFC8();
+    if (D_8004A280 != 0) {
+        osViSetYScale(0.8333f);
+        D_8004A770[0].unk530 = 0x250270;
+        D_8004A770[0].unk544 = 0x250270;
+        osViClock = 0x02F5B2D2;
+    }
+    func_80025E28();
+    func_8001FAD4();
+    func_8001F9DC();
+    func_80016DD4();
+    func_80016E84();
+    func_8001D1F4();
+    D_8016E092 = 0x1234;
+    D_8016527C = 2;
+    D_8016E134 = 0;
+    D_8016E428 = 0;
+    D_801765EC = 2;
+    D_8016E3E4 = 0;
+    D_8016E3F7 = 0;
+    D_8016E404 = 0;
+    D_8016E414 = 0;
+    D_8016E41C = 0;
+    D_8016E3EC = 0;
+    D_8016E3EE = 0;
+    D_8016E3F4 = 0;
+    D_8016E424 = 0;
+    D_8016E3FC = 0;
+    D_8016E40C = 0;
+    func_80083180(0);
+
+    // thread loop
+    while(1) {
+        D_8016E3DC = 0;
+        D_8016E134 = 0;
+        sp1C = func_800FE898();
+        switch (sp1C) {
+            case 0:
+                D_8016E428 = 0;
+                D_8016E3DC = 0;
+                func_80083180(D_80134228);
+                break;
+            case 1:
+                D_8016E3DC = 0;
+                func_80083180(0x64);
+                break;
+            case 2:
+                D_8016E3DC = 1;
+                func_80083180(0x64);
+                break;
+            case 3: 
+                break;
+            case 4: 
+                break;
+            case 5:
+                func_80016F38(-1, -1, 0);
+                func_8002F738();
+                break;
+            case 8:
+                func_8005E230(D_80134224);
+                break;
+            case 9:
+                func_80021158();
+                break;
+            default:
+                break;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/1050/func_80001CF0.s")
 

@@ -631,6 +631,94 @@ segments:
     - [0x15C0D0, asm]
     - [0x15EE10, data]
 
+  - name: unk_bin_11
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x160560
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x160560, asm]
+    - [0x1676F0, data]
+
+  - name: unk_bin_12
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x167950
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x167950, asm]
+    - [0x16D440, data]
+
+  - name: unk_bin_13
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x16D650
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x16D650, asm]
+    - [0x175210, data]
+
+  - name: unk_bin_14
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x175420
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x175420, asm]
+    - [0x184BD0, data]
+
+  - name: unk_bin_15
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x184EE0
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x184EE0, asm]
+    - [0x189810, data]
+
+  - name: unk_bin_16
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x189940
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x189940, asm]
+    - [0x194B90, data]
+
+  - name: unk_bin_17
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x194F10
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x194F10, asm]
+    - [0x197ED0, data]
+
+  - name: unk_bin_18
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x198140
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x198140, asm]
+    - [0x19C550, data]
+
   # Rest of ROM
-  - [0x160560, bin]
+  - [0x19C610, bin]
   - [0xC00000]

@@ -83,32 +83,32 @@ extern u8 unk_bin_17_ROM_END[];       // 0x198140
 extern u8 unk_bin_18_ROM_START[];     // 0x198140
 extern u8 unk_bin_18_ROM_END[];       // 0x19C610
 
-extern u8 D_19C610[];                 // 0x19C610
-extern u8 D_1A89C0[];                 // 0x1A89C0
+extern u8 unk_bin_19_ROM_START[];     // 0x19C610
+extern u8 unk_bin_19_ROM_END[];       // 0x1A89C0
 
-extern u8 D_1A89C0[];                 // 0x
-extern u8 D_1ABC60[];                 // 0x
+extern u8 unk_bin_20_ROM_START[];     // 0x1A89C0
+extern u8 unk_bin_20_ROM_END[];       // 0x1ABC60
 
-extern u8 D_1ABC60[];                 // 0x
-extern u8 D_1AECD0[];                 // 0x
+extern u8 unk_bin_21_ROM_START[];     // 0x1ABC60
+extern u8 unk_bin_21_ROM_END[];       // 0x1AECD0
 
-extern u8 D_1AECD0[];                 // 0x
-extern u8 D_1B3930[];                 // 0x
+extern u8 unk_bin_22_ROM_START[];     // 0x1AECD0
+extern u8 unk_bin_22_ROM_END[];       // 0x1B3930
 
-extern u8 D_1B3930[];                 // 0x
-extern u8 D_1B6C30[];                 // 0x
+extern u8 unk_bin_23_ROM_START[];     // 0x1B3930
+extern u8 unk_bin_23_ROM_END[];       // 0x1B6C30
 
-extern u8 D_1B6C30[];                 // 0x
-extern u8 D_1BC4E0[];                 // 0x
+extern u8 unk_bin_24_ROM_START[];     // 0x1B6C30
+extern u8 unk_bin_24_ROM_END[];       // 0x1BC4E0
 
-extern u8 D_1BC4E0[];                 // 0x
-extern u8 D_1C73D0[];                 // 0x
+extern u8 unk_bin_25_ROM_START[];     // 0x1BC4E0
+extern u8 unk_bin_25_ROM_END[];       // 0x1C73D0
 
-extern u8 D_1C73D0[];                 // 0x
-extern u8 D_1C8320[];                 // 0x
+extern u8 unk_bin_26_ROM_START[];     // 0x1C73D0
+extern u8 unk_bin_26_ROM_END[];       // 0x1C8320
 
-extern u8 D_1C8320[];                 // 0x
-extern u8 D_1C90D0[];                 // 0x
+extern u8 D_1C8320[];                 // 0x1C8320
+extern u8 D_1C90D0[];                 // 0x1C90D0
 
 extern u8 D_1C90D0[];                 // 0x
 extern u8 D_1C9940[];                 // 0x

@@ -719,6 +719,93 @@ segments:
     - [0x198140, asm]
     - [0x19C550, data]
 
+  - name: unk_bin_19
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x19C610
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x19C610, asm]
+    - [0x1A8730, data]
+
+  - name: unk_bin_20
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1A89C0
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1A89C0, asm]
+    - [0x1ABB70, data]
+
+  - name: unk_bin_21
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1ABC60
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1ABC60, asm]
+    - [0x1AEC10, data]
+
+  - name: unk_bin_22
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1AECD0
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1AECD0, asm]
+    - [0x1B37D0, data]
+
+  - name: unk_bin_23
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1B3930
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1B3930, asm]
+    - [0x1B6BA0, data]
+
+  - name: unk_bin_24
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1B6C30
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1B6C30, asm]
+    - [0x1BC3B0, data]
+    
+  - name: unk_bin_25
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1BC4E0
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1BC4E0, asm]
+    - [0x1C6F90, data]
+    
+  - name: unk_bin_26
+    type: bin
+    bss_size: 0x0 # dunno yet
+    start: 0x1C73D0
+    vram: 0x8032E000
+    exclusive_ram_id: id7
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1C73D0, bin]
+
   # Rest of ROM
-  - [0x19C610, bin]
+  - [0x1C8320, bin]
   - [0xC00000]

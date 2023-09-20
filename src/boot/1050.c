@@ -268,37 +268,37 @@ void func_80001058(void) {
 
 void func_800010BC(void) {
     load_from_rom_to_addr(&unk_bin_12_ROM_START, (void*)0x80330000, (u32)&unk_bin_12_ROM_END - (u32)&unk_bin_12_ROM_START);
-    load_from_rom_to_addr(&D_1C8320, (void*)0x8032E000, (u32)&D_1C90D0 - (u32)&D_1C8320);
+    load_from_rom_to_addr(&unk_bin_27_ROM_START, (void*)0x8032E000, (u32)&unk_bin_27_ROM_END - (u32)&unk_bin_27_ROM_START);
 }
 
 void func_80001120(void) {
     load_from_rom_to_addr(&unk_bin_13_ROM_START, (void*)0x80330000, (u32)&unk_bin_13_ROM_END - (u32)&unk_bin_13_ROM_START);
-    load_from_rom_to_addr(&D_1C90D0, (void*)0x8032E000, (u32)&D_1C9940 - (u32)&D_1C90D0);
+    load_from_rom_to_addr(&unk_bin_28_ROM_START, (void*)0x8032E000, (u32)&unk_bin_28_ROM_END - (u32)&unk_bin_28_ROM_START);
 }
 
 void func_80001184(void) {
     load_from_rom_to_addr(&unk_bin_14_ROM_START, (void*)0x80330000, (u32)&unk_bin_14_ROM_END - (u32)&unk_bin_14_ROM_START);
-    load_from_rom_to_addr(&D_1C9940, (void*)0x8032E000, (u32)&D_1CA830 - (u32)&D_1C9940);
+    load_from_rom_to_addr(&unk_bin_29_ROM_START, (void*)0x8032E000, (u32)&unk_bin_29_ROM_END - (u32)&unk_bin_29_ROM_START);
 }
 
 void func_800011E8(void) {
     load_from_rom_to_addr(&unk_bin_16_ROM_START, (void*)0x80330000, (u32)&unk_bin_16_ROM_END - (u32)&unk_bin_16_ROM_START);
-    load_from_rom_to_addr(&D_1CA830, (void*)0x8032E000, (u32)&D_1CA9B0 - (u32)&D_1CA830);
+    load_from_rom_to_addr(&unk_bin_30_ROM_START, (void*)0x8032E000, (u32)&unk_bin_30_ROM_END - (u32)&unk_bin_30_ROM_START);
 }
 
 void func_8000124C(void) {
     load_from_rom_to_addr(&unk_bin_17_ROM_START, (void*)0x80330000, (u32)&unk_bin_17_ROM_END - (u32)&unk_bin_17_ROM_START);
-    load_from_rom_to_addr(&D_1CA9B0, (void*)0x8032E000, (u32)&D_1CAA50 - (u32)&D_1CA9B0);
+    load_from_rom_to_addr(&unk_bin_31_ROM_START, (void*)0x8032E000, (u32)&unk_bin_31_ROM_END - (u32)&unk_bin_31_ROM_START);
 }
 
 void func_800012B0(void) {
     load_from_rom_to_addr(&unk_bin_18_ROM_START, (void*)0x80330000, (u32)&unk_bin_18_ROM_END - (u32)&unk_bin_18_ROM_START);
-    load_from_rom_to_addr(&D_1CAA50, (void*)0x8032E000, (u32)&D_1CAB90 - (u32)&D_1CAA50);
+    load_from_rom_to_addr(&unk_bin_32_ROM_START, (void*)0x8032E000, (u32)&unk_bin_32_ROM_END - (u32)&unk_bin_32_ROM_START);
 }
 
 void func_80001314(void) {
     load_from_rom_to_addr(&unk_bin_19_ROM_START, (void*)0x80330000, (u32)&unk_bin_19_ROM_END - (u32)&unk_bin_19_ROM_START);
-    load_from_rom_to_addr(&D_1CAB90, (void*)0x8032E000, (u32)&D_1CBF80 - (u32)&D_1CAB90);
+    load_from_rom_to_addr(&unk_bin_33_ROM_START, (void*)0x8032E000, (u32)&unk_bin_33_ROM_END - (u32)&unk_bin_33_ROM_START);
 }
 
 void func_80001378(void) {
@@ -308,27 +308,27 @@ void func_80001378(void) {
 
 void func_800013DC(void) {
     load_from_rom_to_addr(&unk_bin_21_ROM_START, (void*)0x80330000, (u32)&unk_bin_21_ROM_END - (u32)&unk_bin_21_ROM_START);
-    load_from_rom_to_addr(&D_1C8320, (void*)0x8032E000, (u32)&D_1C90D0 - (u32)&D_1C8320);
+    load_from_rom_to_addr(&unk_bin_27_ROM_START, (void*)0x8032E000, (u32)&unk_bin_27_ROM_END - (u32)&unk_bin_27_ROM_START);
 }
 
 void func_80001440(void) {
     load_from_rom_to_addr(&unk_bin_22_ROM_START, (void*)0x80330000, (u32)&unk_bin_22_ROM_END - (u32)&unk_bin_22_ROM_START);
-    load_from_rom_to_addr(&D_1C9940, (void*)0x8032E000, (u32)&D_1CA830 - (u32)&D_1C9940);
+    load_from_rom_to_addr(&unk_bin_29_ROM_START, (void*)0x8032E000, (u32)&unk_bin_29_ROM_END - (u32)&unk_bin_29_ROM_START);
 }
 
 void func_800014A4(void) {
     load_from_rom_to_addr(&unk_bin_23_ROM_START, (void*)0x80330000, (u32)&unk_bin_23_ROM_END - (u32)&unk_bin_23_ROM_START);
-    load_from_rom_to_addr(&D_1C90D0, (void*)0x8032E000, (u32)&D_1C9940 - (u32)&D_1C90D0);
+    load_from_rom_to_addr(&unk_bin_28_ROM_START, (void*)0x8032E000, (u32)&unk_bin_28_ROM_END - (u32)&unk_bin_28_ROM_START);
 }
 
 void func_80001508(void) {
     load_from_rom_to_addr(&unk_bin_24_ROM_START, (void*)0x80330000, (u32)&unk_bin_24_ROM_END - (u32)&unk_bin_24_ROM_START);
-    load_from_rom_to_addr(&D_1C9940, (void*)0x8032E000, (u32)&D_1CA830 - (u32)&D_1C9940);
+    load_from_rom_to_addr(&unk_bin_29_ROM_START, (void*)0x8032E000, (u32)&unk_bin_29_ROM_END - (u32)&unk_bin_29_ROM_START);
 }
 
 void func_8000156C(void) {
     load_from_rom_to_addr(&unk_bin_25_ROM_START, (void*)0x80330000, (u32)&unk_bin_25_ROM_END - (u32)&unk_bin_25_ROM_START);
-    load_from_rom_to_addr(&D_1CBF80, (void*)0x8032E000, (u32)&D_1CCCE0 - (u32)&D_1CBF80);
+    load_from_rom_to_addr(&unk_bin_34_ROM_START, (void*)0x8032E000, (u32)&unk_bin_34_ROM_END - (u32)&unk_bin_34_ROM_START);
 }
 
 void func_800015D0(void) {
@@ -336,19 +336,19 @@ void func_800015D0(void) {
 }
 
 void func_80001610(void) {
-    load_from_rom_to_addr(&D_1CCCE0, (void*)0x80330000, (u32)&D_1D01D0 - (u32)&D_1CCCE0);
+    load_from_rom_to_addr(&unk_bin_35_ROM_START, (void*)0x80330000, (u32)&unk_bin_35_ROM_END - (u32)&unk_bin_35_ROM_START);
 }
 
 void func_80001650(void) {
-    load_from_rom_to_addr(&D_1D01D0, (void*)0x80330000, (u32)&D_1D1720 - (u32)&D_1D01D0);
+    load_from_rom_to_addr(&unk_bin_36_ROM_START, (void*)0x80330000, (u32)&unk_bin_36_ROM_END - (u32)&unk_bin_36_ROM_START);
 }
 
 void func_80001690(void) {
-    load_from_rom_to_addr(&D_1D1720, (void*)0x80330000, (u32)&D_1D9110 - (u32)&D_1D1720);
+    load_from_rom_to_addr(&unk_bin_37_ROM_START, (void*)0x80330000, (u32)&unk_bin_37_ROM_END - (u32)&unk_bin_37_ROM_START);
 }
 
 void func_800016D0(void) {
-    load_from_rom_to_addr(&D_1D9110, (void*)0x80330000, (u32)&D_1E3FF0 - (u32)&D_1D9110);
+    load_from_rom_to_addr(&unk_bin_38_ROM_START, (void*)0x80330000, (u32)&unk_bin_38_ROM_END - (u32)&unk_bin_38_ROM_START);
 }
 
 void func_80001710(void) {

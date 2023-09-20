@@ -107,81 +107,81 @@ extern u8 unk_bin_25_ROM_END[];       // 0x1C73D0
 extern u8 unk_bin_26_ROM_START[];     // 0x1C73D0
 extern u8 unk_bin_26_ROM_END[];       // 0x1C8320
 
-extern u8 D_1C8320[];                 // 0x1C8320
-extern u8 D_1C90D0[];                 // 0x1C90D0
+extern u8 unk_bin_27_ROM_START[];     // 0x1C8320
+extern u8 unk_bin_27_ROM_END[];       // 0x1C90D0
 
-extern u8 D_1C90D0[];                 // 0x
-extern u8 D_1C9940[];                 // 0x
+extern u8 unk_bin_28_ROM_START[];     // 0x1C90D0
+extern u8 unk_bin_28_ROM_END[];       // 0x1C9940
 
-extern u8 D_1C9940[];                 // 0x
-extern u8 D_1CA830[];                 // 0x
+extern u8 unk_bin_29_ROM_START[];     // 0x1C9940
+extern u8 unk_bin_29_ROM_END[];       // 0x1CA830
 
-extern u8 D_1CA830[];                 // 0x
-extern u8 D_1CA9B0[];                 // 0x
+extern u8 unk_bin_30_ROM_START[];     // 0x1CA830
+extern u8 unk_bin_30_ROM_END[];       // 0x1CA9B0
 
-extern u8 D_1CA9B0[];                 // 0x
-extern u8 D_1CAA50[];                 // 0x
+extern u8 unk_bin_31_ROM_START[];     // 0x1CA9B0
+extern u8 unk_bin_31_ROM_END[];       // 0x1CAA50
 
-extern u8 D_1CAA50[];                 // 0x
-extern u8 D_1CAB90[];                 // 0x
+extern u8 unk_bin_32_ROM_START[];     // 0x1CAA50
+extern u8 unk_bin_32_ROM_END[];       // 0x1CAB90
 
-extern u8 D_1CAB90[];                 // 0x
-extern u8 D_1CBF80[];                 // 0x
+extern u8 unk_bin_33_ROM_START[];     // 0x1CAB90
+extern u8 unk_bin_33_ROM_END[];       // 0x1CBF80
 
-extern u8 D_1CBF80[];                 // 0x
-extern u8 D_1CCCE0[];                 // 0x
+extern u8 unk_bin_34_ROM_START[];     // 0x1CBF80
+extern u8 unk_bin_34_ROM_END[];       // 0x1CCCE0
 
-extern u8 D_1CCCE0[];                 // 0x
-extern u8 D_1D01D0[];                 // 0x
+extern u8 unk_bin_35_ROM_START[];     // 0x1CCCE0
+extern u8 unk_bin_35_ROM_END[];       // 0x1D01D0
 
-extern u8 D_1D01D0[];                 // 0x
-extern u8 D_1D1720[];                 // 0x
+extern u8 unk_bin_36_ROM_START[];     // 0x1D01D0
+extern u8 unk_bin_36_ROM_END[];       // 0x1D1720
 
-extern u8 D_1D1720[];                 // 0x
-extern u8 D_1D9110[];                 // 0x
+extern u8 unk_bin_37_ROM_START[];     // 0x1D1720
+extern u8 unk_bin_37_ROM_END[];       // 0x1D9110
 
-extern u8 D_1D9110[];                 // 0x
-extern u8 D_1E3FF0[];                 // 0x
+extern u8 unk_bin_38_ROM_START[];     // 0x1D9110
+extern u8 unk_bin_38_ROM_END[];       // 0x1E3FF0
 
-extern u8 D_1E3FF0[];                 // 0x
-extern u8 D_1E7490[];                 // 0x
+extern u8 D_1E3FF0[];                 // 0x1E3FF0
+extern u8 D_1E7490[];                 // 0x1E7490
 
-extern u8 D_1E7490[];                 // 0x
-extern u8 D_1ED860[];                 // 0x
+extern u8 D_1E7490[];                 // 0x1E7490
+extern u8 D_1ED860[];                 // 0x1ED860
 
-extern u8 D_1ED860[];                 // 0x
-extern u8 D_1EF7F0[];                 // 0x
+extern u8 D_1ED860[];                 // 0x1ED860
+extern u8 D_1EF7F0[];                 // 0x1EF7F0
 
-extern u8 D_1EF7F0[];                 // 0x
-extern u8 D_1F0900[];                 // 0x
+extern u8 D_1EF7F0[];                 // 0x1EF7F0
+extern u8 D_1F0900[];                 // 0x1F0900
 
-extern u8 D_1F0900[];                 // 0x
-extern u8 D_1F6790[];                 // 0x
+extern u8 D_1F0900[];                 // 0x1F0900
+extern u8 D_1F6790[];                 // 0x1F6790
 
-extern u8 D_1F6790[];                 // 0x
-extern u8 D_1F7E80[];                 // 0x
+extern u8 D_1F6790[];                 // 0x1F6790
+extern u8 D_1F7E80[];                 // 0x1F7E80
 
-extern u8 D_1F7E80[];                 // 0x
-extern u8 D_1F8D70[];                 // 0x
+extern u8 D_1F7E80[];                 // 0x1F7E80
+extern u8 D_1F8D70[];                 // 0x1F8D70
 
-extern u8 D_1F8D70[];                 // 0x
-extern u8 D_1FACD0[];                 // 0x
+extern u8 D_1F8D70[];                 // 0x1F8D70
+extern u8 D_1FACD0[];                 // 0x1FACD0
 
-extern u8 D_1FACD0[];                 // 0x
-extern u8 D_1FE7A0[];                 // 0x
+extern u8 D_1FACD0[];                 // 0x1FACD0
+extern u8 D_1FE7A0[];                 // 0x1FE7A0
 
-extern u8 D_1FE7A0[];                 // 0x
-extern u8 D_201C00[];                 // 0x
+extern u8 D_1FE7A0[];                 // 0x1FE7A0
+extern u8 D_201C00[];                 // 0x201C00
 
-extern u8 D_201C00[];                 // 0x
-extern u8 D_205F30[];                 // 0x
+extern u8 D_201C00[];                 // 0x201C00
+extern u8 D_205F30[];                 // 0x205F30
 
-extern u8 D_205F30[];                 // 0x
-extern u8 D_20DA60[];                 // 0x
+extern u8 D_205F30[];                 // 0x205F30
+extern u8 D_20DA60[];                 // 0x20DA60
 
-extern u8 D_20DA60[];                 // 0x
-extern u8 D_20F5B0[];                 // 0x
+extern u8 D_20DA60[];                 // 0x20DA60
+extern u8 D_20F5B0[];                 // 0x20F5B0
 
-extern u8 D_2193A0[];                 // 0x
+extern u8 D_2193A0[];                 // 0x2193A0
 
 #endif // _SECTIONS_H_

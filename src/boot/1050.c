@@ -250,13 +250,13 @@ void func_80000F2C(void) {
 }
 
 void func_80000F8C(s32 arg0) {
-    s32 sp1C = (D_801110F0[arg0] + 0x7FCC6000); // wut
+    s32 sp1C = (D_801110F0[arg0] - 0x8033A000); // wut
 
     load_from_rom_to_addr((u32)&D_20F5B0 + sp1C, 0x8033A000, 0x4000);
 }
 
 void func_80000FF4(s32 arg0) {
-    s32 sp1C = (D_8010BC30[arg0] + 0x7FD00000);
+    s32 sp1C = (D_8010BC30[arg0] - 0x80300000);
 
     load_from_rom_to_addr((u32)&D_2193A0 + sp1C, &D_8016E450, 0x800);
 }

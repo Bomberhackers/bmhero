@@ -454,7 +454,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x128D20
     vram: 0x80280000
-    exclusive_ram_id: id5
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x128D20, asm]
@@ -466,7 +466,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x134440
     vram: 0x80280000
-    exclusive_ram_id: id5
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x134440, asm]
@@ -477,7 +477,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x138360
     vram: 0x80280000
-    exclusive_ram_id: id5
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x138360, asm]
@@ -488,7 +488,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x13AC20
     vram: 0x80280000
-    exclusive_ram_id: id5
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x13AC20, asm]
@@ -499,7 +499,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x13C4C0
     vram: 0x80280000
-    exclusive_ram_id: id5
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x13C4C0, asm]
@@ -510,7 +510,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x13DAD0
     vram: 0x80280000
-    exclusive_ram_id: id5
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x13DAD0, asm]
@@ -521,7 +521,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x144420
     vram: 0x80280000
-    exclusive_ram_id: id5
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x144420, asm]
@@ -540,7 +540,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x14C540
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x14C540, asm]
@@ -551,7 +551,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1528A0
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1528A0, asm]
@@ -562,7 +562,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x153B70
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x153B70, asm]
@@ -573,7 +573,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x156F90
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x156F90, asm]
@@ -583,7 +583,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x157520
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x157520, asm]
@@ -593,7 +593,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x157A00
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x157A00, asm]
@@ -604,7 +604,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x15A0F0
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x15A0F0, asm]
@@ -614,7 +614,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x15A7D0
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x15A7D0, asm]
@@ -625,7 +625,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x15C0D0
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x15C0D0, asm]
@@ -636,7 +636,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x160560
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x160560, asm]
@@ -647,7 +647,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x167950
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x167950, asm]
@@ -658,7 +658,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x16D650
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x16D650, asm]
@@ -669,7 +669,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x175420
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x175420, asm]
@@ -680,7 +680,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x184EE0
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x184EE0, asm]
@@ -691,7 +691,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x189940
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x189940, asm]
@@ -702,7 +702,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x194F10
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x194F10, asm]
@@ -713,7 +713,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x198140
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x198140, asm]
@@ -724,7 +724,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x19C610
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x19C610, asm]
@@ -735,7 +735,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1A89C0
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1A89C0, asm]
@@ -746,7 +746,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1ABC60
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1ABC60, asm]
@@ -757,7 +757,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1AECD0
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1AECD0, asm]
@@ -768,7 +768,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1B3930
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1B3930, asm]
@@ -779,7 +779,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1B6C30
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1B6C30, asm]
@@ -790,7 +790,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1BC4E0
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1BC4E0, asm]
@@ -801,7 +801,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1C73D0
     vram: 0x8032E000
-    exclusive_ram_id: id7
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1C73D0, bin]
@@ -811,7 +811,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1C8320
     vram: 0x8032E000
-    exclusive_ram_id: id7
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1C8320, bin]
@@ -821,7 +821,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1C90D0
     vram: 0x8032E000
-    exclusive_ram_id: id7
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1C90D0, bin]
@@ -831,7 +831,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1C9940
     vram: 0x8032E000
-    exclusive_ram_id: id7
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1C9940, bin]
@@ -841,7 +841,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1CA830
     vram: 0x8032E000
-    exclusive_ram_id: id7
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1CA830, bin]
@@ -851,7 +851,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1CA9B0
     vram: 0x8032E000
-    exclusive_ram_id: id7
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1CA9B0, bin]
@@ -861,7 +861,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1CAA50
     vram: 0x8032E000
-    exclusive_ram_id: id7
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1CAA50, bin]
@@ -871,7 +871,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1CAB90
     vram: 0x8032E000
-    exclusive_ram_id: id7
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1CAB90, bin]
@@ -881,7 +881,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1CBF80
     vram: 0x8032E000
-    exclusive_ram_id: id7
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1CBF80, bin]
@@ -891,7 +891,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1CCCE0
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1CCCE0, asm]
@@ -902,7 +902,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1D01D0
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1D01D0, asm]
@@ -913,7 +913,7 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1D1720
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1D1720, asm]
@@ -924,12 +924,155 @@ segments:
     bss_size: 0x0 # dunno yet
     start: 0x1D9110
     vram: 0x80330000
-    exclusive_ram_id: id6
+    exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1D9110, asm]
     - [0x1E3E80, data]
 
+  - name: unk_bin_39
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1E3FF0
+    vram: 0x80330000
+    exclusive_ram_id: overlay
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1E3FF0, asm]
+    - [0x1E7470, data]
+
+  - name: unk_bin_40
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1E7490
+    vram: 0x80330000
+    exclusive_ram_id: overlay
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1E7490, asm]
+    - [0x1ED770, data]
+
+  - name: unk_bin_41
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1ED860
+    vram: 0x80330000
+    exclusive_ram_id: overlay
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1ED860, asm]
+    - [0x1EF7A0, data]
+
+  - name: unk_bin_42
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1EF7F0
+    vram: 0x80330000
+    exclusive_ram_id: overlay
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1EF7F0, asm]
+    - [0x1F04F0, data]
+
+  - name: unk_bin_43
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1F0900
+    vram: 0x80330000
+    exclusive_ram_id: overlay
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1F0900, asm]
+    - [0x1F6720, data]
+
+  - name: unk_bin_44
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1F6790
+    vram: 0x8033C000
+    exclusive_ram_id: overlay
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1F6790, asm]
+    - [0x1F7E50, data]
+
+  - name: unk_bin_45
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1F7E80
+    vram: 0x80338000
+    exclusive_ram_id: id9
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1F7E80, asm]
+    - [0x1F8D60, data]
+
+  - name: unk_bin_46
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1F8D70
+    vram: 0x80330000
+    exclusive_ram_id: overlay
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1F8D70, asm]
+    - [0x1FAC40, data]
+
+  - name: unk_bin_47
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1FACD0
+    vram: 0x8033A000
+    exclusive_ram_id: overlay
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1FACD0, asm]
+    - [0x1FE6D0, rodata]
+
+  - name: unk_bin_48
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1FE7A0
+    vram: 0x80330000
+    exclusive_ram_id: overlay
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1FE7A0, asm]
+    - [0x201BA0, data]
+
+  - name: unk_bin_49
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x201C00
+    vram: 0x8033A000
+    exclusive_ram_id: overlay
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x201C00, asm]
+    - [0x205EA0, data]
+
+  - name: unk_bin_50
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x205F30
+    vram: 0x80330000
+    exclusive_ram_id: overlay
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x205F30, asm]
+    - [0x2064D0, data]
+
+  - name: unk_bin_51
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x20DA60
+    vram: 0x80338000
+    exclusive_ram_id: overlay
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x20DA60, asm]
+    - [0x20F560, data]
+
   # Rest of ROM
-  - [0x1E3FF0, bin]
+  - [0x20F5B0, bin]
   - [0xC00000]

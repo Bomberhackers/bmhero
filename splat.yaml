@@ -930,6 +930,149 @@ segments:
     - [0x1D9110, asm]
     - [0x1E3E80, data]
 
+  - name: unk_bin_39
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1E3FF0
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1E3FF0, asm]
+    - [0x1E7470, data]
+
+  - name: unk_bin_40
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1E7490
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1E7490, asm]
+    - [0x1ED770, data]
+
+  - name: unk_bin_41
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1ED860
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1ED860, asm]
+    - [0x1EF7A0, data]
+
+  - name: unk_bin_42
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1EF7F0
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1EF7F0, asm]
+    - [0x1F04F0, data]
+
+  - name: unk_bin_43
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1F0900
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1F0900, asm]
+    - [0x1F6720, data]
+
+  - name: unk_bin_44
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1F6790
+    vram: 0x8033C000
+    exclusive_ram_id: id8
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1F6790, asm]
+    - [0x1F7E50, data]
+
+  - name: unk_bin_45
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1F7E80
+    vram: 0x80338000
+    exclusive_ram_id: id9
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1F7E80, asm]
+    - [0x1F8D60, data]
+
+  - name: unk_bin_46
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1F8D70
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1F8D70, asm]
+    - [0x1FAC40, data]
+
+  - name: unk_bin_47
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1FACD0
+    vram: 0x8033A000
+    exclusive_ram_id: id10
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1FACD0, asm]
+    - [0x1FE6D0, rodata]
+
+  - name: unk_bin_48
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x1FE7A0
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x1FE7A0, asm]
+    - [0x201BA0, data]
+
+  - name: unk_bin_49
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x201C00
+    vram: 0x8033A000
+    exclusive_ram_id: id10
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x201C00, asm]
+    - [0x205EA0, data]
+
+  - name: unk_bin_50
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x205F30
+    vram: 0x80330000
+    exclusive_ram_id: id6
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x205F30, asm]
+    - [0x2064D0, data]
+
+  - name: unk_bin_51
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x20DA60
+    vram: 0x80338000
+    exclusive_ram_id: id9
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x20DA60, asm]
+    - [0x20F560, data]
+
   # Rest of ROM
-  - [0x1E3FF0, bin]
+  - [0x20F5B0, bin]
   - [0xC00000]

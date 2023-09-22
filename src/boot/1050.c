@@ -249,16 +249,16 @@ void func_80000F2C(void) {
     load_from_rom_to_addr(&unk_bin_10_ROM_START, (void*)0x80330000, (u32)&unk_bin_10_ROM_END - (u32)&unk_bin_10_ROM_START);
 }
 
-void func_80000F8C(s32 arg0) {
-    s32 sp1C = (D_801110F0[arg0] - 0x8033A000); // wut
+void func_80000F8C(u32 id) {
+    u32 rom_offset = (D_801110F0[id] - 0x8033A000);
 
-    load_from_rom_to_addr((u32)&D_20F5B0 + sp1C, 0x8033A000, 0x4000);
+    load_from_rom_to_addr((u32)&D_20F5B0 + rom_offset, 0x8033A000, 0x4000);
 }
 
-void func_80000FF4(s32 arg0) {
-    s32 sp1C = (D_8010BC30[arg0] - 0x80300000);
+void func_80000FF4(u32 id) {
+    u32 rom_offset = (D_8010BC30[id] - 0x80300000);
 
-    load_from_rom_to_addr((u32)&D_2193A0 + sp1C, &D_8016E450, 0x800);
+    load_from_rom_to_addr((u32)&D_2193A0 + rom_offset, &D_8016E450, 0x800);
 }
 
 void func_80001058(void) {

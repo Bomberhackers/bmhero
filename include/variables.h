@@ -150,6 +150,6 @@ extern s32 D_8016E428;
 extern s32 D_801765EC;
 extern s32 osViClock;
 
-extern OSViMode D_8004A770[];
+extern OSViMode osViModeTable[];
 
 #endif // _VARIABLES_H_

@@ -1,15 +1,17 @@
 #include <ultra64.h>
+#include "../libultra/io/viint.h"
 
 // .bss start
-u8 D_8004D3F0[0x320];
-u8 D_8004D710[0x18];
-u8 D_8004D728[0x18];
-u8 D_8004D740[0x8];
-u8 D_8004D748[0x288];
-u32 D_8004D9D0;
-u8 D_8004D9D8[0x2000];
-u8 D_8004F9D8[0x1B0];
-u8 gIdleThread[0x1B0];
+OSMesg D_8004D3F0;
+u8 D_8004D3F8[0x318];
+OSMesgQueue D_8004D710;
+OSMesgQueue D_8004D728;
+OSMesg D_8004D740;
+struct UnkStruct80001CF0 D_8004D748;
+OSMesgQueue *D_8004D9D0;
+u8 D_8004D9D8[0x2000]; // unk thread stack
+OSThread D_8004F9D8;
+OSThread gIdleThread;
 u8 D_8004FD38[0x1000];
 u64 D_80050D38[0x200]; // needs to be same file to match
 u64 gIdleThreadStack[0x200];
@@ -249,12 +251,14 @@ void func_80000F2C(void) {
     load_from_rom_to_addr(&unk_bin_10_ROM_START, (void*)0x80330000, (u32)&unk_bin_10_ROM_END - (u32)&unk_bin_10_ROM_START);
 }
 
+// related to unk_bin_52
 void func_80000F8C(u32 id) {
     u32 rom_offset = (D_801110F0[id] - 0x8033A000);
 
     load_from_rom_to_addr((u32)&D_20F5B0 + rom_offset, 0x8033A000, 0x4000);
 }
 
+// related to unk_bin_53
 void func_80000FF4(u32 id) {
     u32 rom_offset = (D_8010BC30[id] - 0x80300000);
 
@@ -415,11 +419,14 @@ void thread6_func(void* arg) {
     load_game_section();
     func_8001D440();
     func_8001DFC8();
+    
+    // might be special code that runs if on PAL only.
     if (D_8004A280 != 0) {
         osViSetYScale(0.8333f);
-        D_8004A770[16].fldRegs[0].vStart = 0x250270;
-        D_8004A770[16].fldRegs[1].vStart = 0x250270;
-        osViClock = 0x02F5B2D2;
+        // These 2 HSTART values are modified from their initial HSTART(95, 569) values. why?
+        osViModeTable[OS_VI_PAL_LAN1].fldRegs[0].vStart = HSTART(37, 624);
+        osViModeTable[OS_VI_PAL_LAN1].fldRegs[1].vStart = HSTART(37, 624);
+        osViClock = 49656530; // PAL: Hz = 49.656530 MHz
     }
     func_80025E28();
     func_8001FAD4();
@@ -484,7 +491,7 @@ void thread6_func(void* arg) {
     }
 }
 
-void func_80001CF0(struct UnkStruct80001CF0* arg0, void* arg1, s32 arg2, u8 arg3, u8 arg4) {
+void func_80001CF0(struct UnkStruct80001CF0* arg0, void* stack, s32 pri, u8 vimode, u8 retraceCount) {
     arg0->unk274 = 0;
     arg0->unk278 = 0;
     arg0->unk260 = 0;
@@ -498,13 +505,13 @@ void func_80001CF0(struct UnkStruct80001CF0* arg0, void* arg1, s32 arg2, u8 arg3
     osCreateMesgQueue(&arg0->unk40, &arg0->unk58, 8);
     osCreateMesgQueue(&arg0->unk78, &arg0->unk90, 8);
     osCreateViManager(0xFE);
-    osViSetMode(&D_8004A770[arg3]);
-    osViBlack(1U);
-    osSetEventMesg(4U, &arg0->unk40, (void* )0x29B);
-    osSetEventMesg(9U, &arg0->unk40, (void* )0x29C);
-    osSetEventMesg(0xEU, &arg0->unk40, (void* )0x29D);
-    osViSetEvent(&arg0->unk40, (void* )0x29A, (u32) arg4);
-    osCreateThread(&arg0->unkB0, 4, thread4_func, arg0, arg1, arg2);
+    osViSetMode(&osViModeTable[vimode]);
+    osViBlack(1);
+    osSetEventMesg(4, &arg0->unk40, (void* )0x29B);
+    osSetEventMesg(9, &arg0->unk40, (void* )0x29C);
+    osSetEventMesg(14, &arg0->unk40, (void* )0x29D);
+    osViSetEvent(&arg0->unk40, (void* )0x29A, retraceCount);
+    osCreateThread(&arg0->unkB0, 4, thread4_func, arg0, stack, pri);
     osStartThread(&arg0->unkB0);
 }
 
@@ -518,13 +525,10 @@ void func_80001E78(struct UnkStruct80001CF0* arg0, u32* arg1, s32 arg2) {
 }
 
 void func_80001EF0(struct UnkStruct80001CF0* arg0, u32** arg1) {
-    u32* sp24;
-    u32* sp20;
-    u32 sp1C;
+    u32* sp24 = arg0->unk260;
+    u32* sp20 = NULL;
+    u32 mask = osSetIntMask(OS_IM_NONE);
 
-    sp24 = arg0->unk260;
-    sp20 = NULL;
-    sp1C = osSetIntMask(1U);
     while (sp24 != NULL) {
         if ((u32)sp24 == (u32)arg1) {
             if (sp20 != NULL) {
@@ -537,7 +541,7 @@ void func_80001EF0(struct UnkStruct80001CF0* arg0, u32** arg1) {
         sp20 = sp24;
         sp24 = *sp24;
     }
-    osSetIntMask(sp1C);
+    osSetIntMask(mask);
 }
 
 OSMesgQueue *func_80001FDC(struct UnkStruct80001CF0 *arg0) {
@@ -734,7 +738,7 @@ void func_800026F4(struct UnkStruct80001CF0* arg0, struct UnkStruct800026F4_Arg1
 
 void func_8000281C(struct UnkStruct80001CF0* arg0) {
     if (arg0->unk274->unk10.t.type == 1) {
-        arg0->unk274->unk4 = (s32) (arg0->unk274->unk4 | 0x10);
+        arg0->unk274->unk4 |= 0x10;
         osSpTaskYield();
     } else {
         

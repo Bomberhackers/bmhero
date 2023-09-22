@@ -252,6 +252,7 @@ segments:
     - [0x48B60, data] # data and rodata
     - [0x494F0, bin, gspF3DEX_fifoTextStart_2] # some RSP stuff around 0x494F0. seems to be the latter part of gspF3DEX_fifoTextStart
     - [0x4A060, data]
+    - [0x4B370, .data, libultra/io/vitbl]
     - [0x4C090, .data, libultra/os/initialize]
     - [0x4C0B0, .data, libultra/io/pimgr]
     - [0x4C0E0, .data, libultra/io/vimgr]
@@ -1084,8 +1085,17 @@ segments:
     subsegments:
     - [0x20F5B0, bin] # 0x8033A000 - 0x80343C40
 
+  - name: unk_bin_53
+    type: code
+    bss_size: 0x0 # dunno yet
+    start: 0x2193A0
+    vram: 0x80300000
+    exclusive_ram_id: overlay
+    symbol_name_format: $VRAM_$SEG
+    subsegments:
+    - [0x2193A0, bin] # 0x8033A000 - 0x80343C40
+
   # Rest of ROM, future offsets to sort through. might be more
-  - [0x2193A0, bin]
   - [0x229650, bin]
   - [0x229A60, bin]
   - [0x230D50, bin]

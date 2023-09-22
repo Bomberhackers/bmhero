@@ -275,7 +275,7 @@ segments:
     - [0x4C5F0, .data, libultra/vimodes/vimodentsclan1]
     - [0x4C640, .data, libultra/libc/xlitob]
     - [0x4C670, .rodata, boot/1050]
-    - [0x4C6A0, rodata]
+    - [0x4C6A0, .rodata, boot/3490]
     - [0x4C6C0, rodata]
     - [0x4C7B0, rodata]
     - [0x4C7F0, rodata]

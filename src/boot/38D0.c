@@ -27,7 +27,10 @@ struct UnkStruct80052D5C {
 };
 
 struct UnkStruct80052EB4 {
-    ALSeqData seq;
+    u8 unk0;
+    u8 unk1;
+    char filler2[0x2];
+    u32 len;
     u32 unk8;
     u32 unkC;
 };
@@ -37,6 +40,13 @@ struct UnkStruct80052ED8* sp3C;
 struct UnkStruct80052ED8 {
     struct UnkStruct80052ED8* unk0;
     char filler4[0x10];
+};
+
+struct UnkInputStruct800047C8 {
+    u32 unk0;
+    u8 unk4;
+    u8 unk5;
+    u8 unk6;
 };
 
 s32 func_800038A4(s32);                             /* extern */
@@ -68,6 +78,8 @@ extern u8* D_8004A340;
 extern s32 D_8004A344;
 extern s32 D_8004A348;
 extern s32 D_8004A34C;
+extern u32 D_8004A350;
+extern f32 D_8004BAC0;
 extern ALHeap D_80052D40;
 extern struct UnkStruct80052D5C *D_80052D5C;
 extern u8 D_80052DB7;
@@ -75,8 +87,8 @@ extern void* D_80052DB8;
 extern OSMesgQueue D_80052E80;
 extern u8* D_80052E98;
 extern s32 D_80052E9C;
-extern ALCSPlayer* D_80052EA0;
-extern ALCSPlayer* D_80052EA4;
+extern ALBankFile* D_80052EA0;
+extern ALSeqPlayer* D_80052EA4;
 extern ALCSPlayer* D_80052EA8;
 extern ALCSPlayer* D_80052EAC;
 extern ALSeqFile* D_80052EB0;
@@ -85,12 +97,17 @@ extern s32 D_80052EB8;
 extern s32 D_80052EBC;
 extern s32 D_80052EC0;
 extern f32 D_80052EC4;
+extern f32 D_80052EC8;
+extern s16 D_80052ECC;
+extern s16 D_80052ECE;
+extern s16 D_80052ED0;
 extern s16 D_80052ED2;
 extern s32* D_80052ED4;
 extern struct UnkStruct80052ED8 D_80052ED8[];
 
 // functions
 s32 func_80003304(void);
+void func_80004284(void);
 
 void func_80002CD0(u32 devAddr, void* vaddr, s32 nbytes) {
     OSIoMesg mesg;
@@ -289,7 +306,7 @@ s32 func_80003304(void) {
 
             } else {
                 D_80052EB0->seqArray[sp38].offset = &D_80052EB0->seqArray[sp38].offset[(u32)D_8004A340];
-                D_80052EB4[sp38].seq.len = &D_8004A340[D_80052EB4[sp38].seq.len];
+                D_80052EB4[sp38].len = &D_8004A340[D_80052EB4[sp38].len];
                 D_80052EB4[sp38].unkC = &D_8004A340[D_80052EB4[sp38].unkC];
                 if (sp30 < D_80052EB4[sp38].unk8) {
                     sp30 = D_80052EB4[sp38].unk8;
@@ -339,43 +356,283 @@ s32 func_80003304(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_800038A4.s")
+s32 func_800038A4(s32 arg0) {
+    if (arg0 & 1) {
+        arg0 += 1;
+    }
+    D_80052EB0 = func_8000D84C(arg0);
+    if (D_80052EB0 == 0) {
+        return 1;
+    }
+    func_80002CD0(D_8004A340, D_80052EB0, arg0);
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80003940.s")
+void func_80003940(void) {
+    s32 sp3C;                                       /* compiler-managed */
+    ALSeqData* sp38;
+    struct UnkStruct80052EB4* sp34;
+    s32 sp30;
+    u32 sp2C;
+    u8 sp2B;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80003C94.s")
+    switch(D_80052EB0->revision) {
+        case 0x5331:
+        case 0x5332:
+            sp38 = &D_80052EB0->seqArray[D_80052ECC];
+            sp3C = sp38->len;
+            if (sp3C & 1) {
+                sp3C += 1;
+            }
+            func_80002CD0(sp38->offset, D_80052EA8, sp3C);
+            break;
+        default:
+            sp3C = (s32)D_8004A344 - (s32)D_8004A340;
+            if (sp3C & 1) {
+                sp3C += 1;
+            }
+            func_80002CD0(D_8004A340, D_80052EA8, sp3C);
+    }
+    alCSeqNew((ALCSeq* ) D_80052EAC, (u8* ) D_80052EA8);
+    switch(D_80052EB0->revision) {
+        case 0x5332:
+            sp34 = &D_80052EB4[D_80052ECC];
+            sp30 = sp34->len;
+            sp2C = sp34->unkC;
+            sp3C = sp34->unk8;
+            sp2B = sp34->unk0;
+            break;
+        default:
+            sp30 = D_8004A348;
+            sp2C = D_8004A350;
+            sp2B = 0;
+            sp3C = D_8004A34C - D_8004A348;
+            if (sp3C & 1) {
+                sp3C += 1;
+            }
+    }
+    if (sp30 != D_80052EB8) {
+        func_80002CD0((u8* ) sp30, D_80052EA0, sp3C);
+        alBnkfNew((ALBankFile* ) D_80052EA0, (u8* ) sp2C);
+        D_80052EB8 = sp30;
+    }
+    alSeqpSetBank((ALSeqPlayer* ) D_80052EA4, D_80052EA0->bankArray[sp2B]);
+    alSeqpSetSeq((ALSeqPlayer* ) D_80052EA4, (ALSeq* ) D_80052EAC);
+    alSeqpSetVol((ALSeqPlayer* ) D_80052EA4, (s16) ((s32) (D_80052ED2 * D_80052ED0) / 32767));
+    if (D_80052EC0 & 2) {
+        return;
+    }
+    alSeqpPlay((ALSeqPlayer* ) D_80052EA4);
+    D_80052EC0 = 0;
+    D_80052EBC = 1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80003FA0.s")
+void func_80003C94(void) {
+    s16 sp26;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80003FE0.s")
+    D_80052EBC = alSeqpGetState(D_80052EA4);
+    if (D_80052EC0 & 1) {
+        switch (D_80052EBC) {                       /* irregular */
+        case 0:
+            func_80003940();
+            break;
+        case 2:
+            D_80052EBC = 1;
+        }
+    }
+    if (D_80052EBC == 0) {
+        return;
+    }
+    if (D_80052EC4 > 0.0f) {
+        D_80052EC8 += D_80052EC4;
+        if (D_80052EC8 >= D_80052ED2) {
+            func_80004284();
+            D_80052EC4 = 0.0f;
+        } else if (D_80052EC8 != 0.0f) {
+            sp26 = (s16) (s32) ((f32) D_80052ED2 - D_80052EC8);
+            if (D_80052ECE != sp26) {
+                alSeqpSetVol(D_80052EA4, (s16) ((s32) (sp26 * D_80052ED0) / 32767));
+                D_80052ECE = sp26;
+            }
+        }
+    }
+    if (D_80052EC4 < 0.0f) {
+        D_80052EC8 -= D_80052EC4;
+        if (D_80052EC8 >= D_80052ED2) {
+            sp26 = D_80052ED2;
+            D_80052EC4 = 0.0f;
+        } else {
+            sp26 = (s16) (s32) D_80052EC8;
+        }
+        if (D_80052ECE != sp26) {
+            alSeqpSetVol(D_80052EA4, (s16) ((s32) (sp26 * D_80052ED0) / 32767));
+            D_80052ECE = sp26;
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_8000401C.s")
+void func_80003FA0(void) {
+    alSeqpStop(D_80052EA4);
+    alSeqpDelete(D_80052EA4);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_800041E0.s")
+void func_80003FE0(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    D_8004A340 = arg0;
+    D_8004A344 = arg1;
+    D_8004A348 = arg2;
+    D_8004A34C = arg3;
+    D_8004A350 = arg4;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80004240.s")
+s32 func_8000401C(s16 arg0) {
+    s8 sp27;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80004284.s")
+    if (D_8004A340 == NULL) {
+        return -1;
+    }
+    if ((arg0 >= D_80052EB0->seqCount) || (arg0 < 0)) {
+        return -1;
+    }
+    switch (D_80052EB0->revision) {                              /* irregular */
+    case 0x5332:
+        if (D_80052EB0->seqArray[arg0].len < 0) {
+            return -1;
+        }
+        sp27 = D_80052EB4[arg0].unk1;
+        break;
+    case 0x5331:
+        if (D_80052EB0->seqArray[arg0].len < 0) {
+            return -1;
+        }
+    default:
+        sp27 = 0x7F;
+    }
+    D_80052ED0 = func_80002D90(sp27);
+    if ((alSeqpGetState(D_80052EA4) == 1) && !(D_80052EC0 & 1)) {
+        alSeqpStop(D_80052EA4);
+    } else {
+        D_80052EBC = 1;
+    }
+    D_80052EC4 = 0.0f;
+    D_80052ECC = arg0;
+    D_80052EC0 = 1;
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_800042D8.s")
+s32 func_800041E0(void) {
+    if (D_80052EC0 & 2) {
+        return 0x100;
+    }
+    if (D_80052EC0 & 1) {
+        return 0x200;
+    }
+    return D_80052EBC;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_8000435C.s")
+s16 func_80004240(void) {
+    if (D_8004A340 == 0) {
+        return 0;
+    }
+    return D_80052EB0->seqCount;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_800043D4.s")
+void func_80004284(void) {
+    if (alSeqpGetState(D_80052EA4) == 1) {
+        alSeqpStop(D_80052EA4);
+    }
+    D_80052EC0 = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80004458.s")
+void func_800042D8(s16 arg0) {
+    if (D_80052EBC != 1) {
+        return;
+    }
+    if (arg0 < 0) {
+        arg0 = 1;
+    }
+    D_80052EC8 = 0.0f;
+    D_80052ECE = D_80052ED2;
+    D_80052EC4 = (f32) D_80052ED2 / (f32) arg0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_8000448C.s")
+void func_8000435C(s8 arg0) {
+    D_80052ED0 = func_80002D90(arg0);
+    alSeqpSetVol(D_80052EA4, (s16) ((s32) (D_80052ED2 * D_80052ED0) / 32767));
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_8000449C.s")
+void func_800043D4(s8 arg0) {
+    D_80052EC4 = 0.0f;
+    D_80052ED2 = func_80002D90(arg0);
+    alSeqpSetVol(D_80052EA4, (s16) ((s32) (D_80052ED2 * D_80052ED0) / 32767));
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80004548.s")
+s8 func_80004458(void) {
+    return (s8) ((s16) D_80052ED0 / 256);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80004610.s")
+void func_8000449C(s16 arg0) {
+    s32 sp1C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_800046C4.s")
+    if (arg0 <= 0) {
+        arg0 = 1;
+    }
+    sp1C = (s32) ((60.0f / (f32) arg0) * 1000.0f * 1000.0f);
+    alSeqpSetTempo(D_80052EA4, sp1C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_800047C8.s")
+s16 func_80004548(void) {
+    s32 sp1C;
+    s16 sp1A;
+
+    if (D_8004A340 == 0) {
+        return 0;
+    }
+    sp1C = alCSPGetTempo(D_80052EA4);
+    if (sp1C == 0) {
+        return 0;
+    }
+    sp1A = (s16) (s32) (60.0f / ((f32) sp1C / D_8004BAC0));
+    return sp1A;
+}
+
+void func_80004610(void) {
+    if (D_80052EC0 & 2) {
+        return;
+    }
+    if (D_80052EBC != 1) {
+        return;
+    }
+    if ((alSeqpGetState(D_80052EA4) == 1) && !(D_80052EC0 & 1)) {
+        alSeqpStop(D_80052EA4);
+    }
+    D_80052EC0 |= 2;
+}
+
+void func_800046C4(s16 arg0) {
+    if (!(D_80052EC0 & 2)) {
+        return;
+    }
+    alSeqpPlay(D_80052EA4);
+    D_80052EBC = 1;
+    D_80052EC0 &= ~2;
+    if ((arg0 == 0) || (D_80052EC4 > 0.0f)) {
+        return;
+    }
+    D_80052EC8 = 0.0f;
+    D_80052ECE = 0;
+    alSeqpSetVol(D_80052EA4, 0);
+    D_80052EC4 = -((f32) D_80052ED2 / (f32) arg0);
+}
+
+void func_800047C8(u8 arg0, struct UnkInputStruct800047C8* arg1) {
+    if (D_80052EBC != 1) {
+        return;
+    }
+    arg1->unk0 = alSeqpGetChlProgram(D_80052EA4, arg0);
+    arg1->unk4 = alSeqpGetChlVol(D_80052EA4, arg0);
+    arg1->unk5 = alSeqpGetChlPan(D_80052EA4, arg0);
+    arg1->unk6 = alSeqpGetChlFXMix(D_80052EA4, arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_8000488C.s")
 

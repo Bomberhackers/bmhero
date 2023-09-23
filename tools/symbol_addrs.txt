@@ -425,3 +425,5 @@ load_from_rom_to_addr = 0x8000068C;
 osViModeTable = 0x8004A770;
 _depth2Cents = 0x80005A80;
 freeOscStateList = 0x80052ED4;
+initOsc = 0x8000488C;
+updateOsc = 0x80004EE0;

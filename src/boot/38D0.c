@@ -142,6 +142,8 @@ typedef struct oscData_s {
 #define AL_SUSTAIN      63
 
 #define  OSC_HIGH   0
+#define  OSC_LOW    1
+#define  TWO_PI     6.2831853
 
 f32 _depth2Cents(u8 depth);
 
@@ -175,7 +177,7 @@ extern s32 D_8004A344;
 extern s32 D_8004A348;
 extern s32 D_8004A34C;
 extern u32 D_8004A350;
-extern f32 D_8004BAC0;
+extern f64 D_8004BAD8;
 extern ALHeap D_80052D40;
 extern struct UnkStruct80052D5C *D_80052D5C;
 extern u8 D_80052DB7;
@@ -687,7 +689,7 @@ s16 func_80004548(void) {
     if (sp1C == 0) {
         return 0;
     }
-    sp1A = (s16) (s32) (60.0f / ((f32) sp1C / D_8004BAC0));
+    sp1A = (s16) (s32) (60.0f / ((f32) sp1C / 1000000.0f));
     return sp1A;
 }
 
@@ -845,7 +847,128 @@ ALMicroTime initOsc(void **oscState, f32 *initVal,u8 oscType, u8 oscRate,u8 oscD
                            oscState was available, return delay in usecs */
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80004EE0.s")
+ALMicroTime updateOsc(void *oscState, f32 *updateVal)
+{
+    f32             tmpFlt;
+    oscData         *statePtr = (oscData*)oscState;
+    ALMicroTime     deltaTime = AL_USEC_PER_FRAME; /* in this example callback every */
+                                              /* frame, but could be at any interval */
+
+    switch(statePtr->type)   /* perform update calculations */
+    {
+        case TREMELO_SIN:
+            statePtr->curCount++;
+            if(statePtr->curCount >= statePtr->maxCount)
+                statePtr->curCount = 0;
+            tmpFlt = (f32)statePtr->curCount / (f32)statePtr->maxCount;
+            tmpFlt = sinf(tmpFlt*TWO_PI);
+            tmpFlt = tmpFlt * (f32)statePtr->data.tsin.halfdepth;
+            *updateVal = (f32)statePtr->data.tsin.baseVol + tmpFlt;
+            break;
+
+        case TREMELO_SQR:
+            if(statePtr->stateFlags == OSC_HIGH)
+            {
+                *updateVal = (f32)statePtr->data.tsqr.loVal;
+                statePtr->stateFlags = OSC_LOW;
+            }
+            else
+            {
+                *updateVal = (f32)statePtr->data.tsqr.hiVal;
+                statePtr->stateFlags = OSC_HIGH;
+            }
+            deltaTime *= statePtr->maxCount;
+            break;
+            
+        case TREMELO_DSC_SAW:
+            statePtr->curCount++;
+            if(statePtr->curCount > statePtr->maxCount)
+                statePtr->curCount = 0;
+            
+            tmpFlt = (f32)statePtr->curCount / (f32)statePtr->maxCount;
+            tmpFlt *= (f32)statePtr->data.tsaw.depth;
+            *updateVal = (f32)statePtr->data.tsaw.baseVol - tmpFlt;
+            break;
+            
+        case TREMELO_ASC_SAW: 
+            statePtr->curCount++;
+            if(statePtr->curCount > statePtr->maxCount)
+                statePtr->curCount = 0;
+            tmpFlt = (f32)statePtr->curCount / (f32)statePtr->maxCount;
+            tmpFlt *= (f32)statePtr->data.tsaw.depth;
+            *updateVal = (f32)statePtr->data.tsaw.baseVol + tmpFlt;
+            break;
+
+        case VIBRATO_SIN:
+            /* calculate a sin value (from -1 to 1) and multiply it by depthcents.
+               Then convert cents to ratio. */
+
+            statePtr->curCount++;
+            if(statePtr->curCount >= statePtr->maxCount)
+                statePtr->curCount = 0;
+            tmpFlt = (f32)statePtr->curCount / (f32)statePtr->maxCount;
+            tmpFlt = sinf(tmpFlt*TWO_PI) * statePtr->data.vsin.depthcents;
+            *updateVal = alCents2Ratio((s32)tmpFlt);
+            break;
+            
+        case VIBRATO_SQR:
+            if(statePtr->stateFlags == OSC_HIGH)
+            {
+                statePtr->stateFlags = OSC_LOW;
+                *updateVal = statePtr->data.vsqr.loRatio;
+            }
+            else
+            {
+                statePtr->stateFlags = OSC_HIGH;
+                *updateVal = statePtr->data.vsqr.hiRatio;
+            }
+            deltaTime *= statePtr->maxCount;
+            break;
+
+        case VIBRATO_DSC_SAW:
+            statePtr->curCount++;
+            if(statePtr->curCount > statePtr->maxCount)
+                statePtr->curCount = 0;
+            tmpFlt = (f32)statePtr->curCount / (f32)statePtr->maxCount;
+            tmpFlt *= (f32)statePtr->data.vdsaw.centsrange;
+            tmpFlt = (f32)statePtr->data.vdsaw.hicents - tmpFlt;
+            *updateVal = alCents2Ratio((s32)tmpFlt);
+            break;
+            
+        case VIBRATO_ASC_SAW:
+            statePtr->curCount++;
+            if(statePtr->curCount > statePtr->maxCount)
+                statePtr->curCount = 0;
+            tmpFlt = (f32)statePtr->curCount / (f32)statePtr->maxCount;
+            tmpFlt *= (f32)statePtr->data.vasaw.centsrange;
+            tmpFlt += (f32)statePtr->data.vasaw.locents;
+            *updateVal = alCents2Ratio((s32)tmpFlt);
+            break;
+        case 0xC9:
+            statePtr->curCount++;
+            if(statePtr->curCount >= statePtr->maxCount)
+                statePtr->curCount = 0;
+            if(statePtr->stateFlags != OSC_HIGH) {
+                if (statePtr->curCount == 0) {
+                    statePtr->data.unk.unkC = _depth2Cents(0x61);
+                    statePtr->maxCount = 0xEU;
+                    *updateVal = 1.0f;
+                    deltaTime = statePtr->stateFlags << 0xE;
+                    statePtr->stateFlags = 0;
+                    break;
+                }
+                tmpFlt = (f32)statePtr->curCount / (f32)statePtr->maxCount;
+                tmpFlt = statePtr->data.unk.unkC - (tmpFlt * statePtr->data.unk.unkC);
+                *updateVal = alCents2Ratio((-1.0f * tmpFlt));
+            } else {
+                tmpFlt = (f32)statePtr->curCount / (f32)statePtr->maxCount;
+                tmpFlt = sinf(((f64)tmpFlt * TWO_PI)) * statePtr->data.unk.unkC;
+                *updateVal = alCents2Ratio(tmpFlt);
+            }
+            break;
+    }
+    return(deltaTime);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80005A58.s")
 

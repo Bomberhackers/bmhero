@@ -23,7 +23,22 @@ struct UnkStruct80052D5C {
     char filler0[0x8];
     u32 unk8;
     u32 unkC;
-    char filler10[0x1C];
+    u32 unk10;
+    char filler14[0x2];
+    s16 unk16;
+    u16 unk18;
+    u16 unk1A;
+    f32 unk1C;
+    char filler20[0x2];
+    u8 unk22;
+    char filler23[0x1];
+    u8 unk24;
+    u8 unk25;
+    u8 unk26;
+    char filler27[0x1];
+    u8 unk28;
+    u8 unk29;
+    char filler2A[0x2];
 };
 
 struct UnkStruct80052EB4 {
@@ -47,6 +62,12 @@ struct UnkInputStruct800047C8 {
     u8 unk4;
     u8 unk5;
     u8 unk6;
+};
+
+struct UnkStruct80052D58 {
+    s16 unk0;
+    s16 unk2;
+    char filler4[0x1]; // unk size
 };
 
 typedef struct {  
@@ -151,6 +172,14 @@ s32 func_800038A4(s32);                             /* extern */
 s32 func_80005B14();                                /* extern */
 s32 func_8000D120(s32*, s32*);                          /* extern */
 ALCSPlayer* func_8000D84C(u32);                     /* extern */
+s32 func_800060AC(u32);                             /* extern */
+s32 func_8000616C();                                /* extern */
+s32 func_80006284(ALCSPlayer*);                     /* extern */
+s32 func_800064BC(ALCSPlayer*);                     /* extern */
+s32 func_800065B8(ALCSPlayer*);                     /* extern */
+s16 func_80006DF4(s32);                             /* extern */
+s32 func_800080D8();                                /* extern */
+s32 func_800081B0();                                /* extern */
 
 extern s32 D_8004A2A0;
 extern s32 D_8004A2A4;
@@ -166,20 +195,37 @@ extern s32 D_8004A2D8;
 extern s32 D_8004A2DC;
 extern s32 D_8004A2E0;
 extern s32 D_8004A2E4;
+extern ALSeqpConfig D_8004A2E8;
 extern s32 D_8004A304;
 extern s32 D_8004A308;
 extern s32 D_8004A30C;
-extern s32 D_8004A318;
-extern ALSeqpConfig D_8004A2E8;
 extern s32 D_8004A310;
+extern s32 D_8004A318;
 extern u8* D_8004A340;
 extern s32 D_8004A344;
 extern s32 D_8004A348;
 extern s32 D_8004A34C;
 extern u32 D_8004A350;
+extern u32 D_8004A354;
+extern s32 D_8004A358;
+extern s16 D_8004A364;
 extern f64 D_8004BAD8;
 extern ALHeap D_80052D40;
+extern s32 D_80052D50;
+extern ALCSPlayer* D_80052D54;
+extern struct UnkStruct80052D58* D_80052D58;
 extern struct UnkStruct80052D5C *D_80052D5C;
+extern s32 D_80052D60;
+extern s32 D_80052D64;
+extern s32 D_80052D68;
+extern f32 D_80052D6C;
+extern s16 D_80052D74;
+extern s16 D_80052D76;
+extern s16 D_80052D78;
+extern s8 D_80052D7A;
+extern u8 D_80052D7B;
+extern u8 D_80052D7C;
+extern s32 D_80052D80;
 extern u8 D_80052DB7;
 extern void* D_80052DB8;
 extern OSMesgQueue D_80052E80;
@@ -970,11 +1016,153 @@ ALMicroTime updateOsc(void *oscState, f32 *updateVal)
     return(deltaTime);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80005A58.s")
+void stopOsc(void *oscState)
+{
+    ((oscData*)oscState)->next = freeOscStateList;
+    freeOscStateList = (oscData*)oscState;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/_depth2Cents.s")
+/************************************************************************
+ *   _depth2Cents()  convert a u8 (0-255) to a cents value. Convert using
+ *   1.03099303^(depth). This gives an exponential range of values from
+ *   1 to 2400.  (2400 cents is 2 octaves). Lots of small values for
+ *   good control of depth in musical applications, and a couple of
+ *   really broad ranges for special effects.
+ ************************************************************************/
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80005B14.s")
+extern f32 D_8004BAE0; // .rodata. TODO: Move
+
+f32 _depth2Cents(u8 depth)
+{
+    f32     x = D_8004BAE0;
+    f32     cents = 1.0;
+
+    while(depth)
+    {
+        if(depth & 1)
+            cents *= x;
+        x *= x;
+        depth >>= 1;
+    }
+
+    return(cents);
+}
+
+s32 func_80005B14(void) {
+    struct UnkStruct80052D5C* sp3C;
+    ALCSPlayer* sp38;
+    s32 sp34;
+    s32 sp30;
+    u32 sp2C;
+    s16 sp2A;
+
+    D_80052D80 = 0;
+    D_80052D60 = 0;
+    sp2A = D_8004A364;
+    D_8004A364 = 0;
+    D_8004A30C = D_8004A304 + D_8004A308;
+    D_80052D54 = func_8000D84C(0x54U);
+    if (D_80052D54 == NULL) {
+        return 1;
+    }
+    alSndpNew((ALSndPlayer* ) D_80052D54, (ALSndpConfig* ) &D_8004A30C);
+    sp2C = D_8004A30C * 0x2C;
+    D_80052D5C = func_8000D84C(sp2C);
+    if (D_80052D5C == NULL) {
+        return 1;
+    }
+    D_80052D78 = 0;
+    D_80052D7A = 0x7F;
+    D_80052D7B = 0x40;
+    D_80052D7C = 0;
+    D_80052D76 = D_80052D74 = 0x7FFF;
+    D_80052D64 = 0;
+    D_80052D68 = 0;
+    D_80052D6C = 0.0f;
+
+    for(sp30 = 0; sp30 < D_8004A30C; sp30++) {
+        sp3C = &D_80052D5C[sp30];
+        sp3C->unkC = 0;
+        sp3C->unk10 = sp3C->unkC;
+        sp3C->unk8 = 0;
+        sp3C->unk16 = -1;
+        sp3C->unk26 = 0;
+        sp3C->unk22 = D_80052D7A;
+        sp3C->unk24 = D_80052D7B;
+        sp3C->unk25 = sp3C->unk24;
+        sp3C->unk28 = D_80052D7C;
+        sp3C->unk18 = (u16) D_80052D78;
+        sp3C->unk1A = (u16) (s16) sp3C->unk18;
+        sp3C->unk1C = 1.0f;
+        sp3C->unk29 = 0;
+    }
+
+    if (func_800080D8() != 0) {
+        return 1;
+    }
+    if (func_800060AC(4U) != 0) {
+        return 1;
+    }
+    switch (D_80052D58->unk0) {                              /* irregular */
+    case 0x5431:
+        if (D_8004A358 == 0) {
+            return 0;
+        }
+        sp2C = (D_80052D58->unk2 * 8) + 4;
+        if (func_800060AC(sp2C) != 0) {
+            return 1;
+        }
+        sp30 = func_8000616C();
+        if (sp30 != 0) {
+            return sp30 - 1;
+        }
+        break;
+    case 0x5432:
+    case 0x5433:
+        sp2C = (D_80052D58->unk2 * 8) + 4;
+        if (func_800060AC(sp2C) != 0) {
+            return 1;
+        }
+        sp34 = D_8004A354 + sp2C + ((s32) sp2C % 8);
+        sp2C = 0x24;
+        sp38 = func_8000D84C(sp2C);
+        if (sp38 == NULL) {
+            return 1;
+        }
+        func_80002CD0(sp34, sp38, sp2C);
+        sp38->node.clientData = (u32)D_8004A354 + (u32)sp38->node.clientData;
+        sp38->node.callTime = (u32)D_8004A354 + (u32)sp38->node.callTime;
+        sp30 = func_80006284(sp38);
+        if (sp30 != 0) {
+            return sp30 - 1;
+        }
+        if (func_800065B8(sp38) != 0) {
+            return 1;
+        }
+        if (D_80052D58->unk0 == 0x5432) {
+            break;
+        }
+        sp30 = func_800064BC(sp38);
+        if (sp30 != 0) {
+            return sp30 - 1;
+        }
+        D_8004A364 = sp2A;
+        if (func_800081B0() != 0) {
+            return 1;
+        }
+        break;
+    default:
+        if (D_8004A358 == 0) {
+            return 0;
+        }
+        sp30 = func_8000616C();
+        if (sp30 != 0) {
+            return sp30 - 1;
+        }
+        D_80052D58->unk2 = func_80006DF4(D_80052D50);
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_800060AC.s")
 

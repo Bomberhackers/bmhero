@@ -423,3 +423,5 @@ func_800031FC = 0x800031FC; // size:0x18
 func_8000D834 = 0x8000D834; // size:0x18
 load_from_rom_to_addr = 0x8000068C;
 osViModeTable = 0x8004A770;
+_depth2Cents = 0x80005A80;
+freeOscStateList = 0x80052ED4;

@@ -49,6 +49,102 @@ struct UnkInputStruct800047C8 {
     u8 unk6;
 };
 
+typedef struct {  
+    u8      rate;
+    u8      depth;
+    u8      oscCount;
+} defData;
+
+typedef struct {
+    u8      halfdepth;
+    u8      baseVol;
+} tremSinData;
+    
+typedef struct {
+    u8      curVal;
+    u8      hiVal;
+    u8      loVal;
+} tremSqrData;
+
+typedef struct {
+    u8      baseVol;
+    u8      depth;
+} tremSawData;
+    
+typedef struct {
+    f32     depthcents;
+} vibSinData;
+
+typedef struct {
+    f32     loRatio;
+    f32     hiRatio;
+} vibSqrData;
+
+typedef struct {
+    s32     hicents;
+    s32     centsrange;
+} vibDSawData;
+
+typedef struct {
+    s32     locents;
+    s32     centsrange;
+} vibASawData;
+
+// based on case 0xC9
+typedef struct {
+    f32    unkC;
+} unkC9Data;
+
+typedef struct oscData_s {
+    struct oscData_s  *next;
+    u8      type;
+    u8      stateFlags;
+    u16     maxCount;
+    u16     curCount;
+    union {
+        defData         def;
+        tremSinData     tsin;
+        tremSqrData     tsqr;
+        tremSawData     tsaw;
+        vibSinData      vsin;
+        vibSqrData      vsqr;
+        vibDSawData     vdsaw;
+        vibASawData     vasaw;
+        unkC9Data       unk;
+    } data;        
+} oscData;
+
+#define MAX_VOICES              22
+
+/*
+ * Number of osc states needed. In worst case will need two for each
+ * voice. But if tremelo and vibrato not used on all instruments will
+ * need less.
+ */
+#define  OSC_STATE_COUNT    2*MAX_VOICES 
+
+#define  TREMELO_SIN        1
+#define  TREMELO_SQR        2
+#define  TREMELO_DSC_SAW    3
+#define  TREMELO_ASC_SAW    4
+#define  VIBRATO_SIN        128
+#define  VIBRATO_SQR        129
+#define  VIBRATO_DSC_SAW    130
+#define  VIBRATO_ASC_SAW    131
+
+#define AL_PAN_CENTER   64
+#define AL_PAN_LEFT     0
+#define AL_PAN_RIGHT    127
+#define AL_VOL_FULL     127
+#define AL_KEY_MIN      0
+#define AL_KEY_MAX      127
+#define AL_DEFAULT_FXMIX	0
+#define AL_SUSTAIN      63
+
+#define  OSC_HIGH   0
+
+f32 _depth2Cents(u8 depth);
+
 s32 func_800038A4(s32);                             /* extern */
 s32 func_80005B14();                                /* extern */
 s32 func_8000D120(s32*, s32*);                          /* extern */
@@ -102,7 +198,7 @@ extern s16 D_80052ECC;
 extern s16 D_80052ECE;
 extern s16 D_80052ED0;
 extern s16 D_80052ED2;
-extern s32* D_80052ED4;
+extern oscData  *freeOscStateList;
 extern struct UnkStruct80052ED8 D_80052ED8[];
 
 // functions
@@ -345,7 +441,7 @@ s32 func_80003304(void) {
     if (D_80052EA0 == NULL) {
         return 1;
     }
-    D_80052ED4 = &D_80052ED8;
+    freeOscStateList = &D_80052ED8;
     sp3C = &D_80052ED8;
 
     for(sp38 = 0; sp38 < 0x1F; sp38++) {
@@ -634,13 +730,126 @@ void func_800047C8(u8 arg0, struct UnkInputStruct800047C8* arg1) {
     arg1->unk6 = alSeqpGetChlFXMix(D_80052EA4, arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_8000488C.s")
+ALMicroTime initOsc(void **oscState, f32 *initVal,u8 oscType, u8 oscRate,u8 oscDepth,u8 oscDelay)
+{
+    oscData         *statePtr;
+    ALMicroTime     deltaTime = 0;
+    s32 cents;
+    
+
+    if(freeOscStateList)  /* yes there are oscStates available */
+    {
+        statePtr = freeOscStateList;
+        freeOscStateList = freeOscStateList->next;
+        statePtr->type = oscType;
+        *oscState = statePtr;
+
+        /*
+         * Convert delay into usec's, In this example, multiply by
+         * 0x4000, but could easily use another conversion method.
+         */
+        deltaTime = oscDelay * 0x4000;
+
+        switch(oscType) /* set the initVal */
+        {
+            case TREMELO_SIN:
+                statePtr->curCount = 0;
+                statePtr->maxCount = 259-oscRate; /* gives values 4-259 */
+                statePtr->data.tsin.halfdepth = oscDepth >> 1;
+                statePtr->data.tsin.baseVol = AL_VOL_FULL - statePtr->data.tsin.halfdepth;
+                *initVal = (f32)statePtr->data.tsin.baseVol;
+                break;
+
+            case TREMELO_SQR:
+                statePtr->maxCount = 256-oscRate; /* values from 1-256 */
+                statePtr->curCount = statePtr->maxCount;
+                statePtr->stateFlags = OSC_HIGH;
+                statePtr->data.tsqr.loVal = AL_VOL_FULL-oscDepth;
+                statePtr->data.tsqr.hiVal = AL_VOL_FULL;
+                statePtr->data.tsqr.curVal = AL_VOL_FULL;
+                *initVal = (f32)AL_VOL_FULL;
+                break;
+
+            case TREMELO_DSC_SAW:
+                statePtr->maxCount = 256-oscRate;
+                statePtr->curCount = 0;
+                statePtr->data.tsaw.depth = oscDepth;
+                statePtr->data.tsaw.baseVol = AL_VOL_FULL;
+                *initVal = (f32)statePtr->data.tsaw.baseVol;
+                break;
+
+            case TREMELO_ASC_SAW: 
+                statePtr->maxCount = 256-oscRate;
+                statePtr->curCount = 0;
+                statePtr->data.tsaw.depth = oscDepth;
+                statePtr->data.tsaw.baseVol = AL_VOL_FULL - oscDepth;
+                *initVal = (f32)statePtr->data.tsaw.baseVol;
+                break;           
+
+            case VIBRATO_SIN:
+                statePtr->data.vsin.depthcents = _depth2Cents(oscDepth);
+                statePtr->curCount = 0;
+                statePtr->maxCount = 259-oscRate; /* gives values 4-259 */
+                *initVal = 1.0f; /* start at unity pitch */
+                break;
+
+            case VIBRATO_SQR:
+                {
+                    statePtr->maxCount = 256-oscRate; /* values from 1-256 */
+                    statePtr->curCount = statePtr->maxCount;
+                    statePtr->stateFlags = OSC_HIGH;
+                    cents = _depth2Cents(oscDepth);
+                    statePtr->data.vsqr.loRatio = alCents2Ratio(-cents);
+                    statePtr->data.vsqr.hiRatio = alCents2Ratio(cents);
+                    *initVal = statePtr->data.vsqr.hiRatio;
+                }
+                break;
+                    
+            case VIBRATO_DSC_SAW:
+                {
+                    statePtr->maxCount = 256-oscRate; /* values from 1-256 */
+                    statePtr->curCount = statePtr->maxCount;
+                    cents = _depth2Cents(oscDepth);
+                    statePtr->data.vdsaw.hicents = cents;
+                    statePtr->data.vdsaw.centsrange = 2 * cents;
+                    *initVal = alCents2Ratio(statePtr->data.vdsaw.hicents);
+                }
+                break;
+                
+            case VIBRATO_ASC_SAW:
+                {
+                    statePtr->maxCount = 256-oscRate; /* values from 1-256 */
+                    statePtr->curCount = statePtr->maxCount;
+                    cents = _depth2Cents(oscDepth);
+                    statePtr->data.vasaw.locents = -cents;
+                    statePtr->data.vasaw.centsrange = 2 * cents;
+                    *initVal = alCents2Ratio(statePtr->data.vasaw.locents);
+                }
+                break;
+            case 201: // extra case?
+                {
+                    cents = _depth2Cents(oscDepth);
+                    statePtr->data.unk.unkC = cents;
+                    statePtr->curCount = 0;
+                    statePtr->maxCount = 259-oscRate;
+                    statePtr->stateFlags = oscDelay;
+                    *initVal = alCents2Ratio(-cents);
+                    deltaTime = 0x4000;
+                }
+                break;
+            default:
+                deltaTime = 0x3FC000;
+        }
+    }
+    return(deltaTime);  /* if there are no oscStates, return zero, but if
+                           oscState was available, return delay in usecs */
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80004EE0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80005A58.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80005A80.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/_depth2Cents.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80005B14.s")
 

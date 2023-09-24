@@ -218,7 +218,6 @@ typedef struct oscData_s {
 
 s32 func_8000D120(s32*, s32*);                          /* extern */
 ALCSPlayer* func_8000D84C(u32);                     /* extern */
-s16 func_80006DF4(s32);                             /* extern */
 s32 func_800080D8();                                /* extern */
 s32 func_800081B0();                                /* extern */
 
@@ -313,6 +312,9 @@ s32 func_80006284(ALSynConfig*);                     /* extern */
 s32 func_800064BC(ALSynConfig*);                     /* extern */
 s32 func_800065B8(ALSynConfig*);                     /* extern */
 ALBank** func_800069D0(s16 arg0, struct UnkInputStruct800069D0* arg1);
+s16 func_80006DF4(s16 **arg0);
+s32 func_80006EE8(s16** arg0, u8 arg1, u8 arg2, u8 arg3);
+s32 func_80006FD4(s16** arg0, s16 arg1);
 
 void func_80002CD0(u32 devAddr, void* vaddr, s32 nbytes) {
     OSIoMesg mesg;
@@ -1412,9 +1414,6 @@ void func_80006830(s16 arg0) {
     sp34.unk0->unkC = 1;
 }
 
-void* func_80006EE8(void*, u8, u8, u8);             /* extern */
-void* func_80006FD4(void*, s16);                    /* extern */
-
 ALBank** func_800069D0(s16 arg0, struct UnkInputStruct800069D0* arg1) {
     struct UnkALStruct* sp34;
     struct UnkALStruct* sp30;
@@ -1481,11 +1480,85 @@ ALBank** func_800069D0(s16 arg0, struct UnkInputStruct800069D0* arg1) {
     return sp28;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80006DF4.s")
+s16 func_80006DF4(s16 **arg0) {
+    s16* sp14;
+    s16* sp10;
+    s16 i;
+    s16 j;
+    s16 spA;
+    s16 sp8; 
+    s16 sp6;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80006EE8.s")
+    spA = 0;
+    sp8 = ((s16*)arg0)[1];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80006FD4.s")
+    for(i = 0; i < sp8; i++) {
+        sp14 = ((s16 **)arg0)[i+1];
+        sp6 = sp14[0];
+        for(j = 0; j < sp6; j++) {
+            sp10 = ((s16 **)sp14)[j+3];
+            spA += sp10[7];
+        }
+    }
+    return spA;
+}
+
+s32 func_80006EE8(s16** arg0, u8 arg1, u8 arg2, u8 arg3) {
+    s16** spC;
+    s16** sp8;
+    s16 sp6;
+    s16 sp4;
+    s16 sp2;
+
+    sp6 = ((s16*)arg0)[1];
+    if (sp6 < arg1) {
+        return 0;
+    }
+    spC = arg0[arg1+1];
+    sp4 = ((s16*)spC)[0];
+    if (sp4 < arg2) {
+        return 0;
+    }
+    sp8 = spC[arg2+3];
+    sp2 = ((s16*)sp8)[7];
+    if (sp2 < arg3) {
+        return 0;
+    }
+    return sp8[arg3+4];
+}
+
+s32 func_80006FD4(s16** arg0, s16 arg1) {
+    s16* sp1C;
+    s16* sp18;
+    s32 sp14;
+    s16 i; // i
+    s16 j; // j
+    s16 k;  // k
+    s16 spC = 0;
+    s16 spA = ((s16*)arg0)[1];
+
+    for(i = 0; i < spA; i++) {
+        s16 sp8;
+
+        sp1C = ((s16 **)arg0)[i+1];
+        sp8 = sp1C[0];
+        for(j = 0; j < sp8; j++) {
+            s16 sp6;
+
+            sp18 = ((s16 **)sp1C)[j+3];
+            sp6 = sp18[7];
+            for(k = 0; k < sp6; k++) {
+                sp14 = ((s16**)sp18)[k+4];
+                if (spC == arg1) {
+                    return sp14;
+                }
+                spC += 1;
+            }
+        }
+    }
+
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80007140.s")
 

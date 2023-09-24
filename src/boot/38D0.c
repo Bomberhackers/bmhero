@@ -172,9 +172,8 @@ s32 func_800038A4(s32);                             /* extern */
 s32 func_80005B14();                                /* extern */
 s32 func_8000D120(s32*, s32*);                          /* extern */
 ALCSPlayer* func_8000D84C(u32);                     /* extern */
-s32 func_800060AC(u32);                             /* extern */
 s32 func_8000616C();                                /* extern */
-s32 func_80006284(ALCSPlayer*);                     /* extern */
+s32 func_80006284(ALSynConfig*);                     /* extern */
 s32 func_800064BC(ALCSPlayer*);                     /* extern */
 s32 func_800065B8(ALCSPlayer*);                     /* extern */
 s16 func_80006DF4(s32);                             /* extern */
@@ -208,11 +207,12 @@ extern s32 D_8004A34C;
 extern u32 D_8004A350;
 extern u32 D_8004A354;
 extern s32 D_8004A358;
+extern s32 D_8004A35C;
 extern s16 D_8004A364;
 extern f64 D_8004BAD8;
 extern ALHeap D_80052D40;
-extern s32 D_80052D50;
-extern ALCSPlayer* D_80052D54;
+extern void* D_80052D50; // generic working pointer to an AL element.
+extern ALSndPlayer* D_80052D54;
 extern struct UnkStruct80052D58* D_80052D58;
 extern struct UnkStruct80052D5C *D_80052D5C;
 extern s32 D_80052D60;
@@ -234,7 +234,7 @@ extern s32 D_80052E9C;
 extern ALBankFile* D_80052EA0;
 extern ALSeqPlayer* D_80052EA4;
 extern ALCSPlayer* D_80052EA8;
-extern ALCSPlayer* D_80052EAC;
+extern ALCSeq* D_80052EAC;
 extern ALSeqFile* D_80052EB0;
 extern struct UnkStruct80052EB4* D_80052EB4;
 extern s32 D_80052EB8;
@@ -252,6 +252,7 @@ extern struct UnkStruct80052ED8 D_80052ED8[];
 // functions
 s32 func_80003304(void);
 void func_80004284(void);
+s32 func_800060AC(s32 arg0);
 
 void func_80002CD0(u32 devAddr, void* vaddr, s32 nbytes) {
     OSIoMesg mesg;
@@ -537,7 +538,7 @@ void func_80003940(void) {
             }
             func_80002CD0(D_8004A340, D_80052EA8, sp3C);
     }
-    alCSeqNew((ALCSeq* ) D_80052EAC, (u8* ) D_80052EA8);
+    alCSeqNew(D_80052EAC, (u8* ) D_80052EA8);
     switch(D_80052EB0->revision) {
         case 0x5332:
             sp34 = &D_80052EB4[D_80052ECC];
@@ -557,7 +558,7 @@ void func_80003940(void) {
     }
     if (sp30 != D_80052EB8) {
         func_80002CD0((u8* ) sp30, D_80052EA0, sp3C);
-        alBnkfNew((ALBankFile* ) D_80052EA0, (u8* ) sp2C);
+        alBnkfNew(D_80052EA0, (u8* ) sp2C);
         D_80052EB8 = sp30;
     }
     alSeqpSetBank((ALSeqPlayer* ) D_80052EA4, D_80052EA0->bankArray[sp2B]);
@@ -1050,7 +1051,7 @@ f32 _depth2Cents(u8 depth)
 
 s32 func_80005B14(void) {
     struct UnkStruct80052D5C* sp3C;
-    ALCSPlayer* sp38;
+    ALSynConfig* sp38;
     s32 sp34;
     s32 sp30;
     u32 sp2C;
@@ -1065,7 +1066,7 @@ s32 func_80005B14(void) {
     if (D_80052D54 == NULL) {
         return 1;
     }
-    alSndpNew((ALSndPlayer* ) D_80052D54, (ALSndpConfig* ) &D_8004A30C);
+    alSndpNew(D_80052D54, (ALSndpConfig* ) &D_8004A30C);
     sp2C = D_8004A30C * 0x2C;
     D_80052D5C = func_8000D84C(sp2C);
     if (D_80052D5C == NULL) {
@@ -1130,8 +1131,8 @@ s32 func_80005B14(void) {
             return 1;
         }
         func_80002CD0(sp34, sp38, sp2C);
-        sp38->node.clientData = (u32)D_8004A354 + (u32)sp38->node.clientData;
-        sp38->node.callTime = (u32)D_8004A354 + (u32)sp38->node.callTime;
+        sp38->maxPVoices = (u32)D_8004A354 + sp38->maxPVoices;
+        sp38->maxFXbusses = (u32)D_8004A354 + sp38->maxFXbusses;
         sp30 = func_80006284(sp38);
         if (sp30 != 0) {
             return sp30 - 1;
@@ -1164,11 +1165,112 @@ s32 func_80005B14(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_800060AC.s")
+s32 func_800060AC(s32 arg0) {
+    if (arg0 & 1) {
+        arg0 += 1;
+    }
+    D_80052D58 = func_8000D84C(arg0);
+    if (D_80052D58 == NULL) {
+        return 1;
+    }
+    if (D_8004A354 == 0) {
+        D_80052D58->unk0 = 0;
+    } else {
+        func_80002CD0(D_8004A354, D_80052D58, arg0);
+    }
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_8000616C.s")
+extern u8* D_8004A360;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80006284.s")
+s32 func_8000616C(void) {
+    s32 sp1C;
+
+    sp1C = D_8004A35C - D_8004A358;
+    if (sp1C == 0) {
+        D_8004A358 = 0;
+        return 1;
+    }
+    if (sp1C & 1) {
+        sp1C += 1;
+    }
+    D_80052D50 = func_8000D84C(sp1C);
+    if (D_80052D50 == NULL) {
+        return 2;
+    }
+    func_80002CD0(D_8004A358, D_80052D50, sp1C);
+    if (((ALBankFile*)D_80052D50)->revision != 0x4231) {
+        D_8004A358 = 0;
+        return 1;
+    }
+    alBnkfNew((ALBankFile*)D_80052D50, D_8004A360);
+    return 0;
+}
+
+struct UnkStructSP1C {
+    u32 unk0;
+    u32 unk4;
+    u32 unk8;
+    u8  unkC;
+    u8  unkD;
+    u8  unkE;
+    u8  unkF;
+};
+
+struct UnkStructSP18 {
+    u32 unk0;
+    char filler4[0x5];
+    u8 unk9;
+    char fillera[0x2];
+    u32 unkC;
+    u32 unk10;
+};
+
+s32 func_80006284(ALSynConfig* arg0) {
+    s32 sp24;
+    s32 i;
+    struct UnkStructSP1C* sp1C;
+    struct UnkStructSP18* sp18;
+
+    sp24 = arg0->maxUpdates;
+    if (sp24 == 0) {
+        D_8004A358 = 0;
+        return 1;
+    }
+    if (sp24 & 1) {
+        sp24 += 1;
+    }
+    D_80052D50 = func_8000D84C(sp24);
+    if (D_80052D50 == NULL) {
+        return 2;
+    }
+    D_8004A358 = arg0->maxPVoices;
+    func_80002CD0(D_8004A358, D_80052D50, sp24);
+
+    for(i = 0; i < arg0->maxVVoices; i++) {
+        // because writing &D_80052D50[sp20] is too sane for these geniuses
+        sp1C = ((struct UnkStructSP1C *)D_80052D50) + i;
+        if (sp1C->unkE != 0) {
+                
+        } else {
+            sp1C->unkE = 1U;
+            sp1C->unk0 += (int)D_80052D50;
+            // why are you writing it like this
+            sp1C->unk8 = sp18 = (struct UnkStructSP18 *)((char *)sp1C->unk8 + (int)D_80052D50);
+            if (sp18->unk9 != 0) {
+
+            } else {
+                sp18->unk9 = 1U;
+                sp18->unk0 += arg0->maxFXbusses;
+                sp18->unk10 += (int)D_80052D50; // so is this a pointer or not?
+                if ((void*)sp18->unkC != NULL) {
+                    sp18->unkC += (int)D_80052D50;
+                }
+            }
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_800064BC.s")
 

@@ -174,8 +174,8 @@ s32 func_8000D120(s32*, s32*);                          /* extern */
 ALCSPlayer* func_8000D84C(u32);                     /* extern */
 s32 func_8000616C();                                /* extern */
 s32 func_80006284(ALSynConfig*);                     /* extern */
-s32 func_800064BC(ALCSPlayer*);                     /* extern */
-s32 func_800065B8(ALCSPlayer*);                     /* extern */
+s32 func_800064BC(ALSynConfig*);                     /* extern */
+s32 func_800065B8(ALSynConfig*);                     /* extern */
 s16 func_80006DF4(s32);                             /* extern */
 s32 func_800080D8();                                /* extern */
 s32 func_800081B0();                                /* extern */
@@ -225,7 +225,16 @@ extern s16 D_80052D78;
 extern s8 D_80052D7A;
 extern u8 D_80052D7B;
 extern u8 D_80052D7C;
-extern s32 D_80052D80;
+extern s8 D_80052D7D;
+
+struct UnkStruct80052D80 {
+    u32 unk0;
+    u32 unk4;
+};
+
+extern struct UnkStruct80052D80* D_80052D80;
+extern void* D_80052D84;
+
 extern u8 D_80052DB7;
 extern void* D_80052DB8;
 extern OSMesgQueue D_80052E80;
@@ -1272,9 +1281,57 @@ s32 func_80006284(ALSynConfig* arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_800064BC.s")
+// this function is also proof(?) it's not an ALSynConfig. But then the compiled in libaudio files
+// (src/libultra/audio/, etc) show that fxType access is 8-bit. Whats going on with this struct?
+s32 func_800064BC(ALSynConfig* arg0) {
+    u8* sp1C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_800065B8.s")
+    if ((*(u32*)&arg0->fxType == 0) || (arg0->params == NULL)) {
+        return 1;
+    }
+    sp1C = arg0->params;
+    if ((s32) sp1C & 1) {
+        sp1C += 1;
+    }
+    D_80052D60 = func_8000D84C(sp1C);
+    if (D_80052D60 == 0) {
+        return 2;
+    }
+    *(u32*)&arg0->fxType = (s32) (*(u32*)&arg0->fxType + D_8004A354);
+    func_80002CD0(*(u32*)&arg0->fxType, D_80052D60, sp1C);
+    return 0;
+}
+
+s32 func_800065B8(ALSynConfig* arg0) {
+    s16 i;
+    s16 sp1C;
+
+    if ((arg0->heap == NULL) || (arg0->outputRate == 0)) {
+        return 0;
+    }
+    sp1C = (s16) arg0->outputRate;
+    if (sp1C & 1) {
+        sp1C += 1;
+    }
+    D_80052D80 = func_8000D84C(sp1C);
+    if (D_80052D80 == NULL) {
+        return 1;
+    }
+    *(u32*)&arg0->heap += (u32)D_8004A354;
+    func_80002CD0(arg0->heap, D_80052D80, sp1C);
+    *(u32*)&D_80052D80->unk0 += (u32)D_80052D80;
+    *(u32*)&D_80052D80->unk4 += (u32)D_80052D80;
+    sp1C = D_8004A30C * 0x54;
+    D_80052D84 = func_8000D84C(sp1C);
+    if (D_80052D84 == NULL) {
+        return 1;
+    }
+    for(i = 0; i < D_8004A30C; i++) {
+        func_80009B4C(i);
+    }
+    D_80052D7D = 0;
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_8000678C.s")
 

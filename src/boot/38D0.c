@@ -1,5 +1,19 @@
 #include <ultra64.h>
 
+struct UnkInputStruct800069D0 {
+    u32 unk0;
+    f32 unk4;
+    u32 unk8;
+    s16 unkC;
+    s16 unkE;
+    s16 unk10;
+    s8 unk12;
+    u8 unk13;
+    u8 unk14;
+    u8 unk15;
+    u8 unk16;
+};
+
 struct UnkInputStruct80002F94 {
     u32 unk0;
     u32 unk4;
@@ -69,6 +83,41 @@ struct UnkStruct80052D58 {
     s16 unk0;
     s16 unk2;
     char filler4[0x1]; // unk size
+};
+
+// this is some pointer ALBank has to, but it doesnt match up with an ALBank struct. What is this.
+struct UnkALStruct {
+    u8 unk0;
+    u8 unk1;
+    u8 unk2;
+    u8 unk3;
+    u16 unk4;
+    u16 unk6;
+};
+
+struct UnkStruct80052D60 {
+    u8 unk0;
+    u8 unk1;
+    char filler2[0x6];
+};
+
+struct UnkStructSP1C {
+    u32 unk0;
+    u32 unk4;
+    u32 unk8;
+    u8  unkC;
+    u8  unkD;
+    u8  unkE;
+    u8  unkF;
+};
+
+struct UnkStructSP18 {
+    u32 unk0;
+    char filler4[0x5];
+    u8 unk9;
+    char fillera[0x2];
+    u32 unkC;
+    u32 unk10;
 };
 
 typedef struct {  
@@ -167,16 +216,8 @@ typedef struct oscData_s {
 #define  OSC_LOW    1
 #define  TWO_PI     6.2831853
 
-f32 _depth2Cents(u8 depth);
-
-s32 func_800038A4(s32);                             /* extern */
-s32 func_80005B14();                                /* extern */
 s32 func_8000D120(s32*, s32*);                          /* extern */
 ALCSPlayer* func_8000D84C(u32);                     /* extern */
-s32 func_8000616C();                                /* extern */
-s32 func_80006284(ALSynConfig*);                     /* extern */
-s32 func_800064BC(ALSynConfig*);                     /* extern */
-s32 func_800065B8(ALSynConfig*);                     /* extern */
 s16 func_80006DF4(s32);                             /* extern */
 s32 func_800080D8();                                /* extern */
 s32 func_800081B0();                                /* extern */
@@ -209,14 +250,15 @@ extern u32 D_8004A350;
 extern u32 D_8004A354;
 extern s32 D_8004A358;
 extern s32 D_8004A35C;
+extern u8* D_8004A360;
 extern s16 D_8004A364;
 extern f64 D_8004BAD8;
 extern ALHeap D_80052D40;
 extern void* D_80052D50; // generic working pointer to an AL element.
 extern ALSndPlayer* D_80052D54;
-extern struct UnkStruct80052D58* D_80052D58;
+extern ALBankFile* D_80052D58;
 extern struct UnkStruct80052D5C *D_80052D5C;
-extern s32 D_80052D60;
+extern struct UnkStruct80052D60 *D_80052D60;
 extern s32 D_80052D64;
 extern s32 D_80052D68;
 extern f32 D_80052D6C;
@@ -261,8 +303,16 @@ extern struct UnkStruct80052ED8 D_80052ED8[];
 
 // functions
 s32 func_80003304(void);
+s32 func_800038A4(s32);                             /* extern */
 void func_80004284(void);
+f32 _depth2Cents(u8 depth);
+s32 func_80005B14();                                /* extern */
 s32 func_800060AC(s32 arg0);
+s32 func_8000616C();
+s32 func_80006284(ALSynConfig*);                     /* extern */
+s32 func_800064BC(ALSynConfig*);                     /* extern */
+s32 func_800065B8(ALSynConfig*);                     /* extern */
+ALBank** func_800069D0(s16 arg0, struct UnkInputStruct800069D0* arg1);
 
 void func_80002CD0(u32 devAddr, void* vaddr, s32 nbytes) {
     OSIoMesg mesg;
@@ -1114,12 +1164,12 @@ s32 func_80005B14(void) {
     if (func_800060AC(4U) != 0) {
         return 1;
     }
-    switch (D_80052D58->unk0) {                              /* irregular */
+    switch (D_80052D58->revision) {                              /* irregular */
     case 0x5431:
         if (D_8004A358 == 0) {
             return 0;
         }
-        sp2C = (D_80052D58->unk2 * 8) + 4;
+        sp2C = (D_80052D58->bankCount * 8) + 4;
         if (func_800060AC(sp2C) != 0) {
             return 1;
         }
@@ -1130,7 +1180,7 @@ s32 func_80005B14(void) {
         break;
     case 0x5432:
     case 0x5433:
-        sp2C = (D_80052D58->unk2 * 8) + 4;
+        sp2C = (D_80052D58->bankCount * 8) + 4;
         if (func_800060AC(sp2C) != 0) {
             return 1;
         }
@@ -1150,7 +1200,7 @@ s32 func_80005B14(void) {
         if (func_800065B8(sp38) != 0) {
             return 1;
         }
-        if (D_80052D58->unk0 == 0x5432) {
+        if (D_80052D58->revision == 0x5432) {
             break;
         }
         sp30 = func_800064BC(sp38);
@@ -1170,7 +1220,7 @@ s32 func_80005B14(void) {
         if (sp30 != 0) {
             return sp30 - 1;
         }
-        D_80052D58->unk2 = func_80006DF4(D_80052D50);
+        D_80052D58->bankCount = func_80006DF4(D_80052D50);
     }
     return 0;
 }
@@ -1184,14 +1234,12 @@ s32 func_800060AC(s32 arg0) {
         return 1;
     }
     if (D_8004A354 == 0) {
-        D_80052D58->unk0 = 0;
+        D_80052D58->revision = 0;
     } else {
         func_80002CD0(D_8004A354, D_80052D58, arg0);
     }
     return 0;
 }
-
-extern u8* D_8004A360;
 
 s32 func_8000616C(void) {
     s32 sp1C;
@@ -1216,25 +1264,6 @@ s32 func_8000616C(void) {
     alBnkfNew((ALBankFile*)D_80052D50, D_8004A360);
     return 0;
 }
-
-struct UnkStructSP1C {
-    u32 unk0;
-    u32 unk4;
-    u32 unk8;
-    u8  unkC;
-    u8  unkD;
-    u8  unkE;
-    u8  unkF;
-};
-
-struct UnkStructSP18 {
-    u32 unk0;
-    char filler4[0x5];
-    u8 unk9;
-    char fillera[0x2];
-    u32 unkC;
-    u32 unk10;
-};
 
 s32 func_80006284(ALSynConfig* arg0) {
     s32 sp24;
@@ -1358,7 +1387,7 @@ struct UnkStackStruct {
 
 void func_80006830(s16 arg0) {
     struct UnkStackStruct sp34;
-    ALSound* sp1C;
+    void* sp1C;
 
     sp34.unk0 = &D_80052D5C[arg0];
     sp34.unk0->unk8 &= ~0x1000;
@@ -1383,7 +1412,74 @@ void func_80006830(s16 arg0) {
     sp34.unk0->unkC = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_800069D0.s")
+void* func_80006EE8(void*, u8, u8, u8);             /* extern */
+void* func_80006FD4(void*, s16);                    /* extern */
+
+ALBank** func_800069D0(s16 arg0, struct UnkInputStruct800069D0* arg1) {
+    struct UnkALStruct* sp34;
+    struct UnkALStruct* sp30;
+    struct UnkStruct80052D60* sp2C;
+    struct UnkALStruct* sp28;
+    s16 temp_s0;
+
+    arg1->unkC = arg0;
+    arg1->unk10 = 0x7F;
+    arg1->unk12 = 0x40;
+    arg1->unkE = -1;
+    arg1->unk8 = 0;
+    arg1->unk15 = 0;
+    arg1->unk16 = 0;
+    arg1->unk14 = 0;
+
+    switch (D_80052D58->revision) {                              /* irregular */
+    case 0x5431:
+        sp28 = sp34 = (struct UnkALStruct*)D_80052D58[arg0].bankArray;
+
+        arg1->unk0 = func_80006EE8(D_80052D50, sp34->unk0, sp34->unk1, sp34->unk2);
+        arg1->unk4 = (f32) ((f32) sp34->unk6 / (f32) D_8004A2D8);
+        arg1->unk13 = (u8) sp34->unk3;
+        break;
+    case 0x5432:
+    case 0x5433:
+        sp28 = sp30 = (struct UnkALStruct*)D_80052D58[arg0].bankArray;
+
+        arg1->unk0 = (void* ) ((u32)D_80052D50 + ((sp30->unk4 & 0x1FFF) * 0x10));
+        if (sp30->unk4 & 0x8000) {
+            arg1->unk8 = (s32) (arg1->unk8 | 0x10);
+        }
+        if (sp30->unk4 & 0x4000) {
+            arg1->unk8 = (s32) (arg1->unk8 | 0x40);
+        }
+        if (sp30->unk4 & 0x2000) {
+            arg1->unk8 = (s32) (arg1->unk8 | 0x80);
+        }
+        if ((s8)sp30->unk0 >= 0) {
+            arg1->unk10 = (s16) ((s8)sp30->unk1 & 0x7F);
+            arg1->unk12 = *(s8*)&sp30->unk0;
+        } else if (D_80052D80 != NULL) {
+            arg1->unkE = (s16) ((((s8)sp30->unk0 & 0x7F) << 8) + (u8) sp30->unk1);
+        }
+        arg1->unk14 = (s8) sp30->unk2;
+        arg1->unk4 = (f32) ((f32) sp30->unk6 / (f32) D_8004A2D8);
+        arg1->unk13 = (u8) sp30->unk3;
+
+        if (D_80052D58->revision == 0x5432) {
+            break;
+        }
+        if (D_80052D60 != 0) {
+            sp2C = ((struct UnkStruct80052D60 *)D_80052D60) + arg0;
+            arg1->unk15 = (s8) sp2C->unk0;
+            arg1->unk16 = (s8) sp2C->unk1;
+        }
+        break;
+    default:
+        sp28 = NULL;
+        arg1->unk0 = func_80006FD4(D_80052D50, arg0);
+        arg1->unk4 = 1.0f;
+        arg1->unk13 = 0x50U;
+    }
+    return sp28;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80006DF4.s")
 

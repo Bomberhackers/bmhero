@@ -20,11 +20,12 @@ struct UnkInputStruct80002F94 {
 };
 
 struct UnkStruct80052D5C {
-    char filler0[0x8];
+    u32 unk0;
+    char filler4[0x4];
     u32 unk8;
     u32 unkC;
     u32 unk10;
-    char filler14[0x2];
+    s16 unk14;
     s16 unk16;
     u16 unk18;
     u16 unk1A;
@@ -37,7 +38,7 @@ struct UnkStruct80052D5C {
     u8 unk26;
     char filler27[0x1];
     u8 unk28;
-    u8 unk29;
+    s8 unk29;
     char filler2A[0x2];
 };
 
@@ -1333,9 +1334,54 @@ s32 func_800065B8(ALSynConfig* arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_8000678C.s")
+void func_8000678C(void) {
+    struct UnkStruct80052D5C* sp4;
+    s32 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80006830.s")
+    for(i = 0; i < D_8004A30C; i++) {
+        sp4 = &D_80052D5C[i];
+        if (sp4->unkC != 1) {
+
+        } else {
+            sp4->unk8 |= 2;
+        }
+    }
+}
+
+struct UnkStackStruct {
+    char filler0[0xA];
+    s16 unkA;
+    char fillerC[0x6];
+    s8 unk13;
+    struct UnkStruct80052D5C* unk0;
+};
+
+void func_80006830(s16 arg0) {
+    struct UnkStackStruct sp34;
+    ALSound* sp1C;
+
+    sp34.unk0 = &D_80052D5C[arg0];
+    sp34.unk0->unk8 &= ~0x1000;
+    sp34.unk0->unkC = 0;
+    func_800069D0(sp34.unk0->unk14, &sp1C);
+    sp34.unk0->unk0 = sp1C;
+    if (sp34.unk0->unk0 == 0) {
+        return;
+    }
+    sp34.unk0->unk16 = alSndpAllocate(D_80052D54, sp34.unk0->unk0);
+    if (sp34.unk0->unk16 < 0) {
+        return;
+    }
+    alSndpSetPriority(D_80052D54, sp34.unk0->unk16, sp34.unk0->unk26 + 0xB);
+    func_80008B84(sp34.unkA, arg0, sp34.unk0->unk29);
+    func_80008CF4(arg0);
+    func_800083EC(arg0, sp34.unk13);
+    sp34.unk0->unk8 |= 0xF;
+    func_80007890(arg0);
+    alSndpSetSound(D_80052D54, sp34.unk0->unk16);
+    alSndpPlay(D_80052D54);
+    sp34.unk0->unkC = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_800069D0.s")
 

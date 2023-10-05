@@ -12,7 +12,11 @@ struct UnkStruct8008AD58
 };
 
 extern void func_80019B7C();
+extern void func_8006AA60(s32*, s32*, s32*);
+extern void func_8008A870(u8, u8, s32, s32, s32);
 void func_8008B030(void);
+void func_80089D30(s32, u8, u8, u8);
+
 
 extern f32 D_80134F44;
 extern f32 D_80134F48;
@@ -22,6 +26,8 @@ extern s8 D_8016E134;
 extern f32 D_8016E14C;
 extern f32 D_8016E150;
 extern f32 D_8016E154;
+extern s16 D_80177600;
+extern s8 D_80134BF0;
 extern f32 D_80134F28;
 extern f32 D_80134F2C;
 extern f32 D_80134F30;
@@ -76,7 +82,27 @@ extern f32 D_80134F70;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_80089D30.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_80089E48.s")
+void func_80089E48(void) {
+    s16 sp2E;
+    s32 sp28;
+    s32 sp24;
+    s32 sp20;
+
+    if (D_80134BF0 == 1) {
+        sp2E = 0x45;
+        func_8006AA60(&sp28, &sp24, &sp20);
+        func_80089D30(sp28, 0xC0, 0xB8, 2);
+        func_8008A870(0xC8, 0xB8, (sp2E % 32) * 8, (sp2E / 32) * 0x10, 0x1A);
+        func_80089D30(sp24, 0xD8, 0xB8, 2);
+        func_8008A870(0xE0, 0xB8, (sp2E % 32) * 8, (sp2E / 32) * 0x10, 0x1A);
+        func_80089D30(sp20, 0xF0, 0xB8, 2);
+        sp2E = 0x3F;
+        func_8008A870(0xF8, 0xB8, (sp2E % 32) * 8, (sp2E / 32) * 0x10, 0x1A);
+    } else if (D_80134BF0 == 2) {
+        func_80089D30(D_80177600 * 0xA, 0xB4, 0xC8, 5);
+    }
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_8008A000.s")
 

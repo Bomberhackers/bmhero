@@ -120,32 +120,24 @@ void func_80089C18(void) {
     }
 }
 
-void func_80089D30(s32 arg0, s32 arg1, s32 arg2, s32 arg3) 
-{
+void func_80089D30(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     s32 sp2C;
     s32 sp28;
-    s32 sp24;
-    
-    if(sp24 = 0, arg3 > 0)
-    {
-        do
-        {
-            sp28 = arg0 % 10;
+    s32 i;
 
-            if(arg0 == 0)
-            {
-                sp2C = 0;
-            }
-            else
-            {
-                sp2C = sp28;
-            }
-            arg0 /= 10;
-            sp2C++;
-            func_8008A870(arg1, arg2, (sp2C % 32) * 8, (sp2C / 32) * 0x10, 0x1A);
-            arg1 -= 8;
+    for(i = 0; i < arg3; i++) {
+        sp28 = arg0 % 10;
+
+        if(arg0 == 0) {
+            sp2C = 0;
         }
-        while (++sp24 < arg3);
+        else {
+            sp2C = sp28;
+        }
+        arg0 /= 10;
+        sp2C++;
+        func_8008A870(arg1, arg2, (sp2C % 32) * 8, (sp2C / 32) * 0x10, 0x1A);
+        arg1 -= 8;
     }
 }
 

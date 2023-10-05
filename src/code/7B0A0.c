@@ -70,6 +70,8 @@ extern f32 D_80134F68;
 extern f32 D_80134F6C;
 extern f32 D_80134F70;
 
+extern s16 D_80134C1E;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_80088B80.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_80088D84.s")
@@ -213,7 +215,49 @@ void func_8008B624(struct UnkStruct8008AD58* arg0) {
     D_80134C1C = arg0->Unk6 - 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_8008B6E0.s")
+void func_8008B6E0(struct UnkStruct8008AD58* arg0) {
+    if (arg0->Unk6 == 0)
+    {
+        if((f32)(arg0->Unk0) / 10 < D_80134F34)
+        {
+            D_80134F5C = ((((f32)(arg0->Unk0) / 10) - D_80134F34) + 360) / arg0->Unk4;
+        }
+        else
+        {
+            D_80134F5C = ((((f32)(arg0->Unk0) / 10) - D_80134F34)) / arg0->Unk4;
+        }
+    }
+    else if ((f32)(arg0->Unk0) / 10 <= D_80134F34)
+    {
+        D_80134F5C = ((((f32)(arg0->Unk0) / 10) - D_80134F34)) / arg0->Unk4;
+    }
+    else
+    {
+        D_80134F5C = ((D_80134F34 - ((f32)(arg0->Unk0) / 10) + 360) / arg0->Unk4) * -1;
+    }
+
+    if (arg0->Unk8 == 0)
+    {
+        if((f32)(arg0->Unk2) / 10 < D_80134F38)
+        {
+            D_80134F60 = ((((f32)(arg0->Unk2) / 10) - D_80134F38) + 360) / arg0->Unk4;
+        }
+        else
+        {
+            D_80134F60 = ((((f32)(arg0->Unk2) / 10) - D_80134F38)) / arg0->Unk4;
+        }
+    }
+    else if  ((f32)(arg0->Unk2) / 10 <= D_80134F38)
+    {
+        D_80134F60 = ((((f32)(arg0->Unk2) / 10) - D_80134F38)) / arg0->Unk4;
+    }
+        else
+    {
+        D_80134F60 = ((D_80134F38 - ((f32)(arg0->Unk2) / 10) + 360) / arg0->Unk4) * -1;
+    }
+
+    D_80134C1E = arg0->Unk4;
+}
 
 void func_8008BA3C(void) {
     D_80134FA0 = (s16) D_801765EC;

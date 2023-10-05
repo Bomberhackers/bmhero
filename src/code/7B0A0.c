@@ -186,7 +186,10 @@ void func_8008A824(s16 arg0, s16 arg1, s16 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_8008ABC4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_8008ABF4.s")
+void func_8008ABF4(s32 arg0) {
+
+}
+
 
 void func_8008AC08(s16* arg0) {
 

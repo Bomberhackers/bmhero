@@ -80,11 +80,17 @@ extern s16 D_80134C0E;
 extern s16 D_80134C16;
 extern s16 D_80134C18;
 
+extern s16 D_80134BF2;
+extern s16 D_80134C0C;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_80088B80.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_80088D84.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_80088EAC.s")
+void func_80088EAC(s32 arg0) {
+    D_80134BF2 = arg0;
+    D_80134C0C = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_80088ECC.s")
 

@@ -50,7 +50,7 @@ struct UnkStruct80052D5C {
     u8 unk24;
     u8 unk25;
     u8 unk26;
-    char filler27[0x1];
+    u8 unk27;
     u8 unk28;
     s8 unk29;
     char filler2A[0x2];
@@ -1533,7 +1533,7 @@ s32 func_80006FD4(s16** arg0, s16 arg1) {
     s32 sp14;
     s16 i; // i
     s16 j; // j
-    s16 k;  // k
+    s16 k; // k
     s16 spC = 0;
     s16 spA = ((s16*)arg0)[1];
 
@@ -1560,7 +1560,103 @@ s32 func_80006FD4(s16** arg0, s16 arg1) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80007140.s")
+s32 func_80007690(s16*, s16*, s32, s32);                    /* extern */
+extern u8 D_8004A368;
+
+struct UnkInputStruct80007140 {
+    char filler0[0x13];
+    u8 unk13;
+};
+
+s16 func_80007140(struct UnkInputStruct80007140* arg0, s32 arg1) {
+    struct UnkStruct80052D5C* sp64;
+    s32 sp60;
+    s32 sp5C;
+    s16 sp3C[16];
+    s16 sp1C[16];
+    u8 sp1B;
+
+    sp5C = arg0->unk13 & 0xF;
+    sp1B = (arg0->unk13 >> 4) & 0xF;
+    if (D_8004A308 == 0) {
+        sp5C = 0;
+    }
+    if (sp5C || D_8004A304 < 2) {
+        if (D_8004A308 < sp5C) {
+            return -1;
+        }
+
+        // this is probably not right.
+        D_8004A304 ? (sp5C = D_8004A304 - 1 + sp5C) : 0;
+
+        sp64 = &D_80052D5C[sp5C];
+        if (sp64->unkC == 1 && sp64->unk26 > sp1B) {
+            return -1;
+        }
+        return sp5C;
+    }
+
+    for(sp5C = 0; sp5C < D_8004A304; sp5C++) {
+        sp64 = &D_80052D5C[sp5C];
+        if (sp64->unkC != 1) {
+            break;
+        }
+        sp3C[sp5C] = sp64->unk27;
+        sp1C[sp5C] = sp5C;
+    }
+
+    if (sp5C == D_8004A304) {
+        func_80007690(sp3C, sp1C, 0, D_8004A304 - 1);
+
+        for(sp60 = 0; sp60 < D_8004A304; sp60++) {
+            sp5C = sp1C[sp60];
+            sp64 = &D_80052D5C[sp5C];
+
+            if ( sp64->unk26 <= sp1B ) {
+                break;
+            }
+        }
+        if (sp60 == D_8004A304) {
+            return -1;
+        }
+        sp1B = 0xFF;
+    }
+
+    if (arg1 == 0) {
+        sp64->unk27 = D_8004A368++;
+        if (D_8004A368 == 0) {
+            if (sp1B == 0xFF) {
+                sp64->unk27 = D_8004A304;
+                for (sp60 = D_8004A304 - 1; sp60 >= 0; sp60--) {
+                    if (sp1C[sp60] == sp5C) {
+                        
+                    } else {
+                        D_80052D5C[sp1C[sp60]].unk27 = sp60;
+                    }
+                }
+            } else {
+                sp1B = 0;
+
+                for(sp60 = 0; sp60 < D_8004A304; sp60++) {
+                    sp64 = &D_80052D5C[sp60];
+                    if (sp64->unkC != 1) {
+
+                    } else {
+                        sp3C[sp1B] = sp64->unk27;
+                        sp1C[sp1B] = sp60;
+                        sp1B++;
+                    }
+                }
+                func_80007690(sp3C, sp1C, 0, sp1B - 1);
+                D_80052D5C[sp5C].unk27 = sp1B;
+                for (sp60 = sp1B - 1; sp60 >= 0; sp60--) {
+                    D_80052D5C[sp1C[sp60]].unk27 = sp60;
+                }
+            }
+        }
+    }
+    return sp5C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80007690.s")
 

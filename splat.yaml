@@ -50,14 +50,14 @@ segments:
     - [0x25810, c, boot/25810]
     - [0x26CE0, c, boot/26CE0]
     - [0x2BF00, c, boot/2BF00]
-    
+
     # while this file is definitely libultra's synstartvoiceparam, it seems
     # to be a modified one, and it starts way earlier than libultra's starting
     # point later. The source for this file is provided on the N64 SDK OS CD,
     # so the developers may have actually modified the source for this file, thus
     # moving this file into the "game" source earlier than the libultra source.
     - [0x30390, c, libultra/audio/synstartvoiceparam]
-    
+
     # this area still seems to be part of the "game" source and not libultra.
     - [0x30480, c, boot/30480]
     - [0x30FF0, c, boot/30FF0]
@@ -308,7 +308,7 @@ segments:
     - [0x4D4D0, .rodata, libultra/libc/xldtob]
     - [0x4D530, bin, gspF3DEX_fifoTextStart_1] # F3DEX2.. but only part of it? Modified F3DEX2?
     - [0x4DFF0]
-    
+
     # bss begins here I guess
     - {start: 0x4DFF0, vram: 0x8004D3F0, type: .bss, name: boot/1050}
     - {start: 0x4DFF0, vram: 0x80052D40, type:  bss, name: bss_pad}
@@ -377,7 +377,7 @@ segments:
     - [0xFF030, rodata]
     - [0xFF0F0, rodata]
     - [0xFF2A0, rodata]
-    - [0xFF2B0, rodata]
+    - [0xFF2B0, .rodata, code/7B0A0]
     - [0xFF3F0, rodata]
     - [0xFF500, rodata]
     - [0x1038B0, rodata]
@@ -537,7 +537,7 @@ segments:
     exclusive_ram_id: overlay
     subsegments:
     - [0x147BB0, bin]
-    
+
   - name: unk_bin_2
     type: code
     bss_size: 0x0 # dunno yet
@@ -580,7 +580,7 @@ segments:
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x156F90, asm, overlays/156F90]
-    
+
   - name: unk_bin_6
     type: code
     bss_size: 0x0 # dunno yet
@@ -590,7 +590,7 @@ segments:
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x157520, asm, overlays/157520]
-    
+
   - name: unk_bin_7
     type: code
     bss_size: 0x0 # dunno yet
@@ -601,7 +601,7 @@ segments:
     subsegments:
     - [0x157A00, asm, overlays/157A00]
     - [0x15A020, data]
-    
+
   - name: unk_bin_8
     type: code
     bss_size: 0x0 # dunno yet
@@ -787,7 +787,7 @@ segments:
     subsegments:
     - [0x1B6C30, asm, overlays/1B6C30]
     - [0x1BC3B0, data]
-    
+
   - name: unk_bin_25
     type: code
     bss_size: 0x0 # dunno yet
@@ -798,7 +798,7 @@ segments:
     subsegments:
     - [0x1BC4E0, asm, overlays/1BC4E0]
     - [0x1C6F90, data]
-    
+
   - name: unk_bin_26
     type: code
     bss_size: 0x0 # dunno yet

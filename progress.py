@@ -6,6 +6,103 @@ import csv
 import git
 import os
 import re
+import math
+
+##### SCORES ENTRIES #####
+
+import typing as t
+
+class TableEntry(t.NamedTuple):
+    name: str
+    score2req: int
+    score3req: int
+    score4req: int
+    scoreMax: int
+
+gMyScores: t.Sequence[TableEntry] = (
+    TableEntry("Planet Bomber - Battle Room", 1500, 2500, 3500, 4500),
+    TableEntry("Planet Bomber - Hyper Room", 1000, 2000, 3000, 4000),
+    TableEntry("Planet Bomber - Secret Room", 1000, 2000, 3000, 3500),
+    TableEntry("Planet Bomber - Heavy Room", 1500, 2500, 3500, 4500),
+    TableEntry("Planet Bomber - Sky Room", 1000, 2000, 3000, 4000),
+    TableEntry("Planet Bomber - Blue Cave", 1000, 2000, 2500, 3000),
+    TableEntry("Planet Bomber - Hole Lake", 2500, 4000, 5500, 7000),
+    TableEntry("Planet Bomber - Red Cave", 1500, 3000, 4500, 5500),
+    TableEntry("Planet Bomber - Big Cannon", 2500, 4000, 5500, 7000),
+    TableEntry("Planet Bomber - Dark Wood", 1000, 1500, 2000, 2500),
+    TableEntry("Planet Bomber - Dragon Road", 1000, 2000, 3000, 3500),
+    TableEntry("Planet Bomber - Vs. Nitros", 2500, 4000, 5500, 7000),
+    TableEntry("Planet Bomber - Clown Valley", 1000, 2000, 2500, 3000),
+    TableEntry("Planet Bomber - Great Rock", 1000, 2000, 3000, 3500),
+    TableEntry("Planet Bomber - Fog Route", 1000, 2000, 3000, 3500),
+    TableEntry("Planet Bomber - Vs. Endol", 2500, 4000, 5500, 7500),
+    TableEntry("Primus Star - Groog Hills", 1500, 3000, 4500, 6000),
+    TableEntry("Primus Star - Bubble Hole", 4000, 5000, 6000, 7000),
+    TableEntry("Primus Star - Erars Lake", 2500, 4000, 5500, 6500),
+    TableEntry("Primus Star - Waterway", 1000, 2000, 3000, 4000),
+    TableEntry("Primus Star - Water Slider", 1000, 2000, 3000, 4000),
+    TableEntry("Primus Star - Rock'n Road", 1000, 2000, 2500, 3000),
+    TableEntry("Primus Star - Water Pool", 1500, 2500, 3500, 4500),
+    TableEntry("Primus Star - Millian Road", 2000, 3000, 4000, 5000),
+    TableEntry("Primus Star - Warp Room", 1000, 1500, 2000, 2500),
+    TableEntry("Primus Star - Dark Prison", 1000, 2000, 2500, 3000),
+    TableEntry("Primus Star - Vs. Nitros", 1500, 3000, 4500, 6500),
+    TableEntry("Primus Star - Killer Gate", 1000, 2000, 3000, 4000),
+    TableEntry("Primus Star - Spiral Tower", 1000, 2000, 2500, 3000),
+    TableEntry("Primus Star - Snake Route", 1000, 1500, 2000, 2500),
+    TableEntry("Primus Star - Vs. Baruda", 1500, 3000, 4500, 6000),
+    TableEntry("Kanatia Star - Hades Crater", 1500, 2000, 2500, 3000),
+    TableEntry("Kanatia Star - Magma Lake", 1500, 2500, 3500, 4500),
+    TableEntry("Kanatia Star - Magma Dam", 2000, 3000, 4000, 5000),
+    TableEntry("Kanatia Star - Crysta Hole", 2000, 3000, 4000, 5000),
+    TableEntry("Kanatia Star - Emerald Tube", 2500, 4000, 5500, 7500),
+    TableEntry("Kanatia Star - Death Temple", 1000, 2000, 2500, 3000),
+    TableEntry("Kanatia Star - Death Road", 1500, 2500, 3500, 4500),
+    TableEntry("Kanatia Star - Death Garden", 1000, 2000, 3000, 3500),
+    TableEntry("Kanatia Star - Float Zone", 1000, 2000, 2500, 3000),
+    TableEntry("Kanatia Star - Aqua Tank", 1000, 2000, 2500, 3000),
+    TableEntry("Kanatia Star - Aqua Way", 4000, 6000, 8000, 9000),
+    TableEntry("Kanatia Star - Vs. Nitros", 1500, 3000, 4500, 6500),
+    TableEntry("Kanatia Star - Hard Coaster", 1500, 3000, 4500, 6500),
+    TableEntry("Kanatia Star - Dark Maze", 1000, 2000, 3000, 3500),
+    TableEntry("Kanatia Star - Mad Coaster", 1000, 2000, 3000, 4000),
+    TableEntry("Kanatia Star - Move Stone", 1000, 2000, 3000, 3500),
+    TableEntry("Kanatia Star - Vs. Bolban", 2500, 4000, 5500, 7000),
+    TableEntry("Mazone Star - Hopper Land", 2000, 3000, 4000, 5000),
+    TableEntry("Mazone Star - Junfalls", 1000, 2000, 3000, 4000),
+    TableEntry("Mazone Star - Freeze Lake", 1500, 3000, 4500, 6500),
+    TableEntry("Mazone Star - Cool Cave", 1500, 2500, 3500, 4500),
+    TableEntry("Mazone Star - Snowland", 1500, 2500, 3500, 4500),
+    TableEntry("Mazone Star - Storm Valley", 1000, 2000, 3000, 3500),
+    TableEntry("Mazone Star - Snow Circuit", 1000, 2000, 3000, 4000),
+    TableEntry("Mazone Star - Heaven Sky", 2500, 4000, 5500, 7500),
+    TableEntry("Mazone Star - Eye Snake", 1500, 2500, 3500, 4500),
+    TableEntry("Mazone Star - Vs. Nitros", 1500, 3000, 4500, 6500),
+    TableEntry("Mazone Star - Air Room", 1000, 2000, 3000, 4000),
+    TableEntry("Mazone Star - Zero G Room", 1000, 2000, 3000, 4000),
+    TableEntry("Mazone Star - Mirror Room", 1000, 2000, 3000, 3500),
+    TableEntry("Mazone Star - Vs. Natia", 2000, 3000, 4000, 5500),
+    TableEntry("Garaden Star - Room 1: Endol", 2500, 4000, 5500, 7500),
+    TableEntry("Garaden Star - Room 2: Baruda", 1500, 3000, 4500, 6500),
+    TableEntry("Garaden Star - Room 3: Cronus", 1500, 3000, 4500, 6000),
+    TableEntry("Garaden Star - Room 4: Nitros", 1500, 3000, 4500, 6000),
+    TableEntry("Garaden Star - Room 5: Bolban", 2000, 3000, 4000, 5500),
+    TableEntry("Garaden Star - Room 6: Natia", 2500, 4000, 5500, 7000),
+    TableEntry("Garaden Star - Vs. Bagular", 400, 600, 800, 1000),
+    TableEntry("Gossick Star - Outer Road", 1000, 2000, 3000, 4000),
+    TableEntry("Gossick Star - Inner Road", 1000, 2000, 3000, 4000),
+    TableEntry("Gossick Star - Vs. ???", 1500, 3000, 4500, 6000),
+    TableEntry("Bomber Star - Stage 1", 1500, 3000, 4500, 6000),
+    TableEntry("Bomber Star - Stage 2", 1500, 3000, 4500, 5500),
+    TableEntry("Bomber Star - Stage 3", 1500, 3000, 4500, 6000),
+)
+
+# calculate global total score for safety. this should eval to 361500, but lets not hardcode that
+total_score = 0
+for entry in gMyScores:
+    total_score = total_score + entry.scoreMax
+
+##### SCORES END #####
 
 parser = argparse.ArgumentParser(description="Computes current progress throughout the whole project.")
 parser.add_argument("format", nargs="?", default="text", choices=["text", "csv", "shield-json"])
@@ -116,6 +213,29 @@ codePct = 100 * code / codeSize
 bootPct = 100 * boot / bootSize
 ovlPct = 100 * ovl / ovlSize
 
+# now, given our current srcPct, where are we?
+current_score = math.floor((srcPct * total_score) / 100)
+
+# Now where are we currently?
+level_id = 0
+for entry in gMyScores:
+    if current_score <= entry.scoreMax:
+        break
+    else: # since we have no match, deduct the score and increment.
+        current_score = current_score - entry.scoreMax
+        level_id = level_id + 1
+
+# What score do we currently have?
+score_value = 1
+if current_score >= gMyScores[level_id].scoreMax:
+    score_value = 5
+elif current_score >= gMyScores[level_id].score4req:
+    score_value = 4
+elif current_score >= gMyScores[level_id].score3req:
+    score_value = 3
+elif current_score >= gMyScores[level_id].score2req:
+    score_value = 2
+
 if args.format == 'csv':
     csv_version = 2
     git_object = git.Repo().head.object
@@ -139,5 +259,10 @@ elif args.format == 'text':
     print(str(boot) + "/" + str(bootSize) + " bytes " + adjective + " in boot " + str(bootPct) + "%")
     print(str(code) + "/" + str(codeSize) + " bytes " + adjective + " in game " + str(codePct) + "%")
     print(str(ovl) + "/" + str(ovlSize) + " bytes " + adjective + " in overlays " + str(ovlPct) + "%\n")
+    print("-------------------------------------------------------\n")
+    print("Current Level:", gMyScores[level_id].name)
+    print("Current Score:", round(current_score/10)*10)
+    print("Current Score Value:", score_value)
+    print("") # extra newline
 else:
     print("Unknown format argument: " + args.format)

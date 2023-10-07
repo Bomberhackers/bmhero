@@ -14,6 +14,7 @@ struct UnkStruct8008AD58
 extern void func_80019B7C();
 extern void func_8006AA60(s32*, s32*, s32*);
 extern void func_8008A870(u8, u8, s32, s32, s32);
+extern void func_80069E00(s32, s32);
 void func_8008B030(void);
 
 
@@ -176,7 +177,9 @@ void func_8008A824(s16 arg0, s16 arg1, s16 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_8008A870.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_8008ABC4.s")
+void func_8008ABC4(s32 arg0) {
+    func_80069E00(0, 0);
+}
 
 void func_8008ABF4(s32 arg0) {
 

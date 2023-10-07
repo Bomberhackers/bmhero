@@ -1,5 +1,9 @@
 #include "common.h"
 
+extern void func_8002B0E4(s32);
+
+extern s32 D_80177A60;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FACF0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FAE10.s")
@@ -48,9 +52,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FD04C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FD3F8.s")
+void func_800FD3F8(void) {
+    
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FD408.s")
+void func_800FD408(void) {
+    func_8002B0E4(D_80177A60);
+    return;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FD440.s")
 

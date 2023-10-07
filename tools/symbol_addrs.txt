@@ -428,3 +428,4 @@ freeOscStateList = 0x80052ED4;
 initOsc = 0x8000488C;
 updateOsc = 0x80004EE0;
 stopOsc = 0x80005A58;
+gMasterDisplayList = 0x8016E0FC;

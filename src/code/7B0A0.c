@@ -16,6 +16,9 @@ extern void func_8006AA60(s32*, s32*, s32*);
 extern void func_8008A870(u8, u8, s32, s32, s32);
 extern void func_80069E00(s32, s32);
 void func_8008B030(void);
+void func_8008A6A4(void);
+void func_8008A384(void);
+void func_8008A824(s16 arg0, s16 arg1, s16 arg2);
 
 
 extern f32 D_80134F44;
@@ -76,13 +79,16 @@ extern s16 D_8010CD80[2];
 extern s16 D_80110B78[];
 extern s32 D_80110D4C[];
 extern s16 D_80134BF8;
-extern s32 D_80134C08;
+extern s16* D_80134C08;
 extern s16 D_80134C0E;
 extern s16 D_80134C16;
 extern s16 D_80134C18;
 
 extern s16 D_80134BF2;
 extern s16 D_80134C0C;
+extern s16 D_80134BFA;
+extern s16 D_80134BFC;
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_80088B80.s")
 
@@ -165,7 +171,107 @@ void func_80089E48(void) {
 }
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_8008A000.s")
+void func_8008A000(void) {
+    s16 sp3E;
+    s16 sp3C;
+    s16 sp3A;
+    s16 sp38;
+    s16 sp36;
+    s16 sp34;
+    s16 sp32;
+    s16 sp30;
+    s16 sp2E;
+
+     if (D_80134BF8 == -1)
+     {
+         return;
+     }
+
+    func_8008A6A4();
+    func_8008A384();
+    func_8008A824(D_80134C08[0], D_80134C08[1], D_80134C08[2]);
+
+    sp36 = 0;
+    sp38 = 0;
+    sp3A = 0;
+    sp3C = 0;
+    sp3E = 0;
+    
+    while(sp3A == 0)
+    {
+        if(D_80134C08[sp3E + 5] == -1)
+        {
+            if (D_80134C08[4] == (sp38 + 1)) 
+            {
+                sp3A = 1;
+            } else {
+                sp38 += 1;
+                sp3E += 1;
+                sp3C += 1;
+                sp36 = 0;
+            }
+        }
+        else
+        {
+            sp34 = D_80134C08[sp3E+5];
+            sp32 = 0x1A;
+
+            switch (D_80134BFA)
+            {
+                case 0:
+                    {
+                        sp30 = ((s32) (0x140 - (D_80134C08[3] * 8)) / 2) + (sp36 * 8);
+                        break;
+                    }
+                case 1:
+                    {
+                        sp30 = sp36 * 8;
+                        break;
+                    }
+                case 2:
+                    {
+                        sp30 = ((sp36 * 8) - (D_80134C08[3] * 8)) + 0x140;
+                        break;
+                    }
+                default:
+                    {
+                        sp30 = ((s32) (0x140 - (D_80134C08[3] * 8)) / 2) + (sp36 * 8);
+                        break;
+                    }
+            }
+
+            switch (D_80134BFC)
+            {
+                case 0:
+                    {
+                        sp2E = ((s32) (0xF0 - (D_80134C08[4] * 0x10)) / 2) + (sp3C * 0x10);
+                        break;
+                    }
+                case 3:
+                    {
+                        sp2E = sp3C * 0x10;
+                        break;
+                    }
+                case 4:
+                    {
+                        sp2E = (sp3C * 0x10) + 0xB8;
+                        break;
+                    }
+                default:
+                    {
+                        sp2E = (sp3C * 0x10) + 0xB8;
+                        break;
+                    }
+            }
+
+            func_8008A870(sp30, sp2E, (sp34 % 32) * 8, (sp34 / 32) * 0x10, (s32) sp32);
+            sp3E++;
+            sp36++; 
+        }
+    }
+
+    func_80089E48();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_8008A384.s")
 

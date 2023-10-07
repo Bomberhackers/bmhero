@@ -135,6 +135,7 @@ extern s16 D_80134C22;
 extern s8 D_80134C24;
 extern s8 D_80134C25;
 extern s8 D_80134C26;
+extern s32 D_8016CAA0[];
 
 extern Gfx* gMasterDisplayList;
 
@@ -630,7 +631,18 @@ void func_8008A000(void) {
     func_80089E48();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_8008A384.s")
+void func_8008A384(void) {
+    gDPPipeSync(gMasterDisplayList++);
+    gSPClearGeometryMode(gMasterDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
+    gSPSetGeometryMode(gMasterDisplayList++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | G_SHADING_SMOOTH);
+    gDPSetTexturePersp(gMasterDisplayList++, G_TP_NONE);
+    gDPSetRenderMode(gMasterDisplayList++, G_RM_AA_TEX_EDGE, G_RM_AA_TEX_EDGE2);
+    gDPSetCombineMode(gMasterDisplayList++, G_CC_DECALRGBA, G_CC_DECALRGBA);
+    gDPSetColorDither(gMasterDisplayList++, G_CD_BAYER);
+    gDPSetTextureFilter(gMasterDisplayList++, G_TF_BILERP);
+    gDPSetTextureLUT(gMasterDisplayList++, G_TT_RGBA16);
+    gDPLoadTLUT_pal16(gMasterDisplayList++, 0, D_8016CAA0[52] + 0x10);
+}
 
 void func_8008A6A4(void) {
     gDPPipeSync(gMasterDisplayList++);

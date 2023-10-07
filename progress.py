@@ -59,33 +59,62 @@ def GetNonMatchingSize(path):
     return size
 
 def IsCFile(objfile):
-    srcfile = objfile.strip().replace("build/", "").replace(".c.o", ".c")
+    srcfile = objfile.strip().replace("build/", "").replace(".o", "")
     return os.path.isfile(srcfile)
 
 mapFile = ReadAllLines("build/bmhero.map")
+curSegment = None
 src = 0
-asm = 0
+code = 0
+boot = 0
+ovl = 0
 
 for line in mapFile:
+
+    if "game_VRAM" in line:
+        curSegment = "code"
+    elif "boot_code_VRAM" in line:
+        curSegment = "boot"
+    elif "game_VRAM_END" in line or "boot_code_VRAM_END" in line:
+        curSegment = None
+
     lineSplit =  list(filter(None, line.split(" ")))
 
     if (len(lineSplit) == 4 and lineSplit[0].startswith(".")):
         section = lineSplit[0]
         size = int(lineSplit[2], 16)
         objFile = lineSplit[3]
-        
-        if (section == ".text"):
-            if (IsCFile(objFile) and objFile.startswith("build/src")):
-                src += size
-            elif (objFile.startswith("build/asm")):
-                asm += size
 
-nonMatchingASM = GetNonMatchingSize("asm/non_matchings")
+        if (section == ".text" and IsCFile(objFile)):
+            if (objFile.startswith("build/src")):
+                src += size
+
+            if (objFile.startswith("build/src/code") or (objFile.startswith("build/src/libultra/") and curSegment == "code")):
+                code += size
+            elif (objFile.startswith("build/src/boot") or (objFile.startswith("build/src/libultra/") and curSegment == "boot")):
+                boot += size
+            elif (objFile.startswith("build/src/overlays")):
+                ovl += size
+
+nonMatchingASM = GetNonMatchingSize("asm/nonmatchings")
+nonMatchingASMBoot = GetNonMatchingSize("asm/nonmatchings/boot")
+nonMatchingASMCode = GetNonMatchingSize("asm/nonmatchings/code")
+nonMatchingASMOvl = GetNonMatchingSize("asm/nonmatchings/overlays")
 
 src -= nonMatchingASM
+code -= nonMatchingASMCode
+boot -= nonMatchingASMBoot
+ovl -= nonMatchingASMOvl
 
-total = src + nonMatchingASM + asm
+bootSize = 293648
+codeSize = 674384
+ovlSize = 212420 # .text sections
+
+total = src + nonMatchingASM
 srcPct = 100 * src / total
+codePct = 100 * code / codeSize
+bootPct = 100 * boot / bootSize
+ovlPct = 100 * ovl / ovlSize
 
 if args.format == 'csv':
     csv_version = 2
@@ -105,7 +134,10 @@ elif args.format == 'shield-json':
 elif args.format == 'text':
     adjective = "decompiled" if not args.matching else "matched"
 
-    print(str(total) + " total bytes of decompilable code")
+    print(str(total) + " total bytes of decompilable code\n")
     print(str(src) + " bytes " + adjective + " in src " + str(srcPct) + "%")
+    print(str(boot) + "/" + str(bootSize) + " bytes " + adjective + " in boot " + str(bootPct) + "%")
+    print(str(code) + "/" + str(codeSize) + " bytes " + adjective + " in game " + str(codePct) + "%")
+    print(str(ovl) + "/" + str(ovlSize) + " bytes " + adjective + " in overlays " + str(ovlPct) + "%\n")
 else:
     print("Unknown format argument: " + args.format)

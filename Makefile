@@ -89,7 +89,7 @@ OBJDUMP_FLAGS := -d -r -z -Mreg-names=32
 INC_DIRS := include include/PR include/audio include/ido .
 IINCS := $(foreach d,$(INC_DIRS),-I$d)
 # defines for SGI IDO
-CDEFS := -D_LANGUAGE_C -DF3DEX_GBI_2 -DNDEBUG -D_FINALROM -DBUILD_VERSION=VERSION_H
+CDEFS := -D_LANGUAGE_C -DF3DEX_GBI -DNDEBUG -D_FINALROM -DBUILD_VERSION=VERSION_H
 
 ifneq ($(RUN_CC_CHECK),0)
   CHECK_WARNINGS := -Wall -Wextra
@@ -168,7 +168,7 @@ split:
 	rm -rf $(DATA_DIRS) $(ASM_DIRS) && ./tools/n64splat/split.py $(SPLAT_YAML)
 
 setup: distclean submodules split
-	
+
 $(BUILD_DIR):
 	echo $(C_FILES)
 	mkdir $(BUILD_DIR)

@@ -136,6 +136,7 @@ extern s8 D_80134C24;
 extern s8 D_80134C25;
 extern s8 D_80134C26;
 
+extern Gfx* gMasterDisplayList;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_80088B80.s")
 
@@ -506,7 +507,6 @@ void func_80089D30(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     }
 }
 
-
 void func_80089E48(void) {
     s16 sp2E;
     s32 sp28;
@@ -527,7 +527,6 @@ void func_80089E48(void) {
         func_80089D30(D_80177600 * 0xA, 0xB4, 0xC8, 5);
     }
 }
-
 
 void func_8008A000(void) {
     s16 sp3E;
@@ -633,7 +632,15 @@ void func_8008A000(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_8008A384.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_8008A6A4.s")
+void func_8008A6A4(void) {
+    gDPPipeSync(gMasterDisplayList++);
+    gSPClearGeometryMode(gMasterDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
+    gSPSetGeometryMode(gMasterDisplayList++, G_SHADE | G_CULL_BACK  | G_SHADING_SMOOTH);
+    gDPSetCombineMode(gMasterDisplayList++, G_CC_PRIMITIVE, G_CC_PRIMITIVE);
+    gDPSetRenderMode(gMasterDisplayList++, G_RM_AA_XLU_SURF, G_RM_AA_XLU_SURF2);
+    gDPSetPrimColor(gMasterDisplayList++, 0, 0, 0x00, 0x00, 0x00, 0x50);
+    gDPFillRectangle(gMasterDisplayList++, 24, 180, 298, 220);
+}
 
 void func_8008A824(s16 arg0, s16 arg1, s16 arg2) {
     D_8010CD80[1] = ((arg0 << 0xB) + (arg1 << 6) + (arg2 * 2) + 1);
@@ -648,7 +655,6 @@ void func_8008ABC4(s16* arg0) {
 void func_8008ABF4(s16* arg0) {
 
 }
-
 
 void func_8008AC08(s16* arg0) {
 
@@ -729,7 +735,6 @@ void func_8008B030(void) {
         D_8016E154 = D_80134F4C;
     }
 }
-
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_8008B0F4.s")
 

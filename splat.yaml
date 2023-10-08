@@ -459,7 +459,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x128D20, asm, overlays/128D20]
+    - [0x128D20, c, overlays/128D20/128D20]
     - [0x133DA0, data]
     - [0x134370, rodata]
 
@@ -471,7 +471,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x134440, asm, overlays/134440]
+    - [0x134440, c, overlays/134440/134440]
     - [0x138160, data]
 
   - name: code_extra_2
@@ -482,7 +482,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x138360, asm, overlays/138360]
+    - [0x138360, c, overlays/138360/138360]
     - [0x13AAE0, data]
 
   - name: code_extra_3
@@ -493,7 +493,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x13AC20, asm, overlays/13AC20]
+    - [0x13AC20, c, overlays/13AC20/13AC20]
     - [0x13C1B0, data]
 
   - name: code_extra_4
@@ -504,7 +504,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x13C4C0, asm, overlays/13C4C0]
+    - [0x13C4C0, c, overlays/13C4C0/13C4C0]
     - [0x13D9D0, data]
 
   - name: code_extra_5
@@ -515,7 +515,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x13DAD0, asm, overlays/13DAD0]
+    - [0x13DAD0, c, overlays/13DAD0/13DAD0]
     - [0x144100, data]
 
   - name: code_extra_6
@@ -526,7 +526,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x144420, asm, overlays/144420]
+    - [0x144420, c, overlays/144420/144420]
     - [0x147980, data]
 
   - name: unk_bin_1
@@ -546,7 +546,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x14C540, asm, overlays/14C540]
+    - [0x14C540, c, overlays/14C540/14C540]
     - [0x1525C0, data]
 
   - name: unk_bin_3
@@ -557,7 +557,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1528A0, asm, overlays/1528A0]
+    - [0x1528A0, c, overlays/1528A0/1528A0]
     - [0x153B50, data]
 
   - name: unk_bin_4
@@ -568,7 +568,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x153B70, asm, overlays/153B70]
+    - [0x153B70, c, overlays/153B70/153B70]
     - [0x156E20, data]
 
   - name: unk_bin_5
@@ -579,7 +579,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x156F90, asm, overlays/156F90]
+    - [0x156F90, c, overlays/156F90/156F90]
 
   - name: unk_bin_6
     type: code
@@ -589,7 +589,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x157520, asm, overlays/157520]
+    - [0x157520, c, overlays/157520/157520]
 
   - name: unk_bin_7
     type: code
@@ -599,7 +599,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x157A00, asm, overlays/157A00]
+    - [0x157A00, c, overlays/157A00/157A00]
     - [0x15A020, data]
 
   - name: unk_bin_8
@@ -610,7 +610,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x15A0F0, asm, overlays/15A0F0]
+    - [0x15A0F0, c, overlays/15A0F0/15A0F0]
 
   - name: unk_bin_9
     type: code
@@ -620,7 +620,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x15A7D0, asm, overlays/15A7D0]
+    - [0x15A7D0, c, overlays/15A7D0/15A7D0]
     - [0x15C020, data]
 
   - name: unk_bin_10
@@ -631,7 +631,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x15C0D0, asm, overlays/15C0D0]
+    - [0x15C0D0, c, overlays/15C0D0/15C0D0]
     - [0x15EE10, data]
 
   - name: unk_bin_11
@@ -642,7 +642,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x160560, asm, overlays/160560]
+    - [0x160560, c, overlays/160560/160560]
     - [0x1676F0, data]
 
   - name: unk_bin_12
@@ -653,7 +653,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x167950, asm, overlays/167950]
+    - [0x167950, c, overlays/167950/167950]
     - [0x16D440, data]
 
   - name: unk_bin_13
@@ -664,7 +664,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x16D650, asm, overlays/16D650]
+    - [0x16D650, c, overlays/16D650/16D650]
     - [0x175210, data]
 
   - name: unk_bin_14
@@ -675,7 +675,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x175420, asm, overlays/175420]
+    - [0x175420, c, overlays/175420/175420]
     - [0x184BD0, data]
 
   - name: unk_bin_15
@@ -686,7 +686,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x184EE0, asm, overlays/184EE0]
+    - [0x184EE0, c, overlays/184EE0/184EE0]
     - [0x189810, data]
 
   - name: unk_bin_16
@@ -697,7 +697,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x189940, asm, overlays/189940]
+    - [0x189940, c, overlays/189940/189940]
     - [0x194B90, data]
 
   - name: unk_bin_17
@@ -708,7 +708,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x194F10, asm, overlays/194F10]
+    - [0x194F10, c, overlays/194F10/194F10]
     - [0x197ED0, data]
 
   - name: unk_bin_18
@@ -719,7 +719,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x198140, asm, overlays/198140]
+    - [0x198140, c, overlays/198140/198140]
     - [0x19C550, data]
 
   - name: unk_bin_19
@@ -730,7 +730,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x19C610, asm, overlays/19C610]
+    - [0x19C610, c, overlays/19C610/19C610]
     - [0x1A8730, data]
 
   - name: unk_bin_20
@@ -741,7 +741,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1A89C0, asm, overlays/1A89C0]
+    - [0x1A89C0, c, overlays/1A89C0/1A89C0]
     - [0x1ABB70, data]
 
   - name: unk_bin_21
@@ -752,7 +752,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1ABC60, asm, overlays/1ABC60]
+    - [0x1ABC60, c, overlays/1ABC60/1ABC60]
     - [0x1AEC10, data]
 
   - name: unk_bin_22
@@ -763,7 +763,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1AECD0, asm, overlays/1AECD0]
+    - [0x1AECD0, c, overlays/1AECD0/1AECD0]
     - [0x1B37D0, data]
 
   - name: unk_bin_23
@@ -774,7 +774,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1B3930, asm, overlays/1B3930]
+    - [0x1B3930, c, overlays/1B3930/1B3930]
     - [0x1B6BA0, data]
 
   - name: unk_bin_24
@@ -785,7 +785,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1B6C30, asm, overlays/1B6C30]
+    - [0x1B6C30, c, overlays/1B6C30/1B6C30]
     - [0x1BC3B0, data]
 
   - name: unk_bin_25
@@ -796,7 +796,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1BC4E0, asm, overlays/1BC4E0]
+    - [0x1BC4E0, c, overlays/1BC4E0/1BC4E0]
     - [0x1C6F90, data]
 
   - name: unk_bin_26
@@ -897,7 +897,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1CCCE0, asm, overlays/1CCCE0]
+    - [0x1CCCE0, c, overlays/1CCCE0/1CCCE0]
     - [0x1D0130, data]
 
   - name: unk_bin_36
@@ -908,7 +908,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1D01D0, asm, overlays/1D01D0]
+    - [0x1D01D0, c, overlays/1D01D0/1D01D0]
     - [0x1D1710, data]
 
   - name: unk_bin_37
@@ -919,7 +919,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1D1720, asm, overlays/1D1720]
+    - [0x1D1720, c, overlays/1D1720/1D1720]
     - [0x1D9030, data]
 
   - name: unk_bin_38
@@ -930,7 +930,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1D9110, asm, overlays/1D9110]
+    - [0x1D9110, c, overlays/1D9110/1D9110]
     - [0x1E3E80, data]
 
   - name: unk_bin_39
@@ -941,7 +941,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1E3FF0, asm, overlays/1E3FF0]
+    - [0x1E3FF0, c, overlays/1E3FF0/1E3FF0]
     - [0x1E7470, data]
 
   - name: unk_bin_40
@@ -952,7 +952,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1E7490, asm, overlays/1E7490]
+    - [0x1E7490, c, overlays/1E7490/1E7490]
     - [0x1ED770, data]
 
   - name: unk_bin_41
@@ -963,7 +963,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1ED860, asm, overlays/1ED860]
+    - [0x1ED860, c, overlays/1ED860/1ED860]
     - [0x1EF7A0, data]
 
   - name: unk_bin_42
@@ -974,7 +974,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1EF7F0, asm, overlays/1EF7F0]
+    - [0x1EF7F0, c, overlays/1EF7F0/1EF7F0]
     - [0x1F04F0, data]
 
   - name: unk_bin_43
@@ -985,7 +985,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1F0900, asm, overlays/1F0900]
+    - [0x1F0900, c, overlays/1F0900/1F0900]
     - [0x1F6720, data]
 
   - name: unk_bin_44
@@ -996,7 +996,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1F6790, asm, overlays/1F6790]
+    - [0x1F6790, c, overlays/1F6790/1F6790]
     - [0x1F7E50, data]
 
   - name: unk_bin_45
@@ -1007,7 +1007,7 @@ segments:
     exclusive_ram_id: id9
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1F7E80, asm, overlays/1F7E80]
+    - [0x1F7E80, c, overlays/1F7E80/1F7E80]
     - [0x1F8D60, data]
 
   - name: unk_bin_46
@@ -1018,7 +1018,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1F8D70, asm, overlays/1F8D70]
+    - [0x1F8D70, c, overlays/1F8D70/1F8D70]
     - [0x1FAC40, data]
 
   - name: unk_bin_47
@@ -1029,7 +1029,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1FACD0, asm, overlays/1FACD0]
+    - [0x1FACD0, c, overlays/1FACD0/1FACD0]
     - [0x1FE6D0, rodata]
 
   - name: unk_bin_48
@@ -1040,7 +1040,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x1FE7A0, asm, overlays/1FE7A0]
+    - [0x1FE7A0, c, overlays/1FE7A0/1FE7A0]
     - [0x201BA0, data]
 
   - name: unk_bin_49
@@ -1051,7 +1051,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x201C00, asm, overlays/201C00]
+    - [0x201C00, c, overlays/201C00/201C00]
     - [0x205EA0, data]
 
   - name: unk_bin_50
@@ -1062,7 +1062,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x205F30, asm, overlays/205F30]
+    - [0x205F30, c, overlays/205F30/205F30]
     - [0x2064D0, data]
 
   - name: unk_bin_51
@@ -1073,7 +1073,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x20DA60, asm, overlays/20DA60]
+    - [0x20DA60, c, overlays/20DA60/20DA60]
     - [0x20F560, data]
 
   - name: unk_bin_52

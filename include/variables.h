@@ -104,6 +104,35 @@ struct UnkStruct800026F4_Arg2 {
     u64 *unk3C;
 };
 
+struct Vec3f {
+    f32 x;
+    f32 y;
+    f32 z;
+};
+
+struct ShortPair {
+    s16 unk0;
+    s16 unk2;
+};
+
+struct MegaStruct {
+     struct Vec3f D_80134F28;
+     struct Vec3f D_80134F34;
+     f32 D_80134F40;
+     struct Vec3f D_80134F44;
+     struct Vec3f D_80134F50;
+     struct Vec3f D_80134F5C;
+     struct Vec3f D_80134F68;
+     f32 D_80134F74;
+     struct Vec3f D_80134F78;
+     struct Vec3f D_80134F84;
+     struct Vec3f D_80134F90;
+     f32 D_80134F9C;
+     struct ShortPair D_80134FA0;
+     struct ShortPair D_80134FA4;
+     s32 D_80134FA8;
+};
+
 // extern symbols
 extern u32 D_8004A280;
 extern s32 D_8004A294;
@@ -151,5 +180,6 @@ extern s32 D_801765EC;
 extern s32 osViClock;
 
 extern OSViMode osViModeTable[];
+extern struct MegaStruct gMegaStruct;
 
 #endif // _VARIABLES_H_

@@ -1,4 +1,5 @@
 #include "common.h"
+#include "variables.h"
 
 extern f32 D_8016E140;
 extern f32 D_8016E144;
@@ -7,7 +8,6 @@ extern u8 D_801776E0;
 extern s8 D_801775EE;
 extern s8 D_801348B2;
 extern s16 D_80134C22;
-extern f32 D_80134F28;
 extern u16 D_80177958;
 extern u16 D_80177950;
 
@@ -115,12 +115,12 @@ void func_8006BE9C(void) {
     }
     if (D_80134C22 != 0) {
         if (D_80177958 == 0) {
-            D_80134F28 += 2.0f;
+            gMegaStruct.D_80134F28.x += 2.0f;
             D_80177958 += 1;
         }
         else
         {
-            D_80134F28 -= 2.0f;
+            gMegaStruct.D_80134F28.x -= 2.0f;
             D_80177958 = 0;
         }
     }

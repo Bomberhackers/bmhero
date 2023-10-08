@@ -1,4 +1,5 @@
 #include "common.h"
+#include "variables.h"
 
 extern void func_80019B7C();
 extern void func_8006AA60(s32*, s32*, s32*);
@@ -58,29 +59,13 @@ extern void func_8008F63C(s16*);
 extern void func_8008F6AC(s16*);
 
 
-extern f32 D_80134F44;
-extern f32 D_80134F48;
-extern f32 D_80134F4C;
-extern s16 D_80134FA4;
 extern s8 D_8016E134;
 extern f32 D_8016E14C;
 extern f32 D_8016E150;
 extern f32 D_8016E154;
 extern s16 D_80177600;
 extern s8 D_80134BF0;
-extern f32 D_80134F28;
-extern f32 D_80134F2C;
-extern f32 D_80134F30;
-extern f32 D_80134F34;
-extern f32 D_80134F38;
-extern f32 D_80134F3C;
 extern f32 D_80134F40;
-extern f32 D_80134F50;
-extern f32 D_80134F54;
-extern f32 D_80134F58;
-extern f32 D_80134F5C;
-extern f32 D_80134F60;
-extern f32 D_80134F64;
 extern f32 D_80134F74;
 extern s16 D_80134C1A;
 extern f32 D_8016E140;
@@ -91,24 +76,9 @@ extern f32 D_8016E15C;
 extern f32 D_8016E160;
 extern f32 D_8016E170;
 extern s16 D_80134C1C;
-extern f32 D_80134F78;
-extern f32 D_80134F7C;
-extern f32 D_80134F80;
-extern f32 D_80134F84;
-extern f32 D_80134F88;
-extern f32 D_80134F8C;
-extern f32 D_80134F90;
-extern f32 D_80134F94;
-extern f32 D_80134F98;
 extern f32 D_80134F9C;
-extern s16 D_80134FA0;
-extern s16 D_80134FA2;
 extern s32 D_801765EC;
-extern s16 D_80134FA6;
 extern s16 D_80134C20;
-extern f32 D_80134F68;
-extern f32 D_80134F6C;
-extern f32 D_80134F70;
 
 extern s16 D_80134C1E;
 
@@ -139,9 +109,26 @@ extern s32 D_8016CAA0[];
 
 extern Gfx* gMasterDisplayList;
 
+
+struct MegaStruct gMegaStruct;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_80088B80.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_80088D84.s")
+void func_80088D84(void) {
+    gMegaStruct.D_80134F28.x =    gMegaStruct.D_80134F28.y =    gMegaStruct.D_80134F28.z = 0.0f;
+    gMegaStruct.D_80134F44.x =    gMegaStruct.D_80134F44.y =    gMegaStruct.D_80134F44.z = 0.0f;
+    gMegaStruct.D_80134F34.x =    gMegaStruct.D_80134F34.y =    gMegaStruct.D_80134F34.z = gMegaStruct.D_80134F40 = 0.0f;
+    gMegaStruct.D_80134F50.x =    gMegaStruct.D_80134F50.y =    gMegaStruct.D_80134F50.z = 0.0f;
+    gMegaStruct.D_80134F68.x =    gMegaStruct.D_80134F68.y =    gMegaStruct.D_80134F68.z = 0.0f;
+    gMegaStruct.D_80134F5C.x =    gMegaStruct.D_80134F5C.y =    gMegaStruct.D_80134F5C.z = gMegaStruct.D_80134F74 = 0.0f;
+    gMegaStruct.D_80134F78.x =    gMegaStruct.D_80134F78.y =    gMegaStruct.D_80134F78.z = 0.0f;
+    gMegaStruct.D_80134F90.x =    gMegaStruct.D_80134F90.y =    gMegaStruct.D_80134F90.z = 0.0f;
+    gMegaStruct.D_80134F84.x =    gMegaStruct.D_80134F84.y =    gMegaStruct.D_80134F84.z = gMegaStruct.D_80134F9C = 0.0f;
+    gMegaStruct.D_80134FA0.unk0 = 1;
+    gMegaStruct.D_80134FA0.unk2 = 0;
+    gMegaStruct.D_80134FA4.unk0 = gMegaStruct.D_80134FA4.unk2 = 0;
+    gMegaStruct.D_80134FA8 = 0;
+}
 
 void func_80088EAC(s32 arg0) {
     D_80134BF2 = arg0;
@@ -229,23 +216,23 @@ void func_80088ECC (void)
             D_80134C00 += 1;
             break;
           case 0xA:
-            D_80134F50 = (f32)D_80134C00[1] / 10.0f;
+            gMegaStruct.D_80134F50.x = (f32)D_80134C00[1] / 10.0f;
             D_80134C00 += 1;
             break;
           case 0xB:
-            D_80134F54 = (f32)D_80134C00[1] / 10.0f;
+            gMegaStruct.D_80134F50.y = (f32)D_80134C00[1] / 10.0f;
             D_80134C00 += 1;
             break;
           case 0xC:
-            D_80134F58 = (f32)D_80134C00[1] / 10.0f;
+            gMegaStruct.D_80134F50.z = (f32)D_80134C00[1] / 10.0f;
             D_80134C00 += 1;
             break;
           case 0xD:
-            D_80134F5C = (f32)D_80134C00[1] / 10.0f;
+            gMegaStruct.D_80134F5C.x = (f32)D_80134C00[1] / 10.0f;
             D_80134C00 += 1;
             break;
           case 0xE:
-            D_80134F60 = (f32)D_80134C00[1] / 10.0f;
+            gMegaStruct.D_80134F5C.y = (f32)D_80134C00[1] / 10.0f;
             D_80134C00 += 1;
             break;
           case 0xF:
@@ -336,15 +323,15 @@ void func_80088ECC (void)
             D_80134C00 += 3;
             break;
           case 0x28:
-            D_80134F68 = (f32)D_80134C00[1] / 10.0f;
+            gMegaStruct.D_80134F68.x = (f32)D_80134C00[1] / 10.0f;
             D_80134C00 += 1;
             break;
           case 0x29:
-            D_80134F6C = (f32)D_80134C00[1] / 10.0f;
+            gMegaStruct.D_80134F68.y = (f32)D_80134C00[1] / 10.0f;
             D_80134C00 += 1;
             break;
           case 0x2A:
-            D_80134F70 = (f32)D_80134C00[1] / 10.0f;
+            gMegaStruct.D_80134F68.z = (f32)D_80134C00[1] / 10.0f;
             D_80134C00 += 1;
             break;
           case 0x2B:
@@ -675,173 +662,173 @@ void func_8008AC08(s16* arg0) {
         case 1:
             {
                 D_8016E134 = 0;
-                D_80134FA4 = 0;
+                gMegaStruct.D_80134FA4.unk0 = 0;
                 break;
             }
         case 2:
             {
                 D_8016E134 = 1;
-                D_80134FA4 = 1;
+                gMegaStruct.D_80134FA4.unk0 = 1;
                 func_8008B030();
                 break;
             }
         case 3:
             {
                 D_8016E134 = 0;
-                D_80134FA4 = 1;
+                gMegaStruct.D_80134FA4.unk0 = 1;
                 break;
             }
         case 4:
             {
                 D_8016E134 = 1;
-                D_80134FA4 = 0;
+                gMegaStruct.D_80134FA4.unk0 = 0;
                 func_8008B030();
                 break;
             }
         default:
             {
                 D_8016E134 = 0;
-                D_80134FA4 = 0;
+                gMegaStruct.D_80134FA4.unk0 = 0;
                 break;
             }
     }
 
     func_80019B7C();
     if (D_8016E134 == 1) {
-        D_80134F44 = D_8016E14C;
-        D_80134F48 = D_8016E150;
-        D_80134F4C = D_8016E154;
+        gMegaStruct.D_80134F44.x = D_8016E14C;
+        gMegaStruct.D_80134F44.y = D_8016E150;
+        gMegaStruct.D_80134F44.z = D_8016E154;
     }
 }
 
 void func_8008AD58(s16* arg0) {
-    D_80134F28 = (f32) arg0[0];
-    D_80134F2C = (f32) arg0[1];
-    D_80134F30 = (f32) arg0[2];
-    D_80134F34 = (f32) arg0[3];
-    D_80134F38 = (f32) arg0[4];
-    D_80134F3C = (f32) arg0[5];
-    D_80134F40 = (f32) arg0[6];
-    D_80134F50 = 0.0f;
-    D_80134F54 = 0.0f;
-    D_80134F58 = 0.0f;
-    D_80134F5C = 0.0f;
-    D_80134F60 = 0.0f;
-    D_80134F64 = 0.0f;
-    D_80134F74 = 0.0f;
+    gMegaStruct.D_80134F28.x = (f32) arg0[0];
+    gMegaStruct.D_80134F28.y = (f32) arg0[1];
+    gMegaStruct.D_80134F28.z = (f32) arg0[2];
+    gMegaStruct.D_80134F34.x = (f32) arg0[3];
+    gMegaStruct.D_80134F34.y = (f32) arg0[4];
+    gMegaStruct.D_80134F34.z = (f32) arg0[5];
+    gMegaStruct.D_80134F40 = (f32) arg0[6];
+    gMegaStruct.D_80134F50.x = 0.0f;
+    gMegaStruct.D_80134F50.y = 0.0f;
+    gMegaStruct.D_80134F50.z = 0.0f;
+    gMegaStruct.D_80134F5C.x = 0.0f;
+    gMegaStruct.D_80134F5C.y = 0.0f;
+    gMegaStruct.D_80134F5C.z = 0.0f;
+    gMegaStruct.D_80134F74 = 0.0f;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_8008AE64.s")
 
 void func_8008B030(void) {
-    D_8016E140 = D_80134F28;
-    D_8016E144 = D_80134F2C;
-    D_8016E148 = D_80134F30;
-    D_8016E158 = D_80134F34;
-    D_8016E15C = D_80134F38;
-    D_8016E160 = D_80134F3C;
-    D_8016E170 = D_80134F40;
+    D_8016E140 = gMegaStruct.D_80134F28.x;
+    D_8016E144 = gMegaStruct.D_80134F28.y;
+    D_8016E148 = gMegaStruct.D_80134F28.z;
+    D_8016E158 = gMegaStruct.D_80134F34.x;
+    D_8016E15C = gMegaStruct.D_80134F34.y;
+    D_8016E160 = gMegaStruct.D_80134F34.z;
+    D_8016E170 = gMegaStruct.D_80134F40;
     if (D_8016E134 == 1) {
-        D_8016E14C = D_80134F44;
-        D_8016E150 = D_80134F48;
-        D_8016E154 = D_80134F4C;
+        D_8016E14C = gMegaStruct.D_80134F44.x;
+        D_8016E150 = gMegaStruct.D_80134F44.y;
+        D_8016E154 = gMegaStruct.D_80134F44.z;
     }
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_8008B0F4.s")
 
 void func_8008B5D4(s16* arg0) {
-    D_80134F74 = ((f32) arg0[0] - D_80134F40) / (f32) arg0[1];
+    gMegaStruct.D_80134F74 = ((f32) arg0[0] - gMegaStruct.D_80134F40) / (f32) arg0[1];
     D_80134C1A = arg0[1];
 }
 
 void func_8008B624(s16* arg0) {
-    D_80134F50 = ((f32) arg0[0] - D_80134F28) / (f32) arg0[3];
-    D_80134F54 = ((f32) arg0[1] - D_80134F2C) / (f32) arg0[3];
-    D_80134F58 = ((f32) arg0[2] - D_80134F30) / (f32) arg0[3];
+    gMegaStruct.D_80134F50.x = ((f32) arg0[0] - gMegaStruct.D_80134F28.x) / (f32) arg0[3];
+    gMegaStruct.D_80134F50.y = ((f32) arg0[1] - gMegaStruct.D_80134F28.y) / (f32) arg0[3];
+    gMegaStruct.D_80134F50.z = ((f32) arg0[2] - gMegaStruct.D_80134F28.z) / (f32) arg0[3];
     D_80134C1C = arg0[3] - 1;
 }
 
 void func_8008B6E0(s16* arg0) {
     if (arg0[3] == 0)
     {
-        if((f32)(arg0[0]) / 10 < D_80134F34)
+        if((f32)(arg0[0]) / 10 < gMegaStruct.D_80134F34.x)
         {
-            D_80134F5C = ((((f32)(arg0[0]) / 10) - D_80134F34) + 360) / arg0[2];
+            gMegaStruct.D_80134F5C.x = ((((f32)(arg0[0]) / 10) - gMegaStruct.D_80134F34.x) + 360) / arg0[2];
         }
         else
         {
-            D_80134F5C = ((((f32)(arg0[0]) / 10) - D_80134F34)) / arg0[2];
+            gMegaStruct.D_80134F5C.x = ((((f32)(arg0[0]) / 10) - gMegaStruct.D_80134F34.x)) / arg0[2];
         }
     }
-    else if ((f32)(arg0[0]) / 10 <= D_80134F34)
+    else if ((f32)(arg0[0]) / 10 <= gMegaStruct.D_80134F34.x)
     {
-        D_80134F5C = ((((f32)(arg0[0]) / 10) - D_80134F34)) / arg0[2];
+        gMegaStruct.D_80134F5C.x = ((((f32)(arg0[0]) / 10) - gMegaStruct.D_80134F34.x)) / arg0[2];
     }
     else
     {
-        D_80134F5C = ((D_80134F34 - ((f32)(arg0[0]) / 10) + 360) / arg0[2]) * -1;
+        gMegaStruct.D_80134F5C.x = ((gMegaStruct.D_80134F34.x - ((f32)(arg0[0]) / 10) + 360) / arg0[2]) * -1;
     }
 
     if (arg0[4] == 0)
     {
-        if((f32)(arg0[1]) / 10 < D_80134F38)
+        if((f32)(arg0[1]) / 10 < gMegaStruct.D_80134F34.y)
         {
-            D_80134F60 = ((((f32)(arg0[1]) / 10) - D_80134F38) + 360) / arg0[2];
+            gMegaStruct.D_80134F5C.y = ((((f32)(arg0[1]) / 10) - gMegaStruct.D_80134F34.y) + 360) / arg0[2];
         }
         else
         {
-            D_80134F60 = ((((f32)(arg0[1]) / 10) - D_80134F38)) / arg0[2];
+            gMegaStruct.D_80134F5C.y = ((((f32)(arg0[1]) / 10) - gMegaStruct.D_80134F34.y)) / arg0[2];
         }
     }
-    else if  ((f32)(arg0[1]) / 10 <= D_80134F38)
+    else if  ((f32)(arg0[1]) / 10 <= gMegaStruct.D_80134F34.y)
     {
-        D_80134F60 = ((((f32)(arg0[1]) / 10) - D_80134F38)) / arg0[2];
+        gMegaStruct.D_80134F5C.y = ((((f32)(arg0[1]) / 10) - gMegaStruct.D_80134F34.y)) / arg0[2];
     }
         else
     {
-        D_80134F60 = ((D_80134F38 - ((f32)(arg0[1]) / 10) + 360) / arg0[2]) * -1;
+        gMegaStruct.D_80134F5C.y = ((gMegaStruct.D_80134F34.y - ((f32)(arg0[1]) / 10) + 360) / arg0[2]) * -1;
     }
 
     D_80134C1E = arg0[2];
 }
 
 void func_8008BA3C(void) {
-    D_80134FA0 = (s16) D_801765EC;
-    D_80134FA2 = (s16) D_8016E134;
-    D_80134F78 = D_8016E140;
-    D_80134F7C = D_8016E144;
-    D_80134F80 = D_8016E148;
-    D_80134F84 = D_8016E158;
-    D_80134F88 = D_8016E15C;
-    D_80134F8C = D_8016E160;
-    D_80134F9C = D_8016E170;
-    D_80134F90 = D_8016E14C;
-    D_80134F94 = D_8016E150;
-    D_80134F98 = D_8016E154;
+    gMegaStruct.D_80134FA0.unk0 = (s16) D_801765EC;
+    gMegaStruct.D_80134FA0.unk2 = (s16) D_8016E134;
+    gMegaStruct.D_80134F78.x = D_8016E140;
+    gMegaStruct.D_80134F78.y = D_8016E144;
+    gMegaStruct.D_80134F78.z = D_8016E148;
+    gMegaStruct.D_80134F84.x = D_8016E158;
+    gMegaStruct.D_80134F84.y = D_8016E15C;
+    gMegaStruct.D_80134F84.z = D_8016E160;
+    gMegaStruct.D_80134F9C = D_8016E170;
+    gMegaStruct.D_80134F90.x = D_8016E14C;
+    gMegaStruct.D_80134F90.y = D_8016E150;
+    gMegaStruct.D_80134F90.z = D_8016E154;
 }
 
 void func_8008BB0C(void) {
-    D_801765EC = (s32) D_80134FA0;
-    D_8016E134 = (s8) D_80134FA2;
-    D_8016E140 = D_80134F78;
-    D_8016E144 = D_80134F7C;
-    D_8016E148 = D_80134F80;
-    D_8016E158 = D_80134F84;
-    D_8016E15C = D_80134F88;
-    D_8016E160 = D_80134F8C;
-    D_8016E14C = D_80134F90;
-    D_8016E150 = D_80134F94;
-    D_8016E154 = D_80134F98;
-    D_8016E170 = D_80134F9C;
-    D_80134FA4 = 0;
-    D_80134FA6 = 0;
+    D_801765EC = (s32) gMegaStruct.D_80134FA0.unk0;
+    D_8016E134 = (s8) gMegaStruct.D_80134FA0.unk2;
+    D_8016E140 = gMegaStruct.D_80134F78.x;
+    D_8016E144 = gMegaStruct.D_80134F78.y;
+    D_8016E148 = gMegaStruct.D_80134F78.z;
+    D_8016E158 = gMegaStruct.D_80134F84.x;
+    D_8016E15C = gMegaStruct.D_80134F84.y;
+    D_8016E160 = gMegaStruct.D_80134F84.z;
+    D_8016E14C = gMegaStruct.D_80134F90.x;
+    D_8016E150 = gMegaStruct.D_80134F90.y;
+    D_8016E154 = gMegaStruct.D_80134F90.z;
+    D_8016E170 = gMegaStruct.D_80134F9C;
+    gMegaStruct.D_80134FA4.unk0 = 0;
+    gMegaStruct.D_80134FA4.unk2 = 0;
     func_80019B7C();
 }
 
 void func_8008BC04(s16* arg0) {
-    D_80134F68 = ((f32) arg0[0] - D_80134F44) / (f32) arg0[3];
-    D_80134F6C = ((f32) arg0[1] - D_80134F48) / (f32) arg0[3];
-    D_80134F70 = ((f32) arg0[2] - D_80134F4C) / (f32) arg0[3];
+    gMegaStruct.D_80134F68.x = ((f32) arg0[0] - gMegaStruct.D_80134F44.x) / (f32) arg0[3];
+    gMegaStruct.D_80134F68.y = ((f32) arg0[1] - gMegaStruct.D_80134F44.y) / (f32) arg0[3];
+    gMegaStruct.D_80134F68.z = ((f32) arg0[2] - gMegaStruct.D_80134F44.z) / (f32) arg0[3];
     D_80134C20 = arg0[3];
 }

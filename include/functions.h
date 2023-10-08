@@ -10,6 +10,7 @@ s32 func_80002890(struct UnkStruct80001CF0* arg0, s32* arg1, s32* arg2, s32 arg3
 s32 func_80016DD4();
 s32 func_80016E84();
 s32 func_80016F38(s32, s32, s32);
+void func_80017FD8(char* str);
 s32 func_8001D9E4(void*);
 void func_8001DFC8();
 s32 func_8001E80C();

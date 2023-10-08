@@ -1,8 +1,6 @@
 #include <ultra64.h>
 
-void func_80017FD8(s32*);                                /* extern */
 extern s32* D_8004A370;
-extern s32 D_8004BBB0;
 extern s32 D_80380000;
 
 void* memset(void* dest, u32 c, s32 size) 
@@ -48,7 +46,7 @@ s32* func_8000E34C(u32 arg0) {
     D_8004A370 = arg0 + (s32)D_8004A370;
 
     if (((s32)D_8004A370 - (s32)&D_80380000) >= 0x80000) {
-        func_80017FD8(&D_8004BBB0);
+        func_80017FD8("sbrk : can not change data segment space allocation!\n");
         return -1;
     }
 

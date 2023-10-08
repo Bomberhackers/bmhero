@@ -277,7 +277,7 @@ segments:
     - [0x4C670, .rodata, boot/1050]
     - [0x4C6A0, .rodata, boot/3490]
     - [0x4C6C0, .rodata, boot/38D0]
-    - [0x4C7B0, rodata]
+    - [0x4C7B0, .rodata, boot/EE20]
     - [0x4C7F0, rodata]
     - [0x4C820, rodata]
     - [0x4C860, rodata]

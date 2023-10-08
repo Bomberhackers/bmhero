@@ -216,8 +216,6 @@ typedef struct oscData_s {
 #define  OSC_LOW    1
 #define  TWO_PI     6.2831853
 
-s16 func_80009AD0(s16);                             /* extern */
-s32 func_80009B4C(s16);                               /* extern */
 s32 func_8000A534(struct UnkStruct80052D5C*, struct UnkStruct80052D84*); /* extern */
 s32 func_8000A724(struct UnkStruct80052D5C*, struct UnkStruct80052D84*); /* extern */
 s16 func_8000AC1C(s16);                             /* extern */
@@ -399,6 +397,8 @@ void func_800083EC(s16 arg0, s8 arg1);
 void func_80008744();
 void func_80008B84(s16 arg0, s16 arg1, s8 arg2);
 void func_80008CF4(s16 arg0);
+s16 func_80009AD0(s16 arg0);
+void func_80009B4C(s16 arg0);
 void func_80009BA4(struct UnkStruct80052D5C* arg0, struct UnkStruct80052D84* arg1);
 
 void func_80002CD0(u32 devAddr, void* vaddr, s32 nbytes) {
@@ -2347,9 +2347,24 @@ void func_80008CF4(s16 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80009AD0.s")
+s16 func_80009AD0(s16 arg0) {
+    struct UnkInputStruct800069D0 sp20;
+    s16 retVar;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80009B4C.s")
+    if ((arg0 >= D_80052D58->bankCount) || (arg0 < 0)) {
+        return -1;
+    }
+    func_800069D0(arg0, &sp20);
+    retVar = func_80007140(&sp20, 1);
+    return retVar;
+}
+
+void func_80009B4C(s16 arg0) {
+    struct UnkStruct80052D84* sp4 = &D_80052D84[arg0];
+
+    sp4->unk8 = -1;
+    sp4->unk4 = 0;
+}
 
 void func_80009BA4(struct UnkStruct80052D5C* arg0, struct UnkStruct80052D84* arg1) {
     f32 sp2C;

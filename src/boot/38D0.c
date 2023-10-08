@@ -41,7 +41,7 @@ struct UnkStruct80052D5C {
     u32 unk10;
     s16 unk14;
     s16 unk16;
-    u16 unk18;
+    s16 unk18;
     u16 unk1A;
     f32 unk1C;
     s16 unk20;
@@ -216,12 +216,14 @@ typedef struct oscData_s {
 #define  OSC_LOW    1
 #define  TWO_PI     6.2831853
 
+s16 func_80009AD0(s16);                             /* extern */
+s32 func_80009B4C(s16);                               /* extern */
+s32 func_8000A534(struct UnkStruct80052D5C*, struct UnkStruct80052D84*); /* extern */
+s32 func_8000A724(struct UnkStruct80052D5C*, struct UnkStruct80052D84*); /* extern */
+s16 func_8000AC1C(s16);                             /* extern */
+s32 func_8000B5DC();                                  /* extern */
 s32 func_8000D120(s32*, s32*);                          /* extern */
 ALCSPlayer* func_8000D84C(u32);                     /* extern */
-s32 func_800080D8();                                /* extern */
-s32 func_800081B0();                                /* extern */
-s32 func_80008CF4(s16);                               /* extern */
-s32 func_8000B5DC();                                  /* extern */
 
 extern s32 D_8004A2A0;
 extern s32 D_8004A2A4;
@@ -288,15 +290,36 @@ struct UnkStruct80052D84 {
     s16 unkE;
     s16 unk10;
     s16 unk12;
-    char filler14[0x6];
-    s16 unk1A;
+    s16 unk14;
+    union {
+        u32 unk18;
+        s16 unk18_as16[2];
+    } u;
     s8 unk1C;
-    char filler20[0xC];
+    u8 unk1D;
+    u8 unk1E;
+    u8 unk1F;
+    s16 unk20;
+    s16 unk22;
+    s16 unk24;
+    s16 unk26;
+    f32 unk28;
     f32 unk2C;
     s16 unk30;
-    char filler32[0xE];
+    s16 unk32;
+    s16 unk34;
+    s16 unk36;
+    s8 *unk38;
+    void *unk3C;
     f32 unk40;
-    char filler44[0xF];
+    s16 unk44;
+    s16 unk46;
+    s16 unk48;
+    s16 unk4A;
+    s16 unk4C;
+    s16 unk4E;
+    s16 unk50;
+    char filler52[0x1];
     s8 unk53;
 };
 
@@ -369,10 +392,14 @@ s16 func_80006DF4(s16 **arg0);
 s32 func_80006EE8(s16** arg0, u8 arg1, u8 arg2, u8 arg3);
 s32 func_80006FD4(s16** arg0, s16 arg1);
 void func_80007890(s16 arg0);
+s32 func_800080D8(void);
+s32 func_800081B0(void);
 void func_80008360();
 void func_800083EC(s16 arg0, s8 arg1);
 void func_80008744();
 void func_80008B84(s16 arg0, s16 arg1, s8 arg2);
+void func_80008CF4(s16 arg0);
+void func_80009BA4(struct UnkStruct80052D5C* arg0, struct UnkStruct80052D84* arg1);
 
 void func_80002CD0(u32 devAddr, void* vaddr, s32 nbytes) {
     OSIoMesg mesg;
@@ -1151,11 +1178,9 @@ void stopOsc(void *oscState)
  *   really broad ranges for special effects.
  ************************************************************************/
 
-extern f32 D_8004BAE0; // .rodata. TODO: Move
-
 f32 _depth2Cents(u8 depth)
 {
-    f32     x = D_8004BAE0;
+    f32     x = 1.03099303;
     f32     cents = 1.0;
 
     while(depth)
@@ -1212,7 +1237,7 @@ s32 func_80005B14(void) {
         sp3C->unk24 = D_80052D7B;
         sp3C->unk25 = sp3C->unk24;
         sp3C->unk28 = D_80052D7C;
-        sp3C->unk18 = (u16) D_80052D78;
+        sp3C->unk18 = D_80052D78;
         sp3C->unk1A = (u16) (s16) sp3C->unk18;
         sp3C->unk1C = 1.0f;
         sp3C->unk29 = 0;
@@ -2090,7 +2115,7 @@ void func_80008B84(s16 arg0, s16 arg1, s8 arg2) {
     sp0 = D_80052D80->unk0;
     sp4->unk0 = (void* )((u32)D_80052D80 + sp0[arg0]);
     sp4->unkC = 0;
-    sp4->unk1A = 0;
+    sp4->u.unk18_as16[1] = 0;
     sp4->unk1C = 0;
     sp4->unk2C = 1.0f;
     sp4->unk30 = 0;
@@ -2101,13 +2126,353 @@ void func_80008B84(s16 arg0, s16 arg1, s8 arg2) {
     sp4->unk53 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80008CF4.s")
+void func_80008CF4(s16 arg0) {
+    struct UnkStruct80052D5C* sp3C;
+    struct UnkStruct80052D84* sp38;
+    u8 *sp34;
+    s8* sp30;
+    u16 *sp2C;
+    s16 sp2A;
+    s16 sp28;
+    u8 temp_t0;
+
+    if (D_80052D80 == NULL) {
+        return;
+    }
+    sp38 = &D_80052D84[arg0];
+    if (sp38->unk8 < 0) {
+        return;
+    }
+    if (D_80052D7D != 0) {
+        if (sp38->unk53 != 0) {
+            sp38->unk53 -= 1;
+            return;
+        } else
+        sp38->unk53 = D_80052D7D;
+    }
+
+    sp3C = &D_80052D5C[arg0];
+    sp34 = (u8*)sp38->unk0;
+    if (sp38->unkC == 0) {
+        do {
+            temp_t0 = *(sp34++);
+            sp38->unkC = (sp34[0] << 8) + sp34[1];
+            sp34+=2;
+            switch (temp_t0) {
+            case 0x82:
+                break;
+            case 0x83:
+                sp2A = (sp34[0] << 8) + sp34[1];
+                sp34+=2;
+                
+                if ((sp2A != sp3C->unk14) && (sp38->unkA < 0) && (sp38->u.unk18_as16[1] < 3)) {
+                    sp28 = func_80009AD0(sp2A);
+                    if ((sp28 < 0) || (sp28 == arg0)) {
+                        break;
+                    }
+                    sp28 = func_8000AC1C(sp2A);
+                    // ((u32*)((u32*)sp38)[sp38->unk1A])
+                    ((struct UnkStruct80052D84*)((u32)sp38 + (sp38->u.unk18_as16[1]++ * 2)))->unk14 = sp28;
+                    D_80052D5C[sp28].unk29 = 3;
+                    D_80052D84[sp28].unkA = arg0;
+                    D_80052D5C[sp28].unk22 = sp3C->unk22;
+                    D_80052D5C[sp28].unk23 = sp3C->unk23;
+                    D_80052D5C[sp28].unk25 = sp3C->unk25;
+                    D_80052D5C[sp28].unk1A = (u16) (s16) sp3C->unk1A;
+                    D_80052D5C[sp28].unk28 = sp3C->unk28;
+                }
+                break;
+            case 0x84:
+                sp30 = &sp38->unk1C;
+                if ((u8) *sp30 == 1) {
+                    *sp30 = 0;
+                    sp34+=3;;
+                    break;
+                }
+                if ((u8) *sp30 != 0) {
+                    *sp30 = (u8) *sp30 - 1;
+                } else {
+                    if (*sp34 == 0) {
+                        sp34+=3;;
+                        break;
+                    }
+                    *sp30 = *sp34;
+                }
+                sp34 = (void*)( ((s16)((sp34[1] << 8) + sp34[2]) + (u32)sp34) - 3);
+                break;
+            case 0x85:
+                sp34 = (void*)( ((s16)((sp34[0] << 8) + sp34[1]) + (u32)sp34) - 3);
+                break;
+            case 0x88:
+                sp38->unk1D = sp34[0];
+                sp34+=1;
+                sp38->unk1F = sp34[0];
+                sp34+=1;
+                sp38->unk1E = sp34[0];
+                sp34+=1;
+                break;
+            case 0x89:
+                sp2A = (sp34[0] << 8) + sp34[1];
+                sp38->unk2C = (f32) sp2A / 100.0f;
+                sp34+=2;
+                break;
+            case 0x90:
+                sp38->unk10 = (s16) sp34[0];
+                sp34+=1;
+                break;
+            case 0x91:
+                sp38->unk10 += (s8) sp34[0];
+                sp34+=1;
+                break;
+            case 0x98:
+                sp38->unk12 = (s16) sp34[0];
+                sp34+=1;
+                break;
+            case 0x99:
+                sp38->unk12 += (s8) sp34[0];
+                sp34+=1;
+                break;
+            case 0x9A:
+                if (*(sp34++) & 1) {
+                    sp38->unk4 |= 8;
+                } else {
+                    sp38->unk4 |= 0x10;
+                }
+                sp38->unk50 = (s16) ((sp34[0] << 8) + sp34[1]);
+                sp38->unk4E = (s16) ((s32) (sp38->unk50 * sp38->unk12) / 127);
+                sp34+=2;
+                break;
+            case 0xA0:
+                sp38->unkE = (sp34[0] << 8) + sp34[1];
+                sp34+=2;
+                break;
+            case 0xA1:
+                sp38->unkE += (s16) ((sp34[0] << 8) + sp34[1]);
+                sp34+=2;
+                break;
+            case 0xA2:
+                if (*(sp34++)) {
+                    sp38->unk26 = 0;
+                    sp38->unk28 = -200.0f;
+                    sp38->unk22 = (0x105 - sp38->unk1F);
+                    sp38->unk24 = (s16) (s32) _depth2Cents((u8) sp38->unk1E);
+                    sp38->unk20 = 0;
+                    sp38->unk4 |= 2;
+                } else {
+                    sp38->unk4 &= ~2;
+                }
+                break;
+            case 0xA3:
+                sp38->unk30 = (s16) sp34[0];
+                sp34 += 1;
+                sp38->unk32 = (s16) ((sp34[0] << 8) + sp34[1]);
+                sp38->unk36 = (s16) ((sp34[2] << 8) + sp34[3]);
+                sp38->unk34 = 0;
+                sp34 += 4;
+                break;
+            case 0xA4:
+                sp2C = D_80052D80->unk4;
+                sp38->unk3C = sp38->unk38 = ((u32)sp2C + sp2C[sp34[0]]);
+                sp38->unk44 = (s16) ((sp34[1] << 8) + sp34[2]);
+                sp38->unk46 = (s16) ((sp34[3] << 8) + sp34[4]);
+                sp38->unk4C = 0;
+                sp38->unk4A = 0;
+                sp38->unk4 |= 0x20;
+                sp34 += 5;
+                break;
+            case 0xA5:
+                sp2A = (sp34[0] << 8) + sp34[1];
+                sp38->unk40 = (f32) sp2A / 100.0f;
+                sp34 += 2;
+                break;
+            case 0xA6:
+                sp38->unk4 &= ~0x20;
+                break;
+            case 0xA8:
+                sp3C->unk28 = sp34[0];
+                sp34 += 1;
+                sp3C->unk8 |= 8;
+                break;
+            case 0x80:
+                sp38->unk4 |= 0x100;
+                /* fallthrough */
+            case 0x81:
+                sp38->unk4 |= 0x200;
+                sp38->unk8 = -1;
+                sp38->unkC = 1;
+                break;
+            default:
+                sp38->unk4 |= 0x300;
+                sp38->unk8 = -1;
+                sp38->unkC = 1;
+            }
+        } while (sp38->unkC == 0);
+    }
+    sp38->unkC -= 1;
+    sp38->unk0 = sp34;
+    func_80009BA4(sp3C, sp38);
+    func_8000A534(sp3C, sp38);
+    func_8000A724(sp3C, sp38);
+    if (sp38->unk4 & 0x100) {
+        if (sp38->u.unk18_as16[1] > 0) {
+            do {
+                sp38->u.unk18_as16[1] -= 1; // (struct UnkStruct80052D84*)
+                sp2A = ((struct UnkStruct80052D84*)((u32)sp38 + ((s16)sp38->u.unk18 * 2)))->unk14;
+                if (D_80052D84[sp2A].unkA != arg0) {
+
+                } else {
+                    sp3C = &D_80052D5C[sp2A];
+                    if (sp3C->unkC != 1) {
+
+                    } else {
+                        if (sp3C->unk8 & 0x1000) {
+                            sp3C->unk8 &= ~0x1000;
+                            sp3C->unkC = sp3C->unk10;
+                        } else {
+                            alSndpSetSound(D_80052D54, sp3C->unk16);
+                            alSndpStop(D_80052D54);
+                            sp3C->unk8 |= 0x2000;
+                        }
+                        sp3C->unk29 = 0;
+                        func_80009B4C(sp2A);
+                    }
+                }
+            } while (sp38->u.unk18_as16[1] > 0);
+        }
+        sp3C = &D_80052D5C[arg0];
+        alSndpSetSound(D_80052D54, sp3C->unk16);
+        alSndpStop(D_80052D54);
+        sp3C->unk8 |= 0x2000;
+        sp3C->unk29 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80009AD0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80009B4C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_80009BA4.s")
+void func_80009BA4(struct UnkStruct80052D5C* arg0, struct UnkStruct80052D84* arg1) {
+    f32 sp2C;
+    f32 sp28;
+    f32 sp24;
+
+    sp24 = 0.0f;
+    if (arg1->unk4 & 2) {
+        switch (arg1->unk1D) {
+        case 1:
+            arg1->unk20 = (s16) (arg1->unk20 + 2);
+            if (arg1->unk20 >= arg1->unk22) {
+                arg1->unk20 = 0;
+            } else {
+                sp2C = (f32) arg1->unk20 / (f32) arg1->unk22;
+                sp24 = sinf((f32) ((f64) sp2C * 6.28318530000000042)) * (f32) arg1->unk24 * arg1->unk2C;
+            }
+            break;
+        case 2:
+            if (arg1->unk20 >= ((s16) arg1->unk22 / 4)) {
+                arg1->unk26 = (s16) (arg1->unk26 + 1);
+                if (arg1->unk26 >= 4) {
+                    arg1->unk26 = 0;
+                }
+                arg1->unk20 = 0;
+            }
+            sp2C = (f32) arg1->unk20 / (f32) ((s16) arg1->unk22 / 4);
+            switch (arg1->unk26) {                      /* switch 1; irregular */
+            case 1:                                 /* switch 1 */
+                sp2C = 1.0f - sp2C;
+                break;
+            case 3:                                 /* switch 1 */
+                sp2C = 1.0f - sp2C;
+                /* fallthrough */
+            case 2:                                 /* switch 1 */
+                sp2C *= -1.0f;
+                break;
+            }
+            sp24 = (f32) arg1->unk24 * sp2C * arg1->unk2C;
+            arg1->unk20 = (s16) (arg1->unk20 + 2);
+            break;
+        case 3:
+            if (arg1->unk20 >= arg1->unk22) {
+                arg1->unk20 = 0;
+            }
+            sp28 = (f32) arg1->unk22 / 2.0f;
+            sp2C = (f32) arg1->unk20 - sp28;
+            sp24 = (f32) arg1->unk24 * (sp2C / sp28) * arg1->unk2C;
+            arg1->unk20 = (s16) (arg1->unk20 + 2);
+            break;
+        case 4:
+            if (arg1->unk20 >= arg1->unk22) {
+                arg1->unk20 = 0;
+                arg1->unk26 = (s16) ~arg1->unk26;
+            }
+            if (arg1->unk26 == 0) {
+                sp24 = (f32) arg1->unk24 * arg1->unk2C;
+            } else {
+                sp24 = (f32) arg1->unk24 * -arg1->unk2C;
+            }
+            arg1->unk20 = (s16) (arg1->unk20 + 2);
+            break;
+        case 5:
+            if ((arg1->unk20 >= ((s16) arg1->unk22 / 2)) || (arg1->unk28 == -200.0f)) {
+                arg1->unk20 = 0;
+                arg1->unk28 = (f32) ((f32) (0x64 - (guRandom() % 200)) / 100.0f);
+            }
+            sp24 = (f32) arg1->unk24 * arg1->unk28 * arg1->unk2C;
+            arg1->unk20 = (s16) (arg1->unk20 + 2);
+            break;
+        }
+    }
+    if (arg1->unk30 == 1) {
+        goto useless;
+        useless:;
+        
+        if (++arg1->unk34 >= arg1->unk36) {
+            arg1->unk30 = 0;
+            arg1->unkE = (s16) (arg1->unkE + arg1->unk32);
+            sp24 = 0.1000000015;
+        } else {
+            sp2C = (f32) arg1->unk34 / (f32) arg1->unk36;
+            sp24 = sp24 + ((f32) arg1->unk32 * sp2C);
+        }
+        goto useless_2;
+    } 
+    useless_2:;
+    if (arg1->unk4 & 0x20) {
+        if (arg1->unk44 != 0) {
+            arg1->unk44 = (s16) (arg1->unk44 - 1);
+        } else {
+            if (arg1->unk4C == 0) {
+                arg1->unk4C = *arg1->unk38;
+                if (arg1->unk4C == 0) {
+                    arg1->unk38 = (void* ) arg1->unk3C;
+                    arg1->unk4C = (s16) *arg1->unk38;
+                }
+                arg1->unk48 = ((((u8*)arg1->unk38)[1] << 8)) + (((u8*)arg1->unk38)[2]);
+                arg1->unk48 = (s16) (s32) ((f32) arg1->unk48 * arg1->unk40);
+                arg1->unk38 = (void* ) (arg1->unk38 + 3);
+            }
+            if (arg1->unk4C == -0x80) {
+                sp24 += (f32) (arg1->unk46 + arg1->unk4A);
+            } else if (arg1->unk4C > 0) {
+                arg1->unk4C = (s16) (arg1->unk4C - 1);
+                sp24 += (f32) (arg1->unk46 + arg1->unk48);
+                arg1->unk4A = (s16) arg1->unk48;
+            } else {
+                arg1->unk4C = (s16) (arg1->unk4C + 1);
+                arg1->unk4A = (s16) (arg1->unk4A + arg1->unk48);
+                sp24 += (f32) (arg1->unk46 + arg1->unk4A);
+            }
+        }
+    }
+    sp24 += (f32) arg1->unkE;
+    if (sp24 > 1200.0f) {
+        sp24 = 1200.0f;
+    }
+    if (arg0->unk18 != (s16) (s32) sp24) {
+        arg0->unk18 = (s16) (s32) sp24;
+        arg0->unk8 |= 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_8000A534.s")
 

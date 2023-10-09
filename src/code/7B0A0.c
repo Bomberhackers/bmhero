@@ -108,7 +108,10 @@ extern s8 D_80134C26;
 extern s32 D_8016CAA0[];
 
 extern Gfx* gMasterDisplayList;
-
+extern struct UnkStruct_8008AE64 D_80134D48[];
+extern struct UnkStruct_8008AE64_2 D_80154150[]; //weird
+extern struct UnkStruct_8008AE64_2 D_80154154[];
+extern struct UnkStruct_8008AE64_2 D_80154158[];
 
 struct MegaStruct gMegaStruct;
 
@@ -718,7 +721,28 @@ void func_8008AD58(s16* arg0) {
     gMegaStruct.D_80134F74 = 0.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_8008AE64.s")
+void func_8008AE64(s16* arg0) {
+    s32 sp4;
+
+    sp4 = D_80134D48[arg0[0]].Unk0;
+    gMegaStruct.D_80134F28.x = D_80154150[sp4].Unk0;
+    gMegaStruct.D_80134F28.y = D_80154154[sp4].Unk0 + arg0[1];
+    gMegaStruct.D_80134F28.z = D_80154158[sp4].Unk0;
+    gMegaStruct.D_80134F34.x = arg0[2];
+    gMegaStruct.D_80134F34.y = arg0[3];
+    gMegaStruct.D_80134F34.z = arg0[4];
+    gMegaStruct.D_80134F40 = arg0[5];
+    gMegaStruct.D_80134FA4.unk2 = (s16) (s32) (f32) arg0[1]; //what the fuck
+    gMegaStruct.D_80134FA8 = arg0[0];
+    gMegaStruct.D_80134F50.x = 0.0f;
+    gMegaStruct.D_80134F50.y = 0.0f;
+    gMegaStruct.D_80134F50.z = 0.0f;
+    gMegaStruct.D_80134F5C.x = 0.0f;
+    gMegaStruct.D_80134F5C.y = 0.0f;
+    gMegaStruct.D_80134F5C.z = 0.0f;
+    gMegaStruct.D_80134F74 = 0.0f;
+}
+
 
 void func_8008B030(void) {
     D_8016E140 = gMegaStruct.D_80134F28.x;

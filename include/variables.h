@@ -133,6 +133,18 @@ struct MegaStruct {
      s32 D_80134FA8;
 };
 
+struct UnkStruct_8008AE64
+{
+    s32 Unk0;
+    char Padding[0x10];
+};
+
+struct UnkStruct_8008AE64_2
+{
+    f32 Unk0;
+    char Padding[0x150 - sizeof(f32)];
+};
+
 // extern symbols
 extern u32 D_8004A280;
 extern s32 D_8004A294;

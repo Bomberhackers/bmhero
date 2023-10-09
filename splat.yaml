@@ -57,8 +57,6 @@ segments:
     # so the developers may have actually modified the source for this file, thus
     # moving this file into the "game" source earlier than the libultra source.
     - [0x30390, c, libultra/audio/synstartvoiceparam]
-
-    # this area still seems to be part of the "game" source and not libultra.
     - [0x30480, c, boot/30480]
     - [0x30FF0, c, boot/30FF0]
     - [0x31660, c, boot/31660]

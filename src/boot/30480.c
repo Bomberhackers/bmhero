@@ -1,6 +1,8 @@
 #include "common.h"
 
-void func_800303F0();          /* extern */
+extern void func_800303F0();          /* extern */
+extern s32 func_800309D0(s32 arg0);                                  /* extern */
+extern s32 func_80030AA0(s32 arg0);                                  /* extern */
 
 extern s32 (*D_8004A750)(s32);
 extern u32 D_80057EC4;
@@ -112,10 +114,32 @@ void* func_8002F9F8(s32 arg0) {
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/30480/func_8002F9F8.s")
 #endif
 
+// some kind of allocator. too big to match right now
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/30480/func_8002FC34.s")
 
+#ifdef NON_MATCHING
+// also OK
+void func_80030388(u32 arg0) {
+    func_8002FC34(arg0);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/30480/func_80030388.s")
+#endif
 
+#ifdef NON_MATCHING
+// also OK
+void func_800303A8(s32 arg0) {
+    func_800309D0(arg0);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/30480/func_800303A8.s")
+#endif
 
+#ifdef NON_MATCHING
+// also OK
+void func_800303C8(s32 arg0) {
+    func_80030AA0(arg0);
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/30480/func_800303C8.s")
+#endif

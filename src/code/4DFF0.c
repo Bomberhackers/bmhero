@@ -10,8 +10,25 @@ extern struct UnkStruct8016E230 D_8016E230[1];
 extern s32 D_8016E23C;
 extern s32 D_8016E25C;
 extern s32 D_8016E264;
+extern Gfx *gMasterDisplayList;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/4DFF0/func_8005BAD0.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/code/4DFF0/func_8005BAD0.s")
+void func_8005BAD0(void) {
+    gDPPipeSync(gMasterDisplayList++);
+    gSPClearGeometryMode(gMasterDisplayList++,
+        G_SHADE | G_SHADING_SMOOTH | G_CULL_FRONT | G_CULL_BACK | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD
+    );
+    gSPSetGeometryMode(gMasterDisplayList++,
+        G_SHADE | G_SHADING_SMOOTH | G_CULL_BACK 
+    );
+    gDPSetCombine(gMasterDisplayList++, -1, 0xFFFDF6FB);
+    gDPSetRenderMode(gMasterDisplayList++,
+        AA_EN | IM_RD | CLR_ON_CVG | CVG_DST_WRAP | FORCE_BL | 0x500000,
+        0
+    );
+    gDPSetPrimColor(gMasterDisplayList++, 0, 0, 0, 0, 0, 0x50)
+    gDPFillRectangle(gMasterDisplayList++, 0x060/4, 0x2D0/4, 0x4A8/4, 0x370/4);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/4DFF0/func_8005BC50.s")
 

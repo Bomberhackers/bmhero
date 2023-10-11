@@ -3,7 +3,7 @@
 
 extern void func_80019B7C();
 extern void func_8006AA60(s32*, s32*, s32*);
-extern void func_8008A870(u8, u8, s32, s32, s32);
+void func_8008A870(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4);
 extern void func_80069E00(s32, s32);
 void func_8008B030(void);
 void func_8008A6A4(void);
@@ -105,7 +105,7 @@ extern s16 D_80134C22;
 extern s8 D_80134C24;
 extern s8 D_80134C25;
 extern s8 D_80134C26;
-extern s32 D_8016CAA0[];
+extern s32 D_8016CAA0[][2];
 
 extern Gfx* gMasterDisplayList;
 extern struct UnkStruct_8008AE64 D_80134D48[];
@@ -631,7 +631,7 @@ void func_8008A384(void) {
     gDPSetColorDither(gMasterDisplayList++, G_CD_BAYER);
     gDPSetTextureFilter(gMasterDisplayList++, G_TF_BILERP);
     gDPSetTextureLUT(gMasterDisplayList++, G_TT_RGBA16);
-    gDPLoadTLUT_pal16(gMasterDisplayList++, 0, D_8016CAA0[52] + 0x10);
+    gDPLoadTLUT_pal16(gMasterDisplayList++, 0, D_8016CAA0[26][0] + 0x10);
 }
 
 void func_8008A6A4(void) {
@@ -648,7 +648,21 @@ void func_8008A824(s16 arg0, s16 arg1, s16 arg2) {
     D_8010CD80[1] = ((arg0 << 0xB) + (arg1 << 6) + (arg2 * 2) + 1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_8008A870.s")
+//#pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_8008A870.s")
+
+void func_8008A870(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4) {
+    gDPLoadMultiTile_4b(gMasterDisplayList++,
+        D_8016CAA0[arg4][0] + 0x30, 0, 0,
+        G_IM_FMT_CI,
+        256, 256,
+        arg2, arg3, (arg2 + 0x08), (arg3 + 0x10),
+        0, 0, 0, 0, 0, 0, 0
+    );
+    gDPSetTileSize(gMasterDisplayList++,  0, 0, 0, 0x40, 0x40);
+    gSPTextureRectangle(gMasterDisplayList++,
+        (arg0 << 2), (arg1 << 2), ((arg0 + 0x08) << 2), ((arg1 + 0x10) << 2),
+        0, 0, 0, 0x400, 0x400);
+}
 
 void func_8008ABC4(s16* arg0) {
     func_80069E00(0, 0);

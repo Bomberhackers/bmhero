@@ -430,3 +430,4 @@ updateOsc = 0x80004EE0;
 stopOsc = 0x80005A58;
 gMasterDisplayList = 0x8016E0FC;
 gMegaStruct = 0x80134F28;
+gMemPoolInitialized = 0x80057F48;

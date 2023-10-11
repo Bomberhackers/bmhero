@@ -20,7 +20,7 @@ extern s32 D_80057ED0;
 extern u32 D_80057ED4;
 extern u32 D_80057F38;
 extern s32 D_80057F3C;
-extern s32 D_80057F48;
+extern s32 gMemPoolInitialized;
 extern s32 (*D_80057F4C)();
 extern s32 (*D_80057F50)();
 
@@ -54,8 +54,8 @@ s32 func_8002F904(void) {
     if (D_80057F4C != NULL) {
         D_80057F4C();
     }
-    D_80057ECC = 0x400;
-    D_80057EC8 = func_8002F880(D_80057ECC * 0xC);
+    D_80057ECC = 0x400; // 0x400 entries of something
+    D_80057EC8 = func_8002F880(D_80057ECC * 0xC); // probably sets the head of this pool?
     if (D_80057EC8 == NULL) {
         return 0;
     }
@@ -67,7 +67,7 @@ s32 func_8002F904(void) {
     D_80057EC4 = D_80057EC8;
     D_80057F3C = D_80057ECC * 0xC;
     D_80057F38 = 1;
-    D_80057F48 = 1;
+    gMemPoolInitialized = 1;
     return 1;
 }
 #else

@@ -465,3 +465,5 @@ gMegaStruct+0x7A = 0x80134FA2;
 gMegaStruct+0x7C = 0x80134FA4;
 gMegaStruct+0x7E = 0x80134FA6;
 gMegaStruct+0x80 = 0x80134FA8;
+__morecore = 0x8004A750;
+__after_morecore_hook = 0x80057F50;

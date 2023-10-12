@@ -4,7 +4,7 @@ extern void func_800303F0();          /* extern */
 extern s32 func_800309D0(s32 arg0);                                  /* extern */
 extern s32 func_80030AA0(s32 arg0);                                  /* extern */
 
-extern s32 (*D_8004A750)(s32);
+extern s32 (*__morecore)(s32);
 extern u32 D_80057EC4;
 
 struct UnkStruct80057EC8 {
@@ -22,7 +22,7 @@ extern u32 D_80057F38;
 extern s32 D_80057F3C;
 extern s32 gMemPoolInitialized;
 extern s32 (*D_80057F4C)();
-extern s32 (*D_80057F50)();
+extern s32 (__after_morecore_hook)();
 
 // functions
 void *func_8002F880(s32 arg0);
@@ -31,16 +31,16 @@ s32 func_8002F904(void);
 #ifdef NON_MATCHING
 // matches, but asm proc is broken and cant handle -O2 -mips1 I think
 void *func_8002F880(s32 arg0) {
-    s32 temp_v0 = D_8004A750(arg0);
+    s32 temp_v0 = __morecore(arg0);
     s32 temp_v1 = temp_v0 & 0xFFF;
 
     if (temp_v1 != 0) {
         temp_v1 = (0x1000 - temp_v1);
-        D_8004A750(temp_v1);
+        __morecore(temp_v1);
         temp_v0 = temp_v0 + temp_v1;
     }
-    if (D_80057F50 != NULL) {
-        D_80057F50();
+    if (__after_morecore_hook != NULL) {
+        __after_morecore_hook();
     }
     return temp_v0;
 }
@@ -93,7 +93,7 @@ void* func_8002F9F8(s32 arg0) {
         }
         temp_v0_2 = func_8002F880((s32)(var_s0 * 0xC));
         if (temp_v0_2 == NULL) {
-            D_8004A750(-arg0);
+            __morecore(-arg0);
             return NULL;
         }
         memcpy(temp_v0_2, D_80057EC8, D_80057ECC * 0xC);

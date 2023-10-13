@@ -1,5 +1,10 @@
 #include <ultra64.h>
 
+// forward prototypes
+ALMicroTime initOsc(void **oscState, f32 *initVal,u8 oscType, u8 oscRate,u8 oscDepth,u8 oscDelay);
+ALMicroTime updateOsc(void *oscState, f32 *updateVal);
+void stopOsc(void *oscState);
+
 struct UnkInputStruct800069D0 {
     u32 unk0;
     f32 unk4;
@@ -221,65 +226,127 @@ typedef struct oscData_s {
 #define  OSC_LOW    1
 #define  TWO_PI     6.2831853
 
-s32 func_8000D120(s32*, s32*);                          /* extern */
-ALCSPlayer* func_8000D84C(u32);                     /* extern */
-
-extern s32 D_8004A2A0;
-extern s32 D_8004A2A4;
-extern s32 D_8004A2A8;
-extern s32 D_8004A2AC;
-extern u8 D_8004A2C0;
-extern s32* D_8004A2C4;
-extern u16 D_8004A2C8;
-extern s32 D_8004A2CC;
-extern s32 D_8004A2D0;
-extern s32 D_8004A2D4;
-extern s32 D_8004A2D8;
-extern s32 D_8004A2DC;
-extern s32 D_8004A2E0;
-extern s32 D_8004A2E4;
-extern ALSeqpConfig D_8004A2E8;
-extern s32 D_8004A304;
-extern s32 D_8004A308;
-extern s32 D_8004A30C;
-extern s32 D_8004A310;
-extern s32 D_8004A318;
-extern u8* D_8004A340;
-extern s32 D_8004A344;
-extern s32 D_8004A348;
-extern s32 D_8004A34C;
-extern u32 D_8004A350;
-extern u32 D_8004A354;
-extern s32 D_8004A358;
-extern s32 D_8004A35C;
-extern u8* D_8004A360;
-extern s16 D_8004A364;
-extern u8 D_8004A368;
-extern f64 D_8004BAD8;
+// in other files
+extern s32 func_8000D120(struct UnkStruct8004A2A4*, s32*);
+extern ALCSPlayer* func_8000D84C(u32);
 extern ALHeap D_80052D40;
-extern void* D_80052D50; // generic working pointer to an AL element.
-extern ALSndPlayer* D_80052D54;
-extern ALBankFile* D_80052D58;
-extern struct UnkStruct80052D5C *D_80052D5C;
-extern struct UnkStruct80052D60 *D_80052D60;
-extern s32 D_80052D64;
-extern s32 D_80052D68;
-extern f32 D_80052D6C;
-extern f32 D_80052D70;
-extern s16 D_80052D74;
-extern s16 D_80052D76;
-extern s16 D_80052D78;
-extern s8 D_80052D7A;
-extern u8 D_80052D7B;
-extern u8 D_80052D7C;
-extern s8 D_80052D7D;
+
+// .data
+s32 D_8004A2A0 = 0x00007D00;
+
+// some unidentified struct between now and 8004A2C0. size 0x1C
+
+struct UnkStruct8004A2A4 {
+    u32 unk0;
+    u32 unk4;
+    u32 unk8;
+    u32 unkC;
+    u32 unk10;
+    void* unk14;
+    u32 unk18;
+};
+
+struct UnkStruct8004A2A4 D_8004A2A4 = {
+    0x00000010,
+    0x00000010,
+    0x00000200,
+    0x00000000,
+    0x00000000,
+    (void*)&D_80052D40,
+    0x00000000
+};
+
+u8 D_8004A2C0 = 0x01;
+s32* D_8004A2C4 = 0x00000000;
+u16 D_8004A2C8 = 0x0020;
+s32 D_8004A2CC = 0x00000800;
+s32 D_8004A2D0 = 0x00000001;
+s32 D_8004A2D4 = 0x00001000;
+s32 D_8004A2D8 = 0x00000000;
+s32 D_8004A2DC = 0x00000000;
+s32 D_8004A2E0 = 0x00000000;
+s32 D_8004A2E4 = 0x00000000;
+
+ALSeqpConfig D_8004A2E8 = {
+    0x0000000E,
+    0x00000100,
+    0x10,
+    0x00,
+    &D_80052D40,
+    &initOsc,
+    &updateOsc,
+    &stopOsc,
+};
+
+s32 D_8004A304 = 0x00000004;
+s32 D_8004A308 = 0x00000004;
+s32 D_8004A30C = 0x00000008;
+
+// this is probably a struct since a pointer is after D_8004A310 and isnt
+// called, but i am not sure how it gets referenced yet. TODO: Fix
+struct UnkStruct8004A310 {
+    s32 unk0;
+    void *unk4;
+};
+
+struct UnkStruct8004A310 D_8004A310 = {
+    0x00000100,
+    (void*)&D_80052D40,
+};
+
+// borrowed from drvrnew.c, as this is not in a header.
+/*
+ * the following arrays contain default parameters for
+ * a few hopefully useful effects.
+ */
+#define ms *(((s32)((f32)44.1))&~0x7)
+
+// custom parameters
+s32 D_8004A318[10] = {
+    /* sections	   length */
+          1,       320 ms,
+                                      /*       chorus  chorus   filter
+       input  output  fbcoef  ffcoef   gain     rate   depth     coef   */
+           0,  200 ms, 12000,      0, 0x7fff,      0,      0,   0x3E80
+};
+
+u8* D_8004A340 = 0x00000000;
+s32 D_8004A344 = 0x00000000;
+s32 D_8004A348 = 0x00000000;
+s32 D_8004A34C = 0x00000000;
+u32 D_8004A350 = 0x00000000;
+u32 D_8004A354 = 0x00000000;
+s32 D_8004A358 = 0x00000000;
+s32 D_8004A35C = 0x00000000;
+u8* D_8004A360 = 0x00000000;
+s16 D_8004A364 = 0x0008;
+u8 D_8004A368 = 0x01;
+
+// .bss
+ALHeap D_80052D40;
+void* D_80052D50; // generic working pointer to an AL element.
+ALSndPlayer* D_80052D54;
+ALBankFile* D_80052D58;
+struct UnkStruct80052D5C *D_80052D5C;
+struct UnkStruct80052D60 *D_80052D60;
+s32 D_80052D64;
+s32 D_80052D68;
+f32 D_80052D6C;
+f32 D_80052D70;
+s16 D_80052D74;
+s16 D_80052D76;
+s16 D_80052D78;
+s8 D_80052D7A;
+u8 D_80052D7B;
+u8 D_80052D7C;
+s8 D_80052D7D;
 
 struct UnkStruct80052D80 {
     u32 unk0;
     u32 unk4;
 };
 
-extern struct UnkStruct80052D80* D_80052D80;
+struct UnkStruct80052D80* D_80052D80;
 
 struct UnkStruct80052D84 {
     s32 unk0;
@@ -323,7 +390,7 @@ struct UnkStruct80052D84 {
     s8 unk53;
 };
 
-extern struct UnkStruct80052D84 *D_80052D84;
+struct UnkStruct80052D84 *D_80052D84;
 
 struct UnkStruct80052D88 {
     f32 unk0;
@@ -333,16 +400,16 @@ struct UnkStruct80052D88 {
     s8 unkE;
 };
 
-extern struct UnkStruct80052D88 *D_80052D88;
+struct UnkStruct80052D88 *D_80052D88;
 
-extern f32 D_80052D8C;
-extern f32 D_80052D90;
-extern f32 D_80052D94;
-extern f32 D_80052D98;
-extern s16 D_80052D9C;
-extern s16 D_80052D9E;
-extern f32 D_80052DA0;
-extern f32 D_80052DA4;
+f32 D_80052D8C;
+f32 D_80052D90;
+f32 D_80052D94;
+f32 D_80052D98;
+s16 D_80052D9C;
+s16 D_80052D9E;
+f32 D_80052DA0;
+f32 D_80052DA4;
 
 struct UnkStruct80052DA8 {
     s16 unk0;
@@ -356,34 +423,35 @@ struct UnkStruct80052DA8 {
     char fillerA[0x2];
 };
 
-extern struct UnkStruct80052DA8 *D_80052DA8;
-extern f32 D_80052DAC;
-extern f32 D_80052DB0;
-extern s8 D_80052DB4;
-extern s8 D_80052DB5;
-extern s8 D_80052DB6;
-extern u8 D_80052DB7;
-extern void* D_80052DB8;
-extern OSMesgQueue D_80052E80;
-extern u8* D_80052E98;
-extern s32 D_80052E9C;
-extern ALBankFile* D_80052EA0;
-extern ALSeqPlayer* D_80052EA4;
-extern ALCSPlayer* D_80052EA8;
-extern ALCSeq* D_80052EAC;
-extern ALSeqFile* D_80052EB0;
-extern struct UnkStruct80052EB4* D_80052EB4;
-extern s32 D_80052EB8;
-extern s32 D_80052EBC;
-extern s32 D_80052EC0;
-extern f32 D_80052EC4;
-extern f32 D_80052EC8;
-extern s16 D_80052ECC;
-extern s16 D_80052ECE;
-extern s16 D_80052ED0;
-extern s16 D_80052ED2;
-extern oscData  *freeOscStateList;
-extern struct UnkStruct80052ED8 D_80052ED8[];
+struct UnkStruct80052DA8 *D_80052DA8;
+f32 D_80052DAC;
+f32 D_80052DB0;
+s8 D_80052DB4;
+s8 D_80052DB5;
+s8 D_80052DB6;
+u8 D_80052DB7;
+void* D_80052DB8;
+u8 unused_80052DC0[0xC0];
+OSMesgQueue D_80052E80;
+u8* D_80052E98;
+s32 D_80052E9C;
+ALBankFile* D_80052EA0;
+ALSeqPlayer* D_80052EA4;
+ALCSPlayer* D_80052EA8;
+ALCSeq* D_80052EAC;
+ALSeqFile* D_80052EB0;
+struct UnkStruct80052EB4* D_80052EB4;
+s32 D_80052EB8;
+s32 D_80052EBC;
+s32 D_80052EC0;
+f32 D_80052EC4;
+f32 D_80052EC8;
+s16 D_80052ECC;
+s16 D_80052ECE;
+s16 D_80052ED0;
+s16 D_80052ED2;
+oscData  *freeOscStateList;
+struct UnkStruct80052ED8 D_80052ED8[32];
 
 // functions
 s32 func_80003304(void);
@@ -484,16 +552,16 @@ s32 func_80002F7C(void) {
 
 // this function isnt called, so dont know what this struct is supposed to be.
 void func_80002F94(struct UnkInputStruct80002F94* arg0) {
-    D_8004A2A4 = arg0->unk0;
-    D_8004A2A8 = arg0->unk4;
-    D_8004A2AC = arg0->unk8;
+    D_8004A2A4.unk0 = arg0->unk0;
+    D_8004A2A4.unk4 = arg0->unk4;
+    D_8004A2A4.unk8 = arg0->unk8;
     D_8004A2C0 = arg0->unk10;
     D_8004A2C4 = arg0->unk14;
     D_8004A2E8.maxVoices = arg0->unk18;
     D_8004A2E8.maxEvents = arg0->unk1C;
     D_8004A304 = arg0->unk20;
     D_8004A308 = arg0->unk24;
-    D_8004A310 = arg0->unk28;
+    D_8004A310.unk0 = arg0->unk28;
     D_8004A2C8 = arg0->unk2C;
     D_8004A2CC = arg0->unk30;
     D_8004A2D0 = arg0->unk34;
@@ -502,16 +570,16 @@ void func_80002F94(struct UnkInputStruct80002F94* arg0) {
 }
 
 void func_80003058(struct UnkInputStruct80002F94* arg0) {
-    arg0->unk0 = D_8004A2A4;
-    arg0->unk4 = D_8004A2A8;
-    arg0->unk8 = D_8004A2AC;
+    arg0->unk0 = D_8004A2A4.unk0;
+    arg0->unk4 = D_8004A2A4.unk4;
+    arg0->unk8 = D_8004A2A4.unk8;
     arg0->unk10 = D_8004A2C0;
     arg0->unk14 = D_8004A2C4;
     arg0->unk18 = D_8004A2E8.maxVoices;
     arg0->unk1C = D_8004A2E8.maxEvents;
     arg0->unk20 = D_8004A304;
     arg0->unk24 = D_8004A308;
-    arg0->unk28 = D_8004A310;
+    arg0->unk28 = D_8004A310.unk0;
     arg0->unk2C = D_8004A2C8;
     arg0->unk30 = D_8004A2CC;
     arg0->unk34 = D_8004A2D0;

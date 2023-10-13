@@ -260,6 +260,8 @@ segments:
     - [0x48B60, data] # data and rodata
     - [0x494F0, bin, gspF3DEX_fifoTextStart_2] # some RSP stuff around 0x494F0. seems to be the latter part of gspF3DEX_fifoTextStart
     - [0x4A060, data]
+    - [0x4AEA0, .data, boot/38D0]
+    - [0x4AF70, data]
     - [0x4B350, .data, boot/malloc/malloc]
     - [0x4B360, .data, boot/malloc/free]
     - [0x4B370, .data, libultra/io/vitbl]
@@ -320,7 +322,8 @@ segments:
 
     # bss begins here I guess
     - {start: 0x4DFF0, vram: 0x8004D3F0, type: .bss, name: boot/1050}
-    - {start: 0x4DFF0, vram: 0x80052D40, type:  bss, name: bss_pad}
+    - {start: 0x4DFF0, vram: 0x80052D40, type: .bss, name: boot/38D0}
+    - {start: 0x4DFF0, vram: 0x80053160, type:  bss, name: bss_pad_2}
     - {start: 0x4DFF0, vram: 0x80057EC0, type: .bss, name: boot/malloc/malloc}
     - {start: 0x4DFF0, vram: 0x80057F60, type: .bss, name: boot/malloc/free}
     - {start: 0x4DFF0, vram: 0x80057F70, type: .bss, name: boot/malloc/realloc}

@@ -57,7 +57,7 @@ segments:
     # so the developers may have actually modified the source for this file, thus
     # moving this file into the "game" source earlier than the libultra source.
     - [0x30390, c, libultra/audio/synstartvoiceparam]
-    - [0x30480, c, boot/30480]
+    - [0x30480, c, boot/glibc/malloc]
     - [0x30FF0, c, boot/30FF0]
     - [0x31660, c, boot/31660]
     - [0x316A0, c, boot/316A0]
@@ -250,6 +250,8 @@ segments:
     - [0x48B60, data] # data and rodata
     - [0x494F0, bin, gspF3DEX_fifoTextStart_2] # some RSP stuff around 0x494F0. seems to be the latter part of gspF3DEX_fifoTextStart
     - [0x4A060, data]
+    - [0x4B350, .data, boot/glibc/malloc]
+    - [0x4B360, data]
     - [0x4B370, .data, libultra/io/vitbl]
     - [0x4C090, .data, libultra/os/initialize]
     - [0x4C0B0, .data, libultra/io/pimgr]
@@ -309,6 +311,8 @@ segments:
     # bss begins here I guess
     - {start: 0x4DFF0, vram: 0x8004D3F0, type: .bss, name: boot/1050}
     - {start: 0x4DFF0, vram: 0x80052D40, type:  bss, name: bss_pad}
+    - {start: 0x4DFF0, vram: 0x80057EC0, type: .bss, name: boot/glibc/malloc}
+    - {start: 0x4DFF0, vram: 0x80057F60, type:  bss, name: bss_pad_2}
     - {start: 0x4DFF0, vram: 0x80057F80, type: .bss, name: libultra/os/initialize}
     - {start: 0x4DFF0, vram: 0x80057F90, type: .bss, name: libultra/io/pimgr}
     - {start: 0x4DFF0, vram: 0x80059160, type: .bss, name: libultra/io/vimgr}

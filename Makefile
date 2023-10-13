@@ -27,7 +27,7 @@ ROM := $(TARGET).z64
 ELF := $(BUILD_DIR)/$(TARGET).elf
 LD_SCRIPT := $(TARGET).ld
 LD_MAP := $(BUILD_DIR)/$(TARGET).map
-ASM_DIRS := asm asm/data asm/libultra asm/libultra/os asm/libultra/io asm/libultra/gu asm/libultra/libc asm/libultra/al asm/libultra/audio asm/data/libultra asm/data/libultra/gu asm/data/libultra/os asm/boot asm/code asm/overlays
+ASM_DIRS := asm asm/data asm/libultra asm/libultra/os asm/libultra/io asm/libultra/gu asm/libultra/libc asm/libultra/al asm/libultra/audio asm/data/libultra asm/data/libultra/gu asm/data/libultra/os asm/boot asm/boot/glibc asm/code asm/overlays
 DATA_DIRS := bin assets
 SRC_DIRS := $(shell find src -type d)
 
@@ -89,7 +89,7 @@ OBJDUMP_FLAGS := -d -r -z -Mreg-names=32
 INC_DIRS := include include/PR include/audio include/ido .
 IINCS := $(foreach d,$(INC_DIRS),-I$d)
 # defines for SGI IDO
-CDEFS := -D_LANGUAGE_C -DF3DEX_GBI -DNDEBUG -D_FINALROM -DBUILD_VERSION=VERSION_H
+CDEFS := -D_LANGUAGE_C -DF3DEX_GBI -DNDEBUG -D_FINALROM -DBUILD_VERSION=VERSION_H -DSTDC_HEADERS
 
 ifneq ($(RUN_CC_CHECK),0)
   CHECK_WARNINGS := -Wall -Wextra
@@ -124,7 +124,7 @@ $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(DATA_DIRS) $(COMPRESSED_DIRS) $(MAP_DIRS
 
 # Misc boot files that use -O2 for some reason. TODO: Are they also libultra file replacements?
 # Also TODO: Cant set these anyway. Asm proc doesnt like it.
-#build/src/boot/30480.c.o: OPTFLAGS := -O2
+build/src/boot/glibc/malloc.c.o: OPTFLAGS := -O2
 #build/src/boot/30FF0.c.o: OPTFLAGS := -O2
 #build/src/boot/31660.c.o: OPTFLAGS := -O2
 #build/src/boot/316A0.c.o: OPTFLAGS := -O2

@@ -1,3 +1,1 @@
-This folder contains GPLv2 sources, which match the ROM 1:1 identically. However, this is untentable as it would position this commercial software to be put into GPL per the license requirements. This notice is a short term one notating the license conflict; currently, we are reaching out to the FSF (Free Software Foundation) to see what actions can be taken to remedy the untentable situation.
-
-We thank you for your patience while we are attempting to resolve the license conflict.
+This folder contains GPLv2 sources, sourced from https://github.com/omuses/hqp/tree/ae4d4d6618d4530f4c863cce90ff1934029a3da0/malloc . The library provided can build both gmalloc and libmalloc.a, however this appears to be libmalloc.a. Only the files necessary for building and matching are provided here. The original Makefile system is not used as this is not running on a native IRIX system and thus wont use the correct compiler.

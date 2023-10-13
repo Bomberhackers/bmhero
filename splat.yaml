@@ -57,11 +57,15 @@ segments:
     # so the developers may have actually modified the source for this file, thus
     # moving this file into the "game" source earlier than the libultra source.
     - [0x30390, c, libultra/audio/synstartvoiceparam]
+    
+    # libmalloc.a from GNU C library. This library was distributed separately.
+    # Please see LICENSE_NOTICE.md for more info.
     - [0x30480, c, boot/glibc/malloc]
     - [0x30FF0, c, boot/glibc/free]
     - [0x31660, c, boot/glibc/morecore]
     - [0x316A0, c, boot/glibc/realloc]
-    - [0x319C0, bin, noppad_319C0] # align to libultra
+
+    - [0x319C0, bin, noppad_319C0] # nop padding to align to libultra area.
 
     - [0x31A20, c, libultra/os/initialize]
     - [0x31CB0, c, libultra/os/createthread]

@@ -33,11 +33,11 @@ segments:
     vram: 0x80000400
     subsegments:
     - [0x1000,  hasm, entry] # bootloader
-    - [0x1050,  c, boot/1050]
+    - [0x1050,  c, boot/1050] # main
     - [0x3490,  c, boot/3490]
-    - [0x38D0,  c, boot/38D0]
+    - [0x38D0,  c, boot/38D0] # audio driver?
     - [0xDD20,  c, boot/DD20]
-    - [0xEE20,  c, boot/EE20]
+    - [0xEE20,  c, boot/EE20] # Host functions for libmalloc
     - [0xEFE0,  c, boot/EFE0]
     - [0xF280,  c, boot/F280]
     - [0x10AB0, c, boot/10AB0]
@@ -58,8 +58,13 @@ segments:
     # moving this file into the "game" source earlier than the libultra source.
     - [0x30390, c, libultra/audio/synstartvoiceparam]
     
-    # libmalloc.a from GNU C library. This library was distributed separately.
-    # Please see LICENSE_NOTICE.md for more info.
+    # libmalloc.a from GNU C library. Obtained from https://ftp.gnu.org/old-gnu/malloc.tar.gz
+    # This library was distributed separately.
+    # 
+    # Please see LICENSE_NOTICE.md for more info. They probably just linked
+    # the whole libmalloc.a file in their linker setup, but we actually dont
+    # have that setup, so we have to do it like this per file for the ones that
+    # actually got linked in.
     - [0x30480, c, boot/malloc/malloc]
     - [0x30FF0, c, boot/malloc/free]
     - [0x31660, c, boot/malloc/morecore]

@@ -122,12 +122,8 @@ LDFLAGS = -T undefined_syms_auto.txt -T undefined_funcs_auto.txt -T $(BUILD_DIR)
 
 $(foreach dir,$(SRC_DIRS) $(ASM_DIRS) $(DATA_DIRS) $(COMPRESSED_DIRS) $(MAP_DIRS) $(BGM_DIRS),$(shell mkdir -p build/$(dir)))
 
-# Misc boot files that use -O2 for some reason. TODO: Are they also libultra file replacements?
-# Also TODO: Cant set these anyway. Asm proc doesnt like it.
-build/src/boot/glibc/malloc.c.o: OPTFLAGS := -O2
-#build/src/boot/30FF0.c.o: OPTFLAGS := -O2
-#build/src/boot/31660.c.o: OPTFLAGS := -O2
-#build/src/boot/316A0.c.o: OPTFLAGS := -O2
+# Glibc source
+build/src/boot/glibc/%.c.o: OPTFLAGS := -O2
 
 # Libultra files
 build/src/libultra/os/%.c.o: OPTFLAGS := -O1

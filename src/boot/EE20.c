@@ -40,7 +40,7 @@ void* memmove(void* dest, u32* src, s32 size)
     return dest;
 }
 
-s32* func_8000E34C(u32 arg0) {
+s32* sbrk(u32 arg0) {
     s32* Unk00 = D_8004A370;
     
     D_8004A370 = arg0 + (s32)D_8004A370;

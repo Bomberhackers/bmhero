@@ -489,3 +489,5 @@ _heaplimit = 0x80057ED4;
 _chunks_free = 0x80057F40;
 _bytes_free = 0x80057F44;
 _fraghead = 0x80057ED8;
+__free_hook = 0x80057F60;
+__sbrk = 0x8000E34C;

@@ -217,7 +217,6 @@ typedef struct oscData_s {
 #define  TWO_PI     6.2831853
 
 s16 func_8000AC1C(s16);                             /* extern */
-s32 func_8000B5DC();                                  /* extern */
 s32 func_8000D120(s32*, s32*);                          /* extern */
 ALCSPlayer* func_8000D84C(u32);                     /* extern */
 
@@ -410,6 +409,7 @@ void func_80009BA4(struct UnkStruct80052D5C* arg0, struct UnkStruct80052D84* arg
 void func_8000A534(struct UnkStruct80052D5C* arg0, struct UnkStruct80052D84* arg1);
 void func_8000A724(struct UnkStruct80052D5C* arg0, struct UnkStruct80052D84* arg1);
 void func_8000AF40(s16 arg0);
+void func_8000B5DC();
 
 void func_80002CD0(u32 devAddr, void* vaddr, s32 nbytes) {
     OSIoMesg mesg;
@@ -2775,17 +2775,81 @@ void func_8000B25C(s16 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_8000B390.s")
+s16 func_8000B390(s16 arg0, s16 arg1, s32 arg2) {
+    s16 sp1E = func_8000AC1C(arg0);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_8000B404.s")
+    if (sp1E < 0) {
+        return -1;
+    }
+    func_8000BD20(sp1E, arg1, arg2);
+    return sp1E;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_8000B4CC.s")
+s16 func_8000B404(s16 arg0) {
+    struct UnkStruct80052D5C* sp4;
+    s16 sp2;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_8000B4EC.s")
+    for(sp2 = 0; sp2 < D_8004A30C; sp2++) {
+        sp4 = &D_80052D5C[sp2];
+        if (sp4->unkC == 0) {
+            
+        } else if (sp4->unk14 == arg0) {
+            return sp2;
+        }
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_8000B598.s")
+    return -1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_8000B5DC.s")
+s32 func_8000B4CC(void) {
+    return D_80052D64;
+}
+
+u32 func_8000B4EC(s16 arg0) {
+    struct UnkStruct80052D5C* sp4;
+
+    sp4 = &D_80052D5C[arg0];
+    if ((D_80052D68 != 0) && (sp4->unkC != 0)) {
+        return 0x100U;
+    }
+    if (sp4->unk8 & 0x1000) {
+        return 0x200U;
+    }
+    return sp4->unkC;
+}
+
+s16 func_8000B598(void) {
+    if (D_8004A358 == 0) {
+        return 0;
+    }
+    return D_80052D58->bankCount;
+}
+
+void func_8000B5DC(void) {
+    struct UnkStruct80052D5C* sp1C;
+    s16 sp1A;
+
+    for(sp1A = 0; sp1A < D_8004A30C; sp1A++) {
+        sp1C = &D_80052D5C[sp1A];
+        if (sp1C->unkC != 1) {
+
+        } else {
+            if (sp1C->unk8 & 0x1000) {
+                sp1C->unk8 &= ~0x1000;
+                sp1C->unkC = sp1C->unk10;
+            } else {
+                alSndpSetSound(D_80052D54, sp1C->unk16);
+                alSndpStop(D_80052D54);
+                sp1C->unk8 |= 0x2000;
+            }
+            if (D_80052D80 != NULL) {
+                func_80009B4C(sp1A);
+            }
+            sp1C->unk29 = 0;
+        }
+    }
+    func_80008360();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/38D0/func_8000B738.s")
 

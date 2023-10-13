@@ -60,10 +60,10 @@ segments:
     
     # libmalloc.a from GNU C library. This library was distributed separately.
     # Please see LICENSE_NOTICE.md for more info.
-    - [0x30480, c, boot/glibc/malloc]
-    - [0x30FF0, c, boot/glibc/free]
-    - [0x31660, c, boot/glibc/morecore]
-    - [0x316A0, c, boot/glibc/realloc]
+    - [0x30480, c, boot/malloc/malloc]
+    - [0x30FF0, c, boot/malloc/free]
+    - [0x31660, c, boot/malloc/morecore]
+    - [0x316A0, c, boot/malloc/realloc]
 
     - [0x319C0, bin, noppad_319C0] # nop padding to align to libultra area.
 
@@ -255,8 +255,8 @@ segments:
     - [0x48B60, data] # data and rodata
     - [0x494F0, bin, gspF3DEX_fifoTextStart_2] # some RSP stuff around 0x494F0. seems to be the latter part of gspF3DEX_fifoTextStart
     - [0x4A060, data]
-    - [0x4B350, .data, boot/glibc/malloc]
-    - [0x4B360, .data, boot/glibc/free]
+    - [0x4B350, .data, boot/malloc/malloc]
+    - [0x4B360, .data, boot/malloc/free]
     - [0x4B370, .data, libultra/io/vitbl]
     - [0x4C090, .data, libultra/os/initialize]
     - [0x4C0B0, .data, libultra/io/pimgr]
@@ -316,9 +316,9 @@ segments:
     # bss begins here I guess
     - {start: 0x4DFF0, vram: 0x8004D3F0, type: .bss, name: boot/1050}
     - {start: 0x4DFF0, vram: 0x80052D40, type:  bss, name: bss_pad}
-    - {start: 0x4DFF0, vram: 0x80057EC0, type: .bss, name: boot/glibc/malloc}
-    - {start: 0x4DFF0, vram: 0x80057F60, type: .bss, name: boot/glibc/free}
-    - {start: 0x4DFF0, vram: 0x80057F70, type: .bss, name: boot/glibc/realloc}
+    - {start: 0x4DFF0, vram: 0x80057EC0, type: .bss, name: boot/malloc/malloc}
+    - {start: 0x4DFF0, vram: 0x80057F60, type: .bss, name: boot/malloc/free}
+    - {start: 0x4DFF0, vram: 0x80057F70, type: .bss, name: boot/malloc/realloc}
     - {start: 0x4DFF0, vram: 0x80057F80, type: .bss, name: libultra/os/initialize}
     - {start: 0x4DFF0, vram: 0x80057F90, type: .bss, name: libultra/io/pimgr}
     - {start: 0x4DFF0, vram: 0x80059160, type: .bss, name: libultra/io/vimgr}

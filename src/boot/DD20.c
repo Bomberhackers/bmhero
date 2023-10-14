@@ -32,9 +32,14 @@ struct UnkStructPair {
 };
 
 struct UnkStruct80053180 {
-    s32 unk0[2];
-    char filler8[0x230];
-    ALGlobals unk238;
+    /* 0x000 */ s32 unk0[2];
+    char filler8[0x1C0];
+    /* 0x1C0 */ OSMesgQueue queue;
+    char filler1E0[0x20];
+    /* 0x200 */ OSMesgQueue queue2;
+    /* 0x218 */ OSMesg mesg218;
+    char filler21C[0x1C];
+    /* 0x238 */ ALGlobals unk238;
 };
 
 struct UnkStruct80053188_Ptr {
@@ -44,10 +49,21 @@ struct UnkStruct80053188_Ptr {
     u32 unk74;
 };
 
+struct UnkStruct80055408 {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+};
+
 // externs
 s32 func_80001E78(s32, s32*, void*);                    /* extern */
 s32 func_80001FDC(s32);                             /* extern */
-void func_8000D8E0(void*);                          /* extern */
+s32 func_80003C94();                                  /* extern */
+s32 func_80003FA0();                                  /* extern */
+s32 func_80007BC4();                                  /* extern */
+s32 func_8000ABB4();                                  /* extern */
+s32 func_8000DA70(struct UnkStruct80053188_Ptr*, s32); /* extern */
+s32 func_8000DD24(s32);                               /* extern */
 void func_8000E070();
 
 extern s32 D_80053170;
@@ -55,7 +71,7 @@ extern s32 D_80053178;
 extern struct UnkStruct80053180 D_80053180;
 extern struct UnkStruct80053188_Ptr *D_80053188[];
 extern s32 D_80053408;
-extern s32 D_80055408;
+extern struct UnkStruct80055408 *D_80055408;
 extern s32 D_80055410;
 extern ALCSPlayer* D_80055414;
 extern s32 D_80055418;
@@ -67,12 +83,17 @@ extern s32 D_8005542C;
 extern s32 D_80055430;
 extern u32 D_80055434;
 extern s32 D_80055438;
+extern s32 D_8005543C;
 extern OSMesgQueue D_80055740;
 extern void* D_80055758;
 
 // .bss
 struct UnkStructPair D_80053160;
 struct UnkStructPair D_80053168;
+
+// functions
+void* func_8000D84C(s32 arg0);
+void func_8000D8E0(void*);
 
 s32 func_8000D120(struct UnkInputStruct8000D120_arg0* arg0, struct UnkInputStruct8000D120_arg1* arg1) {
     s32 sp3C;
@@ -88,7 +109,7 @@ s32 func_8000D120(struct UnkInputStruct8000D120_arg0* arg0, struct UnkInputStruc
     D_80055418 = 0;
     D_80055420 = arg1->unk0;
     D_80055424 = arg1->unk4;
-    D_80055408 = arg0->unk14;
+    D_80055408 = (void*)arg0->unk14;
     arg0->unk10 = &func_8000E070;
     arg0->unk18 = osAiSetFrequency(arg1->unk10);
     if (D_8004A280 == 0) {
@@ -170,15 +191,62 @@ after:;
     return (s32) sp32;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/DD20/func_8000D800.s")
+void func_8000D800(void) {
+    return; // what. an explicit return in an empty function? but why though?
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/DD20/func_8000D818.s")
+void func_8000D818(s32 arg0) {
+    return; // same as above.
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/DD20/func_8000D834.s")
+s32 func_8000D834(void) {
+    return 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/DD20/func_8000D84C.s")
+void* func_8000D84C(s32 arg0) {
+    if ((D_80055408->unk8 - (D_80055408->unk4 - D_80055408->unk0)) < arg0) {
+        D_80053160.unk0 |= 1;
+        return NULL;
+    }
+    return alHeapDBAlloc(NULL, 0, (ALHeap* ) D_80055408, 1, arg0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/DD20/func_8000D8E0.s")
+void func_8000D8E0(void* arg0) {
+    s32 sp34;
+    s32 sp30;
+    OSMesg *sp2C;
+    s32 sp28;
+
+    sp30 = 0;
+    sp28 = 0;
+    if (sp30 == 0) {
+        do {
+            osRecvMesg((OSMesgQueue* ) &D_80053180.queue, &sp2C, 1);
+            switch (*(s16*)sp2C) {                      /* irregular */
+            case 1:
+                sp34 = func_8000DA70(D_80053188[(u32) D_80055418 % 3U], sp28);
+                if (sp34 != 0) {
+                    osRecvMesg((OSMesgQueue* ) &D_80053180.queue2, &sp2C, 1);
+                    func_8000DD24(((s32*)sp2C)[1]);
+                    sp28 = ((s32*)sp2C)[1];
+                    func_80003C94();
+                    func_80007BC4();
+                }
+                D_8005543C += 1;
+                break;
+            case 4:
+                func_80003FA0();
+                func_8000ABB4();
+                sp30 = 1;
+                break;
+            case 10:
+                sp30 = 1;
+                break;
+            }
+        } while (sp30 == 0);
+    }
+    alClose(&D_80053180.unk238);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/DD20/func_8000DA70.s")
 

@@ -35,7 +35,7 @@ segments:
     - [0x1000,  hasm, entry] # bootloader
     - [0x1050,  c, boot/1050] # main
     - [0x3490,  c, boot/3490]
-    - [0x38D0,  c, boot/38D0] # audio driver?
+    - [0x38D0,  c, boot/38D0]
     - [0xDD20,  c, boot/DD20]
     - [0xEE20,  c, boot/EE20] # Host functions for libmalloc
     - [0xEFE0,  c, boot/EFE0]

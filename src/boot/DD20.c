@@ -117,7 +117,6 @@ s32 func_80003C94();                                  /* extern */
 s32 func_80003FA0();                                  /* extern */
 s32 func_80007BC4();                                  /* extern */
 s32 func_8000ABB4();                                  /* extern */
-s32 func_8000DA70(struct UnkStruct80053188_Ptr* arg0, struct UnkInputStruct8000DA70_Arg1 *arg1);
 
 extern s32 D_80047F60;
 extern s32 D_80048030;
@@ -152,6 +151,7 @@ struct UnkStructPair D_80053168;
 // functions
 void* func_8000D84C(s32 arg0);
 void func_8000D8E0(void*);
+s32 func_8000DA70(struct UnkStruct80053188_Ptr* arg0, struct UnkInputStruct8000DA70_Arg1 *arg1);
 void func_8000DD24(s32 arg0);
 void *func_8000E070(s32** arg0);
 void func_8000E098(void);

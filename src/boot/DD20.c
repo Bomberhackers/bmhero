@@ -42,17 +42,48 @@ struct UnkStruct80053180 {
     /* 0x238 */ ALGlobals unk238;
 };
 
+struct UnkInnerStruct80053188_Ptr {
+    u32 unk0;
+    char filler4[0x4];
+    u32 unk8;
+    char fillerC[0x4];
+    u32 unk10;
+    u32 unk14;
+    u32 unk18;
+    u32 unk1C;
+    u32 unk20;
+    char filler24[0x4];
+    u32 unk28;
+    u32 unk2C;
+    u32 unk30;
+    u32 unk34;
+    u32 unk38;
+    u32 unk3C;
+    u32 unk40;
+    u32 unk44;
+    u32 unk48;
+    u32 unk4C;
+    u32 unk50;
+    u32 unk54;
+    char filler58[0x10];
+    s16 unk68;
+    u32 unk70;
+};
+
 struct UnkStruct80053188_Ptr {
     u32 unk0[2];
-    char filler8[0x68];
-    s16 unk70;
-    u32 unk74;
+    struct UnkInnerStruct80053188_Ptr unk8;
 };
 
 struct UnkStruct80055408 {
     s32 unk0;
     s32 unk4;
     s32 unk8;
+};
+
+struct UnkInputStruct8000DA70_Arg1 {
+    u32 unk0;
+    s16 unk4;
 };
 
 // externs
@@ -62,10 +93,14 @@ s32 func_80003C94();                                  /* extern */
 s32 func_80003FA0();                                  /* extern */
 s32 func_80007BC4();                                  /* extern */
 s32 func_8000ABB4();                                  /* extern */
-s32 func_8000DA70(struct UnkStruct80053188_Ptr*, s32); /* extern */
-s32 func_8000DD24(s32);                               /* extern */
+s32 func_8000DA70(struct UnkStruct80053188_Ptr* arg0, struct UnkInputStruct8000DA70_Arg1 *arg1);
 void func_8000E070();
+s32 func_8000E098();                                  /* extern */
 
+extern s32 D_80047F60;
+extern s32 D_80048030;
+extern s32 D_80049460;
+extern s32 D_8004D130;
 extern s32 D_80053170;
 extern s32 D_80053178;
 extern struct UnkStruct80053180 D_80053180;
@@ -94,6 +129,7 @@ struct UnkStructPair D_80053168;
 // functions
 void* func_8000D84C(s32 arg0);
 void func_8000D8E0(void*);
+void func_8000DD24(s32 arg0);
 
 s32 func_8000D120(struct UnkInputStruct8000D120_arg0* arg0, struct UnkInputStruct8000D120_arg1* arg1) {
     s32 sp3C;
@@ -168,8 +204,8 @@ s32 func_8000D120(struct UnkInputStruct8000D120_arg0* arg0, struct UnkInputStruc
                     sp32 = 1;;
                     goto after;
                 }
-                D_80053188[sp3C]->unk70 = 2,
-                D_80053188[sp3C]->unk74 = D_80053188[sp3C];
+                D_80053188[sp3C]->unk8.unk68 = 2,
+                D_80053188[sp3C]->unk8.unk70 = D_80053188[sp3C];
                 **(u32**)&D_80053188[sp3C] = func_8000D84C(D_80055430 * 4);
                 if (**(u32**)&D_80053188[sp3C] == 0) {
                     sp32 = 1;;
@@ -248,9 +284,58 @@ void func_8000D8E0(void* arg0) {
     alClose(&D_80053180.unk238);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/DD20/func_8000DA70.s")
+s32 func_8000DA70(struct UnkStruct80053188_Ptr* arg0, struct UnkInputStruct8000DA70_Arg1 *arg1) {
+    u32 sp2C;
+    Acmd* sp28;
+    s32 sp24;
+    u32 sp20;
+    struct UnkInnerStruct80053188_Ptr * sp1C;
+    s8* temp_t8;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/DD20/func_8000DD24.s")
+    sp20 = 0;
+    func_8000E098();
+    sp2C = osVirtualToPhysical((void* ) arg0->unk0[0]);
+    if (arg1 != 0) {
+        osAiSetNextBuffer(arg1->unk0, arg1->unk4 * 4);
+    }
+    sp20 = osAiGetLength() >> 2;
+    *(s16*)&arg0->unk0[1] = ((((D_80055434 - sp20) + 0x50) & ~0xF) + 0x10);
+    if (*(s16*)&arg0->unk0[1] < (u32) D_8005542C) {
+        *(s16*)&arg0->unk0[1] = (s16) D_8005542C;
+    }
+    sp28 = alAudioFrame((Acmd* ) D_80053180.unk0[D_80055428], &sp24, (s16* ) sp2C, *(s16*)&arg0->unk0[1]);
+    if (sp24 == 0) {
+        return 0;
+    }
+
+    sp1C = &arg0->unk8;
+    sp1C->unk0 = 0;
+    sp1C->unk8 = 2;
+    sp1C->unk50 = &D_80053180.filler8[0x1F8];
+    sp1C->unk54 = &arg0->unk8.unk68;
+    sp1C->unk40 = (s32) D_80053180.unk0[D_80055428];
+    sp1C->unk44 = (((s32) ((u32)sp28 - D_80053180.unk0[D_80055428]) >> 3) * 8);
+    sp1C->unk10 = 2;
+    sp1C->unk18 = &D_80047F60;
+    sp1C->unk1C = (s32) ((u32)&D_80048030 - (u32)&D_80047F60);
+    sp1C->unk14 = 0;
+    sp1C->unk20 = &D_80049460;
+    sp1C->unk28 = &D_8004D130;
+    sp1C->unk2C = 0x800;
+    sp1C->unk30 = 0;
+    sp1C->unk34 = 0;
+    sp1C->unk38 = 0;
+    sp1C->unk3C = 0;
+    sp1C->unk48 = 0;
+    sp1C->unk4C = 0;
+    osSendMesg((OSMesgQueue* ) D_80053170, sp1C, 1);
+    D_80055428 ^= 1;
+    return 1;
+}
+
+void func_8000DD24(s32 arg0) {
+    return;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/DD20/func_8000DD40.s")
 

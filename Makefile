@@ -86,7 +86,7 @@ OPTFLAGS := -g
 OBJDUMP_FLAGS := -d -r -z -Mreg-names=32
 
 # include locations
-INC_DIRS := include include/PR include/audio include/ido .
+INC_DIRS := include include/PR include/audio include/ido . src/boot/malloc
 IINCS := $(foreach d,$(INC_DIRS),-I$d)
 # defines for SGI IDO
 CDEFS := -D_LANGUAGE_C -DF3DEX_GBI -DNDEBUG -D_FINALROM -DBUILD_VERSION=VERSION_H -DSTDC_HEADERS

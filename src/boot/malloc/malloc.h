@@ -1,6 +1,3 @@
-#include <ultra64.h> // for types
-#undef BLOCKSIZE // Blocksize is defined prior by ultra64. We are not using PFS's BLOCKSIZE define.
-
 /* Declarations for `malloc' and friends.
    Copyright 1990, 1991, 1992, 1993, 1995 Free Software Foundation, Inc.
 		  Written May 1989 by Mike Haertel.
@@ -45,8 +42,7 @@ Cambridge, MA 02139, USA.
 #endif
 
 #if	defined (__GNU_LIBRARY__) || (defined (__STDC__) && __STDC__)
-//#include <limits.h>
-#define	CHAR_BIT	8 // this was probably defined within limits.h too, which we dont have.
+#include <limits.h>
 #else
 #ifndef CHAR_BIT
 #define	CHAR_BIT	8
@@ -80,9 +76,7 @@ extern "C"
 #endif /* C++ or ANSI C.  */
 
 #if defined (__STDC__) && __STDC__
-//#include <stddef.h>
-//We are not using stddef in this case and will manaully define size_t and ptrdiff_t to get it to work.
-typedef unsigned long ptrdiff_t;
+#include <stddef.h>
 #define	__malloc_size_t		size_t
 #define	__malloc_ptrdiff_t	ptrdiff_t
 #else

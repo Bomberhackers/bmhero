@@ -17,7 +17,7 @@ the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.  */
 
 #ifndef	_MALLOC_INTERNAL
 #define	_MALLOC_INTERNAL
-#include "malloc.h"
+#include <malloc.h>
 #endif
 
 #ifndef	__GNU_LIBRARY__

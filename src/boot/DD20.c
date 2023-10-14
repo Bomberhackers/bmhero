@@ -86,6 +86,30 @@ struct UnkInputStruct8000DA70_Arg1 {
     s16 unk4;
 };
 
+struct UnkStruct80055440 {
+    char filler0[0x18];
+};
+
+struct UnkInputStruct8000DD40_sp2C {
+    u32 unk0;
+    u32 unk4;
+    u32 unk8;
+    u32 unkC;
+    u32 unk10;
+};
+
+struct UnkInputStruct8000DD40_sp28 {
+    u32 unk0;
+    u32 unk4;
+};
+
+struct UnkStruct80055410 {
+    u32 unk0;
+    u32 unk4;
+    char filler8[0x4];
+    u32 unkC;
+};
+
 // externs
 s32 func_80001E78(s32, s32*, void*);                    /* extern */
 s32 func_80001FDC(s32);                             /* extern */
@@ -94,8 +118,6 @@ s32 func_80003FA0();                                  /* extern */
 s32 func_80007BC4();                                  /* extern */
 s32 func_8000ABB4();                                  /* extern */
 s32 func_8000DA70(struct UnkStruct80053188_Ptr* arg0, struct UnkInputStruct8000DA70_Arg1 *arg1);
-void func_8000E070();
-s32 func_8000E098();                                  /* extern */
 
 extern s32 D_80047F60;
 extern s32 D_80048030;
@@ -107,7 +129,7 @@ extern struct UnkStruct80053180 D_80053180;
 extern struct UnkStruct80053188_Ptr *D_80053188[];
 extern s32 D_80053408;
 extern struct UnkStruct80055408 *D_80055408;
-extern s32 D_80055410;
+extern struct UnkStruct80055410 *D_80055410;
 extern ALCSPlayer* D_80055414;
 extern s32 D_80055418;
 extern s32 D_8005541C;
@@ -119,6 +141,7 @@ extern s32 D_80055430;
 extern u32 D_80055434;
 extern s32 D_80055438;
 extern s32 D_8005543C;
+extern struct UnkStruct80055440 D_80055440[];
 extern OSMesgQueue D_80055740;
 extern void* D_80055758;
 
@@ -130,6 +153,8 @@ struct UnkStructPair D_80053168;
 void* func_8000D84C(s32 arg0);
 void func_8000D8E0(void*);
 void func_8000DD24(s32 arg0);
+void *func_8000E070(s32** arg0);
+void func_8000E098(void);
 
 s32 func_8000D120(struct UnkInputStruct8000D120_arg0* arg0, struct UnkInputStruct8000D120_arg1* arg1) {
     s32 sp3C;
@@ -337,10 +362,94 @@ void func_8000DD24(s32 arg0) {
     return;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/DD20/func_8000DD40.s")
+u32 func_8000DD40(u32 arg0, u32 arg1, s32 arg2) {
+    void* sp3C;                                     /* compiler-managed */
+    s32 sp38;
+    s32 sp34;
+    s32 sp30;
+    struct UnkInputStruct8000DD40_sp2C *sp2C;                                       /* compiler-managed */
+    struct UnkInputStruct8000DD40_sp28 *sp28;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/DD20/func_8000E070.s")
+    sp28 = 0;
+    sp2C = D_80055410;
+    sp34 = arg0 + arg1;
+    while (sp2C != 0) {
+        sp30 = sp2C->unk8 + D_80055424;
+        if (sp2C->unk8 > arg0) {
+            break;
+        } else if (sp34 <= sp30) {
+            sp2C->unkC = D_80055418;
+            sp3C = (sp2C->unk10 + arg0) - sp2C->unk8;
+            return osVirtualToPhysical(sp3C);
+        }
+        sp28 = sp2C;
+        sp2C = sp2C->unk0;
+    }
+    sp2C = D_80055414;
+    if (sp2C == NULL) {
+        return osVirtualToPhysical((void* ) D_80055410);
+    }
+    D_80055414 = (ALCSPlayer* ) sp2C->unk0;
+    alUnlink((ALLink* ) sp2C);
+    if (sp28 != 0) {
+        alLink((ALLink* ) sp2C, (ALLink* ) sp28);
+    } else if (D_80055410 != 0) {
+        sp28 = D_80055410;
+        D_80055410 = (s32) sp2C;
+        sp2C->unk0 = (ALPlayer* ) sp28;
+        sp2C->unk4 = 0;
+        sp28->unk4 = sp2C;
+    } else {
+        D_80055410 = (s32) sp2C;
+        sp2C->unk0 = 0;
+        sp2C->unk4 = 0;
+    }
+    sp3C = sp2C->unk10;
+    sp38 = arg0 & 1;
+    arg0 -= sp38;
+    sp2C->unk8 = (s32 (*)(void*)) arg0;
+    sp2C->unkC = D_80055418;
+    osWritebackDCache((void* ) sp3C, (s32) D_80055424);
+    osInvalDCache((void* ) sp3C, (s32) D_80055424);
+    osPiStartDma(&D_80055440[D_8005541C++], 0, 0, arg0, (void* ) sp3C, D_80055424, &D_80055740);
+    return osVirtualToPhysical((void* ) sp3C) + sp38;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/DD20/func_8000E088.s")
+void *func_8000E070(s32** arg0) {
+    *arg0 = &D_80055410;
+    return &func_8000DD40;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/DD20/func_8000E098.s")
+void func_8000E098(void) {
+    u32 sp24;
+    void* sp20;
+    struct UnkStruct80055410 *sp1C;
+    s32 sp18;
+
+    for(sp24 = 0; sp24 < D_8005541C; sp24++) {
+        osRecvMesg(&D_80055740, &sp20, 1);
+    }
+    
+    sp1C = D_80055410;
+    if (sp1C != 0) {
+        do {
+            sp18 = sp1C->unk0;
+            if ((u32) (sp1C->unkC + 1) < (u32) D_80055418) {
+                if (D_80055410 == sp1C) {
+                    D_80055410 = sp1C->unk0;
+                }
+                alUnlink((ALLink* ) sp1C);
+                if (D_80055414 != NULL) {
+                    alLink((ALLink* ) sp1C, (ALLink* ) D_80055414);
+                } else {
+                    D_80055414 = (ALCSPlayer* ) sp1C;
+                    sp1C->unk0 = 0;
+                    sp1C->unk4 = 0;
+                }
+            }
+            sp1C = sp18;
+        } while (sp1C != 0);
+    }
+    D_8005541C = 0;
+    D_80055418 += 1;
+}

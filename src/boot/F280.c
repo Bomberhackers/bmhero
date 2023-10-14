@@ -86,45 +86,45 @@ void func_8000E680(struct UnkInputStruct8000E680* arg0, struct UnkInputStruct800
     arg0->unk28 = (f32) (((sp38 * sp28) - (sp34 * sp2C)) / sp3C);
 }
 
-s32 func_8000E944(Gfx** arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7) {
-    s32 sp9C;
-    s32 sp98;
-    Gfx* sp94;
+s32 func_8000E944(Gfx** gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7) {
+    s32 i;
+    s32 j;
+    Gfx* dlist;
     struct UnkInnerStruct8000E944* sp90;
     struct UnkInnerStruct8000E944* sp8C;
     struct UnkInnerStruct8000E944* sp88;
     struct UnkInnerStruct8000E944* sp84;
-    float sp44[4][4];
+    float mf[4][4];
     char pad[4];
     s32 sp3C;
 
     sp3C = 0;
     sp84 = arg1 + arg5;
-    sp94 = *arg0;
-    guMtxIdentF(&sp44);
+    dlist = *gfx;
+    guMtxIdentF(mf);
 
-    for(sp9C = 0; sp9C < 3; sp9C++) {
-        switch (D_80055D30[sp9C]) {                          /* irregular */
+    for(i = 0; i < 3; i++) {
+        switch (D_80055D30[i]) {                          /* irregular */
         case 17:
             sp90 = (void*)((u32)&sp84[arg6]+4);
             if ((sp90->u.unk0_f != 0.0f) || (sp90->unk4 != 0.0f) || (sp90->unk8 != 0.0f)) {
-                func_80013AE0(&sp44[0], sp90->u.unk0_f, sp90->unk4, sp90->unk8);
+                func_80013AE0(mf, sp90->u.unk0_f, sp90->unk4, sp90->unk8);
                 sp3C = 1;
             }
             break;
         case 19:
             sp8C = (void*)((u32)&sp84[arg6]+0x10);
             if ((sp8C->u.unk0_f != 0.0f) || (sp8C->unk4 != 0.0f) || (sp8C->unk8 != 0.0f)) {
-                for(sp98 = 0; sp98 < 3; sp98++) {
-                    switch (D_80055D40[sp98]) {            /* switch 1; irregular */
+                for(j = 0; j < 3; j++) {
+                    switch (D_80055D40[j]) {            /* switch 1; irregular */
                     case 0x33:                      /* switch 1 */
-                        func_80013F6C(&sp44[0], sp8C->u.unk0_f);
+                        func_80013F6C(mf, sp8C->u.unk0_f);
                         break;
                     case 0x34:                      /* switch 1 */
-                        func_80014098(&sp44[0], sp8C->unk4);
+                        func_80014098(mf, sp8C->unk4);
                         break;
                     case 0x35:                      /* switch 1 */
-                        func_800141C4(&sp44[0], sp8C->unk8);
+                        func_800141C4(mf, sp8C->unk8);
                         break;
                     }
                 }
@@ -134,7 +134,7 @@ s32 func_8000E944(Gfx** arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, 
         case 21:
             sp88 = (void*)((u32)&sp84[arg6]+0x1C);
             if ((sp88->u.unk0_f != 1.0f) || (sp88->unk4 != 1.0f) || (sp88->unk8 != 1.0f)) {
-                func_80013B70(&sp44[0], sp88->u.unk0_f, sp88->unk4, sp88->unk8);
+                func_80013B70(mf, sp88->u.unk0_f, sp88->unk4, sp88->unk8);
                 sp3C = 1;
             }
             break;
@@ -143,25 +143,26 @@ s32 func_8000E944(Gfx** arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, 
 
     if (sp3C != 0) {
         D_80055820 += 1;
-        guMtxCatF((f32 (*)[4]) &sp44[0], (D_80055820 << 6) - 0x40 + (u32)&D_80055828, (D_80055820 << 6) + (u32)&D_80055828);
+        guMtxCatF(mf, (D_80055820 << 6) - 0x40 + (u32)&D_80055828, (D_80055820 << 6) + (u32)&D_80055828);
     }
     guMtxF2L((D_80055820 << 6) + (u32)&D_80055828, (void*)((u32)&D_8016E104->unk0[arg7] + 0xE0));
 
-    gSPMatrix(sp94++, osVirtualToPhysical((void*)((u32)&D_8016E104->unk0[arg7++] + 0xE0)), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
+    gSPMatrix(dlist++, osVirtualToPhysical((void*)((u32)&D_8016E104->unk0[arg7++] + 0xE0)), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
     
     if (sp84[arg6].u.unk0 >= 0) {
-        arg7 = func_8000EEE8(&sp94, arg1, arg2, arg3, arg4, sp84[arg6].u.unk0, arg7);
+        arg7 = func_8000EEE8(&dlist, arg1, arg2, arg3, arg4, sp84[arg6].u.unk0, arg7);
     }
-    if ((sp9C = sp84[arg6].unk2C) != 0) {
-        arg7 = func_8000E944(&sp94, arg1, arg2, arg3, arg4, arg5, arg6 + sp9C, arg7);
+    // ok but why load into a temp.
+    if ((i = sp84[arg6].unk2C) != 0) {
+        arg7 = func_8000E944(&dlist, arg1, arg2, arg3, arg4, arg5, arg6 + i, arg7);
     }
     if (sp3C != 0) {
         D_80055820 -= 1;
     }
-    if ((sp9C = sp84[arg6].unk28) != 0) {
-        arg7 = func_8000E944(&sp94, arg1, arg2, arg3, arg4, arg5, arg6 + sp9C, arg7);
+    if ((i = sp84[arg6].unk28) != 0) {
+        arg7 = func_8000E944(&dlist, arg1, arg2, arg3, arg4, arg5, arg6 + i, arg7);
     }
-    *arg0 = sp94;
+    *gfx = dlist;
     return arg7;
 }
 

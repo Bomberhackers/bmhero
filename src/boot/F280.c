@@ -276,7 +276,67 @@ s32 func_8000EEE8(Gfx** gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s
     return arg6;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/F280/func_8000F888.s")
+s32 func_8000F888(void* arg0, s32* arg1, s32 arg2, s32 arg3, s32 *unused, s32* arg5) {
+    struct UnkInnerStruct8000E944* sp84;
+    struct UnkInnerStruct8000E944* sp80;
+    struct UnkInnerStruct8000E944* sp7C;
+    s32 sp78;
+    
+    Mtx sp38;
+    char pad[4];
+    s32 sp30;
+    s32 sp2C;
+    s32 sp28;
+
+    sp28 = 0;
+    sp78 = *arg1;
+
+    guMtxIdentF(&sp38.m[0][0]);
+    for(sp30 = 0; sp30 < 3; sp30++) {
+        switch (D_80055D30[sp30]) {                          /* irregular */
+        case 17:
+            sp84 = arg0;
+            if ((sp84->u.unk0_f != 0.0f) || (sp84->unk4 != 0.0f) || (sp84->unk8 != 0.0f)) {
+                func_80013AE0(&sp38.m[0][0], sp84->u.unk0_f, sp84->unk4, sp84->unk8);
+                sp28 = 1;
+            }
+            break;
+        case 19:
+            sp80 = (void*)((u32)arg0 + 0xC);
+            if ((sp80->u.unk0_f != 0.0f) || (sp80->unk4 != 0.0f) || (sp80->unk8 != 0.0f)) {
+                for(sp2C = 0; sp2C < 3; sp2C++) {
+                    switch (D_80055D40[sp2C]) {            /* switch 1; irregular */
+                    case 0x33:                      /* switch 1 */
+                        func_80013F6C(&sp38.m[0][0], sp80->u.unk0_f);
+                        break;
+                    case 0x34:                      /* switch 1 */
+                        func_80014098(&sp38.m[0][0], sp80->unk4);
+                        break;
+                    case 0x35:                      /* switch 1 */
+                        func_800141C4(&sp38.m[0][0], sp80->unk8);
+                        break;
+                    }
+                }
+                sp28 = 1;
+            }
+            break;
+        case 21:
+            sp7C = (void*)((u32)arg0 + 0x18);
+            if ((sp7C->u.unk0_f != 1.0f) || (sp7C->unk4 != 1.0f) || (sp7C->unk8 != 1.0f)) {
+                func_80013B70(&sp38.m[0][0], sp7C->u.unk0_f, sp7C->unk4, sp7C->unk8);
+                sp28 = 1;
+            }
+            break;
+        }
+    }
+    if (sp28 != 0) {
+        D_80055820 += 1;
+        guMtxCatF(&sp38.m[0][0], (D_80055820 << 6) - 0x40 + (u32)&D_80055828, (D_80055820 << 6) + (u32)&D_80055828);
+    }
+    *arg1 = sp78;
+    *arg5 = sp28;
+    return arg2;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/F280/func_8000FC08.s")
 

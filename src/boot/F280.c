@@ -49,6 +49,15 @@ struct UnkInputStruct8000EEE8_SPEC {
     Gfx *dlist;
 };
 
+struct UnkInputStruct8000FC08 {
+    s32 unk0;
+    char filler4[0x8];
+    u32 *unkC;
+    s32 unk10;
+    char filler14[0x14];
+    u32 unk28;
+};
+
 // externs
 s32 func_80013AE0(f32*, f32, f32, f32);               /* extern */
 s32 func_80013B70(f32*, f32, f32, f32);               /* extern */
@@ -338,6 +347,35 @@ s32 func_8000F888(void* arg0, s32* arg1, s32 arg2, s32 arg3, s32 *unused, s32* a
     return arg2;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/F280/func_8000FC08.s")
+s32 func_8000FC08(struct UnkInputStruct8000FC08* arg0, s32* arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) {
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/F280/func_8000FD9C.s")
+    sp30 = *arg1;
+    arg6 = func_8000F888((void*)((u32)arg0 + 0x14), &sp30, arg6, arg2, arg0->unk0, &sp2C);
+    if (arg0->unk0 >= 0) {
+        arg6 = func_8000EEE8((Gfx** ) &sp30, arg2, arg3, arg4, arg5, (s32) arg0->unk0, arg6);
+    }
+    if (arg0->unk10 != 0) {
+        for(sp34 = 0; sp34 < arg0->unk10; sp34++) {
+            arg6 = func_8000FC08(arg0->unkC[sp34], &sp30, arg2, arg3, arg4, arg5, arg6);
+        }
+    }
+    if (sp2C != 0) {
+        D_80055820 -= 1;
+    }
+    *arg1 = sp30;
+    return arg6;
+}
+
+s32 func_8000FD9C(struct UnkInputStruct8000FC08* arg0, Gfx** arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) {
+    D_80055820 = 0;
+    guMtxL2F((D_80055820 << 6) + (u32)&D_80055828, (Mtx* ) &D_8016E104->filler0[0x40]);
+    if (arg0->unk0 == 0) {
+        arg6 = func_8000EEE8(arg1, arg2, arg3, arg4, arg5, arg0->unk28, arg6);
+    } else if (arg0->unk0 == 1) {
+        arg6 = func_8000FC08((struct UnkInputStruct8000FC08* ) arg0->unk28, (s32* ) arg1, arg2, arg3, arg4, arg5, arg6);
+    }
+    return arg6;
+}

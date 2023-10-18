@@ -22,6 +22,7 @@ void func_8008B6E0 (s16*);
 void func_8008BA3C(void);
 void func_8008BB0C(void);
 void func_8008BC04(s16*);
+void func_80088D84();
 extern void func_8008C61C();
 extern void func_8008C638();
 extern void func_8008C650();
@@ -108,14 +109,59 @@ extern s8 D_80134C26;
 extern s32 D_8016CAA0[][2];
 
 extern Gfx* gMasterDisplayList;
-extern struct UnkStruct_8008AE64 D_80134D48[];
+extern struct UnkStruct80088B80_3 D_80134D48[];
 extern struct UnkStruct_8008AE64_2 D_80154150[]; //weird
 extern struct UnkStruct_8008AE64_2 D_80154154[];
 extern struct UnkStruct_8008AE64_2 D_80154158[];
 
+extern s16 D_80134C28[18];
+extern s16 D_80134C58[18];
+extern s16 D_80134C88[18];
+extern s16 D_80134CB8[18];
+extern s16 D_80134CE8[18];
+extern s16 D_80134D18[18];
+extern struct UnkStruct80088B80_2 D_80134D4C[18];
+extern struct UnkStruct80088B80_2 D_80134D50[18];
+extern struct UnkStruct80088B80 D_80134D54[18];
+extern struct UnkStruct80088B80 D_80134D56[18];
+extern struct UnkStruct80088B80 D_80134D58[18];
+
 struct MegaStruct gMegaStruct;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_80088B80.s")
+void func_80088B80(void) {
+    s16 sp1E;
+
+    D_80134BF2 = -1;
+    D_80134BF8 = -1;
+    D_80134BF0 = 0;
+    D_80134C26 = 0;
+    D_80134C24 = 0;
+    D_80134C25 = 0;
+    D_80134C22 = 0;
+    D_80134C0C = 0;
+    D_80134C1E = -1, //are you serious, a "," instead of ;????
+    D_80134C1C = -1,
+    D_80134C1A = -1;
+    D_80134C20 = -1;
+    func_80088D84();
+
+    for(sp1E = 0; sp1E < 0x18; sp1E++)
+    {        
+        D_80134D48[sp1E].Unk0.Unk0 = -1;
+        D_80134D4C[sp1E].Unk0 = 0.0f;
+        D_80134D50[sp1E].Unk0 = 0.0f;
+        D_80134D54[sp1E].Unk0 = 0;
+        D_80134D56[sp1E].Unk0 = 0;
+        D_80134D58[sp1E].Unk0 = 0;
+        
+        D_80134C28[sp1E] = -1;
+        D_80134C58[sp1E] = -1;
+        D_80134C88[sp1E] = -1;
+        D_80134CB8[sp1E] = -1;
+        D_80134CE8[sp1E] = -1;
+        D_80134D18[sp1E] = 0;
+    }
+}
 
 void func_80088D84(void) {
     gMegaStruct.D_80134F28.x =    gMegaStruct.D_80134F28.y =    gMegaStruct.D_80134F28.z = 0.0f;
@@ -648,8 +694,6 @@ void func_8008A824(s16 arg0, s16 arg1, s16 arg2) {
     D_8010CD80[1] = ((arg0 << 0xB) + (arg1 << 6) + (arg2 * 2) + 1);
 }
 
-//#pragma GLOBAL_ASM("asm/nonmatchings/code/7B0A0/func_8008A870.s")
-
 void func_8008A870(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4) {
     gDPLoadMultiTile_4b(gMasterDisplayList++,
         D_8016CAA0[arg4][0] + 0x30, 0, 0,
@@ -738,7 +782,7 @@ void func_8008AD58(s16* arg0) {
 void func_8008AE64(s16* arg0) {
     s32 sp4;
 
-    sp4 = D_80134D48[arg0[0]].Unk0;
+    sp4 = D_80134D48[arg0[0]].Unk0.Unk0;
     gMegaStruct.D_80134F28.x = D_80154150[sp4].Unk0;
     gMegaStruct.D_80134F28.y = D_80154154[sp4].Unk0 + arg0[1];
     gMegaStruct.D_80134F28.z = D_80154158[sp4].Unk0;
@@ -806,7 +850,7 @@ void func_8008B0F4(void) {
             gMegaStruct.D_80134F28.y = gMegaStruct.D_80134F28.y + gMegaStruct.D_80134F50.y;
             gMegaStruct.D_80134F28.z = gMegaStruct.D_80134F28.z + gMegaStruct.D_80134F50.z;
         } else {
-            sp1C = D_80134D48[gMegaStruct.D_80134FA8].Unk0;
+            sp1C = D_80134D48[gMegaStruct.D_80134FA8].Unk0.Unk0;
             gMegaStruct.D_80134F28.x = D_80154150[sp1C].Unk0;
             gMegaStruct.D_80134F28.y = D_80154154[sp1C].Unk0 + (f32) gMegaStruct.D_80134FA4.unk2;
             gMegaStruct.D_80134F28.z = D_80154158[sp1C].Unk0;
@@ -824,7 +868,7 @@ void func_8008B0F4(void) {
         gMegaStruct.D_80134F44.y = gMegaStruct.D_80134F44.y + gMegaStruct.D_80134F68.y;
         gMegaStruct.D_80134F44.z = gMegaStruct.D_80134F44.z + gMegaStruct.D_80134F68.z;
         if (gMegaStruct.D_80134FA4.unk0 == 1) {
-            sp1C = D_80134D48[gMegaStruct.D_80134FA8].Unk0;
+            sp1C = D_80134D48[gMegaStruct.D_80134FA8].Unk0.Unk0;
             gMegaStruct.D_80134F28.x = D_80154150[sp1C].Unk0;
             gMegaStruct.D_80134F28.y = D_80154154[sp1C].Unk0 + (f32) gMegaStruct.D_80134FA4.unk2;
             gMegaStruct.D_80134F28.z = D_80154158[sp1C].Unk0;

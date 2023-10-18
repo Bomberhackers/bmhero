@@ -244,13 +244,7 @@ s32 func_8000EEE8(Gfx** gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s
             gDPSetPrimColor(dlist++, 0, 0, 255, 255, 255, 255);
             gDPSetEnvColor(dlist++, 64, 64, 64, 255);
             gDPSetCombineMode(dlist++, G_CC_HILITERGBA, G_CC_HILITERGBA);
-            gDPSetTextureImage(dlist++, G_IM_FMT_IA, G_IM_SIZ_16b, 1, D_1000768);
-            gDPSetTile(dlist++, G_IM_FMT_IA, G_IM_SIZ_16b, 0, 0x0000, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD);
-            gDPLoadSync(dlist++);
-            gDPLoadBlock(dlist++, G_TX_LOADTILE, 0, 0, 511, 512);
-            gDPPipeSync(dlist++);
-            gDPSetTile(dlist++, G_IM_FMT_IA, G_IM_SIZ_8b, 4, 0x0000, G_TX_RENDERTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, 5, G_TX_NOLOD);
-            gDPSetTileSize(dlist++, G_TX_RENDERTILE, 0, 0, 0x007C, 0x007C);
+            gDPLoadTextureBlock(dlist++, D_1000768, G_IM_FMT_IA, G_IM_SIZ_8b, 32, 32, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, 5, 5, G_TX_NOLOD, G_TX_NOLOD);
             gDPSetHilite1Tile(dlist++, G_TX_RENDERTILE, &D_8016E104->hilites[0], 32, 32);
             break;
         case 8:

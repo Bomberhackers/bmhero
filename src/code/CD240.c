@@ -3,7 +3,9 @@
 extern s32 func_8002B0E4(s32);
 extern func_800F9DE0();
 extern s32 func_80027464(s32, void*, f32, f32, f32, f32);
+extern s32 func_8001ABF4(s32, s32, s32, void*);
 extern s32 D_80177A60;
+extern s32 func_8002A1FC(s32, s32);
 
 typedef struct {
     s16 unk0;
@@ -23,9 +25,20 @@ typedef struct {
     char padding[0x150 - (sizeof(s16) * 5)];
 } UnkStruct80165100;
 
+typedef struct {
+    char padding1[0xA3];
+    s16 unkA4;
+    char padding2[0x8c];
+    u8 unk132;
+    char padding3[0x1C];
+} UnkStruct80154150;
+
 extern UnkStruct800FA0DC D_801541F4[];
 extern UnkStruct80165100 D_8015428A[];
+extern UnkStruct80154150 D_80154150[];
 extern UnkStruct80165100* D_80165100;
+extern UnkStruct80154150 D_80119128;
+extern s32 D_80177A60;
 extern void* D_80114354;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DAD20.s")
@@ -117,7 +130,19 @@ void func_800DD928(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DD9E0.s")
+void func_800DD9E0(void) {
+    UnkStruct80154150* sp1C;
+
+    sp1C = &D_80154150[D_80177A60];
+    if (sp1C->unk132 == 0) {
+        sp1C->unk132 = (u8) (sp1C->unk132 + 1);
+        func_8001ABF4(D_80177A60, 0, 0, &D_80119128);
+    }
+    if (func_8002A1FC(D_80177A60, 0x44610000) != 0) {
+        sp1C->unkA4 = 2;
+        sp1C->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DDAA8.s")
 

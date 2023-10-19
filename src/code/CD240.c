@@ -1,5 +1,16 @@
 #include "common.h"
 
+extern s32 func_8002B0E4(s32);
+extern func_800F9DE0();
+extern s32 D_80177A60;
+
+typedef struct {
+    s16 unk0;
+    char padding[0x14E];
+} UnkStruct800FA0DC;
+
+extern UnkStruct800FA0DC D_801541F4[];
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DAD20.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DAD98.s")
@@ -182,7 +193,9 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E3214.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E3474.s")
+void func_800E3474(void) {
+    func_8002B0E4(D_80177A60);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E34A4.s")
 
@@ -636,7 +649,15 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F9DE0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800FA0DC.s")
+void func_800FA0DC(void) {
+    if (D_801541F4[D_80177A60].unk0 == 1) {
+        goto stub;
+        stub:;
+        func_800F9DE0();
+        goto stub2;
+        stub2:;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800FA148.s")
 

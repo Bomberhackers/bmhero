@@ -1,11 +1,17 @@
 #include "common.h"
 
 extern s32 func_8002B0E4(s32);
-extern func_800F9DE0();
+extern s32 func_800F9DE0();
 extern s32 func_80027464(s32, void*, f32, f32, f32, f32);
 extern s32 func_8001ABF4(s32, s32, s32, void*);
 extern s32 D_80177A60;
 extern s32 func_8002A1FC(s32, s32);
+extern s32 func_8001B4AC(s32, s32);
+extern s32 func_8001B754(s32, s32);
+extern s32 func_8001C0EC(s32, s32, s32, s32, void*);
+extern s32 func_80028FA0(s32);
+extern s32 func_8002A8B4(s32, s32);
+extern s32 func_800E3EE4();
 
 typedef struct {
     s16 unk0;
@@ -26,11 +32,21 @@ typedef struct {
 } UnkStruct80165100;
 
 typedef struct {
-    char padding1[0xA3];
-    s16 unkA4;
-    char padding2[0x8c];
-    u8 unk132;
+    char paddding1[0x3];
+    f32 unk4;
+    char padding2[0x14];
+    f32 unk1C;
     char padding3[0x1C];
+    f32 unk3C;
+    char padding4[0x64];
+    s16 unkA4;
+    char padding5[0x60];
+    s16 unk106;
+    char padding6[0x2A];
+    u8 unk132;
+    char padding7[0x7];
+    s8 unk13A;
+    char padding8[0x15];
 } UnkStruct80154150;
 
 extern UnkStruct800FA0DC D_801541F4[];
@@ -38,6 +54,7 @@ extern UnkStruct80165100 D_8015428A[];
 extern UnkStruct80154150 D_80154150[];
 extern UnkStruct80165100* D_80165100;
 extern UnkStruct80154150 D_80119128;
+extern UnkStruct80154150 D_80118FF4;
 extern s32 D_80177A60;
 extern void* D_80114354;
 
@@ -144,7 +161,31 @@ void func_800DD9E0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DDAA8.s")
+void func_800DDAA8(void) {
+    UnkStruct80154150* sp24;
+
+    sp24 = &D_80154150[D_80177A60];
+    if (sp24->unk132 == 0) {
+        sp24->unk132 = (u8) (sp24->unk132 + 1);
+        sp24->unk4 = (f32) (sp24->unk4 + 5.0f);
+        func_8001C0EC(D_80177A60, 0, 1, 0x70, &D_80118FF4);
+        func_8001ABF4(D_80177A60, 0, 0, &D_80119128);
+        func_8001ABF4(D_80177A60, 1, 0, &D_80119128.unk1C);
+        func_8001B754(D_80177A60, 0);
+        sp24->unk13A = 0;
+    }
+    if ((func_80028FA0(D_80177A60) != 0) && (((sp24->unk106 == 0xA1)) || (sp24->unk106 == 0xA3))) {
+        func_800E3EE4();
+        return;
+    }
+    func_8002A8B4(D_80177A60, 0x40C00000);
+    sp24->unk1C = (f32) sp24->unk3C;
+    if (func_8001B4AC(D_80177A60, 0) != 0) {
+        sp24->unkA4 = 3;
+        sp24->unk132 = 0U;
+    }
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DDC5C.s")
 

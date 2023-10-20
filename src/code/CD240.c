@@ -57,8 +57,10 @@ extern UnkStruct800FA0DC D_801541F4[];
 extern UnkStruct80165100 D_8015428A[];
 extern UnkStruct80154150 D_80154150[];
 extern UnkStruct80165100* D_80165100;
+extern UnkStruct80165100* D_80165100;
 extern UnkStruct80154150 D_80119128;
 extern UnkStruct80154150 D_80118FF4;
+extern UnkStruct80165100 D_8011436C;
 extern s32 D_80177A60;
 extern void* D_80114354;
 
@@ -227,7 +229,15 @@ void func_800DDC5C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DE754.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DE7DC.s")
+void func_800DE7DC(void) {
+    s32 sp24;
+
+    sp24 = func_80027464(1, &D_8011436C, (f32) D_80165100->unk2, (f32) (D_80165100->unk4 + 5), (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    if (sp24 != -1) {
+        D_8015428A[sp24].unk0 = 1;
+    }
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DE894.s")
 

@@ -142,7 +142,21 @@ void func_800DAE20(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB0F8.s")
+void func_800DB0F8(void) {
+    UnkStruct80154150* sp24;
+
+    sp24 = &D_80154150[D_80177A60];
+    if (sp24->unk132 == 0) {
+        sp24->unk132 = (u8) (sp24->unk132 + 1);
+        func_8001C0EC(D_80177A60, 0, 1, 0x54, &D_80118E9C);
+    }
+    func_8002A8B4(D_80177A60, 0x40C00000);
+    sp24->unk1C = (f32) sp24->unk3C;
+    if (func_8001B4AC(D_80177A60, 0) != 0) {
+        sp24->unkA4 = 3;
+        sp24->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB1EC.s")
 

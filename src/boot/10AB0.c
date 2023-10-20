@@ -48,8 +48,15 @@ struct UnkInputStruct800100E8_SP24 {
     char filler18[0x18];
 };
 
+struct UnkInputStruct80010350 {
+    char filler0[0xC];
+    u32 *unkC;
+    s32 unk10;
+};
+
 // extern functions
 extern void* malloc(s32 size);
+extern void free(void*);
 
 // extern symbols
 extern struct UnkStruct8004A3A0 D_8004A3A0;
@@ -120,7 +127,18 @@ void* func_800100E8(void* arg0, s32 arg1) {
     return sp24;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_80010350.s")
+void func_80010350(struct UnkInputStruct80010350* arg0) {
+    s32 sp1C;
+    u32* sp18;
+
+    if (arg0->unk10 != 0) {
+        for(sp18 = arg0->unkC, sp1C = 0; sp1C < arg0->unk10; sp1C++) {
+            func_80010350(sp18[sp1C]);
+        }
+        free(sp18);
+    }
+    free(arg0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_80010408.s")
 

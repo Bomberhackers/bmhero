@@ -12,6 +12,13 @@ extern s32 func_80028FA0(s32);
 extern s32 func_8002A8B4(s32, s32);
 extern s32 func_800E3EE4();
 extern f32 func_8002A46C(s32);
+extern s32 func_80014E80(s32);
+extern f32 func_80015538(f32, f32);
+extern s32 func_80029018(s32, s32, s32, f32, f32, f32);
+extern s32 func_800297DC();
+extern void func_80029824(s32, s32);
+extern void func_80029B60(s32);
+extern void func_80029C40(s32);
 
 typedef struct {
     s16 unk0;
@@ -36,22 +43,28 @@ typedef struct {
     f32 unk4;
     char padding2[0x14];
     f32 unk1C;
-    char padding3[0x1C];
+    char padding3[0x4];
+    f32 unk24;
+    f32 unk28;
+    f32 unk2C;
+    char padding4[0xC];
     f32 unk3C;
-    char padding4[0x64];
+    char padding5[0x4];
+    f32 unk44;
+    char padding6[0x5C];
     s16 unkA4;
     s16 unkA6;
     s16 unkA8;
-    char padding5[0x8];
+    char padding7[0x8];
     s16 unkB2;
-    char padding6[0x52];
+    char padding8[0x52];
     s16 unk106;
     s16 unk108;
-    char padding7[0x28];
+    char padding9[0x28];
     u8 unk132;
-    char padding8[0x7];
+    char padding10[0x7];
     s8 unk13A;
-    char padding9[0x15];
+    char padding11[0x15];
 } UnkStruct80154150;
 
 extern UnkStruct800FA0DC D_801541F4[];
@@ -62,6 +75,7 @@ extern UnkStruct80154150 D_80119128;
 extern UnkStruct80154150 D_80118FF4;
 extern UnkStruct80165100 D_8011436C;
 extern UnkStruct80165100 D_801142E8;
+extern UnkStruct80154150 D_80118E9C;
 extern s32 D_80177A60;
 extern s32 D_80177A64;
 extern void* D_80114354;
@@ -84,7 +98,49 @@ void func_800DAD98(void) {
     sp4->unk132 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DAE20.s")
+void func_800DAE20(void) {
+    UnkStruct80154150* sp34;
+    s32 sp30;
+
+    sp34 = &D_80154150[D_80177A60];
+    if (sp34->unk132 == 0) {
+        sp34->unk132 = (u8) (sp34->unk132 + 1);
+        sp34->unk44 = 1.0f;
+        func_8001C0EC(D_80177A60, 0, 0, 0x54, &D_80118E9C);
+    }
+    if (func_80028FA0(D_80177A60) != 0) {
+        func_80029B60(D_80177A60);
+    }
+    sp30 = func_80014E80(-6);
+    sp34->unk3C = func_80015538(sp34->unk3C, (f32) sp30);
+    sp34->unk1C = (f32) sp34->unk3C;
+    if (sp34->unkA8 == 0) {
+        if (sp34->unkA6 < 0xF) {
+            sp34->unk28 = 1.0f;
+            sp34->unkA6 = (s16) (sp34->unkA6 + 1);
+        } else {
+            sp34->unkA8 = (s16) (sp34->unkA8 + 1);
+            sp34->unkA6 = 0;
+        }
+    } else if (sp34->unkA6 < 0xF) {
+        sp34->unk28 = -1.0f;
+        sp34->unkA6 = (s16) (sp34->unkA6 + 1);
+    } else {
+        sp34->unkA8 = 0;
+        sp34->unkA6 = 0;
+    }
+    func_80029C40(D_80177A60);
+    if (func_80029018(D_80177A60, 4, 0x42700000, 0.0f, 0.0f, 0.0f) != 0) {
+        func_80029824(D_80177A60, func_800297DC());
+    }
+    if (func_8002A1FC(D_80177A60, 0x43F00000) != 0) {
+        sp34->unk2C = 0.0f;
+        sp34->unk24 = (f32) sp34->unk2C;
+        sp34->unk28 = 0.0f;
+        sp34->unkA4 = 2;
+        sp34->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB0F8.s")
 

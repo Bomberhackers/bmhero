@@ -491,3 +491,5 @@ _bytes_free = 0x80057F44;
 _fraghead = 0x80057ED8;
 __free_hook = 0x80057F60;
 __sbrk = 0x8000E34C;
+DebugCircle = 0x127FF0;
+DebugSquare = 0x128D20;

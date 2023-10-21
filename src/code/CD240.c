@@ -16,9 +16,11 @@ extern s32 func_80014E80(s32);
 extern f32 func_80015538(f32, f32);
 extern s32 func_80029018(s32, s32, s32, f32, f32, f32);
 extern s32 func_800297DC();
+extern s32 func_8002A0D0(s32, f32, f32, f32);
 extern void func_80029824(s32, s32);
 extern void func_80029B60(s32);
 extern void func_80029C40(s32);
+extern void func_80029EF8(s32, f32, s32);
 
 typedef struct {
     s16 unk0;
@@ -55,16 +57,18 @@ typedef struct {
     s16 unkA4;
     s16 unkA6;
     s16 unkA8;
-    char padding7[0x8];
+    char padding7[0x2];
+    s16 unkAC;
+    char padding8[0x4];
     s16 unkB2;
-    char padding8[0x52];
+    char padding9[0x52];
     s16 unk106;
     s16 unk108;
-    char padding9[0x28];
+    char padding10[0x28];
     u8 unk132;
-    char padding10[0x7];
+    char padding11[0x7];
     s8 unk13A;
-    char padding11[0x15];
+    char padding12[0x15];
 } UnkStruct80154150;
 
 extern UnkStruct800FA0DC D_801541F4[];
@@ -76,9 +80,12 @@ extern UnkStruct80154150 D_80118FF4;
 extern UnkStruct80165100 D_8011436C;
 extern UnkStruct80165100 D_801142E8;
 extern UnkStruct80154150 D_80118E9C;
+extern UnkStruct80165100 D_801142F4;
+extern UnkStruct80154150 D_80118EB4;
 extern s32 D_80177A60;
 extern s32 D_80177A64;
 extern void* D_80114354;
+
 
 void func_800DAD20(void) {
     func_80027464(1, &D_801142E8, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
@@ -160,21 +167,83 @@ void func_800DB0F8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB1EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB3E8.s")
+void func_800DB3E8(void) {
+    UnkStruct80154150* sp24;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB504.s")
+    sp24 = &D_80154150[D_80177A60];
+    if (sp24->unk132 == 0) {
+        sp24->unk132 = (u8) (sp24->unk132 + 1);
+        sp24->unk2C = 0.0f;
+        sp24->unk24 = (f32) sp24->unk2C;
+        func_8001C0EC(D_80177A60, 0, 3, 0x54, &D_80118E9C);
+    }
+    if (func_80028FA0(D_80177A60) != 0) {
+        func_80029B60(D_80177A60);
+    }
+    if (func_8001B4AC(D_80177A60, 0) != 0) {
+        sp24->unkA4 = 1;
+        sp24->unk132 = 0U;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB534.s")
+void func_800DB504(void) {
+    func_8002B0E4(D_80177A60);
+}
+
+void func_800DB534(void) {
+    UnkStruct80154150* sp4;
+
+    sp4 = &D_80154150[D_80177A60];
+    if (sp4->unk132 == 0) {
+        sp4->unk132 = (u8) (sp4->unk132 + 1);
+        sp4->unkAC = 0x1E;
+        sp4->unk44 = 0.0f;
+        sp4->unk2C = 0.0f;
+        sp4->unk24 = (f32) sp4->unk2C;
+    }
+    sp4->unkAC = (s16) (sp4->unkAC - 1);
+    if (sp4->unkAC == 0) {
+        sp4->unkA4 = 4;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB620.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB710.s")
+void func_800DB710(void) {
+    func_80027464(1, &D_801142F4, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB788.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB840.s")
+void func_800DB840(void) {
+    UnkStruct80154150* sp24;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB910.s")
+    sp24 = &D_80154150[D_80177A60];
+    if (sp24->unk132 == 0) {
+        sp24->unk132 = (u8) (sp24->unk132 + 1);
+        func_8001C0EC(D_80177A60, 0, 0, 0x56, &D_80118EB4);
+    }
+    if (func_8002A1FC(D_80177A60, 0x44070000) != 0) {
+        sp24->unkA4 = 2;
+        sp24->unk132 = 0U;
+    }
+}
+
+void func_800DB910(void) {
+    UnkStruct80154150* sp1C;
+
+    sp1C = &D_80154150[D_80177A60];
+    if (sp1C->unk132 == 0) {
+        sp1C->unk132 = (u8) (sp1C->unk132 + 1);
+        func_80029EF8(D_80177A60, 0.0f, 0x40800000);
+    }
+    sp1C->unk1C = func_8002A46C(D_80177A60);
+    sp1C->unk3C = (f32) sp1C->unk1C;
+    if (func_8002A0D0(D_80177A60, 0.0f, 0.0f, 0.0f) == 1) {
+        sp1C->unkA4 = 3;
+        sp1C->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DBA0C.s")
 

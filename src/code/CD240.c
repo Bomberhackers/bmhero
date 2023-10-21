@@ -16,9 +16,11 @@ extern s32 func_80014E80(s32);
 extern f32 func_80015538(f32, f32);
 extern s32 func_80029018(s32, s32, s32, f32, f32, f32);
 extern s32 func_800297DC();
+extern s32 func_8002A0D0(s32, f32, f32, f32);
 extern void func_80029824(s32, s32);
 extern void func_80029B60(s32);
 extern void func_80029C40(s32);
+extern void func_80029EF8(s32, f32, s32);
 
 typedef struct {
     s16 unk0;
@@ -227,7 +229,21 @@ void func_800DB840(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB910.s")
+void func_800DB910(void) {
+    UnkStruct80154150* sp1C;
+
+    sp1C = &D_80154150[D_80177A60];
+    if (sp1C->unk132 == 0) {
+        sp1C->unk132 = (u8) (sp1C->unk132 + 1);
+        func_80029EF8(D_80177A60, 0.0f, 0x40800000);
+    }
+    sp1C->unk1C = func_8002A46C(D_80177A60);
+    sp1C->unk3C = (f32) sp1C->unk1C;
+    if (func_8002A0D0(D_80177A60, 0.0f, 0.0f, 0.0f) == 1) {
+        sp1C->unkA4 = 3;
+        sp1C->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DBA0C.s")
 

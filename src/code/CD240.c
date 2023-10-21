@@ -55,16 +55,18 @@ typedef struct {
     s16 unkA4;
     s16 unkA6;
     s16 unkA8;
-    char padding7[0x8];
+    char padding7[0x2];
+    s16 unkAC;
+    char padding8[0x4];
     s16 unkB2;
-    char padding8[0x52];
+    char padding9[0x52];
     s16 unk106;
     s16 unk108;
-    char padding9[0x28];
+    char padding10[0x28];
     u8 unk132;
-    char padding10[0x7];
+    char padding11[0x7];
     s8 unk13A;
-    char padding11[0x15];
+    char padding12[0x15];
 } UnkStruct80154150;
 
 extern UnkStruct800FA0DC D_801541F4[];
@@ -183,7 +185,22 @@ void func_800DB504(void) {
     func_8002B0E4(D_80177A60);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB534.s")
+void func_800DB534(void) {
+    UnkStruct80154150* sp4;
+
+    sp4 = &D_80154150[D_80177A60];
+    if (sp4->unk132 == 0) {
+        sp4->unk132 = (u8) (sp4->unk132 + 1);
+        sp4->unkAC = 0x1E;
+        sp4->unk44 = 0.0f;
+        sp4->unk2C = 0.0f;
+        sp4->unk24 = (f32) sp4->unk2C;
+    }
+    sp4->unkAC = (s16) (sp4->unkAC - 1);
+    if (sp4->unkAC == 0) {
+        sp4->unkA4 = 4;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB620.s")
 

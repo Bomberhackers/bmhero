@@ -179,7 +179,9 @@ void func_800DB3E8(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB504.s")
+void func_800DB504(void) {
+    func_8002B0E4(D_80177A60);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB534.s")
 

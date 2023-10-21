@@ -42,6 +42,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D34AC.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D3568.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D3578.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D36E8.s")
@@ -59,6 +61,8 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4114.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D418C.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4258.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4268.s")
 

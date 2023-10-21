@@ -816,6 +816,10 @@ void func_800E3474(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F4FC4.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F5298.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F52A8.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F52B8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F5330.s")
@@ -907,6 +911,10 @@ void func_800E3474(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F8AC8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F901C.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F9088.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F9098.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F90A8.s")
 

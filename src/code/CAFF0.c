@@ -2,6 +2,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CAFF0/func_800D8AD0.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/code/CAFF0/func_800D8E30.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CAFF0/func_800D8E40.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CAFF0/func_800D8FD0.s")

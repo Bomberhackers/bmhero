@@ -22,7 +22,7 @@ struct UnkStruct80055D50 {
 }; // size = 0x30
 
 struct UnkInputStruct8000FF44 {
-    char filler0[0x4];
+    u32 unk0;
     u32 unk4;
     char filler8[0x4];
     struct UnkInputStruct8000FF44 **unkC;
@@ -80,6 +80,33 @@ struct UnkStruct80010408_SP2C {
     u32 unk28;
 };
 
+struct UnkStruct800105D8 {
+    u32 unk0;
+    char filler4[0x24];
+    struct UnkInputStruct80010350* unk28;
+};
+
+struct UnkInputStruct80010634_SP20 {
+    u32 *unk0;
+    s32 unk4;
+    struct UnkStruct8004A3A0 unk8;
+    struct UnkStruct8004A3A0 unk14;
+    struct UnkStruct8004A3A0 unk20;
+};
+
+struct UnkStruct80055D54 {
+    char filler0[0x4];
+    struct UnkInputStruct80010634_SP20 *unk4;
+    u32 unk8;
+};
+
+struct UnkInputStruct800108D0 {
+    u32 unk0;
+    u32 unk4;
+    u32 unk8;
+    u32 unkC;
+};
+
 // extern functions
 extern void* malloc(s32 size);
 extern void free(void*);
@@ -88,10 +115,12 @@ extern void free(void*);
 extern struct UnkStruct8004A3A0 D_8004A3A0;
 extern struct UnkStruct8004A3A0 D_8004A3AC;
 extern struct UnkStruct8004A3A0 D_8004A3B8;
+extern s32 *D_8004A3D0;
 extern u32 D_80055D30[];
 extern u32 D_80055D40[];
 extern s32 D_80055D4C;
 extern struct UnkStruct80055D50 *D_80055D50;
+extern struct UnkStruct80055D54 *D_80055D54;
 
 extern u32 *D_8016E3AC;
 
@@ -190,19 +219,19 @@ void* func_80010408(struct UnkInputStruct80010408* arg0, u32 arg1) {
     sp2C = malloc(sizeof(struct UnkStruct80010408_SP2C));
     func_8000FEB0(&sp2C->unk4);
     switch (sp28[arg1].unk0) {                              /* irregular */
-    case 0:
-    case 5:
-    case 6:
-        sp2C->unk0 = 0;
-        sp2C->unk28 = (void* ) arg1;
-        break;
-    case 1:
-        D_80055D4C = 0;
-        sp2C->unk0 = 1;
-        sp2C->unk28 = func_800100E8(NULL, sp28[arg1].unk4);
-        break;
-    default:
-        break;
+        case 0:
+        case 5:
+        case 6:
+            sp2C->unk0 = 0;
+            sp2C->unk28 = (void* ) arg1;
+            break;
+        case 1:
+            D_80055D4C = 0;
+            sp2C->unk0 = 1;
+            sp2C->unk28 = func_800100E8(NULL, sp28[arg1].unk4);
+            break;
+        default:
+            break;
     }
 
     for(sp24 = 0; sp24 < 3; sp24++) {
@@ -216,11 +245,81 @@ void* func_80010408(struct UnkInputStruct80010408* arg0, u32 arg1) {
     return sp2C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_800105D8.s")
+void func_800105D8(struct UnkStruct800105D8* arg0) {
+    if (arg0->unk0 == 1) {
+        func_80010350(arg0->unk28);
+    }
+    free(arg0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_80010634.s")
+void func_80010634(struct UnkInputStruct80010098* arg0, s32 arg1, s32 arg2) {
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    struct UnkInputStruct8000FF44* sp28;
+    struct UnkInputStruct80010634_SP20 *sp24;
+    struct UnkInputStruct80010634_SP20* sp20;
+    char pad[1];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_800108D0.s")
+    if (arg0->unk0 != 1U) {
+        return;
+    }
+    if (arg2 != 0) {
+        func_80010098(arg0);
+    }
+
+    sp24 = D_80055D54[D_8004A3D0[arg1]].unk4;
+    sp2C = D_80055D54[D_8004A3D0[arg1]].unk8;
+
+    for(sp34 = 0; sp34 < sp2C; sp34++) {
+        sp20 = &sp24[sp34];
+        sp28 = arg0->unk28;
+
+        for(sp30 = 1; sp30 < sp20->unk4; sp30++) {
+            sp28 = sp28->unkC[sp20->unk0[sp30]];
+        }
+
+        sp28->unk14 = sp24[sp34].unk8;
+        sp28->unk20 = sp24[sp34].unk14;
+        sp28->unk2C = sp24[sp34].unk20;
+        (sp28+1)->unk0 = 1;
+    }
+}
+
+f32 func_800108D0(struct UnkInputStruct800108D0* arg0, f32 arg1) {
+    char pad[4];
+    s32 sp18;
+    s32 sp14;
+    f32 sp10;
+    s32 *spC;
+    s32 sp8;
+    f32 *sp4;
+
+    sp14 = (s32) arg1;
+
+    switch(arg0->unk0) {
+        case 0x31:
+            spC = arg0->unk8;
+            sp4 = arg0->unkC;
+            sp8 = arg0->unk4;
+
+            //! @bug: duplicate check? left in the ROM due to unoptimized code.
+            for(sp18 = 0; sp18 < sp18 < sp8; sp18++) {
+                if (spC[sp18] >= sp14) {
+                    break;
+                }
+            }
+
+            if (spC[sp18] == sp14) {
+                sp10 = sp4[sp18];
+            } else {
+                sp10 = sp4[sp18-1] + (((sp4[sp18] - sp4[sp18-1]) / (f32) (spC[sp18] - spC[sp18-1])) * (arg1 - (f32)spC[sp18-1]));
+            }
+        break;
+    }
+
+    return sp10;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_80010A5C.s")
 

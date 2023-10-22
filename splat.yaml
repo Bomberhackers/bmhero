@@ -386,7 +386,8 @@ segments:
     - [0xF74C0, rodata]
     - [0xF7700, rodata]
     - [0xF7940, rodata]
-    - [0xF81B0, rodata]
+    - [0xF81B0, rodata] # level table
+    - [0xFAA60, rodata]
     - [0xFDC20, rodata]
     - [0xFE460, rodata]
     - [0xFEEC0, rodata]

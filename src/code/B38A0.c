@@ -178,6 +178,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800CA2D4.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800CA4EC.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800CA4FC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800CA52C.s")
@@ -203,6 +205,8 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800CAE40.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800CB0DC.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800CB24C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800CB25C.s")
 

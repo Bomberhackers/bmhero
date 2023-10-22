@@ -370,6 +370,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_800A1E40.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_800A1E70.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_800A1E80.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_800A1E90.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_800A1FAC.s")

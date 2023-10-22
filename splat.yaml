@@ -349,7 +349,7 @@ segments:
 
   - name: game
     type: code
-    bss_size: 0x850
+    bss_size: 0x432F0
     start: 0x4DFF0
     vram: 0x8005BAD0
     subsegments:

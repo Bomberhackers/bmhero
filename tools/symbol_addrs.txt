@@ -4568,3 +4568,4 @@ func_800C1204 = 0x800C1204;
 func_800C1214 = 0x800C1214;
 func_800CA4EC = 0x800CA4EC;
 func_800CB24C = 0x800CB24C;
+func_8028117C_code_extra_4 = 0x8028117C; // segment:code_extra_4

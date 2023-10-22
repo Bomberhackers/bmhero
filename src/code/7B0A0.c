@@ -1,5 +1,4 @@
 #include <ultra64.h>
-#include "prevent_bss_reordering.h"
 
 extern void func_80019B7C();
 extern void func_8006AA60(s32*, s32*, s32*);

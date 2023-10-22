@@ -473,6 +473,13 @@ segments:
     vram: 0x0 # idk
     subsegments:
     - [0x126CB0, bin]
+
+  - name: unk_bin_0_2
+    type: code
+    bss_size: 0x0
+    start: 0x127FF0
+    vram: 0x0 # idk
+    subsegments:
     - [0x127FF0, bin]
 
   - name: code_extra_0

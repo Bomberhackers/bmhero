@@ -1,5 +1,6 @@
 #include <ultra64.h>
 #include "../libultra/io/viint.h"
+#include "prevent_bss_reordering.h"
 
 // .bss start
 OSMesg D_8004D3F0;
@@ -255,14 +256,14 @@ void func_80000F2C(void) {
 void func_80000F8C(u32 id) {
     u32 rom_offset = (D_801110F0[id] - 0x8033A000);
 
-    load_from_rom_to_addr((u32)&D_20F5B0 + rom_offset, 0x8033A000, 0x4000);
+    load_from_rom_to_addr((u32)&unk_bin_52_ROM_START + rom_offset, 0x8033A000, 0x4000);
 }
 
 // related to unk_bin_53
 void func_80000FF4(u32 id) {
     u32 rom_offset = (D_8010BC30[id] - 0x80300000);
 
-    load_from_rom_to_addr((u32)&D_2193A0 + rom_offset, &D_8016E450, 0x800);
+    load_from_rom_to_addr((u32)&unk_bin_53_ROM_START + rom_offset, &D_8016E450, 0x800);
 }
 
 void func_80001058(void) {

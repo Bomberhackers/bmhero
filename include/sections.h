@@ -183,7 +183,10 @@ extern u8 unk_bin_51_ROM_START[];     // 0x20DA60
 extern u8 unk_bin_51_ROM_END[];       // 0x20F5B0
 
 // other unrelated segments
-extern u8 D_20F5B0[];                 // 0x20F5B0
-extern u8 D_2193A0[];                 // 0x2193A0
+extern u8 unk_bin_52_ROM_START[];                 // 0x20F5B0
+extern u8 unk_bin_52_ROM_END[];
+
+extern u8 unk_bin_53_ROM_START[];                 // 0x2193A0
+extern u8 unk_bin_53_ROM_END[];
 
 #endif // _SECTIONS_H_

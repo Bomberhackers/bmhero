@@ -121,7 +121,6 @@ s32 func_8000ABB4();                                  /* extern */
 extern s32 D_80047F60;
 extern s32 D_80048030;
 extern s32 D_80049460;
-extern s32 D_8004D130;
 extern s32 D_80053170;
 extern s32 D_80053178;
 extern struct UnkStruct80053180 D_80053180;
@@ -309,6 +308,9 @@ void func_8000D8E0(void* arg0) {
     alClose(&D_80053180.unk238);
 }
 
+extern u8 _4A060_data__s[];
+extern u8 _4DD30_bin[];
+
 s32 func_8000DA70(struct UnkStruct80053188_Ptr* arg0, struct UnkInputStruct8000DA70_Arg1 *arg1) {
     u32 sp2C;
     Acmd* sp28;
@@ -344,8 +346,8 @@ s32 func_8000DA70(struct UnkStruct80053188_Ptr* arg0, struct UnkInputStruct8000D
     sp1C->unk18 = &D_80047F60;
     sp1C->unk1C = (s32) ((u32)&D_80048030 - (u32)&D_80047F60);
     sp1C->unk14 = 0;
-    sp1C->unk20 = &D_80049460;
-    sp1C->unk28 = &D_8004D130;
+    sp1C->unk20 = _4A060_data__s; // .data start?
+    sp1C->unk28 = _4DD30_bin;     // .data end?
     sp1C->unk2C = 0x800;
     sp1C->unk30 = 0;
     sp1C->unk34 = 0;

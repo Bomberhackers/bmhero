@@ -1,5 +1,5 @@
-#include "common.h"
-#include "variables.h"
+#include <ultra64.h>
+#include "prevent_bss_reordering.h"
 
 extern void func_80019B7C();
 extern void func_8006AA60(s32*, s32*, s32*);
@@ -66,9 +66,7 @@ extern f32 D_8016E14C;
 extern f32 D_8016E150;
 extern f32 D_8016E154;
 extern s16 D_80177600;
-extern s8 D_80134BF0;
 extern f32 D_80134F40;
-extern s16 D_80134C1A;
 extern f32 D_8016E140;
 extern f32 D_8016E144;
 extern f32 D_8016E148;
@@ -76,61 +74,57 @@ extern f32 D_8016E158;
 extern f32 D_8016E15C;
 extern f32 D_8016E160;
 extern f32 D_8016E170;
-extern s16 D_80134C1C;
-extern f32 D_80134F9C;
 extern s32 D_801765EC;
-extern s16 D_80134C20;
-
-extern s16 D_80134C1E;
 
 extern s16 D_8010CD80[2];
 extern s16 D_80110B78[];
 extern s16* D_80110D4C[];
-extern s16 D_80134BF8;
-extern s16* D_80134C08;
-extern s16 D_80134C0E;
-extern s16 D_80134C16;
-extern s16 D_80134C18;
 
-extern s16 D_80134BF2;
-extern s16 D_80134C0C;
-extern s16 D_80134BFA;
-extern s16 D_80134BFC;
-
-extern s16 D_80134BF4;
-extern s16 *D_80134C00;
-extern s16 D_80134C10;
-extern s16 D_80134C12;
-extern s16 D_80134C14;
-extern s16 D_80134C22;
-extern s8 D_80134C24;
-extern s8 D_80134C25;
-extern s8 D_80134C26;
 extern s32 D_8016CAA0[][2];
 
 extern Gfx* gMasterDisplayList;
-extern struct UnkStruct80088B80_3 D_80134D48[];
 extern struct UnkStruct_8008AE64_2 D_80154150[]; //weird
 extern struct UnkStruct_8008AE64_2 D_80154154[];
 extern struct UnkStruct_8008AE64_2 D_80154158[];
 
-extern s16 D_80134C28[18];
-extern s16 D_80134C58[18];
-extern s16 D_80134C88[18];
-extern s16 D_80134CB8[18];
-extern s16 D_80134CE8[18];
-extern s16 D_80134D18[18];
-extern struct UnkStruct80088B80_2 D_80134D4C[18];
-extern struct UnkStruct80088B80_2 D_80134D50[18];
-extern struct UnkStruct80088B80 D_80134D54[18];
-extern struct UnkStruct80088B80 D_80134D56[18];
-extern struct UnkStruct80088B80 D_80134D58[18];
+// .bss
+s8 D_80134BF0;
+s16 D_80134BF2;
+s16 D_80134BF4;
+s16 D_80134BF6_unused;
+s16 D_80134BF8;
+s16 D_80134BFA;
+s16 D_80134BFC;
+s16 *D_80134C00;
+s16 *D_80134C04_unused;
+s16* D_80134C08;
+s16 D_80134C0C;
+s16 D_80134C0E;
+s16 D_80134C10;
+s16 D_80134C12;
+s16 D_80134C14;
+s16 D_80134C16;
+s16 D_80134C18;
+s16 D_80134C1A;
+s16 D_80134C1C;
+s16 D_80134C1E;
+s16 D_80134C20;
+s16 D_80134C22;
+s8 D_80134C24;
+s8 D_80134C25;
+s8 D_80134C26;
+s16 D_80134C28[0x18];
+s16 D_80134C58[0x18];
+s16 D_80134C88[0x18];
+s16 D_80134CB8[0x18];
+s16 D_80134CE8[0x18];
+s16 D_80134D18[0x18];
 
-struct MegaStruct gMegaStruct;
+struct UnkStruct80134D48 D_80134D48[0x18];
+struct MegaStruct gMegaStruct; // 80134F28
 
 void func_80088B80(void) {
     s16 sp1E;
-
     D_80134BF2 = -1;
     D_80134BF8 = -1;
     D_80134BF0 = 0;
@@ -139,21 +133,19 @@ void func_80088B80(void) {
     D_80134C25 = 0;
     D_80134C22 = 0;
     D_80134C0C = 0;
-    D_80134C1E = -1, //are you serious, a "," instead of ;????
+    D_80134C1E = -1,
     D_80134C1C = -1,
     D_80134C1A = -1;
     D_80134C20 = -1;
     func_80088D84();
-
     for(sp1E = 0; sp1E < 0x18; sp1E++)
-    {        
-        D_80134D48[sp1E].Unk0.Unk0 = -1;
-        D_80134D4C[sp1E].Unk0 = 0.0f;
-        D_80134D50[sp1E].Unk0 = 0.0f;
-        D_80134D54[sp1E].Unk0 = 0;
-        D_80134D56[sp1E].Unk0 = 0;
-        D_80134D58[sp1E].Unk0 = 0;
-        
+    {
+        D_80134D48[sp1E].unk0 = -1;
+        D_80134D48[sp1E].unk4 = 0.0f;
+        D_80134D48[sp1E].unk8 = 0.0f;
+        D_80134D48[sp1E].unkC = 0;
+        D_80134D48[sp1E].unkE = 0;
+        D_80134D48[sp1E].unk10 = 0;
         D_80134C28[sp1E] = -1;
         D_80134C58[sp1E] = -1;
         D_80134C88[sp1E] = -1;
@@ -782,7 +774,7 @@ void func_8008AD58(s16* arg0) {
 void func_8008AE64(s16* arg0) {
     s32 sp4;
 
-    sp4 = D_80134D48[arg0[0]].Unk0.Unk0;
+    sp4 = D_80134D48[arg0[0]].unk0;
     gMegaStruct.D_80134F28.x = D_80154150[sp4].Unk0;
     gMegaStruct.D_80134F28.y = D_80154154[sp4].Unk0 + arg0[1];
     gMegaStruct.D_80134F28.z = D_80154158[sp4].Unk0;
@@ -850,7 +842,7 @@ void func_8008B0F4(void) {
             gMegaStruct.D_80134F28.y = gMegaStruct.D_80134F28.y + gMegaStruct.D_80134F50.y;
             gMegaStruct.D_80134F28.z = gMegaStruct.D_80134F28.z + gMegaStruct.D_80134F50.z;
         } else {
-            sp1C = D_80134D48[gMegaStruct.D_80134FA8].Unk0.Unk0;
+            sp1C = D_80134D48[gMegaStruct.D_80134FA8].unk0;
             gMegaStruct.D_80134F28.x = D_80154150[sp1C].Unk0;
             gMegaStruct.D_80134F28.y = D_80154154[sp1C].Unk0 + (f32) gMegaStruct.D_80134FA4.unk2;
             gMegaStruct.D_80134F28.z = D_80154158[sp1C].Unk0;
@@ -868,7 +860,7 @@ void func_8008B0F4(void) {
         gMegaStruct.D_80134F44.y = gMegaStruct.D_80134F44.y + gMegaStruct.D_80134F68.y;
         gMegaStruct.D_80134F44.z = gMegaStruct.D_80134F44.z + gMegaStruct.D_80134F68.z;
         if (gMegaStruct.D_80134FA4.unk0 == 1) {
-            sp1C = D_80134D48[gMegaStruct.D_80134FA8].Unk0.Unk0;
+            sp1C = D_80134D48[gMegaStruct.D_80134FA8].unk0;
             gMegaStruct.D_80134F28.x = D_80154150[sp1C].Unk0;
             gMegaStruct.D_80134F28.y = D_80154154[sp1C].Unk0 + (f32) gMegaStruct.D_80134FA4.unk2;
             gMegaStruct.D_80134F28.z = D_80154158[sp1C].Unk0;

@@ -1153,6 +1153,8 @@ segments:
   - [0x62C280, bin]
   - [0x62CB20, bin]
   - [0x62D750, bin]
+  - [0x631D90, bin]
+  - [0x63CAE0, bin]
   - [0x6407D0, bin]
   - [0x640F90, bin]
   - [0x6414B0, bin]

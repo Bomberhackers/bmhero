@@ -258,6 +258,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/128D20/128D20/func_80288F28_code_extra_0.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/overlays/128D20/128D20/func_80289130_code_extra_0.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/128D20/128D20/func_80289140_code_extra_0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/128D20/128D20/func_80289170_code_extra_0.s")
@@ -349,6 +351,8 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/128D20/128D20/func_8028A984_code_extra_0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/128D20/128D20/func_8028A9D8_code_extra_0.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/overlays/128D20/128D20/func_8028A9FC_code_extra_0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/128D20/128D20/func_8028AA0C_code_extra_0.s")
 

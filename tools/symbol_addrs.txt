@@ -4498,3 +4498,5 @@ func_80001A64 = 0x80001A64;
 gLevelTable = 0x8010732C; // size:0xF0C
 gUnkROMTable801051E0 = 0x801051E0; // size:0xF0
 D_8028B20C_code_extra_0 = 0x8028B20C; // segment:code_extra_0 type:u32
+func_80289130_code_extra_0 = 0x80289130; // segment:code_extra_0
+func_8028A9FC_code_extra_0 = 0x8028A9FC; // segment:code_extra_0

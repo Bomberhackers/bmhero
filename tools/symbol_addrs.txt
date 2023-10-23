@@ -4489,3 +4489,4 @@ D_80177A54 = 0x80177A54; // defined:true
 D_80177A70 = 0x80177A70; // defined:true
 func_80001A64 = 0x80001A64;
 gLevelTable = 0x8010732C; // size:0xF0C
+gUnkROMTable801051E0 = 0x801051E0; // size:0xF0

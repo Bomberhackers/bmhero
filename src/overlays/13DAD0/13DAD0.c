@@ -146,6 +146,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/13DAD0/13DAD0/func_80284DA0_code_extra_5.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/overlays/13DAD0/13DAD0/func_80284DFC_code_extra_5.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/overlays/13DAD0/13DAD0/func_80284E0C_code_extra_5.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/13DAD0/13DAD0/func_80284E1C_code_extra_5.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/13DAD0/13DAD0/func_80284E74_code_extra_5.s")

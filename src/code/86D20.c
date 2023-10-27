@@ -178,11 +178,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_8009B4C0.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_8009B538.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_8009B548.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_8009B5F0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_8009B600.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_8009B884.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_8009B8F4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_8009B904.s")
 
@@ -228,6 +234,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_8009CBE4.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_8009CC78.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_8009CC88.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_8009D4EC.s")
@@ -260,7 +268,11 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_8009E5F4.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_8009E66C.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_8009E67C.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_8009E7E0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_8009E7F0.s")
 
@@ -358,7 +370,13 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_800A1E40.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_800A1E70.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_800A1E80.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_800A1E90.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_800A1FAC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_800A1FBC.s")
 
@@ -445,6 +463,8 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_800A6DE8.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_800A7194.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_800A72B0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_800A72C0.s")
 

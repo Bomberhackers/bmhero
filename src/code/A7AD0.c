@@ -150,6 +150,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/A7AD0/func_800BBF30.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/code/A7AD0/func_800BC124.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/A7AD0/func_800BC134.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/A7AD0/func_800BC148.s")
@@ -175,6 +177,10 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/code/A7AD0/func_800BCC10.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/A7AD0/func_800BCCAC.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/code/A7AD0/func_800BCD40.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/code/A7AD0/func_800BCD50.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/A7AD0/func_800BCD60.s")
 
@@ -227,6 +233,8 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/code/A7AD0/func_800BF3A4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/A7AD0/func_800BF5D0.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/code/A7AD0/func_800BF71C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/A7AD0/func_800BF72C.s")
 

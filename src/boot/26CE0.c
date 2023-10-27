@@ -112,4 +112,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/26CE0/func_8002B114.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/26CE0/func_8002B144.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/26CE0/func_8002B154.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/26CE0/func_8002B2D4.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/26CE0/func_8002B2E4.s")

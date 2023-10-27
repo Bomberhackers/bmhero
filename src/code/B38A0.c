@@ -62,6 +62,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800C3978.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800C39F0.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800C3A00.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800C3C10.s")
@@ -73,6 +75,8 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800C4040.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800C410C.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800C4348.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800C4358.s")
 
@@ -174,6 +178,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800CA2D4.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800CA4EC.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800CA4FC.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800CA52C.s")
@@ -199,6 +205,8 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800CAE40.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800CB0DC.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800CB24C.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B38A0/func_800CB25C.s")
 

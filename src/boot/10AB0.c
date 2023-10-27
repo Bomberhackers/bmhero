@@ -1,11 +1,13 @@
 #include "common.h"
 
+// could be a Vector
 struct UnkStruct8004A3A0 {
-    u32 unk0;
-    u32 unk4;
-    u32 unk8;
+    f32 unk0;
+    f32 unk4;
+    f32 unk8;
 };
 
+// could be Struct Tri. describes 3 vectors
 struct UnkInputStruct8000FEB0 {
     struct UnkStruct8004A3A0 unk0;
     struct UnkStruct8004A3A0 unkC;
@@ -14,22 +16,18 @@ struct UnkInputStruct8000FEB0 {
 
 struct UnkStruct80055D50 {
     u32 unk0;
-    struct UnkStruct8004A3A0 unk4;
-    struct UnkStruct8004A3A0 unk10;
-    struct UnkStruct8004A3A0 unk1C;
+    struct UnkStruct8004A3A0 unk4[3];
     u32 unk28;
     u32 unk2C;
 }; // size = 0x30
 
 struct UnkInputStruct8000FF44 {
-    char filler0[0x4];
+    u32 unk0;
     u32 unk4;
     char filler8[0x4];
     struct UnkInputStruct8000FF44 **unkC;
     s32 unk10;
-    struct UnkStruct8004A3A0 unk14;
-    struct UnkStruct8004A3A0 unk20;
-    struct UnkStruct8004A3A0 unk2C;
+    struct UnkStruct8004A3A0 unk14[3];
 };
 
 struct UnkInputStruct80010098 {
@@ -54,6 +52,65 @@ struct UnkInputStruct80010350 {
     s32 unk10;
 };
 
+struct UnkStruct8016E3AC {
+    char filler0[0xC];
+    u32 unkC;
+    char filler10[0x8];
+    u32 unk18;
+};
+
+struct UnkInputStruct80010408_Inner {
+    u32 unk0;
+    u32 unk4;
+    char filler8[0x4];
+};
+
+struct UnkInputStruct80010408 {
+    char filler0[0x4];
+    u32 unk4;
+    char filler8[0x4];
+    struct UnkInputStruct80010408_Inner unkC[1];
+};
+
+struct UnkStruct80010408_SP2C {
+    u32 unk0;
+    struct UnkStruct8004A3A0 unk4[3];
+    u32 unk28;
+};
+
+struct UnkStruct800105D8 {
+    u32 unk0;
+    char filler4[0x24];
+    struct UnkInputStruct80010350* unk28;
+};
+
+struct UnkInputStruct80010634_SP20 {
+    u32 *unk0;
+    s32 unk4;
+    struct UnkStruct8004A3A0 unk8;
+    struct UnkStruct8004A3A0 unk14;
+    struct UnkStruct8004A3A0 unk20;
+};
+
+struct UnkStruct80055D54 {
+    char filler0[0x4];
+    struct UnkInputStruct80010634_SP20 *unk4;
+    u32 unk8;
+};
+
+struct UnkInputStruct800108D0 {
+    u32 unk0;
+    u32 unk4;
+    u32 unk8;
+    u32 unkC;
+};
+
+struct UnkInputStruct80010B6C {
+    f32 unk0;
+    f32 unk4;
+    f32 unk8;
+};
+
 // extern functions
 extern void* malloc(s32 size);
 extern void free(void*);
@@ -62,8 +119,26 @@ extern void free(void*);
 extern struct UnkStruct8004A3A0 D_8004A3A0;
 extern struct UnkStruct8004A3A0 D_8004A3AC;
 extern struct UnkStruct8004A3A0 D_8004A3B8;
+extern s32 *D_8004A3D0;
+extern f64 D_8004BBF0; // 180.0
+extern f64 D_8004BBF8; // 360.0
+extern f64 D_8004BC00; // 180.0
+extern f64 D_8004BC08; // 360.0
+extern u32 D_80055D30[];
+extern u32 D_80055D40[];
 extern s32 D_80055D4C;
 extern struct UnkStruct80055D50 *D_80055D50;
+extern struct UnkStruct80055D54 *D_80055D54;
+
+extern u32 *D_8016E3AC;
+
+// functions
+void func_8000FEB0(struct UnkInputStruct8000FEB0* arg0);
+void func_8000FF44(struct UnkInputStruct8000FF44* arg0);
+void func_8001000C(struct UnkInputStruct8000FF44* arg0);
+void func_80010098(struct UnkInputStruct80010098* arg0);
+void* func_800100E8(void* arg0, s32 arg1);
+void func_80010350(struct UnkInputStruct80010350* arg0);
 
 void func_8000FEB0(struct UnkInputStruct8000FEB0* arg0) {
     arg0->unk0 = D_8004A3A0;
@@ -78,9 +153,9 @@ void func_8000FF44(struct UnkInputStruct8000FF44* arg0) {
         return;
     }
     sp4 = &D_80055D50[arg0->unk4];
-    arg0->unk14 = sp4->unk4;
-    arg0->unk20 = sp4->unk10;
-    arg0->unk2C = sp4->unk1C;
+    arg0->unk14[0] = sp4->unk4[0];
+    arg0->unk14[1] = sp4->unk4[1];
+    arg0->unk14[2] = sp4->unk4[2];
 }
 
 void func_8001000C(struct UnkInputStruct8000FF44* arg0) {
@@ -140,23 +215,179 @@ void func_80010350(struct UnkInputStruct80010350* arg0) {
     free(arg0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_80010408.s")
+void* func_80010408(struct UnkInputStruct80010408* arg0, u32 arg1) {
+    struct UnkStruct80010408_SP2C* sp2C;
+    struct UnkInputStruct80010408_Inner *sp28;
+    s32 sp24;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_800105D8.s")
+    sp28 = arg0->unkC;
+    if (arg0->unk4 <= arg1) {
+        return NULL;
+    }
+    sp2C = malloc(sizeof(struct UnkStruct80010408_SP2C));
+    func_8000FEB0(&sp2C->unk4);
+    switch (sp28[arg1].unk0) {                              /* irregular */
+        case 0:
+        case 5:
+        case 6:
+            sp2C->unk0 = 0;
+            sp2C->unk28 = (void* ) arg1;
+            break;
+        case 1:
+            D_80055D4C = 0;
+            sp2C->unk0 = 1;
+            sp2C->unk28 = func_800100E8(NULL, sp28[arg1].unk4);
+            break;
+        default:
+            break;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_80010634.s")
+    for(sp24 = 0; sp24 < 3; sp24++) {
+        D_80055D30[sp24] = D_8016E3AC[sp24+3];
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_800108D0.s")
+    for(sp24 = 0; sp24 < 3; sp24++) {
+        D_80055D40[sp24] = D_8016E3AC[sp24+6];
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_80010A5C.s")
+    return sp2C;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_80010AD0.s")
+void func_800105D8(struct UnkStruct800105D8* arg0) {
+    if (arg0->unk0 == 1) {
+        func_80010350(arg0->unk28);
+    }
+    free(arg0);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_80010B6C.s")
+void func_80010634(struct UnkInputStruct80010098* arg0, s32 arg1, s32 arg2) {
+    s32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    struct UnkInputStruct8000FF44* sp28;
+    struct UnkInputStruct80010634_SP20 *sp24;
+    struct UnkInputStruct80010634_SP20* sp20;
+    char pad[1];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_80010C14.s")
+    if (arg0->unk0 != 1U) {
+        return;
+    }
+    if (arg2 != 0) {
+        func_80010098(arg0);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_80010C88.s")
+    sp24 = D_80055D54[D_8004A3D0[arg1]].unk4;
+    sp2C = D_80055D54[D_8004A3D0[arg1]].unk8;
+
+    for(sp34 = 0; sp34 < sp2C; sp34++) {
+        sp20 = &sp24[sp34];
+        sp28 = arg0->unk28;
+
+        for(sp30 = 1; sp30 < sp20->unk4; sp30++) {
+            sp28 = sp28->unkC[sp20->unk0[sp30]];
+        }
+
+        sp28->unk14[0] = sp24[sp34].unk8;
+        sp28->unk14[1] = sp24[sp34].unk14;
+        sp28->unk14[2] = sp24[sp34].unk20;
+        (sp28+1)->unk0 = 1;
+    }
+}
+
+f32 func_800108D0(struct UnkInputStruct800108D0* arg0, f32 arg1) {
+    char pad[4];
+    s32 sp18;
+    s32 sp14;
+    f32 sp10;
+    s32 *spC;
+    s32 sp8;
+    f32 *sp4;
+
+    sp14 = (s32) arg1;
+
+    switch(arg0->unk0) {
+        case 0x31:
+            spC = arg0->unk8;
+            sp4 = arg0->unkC;
+            sp8 = arg0->unk4;
+
+            //! @bug: duplicate check? left in the ROM due to unoptimized code.
+            for(sp18 = 0; sp18 < sp18 < sp8; sp18++) {
+                if (spC[sp18] >= sp14) {
+                    break;
+                }
+            }
+
+            if (spC[sp18] == sp14) {
+                sp10 = sp4[sp18];
+            } else {
+                sp10 = sp4[sp18-1] + (((sp4[sp18] - sp4[sp18-1]) / (f32) (spC[sp18] - spC[sp18-1])) * (arg1 - (f32)spC[sp18-1]));
+            }
+        break;
+    }
+
+    return sp10;
+}
+
+// this might operate on Vectors, but I dont know yet
+void func_80010A5C(f32* arg0, f32* arg1, f32* arg2, f32 arg3) {
+    arg2[0] = (f32) (((arg1[0] - arg0[0]) * arg3) + arg0[0]);
+    arg2[1] = (f32) (((arg1[1] - arg0[1]) * arg3) + arg0[1]);
+    arg2[2] = (f32) (((arg1[2] - arg0[2]) * arg3) + arg0[2]);
+}
+
+f32 func_80010AD0(f32 arg0, f32 arg1, f32 arg2) {
+    if (arg0 > D_8004BBF0) {
+        arg0 -= D_8004BBF8;
+    }
+    if (arg1 > D_8004BC00) {
+        arg1 -= D_8004BC08;
+    }
+    return ((arg1 - arg0) * arg2) + arg0;
+}
+
+void func_80010B6C(struct UnkInputStruct80010B6C* arg0, struct UnkInputStruct80010B6C* arg1, struct UnkInputStruct80010B6C* arg2, f32 arg3) {
+    arg2->unk0 = func_80010AD0(arg0->unk0, arg1->unk0, arg3);
+    arg2->unk4 = func_80010AD0(arg0->unk4, arg1->unk4, arg3);
+    arg2->unk8 = func_80010AD0(arg0->unk8, arg1->unk8, arg3);
+}
+
+void func_80010C14(f32* arg0, f32* arg1, f32* arg2, f32 arg3) {
+    arg0[0] = (f32) (((arg1[0] - arg2[0]) * arg3) + arg0[0]);
+    arg0[1] = (f32) (((arg1[1] - arg2[1]) * arg3) + arg0[1]);
+    arg0[2] = (f32) (((arg1[2] - arg2[2]) * arg3) + arg0[2]);
+}
+
+struct UnkInputStruct80010C88 {
+    u32 *unk0;
+    char filler4[0x4];
+    struct UnkInputStruct80010C88 **unk8;
+    s32 unkC;
+    u32 unk10[1]; // unk size
+    char filler14[0x4];
+    struct UnkStruct8004A3A0 *unk18[3];
+};
+
+void func_80010C88(struct UnkInputStruct80010C88* arg0, s32 arg1) {
+    s32 sp24;
+    struct UnkStruct80055D50* sp20;
+    struct UnkStruct8004A3A0* sp1C;
+
+    if (arg0 == NULL) {
+        return;
+    }
+    sp1C = arg0[arg1].unk18;
+    sp20 = &D_80055D50[arg0->unk0[1]];
+    sp1C[0] = sp20->unk4[0];
+    sp1C[1] = sp20->unk4[1];
+    sp1C[2] = sp20->unk4[2];
+
+    arg0->unk10[arg1] = 0;
+
+    for(sp24 = 0; sp24 < arg0->unkC; sp24++) {
+        func_80010C88(arg0->unk8[sp24], arg1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_80010E0C.s")
 

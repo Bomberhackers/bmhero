@@ -44,6 +44,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/BE560/func_800CF4B4.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/code/BE560/func_800CF570.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/BE560/func_800CF580.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/BE560/func_800CF60C.s")

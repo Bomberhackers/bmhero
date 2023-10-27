@@ -6,6 +6,8 @@ extern s32 D_80177A60;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FACF0.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FAE00.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FAE10.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FAF10.s")

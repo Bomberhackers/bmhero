@@ -35,7 +35,7 @@ s32 func_80014BA0(u8* arg0, s8* arg1) {
     sp1C = 0;
     sp20 = 0;
 
-    for(i = 3; i >= 0; i = (s32)(i - 1))
+    for(i = 3; i >= 0; i--)
     {
         sp20 = arg0[i] + (sp20 << 8);        
     }

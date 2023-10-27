@@ -174,6 +174,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/128D20/128D20/func_80286DA8_code_extra_0.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/overlays/128D20/128D20/func_80286EC8_code_extra_0.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/128D20/128D20/func_80286ED8_code_extra_0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/128D20/128D20/func_80286FA4_code_extra_0.s")

@@ -175,8 +175,8 @@ extern struct UnkStruct80177778* D_80177778;
 extern s8 *D_8010B3FC[4];
 
 //ROM ADDRESSES
-extern u8 DebugCircle[];
-extern u8 DebugSquare[];
+extern u8 unk_bin_0_2_ROM_START[];
+extern u8 code_extra_0_ROM_START[];
 
 void func_800FDA10(void) {
     f32 sp4;
@@ -454,7 +454,7 @@ void func_800FE6D8(void) {
 
 void func_800FE854(void) {
     func_8001E954(0x8024C000);
-    func_8001E98C(0, DebugCircle, DebugSquare);
+    func_8001E98C(0, unk_bin_0_2_ROM_START, code_extra_0_ROM_START);
 }
 
 u32 func_800FE898(void) {

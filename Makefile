@@ -41,7 +41,6 @@ endif
 ###################### Other Tools ######################
 
 N64CRC = tools/n64crc
-N64GRAPHICS = tools/n64graphics
 # See pigment64_notice for the available source code.
 PIGMENT64 = tools/pigment64
 

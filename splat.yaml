@@ -488,9 +488,9 @@ segments:
     type: code
     bss_size: 0x0
     start: 0x127FF0
-    vram: 0x0 # idk
+    vram: 0x8024C000
     subsegments:
-    - [0x127FF0, bin]
+    - [0x127FF0, data]
 
   - name: code_extra_0
     type: code

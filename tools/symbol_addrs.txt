@@ -4501,3 +4501,5 @@ D_8028B20C_code_extra_0 = 0x8028B20C; // segment:code_extra_0 type:u32
 func_80289130_code_extra_0 = 0x80289130; // segment:code_extra_0
 func_8028A9FC_code_extra_0 = 0x8028A9FC; // segment:code_extra_0
 func_80286EC8_code_extra_0 = 0x80286EC8; // segment:code_extra_0
+D_8004A590 = 0x8004A590; // size:0x28
+D_8004A5B8 = 0x8004A5B8; // size:0x28

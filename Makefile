@@ -31,6 +31,17 @@ ASM_DIRS := asm asm/data asm/libultra asm/libultra/os asm/libultra/io asm/libult
 DATA_DIRS := bin assets
 SRC_DIRS := $(shell find src -type d)
 
+########## Make tools ##########
+
+DUMMY != make -s -C tools >&2 || echo FAIL
+ifeq ($(DUMMY),FAIL)
+  $(error Failed to build tools)
+endif
+
+###################### Other Tools ######################
+
+N64CRC = tools/n64crc
+
 C_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 S_FILES := $(foreach dir,$(SRC_DIRS) $(ASM_DIRS),$(wildcard $(dir)/*.s))
 DATA_FILES := $(foreach dir,$(DATA_DIRS),$(wildcard $(dir)/*.bin))
@@ -156,13 +167,18 @@ default: all
 
 LD_SCRIPT = $(TARGET).ld
 
-all: $(BUILD_DIR) $(BUILD_DIR)/$(ROM) verify
+all: $(BUILD_DIR) $(BUILD_DIR)/$(ROM) verify tools
+
+tools:
+	make -C tools
 
 distclean:
 	rm -rf asm bin assets $(BUILD_DIR) undefined_syms_auto.txt undefined_funcs_auto.txt
+	make -C tools clean
 
 clean:
 	rm -rf $(BUILD_DIR)
+	make -C tools clean
 
 submodules:
 	git submodule update --init --recursive
@@ -209,6 +225,7 @@ $(BUILD_DIR)/%.bin.o: %.bin
 # final z64 updates checksum
 $(BUILD_DIR)/$(ROM): $(BUILD_DIR)/$(TARGET).bin
 	@cp $< $@
+	$(N64CRC) $@
 
 verify: $(BUILD_DIR)/$(ROM)
 	md5sum -c checksum.md5

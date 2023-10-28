@@ -11,6 +11,7 @@ options:
   platform: n64
   ld_legacy_generation: true
   detect_redundant_function_end: true
+  gfx_ucode: f3dex
 segments:
   - name: header
     type: header
@@ -485,12 +486,28 @@ segments:
     - [0x126CB0, bin]
 
   - name: unk_bin_0_2
-    type: code
+    type: .data
     bss_size: 0x0
     start: 0x127FF0
     vram: 0x8024C000
+    data_only: True
     subsegments:
-    - [0x127FF0, data]
+    - [0x127FF0, c, unk_bin_0_2] # compile the whole file
+    # do not emit or declare, just extract
+    - [0x127FF0, ia4, unk_127FF0.ia4, 32, 32]
+    - [0x1281F0, data] # type:u32
+    - [0x1282C0, ia4, unk_1282C0.ia4, 32, 32]
+    - [0x1284C0, data] # type:u32
+    - [0x128590, gfx]
+    - [0x128620, gfx]
+    - [0x1286B8, gfx]
+    - [0x128750, gfx]
+    - [0x128758, ia8, unk_128758.ia8, 32, 32]
+    - [0x128B58, data] # type:u32
+    - [0x128B68, gfx]
+    - [0x128C40, gfx]
+    - [0x128C58, gfx]
+    - [0x128CA0, gfx]
 
   - name: code_extra_0
     type: code

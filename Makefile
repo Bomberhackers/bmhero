@@ -41,10 +41,16 @@ endif
 ###################### Other Tools ######################
 
 N64CRC = tools/n64crc
+N64GRAPHICS = tools/n64graphics
+# See pigment64_notice for the available source code.
+PIGMENT64 = tools/pigment64
 
 C_FILES := $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 S_FILES := $(foreach dir,$(SRC_DIRS) $(ASM_DIRS),$(wildcard $(dir)/*.s))
 DATA_FILES := $(foreach dir,$(DATA_DIRS),$(wildcard $(dir)/*.bin))
+PNG_FILES     := $(foreach dir,$(DATA_DIRS),$(wildcard $(dir)/*.png))
+
+PNG_INC_FILES := $(foreach f,$(PNG_FILES:.png=.inc),$(BUILD_DIR)/$f)
 
 # Object files
 O_FILES := $(foreach file,$(C_FILES),$(BUILD_DIR)/$(file:.c=.c.o)) \
@@ -188,6 +194,15 @@ split:
 
 setup: distclean submodules split
 
+#==============================================================================#
+# Texture Generation                                                           #
+#==============================================================================#
+    
+$(BUILD_DIR)/%.inc: %.png
+	$(PIGMENT64) to-bin --c-array --format $(subst .,,$(suffix $*)) -o $@ $<
+
+# ------------------------------------------------------------------------------
+
 $(BUILD_DIR):
 	echo $(C_FILES)
 	mkdir $(BUILD_DIR)
@@ -199,7 +214,7 @@ $(BUILD_DIR)/$(LD_SCRIPT): $(LD_SCRIPT)
 $(BUILD_DIR)/$(TARGET).bin: $(BUILD_DIR)/$(TARGET).elf
 	$(OBJCOPY) $< $@ -O binary
 
-$(BUILD_DIR)/$(TARGET).elf: $(O_FILES) $(BUILD_DIR)/$(LD_SCRIPT)
+$(BUILD_DIR)/$(TARGET).elf: $(PNG_INC_FILES) $(O_FILES) $(BUILD_DIR)/$(LD_SCRIPT)
 	@$(LD) $(LDFLAGS) -o $@
 
 $(BUILD_DIR)/%.c.o: %.c
@@ -230,7 +245,15 @@ $(BUILD_DIR)/$(ROM): $(BUILD_DIR)/$(TARGET).bin
 verify: $(BUILD_DIR)/$(ROM)
 	md5sum -c checksum.md5
 
-.PHONY: all clean distclean default split setup
+## Order-only prerequisites
+# These ensure e.g. the PNG_INC_FILES are built before the O_FILES.
+# The intermediate phony targets avoid quadratically-many dependencies between the targets and prerequisites.
+
+asset_files: $(PNG_INC_FILES)
+$(O_FILES): | asset_files
+o_files: $(O_FILES)
+
+.PHONY: asset_files o_files all clean distclean default split setup
 
 print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true
 

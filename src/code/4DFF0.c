@@ -5,10 +5,9 @@ extern struct UnkStruct8016E230 {
     u32 unk4;
 } UnkStruct8016E230;
 
-extern s32 D_80102928[];
+extern Gfx gDebugFont[];
 extern u8 D_80103948[];
-extern s8 D_8010399C[];
-extern s8 D_8010399D[];
+extern s8 D_8010399C[0x12];
 extern s32 D_8016CAA0[][2];
 extern Gfx *gMasterDisplayList;
 extern u8 gDebugTextBuf[0xC8];
@@ -121,27 +120,30 @@ void func_address() {}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/4DFF0/func_8005F488.s")
 
-void func_8005F4D4(s16 c, s16 x, s16 y, f32 unused1, f32 unused2) {
-    u32 sp34;
-    s32 sp30;
-    s32 sp2C;
+void debug_print_char(s16 c, s16 x, s16 y, f32 unused1, f32 unused2) {
+    u32 uls;
+    u32 ult;
+    s32 i;
 
-    for(sp2C = 0; sp2C < 0x50; sp2C++) {
-        if (D_80103948[sp2C] == c) {
+    // look up the char in the supported glyph array to ensure that it can be printed.
+    for(i = 0; i < 0x50; i++) {
+        if (D_80103948[i] == c) {
             break;
         }
     }
-    if (sp2C == 0x50) {
+    // character was not found in the array. abort.
+    if (i == 0x50) {
         return;
     }
-    // good
-    sp34 = (sp2C & 7) << 3;
-    sp30 = D_8010399C[sp2C / 8 * 2];
 
-    gDPLoadTextureTile_4b(gMasterDisplayList++, D_80102928, G_IM_FMT_CI, 64, 0 /*unknown*/, sp34, sp30, sp34+8, 
-        (D_8010399D[sp2C / 8 * 2] + sp30), 0, 0, 0, 0, 0, 0, 0);
-    gDPSetTileSize(gMasterDisplayList++, G_TX_RENDERTILE, 0, 0, 32, D_8010399D[(sp2C / 8) * 2] << 2);
-    gSPTextureRectangle(gMasterDisplayList++, (x * 4), (y * 4), ((x * 4) + 0x20), (D_8010399D[(sp2C / 8) * 2] + y) << 2, 0, 0, 0, 0x400, 0x400);
+    // calculate uls and ult for the load texture tile command.
+    uls = (i & 7) << 3;
+    ult = D_8010399C[i / 8 * 2];
+
+    gDPLoadTextureTile_4b(gMasterDisplayList++, gDebugFont, G_IM_FMT_CI, 64, 0 /*unknown*/, uls, ult, uls+8, 
+        (D_8010399C[1+(i / 8 * 2)] + ult), 0, 0, 0, 0, 0, 0, 0);
+    gDPSetTileSize(gMasterDisplayList++, G_TX_RENDERTILE, 0, 0, 32, D_8010399C[1+(i / 8 * 2)] << 2);
+    gSPTextureRectangle(gMasterDisplayList++, (x * 4), (y * 4), ((x * 4) + 0x20), (D_8010399C[1+(i / 8 * 2)] + y) << 2, 0, 0, 0, 0x400, 0x400);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/4DFF0/func_8005F96C.s")
@@ -155,7 +157,7 @@ void debug_print_xy(s32 x, s32 y) {
         if (c == 0) {
             break;
         }
-        func_8005F4D4(c, x, y, 1.0f, 1.0f);
+        debug_print_char(c, x, y, 1.0f, 1.0f);
         x += 8;
     }
 }

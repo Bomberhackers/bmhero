@@ -204,7 +204,7 @@ extern s8 D_8016E404;
 extern s8 D_8016E40C;
 extern s8 D_8016E414;
 extern s16 D_8016E41C;
-extern s8 D_8016E424;
+extern s8 gShowDebugMenu;
 extern s32 D_8016E428;
 extern s32 D_801765EC;
 extern s32 osViClock;

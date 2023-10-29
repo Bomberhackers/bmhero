@@ -121,7 +121,22 @@ void func_address() {}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/4DFF0/func_8005F96C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/4DFF0/func_8005F9EC.s")
+u8 func_8005F4D4(s16, s32, s32, s32, f32);             /* extern */
+extern u8 gDebugTextBuf[0xC8];
+
+void debug_print_xy(s32 x, s32 y) {
+    s32 i;
+
+    for(i = 0; i < 0xC8; i++) {
+        s16 c = gDebugTextBuf[i];
+
+        if (c == 0) {
+            break;
+        }
+        func_8005F4D4(c, x, y, 0x3F800000, 1.0f);
+        x += 8;
+    }
+}
 
 void func_8005FA90(void) {
 

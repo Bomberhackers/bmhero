@@ -5,14 +5,18 @@ extern struct UnkStruct8016E230 {
     u32 unk4;
 } UnkStruct8016E230;
 
+extern s32 D_80102928[];
+extern u8 D_80103948[];
+extern s8 D_8010399C[];
+extern s8 D_8010399D[];
+extern s32 D_8016CAA0[][2];
+extern Gfx *gMasterDisplayList;
+extern u8 gDebugTextBuf[0xC8];
 extern struct UnkStruct8016E230 D_8016E220[1];
 extern struct UnkStruct8016E230 D_8016E230[1];
 extern s32 D_8016E23C;
 extern s32 D_8016E25C;
 extern s32 D_8016E264;
-
-extern Gfx *gMasterDisplayList;
-extern s32 D_8016CAA0[][2];
 
 //#pragma GLOBAL_ASM("asm/nonmatchings/code/4DFF0/func_8005BAD0.s")
 void func_8005BAD0(void) {
@@ -117,12 +121,30 @@ void func_address() {}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/4DFF0/func_8005F488.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/4DFF0/func_8005F4D4.s")
+void func_8005F4D4(s16 c, s16 x, s16 y, f32 unused1, f32 unused2) {
+    u32 sp34;
+    s32 sp30;
+    s32 sp2C;
+
+    for(sp2C = 0; sp2C < 0x50; sp2C++) {
+        if (D_80103948[sp2C] == c) {
+            break;
+        }
+    }
+    if (sp2C == 0x50) {
+        return;
+    }
+    // good
+    sp34 = (sp2C & 7) << 3;
+    sp30 = D_8010399C[sp2C / 8 * 2];
+
+    gDPLoadTextureTile_4b(gMasterDisplayList++, D_80102928, G_IM_FMT_CI, 64, 0 /*unknown*/, sp34, sp30, sp34+8, 
+        (D_8010399D[sp2C / 8 * 2] + sp30), 0, 0, 0, 0, 0, 0, 0);
+    gDPSetTileSize(gMasterDisplayList++, G_TX_RENDERTILE, 0, 0, 32, D_8010399D[(sp2C / 8) * 2] << 2);
+    gSPTextureRectangle(gMasterDisplayList++, (x * 4), (y * 4), ((x * 4) + 0x20), (D_8010399D[(sp2C / 8) * 2] + y) << 2, 0, 0, 0, 0x400, 0x400);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/4DFF0/func_8005F96C.s")
-
-void func_8005F4D4(s16 c, s32 x, s32 y, f32 arg3, f32 arg4);
-extern u8 gDebugTextBuf[0xC8];
 
 void debug_print_xy(s32 x, s32 y) {
     s32 i;

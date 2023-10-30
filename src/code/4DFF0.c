@@ -19,6 +19,7 @@ extern u8 D_80103948[];
 extern s8 D_8010399C[0x12];
 extern s8 D_801039B0;
 extern s8 D_801039B4;
+extern s8 D_801039C4;
 extern s32 D_8016CAA0[][2];
 extern Gfx *gMasterDisplayList;
 extern struct UnkStruct8016E10C* D_8016E10C;
@@ -230,4 +231,20 @@ void func_8005FA90(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/4DFF0/func_8005FAB8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/4DFF0/func_8005FAF4.s")
+void func_8005FAF4(u8* buf, s32 x, s32 y) {
+    u8 i;
+
+    func_8005F96C(0xFF, 0, 0xFF);
+
+    for(i = 0; i < 0x10; i++) {
+        sprintf(gDebugTextBuf, "%02x ", *buf);
+        debug_print_xy(x, y);
+        x += 0x12;
+        buf += 1;
+    }
+    func_8005FA90();
+}
+
+void func_8005FBA4(void) {
+    
+}

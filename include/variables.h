@@ -255,4 +255,6 @@ struct UnkStruct80134D48 {
 extern struct UnkStruct80134D48 D_80134D48[0x18];
 extern struct MegaStruct gMegaStruct; // 80134F28
 
+extern u8 gDebugTextBuf[0xC8];
+
 #endif // _VARIABLES_H_

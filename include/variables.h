@@ -257,4 +257,19 @@ extern struct MegaStruct gMegaStruct; // 80134F28
 
 extern u8 gDebugTextBuf[0xC8];
 
+struct UnkStructSTCG
+{
+    f32 Unk0;
+    f32 Unk4;
+    f32 Unk8;
+    char Padding_3[0x24 - (sizeof(f32) * 3)];
+    f32 Unk24;
+    f32 Unk28;
+    f32 Unk2C;
+    char Padding_1[0xA4 - 0x24 - (sizeof(s32) * 3)];
+    s16 UnkA4;
+    char Padding_2[0x108 - 0xA4 - sizeof(s16)];
+    s16 Unk108;
+};
+
 #endif // _VARIABLES_H_

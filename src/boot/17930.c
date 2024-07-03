@@ -32,13 +32,13 @@ extern s32 D_8016E26C;
 extern s32 D_8016E274;
 extern s32 D_801765F4;
 extern s8 D_80176602;
-extern s8 D_801775BC;
-extern s8 D_801775C4;
-extern s8 D_801775CC;
-extern s8 D_801775D4;
-extern s8 D_801775DC;
-extern s8 D_801775E4;
-extern s8 D_801775EC;
+extern u8 D_801775BC;
+extern u8 D_801775C4;
+extern u8 D_801775CC;
+extern u8 D_801775D4;
+extern u8 D_801775DC;
+extern u8 D_801775E4;
+extern u8 D_801775EC;
 
 // functions
 s32 func_8001EBE8();                                  /* extern */

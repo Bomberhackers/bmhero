@@ -45,17 +45,6 @@ struct ByteGroup
     s8 Unk3;
 };
 
-struct UnkStructSTCG
-{
-    f32 Unk0;
-    f32 Unk4;
-    f32 Unk8;
-    char Padding_1[0xA4 - sizeof(s32) - sizeof(s32) - sizeof(s32)];
-    s16 UnkA4;
-    char Padding_2[0x108 - 0xA4 - sizeof(s16)];
-    s16 Unk108;
-};
-
 //FUNCTIONS
 extern void func_80000964();                                  /* extern */
 extern void func_80019C84();                                  /* extern */

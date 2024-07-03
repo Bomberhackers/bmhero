@@ -1,8 +1,29 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/520E0/func_8005FBC0.s")
+extern s8 D_80134808[];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/520E0/func_8005FBD0.s")
+void func_8005FBC0(void) {
+
+}
+
+void func_8005FBD0(void) {
+    s16 sp6;
+    s16 sp4;
+    s16 sp2;
+    for(sp6 = 0; sp6 < 6; sp6++)
+    {       
+        for(sp4 = 0;sp4 < 3; sp4++)
+        {
+            for(sp2 = 0; sp2 < 7; sp2 = sp2 + 1)
+            {
+                D_80134808[(sp6 * 21) + sp4 * 7 + sp2] = 0;
+            }
+        }
+    }
+
+    D_80134808[0] = 6;
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/520E0/func_8005FC98.s")
 

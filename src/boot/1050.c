@@ -448,7 +448,7 @@ void thread6_func(void* arg) {
     D_8016E3EC = 0;
     D_8016E3EE = 0;
     D_8016E3F4 = 0;
-    D_8016E424 = 0;
+    gShowDebugMenu = 0;
     D_8016E3FC = 0;
     D_8016E40C = 0;
     func_80083180(0);

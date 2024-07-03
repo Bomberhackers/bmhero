@@ -1,4 +1,50 @@
-#include "common.h"
+#include <ultra64.h>
+
+extern Gfx* gMasterDisplayList;
+
+extern Lights2 D_8004A590;
+extern Lights2 D_8004A5B8;
+
+struct UnkStruct8010B3FC {
+    char filler0[0x20];
+    Lights2 *unk20;
+};
+
+extern struct UnkStruct8010B3FC *D_8010B3FC[];
+
+extern s32 D_8016E084;
+extern s32 D_8016E08C;
+extern f32 D_8016E140;
+extern f32 D_8016E144;
+extern f32 D_8016E148;
+extern f32 D_8016E14C;
+extern f32 D_8016E150;
+extern f32 D_8016E154;
+extern f32 D_8016E158;
+extern f32 D_8016E15C;
+extern f32 D_8016E160;
+extern f32 D_8016E164;
+extern f32 D_8016E168;
+extern f32 D_8016E16C;
+extern f32 D_8016E170;
+extern s32 D_8016E244;
+extern s32 D_8016E26C;
+extern s32 D_8016E274;
+extern s32 D_801765F4;
+extern s8 D_80176602;
+extern s8 D_801775BC;
+extern s8 D_801775C4;
+extern s8 D_801775CC;
+extern s8 D_801775D4;
+extern s8 D_801775DC;
+extern s8 D_801775E4;
+extern s8 D_801775EC;
+
+// functions
+s32 func_8001EBE8();                                  /* extern */
+s32 func_8001EC1C();                                  /* extern */
+s32 func_8001EC50();                                  /* extern */
+s32 func_8001EC84();                                  /* extern */
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_80016D30.s")
 
@@ -60,19 +106,68 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_80017FD8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_80017FF8.s")
+s32 func_80017FF8(void) {
+    Lights2 *sp4 = D_8010B3FC[D_8016E428]->unk20;
+
+    if (sp4) {
+        D_8004A5B8 = *sp4;
+
+        if ((D_8016E428 == 0x3B) || (D_8016E428 == 0x40)) {
+            return 2;
+        } else {
+            return 1;
+        }
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_800180C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001819C.s")
+void func_8001819C(void) {
+    D_8004A5B8 = D_8004A590;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_800181F0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001838C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_800183E8.s")
+void func_800183E8(s32 r, s32 g, s32 b, s32 a, s32 arg4, s32 arg5) {
+    gDPPipeSync(gMasterDisplayList++);
+    gDPSetCycleType(gMasterDisplayList++, G_CYC_1CYCLE);
+    gSPClearGeometryMode(gMasterDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
+    gSPSetGeometryMode(gMasterDisplayList++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH);
+    gDPSetCombineLERP(gMasterDisplayList++, TEXEL0, 0, SHADE, 0, 0, 0, 0, 1, TEXEL0, 0, SHADE, 0, 0, 0, 0, 1);
+    gDPSetRenderMode(gMasterDisplayList++, AA_EN | Z_CMP | Z_UPD | CVG_DST_CLAMP | ZMODE_OPA | CVG_X_ALPHA | ALPHA_CVG_SEL | FORCE_BL | G_RM_FOG_SHADE_A, AA_EN | Z_CMP | Z_UPD | CVG_DST_CLAMP | ZMODE_OPA | CVG_X_ALPHA | ALPHA_CVG_SEL | FORCE_BL | GBL_c2(G_BL_CLR_IN, G_BL_A_IN, G_BL_CLR_MEM, G_BL_A_MEM));
+    gDPSetFogColor(gMasterDisplayList++, r, g, b, a);
+    gSPFogFactor(gMasterDisplayList++, (0x1F400 / (arg5 - arg4)), ((-1 * arg4) + 0x1F4) * 0x100 / (arg5 - arg4));
+    gDPSetTextureFilter(gMasterDisplayList++, G_TF_BILERP); 
+    gDPSetTexturePersp(gMasterDisplayList++, G_TP_PERSP);
+    gSPNumLights(gMasterDisplayList++, 2);
+    gSPLight(gMasterDisplayList++, &D_8004A5B8.l[0], 1);
+    gSPLight(gMasterDisplayList++, &D_8004A5B8.l[1], 2);
+    gSPLight(gMasterDisplayList++, &D_8004A5B8.a, 3);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_80018794.s")
+void func_80018794(s32 r, s32 g, s32 b, s32 a, s32 arg4, s32 arg5) {
+    gDPPipeSync(gMasterDisplayList++);
+    gDPSetCycleType(gMasterDisplayList++, G_CYC_2CYCLE);
+    gSPClearGeometryMode(gMasterDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
+    gSPSetGeometryMode(gMasterDisplayList++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_FOG | G_LIGHTING | G_SHADING_SMOOTH);
+    gDPSetCombineLERP(gMasterDisplayList++, TEXEL0, 0, SHADE, 0, 0, 0, 0, 1, 0, 0, 0, COMBINED, 0, 0, 0, COMBINED);
+    gDPSetRenderMode(gMasterDisplayList++, G_RM_FOG_SHADE_A, G_RM_AA_ZB_TEX_EDGE2);
+    gDPSetFogColor(gMasterDisplayList++, r, g, b, a);
+    gSPFogFactor(gMasterDisplayList++, (0x1F400 / (arg5 - arg4)), ((-1 * arg4) + 0x1F4) * 0x100 / (arg5 - arg4));
+    gDPSetAlphaCompare(gMasterDisplayList++, G_AC_NONE);
+    gDPSetAlphaDither(gMasterDisplayList++, G_AD_DISABLE);
+    gDPSetColorDither(gMasterDisplayList++, G_CD_DISABLE);
+    gDPSetBlendColor(gMasterDisplayList++, 0x00, 0x00, 0x00, 0x01);
+    gDPSetTextureFilter(gMasterDisplayList++, G_TF_BILERP); 
+    gDPSetTexturePersp(gMasterDisplayList++, G_TP_PERSP);
+    gSPNumLights(gMasterDisplayList++, 2);
+    gSPLight(gMasterDisplayList++, &D_8004A5B8.l[0], 1);
+    gSPLight(gMasterDisplayList++, &D_8004A5B8.l[1], 2);
+    gSPLight(gMasterDisplayList++, &D_8004A5B8.a, 3);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_80018C0C.s")
 
@@ -320,6 +415,40 @@ void func_8001DFC8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001ECA0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001ECB8.s")
+void func_8001ECB8(void) {
+    func_8001F9DC();
+    D_8016E244 = 0;
+    D_8016E084 = 0;
+    D_8016E08C = 0;
+    D_801765F4 = 0;
+    D_80176602 = 0;
+    func_8001EBE8();
+    func_8001EC1C();
+    func_8001EC50();
+    func_8001EC84();
+    D_8016E140 = 0.0f;
+    D_8016E144 = 0.0f;
+    D_8016E148 = 0.0f;
+    D_8016E14C = 0.0f;
+    D_8016E150 = 0.0f;
+    D_8016E154 = 1000.0f;
+    D_8016E158 = 0.0f;
+    D_8016E15C = 0.0f;
+    D_8016E160 = 0.0f;
+    D_8016E164 = 0.0f;
+    D_8016E168 = 1.0f;
+    D_8016E16C = 0.0f;
+    D_8016E170 = 1000.0f;
+    D_8004A5B8 = D_8004A590;
+    D_801775BC = 0;
+    D_801775C4 = 0;
+    D_801775CC = 0;
+    D_801775D4 = 0;
+    D_801775DC = 0;
+    D_801775E4 = 0;
+    D_801775EC = 0;
+    D_8016E26C = 0x20;
+    D_8016E274 = 0x20;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001EE64.s")

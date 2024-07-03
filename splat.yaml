@@ -467,7 +467,7 @@ segments:
     - [0x1172B0, rodata]
     - [0x1172F0, rodata]
     - [0x126730, rodata]
-    - [0x126750, rodata]
+    - [0x126750, .rodata, code/EFF30]
     - [0x126C50, rodata]
     - [0x126CB0]
     

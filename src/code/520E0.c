@@ -1,16 +1,121 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/520E0/func_8005FBC0.s")
+extern u8 D_80134808[];
+s32 func_8005FE88(s8, s8);                          /* extern */
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/520E0/func_8005FBD0.s")
+extern struct UnkStruct_800600B8
+{
+    u8 Unk01;
+    u8 Padding[3];
+} UnkStruct_800600B8;
+
+struct UnkStruct_80060278
+{
+    s32 Unk01;
+    u8 Padding[4];
+} UnkStruct_80060278;
+
+//funcs
+void func_8001EA68(s32, s32, s32);
+
+//ram
+extern struct UnkStruct_800600B8 D_801039D4[];
+extern s8 D_80134801;
+extern s8 D_80134802;
+extern struct UnkStruct_80060278 D_8016CAA0[];
+extern s32 D_80321428;
+extern s32* D_80324994;
+
+
+//rom
+extern u8 unk_bin_0_2_ROM_START[]; 
+extern u8 code_extra_0_ROM_START[]; 
+extern u8 _64C3C0_ROM_START[];
+extern u8 _64EC60_ROM_START;
+
+void func_8005FBC0(void) {
+
+}
+
+void func_8005FBD0(void) {
+    s16 sp6;
+    s16 sp4;
+    s16 sp2;
+    for(sp6 = 0; sp6 < 6; sp6++)
+    {       
+        for(sp4 = 0;sp4 < 3; sp4++)
+        {
+            for(sp2 = 0; sp2 < 7; sp2 = sp2 + 1)
+            {
+                D_80134808[(sp6 * 21) + sp4 * 7 + sp2] = 0;
+            }
+        }
+    }
+
+    D_80134808[0] = 6;
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/520E0/func_8005FC98.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/520E0/func_8005FE88.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/520E0/func_800600B8.s")
+s32 func_800600B8(s8 arg0, s8 arg1) {
+    s16 sp26;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/520E0/func_80060278.s")
+    switch(arg0)
+    {
+        case 0:
+            {
+                for(sp26 = 0; sp26 < D_801039D4[arg1].Unk01; sp26++)
+                {
+                    if(func_8005FE88(arg1, (s8)sp26) == 0)
+                    {
+                        return 0;
+                    }
+                }
+                break;
+            }
+        case 1:
+            {
+                if(func_8005FE88(D_80134801, arg1) == 0)
+                {
+                    return 0;
+                }
+                break;
+            }
+        case 2:
+            {
+                if((D_80134808[(D_80134801 * 0x15) +  (D_80134802 * 7) + arg1] & 0xF) == 0)
+                {
+                    return 0;
+                }
+                if((D_80134808[(D_80134801 * 0x15) +  (D_80134802 * 7) + arg1] & 0xF) == 6)
+                {
+                    return -2;
+                }
+                break;
+            }
+    }
+
+    return -1;
+}
+
+void func_80060278(void) {
+    s32 sp1C;
+    for(sp1C = 0; sp1C < 0x2BC; sp1C++)
+    {
+        D_8016CAA0[sp1C].Unk01 = 0;
+    }
+    func_8001E954(0x8024C000);
+    func_8001E98C(0, unk_bin_0_2_ROM_START, code_extra_0_ROM_START);
+
+    //why compare like this??
+    if(&D_80321428 != D_80324994)
+    {
+        func_8001EA68(0x1A, &_64C3C0_ROM_START, &_64EC60_ROM_START);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/520E0/func_8006031C.s")
 

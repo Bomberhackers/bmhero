@@ -139,14 +139,6 @@ struct UnkStruct_8008AE64
     char Padding[9];
 };
 
-struct UnkStruct_8008AE64_2
-{
-    f32 Unk0;
-    f32 Unk1;
-    f32 Unk2;
-    char Padding[0x150 - sizeof(f32)- sizeof(f32)- sizeof(f32)];
-};
-
 struct UnkStruct80088B80
 {
     s16 Unk0;

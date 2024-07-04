@@ -44,7 +44,7 @@ typedef struct {
 
 extern UnkStruct800FA0DC D_801541F4[];
 extern UnkStruct80165100 D_8015428A[];
-extern struct PlayerStruct D_80154150[];
+extern struct PlayerStruct gPlayerData[];
 extern UnkStruct80165100* D_80165100;
 extern struct PlayerStruct D_80119128;
 extern struct PlayerStruct D_80118FF4;
@@ -66,7 +66,7 @@ void func_800DAD20(void) {
 void func_800DAD98(void) {
     struct PlayerStruct* sp4;
 
-    sp4 = &D_80154150[D_80177A60];
+    sp4 = &gPlayerData[D_80177A60];
     if (D_80177A64 == 0) {
         sp4->unk108 = 0;
         sp4->unkA4 = 5;
@@ -80,7 +80,7 @@ void func_800DAE20(void) {
     struct PlayerStruct* sp34;
     s32 sp30;
 
-    sp34 = &D_80154150[D_80177A60];
+    sp34 = &gPlayerData[D_80177A60];
     if (sp34->unk132 == 0) {
         sp34->unk132 = (u8) (sp34->unk132 + 1);
         sp34->unk44 = 1.0f;
@@ -123,7 +123,7 @@ void func_800DAE20(void) {
 void func_800DB0F8(void) {
     struct PlayerStruct* sp24;
 
-    sp24 = &D_80154150[D_80177A60];
+    sp24 = &gPlayerData[D_80177A60];
     if (sp24->unk132 == 0) {
         sp24->unk132 = (u8) (sp24->unk132 + 1);
         func_8001C0EC(D_80177A60, 0, 1, 0x54, &D_80118E9C);
@@ -141,7 +141,7 @@ void func_800DB0F8(void) {
 void func_800DB3E8(void) {
     struct PlayerStruct* sp24;
 
-    sp24 = &D_80154150[D_80177A60];
+    sp24 = &gPlayerData[D_80177A60];
     if (sp24->unk132 == 0) {
         sp24->unk132 = (u8) (sp24->unk132 + 1);
         sp24->VelZ = 0.0f;
@@ -164,7 +164,7 @@ void func_800DB504(void) {
 void func_800DB534(void) {
     struct PlayerStruct* sp4;
 
-    sp4 = &D_80154150[D_80177A60];
+    sp4 = &gPlayerData[D_80177A60];
     if (sp4->unk132 == 0) {
         sp4->unk132 = (u8) (sp4->unk132 + 1);
         sp4->unkAC = 0x1E;
@@ -189,7 +189,7 @@ void func_800DB710(void) {
 void func_800DB840(void) {
     struct PlayerStruct* sp24;
 
-    sp24 = &D_80154150[D_80177A60];
+    sp24 = &gPlayerData[D_80177A60];
     if (sp24->unk132 == 0) {
         sp24->unk132 = (u8) (sp24->unk132 + 1);
         func_8001C0EC(D_80177A60, 0, 0, 0x56, &D_80118EB4);
@@ -203,7 +203,7 @@ void func_800DB840(void) {
 void func_800DB910(void) {
     struct PlayerStruct* sp1C;
 
-    sp1C = &D_80154150[D_80177A60];
+    sp1C = &gPlayerData[D_80177A60];
     if (sp1C->unk132 == 0) {
         sp1C->unk132 = (u8) (sp1C->unk132 + 1);
         func_80029EF8(D_80177A60, 0.0f, 0x40800000);
@@ -282,7 +282,7 @@ void func_800DD928(void) {
 void func_800DD9E0(void) {
     struct PlayerStruct* sp1C;
 
-    sp1C = &D_80154150[D_80177A60];
+    sp1C = &gPlayerData[D_80177A60];
     if (sp1C->unk132 == 0) {
         sp1C->unk132 = (u8) (sp1C->unk132 + 1);
         func_8001ABF4(D_80177A60, 0, 0, &D_80119128);
@@ -296,7 +296,7 @@ void func_800DD9E0(void) {
 void func_800DDAA8(void) {
     struct PlayerStruct* sp24;
 
-    sp24 = &D_80154150[D_80177A60];
+    sp24 = &gPlayerData[D_80177A60];
     if (sp24->unk132 == 0) {
         sp24->unk132 = (u8) (sp24->unk132 + 1);
         sp24->PosY = (f32) (sp24->PosY + 5.0f);
@@ -321,7 +321,7 @@ void func_800DDAA8(void) {
 void func_800DDC5C(void) {
     struct PlayerStruct* sp24;
 
-    sp24 = &D_80154150[D_80177A60];
+    sp24 = &gPlayerData[D_80177A60];
     if (sp24->unk132 == 0) {
         sp24->unk132 = (u8) (sp24->unk132 + 1);
         func_8001C0EC(D_80177A60, 0, 3, 0x70, &D_80118FF4);

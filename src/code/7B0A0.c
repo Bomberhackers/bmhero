@@ -84,9 +84,7 @@ extern s16* D_80110D4C[];
 extern s32 D_8016CAA0[][2];
 
 extern Gfx* gMasterDisplayList;
-extern struct PlayerStruct D_80154150[]; //weird
-extern struct PlayerStruct D_80154154[];
-extern struct PlayerStruct D_80154158[];
+extern struct PlayerStruct gPlayerData[]; //weird
 
 // .bss
 s8 D_80134BF0;
@@ -776,9 +774,9 @@ void func_8008AE64(s16* arg0) {
     s32 sp4;
 
     sp4 = D_80134D48[arg0[0]].unk0;
-    gMegaStruct.D_80134F28.x = D_80154150[sp4].PosX;
-    gMegaStruct.D_80134F28.y = D_80154154[sp4].PosX + arg0[1];
-    gMegaStruct.D_80134F28.z = D_80154158[sp4].PosX;
+    gMegaStruct.D_80134F28.x = gPlayerData[sp4].PosX;
+    gMegaStruct.D_80134F28.y = gPlayerData[sp4].PosY + arg0[1];
+    gMegaStruct.D_80134F28.z = gPlayerData[sp4].PosZ;
     gMegaStruct.D_80134F34.x = arg0[2];
     gMegaStruct.D_80134F34.y = arg0[3];
     gMegaStruct.D_80134F34.z = arg0[4];
@@ -844,9 +842,9 @@ void func_8008B0F4(void) {
             gMegaStruct.D_80134F28.z = gMegaStruct.D_80134F28.z + gMegaStruct.D_80134F50.z;
         } else {
             sp1C = D_80134D48[gMegaStruct.D_80134FA8].unk0;
-            gMegaStruct.D_80134F28.x = D_80154150[sp1C].PosX;
-            gMegaStruct.D_80134F28.y = D_80154154[sp1C].PosX + (f32) gMegaStruct.D_80134FA4.unk2;
-            gMegaStruct.D_80134F28.z = D_80154158[sp1C].PosX;
+            gMegaStruct.D_80134F28.x = gPlayerData[sp1C].PosX;
+            gMegaStruct.D_80134F28.y = gPlayerData[sp1C].PosY + (f32) gMegaStruct.D_80134FA4.unk2;
+            gMegaStruct.D_80134F28.z = gPlayerData[sp1C].PosZ;
         }
     } else {
         if (D_80134C20 == 0) {
@@ -862,9 +860,9 @@ void func_8008B0F4(void) {
         gMegaStruct.D_80134F44.z = gMegaStruct.D_80134F44.z + gMegaStruct.D_80134F68.z;
         if (gMegaStruct.D_80134FA4.unk0 == 1) {
             sp1C = D_80134D48[gMegaStruct.D_80134FA8].unk0;
-            gMegaStruct.D_80134F28.x = D_80154150[sp1C].PosX;
-            gMegaStruct.D_80134F28.y = D_80154154[sp1C].PosX + (f32) gMegaStruct.D_80134FA4.unk2;
-            gMegaStruct.D_80134F28.z = D_80154158[sp1C].PosX;
+            gMegaStruct.D_80134F28.x = gPlayerData[sp1C].PosX;
+            gMegaStruct.D_80134F28.y = gPlayerData[sp1C].PosY + (f32) gMegaStruct.D_80134FA4.unk2;
+            gMegaStruct.D_80134F28.z = gPlayerData[sp1C].PosZ;
         } else {
             gMegaStruct.D_80134F28.x += gMegaStruct.D_80134F50.x;
             gMegaStruct.D_80134F28.y = gMegaStruct.D_80134F28.y + gMegaStruct.D_80134F50.y;

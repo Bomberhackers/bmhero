@@ -22,6 +22,7 @@ extern void func_80029824(s32, s32);
 extern void func_80029B60(s32);
 extern void func_80029C40(s32);
 extern void func_80029EF8(s32, f32, s32);
+extern void func_800FA27C();
 
 typedef struct {
     s16 unk0;
@@ -936,7 +937,15 @@ void func_800FA1C0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800FA27C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800FA4D4.s")
+void func_800FA4D4(void) {
+    struct PlayerStruct* sp1C;
+
+    sp1C = &gPlayerData[D_80177A60];
+    if (sp1C->unk132 == 0) {
+        sp1C->unkA8 = 1;
+    }
+    func_800FA27C();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800FA54C.s")
 

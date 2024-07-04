@@ -925,7 +925,14 @@ void func_800FA148(void) {
     func_80027464(2, &D_801137FC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800FA1C0.s")
+void func_800FA1C0(void) {
+    if (D_80177A64 == 0) {
+        gPlayerData[D_80177A60].unkA4 = 3;
+    } else if (D_80177A64 == 1) {
+        gPlayerData[D_80177A60].unkA4 = 2;
+    }
+    gPlayerData[D_80177A60].unk132 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800FA27C.s")
 

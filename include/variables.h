@@ -139,12 +139,6 @@ struct UnkStruct_8008AE64
     char Padding[9];
 };
 
-struct UnkStruct_8008AE64_2
-{
-    f32 Unk0;
-    char Padding[0x150 - sizeof(f32)];
-};
-
 struct UnkStruct80088B80
 {
     s16 Unk0;
@@ -161,6 +155,48 @@ struct UnkStruct80088B80_3
 {
     struct UnkStruct_8008AE64 Unk0;
     char Padding[0x3];
+};
+
+struct PlayerStruct
+{
+    f32 PosX; //00
+    f32 PosY; //04
+    f32 PosZ; //08
+    f32 ScaleX;
+    f32 ScaleY;
+    f32 ScaleZ;
+    f32 RotX; //18
+    f32 RotY; //1C
+    f32 RotZ; //20
+    f32 VelX; //24
+    f32 VelY; //28
+    f32 VelZ; //2C
+    char padding4[0xC];
+    f32 unk3C;
+    char padding5[0x4];
+    f32 unk44;
+    char padding6[0x5C];
+    s16 unkA4;
+    s16 unkA6;
+    s16 unkA8;
+    char padding7[0x2];
+    s16 unkAC;
+    char padding8[0x4];
+    s16 unkB2;
+    char padding9[0x52];
+    s16 unk106;
+    s16 unk108;
+    char padding10[0x28];
+    u8 unk132;
+    char padding11[0x7];
+    s8 unk13A;
+    s8 unk13B;
+    s8 unk13C;
+    s8 unk13D;
+    s8 unk13E;
+    s8 unk13F;
+    s16 Unk140;
+    char padding12[0x150 - 0x140 - sizeof(s16)];
 };
 
 // extern symbols
@@ -256,5 +292,22 @@ extern struct UnkStruct80134D48 D_80134D48[0x18];
 extern struct MegaStruct gMegaStruct; // 80134F28
 
 extern u8 gDebugTextBuf[0xC8];
+
+struct UnkStructSTCG
+{
+    f32 Unk0;
+    f32 Unk4;
+    f32 Unk8;
+    char Padding_3[0x24 - (sizeof(f32) * 3)];
+    f32 Unk24;
+    f32 Unk28;
+    f32 Unk2C;
+    char Padding_1[0xA4 - 0x24 - (sizeof(s32) * 3)];
+    s16 UnkA4;
+    char Padding_2[0x108 - 0xA4 - sizeof(s16)];
+    s16 Unk108;
+};
+
+extern struct PlayerStruct gPlayerData[];
 
 #endif // _VARIABLES_H_

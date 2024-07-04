@@ -44,7 +44,6 @@ typedef struct {
 
 extern UnkStruct800FA0DC D_801541F4[];
 extern UnkStruct80165100 D_8015428A[];
-extern struct PlayerStruct gPlayerData[];
 extern UnkStruct80165100* D_80165100;
 extern struct PlayerStruct D_80119128;
 extern struct PlayerStruct D_80118FF4;

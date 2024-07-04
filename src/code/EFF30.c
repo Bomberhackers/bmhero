@@ -109,7 +109,6 @@ extern u16 D_8016E2B0[];
 extern struct LightingStruct D_8004A5B8[];
 
 extern s16 D_80134C14;
-extern struct PlayerStruct gPlayerData[];
 extern f32 D_8016E140;
 extern f32 D_8016E144;
 extern f32 D_8016E148;

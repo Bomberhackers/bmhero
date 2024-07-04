@@ -84,7 +84,6 @@ extern s16* D_80110D4C[];
 extern s32 D_8016CAA0[][2];
 
 extern Gfx* gMasterDisplayList;
-extern struct PlayerStruct gPlayerData[]; //weird
 
 // .bss
 s8 D_80134BF0;

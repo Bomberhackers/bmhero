@@ -308,4 +308,6 @@ struct UnkStructSTCG
     s16 Unk108;
 };
 
+extern struct PlayerStruct gPlayerData[];
+
 #endif // _VARIABLES_H_

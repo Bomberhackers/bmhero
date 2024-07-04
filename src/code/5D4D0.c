@@ -1,6 +1,13 @@
 #include "common.h"
 #include "variables.h"
 
+struct UnkBigStruct_8006B64C
+{
+    u16 Unk0;
+    u16 Unk1;
+    u8 Padding[336 - sizeof(u32)];
+} UnkBigStruct_8006B64C;
+
 extern f32 D_8016E140;
 extern f32 D_8016E144;
 extern f32 D_8016E148;
@@ -25,6 +32,10 @@ extern u8 D_801775E4;
 extern u8 D_801775EC;
 extern void* D_8011472C;
 
+extern s8 D_8017793F;
+extern s8 D_80165242;
+extern struct UnkBigStruct_8006B64C D_801541F8[];
+
 extern u8 D_80177933;
 
 extern s32 func_80014E80(s32);                               /* extern */
@@ -36,6 +47,8 @@ extern s32 func_80014E80(s32);                               /* extern */
 extern void func_80067748(f32, f32, f32);                     /* extern */
 extern void func_80081468(s32, f32, f32, f32);                  /* extern */
 extern s32 func_80027464(s32, void*, f32, f32, f32, f32);
+extern void func_800178D4(s32, s32, s32, s32, s32);                   /* extern */
+extern s32 func_80026E58(s32, s32);                          /* extern */
 
 void func_8006AFB0(void) {
     f32 sp24;
@@ -186,7 +199,34 @@ void func_8006B5F8(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/5D4D0/func_8006B64C.s")
+void func_8006B64C(void) {
+    s32 sp24;
+    s32 sp28;
+
+    if (D_801775EE == 0) {
+        D_801775EE = 1;
+        D_8017793F = 0;
+    }
+    if ((D_8017793F == 0) && (D_80165242 >= 0xA)) 
+    {
+        sp24 = 0xE;
+        while(1)
+        {
+            sp24 = func_80026E58(0x54, sp24);
+            if(sp24 == -1)
+            {
+                break;
+            }
+            else
+            {
+                D_801541F8[sp24].Unk0 = 1;
+                func_800178D4(-1, 0, 0x61, -1, 0);
+                D_8017793F = 1;
+                break;
+            }            
+        }
+    }
+}
 
 void func_8006B754(void) {
     if (D_801775EE == 0) {

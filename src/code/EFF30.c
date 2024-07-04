@@ -1,4 +1,5 @@
 #include "common.h"
+#include "variables.h"
 
 //STRUCTS
 
@@ -22,19 +23,6 @@ struct LightingStruct
     struct Light AmbientLight;
     struct Light DiffuseLight;
     s8 Direction[8];
-};
-
-struct PlayerStruct
-{
-    f32 PosX; //00
-    f32 PosY; //04
-    f32 PosZ; //08
-    char Padding[0xC];
-    f32 RotX;
-    f32 RotY;
-    f32 RotZ;
-    char Padding_2[0x140 - (sizeof(float) * 6) - 0xC];
-    s16 Unk140;
 };
 
 struct ByteGroup

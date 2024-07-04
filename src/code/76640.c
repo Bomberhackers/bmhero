@@ -1,5 +1,7 @@
 #include "common.h"
 
+extern u8 gLifeCount;
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80084120.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_800841E8.s")
@@ -56,7 +58,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_800881D4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80088248.s")
+void func_80088248(s32 arg0) {
+    if (arg0 > 0) {
+        gLifeCount += arg0;
+        if ((s32) gLifeCount >= 0x63) {
+            gLifeCount = 0x63;
+        }
+    }
+    else if (gLifeCount != 0) {
+        gLifeCount += arg0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_800882C8.s")
 

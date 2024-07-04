@@ -4264,6 +4264,7 @@ D_80124D96 = 0x80124D96; // defined:true
 D_80124D9E = 0x80124D9E; // defined:true
 D_80124D9F = 0x80124D9F; // defined:true
 D_80124DA1 = 0x80124DA1; // defined:true
+gLifeCount = 0x80165243; //defined:true size:0x01
 gPlayerData = 0x80154150; // defined:true size:0x150
 D_801652A4 = 0x801652A4; // defined:true
 D_801652A5 = 0x801652A5; // defined:true

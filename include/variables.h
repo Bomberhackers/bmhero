@@ -157,47 +157,48 @@ struct UnkStruct80088B80_3
     char Padding[0x3];
 };
 
-struct PlayerStruct
-{
-    f32 PosX; //00
-    f32 PosY; //04
-    f32 PosZ; //08
-    f32 ScaleX;
-    f32 ScaleY;
-    f32 ScaleZ;
-    f32 RotX; //18
-    f32 RotY; //1C
-    f32 RotZ; //20
-    f32 VelX; //24
-    f32 VelY; //28
-    f32 VelZ; //2C
-    char padding4[0xC];
-    f32 unk3C;
-    char padding5[0x4];
-    f32 unk44;
-    char padding6[0x5C];
-    s16 unkA4;
-    s16 unkA6;
-    s16 unkA8;
-    char padding7[0x2];
-    s16 unkAC;
-    char padding8[0x4];
-    s16 unkB2;
-    char padding9[0x52];
-    s16 unk106;
-    s16 unk108;
-    char padding10[0x28];
-    u8 unk132;
-    char padding11[0x7];
-    s8 unk13A;
-    s8 unk13B;
-    s8 unk13C;
-    s8 unk13D;
-    s8 unk13E;
-    s8 unk13F;
-    s16 Unk140;
-    char padding12[0x150 - 0x140 - sizeof(s16)];
-};
+struct PlayerStruct {
+    /* 0x000 */ f32 PosX;
+    /* 0x004 */ f32 PosY;
+    /* 0x008 */ f32 PosZ;
+    /* 0x00C */ f32 ScaleX;
+    /* 0x010 */ f32 ScaleY;
+    /* 0x014 */ f32 ScaleZ;
+    /* 0x018 */ f32 RotX;
+    /* 0x01C */ f32 RotY;
+    /* 0x020 */ f32 RotZ;
+    /* 0x024 */ f32 VelX;
+    /* 0x028 */ f32 VelY;
+    /* 0x02C */ f32 VelZ;
+    /* 0x030 */ char pad30[0xC];                    /* maybe part of VelZ[4]? */
+    /* 0x03C */ f32 unk3C;
+    /* 0x040 */ f32 unk40;                          /* inferred */
+    /* 0x044 */ f32 unk44;
+    /* 0x048 */ f32 unk48;                          /* inferred */
+    /* 0x04C */ char pad4C[0x58];                   /* maybe part of unk48[0x17]? */
+    /* 0x0A4 */ s16 unkA4;
+    /* 0x0A6 */ s16 unkA6;
+    /* 0x0A8 */ s16 unkA8;
+    /* 0x0AA */ s16 unkAA;
+    /* 0x0AC */ s16 unkAC;
+    /* 0x0AE */ s16 unkAE;                          /* inferred */
+    /* 0x0B0 */ char padB0[2];
+    /* 0x0B2 */ s16 unkB2;
+    /* 0x0B4 */ char padB4[0x52];                   /* maybe part of unkB2[0x2A]? */
+    /* 0x106 */ s16 unk106;
+    /* 0x108 */ s16 unk108;
+    /* 0x10A */ char pad10A[0x28];                  /* maybe part of unk108[0x15]? */
+    /* 0x132 */ u8 unk132;
+    /* 0x133 */ char pad133[7];                     /* maybe part of unk132[8]? */
+    /* 0x13A */ s8 unk13A;
+    /* 0x13B */ s8 unk13B;
+    /* 0x13C */ s8 unk13C;
+    /* 0x13D */ s8 unk13D;
+    /* 0x13E */ s8 unk13E;
+    /* 0x13F */ s8 unk13F;
+    /* 0x140 */ s16 Unk140;
+    /* 0x142 */ char pad142[0xE];                   /* maybe part of Unk140[8]? */
+};                                                  /* size = 0x150 */
 
 // extern symbols
 extern u32 D_8004A280;

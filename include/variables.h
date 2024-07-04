@@ -173,7 +173,7 @@ struct PlayerStruct
     f32 VelZ; //2C
     char padding4[0xC];
     f32 unk3C;
-    char padding5[0x4];
+    f32 unk40;
     f32 unk44;
     char padding6[0x5C];
     s16 unkA4;

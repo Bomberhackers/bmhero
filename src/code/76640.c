@@ -61,8 +61,8 @@ extern u8 gLifeCount;
 void func_80088248(s32 arg0) {
     if (arg0 > 0) {
         gLifeCount += arg0;
-        if ((s32) gLifeCount >= 0x63) {
-            gLifeCount = 0x63;
+        if ((s32) gLifeCount >= 99) {
+            gLifeCount = 99;
         }
     }
     else if (gLifeCount != 0) {

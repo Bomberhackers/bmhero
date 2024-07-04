@@ -16,6 +16,9 @@ struct UnkBigStruct_8006B64C
 extern f32 D_80177760[];
 extern u16 D_8017794A;
 
+extern u16 D_80177942;
+extern u16 D_80177946;
+
 extern f32 D_8016E140;
 extern f32 D_8016E144;
 extern f32 D_8016E148;
@@ -319,7 +322,41 @@ void func_8006BA5C(void) {
     func_80017CFC(0, 0x3C, -1, 0);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/5D4D0/func_8006BAC4.s")
+void func_8006BAC4(void) {
+    s32 sp1C;
+
+    if (D_801775EE == 0) {
+        D_801775EE = 1;
+        D_80177942 = 0x32;
+        D_80177946 = 0xFF;
+    }
+    
+    sp1C = 0xE;
+    
+    while(1)
+    {
+        sp1C = func_80026E58(0x267, sp1C);
+        
+        if (sp1C == -1) 
+        {
+            break;
+        }
+        else 
+        {
+            if(D_80177942 == 0)
+            {
+                if (D_80177946 % 2 == 0)
+                {
+                    func_80081468(0x2C7, gPlayerData[sp1C].PosX, gPlayerData[sp1C].PosY, gPlayerData[sp1C].PosZ);
+                }         
+                D_80177946 -= 1;
+            }
+            else D_80177942 -= 1;
+            
+            break;
+        }
+    }
+}
 
 void func_8006BBF4(void) {
     s32 sp34;
@@ -382,9 +419,6 @@ void func_8006BE9C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/5D4D0/func_8006BF5C.s")
-//temp comment out
-/*
 void func_8006BF5C(void) {
     s32 sp24;
     f32 sp20;
@@ -409,8 +443,8 @@ void func_8006BF5C(void) {
             {
                 if (D_8017794A == 0)
                 {
-                    sp1C = __sinf((f32) (((f64)gPlayerData[sp24].unk3C) * 0.017453292519943295)) * -90.0f;
-                    sp18 = __cosf((f32) (((f64)gPlayerData[sp24].unk3C) * 0.017453292519943295)) * -90.0f;
+                    sp1C = sinf((f32) (((f64)gPlayerData[sp24].unk3C) * 0.017453292519943295)) * -90.0f;
+                    sp18 = cosf((f32) (((f64)gPlayerData[sp24].unk3C) * 0.017453292519943295)) * -90.0f;
 
                     func_80067748(gPlayerData[sp24].PosX + sp1C, gPlayerData[sp24].PosY, gPlayerData[sp24].PosZ + sp18);
                     sp20 = D_80177760[D_801776E0 & 1];
@@ -422,7 +456,7 @@ void func_8006BF5C(void) {
             }
         }        
     }
-}*/
+}
 
 void func_8006C18C(void) {
     if ((D_80134C22 != 0) && (D_801775EE == 0)) {

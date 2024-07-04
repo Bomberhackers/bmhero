@@ -386,7 +386,7 @@ segments:
     - [0xF5EF0, rodata]
     - [0xF5FE0, rodata]
     - [0xF6220, rodata]
-    - [0xF74C0, rodata]
+    - [0xF74C0, .rodata, code/5D4D0]
     - [0xF7700, hasm, ../src/unk_rom_table_F7700]
     - [auto, .rodata, ../src/unk_rom_table_F7700] # might be part of F77F0, but split it out so I can label the ROM table.
     - [0xF77F0, rodata]

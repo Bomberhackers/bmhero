@@ -42,8 +42,6 @@ typedef struct {
 } UnkStruct80165100;
 
 
-extern UnkStruct800FA0DC D_801541F4[];
-extern UnkStruct80165100 D_8015428A[];
 extern UnkStruct80165100* D_80165100;
 extern struct PlayerStruct D_80119128;
 extern struct PlayerStruct D_80118FF4;
@@ -273,8 +271,10 @@ void func_800DD928(void) {
     s32 sp24;
 
     sp24 = func_80027464(1, &D_80114354, (f32) D_80165100->unk2, (f32) (D_80165100->unk4 - 5), (f32) D_80165100->unk6, (f32) D_80165100->unk8);
-    if (sp24 != -1) {
-        D_8015428A[sp24].unk0 = 1;
+
+    if(sp24 != -1)
+    {
+        gPlayerData[sp24].unk13A = 1;
     }
 }
 
@@ -359,7 +359,7 @@ void func_800DE7DC(void) {
 
     sp24 = func_80027464(1, &D_8011436C, (f32) D_80165100->unk2, (f32) (D_80165100->unk4 + 5), (f32) D_80165100->unk6, (f32) D_80165100->unk8);
     if (sp24 != -1) {
-        D_8015428A[sp24].unk0 = 1;
+        gPlayerData[sp24].unk13A = 1;
     }
 }
 
@@ -911,7 +911,7 @@ void func_800E3474(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F9DE0.s")
 
 void func_800FA0DC(void) {
-    if (D_801541F4[D_80177A60].unk0 == 1) {
+    if (gPlayerData[D_80177A60].unkA4 == 1) {
         goto stub;
         stub:;
         func_800F9DE0();

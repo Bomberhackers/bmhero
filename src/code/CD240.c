@@ -30,6 +30,10 @@ extern void func_80029C40(s32);
 extern void func_80029EF8(s32, f32, s32);
 extern void func_800F9DE0();
 extern void func_800FA27C();
+extern void func_800F91A4();
+extern void func_800F9294();
+extern void func_800F94A8();
+extern void func_800F95F4();
 
 typedef struct {
     s16 unk0;
@@ -914,7 +918,23 @@ void func_800E3474(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F95F4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F9800.s")
+void func_800F9800(void) {
+
+    switch (gPlayerData[D_80177A60].unkA4) {
+    case 1:
+        func_800F91A4();
+        break;
+    case 2:
+        func_800F9294();
+        break;
+    case 3:
+        func_800F94A8();
+        break;
+    case 4:
+        func_800F95F4();
+        break;
+    }
+}
 
 void func_800F98C4(void) {
     struct PlayerStruct* sp24;

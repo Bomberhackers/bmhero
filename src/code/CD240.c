@@ -965,4 +965,13 @@ void func_800FA7D8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800FAA88.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800FAC60.s")
+void func_800FAC60(void) {
+    switch (gPlayerData[D_80177A60].unkA4) {
+    case 1:
+        func_800FA888();
+        break;
+    case 2:
+        func_800FAA88();
+        break;
+    }
+}

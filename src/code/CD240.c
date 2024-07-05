@@ -61,6 +61,7 @@ extern s32 D_80177A60;
 extern s32 D_80177A64;
 extern s32 D_801137FC;
 extern s32 D_80113838;
+extern s32 D_8011BA94;
 extern void* D_80114354;
 
 
@@ -992,7 +993,35 @@ void func_800FA4D4(void) {
     func_800FA27C();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800FA54C.s")
+void func_800FA54C(void) {
+    struct PlayerStruct* sp34;
+    s32 sp30;
+
+    sp34 = &gPlayerData[D_80177A60];
+    sp30 = (s32) sp34->unkE8;
+    if (sp34->unk132 == 0) {
+        sp34->unk132 = 1U;
+        sp34->unkA8 = 0;
+        func_8001C0EC(sp30, 3, 0, 0xC1, &D_8011BA94);
+        func_8001BBDC(sp30, 1);
+        func_8001ABF4(sp30, 0, 3, &D_8011BB50);
+        func_8001ABF4(sp30, 1, 3, &D_8011BB50.RotY);
+        sp34->unk40 = 270.0f;
+        sp34->unk48 = 6.0f;
+        sp34->unk44 = 0.0f;
+        sp34->unk3C = (f32) sp34->unk44;
+    }
+    sp34->VelZ = 0.0f;
+    sp34->VelX = sp34->VelY = sp34->VelZ;
+    if (sp34->unk108 == -1) {
+        if (sp34->unkAA != 0) {
+            sp34->unkAA = (s16) (sp34->unkAA - 1);
+        }
+        if (sp34->unkAA == 0) {
+            sp34->unk108 = 1;
+        }
+    }
+}
 
 void func_800FA730(void) {
 

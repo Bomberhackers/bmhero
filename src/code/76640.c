@@ -1,6 +1,17 @@
 #include "common.h"
 
 extern u8 gLifeCount;
+extern u8 D_80165238;
+extern s8 D_80165239;
+extern s8 D_8016523A;
+extern s8 D_8016523B;
+extern s8 D_8016523C;
+extern u8 D_8016523D;
+extern u8 D_80165241;
+extern s8 D_80165244;
+extern s8 D_80165245;
+extern s8 D_8016523F;
+extern s8 D_80165240;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80084120.s")
 
@@ -72,7 +83,14 @@ void func_80088248(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_800882C8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80088338.s")
+void func_80088338(void) {
+    gLifeCount = D_80165238;
+    D_80165244 = D_80165239;
+    D_80165245 = D_8016523A;
+    D_8016523F = D_8016523B;
+    D_80165240 = D_8016523C;
+    D_80165241 = D_8016523D;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_800883A8.s")
 

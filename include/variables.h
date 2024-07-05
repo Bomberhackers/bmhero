@@ -171,14 +171,15 @@ struct PlayerStruct
     f32 VelX; //24
     f32 VelY; //28
     f32 VelZ; //2C
-    char pad30[0xC];
+    char pad30[0x8];
+    f32 unk38;
     f32 unk3C;
     f32 unk40;                          /* inferred */
     f32 unk44;
     f32 unk48;                          /* inferred */
     char padding6[0x8];
     f32 unk54;
-    char padding6[0x4C];
+    char padding13[0x4C];
     s16 unkA4;
     s16 unkA6;
     s16 unkA8;
@@ -194,7 +195,7 @@ struct PlayerStruct
     char padding10[0x1C];
     s16 unk106;
     s16 unk108;
-    char padding10[0x28];
+    char padding14[0x28];
     u8 unk132;
     char padding11[0x7];
     s8 unk13A;

@@ -171,24 +171,32 @@ struct PlayerStruct
     f32 VelX; //24
     f32 VelY; //28
     f32 VelZ; //2C
-    char padding4[0xC];
+    char padding4[0x8];
+    f32 unk38;
     f32 unk3C;
-    char padding5[0x4];
+    f32 unk40;
     f32 unk44;
-    char padding6[0x5C];
+    f32 unk48;
+    char padding5[0x8];
+    f32 unk54;
+    char padding6[0x4C];
     s16 unkA4;
     s16 unkA6;
     s16 unkA8;
-    char padding7[0x2];
+    s16 unkAA;
     s16 unkAC;
-    char padding8[0x4];
+    char padding7[0x4];
     s16 unkB2;
-    char padding9[0x52];
+    char padding8[0x30];
+    s16 unkE4;
+    char padding9[0x2];
+    s16 unkE8;
+    char padding10[0x1C];
     s16 unk106;
     s16 unk108;
-    char padding10[0x28];
+    char padding11[0x28];
     u8 unk132;
-    char padding11[0x7];
+    char padding12[0x7];
     s8 unk13A;
     s8 unk13B;
     s8 unk13C;
@@ -196,7 +204,7 @@ struct PlayerStruct
     s8 unk13E;
     s8 unk13F;
     s16 Unk140;
-    char padding12[0x150 - 0x140 - sizeof(s16)];
+    char padding13[0x150 - 0x140 - sizeof(s16)];
 };
 
 // extern symbols

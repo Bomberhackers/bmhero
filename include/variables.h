@@ -187,14 +187,16 @@ struct PlayerStruct
     s16 unkAC;
     char padding7[0x4];
     s16 unkB2;
-    char padding8[0x34];
+    char padding8[0x30];
+    s16 unkE4;
+    char padding9[0x2];
     s16 unkE8;
-    char padding9[0x1C];
+    char padding10[0x1C];
     s16 unk106;
     s16 unk108;
-    char padding10[0x28];
+    char padding11[0x28];
     u8 unk132;
-    char padding11[0x7];
+    char padding12[0x7];
     s8 unk13A;
     s8 unk13B;
     s8 unk13C;
@@ -202,7 +204,7 @@ struct PlayerStruct
     s8 unk13E;
     s8 unk13F;
     s16 Unk140;
-    char padding12[0x150 - 0x140 - sizeof(s16)];
+    char padding13[0x150 - 0x140 - sizeof(s16)];
 };
 
 // extern symbols

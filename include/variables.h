@@ -157,56 +157,57 @@ struct UnkStruct80088B80_3
     char Padding[0x3];
 };
 
-struct PlayerStruct
-{
-    f32 PosX; //00
-    f32 PosY; //04
-    f32 PosZ; //08
-    f32 ScaleX;
-    f32 ScaleY;
-    f32 ScaleZ;
-    f32 RotX; //18
-    f32 RotY; //1C
-    f32 RotZ; //20
-    f32 VelX; //24
-    f32 VelY; //28
-    f32 VelZ; //2C
-    char pad30[0x8];
-    f32 unk38;
-    f32 unk3C;
-    f32 unk40;                          /* inferred */
-    f32 unk44;
-    f32 unk48;                          /* inferred */
-    char padding6[0x8];
-    f32 unk54;
-    char padding13[0x4C];
-    s16 unkA4;
-    s16 unkA6;
-    s16 unkA8;
-    s16 unkAA;
-    s16 unkAC;
-    s16 unkAE;                          /* inferred */
-    char padB0[2];
-    s16 unkB2;
-    char padding8[0x30];
-    s16 unkE4;
-    char padding9[0x2];
-    s16 unkE8;
-    char padding10[0x1C];
-    s16 unk106;
-    s16 unk108;
-    char padding14[0x28];
-    u8 unk132;
-    char padding11[0x7];
-    s8 unk13A;
-    s8 unk13B;
-    s8 unk13C;
-    s8 unk13D;
-    s8 unk13E;
-    s8 unk13F;
-    s16 Unk140;
-    char padding12[0x150 - 0x140 - sizeof(s16)];
-};
+struct PlayerStruct {
+    /* 0x000 */ f32 PosX;
+    /* 0x004 */ f32 PosY;
+    /* 0x008 */ f32 PosZ;
+    /* 0x00C */ f32 ScaleX;
+    /* 0x010 */ f32 ScaleY;
+    /* 0x014 */ f32 ScaleZ;
+    /* 0x018 */ f32 RotX;
+    /* 0x01C */ f32 RotY;
+    /* 0x020 */ f32 RotZ;
+    /* 0x024 */ f32 VelX;
+    /* 0x028 */ f32 VelY;
+    /* 0x02C */ f32 VelZ;
+    /* 0x030 */ char pad30[8];                      /* maybe part of VelZ[3]? */
+    /* 0x038 */ f32 unk38;
+    /* 0x03C */ f32 unk3C;
+    /* 0x040 */ f32 unk40;
+    /* 0x044 */ f32 unk44;
+    /* 0x048 */ f32 unk48;
+    /* 0x04C */ char pad4C[8];                      /* maybe part of unk48[3]? */
+    /* 0x054 */ f32 unk54;
+    /* 0x058 */ char pad58[0x4C];                   /* maybe part of unk54[0x14]? */
+    /* 0x0A4 */ s16 unkA4;
+    /* 0x0A6 */ s16 unkA6;
+    /* 0x0A8 */ s16 unkA8;
+    /* 0x0AA */ s16 unkAA;
+    /* 0x0AC */ s16 unkAC;
+    /* 0x0AE */ s16 unkAE;
+    /* 0x0B0 */ char padB0[2];
+    /* 0x0B2 */ s16 unkB2;
+    /* 0x0B4 */ char padB4[0x30];                   /* maybe part of unkB2[0x19]? */
+    /* 0x0E4 */ s16 unkE4;
+    /* 0x0E6 */ char padE6[2];
+    /* 0x0E8 */ s16 unkE8;
+    /* 0x0EA */ char padEA[0x1C];                   /* maybe part of unkE8[0xF]? */
+    /* 0x106 */ s16 unk106;
+    /* 0x108 */ s16 unk108;
+    /* 0x10A */ char pad10A[1];
+    /* 0x10B */ u8 unk10B;                          /* inferred */
+    /* 0x10C */ char pad10C[0x26];                  /* maybe part of unk10B[0x27]? */
+    /* 0x132 */ u8 unk132;
+    /* 0x133 */ char pad133[7];                     /* maybe part of unk132[8]? */
+    /* 0x13A */ s8 unk13A;
+    /* 0x13B */ s8 unk13B;
+    /* 0x13C */ s8 unk13C;
+    /* 0x13D */ s8 unk13D;
+    /* 0x13E */ s8 unk13E;
+    /* 0x13F */ s8 unk13F;
+    /* 0x140 */ s16 Unk140;
+    /* 0x142 */ char pad142[0xE];                   /* maybe part of Unk140[8]? */
+};                                                  /* size = 0x150 */
 
 // extern symbols
 extern u32 D_8004A280;

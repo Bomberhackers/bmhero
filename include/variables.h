@@ -171,19 +171,24 @@ struct PlayerStruct
     f32 VelX; //24
     f32 VelY; //28
     f32 VelZ; //2C
-    char padding4[0xC];
+    char padding4[0x8];
+    f32 unk38;
     f32 unk3C;
     f32 unk40;
     f32 unk44;
-    char padding6[0x5C];
+    char padding5[0xC];
+    f32 unk54;
+    char padding6[0x4C];
     s16 unkA4;
     s16 unkA6;
     s16 unkA8;
-    char padding7[0x2];
+    s16 unkAA;
     s16 unkAC;
-    char padding8[0x4];
+    char padding7[0x4];
     s16 unkB2;
-    char padding9[0x52];
+    char padding8[0x34];
+    s16 unkE8;
+    char padding9[0x1C];
     s16 unk106;
     s16 unk108;
     char padding10[0x28];

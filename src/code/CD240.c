@@ -18,7 +18,11 @@ extern f32 func_80015538(f32, f32);
 extern s32 func_80029018(s32, s32, s32, f32, f32, f32);
 extern s32 func_800297DC();
 extern s32 func_8002A0D0(s32, f32, f32, f32);
+extern s32 func_8001B44C(s32, s32);
+extern void func_8001BBDC(s32, s32);
+extern void func_800281A4(s32, s32);
 extern void func_80029824(s32, s32);
+extern void func_80029D04(s32);
 extern void func_80029B60(s32);
 extern void func_80029C40(s32);
 extern void func_80029EF8(s32, f32, s32);
@@ -51,6 +55,7 @@ extern UnkStruct80165100 D_801142E8;
 extern struct PlayerStruct D_80118E9C;
 extern UnkStruct80165100 D_801142F4;
 extern struct PlayerStruct D_80118EB4;
+extern struct PlayerStruct D_8011BB50;
 extern s32 D_80177A60;
 extern s32 D_80177A64;
 extern s32 D_801137FC;
@@ -936,7 +941,45 @@ void func_800FA1C0(void) {
     gPlayerData[D_80177A60].unk132 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800FA27C.s")
+void func_800FA27C(void) {
+    struct PlayerStruct* sp2C;
+    s32 sp28;
+
+    sp2C = &gPlayerData[D_80177A60];
+    sp28 = (s32) sp2C->unkE8;
+    if (sp2C->unk132 == 0) {
+        sp2C->unk132 = 1U;
+        if (sp2C->unkA8 != 0) {
+            sp2C->unk108 = 0;
+        } else {
+            sp2C->unk108 = -1;
+        }
+        sp2C->unkAA = 0xA;
+        sp2C->unkA6 = 0x14;
+        func_8001BBDC(sp28, 0);
+        func_8001ABF4(sp28, 0, 3, &D_8011BB50.unk38);
+        func_8001ABF4(sp28, 1, 3, &D_8011BB50.unk54);
+    }
+    if (sp2C->unkA6 != 0) {
+        sp2C->unkA6 = (s16) (sp2C->unkA6 - 1);
+        func_80029D04(D_80177A60);
+    } else {
+        sp2C->VelZ = 0.0f;
+        sp2C->VelX = sp2C->VelY = (f32) sp2C->VelZ;
+    }
+    if ((func_8001B44C(sp28, 3) != 0) && (sp2C->unkA6 == 0)) {
+        if (sp2C->unkA8 != 0) {
+            func_800281A4(D_80177A60, 0);
+            func_8002B0E4(sp28);
+            func_8002B0E4(D_80177A60);
+        } else {
+            func_8001BBDC(sp28, 1);
+            func_8001ABF4(sp28, 0, 3, &D_8011BB50);
+            func_8001ABF4(sp28, 1, 3, &D_8011BB50.RotY);
+            sp2C->unkA4 = 1;
+        }
+    }
+}
 
 void func_800FA4D4(void) {
     struct PlayerStruct* sp1C;

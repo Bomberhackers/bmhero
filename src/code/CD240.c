@@ -65,6 +65,7 @@ extern struct PlayerStruct D_80118E9C;
 extern UnkStruct80165100 D_801142F4;
 extern struct PlayerStruct D_801137F0;
 extern struct PlayerStruct D_80118EB4;
+extern struct PlayerStruct D_8011BA88;
 extern struct PlayerStruct D_8011BA8C;
 extern struct PlayerStruct D_8011BB50;
 extern s32 D_80177A60;
@@ -911,7 +912,18 @@ void func_800E3474(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F9120.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F91A4.s")
+void func_800F91A4(void) {
+    struct PlayerStruct* sp2C;
+
+    sp2C = &gPlayerData[D_80177A60];
+    if (sp2C->unk132 == 0) {
+        sp2C->unk132 = (u8) (sp2C->unk132 + 1);
+        func_8001C0EC(D_80177A60, 0, 0, 0x6A, &D_8011BA88);
+    }
+    func_8001B6BC(D_80177A60, 0, 0);
+    sp2C->VelZ = 0.0f;
+    sp2C->VelX = sp2C->VelY = sp2C->VelZ;
+}
 
 void func_800F9294(void) {
     struct PlayerStruct* sp24;

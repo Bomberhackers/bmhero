@@ -53,6 +53,7 @@ typedef struct {
 extern UnkStruct80165100* D_80165100;
 extern struct PlayerStruct D_80119128;
 extern struct PlayerStruct D_80118FF4;
+extern UnkStruct80165100 D_801137E4;
 extern UnkStruct80165100 D_8011436C;
 extern UnkStruct80165100 D_801142E8;
 extern struct PlayerStruct D_80118E9C;
@@ -915,7 +916,27 @@ void func_800E3474(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F9800.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F98C4.s")
+void func_800F98C4(void) {
+    struct PlayerStruct* sp24;
+    s32 sp20;
+
+    sp20 = func_80027464(1, &D_801137E4, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    if (sp20 != -1) {
+        sp24 = &gPlayerData[sp20];
+        sp24->unkE4 = (s16) D_80165100->unk0;
+        if (func_80026260(D_8016519C) == 1) {
+            if (sp24->unkE4 == 0x4D) {
+                sp24->unkE4 = 0x4E;
+            } else {
+                sp24->unkE4 = 0x4D;
+            }
+            sp24->unkA6 = 1;
+        }
+        if (sp24->unkE4 == 0x4D) {
+            sp24->PosY = (f32) (sp24->PosY + 180.0f);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F9A20.s")
 

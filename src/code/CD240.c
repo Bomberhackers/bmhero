@@ -21,6 +21,7 @@ extern s32 func_8001B44C(s32, s32);
 extern s32 func_800261E8(s32, s32);
 extern s32 func_80026260(s32);
 extern void func_800175F0(s32, s32, s32, s32, s32);
+extern void func_8001B6BC(s32, s32, f32);
 extern void func_8001BBDC(s32, s32);
 extern void func_800281A4(s32, s32);
 extern void func_80029824(s32, s32);
@@ -916,7 +917,37 @@ void func_800E3474(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F94A8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F95F4.s")
+void func_800F95F4(void) {
+    struct PlayerStruct* sp1C;
+
+    sp1C = &gPlayerData[D_80177A60];
+    if (sp1C->unk132 == 0) {
+        sp1C->unk132 = (u8) (sp1C->unk132 + 1);
+        sp1C->unk44 = 0.0f;
+        sp1C->unk3C = 0.0f;
+        sp1C->unk48 = 0.0f;
+        sp1C->unk40 = 270.0f;
+        sp1C->unkA6 = 0;
+    }
+    if (sp1C->unkA6 == 0) {
+        sp1C->unk48 = (f32) (sp1C->unk48 + 1.0f);
+        if (sp1C->unk48 == 19.0f) {
+            sp1C->unkA6 = 1;
+        }
+    } else if (sp1C->unkA6 < 6) {
+        sp1C->unk48 = 20.0f;
+        sp1C->unkA6 = (s16) (sp1C->unkA6 + 1);
+    } else {
+        sp1C->unk48 = (f32) (sp1C->unk48 - 1.0f);
+    }
+    func_8001B6BC(D_80177A60, 0, 0.0f);
+    func_80029C40(D_80177A60);
+    func_80029D04(D_80177A60);
+    if (sp1C->unk48 == 0.0f) {
+        sp1C->unkA4 = 1;
+        sp1C->unk132 = 0U;
+    }
+}
 
 void func_800F9800(void) {
 

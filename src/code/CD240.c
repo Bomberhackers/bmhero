@@ -915,7 +915,28 @@ void func_800E3474(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F9294.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F94A8.s")
+void func_800F94A8(void) {
+    struct PlayerStruct* sp1C;
+
+    sp1C = &gPlayerData[D_80177A60];
+    if (sp1C->unk132 == 0) {
+        sp1C->unk132 = (u8) (sp1C->unk132 + 1);
+        sp1C->unk44 = 0.0f;
+        sp1C->unk3C = 0.0f;
+        sp1C->unk48 = 0.0f;
+        sp1C->unk40 = 90.0f;
+        sp1C->unkA6 = 0;
+    }
+    func_8001B6BC(D_80177A60, 0, 0);
+    func_80029C40(D_80177A60);
+    func_80029D04(D_80177A60);
+    if (sp1C->unkA6 >= 0x1E) {
+        sp1C->unkA4 = 4;
+        sp1C->unk132 = 0U;
+    } else {
+        sp1C->unkA6 = (s16) (sp1C->unkA6 + 1);
+    }
+}
 
 void func_800F95F4(void) {
     struct PlayerStruct* sp1C;

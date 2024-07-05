@@ -903,7 +903,15 @@ void func_800E3474(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F8AC8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F901C.s")
+void func_800F901C(void) {
+    if (gPlayerData[D_80177A60].unkA4 == 1) {
+        goto stub;
+        stub:
+        func_800F8AC8();
+    } else {
+
+    }
+}
 
 void func_800F9088(void) {
 

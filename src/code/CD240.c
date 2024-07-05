@@ -58,6 +58,7 @@ typedef struct {
 extern UnkStruct80165100* D_80165100;
 extern struct PlayerStruct D_80119128;
 extern struct PlayerStruct D_80118FF4;
+extern UnkStruct80165100 D_801137D8;
 extern UnkStruct80165100 D_801137E4;
 extern UnkStruct80165100 D_8011436C;
 extern UnkStruct80165100 D_801142E8;
@@ -908,7 +909,9 @@ void func_800E3474(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F9098.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F90A8.s")
+void func_800F90A8(void) {
+    func_80027464(1, &D_801137D8, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+}
 
 void func_800F9120(void) {
     struct PlayerStruct* sp4;

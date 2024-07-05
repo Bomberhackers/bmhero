@@ -899,7 +899,9 @@ void func_800E3474(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F88B8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F8AB8.s")
+void func_800F8AB8(void) {
+
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F8AC8.s")
 

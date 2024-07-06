@@ -8,6 +8,11 @@ NON_MATCHING ?= 0
 RUN_CC_CHECK ?= 1
 WERROR ?= 0
 
+# To use ISPrint, change to 1 and distclean then setup again. For every file you want to
+# use osSyncPrintf in, you MUST define the file's rodata in the YAML or the strings cant
+# be referenced. Just use the following file's ROM address if you arent sure.
+ENABLE_ISPRINT ?= 1
+
 # Fail early if baserom does not exist
 ifeq ($(wildcard $(BASEROM)),)
 $(error Baserom `$(BASEROM)' not found.)
@@ -106,6 +111,10 @@ INC_DIRS := include include/PR include/audio include/ido . src/boot/malloc
 IINCS := $(foreach d,$(INC_DIRS),-I$d)
 # defines for SGI IDO
 CDEFS := -D_LANGUAGE_C -DF3DEX_GBI -DNDEBUG -D_FINALROM -DBUILD_VERSION=VERSION_H -DSTDC_HEADERS
+
+ifeq ($(ENABLE_ISPRINT),1)
+  CDEFS += -DENABLE_ISPRINT
+endif
 
 ifneq ($(RUN_CC_CHECK),0)
   CHECK_WARNINGS := -Wall -Wextra

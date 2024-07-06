@@ -63,6 +63,9 @@ extern void func_800178D4(s32, s32, s32, s32, s32);                   /* extern 
 extern s32 func_80026E58(s32, s32);                          /* extern */
 
 
+//REMOVE AFTER BEING DECOMPED
+extern void func_8006BAC4();
+
 void func_8006AFB0(void) {
     f32 sp24;
     f32 sp20;

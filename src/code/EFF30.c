@@ -77,8 +77,8 @@ extern s8 D_801343BC;
 extern s8 D_801343CC;
 extern s8 D_801343DC;
 extern s8 D_801343F0;
-extern s8 D_8016523F;
-extern s8 D_80165240;
+extern s8 gBombCount;
+extern s8 gFireCount;
 extern u8 D_80177974;
 extern s16 D_8016E3F4;
 extern s16 D_80134730;
@@ -470,9 +470,9 @@ void func_800FE9BC(void) {
     debug_print_xy(0x20, 0x50);
     sprintf(&gDebugTextBuf, "   G BUTTON DEBUG = %d", D_8016E40C);
     debug_print_xy(0x20, 0x60);
-    sprintf(&gDebugTextBuf, "   BOM  = %d", D_8016523F);
+    sprintf(&gDebugTextBuf, "   BOM  = %d", gBombCount);
     debug_print_xy(0x20, 0x70);
-    sprintf(&gDebugTextBuf, "   FIRE = %d", D_80165240);
+    sprintf(&gDebugTextBuf, "   FIRE = %d", gFireCount);
     debug_print_xy(0x20, 0x80);
     sprintf(&gDebugTextBuf, "   DISPTYPE = %d", D_80177974);
     debug_print_xy(0x20, 0x90);
@@ -696,13 +696,13 @@ void func_800FF88C(void) {
         case 5:
             {
                 if (*D_8016E2F0 & 0x200) {
-                    if (--D_8016523F < 0) {
-                        D_8016523F = 3;
+                    if (--gBombCount < 0) {
+                        gBombCount = 3;
                     }
                 }
                 if (*D_8016E2F0 & 0x100) {
-                    if (++D_8016523F >= 4) {
-                        D_8016523F = 0;
+                    if (++gBombCount >= 4) {
+                        gBombCount = 0;
                     }
                 }
                 break;                
@@ -710,13 +710,13 @@ void func_800FF88C(void) {
         case 6:
             {
                 if (*D_8016E2F0 & 0x200) {
-                    if (--D_80165240 < 0) {
-                        D_80165240 = 3;
+                    if (--gFireCount < 0) {
+                        gFireCount = 3;
                     }
                 }
                 if (*D_8016E2F0 & 0x100) {
-                    if (++D_80165240 >= 4) {
-                        D_80165240 = 0;
+                    if (++gFireCount >= 4) {
+                        gFireCount = 0;
                     }
                 }
                 break;                

@@ -7,11 +7,11 @@ extern s8 D_8016523A;
 extern s8 D_8016523B;
 extern s8 D_8016523C;
 extern u8 D_8016523D;
-extern u8 D_80165241;
-extern s8 D_80165244;
-extern s8 D_80165245;
-extern s8 D_8016523F;
-extern s8 D_80165240;
+extern u8 gGemCount;
+extern s8 gHealthCount;
+extern s8 gMaxHealth;
+extern s8 gBombCount;
+extern s8 gFireCount;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80084120.s")
 
@@ -85,11 +85,11 @@ void func_80088248(s32 arg0) {
 
 void func_80088338(void) {
     gLifeCount = D_80165238;
-    D_80165244 = D_80165239;
-    D_80165245 = D_8016523A;
-    D_8016523F = D_8016523B;
-    D_80165240 = D_8016523C;
-    D_80165241 = D_8016523D;
+    gHealthCount = D_80165239;
+    gMaxHealth = D_8016523A;
+    gBombCount = D_8016523B;
+    gFireCount = D_8016523C;
+    gGemCount = D_8016523D;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_800883A8.s")

@@ -11,7 +11,7 @@ WERROR ?= 0
 # To use ISPrint, change to 1 and distclean then setup again. For every file you want to
 # use osSyncPrintf in, you MUST define the file's rodata in the YAML or the strings cant
 # be referenced. Just use the following file's ROM address if you arent sure.
-ENABLE_ISPRINT ?= 1
+ENABLE_ISPRINT ?= 0
 
 # Fail early if baserom does not exist
 ifeq ($(wildcard $(BASEROM)),)

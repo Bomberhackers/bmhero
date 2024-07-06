@@ -51,6 +51,10 @@ segments:
     - [0x25810, c, boot/25810]
     - [0x26CE0, c, boot/26CE0]
     - [0x2BF00, c, boot/2BF00]
+    
+    # Enhancement file for IS Print functionality to make documenting the project easier. This
+    # was not part of the original game and was added to make documenting the project easier.
+    - [0x30390, c, boot/isprint] # have to use the next file's addr or it wont split 2BF00.
 
     # while this file is definitely libultra's synstartvoiceparam, it seems
     # to be a modified one, and it starts way earlier than libultra's starting

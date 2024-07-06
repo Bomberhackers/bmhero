@@ -59,6 +59,7 @@ typedef struct {
 extern UnkStruct80165100* D_80165100;
 extern struct PlayerStruct D_80119128;
 extern struct PlayerStruct D_80118FF4;
+extern UnkStruct80165100 D_80113790;
 extern UnkStruct80165100 D_801137D8;
 extern UnkStruct80165100 D_801137E4;
 extern UnkStruct80165100 D_8011436C;
@@ -882,7 +883,23 @@ void func_800E3474(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F7EA4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F8028.s")
+void func_800F8028(void) {
+    s32 sp2C;
+    s32 sp28;
+    s32 sp24;
+
+    sp2C = func_80027464(3, &D_80113790, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    if (sp2C != -1) {
+        sp24 = (s32) gPlayerData[sp2C].unkE8;
+        sp28 = (s32) gPlayerData[sp2C].unkEA;
+        gPlayerData[sp24].PosX = gPlayerData[sp2C].PosX - 60.0f;
+        gPlayerData[sp24].PosY = (f32) (gPlayerData[sp2C].PosY - 180.0f);
+        gPlayerData[sp24].PosZ = (f32) gPlayerData[sp2C].PosZ;
+        gPlayerData[sp28].PosX = gPlayerData[sp2C].PosX + 60.0f;
+        gPlayerData[sp28].PosY = (f32) (gPlayerData[sp2C].PosY - 180.0f);
+        gPlayerData[sp28].PosZ = (f32) gPlayerData[sp2C].PosZ;
+    }
+}
 
 void func_800F82EC(void) {
     struct PlayerStruct* spC;

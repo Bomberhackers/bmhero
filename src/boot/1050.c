@@ -18,6 +18,13 @@ u64 D_80050D38[0x200]; // needs to be same file to match
 u64 gIdleThreadStack[0x200];
 u32 D_80052D38[2];
 
+// TODO: Declare this in isprint.c. Cant seem to declare it there due to
+// shoddy bss declaration for isprint affecting assumed bss declarations
+// that haven't been moved over yet.
+#ifdef ENABLE_ISPRINT
+OSPiHandle* sISVHandle; // official name : is_Handle
+#endif
+
 // functions
 void thread1_idle(void* arg);
 void thread6_func(void* arg);
@@ -451,6 +458,9 @@ void thread6_func(void* arg) {
     gShowDebugMenu = 0;
     D_8016E3FC = 0;
     D_8016E40C = 0;
+#ifdef ENABLE_ISPRINT
+    isPrintfInit();
+#endif
     func_80083180(0);
 
     // thread loop

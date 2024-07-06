@@ -40,4 +40,7 @@ s32 func_80083180(s32);
 // EFF30.c
 u32 func_800FE898();
 
+// isprint.c (enhancement)
+void osSyncPrintf(const char* fmt, ...);
+
 #endif // _FUNCTIONS_H_

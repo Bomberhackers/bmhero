@@ -341,4 +341,20 @@ extern struct View gView;
 
 extern Gfx *gMasterDisplayList;
 
+// DEMO IDs
+#define DEMO_TITLE_INTRO                0
+#define DEMO_CREDIT_SCENE               1
+#define DEMO_BOMBER_CHANGE_JET_QUICK    2
+#define DEMO_BOMBER_CHANGE_MARINE_QUICK 3
+#define DEMO_BOMBER_CHANGE_COPTER_QUICK 4
+#define DEMO_BOMBER_CHANGE_SLIDER_QUICK 5
+#define DEMO_BOMBER_CHANGE_JET          6
+#define DEMO_BOMBER_CHANGE_MARINE       7
+#define DEMO_BOMBER_CHANGE_COPTER       8
+#define DEMO_BOMBER_CHANGE_SLIDER       9
+#define DEMO_LAST DEMO_BOMBER_CHANGE_SLIDER
+
+extern s8 gDemoSceneID;
+extern s8 gDemoID;
+
 #endif // _VARIABLES_H_

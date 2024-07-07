@@ -1,4 +1,4 @@
-#include "common.h"
+#include <ultra64.h>
 
 extern s32 func_8005F96C(s32, s32, s32);                           /* extern */
 
@@ -202,148 +202,159 @@ void func_8005C438(void) {
     D_801347A8 += 2.0f;
 }
 
-extern s32 func_8001ABF4(s32, s32, s32, void*);
-extern s32 D_80100560;
-extern s32 D_801005D0;
-extern s32 D_80100640;
-extern s32 D_801006B0;
-extern s32 D_80101758;
-extern u8 * D_80101E8C;
-extern s8 D_80134798;
-extern s8 D_80134799;
+struct UnkInputStruct_8001ABF4 {
+    void *unk0;
+    void *unk4;
+    void *unk8;
+    void *unkC;
+    void *unk10;
+    s16 unk14;
+    u8 unk16;
+    u8 unk17;
+    u8 unk18;
+};
 
+extern s32 func_8001ABF4(s32, s32, s32, void*);
+
+extern struct UnkInputStruct_8001ABF4 D_80101E8C[5];
+extern struct UnkInputStruct_8001ABF4 D_80101758[25];
+extern struct UnkInputStruct_8001ABF4 D_80100560[4];
+extern struct UnkInputStruct_8001ABF4 D_801005D0[4];
+extern struct UnkInputStruct_8001ABF4 D_80100640[4];
+extern struct UnkInputStruct_8001ABF4 D_801006B0[4];
+
+// Most likely handles setting the "animated" textures for the respective Demos.
 void func_8005C950(void) {
-    if (D_80134799 == 0) {
-        switch (D_80134798) {                       
-        case 9:                                     
-            func_8001ABF4(0, 0, 0, (u32)&D_80101E8C);
+    if (gDemoID == DEMO_TITLE_INTRO) {
+        switch (gDemoSceneID) {                       
+        case 9: // sliding down the snow, bombermans face hasnt looked back at the snowball yet
+            func_8001ABF4(0, 0, 0, (void*)&D_80101E8C[0]);
             break;
-        case 11:                                    
-            func_8001ABF4(0, 0, 0, (u32)&D_80101E8C + 0x1C);
+        case 11: // sliding down the snow, he has looked at the snowball now and makes an expression
+            func_8001ABF4(0, 0, 0, (void*)&D_80101E8C[1]);
             break;
-        case 14:                                    
-            func_8001ABF4(0, 0, 0, (u32)&D_80101E8C + 0x38);
+        case 14: // snowman and him get hit by the snowball, face is still seen
+            func_8001ABF4(0, 0, 0, (void*)&D_80101E8C[2]);
             break;
-        case 19:                                    
-            func_8001ABF4(0, 0, 0, (u32)&D_80101E8C + 0x70);
+        case 19: // using copter to fly over the water; water needs the texture
+            func_8001ABF4(0, 0, 0, (void*)&D_80101E8C[4]);
             break;
-        case 20:                                    
-            func_8001ABF4(0, 0, 0, (u32)&D_80101E8C + 0x70);
+        case 20: // cannon has fired
+            func_8001ABF4(0, 0, 0, (void*)&D_80101E8C[4]);
             break;
-        case 21:                                    
-            func_8001ABF4(0, 0, 0, (u32)&D_80101E8C + 0x54);
+        case 21: // bomberman expression when cannon is fired
+            func_8001ABF4(0, 0, 0, (void*)&D_80101E8C[3]);
             break;
         default:
             break;
         }
-    } else if (D_80134799 == 1) {
-        switch (D_80134798) {                       /* switch 2 */
+    } else if (gDemoID == DEMO_CREDIT_SCENE) {
+        switch (gDemoSceneID) {                       /* switch 2 */
         case 1:                                     /* switch 2 */
-            func_8001ABF4(0, 0, 0, (u32)&D_80101758);
-            func_8001ABF4(0, 1, 0, (u32)&D_80101758 + 0xE0);
-            func_8001ABF4(0, 2, 0, (u32)&D_80101758 + 0x1C0);
+            func_8001ABF4(0, 0, 0, (void*)&D_80101758[0]);
+            func_8001ABF4(0, 1, 0, (void*)&D_80101758[8]);
+            func_8001ABF4(0, 2, 0, (void*)&D_80101758[16]);
             break;
         case 2:                                     /* switch 2 */
-            func_8001ABF4(0, 0, 0, (u32)&D_80101758 + 0x1C);
-            func_8001ABF4(0, 1, 0, (u32)&D_80101758 + 0xFC);
-            func_8001ABF4(0, 2, 0, (u32)&D_80101758 + 0x1DC);
+            func_8001ABF4(0, 0, 0, (void*)&D_80101758[1]);
+            func_8001ABF4(0, 1, 0, (void*)&D_80101758[9]);
+            func_8001ABF4(0, 2, 0, (void*)&D_80101758[17]);
             break;
         case 3:                                     /* switch 2 */
-            func_8001ABF4(0, 0, 0, (u32)&D_80101758 + 0x38);
-            func_8001ABF4(0, 1, 0, (u32)&D_80101758 + 0x118);
-            func_8001ABF4(0, 2, 0, (u32)&D_80101758 + 0x1F8);
-            func_8001ABF4(0, 3, 0, (u32)&D_80101758 + 0x2A0);
+            func_8001ABF4(0, 0, 0, (void*)&D_80101758[2]);
+            func_8001ABF4(0, 1, 0, (void*)&D_80101758[10]);
+            func_8001ABF4(0, 2, 0, (void*)&D_80101758[18]);
+            func_8001ABF4(0, 3, 0, (void*)&D_80101758[24]);
             break;
         case 4:                                     /* switch 2 */
-            func_8001ABF4(0, 0, 0, (u32)&D_80101758 + 0x54);
-            func_8001ABF4(0, 1, 0, (u32)&D_80101758 + 0x134);
-            func_8001ABF4(0, 2, 0, (u32)&D_80101758 + 0x214);
+            func_8001ABF4(0, 0, 0, (void*)&D_80101758[3]);
+            func_8001ABF4(0, 1, 0, (void*)&D_80101758[11]);
+            func_8001ABF4(0, 2, 0, (void*)&D_80101758[19]);
             break;
         case 5:                                     /* switch 2 */
-            func_8001ABF4(0, 0, 0, (u32)&D_80101758 + 0x70);
+            func_8001ABF4(0, 0, 0, (void*)&D_80101758[4]);
             break;
         case 6:                                     /* switch 2 */
-            func_8001ABF4(0, 1, 0, (u32)&D_80101758 + 0x150);
-            func_8001ABF4(0, 2, 0, (u32)&D_80101758 + 0x230);
+            func_8001ABF4(0, 1, 0, (void*)&D_80101758[12]);
+            func_8001ABF4(0, 2, 0, (void*)&D_80101758[20]);
             break;
         case 7:                                     /* switch 2 */
-            func_8001ABF4(0, 0, 0, (u32)&D_80101758 + 0x8C);
-            func_8001ABF4(0, 1, 0, (u32)&D_80101758 + 0x16C);
-            func_8001ABF4(0, 2, 0, (u32)&D_80101758 + 0x24C);
+            func_8001ABF4(0, 0, 0, (void*)&D_80101758[5]);
+            func_8001ABF4(0, 1, 0, (void*)&D_80101758[13]);
+            func_8001ABF4(0, 2, 0, (void*)&D_80101758[21]);
             break;
         case 8:                                     /* switch 2 */
-            func_8001ABF4(0, 0, 0, (u32)&D_80101758 + 0xA8);
-            func_8001ABF4(0, 1, 0, (u32)&D_80101758 + 0x188);
-            func_8001ABF4(0, 2, 0, (u32)&D_80101758 + 0x268);
+            func_8001ABF4(0, 0, 0, (void*)&D_80101758[6]);
+            func_8001ABF4(0, 1, 0, (void*)&D_80101758[14]);
+            func_8001ABF4(0, 2, 0, (void*)&D_80101758[22]);
             break;
         case 9:                                     /* switch 2 */
-            func_8001ABF4(0, 0, 0, (u32)&D_80101758 + 0xC4);
-            func_8001ABF4(0, 1, 0, (u32)&D_80101758 + 0x1A4);
-            func_8001ABF4(0, 2, 0, (u32)&D_80101758 + 0x284);
+            func_8001ABF4(0, 0, 0, (void*)&D_80101758[7]);
+            func_8001ABF4(0, 1, 0, (void*)&D_80101758[15]);
+            func_8001ABF4(0, 2, 0, (void*)&D_80101758[23]);
             break;
         }
-    } else if ((D_80134799 == 2) || (D_80134799 == 6)) {
-        switch (D_80134798) {                       /* switch 6; irregular */
+    } else if ((gDemoID == DEMO_BOMBER_CHANGE_JET_QUICK) || (gDemoID == DEMO_BOMBER_CHANGE_JET)) {
+        switch (gDemoSceneID) {                       /* switch 6; irregular */
         case 3:                                     /* switch 6 */
-            func_8001ABF4(0, 0, 0, (u32)&D_80100560);
-            func_8001ABF4(0, 1, 0, (u32)&D_801005D0 + 0x1C);
-            func_8001ABF4(0, 2, 0, (u32)&D_80100640 + 0x38);
-            func_8001ABF4(0, 3, 0, (u32)&D_801006B0 + 0x54);
+            func_8001ABF4(0, 0, 0, (void*)&D_80100560[0]);
+            func_8001ABF4(0, 1, 0, (void*)&D_801005D0[1]);
+            func_8001ABF4(0, 2, 0, (void*)&D_80100640[2]);
+            func_8001ABF4(0, 3, 0, (void*)&D_801006B0[3]);
             break;
         case 4:                                     /* switch 6 */
-            func_8001ABF4(0, 0, 0, (u32)&D_80100560);
-            func_8001ABF4(0, 1, 0, (u32)&D_801005D0 + 0x1C);
-            func_8001ABF4(0, 2, 0, (u32)&D_80100640 + 0x38);
-            func_8001ABF4(0, 3, 0, (u32)&D_801006B0 + 0x54);
+            func_8001ABF4(0, 0, 0, (void*)&D_80100560[0]);
+            func_8001ABF4(0, 1, 0, (void*)&D_801005D0[1]);
+            func_8001ABF4(0, 2, 0, (void*)&D_80100640[2]);
+            func_8001ABF4(0, 3, 0, (void*)&D_801006B0[3]);
             break;
         }
-    } else if ((D_80134799 == 3) || (D_80134799 == 7)) {
-        switch (D_80134798) {                       /* switch 5; irregular */
+    } else if ((gDemoID == DEMO_BOMBER_CHANGE_MARINE_QUICK) || (gDemoID == DEMO_BOMBER_CHANGE_MARINE)) {
+        switch (gDemoSceneID) {                       /* switch 5; irregular */
         case 3:                                     /* switch 5 */
-            func_8001ABF4(0, 3, 0, (u32)&D_80100560 + 0x54);
-            func_8001ABF4(0, 0, 0, (u32)&D_801005D0);
-            func_8001ABF4(0, 1, 0, (u32)&D_80100640 + 0x1C);
-            func_8001ABF4(0, 2, 0, (u32)&D_801006B0 + 0x38);
+            func_8001ABF4(0, 3, 0, (void*)&D_80100560[3]);
+            func_8001ABF4(0, 0, 0, (void*)&D_801005D0[0]);
+            func_8001ABF4(0, 1, 0, (void*)&D_80100640[1]);
+            func_8001ABF4(0, 2, 0, (void*)&D_801006B0[2]);
             break;
         case 4:                                     /* switch 5 */
-            func_8001ABF4(0, 3, 0, (u32)&D_80100560 + 0x54);
-            func_8001ABF4(0, 0, 0, (u32)&D_801005D0);
-            func_8001ABF4(0, 1, 0, (u32)&D_80100640 + 0x1C);
-            func_8001ABF4(0, 2, 0, (u32)&D_801006B0 + 0x38);
+            func_8001ABF4(0, 3, 0, (void*)&D_80100560[3]);
+            func_8001ABF4(0, 0, 0, (void*)&D_801005D0[0]);
+            func_8001ABF4(0, 1, 0, (void*)&D_80100640[1]);
+            func_8001ABF4(0, 2, 0, (void*)&D_801006B0[2]);
             break;
         }
-    } else if ((D_80134799 == 4) || (D_80134799 == 8)) {
-        switch (D_80134798) {                       /* switch 4; irregular */
+    } else if ((gDemoID == DEMO_BOMBER_CHANGE_COPTER_QUICK) || (gDemoID == DEMO_BOMBER_CHANGE_COPTER)) {
+        switch (gDemoSceneID) {                       /* switch 4; irregular */
         case 3:                                     /* switch 4 */
-            func_8001ABF4(0, 2, 0, (u32)&D_80100560 + 0x38);
-            func_8001ABF4(0, 3, 0, (u32)&D_801005D0 + 0x54);
-            func_8001ABF4(0, 0, 0, (u32)&D_80100640);
-            func_8001ABF4(0, 1, 0, (u32)&D_801006B0 + 0x1C);
+            func_8001ABF4(0, 2, 0, (void*)&D_80100560[2]);
+            func_8001ABF4(0, 3, 0, (void*)&D_801005D0[3]);
+            func_8001ABF4(0, 0, 0, (void*)&D_80100640[0]);
+            func_8001ABF4(0, 1, 0, (void*)&D_801006B0[1]);
             break;
         case 4:                                     /* switch 4 */
-            func_8001ABF4(0, 2, 0, (u32)&D_80100560 + 0x38);
-            func_8001ABF4(0, 3, 0, (u32)&D_801005D0 + 0x54);
-            func_8001ABF4(0, 0, 0, (u32)&D_80100640);
-            func_8001ABF4(0, 1, 0, (u32)&D_801006B0 + 0x1C);
+            func_8001ABF4(0, 2, 0, (void*)&D_80100560[2]);
+            func_8001ABF4(0, 3, 0, (void*)&D_801005D0[3]);
+            func_8001ABF4(0, 0, 0, (void*)&D_80100640[0]);
+            func_8001ABF4(0, 1, 0, (void*)&D_801006B0[1]);
             break;
         }
-    } else if ((D_80134799 == 5) || (D_80134799 == 9)) {
-        switch (D_80134798) {                       /* switch 3; irregular */
+    } else if ((gDemoID == DEMO_BOMBER_CHANGE_SLIDER_QUICK) || (gDemoID == DEMO_BOMBER_CHANGE_SLIDER)) {
+        switch (gDemoSceneID) {                       /* switch 3; irregular */
         case 3:                                     /* switch 3 */
-            func_8001ABF4(0, 1, 0, (u32)&D_80100560 + 0x1C);
-            func_8001ABF4(0, 2, 0, (u32)&D_801005D0 + 0x38);
-            func_8001ABF4(0, 3, 0, (u32)&D_80100640 + 0x54);
-            func_8001ABF4(0, 0, 0, (u32)&D_801006B0);
+            func_8001ABF4(0, 1, 0, (void*)&D_80100560[1]);
+            func_8001ABF4(0, 2, 0, (void*)&D_801005D0[2]);
+            func_8001ABF4(0, 3, 0, (void*)&D_80100640[3]);
+            func_8001ABF4(0, 0, 0, (void*)&D_801006B0[0]);
             break;
         case 4:                                     /* switch 3 */
-            func_8001ABF4(0, 1, 0, (u32)&D_80100560 + 0x1C);
-            func_8001ABF4(0, 2, 0, (u32)&D_801005D0 + 0x38);
-            func_8001ABF4(0, 3, 0, (u32)&D_80100640 + 0x54);
-            func_8001ABF4(0, 0, 0, (u32)&D_801006B0);
+            func_8001ABF4(0, 1, 0, (void*)&D_80100560[1]);
+            func_8001ABF4(0, 2, 0, (void*)&D_801005D0[2]);
+            func_8001ABF4(0, 3, 0, (void*)&D_80100640[3]);
+            func_8001ABF4(0, 0, 0, (void*)&D_801006B0[0]);
             break;
         }
     }
-exit:;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/4DFF0/func_8005D2D0.s")

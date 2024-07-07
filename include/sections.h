@@ -5,6 +5,8 @@ extern u8 game_ROM_START[];  // 0x4DFF0
 extern u8 game_ROM_END[];    // 0x126CB0
 extern u32 game_TEXT_START;  // 0x8005BAD0
 
+extern u32 game_VRAM[];
+
 #define code_extra_VRAM 0x80280000
 
 extern u8 code_extra_0_ROM_START[];   // 0x128D20

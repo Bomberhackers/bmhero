@@ -30,8 +30,11 @@ s32 func_80025E28();
 // 2BF00.c
 s32 func_8002F738();
 
+#define FIRST_CODE_FUNCTION Demo_RenderTextBG
+
 // 4DFF0.c
-void func_8005BAD0();
+void Demo_RenderTextBG(void);
+void Demo_SetupTextPal(void);
 s32 func_8005E230(s32);
 
 // 71AA0.c

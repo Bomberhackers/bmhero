@@ -85,9 +85,6 @@ extern s16 D_80134730;
 extern s16 D_80134734;
 extern s16 D_80134738[];
 extern u16 D_8016E290[];
-extern f32 D_8016E158;
-extern f32 D_8016E15C;
-extern f32 D_8016E170;
 extern s32 D_80134210;
 extern s32 D_8013421C;
 extern s32 D_80134220;
@@ -109,13 +106,6 @@ extern u16 D_8016E2B0[];
 extern struct LightingStruct D_8004A5B8[];
 
 extern s16 D_80134C14;
-extern f32 D_8016E140;
-extern f32 D_8016E144;
-extern f32 D_8016E148;
-extern f32 D_8016E14C;
-extern f32 D_8016E150;
-extern f32 D_8016E154;
-extern f32 D_8016E160;
 
 extern u16 D_8016E3A0;
 extern u8 D_80177932;
@@ -123,17 +113,11 @@ extern u8 D_80177934;
 extern u8 D_80177938;
 
 extern Mtx* D_8016E104;
-extern f32 D_8016E164;
-extern f32 D_8016E168;
-extern f32 D_8016E16C;
 extern s32 D_8016E3A4;
 extern Gfx* gMasterDisplayList;
 
 extern void* D_8016526C;
 extern void* D_80165274;
-extern f32 D_8016E164;
-extern f32 D_8016E168;
-extern f32 D_8016E16C;
 
 extern u8 D_801651A8;
 extern s32 D_801651AC;
@@ -156,28 +140,28 @@ void func_800FDA10(void) {
     f32 sp4;
 
     if (D_8016E290[0] & 2) {
-        sp4 = (f32) ((f64) D_8016E15C + 2.0);
-        D_8016E15C = sp4 - (f32) (((s32) sp4 / 360) * 360);
+        sp4 = (f32) ((f64) gView.rot.y + 2.0);
+        gView.rot.y = sp4 - (f32) (((s32) sp4 / 360) * 360);
     }
     if (D_8016E290[0] & 1) {
-        sp4 = (f32) ((f64) D_8016E15C + 358.0);
-        D_8016E15C = sp4 - (f32) (((s32) sp4 / 360) * 360);
+        sp4 = (f32) ((f64) gView.rot.y + 358.0);
+        gView.rot.y = sp4 - (f32) (((s32) sp4 / 360) * 360);
     }
     if (D_8016E290[0] & 8) {
-        sp4 = (f32) ((f64) D_8016E158 + 2.0);
-        D_8016E158 = sp4 - (f32) (((s32) sp4 / 360) * 360);
+        sp4 = (f32) ((f64) gView.rot.x + 2.0);
+        gView.rot.x = sp4 - (f32) (((s32) sp4 / 360) * 360);
     }
     if (D_8016E290[0] & 4) {
-        sp4 = (f32) ((f64) D_8016E158 + 358.0);
-        D_8016E158 = sp4 - (f32) (((s32) sp4 / 360) * 360);
+        sp4 = (f32) ((f64) gView.rot.x + 358.0);
+        gView.rot.x = sp4 - (f32) (((s32) sp4 / 360) * 360);
     }
     if (D_8016E290[0] & 0x400) {
-        D_8016E170 += 10.0f;
+        gView.dist += 10.0f;
     }
     if (D_8016E290[0] & 0x800) {
-        D_8016E170 -= 10.0f;
-        if (D_8016E170 < 200.0f) {
-            D_8016E170 = 200.0f;
+        gView.dist -= 10.0f;
+        if (gView.dist < 200.0f) {
+            gView.dist = 200.0f;
         }
     }
 }
@@ -418,7 +402,7 @@ void func_800FE6D8(void) {
     func_8001D638(1, 0x40, 0x40, 0);
     guPerspective(D_8016E104, &sp3E, 50.0f, 1.3333334f, 100.0f, 4000.0f, 1.0f);
     gSPPerspNormalize(gMasterDisplayList++, (s32) sp3E);
-    guLookAt(D_8016E104 + 2, D_8016E14C, D_8016E150, D_8016E154, D_8016E140, D_8016E144, D_8016E148, D_8016E164, D_8016E168, D_8016E16C);
+    guLookAt(D_8016E104 + 2, gView.eye.x, gView.eye.y, gView.eye.z, gView.at.x, gView.at.y, gView.at.z, gView.up.x, gView.up.y, gView.up.z);
     gSPMatrix(gMasterDisplayList++, D_8016E104, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
     D_8016E3A4 = 0;
     func_800FDD48();
@@ -438,16 +422,16 @@ u32 func_800FE898(void) {
     D_80165274 = &func_800FE204;
     D_80134228 = 0;
     func_800FE854();
-    D_8016E140 = 0.0f;
-    D_8016E144 = 0.0f;
-    D_8016E148 = 0.0f;
-    D_8016E158 = 0.0f;
-    D_8016E15C = 0.0f;
-    D_8016E160 = 0.0f;
-    D_8016E164 = 0.0f;
-    D_8016E168 = 1.0f;
-    D_8016E16C = 0.0f;
-    D_8016E170 = 800.0f;
+    gView.at.x = 0.0f;
+    gView.at.y = 0.0f;
+    gView.at.z = 0.0f;
+    gView.rot.x = 0.0f;
+    gView.rot.y = 0.0f;
+    gView.rot.z = 0.0f;
+    gView.up.x = 0.0f;
+    gView.up.y = 1.0f;
+    gView.up.z = 0.0f;
+    gView.dist = 800.0f;
     func_80019C84();
     func_80019D2C();
     func_8001A258();
@@ -597,13 +581,13 @@ void func_800FF43C(void) {
     debug_print_xy((s8* )0x20, (s8* )0x10);
     sprintf(&gDebugTextBuf, "PLAY.ROT X=%5d Y=%5d Z=%5d", (s32) gPlayerData[0].RotX, (s32) gPlayerData[0].RotY, (s32) gPlayerData[0].RotZ);
     debug_print_xy((s8* )0x20, (s8* )0x20);
-    sprintf(&gDebugTextBuf, "VIEW.AT  X=%5d Y=%5d Z=%5d", (s32) D_8016E140, (s32) D_8016E144, (s32) D_8016E148);
+    sprintf(&gDebugTextBuf, "VIEW.AT  X=%5d Y=%5d Z=%5d", (s32) gView.at.x, (s32) gView.at.y, (s32) gView.at.z);
     debug_print_xy((s8* )0x20, (s8* )0x30);
-    sprintf(&gDebugTextBuf, "VIEW.EYE X=%5d Y=%5d Z=%5d", (s32) D_8016E14C, (s32) D_8016E150, (s32) D_8016E154);
+    sprintf(&gDebugTextBuf, "VIEW.EYE X=%5d Y=%5d Z=%5d", (s32) gView.eye.x, (s32) gView.eye.y, (s32) gView.eye.z);
     debug_print_xy((s8* )0x20, (s8* )0x40);
-    sprintf(&gDebugTextBuf, "VIEW.ROT X=%5d Y=%5d Z=%5d", (s32) D_8016E158, (s32) D_8016E15C, (s32) D_8016E160);
+    sprintf(&gDebugTextBuf, "VIEW.ROT X=%5d Y=%5d Z=%5d", (s32) gView.rot.x, (s32) gView.rot.y, (s32) gView.rot.z);
     debug_print_xy((s8* )0x20, (s8* )0x50);
-    sprintf(&gDebugTextBuf, "VIEW.DIST =%5d", (s32) D_8016E170);
+    sprintf(&gDebugTextBuf, "VIEW.DIST =%5d", (s32) gView.dist);
     debug_print_xy((s8* )0x20, (s8* )0x60);
     sprintf(&gDebugTextBuf, "FRWAIT =%5d", D_80134C14);
     debug_print_xy((s8* )0x20, (s8* )0x70);

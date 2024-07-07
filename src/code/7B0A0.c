@@ -63,25 +63,14 @@ extern f32 func_80015538(f32, f32);
 
 
 extern s8 D_8016E134;
-extern f32 D_8016E14C;
-extern f32 D_8016E150;
-extern f32 D_8016E154;
 extern s16 D_80177600;
 extern f32 D_80134F40;
-extern f32 D_8016E140;
-extern f32 D_8016E144;
-extern f32 D_8016E148;
-extern f32 D_8016E158;
-extern f32 D_8016E15C;
-extern f32 D_8016E160;
-extern f32 D_8016E170;
+
 extern s32 D_801765EC;
 
 extern s16 D_8010CD80[2];
 extern s16 D_80110B78[];
 extern s16* D_80110D4C[];
-
-extern s32 D_8016CAA0[][2];
 
 extern Gfx* gMasterDisplayList;
 
@@ -667,7 +656,7 @@ void func_8008A384(void) {
     gDPSetColorDither(gMasterDisplayList++, G_CD_BAYER);
     gDPSetTextureFilter(gMasterDisplayList++, G_TF_BILERP);
     gDPSetTextureLUT(gMasterDisplayList++, G_TT_RGBA16);
-    gDPLoadTLUT_pal16(gMasterDisplayList++, 0, D_8016CAA0[26][0] + 0x10);
+    gDPLoadTLUT_pal16(gMasterDisplayList++, 0, D_8016CAA0[26].unk0 + 0x10);
 }
 
 void func_8008A6A4(void) {
@@ -686,7 +675,7 @@ void func_8008A824(s16 arg0, s16 arg1, s16 arg2) {
 
 void func_8008A870(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4) {
     gDPLoadMultiTile_4b(gMasterDisplayList++,
-        D_8016CAA0[arg4][0] + 0x30, 0, 0,
+        D_8016CAA0[arg4].unk0 + 0x30, 0, 0,
         G_IM_FMT_CI,
         256, 256,
         arg2, arg3, (arg2 + 0x08), (arg3 + 0x10),
@@ -746,9 +735,9 @@ void func_8008AC08(s16* arg0) {
 
     func_80019B7C();
     if (D_8016E134 == 1) {
-        gMegaStruct.D_80134F44.x = D_8016E14C;
-        gMegaStruct.D_80134F44.y = D_8016E150;
-        gMegaStruct.D_80134F44.z = D_8016E154;
+        gMegaStruct.D_80134F44.x = gView.eye.x;
+        gMegaStruct.D_80134F44.y = gView.eye.y;
+        gMegaStruct.D_80134F44.z = gView.eye.z;
     }
 }
 
@@ -792,17 +781,17 @@ void func_8008AE64(s16* arg0) {
 }
 
 void func_8008B030(void) {
-    D_8016E140 = gMegaStruct.D_80134F28.x;
-    D_8016E144 = gMegaStruct.D_80134F28.y;
-    D_8016E148 = gMegaStruct.D_80134F28.z;
-    D_8016E158 = gMegaStruct.D_80134F34.x;
-    D_8016E15C = gMegaStruct.D_80134F34.y;
-    D_8016E160 = gMegaStruct.D_80134F34.z;
-    D_8016E170 = gMegaStruct.D_80134F40;
+    gView.at.x = gMegaStruct.D_80134F28.x;
+    gView.at.y = gMegaStruct.D_80134F28.y;
+    gView.at.z = gMegaStruct.D_80134F28.z;
+    gView.rot.x = gMegaStruct.D_80134F34.x;
+    gView.rot.y = gMegaStruct.D_80134F34.y;
+    gView.rot.z = gMegaStruct.D_80134F34.z;
+    gView.dist = gMegaStruct.D_80134F40;
     if (D_8016E134 == 1) {
-        D_8016E14C = gMegaStruct.D_80134F44.x;
-        D_8016E150 = gMegaStruct.D_80134F44.y;
-        D_8016E154 = gMegaStruct.D_80134F44.z;
+        gView.eye.x = gMegaStruct.D_80134F44.x;
+        gView.eye.y = gMegaStruct.D_80134F44.y;
+        gView.eye.z = gMegaStruct.D_80134F44.z;
     }
 }
 
@@ -929,31 +918,31 @@ void func_8008B6E0(s16* arg0) {
 void func_8008BA3C(void) {
     gMegaStruct.D_80134FA0.unk0 = (s16) D_801765EC;
     gMegaStruct.D_80134FA0.unk2 = (s16) D_8016E134;
-    gMegaStruct.D_80134F78.x = D_8016E140;
-    gMegaStruct.D_80134F78.y = D_8016E144;
-    gMegaStruct.D_80134F78.z = D_8016E148;
-    gMegaStruct.D_80134F84.x = D_8016E158;
-    gMegaStruct.D_80134F84.y = D_8016E15C;
-    gMegaStruct.D_80134F84.z = D_8016E160;
-    gMegaStruct.D_80134F9C = D_8016E170;
-    gMegaStruct.D_80134F90.x = D_8016E14C;
-    gMegaStruct.D_80134F90.y = D_8016E150;
-    gMegaStruct.D_80134F90.z = D_8016E154;
+    gMegaStruct.D_80134F78.x = gView.at.x;
+    gMegaStruct.D_80134F78.y = gView.at.y;
+    gMegaStruct.D_80134F78.z = gView.at.z;
+    gMegaStruct.D_80134F84.x = gView.rot.x;
+    gMegaStruct.D_80134F84.y = gView.rot.y;
+    gMegaStruct.D_80134F84.z = gView.rot.z;
+    gMegaStruct.D_80134F9C = gView.dist;
+    gMegaStruct.D_80134F90.x = gView.eye.x;
+    gMegaStruct.D_80134F90.y = gView.eye.y;
+    gMegaStruct.D_80134F90.z = gView.eye.z;
 }
 
 void func_8008BB0C(void) {
     D_801765EC = (s32) gMegaStruct.D_80134FA0.unk0;
     D_8016E134 = (s8) gMegaStruct.D_80134FA0.unk2;
-    D_8016E140 = gMegaStruct.D_80134F78.x;
-    D_8016E144 = gMegaStruct.D_80134F78.y;
-    D_8016E148 = gMegaStruct.D_80134F78.z;
-    D_8016E158 = gMegaStruct.D_80134F84.x;
-    D_8016E15C = gMegaStruct.D_80134F84.y;
-    D_8016E160 = gMegaStruct.D_80134F84.z;
-    D_8016E14C = gMegaStruct.D_80134F90.x;
-    D_8016E150 = gMegaStruct.D_80134F90.y;
-    D_8016E154 = gMegaStruct.D_80134F90.z;
-    D_8016E170 = gMegaStruct.D_80134F9C;
+    gView.at.x = gMegaStruct.D_80134F78.x;
+    gView.at.y = gMegaStruct.D_80134F78.y;
+    gView.at.z = gMegaStruct.D_80134F78.z;
+    gView.rot.x = gMegaStruct.D_80134F84.x;
+    gView.rot.y = gMegaStruct.D_80134F84.y;
+    gView.rot.z = gMegaStruct.D_80134F84.z;
+    gView.eye.x = gMegaStruct.D_80134F90.x;
+    gView.eye.y = gMegaStruct.D_80134F90.y;
+    gView.eye.z = gMegaStruct.D_80134F90.z;
+    gView.dist = gMegaStruct.D_80134F9C;
     gMegaStruct.D_80134FA4.unk0 = 0;
     gMegaStruct.D_80134FA4.unk2 = 0;
     func_80019B7C();

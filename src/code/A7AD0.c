@@ -2,17 +2,17 @@
 #include "variables.h"
 
 // Macros
-#define _FABS(x) ((x) < 0.0f ? -(x) : (x))
-#define ABS(x) ((x) < 0 ? -(x) : (x))
-#define FABS(x) (((x) < -48.0f ? -48.0f : (x)))
-#define MAX_FABS(a, b) ((a) > (b) ? (b) : FABS(a))
-#define MIN_FABS(a, b) ((a) < (b) ? (b) : FABS(a))
+#define FABS(x) ((x) < 0.0f ? -(x) : (x))
+#define IABS(x) ((x) < 0 ? -(x) : (x))
+#define CLAMP_FLOAT(x) (((x) < -48.0f ? -48.0f : (x)))
+#define MIN_CLAMP(a, b) ((a) > (b) ? (b) : CLAMP_FLOAT(a))
 #define UNK_TYPE s32
 
-// Extern Function call
+// Extern Functions
 extern s32 func_80014E80(s16 arg0);
 extern f32 func_80015538(f32 arg0, f32 arg1);
 extern void func_800175F0(s32 arg0, s32 arg1, s16 arg2, s16 arg3, s32 arg4);
+extern void func_80017664(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern void func_80019448(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 extern void func_8001ABF4(s32, s32, s32, void *);
 extern void func_8001BB04(s32 arg0, s8 arg1);
@@ -64,7 +64,6 @@ extern UNK_TYPE D_80117B68;
 extern UNK_TYPE D_80117BBC;
 extern UNK_TYPE D_80113A18;
 extern UNK_TYPE D_80113A24;
-extern f32 D_80114C00;
 extern UNK_TYPE D_80117B84;
 extern UNK_TYPE D_80117BA0;
 extern UNK_TYPE D_80113A30;
@@ -74,7 +73,6 @@ extern UNK_TYPE D_80117C00;
 extern UNK_TYPE D_80117C1C;
 extern UNK_TYPE D_80117C38;
 extern UNK_TYPE D_80113A6C;
-extern f32 D_80114C2C;
 extern UNK_TYPE D_80117C78;
 extern UNK_TYPE D_80113A48;
 extern UNK_TYPE D_80113ACC;
@@ -101,7 +99,7 @@ extern UNK_TYPE D_80117EE8;
 extern UNK_TYPE D_80117EF0;
 extern UNK_TYPE D_80113DC0;
 
-// File function declaration
+// File functions
 void _stub0();
 void _stub1();
 void _stub2();
@@ -254,7 +252,6 @@ void func_800B55B0(void) {
     }
 }
 
-// Strange control flow
 void func_800B5778(void) {
     struct PlayerStruct *sp4;
 
@@ -410,11 +407,11 @@ void func_800B5D18(void) {
         }
     }
 
-    sp44->VelX = MAX_FABS(sp44->VelX, 48.0f);
+    sp44->VelX = MIN_CLAMP(sp44->VelX, 48.0f);
 
-    sp44->VelY = MAX_FABS(sp44->VelY, 48.0f);
+    sp44->VelY = MIN_CLAMP(sp44->VelY, 48.0f);
 
-    sp44->VelZ = MAX_FABS(sp44->VelZ, 48.0f);
+    sp44->VelZ = MIN_CLAMP(sp44->VelZ, 48.0f);
 
     sp44->RotY = sp44->unk3C;
 }
@@ -498,11 +495,11 @@ void func_800B62C8(void) {
             }
         }
     }
-    sp44->VelX = MAX_FABS(sp44->VelX, 48.0f);
+    sp44->VelX = MIN_CLAMP(sp44->VelX, 48.0f);
 
-    sp44->VelY = MAX_FABS(sp44->VelY, 48.0f);
+    sp44->VelY = MIN_CLAMP(sp44->VelY, 48.0f);
 
-    sp44->VelZ = MAX_FABS(sp44->VelZ, 48.0f);
+    sp44->VelZ = MIN_CLAMP(sp44->VelZ, 48.0f);
 
     sp44->RotY = sp44->unk3C;
 }
@@ -572,7 +569,7 @@ void func_800B6D40(void) {
             sp2C->unk132 = 0;
         }
     }
-    sp2C->VelY = MAX_FABS(sp2C->VelY, 48.0f);
+    sp2C->VelY = MIN_CLAMP(sp2C->VelY, 48.0f);
 }
 
 void func_800B6F2C(void) {
@@ -1216,8 +1213,7 @@ void func_800B9234(void) {
         if (D_80165100->unkC != 0) {
             gPlayerData[sp2F].unkAE = 1;
         }
-        gPlayerData[sp2F].ScaleX = gPlayerData[sp2F].ScaleY = gPlayerData[sp2F].ScaleZ =
-            1.3f; // TO CHECK
+        gPlayerData[sp2F].ScaleX = gPlayerData[sp2F].ScaleY = gPlayerData[sp2F].ScaleZ = 1.3f;
         gPlayerData[sp2F].unkAA = 0x140;
         func_8001ABF4((s32) sp2F, 0, 0, &D_80117C78);
         func_80019448((s32) sp2F, 2, 0, 1);
@@ -1286,7 +1282,7 @@ void func_800B969C(void) {
             sp34->unk132 = 0;
         }
     }
-    sp34->VelY = MAX_FABS(sp34->VelY, 48.0f);
+    sp34->VelY = MIN_CLAMP(sp34->VelY, 48.0f);
     sp34->RotX = func_80015538(sp34->RotX, 16.0f);
     sp34->RotY = sp34->unk3C;
 }
@@ -1777,7 +1773,6 @@ void func_800BB6BC(void) {
     gPlayerData[D_80177A60].unk108 = 0;
 }
 
-extern f64 D_80114C70; // 0.01
 void func_800BB748(void) {
     struct PlayerStruct *sp2C;
 
@@ -2038,7 +2033,7 @@ s8 func_800BC7F0(void) {
 }
 
 s8 func_800BC86C(s8 arg0) {
-    struct PlayerStruct *sp24;
+    UNUSED struct PlayerStruct *sp24;
     s8 sp23;
     s8 sp22;
 
@@ -2054,7 +2049,6 @@ s16 func_800BC91C(s16 arg0, s8 arg1) {
     struct PlayerStruct *spC;
     struct PlayerStruct *sp8;
     s8 sp7;
-    UNUSED s16 var_a2;
 
     spC = &gPlayerData[D_80177A60];
     sp7 = spC->unkE8[arg0];
@@ -2077,7 +2071,7 @@ s16 func_800BC91C(s16 arg0, s8 arg1) {
         sp8->ScaleZ = spC->ScaleZ;
     } else {
     }
-    return ~(sp7 != 0) != 0 ? 0 : 1;
+    return ~(sp7 != 0) ? 0 : 1;
 }
 
 void func_800BCB04(void) {
@@ -2122,7 +2116,7 @@ void func_800BCC10(void) {
 }
 
 void func_800BCCAC(void) {
-    s8 sp27;
+    UNUSED s8 sp27;
 
     if (func_80026260(D_8016519C) == 0) {
         sp27 = func_80027464(1, &D_80113C1C, (f32) D_80165100->unk2, (f32) D_80165100->unk4,
@@ -2151,8 +2145,6 @@ void func_800BCD60(void) {
     func_800BCF08(sp2F);
 }
 
-extern f64 D_80114CA0; // 0.200000000000000011
-extern f64 D_80114CA8; // 0.6000000238418579
 s8 func_800BCF08(s8 arg0) {
     s8 sp27;
     s8 sp26;
@@ -2246,7 +2238,7 @@ s8 func_800BD434(void) {
 }
 
 s8 func_800BD4B0(void) {
-    struct PlayerStruct *sp24;
+    UNUSED struct PlayerStruct *sp24;
     s8 sp23;
     s8 sp22;
 
@@ -2282,7 +2274,7 @@ s16 func_800BD558(s16 arg0) {
         sp30->unk44 = sp34->unk44;
         sp30->unk48 = sp34->unk48;
     }
-    return ~(sp2F != 0) != 0 ? 0 : 1;
+    return ~(sp2F != 0) ? 0 : 1;
 }
 
 void func_800BD7CC(void) {
@@ -2319,8 +2311,8 @@ void func_800BD86C(void) {
         func_8001ABF4((s32) sp2F, 0, 0, &D_80117EA8);
         if (D_80165100->unkA != 0) {
             gPlayerData[sp2F].unkAA = 1;
-            gPlayerData[sp2F].unkAE = ABS(D_80165100->unkC);
-            gPlayerData[sp2F].unkB0 = ABS(D_80165100->unkE) * 0x3C;
+            gPlayerData[sp2F].unkAE = IABS(D_80165100->unkC);
+            gPlayerData[sp2F].unkB0 = IABS(D_80165100->unkE) * 0x3C;
         }
     }
 }
@@ -2634,7 +2626,7 @@ void func_800BEDB0(void) {
             sp34->unk132 = 0;
         }
     }
-    sp34->VelY = MAX_FABS(sp34->VelY, 48.0f);
+    sp34->VelY = MIN_CLAMP(sp34->VelY, 48.0f);
     sp34->RotY = sp34->unk3C;
 }
 
@@ -2938,7 +2930,7 @@ s16 func_800BFD94(struct PlayerStruct *arg0, s16 arg1, UNUSED s16 arg2) {
 s8 func_800BFF20(struct PlayerStruct *arg0, f32 arg1, f32 arg2) {
     s8 sp27;
 
-    sp27 = func_8002A800(arg0->unk3C, arg1, _FABS(arg2));
+    sp27 = func_8002A800(arg0->unk3C, arg1, FABS(arg2));
     arg0->unk3C = func_80015538(arg0->unk3C, arg2);
     return sp27;
 }
@@ -2947,10 +2939,10 @@ s8 func_800BFFCC(struct PlayerStruct *arg0, s8 arg1, f32 arg2, f32 arg3) {
     s8 sp27;
 
     if (arg1 == 0) {
-        sp27 = func_8002A800(arg0->unk3C, arg2, _FABS(arg3));
+        sp27 = func_8002A800(arg0->unk3C, arg2, FABS(arg3));
         arg0->unk3C = func_80015538(arg0->unk3C, arg3);
     } else {
-        sp27 = func_8002A800(arg0->unk40, arg2, _FABS(arg3));
+        sp27 = func_8002A800(arg0->unk40, arg2, FABS(arg3));
         arg0->unk40 = func_80015538(arg0->unk40, arg3);
     }
     return sp27;

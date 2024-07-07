@@ -339,4 +339,6 @@ struct View {
 
 extern struct View gView;
 
+extern Gfx *gMasterDisplayList;
+
 #endif // _VARIABLES_H_

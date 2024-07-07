@@ -359,6 +359,7 @@ segments:
     vram: 0x8005BAD0
     subsegments:
     - [0x4DFF0, c, code/4DFF0]
+    - [0x50BC0, c, code/50BC0]
     - [0x520E0, c, code/520E0]
     - [0x56400, c, code/56400]
     - [0x56800, c, code/56800]
@@ -384,9 +385,9 @@ segments:
     - [0xEFF30, c, code/EFF30]
     - [0xF2A40, hasm, ../src/unk_F2A40_data]
     - [auto, .data, ../src/unk_F2A40_data]
-    - [0xF4DE0, rodata]
-    - [0xF4E40, rodata] # probably part of 4DFF0 too, but these functions arent decompiled yet
-    - [0xF5ED0, .rodata, code/4DFF0]
+    - [0xF4DE0, .rodata, code/4DFF0]
+    - [0xF4E40, rodata]
+    - [0xF5ED0, .rodata, code/50BC0]
     - [0xF5EF0, rodata]
     - [0xF5FE0, rodata]
     - [0xF6220, rodata]

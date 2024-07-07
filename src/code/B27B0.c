@@ -1,6 +1,8 @@
 #include "common.h"
+#include "variables.h"
 
 extern s32 D_80177A60;
+extern s32 D_80177A64;
 extern void* D_80117F08;
 
 //functions
@@ -55,7 +57,35 @@ void func_800C08A8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B27B0/func_800C0964.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/B27B0/func_800C0B78.s")
+void func_800C0B78(void) {
+    struct PlayerStruct* sp4;
+
+    sp4 = &gPlayerData[D_80177A60];
+    if (D_80177A64 == 1) {
+        if (sp4->unkAA == -1) {
+            sp4->unkAC = 0;
+        }
+        if (sp4->unk10B == 0) {
+            if (sp4->unkAA == 1) {
+                sp4->unkAA = -1;
+                sp4->unkA4 = 2;
+                sp4->unk108 = -1;
+                sp4->unk132 = 0;
+                return;
+            }
+            sp4->unkAA = 0;
+        } else {
+            if (sp4->unkAA == 0) {
+                sp4->unkAA = -1;
+                sp4->unkA4 = 2;
+                sp4->unk108 = -1;
+                sp4->unk132 = 0;
+                return;
+            }
+            sp4->unkAA = 1;
+        }
+    }
+}
 
 void func_800C0CC0(void) {
     struct PlayerStruct* sp24;

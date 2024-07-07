@@ -7,15 +7,30 @@ extern s8 D_8016523A;
 extern s8 D_8016523B;
 extern s8 D_8016523C;
 extern u8 D_8016523D;
-extern u8 D_80165241;
-extern s8 D_80165244;
-extern s8 D_80165245;
-extern s8 D_8016523F;
-extern s8 D_80165240;
+extern u8 gGemCount;
+extern s8 gHealthCount;
+extern s8 gMaxHealth;
+extern s8 gBombCount;
+extern s8 gFireCount;
+
+extern s8 D_8016E110;
+extern s16 D_8016E112;
+extern s8 D_8016E115;
+
+extern f32 D_80177550[44];
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80084120.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_800841E8.s")
+void func_800841E8(void) {
+    if ((D_8016E428 == 0x28) || (D_8016E428 == 0x29)) {
+        D_8016E110 = 2;
+        D_8016E112 = 0x3C;
+    } else {
+        D_8016E110 = 0;
+        D_8016E112 = 0;
+    }
+    D_8016E115 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_8008424C.s")
 
@@ -43,7 +58,9 @@ extern s8 D_80165240;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80086D50.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80086E70.s")
+void func_80086E70(f32* arg0, f32* arg1, f32* arg2) {
+    guMtxXFMF((f32 (*)[4]) D_80177550, *arg0, *arg1, *arg2, arg0, arg1, arg2);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80086ECC.s")
 
@@ -59,13 +76,35 @@ extern s8 D_80165240;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80087E14.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80088094.s")
+void func_80088094(void) {
+    gLifeCount = 1;
+    gMaxHealth = 4;
+    gHealthCount = gMaxHealth;
+    gBombCount = 0;
+    gFireCount = 0;
+    gGemCount = 0;
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_800880E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80088134.s")
+void func_80088134(void) { //looks like the regular base stats
+    gLifeCount = 3;
+    gMaxHealth = 4;
+    gHealthCount = gMaxHealth;
+    gBombCount = 0;
+    gFireCount = 0;
+    gGemCount = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80088184.s")
+void func_80088184(void) { //looks like the regular base stats
+    gLifeCount = 3;
+    gMaxHealth = 4;
+    gHealthCount = gMaxHealth;
+    gBombCount = 0;
+    gFireCount = 0;
+    gGemCount = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_800881D4.s")
 
@@ -85,11 +124,11 @@ void func_80088248(s32 arg0) {
 
 void func_80088338(void) {
     gLifeCount = D_80165238;
-    D_80165244 = D_80165239;
-    D_80165245 = D_8016523A;
-    D_8016523F = D_8016523B;
-    D_80165240 = D_8016523C;
-    D_80165241 = D_8016523D;
+    gHealthCount = D_80165239;
+    gMaxHealth = D_8016523A;
+    gBombCount = D_8016523B;
+    gFireCount = D_8016523C;
+    gGemCount = D_8016523D;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_800883A8.s")

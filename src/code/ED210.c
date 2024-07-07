@@ -1,8 +1,14 @@
 #include "common.h"
+#include "variables.h"
 
+extern void func_800FB804();                                  /* extern */
+extern void func_800FBA24();                                  /* extern */
 extern void func_8002B0E4(s32);
+extern void func_80081468(s32, f32, f32, f32);  
 
 extern s32 D_80177A60;
+extern s32 D_80177A64;
+extern s8 D_80165242;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FACF0.s")
 
@@ -26,7 +32,20 @@ extern s32 D_80177A60;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FBA24.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FBAB8.s")
+void func_800FBAB8(void) 
+{
+    switch (gPlayerData[D_80177A60].unkA4) 
+    {                              
+    case 1:
+        func_800FB804();
+        break;
+    case 2:
+        func_800FBA24();
+        break;
+    default:
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FBB4C.s")
 
@@ -38,7 +57,26 @@ extern s32 D_80177A60;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FBF10.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FC1D8.s")
+void func_800FC1D8(void) {
+    struct PlayerStruct* sp1C;
+
+    sp1C = &gPlayerData[D_80177A60];
+    if ((D_80177A64 != 0) && (D_80177A64 != 1)) {
+        return;
+    }
+    if (D_80177A64 == 0) {
+        D_80165242 += 1;
+        func_80081468(0x2CB, sp1C->Pos.x, sp1C->Pos.y + 120.0f, sp1C->Pos.z);
+        sp1C->unk108 = 0;
+        sp1C->unkA4 = 3;
+        sp1C->unk132 = 0;
+    } else {
+        sp1C->unk108 = 0;
+        sp1C->unkA4 = 4;
+        sp1C->unk132 = 0;
+    }
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FC2E4.s")
 

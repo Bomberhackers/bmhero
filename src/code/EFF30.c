@@ -77,8 +77,8 @@ extern s8 D_801343BC;
 extern s8 D_801343CC;
 extern s8 D_801343DC;
 extern s8 D_801343F0;
-extern s8 D_8016523F;
-extern s8 D_80165240;
+extern s8 gBombCount;
+extern s8 gFireCount;
 extern u8 D_80177974;
 extern s16 D_8016E3F4;
 extern s16 D_80134730;
@@ -454,9 +454,9 @@ void func_800FE9BC(void) {
     debug_print_xy(0x20, 0x50);
     sprintf(&gDebugTextBuf, "   G BUTTON DEBUG = %d", D_8016E40C);
     debug_print_xy(0x20, 0x60);
-    sprintf(&gDebugTextBuf, "   BOM  = %d", D_8016523F);
+    sprintf(&gDebugTextBuf, "   BOM  = %d", gBombCount);
     debug_print_xy(0x20, 0x70);
-    sprintf(&gDebugTextBuf, "   FIRE = %d", D_80165240);
+    sprintf(&gDebugTextBuf, "   FIRE = %d", gFireCount);
     debug_print_xy(0x20, 0x80);
     sprintf(&gDebugTextBuf, "   DISPTYPE = %d", D_80177974);
     debug_print_xy(0x20, 0x90);
@@ -563,7 +563,7 @@ void func_800FEFA0(void) {
     sp50 *= 0x3C;
     sprintf(&gDebugTextBuf, "(%d %d %d) R=%d GB=%d", sp54, (s32) D_8017753C->Unk4, sp50, (s32) (u8) D_8016E414, (s32) (u16) D_8016E41C);
     debug_print_xy((s8* )0x20, (s8* )0x20);
-    func_80065AEC(gPlayerData[0].PosX, gPlayerData[0].PosY, gPlayerData[0].PosZ, &sp40, &sp3C, &sp38);
+    func_80065AEC(gPlayerData[0].Pos.x, gPlayerData[0].Pos.y, gPlayerData[0].Pos.z, &sp40, &sp3C, &sp38);
     sp44 = (D_80177778->unk18 * sp38) + sp40;
     sprintf(&gDebugTextBuf, "[MAP INDEX=%d FLOOR=%d]", sp44, sp3C + 1);
     debug_print_xy((s8* )0x20, (s8* )0x30);
@@ -577,9 +577,9 @@ void func_800FEFA0(void) {
 }
 
 void func_800FF43C(void) {
-    sprintf(&gDebugTextBuf, "PLAY.POS X=%5d Y=%5d Z=%5d", (s32) gPlayerData[0].PosX, (s32) gPlayerData[0].PosY, (s32) gPlayerData[0].PosZ);
+    sprintf(&gDebugTextBuf, "PLAY.POS X=%5d Y=%5d Z=%5d", (s32) gPlayerData[0].Pos.x, (s32) gPlayerData[0].Pos.y, (s32) gPlayerData[0].Pos.z);
     debug_print_xy((s8* )0x20, (s8* )0x10);
-    sprintf(&gDebugTextBuf, "PLAY.ROT X=%5d Y=%5d Z=%5d", (s32) gPlayerData[0].RotX, (s32) gPlayerData[0].RotY, (s32) gPlayerData[0].RotZ);
+    sprintf(&gDebugTextBuf, "PLAY.ROT X=%5d Y=%5d Z=%5d", (s32) gPlayerData[0].Rot.x, (s32) gPlayerData[0].Rot.y, (s32) gPlayerData[0].Rot.z);
     debug_print_xy((s8* )0x20, (s8* )0x20);
     sprintf(&gDebugTextBuf, "VIEW.AT  X=%5d Y=%5d Z=%5d", (s32) gView.at.x, (s32) gView.at.y, (s32) gView.at.z);
     debug_print_xy((s8* )0x20, (s8* )0x30);
@@ -680,13 +680,13 @@ void func_800FF88C(void) {
         case 5:
             {
                 if (*D_8016E2F0 & 0x200) {
-                    if (--D_8016523F < 0) {
-                        D_8016523F = 3;
+                    if (--gBombCount < 0) {
+                        gBombCount = 3;
                     }
                 }
                 if (*D_8016E2F0 & 0x100) {
-                    if (++D_8016523F >= 4) {
-                        D_8016523F = 0;
+                    if (++gBombCount >= 4) {
+                        gBombCount = 0;
                     }
                 }
                 break;                
@@ -694,13 +694,13 @@ void func_800FF88C(void) {
         case 6:
             {
                 if (*D_8016E2F0 & 0x200) {
-                    if (--D_80165240 < 0) {
-                        D_80165240 = 3;
+                    if (--gFireCount < 0) {
+                        gFireCount = 3;
                     }
                 }
                 if (*D_8016E2F0 & 0x100) {
-                    if (++D_80165240 >= 4) {
-                        D_80165240 = 0;
+                    if (++gFireCount >= 4) {
+                        gFireCount = 0;
                     }
                 }
                 break;                

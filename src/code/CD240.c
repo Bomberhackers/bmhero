@@ -879,7 +879,12 @@ void func_800E3474(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F7D08.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F7E2C.s")
+void func_800F7E2C(void) {
+    if (D_80177A64 == 1) {
+        gPlayerData[D_80177A60].unkA4 = 3;
+        gPlayerData[D_80177A60].unk132 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F7EA4.s")
 

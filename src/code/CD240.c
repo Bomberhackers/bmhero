@@ -46,16 +46,6 @@ typedef struct {
     f32 unk0;
 } UnkStruct80114354;
 
-typedef struct {
-    s16 unk0;
-    s16 unk2;
-    s16 unk4;
-    s16 unk6;
-    s16 unk8;
-    char padding[0x150 - (sizeof(s16) * 5)];
-} UnkStruct80165100;
-
-
 extern UnkStruct80165100* D_80165100;
 extern struct PlayerStruct D_80119128;
 extern struct PlayerStruct D_80118FF4;
@@ -890,14 +880,14 @@ void func_800F8028(void) {
 
     sp2C = func_80027464(3, &D_80113790, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
     if (sp2C != -1) {
-        sp24 = (s32) gPlayerData[sp2C].unkE8;
-        sp28 = (s32) gPlayerData[sp2C].unkEA;
-        gPlayerData[sp24].Pos.x = gPlayerData[sp2C].Pos.x - 60.0f;
-        gPlayerData[sp24].Pos.y = (f32) (gPlayerData[sp2C].Pos.y - 180.0f);
-        gPlayerData[sp24].Pos.z = (f32) gPlayerData[sp2C].Pos.z;
-        gPlayerData[sp28].Pos.x = gPlayerData[sp2C].Pos.x + 60.0f;
-        gPlayerData[sp28].Pos.y = (f32) (gPlayerData[sp2C].Pos.y - 180.0f);
-        gPlayerData[sp28].Pos.z = (f32) gPlayerData[sp2C].Pos.z;
+        sp24 = (s32) gPlayerData[sp2C].unkE8[0];
+        sp28 = (s32) gPlayerData[sp2C].unkE8[1];
+        gPlayerData[sp24].PosX = gPlayerData[sp2C].PosX - 60.0f;
+        gPlayerData[sp24].PosY = (f32) (gPlayerData[sp2C].PosY - 180.0f);
+        gPlayerData[sp24].PosZ = (f32) gPlayerData[sp2C].PosZ;
+        gPlayerData[sp28].PosX = gPlayerData[sp2C].PosX + 60.0f;
+        gPlayerData[sp28].PosY = (f32) (gPlayerData[sp2C].PosY - 180.0f);
+        gPlayerData[sp28].PosZ = (f32) gPlayerData[sp2C].PosZ;
     }
 }
 
@@ -908,8 +898,8 @@ void func_800F82EC(void) {
 
     spC = &gPlayerData[D_80177A60];
     if (D_80177A64 == 0) {
-        sp8 = (s32) spC->unkE8;
-        sp4 = (s32) spC->unkEA;
+        sp8 = (s32) spC->unkE8[0];
+        sp4 = (s32) spC->unkE8[1];
         if (sp8 != -1) {
             if (gPlayerData[sp8].unk104 != -1) {
                 spC->unkA4 = 2;
@@ -933,7 +923,7 @@ void func_800F8418(void) {
         sp4->unk132 = 1U;
         sp4->unkA6 = 0xA;
     }
-    if ((sp4->unkE8 == -1) && (sp4->unkEA == -1)) {
+    if ((sp4->unkE8[0] == -1) && (sp4->unkE8[1] == -1)) {
         if (sp4->unkA6 == 0) {
             sp4->unkA4 = 3;
             sp4->unk132 = 0U;
@@ -951,8 +941,8 @@ void func_800F84F8(void) {
     sp24 = &gPlayerData[D_80177A60];
     if (sp24->unk132 == 0) {
         sp24->unk132 = 1U;
-        sp20 = (s32) sp24->unkE8;
-        sp1C = (s32) sp24->unkEA;
+        sp20 = (s32) sp24->unkE8[0];
+        sp1C = (s32) sp24->unkE8[1];
         if ((sp20 != -1)) {
             if (gPlayerData[sp20].unk104 != -1) {
                 func_800281A4(D_80177A60, 0);
@@ -1308,7 +1298,7 @@ void func_800FA27C(void) {
     s32 sp28;
 
     sp2C = &gPlayerData[D_80177A60];
-    sp28 = (s32) sp2C->unkE8;
+    sp28 = (s32) sp2C->unkE8[0];
     if (sp2C->unk132 == 0) {
         sp2C->unk132 = 1U;
         if (sp2C->unkA8 != 0) {
@@ -1358,7 +1348,7 @@ void func_800FA54C(void) {
     s32 sp30;
 
     sp34 = &gPlayerData[D_80177A60];
-    sp30 = (s32) sp34->unkE8;
+    sp30 = (s32) sp34->unkE8[0];
     if (sp34->unk132 == 0) {
         sp34->unk132 = 1U;
         sp34->unkA8 = 0;

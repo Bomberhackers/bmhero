@@ -8,6 +8,18 @@ extern OSMesg D_801776CC;
 extern u8 D_8016E27C;
 extern OSContStatus D_80177650;
 
+typedef struct {
+    s16 unk0;
+    s16 unk2;
+    s16 unk4;
+    s16 unk6;
+    s16 unk8;
+    s16 unkA;
+    s16 unkC;
+    s16 unkE;
+    char padding[0x150 - (sizeof(s16) * 5)];
+} UnkStruct80165100;
+
 struct UnkStruct8016E280 {
     u16 unk00[4];
     char filler8[0x8];
@@ -166,26 +178,37 @@ struct PlayerStruct
     char pad30[0x8];
     f32 unk38;
     f32 unk3C;
-    f32 unk40;                          /* inferred */
+    f32 unk40;
     f32 unk44;
-    f32 unk48;                          /* inferred */
-    char pad4C[0x8];
+    f32 unk48;
+    char padding6[4];
+    f32 unk50;
     f32 unk54;
-    char padding13[0x4C];
+    f32 unk58;
+    char padding13[0x48];
     s16 unkA4;
     s16 unkA6;
     s16 unkA8;
     s16 unkAA;
     s16 unkAC;
-    s16 unkAE;                          /* inferred */
-    char padB0[2];
+    s16 unkAE;
+    s16 unkB0;
     s16 unkB2;
-    char padB4[0x30];
+    s16 unkB4;
+    s16 unkB6;
+    s16 unkB8;
+    s16 unkBA;
+    char padding8[0x17];
+    f32 unkD4;
+    char padding9[0xB];
     s16 unkE4;
-    char padE6[0x2];
-    s16 unkE8;
-    s16 unkEA;
-    char padEC[0x18];
+    s16 unkE6[0x1];
+    s16 unkE8[0x2];
+    s16 unkEC;
+    char padding10[0x12];
+    s16 unk100;
+    s8 unk102;
+    s8 unk103;
     s16 unk104;
     s16 unk106;
     s16 unk108;
@@ -332,5 +355,23 @@ struct View {
 }; // size=0x34
 
 extern struct View gView;
+
+extern Gfx *gMasterDisplayList;
+
+// DEMO IDs
+#define DEMO_TITLE_INTRO                0
+#define DEMO_CREDIT_SCENE               1
+#define DEMO_BOMBER_CHANGE_JET_QUICK    2
+#define DEMO_BOMBER_CHANGE_MARINE_QUICK 3
+#define DEMO_BOMBER_CHANGE_COPTER_QUICK 4
+#define DEMO_BOMBER_CHANGE_SLIDER_QUICK 5
+#define DEMO_BOMBER_CHANGE_JET          6
+#define DEMO_BOMBER_CHANGE_MARINE       7
+#define DEMO_BOMBER_CHANGE_COPTER       8
+#define DEMO_BOMBER_CHANGE_SLIDER       9
+#define DEMO_LAST DEMO_BOMBER_CHANGE_SLIDER
+
+extern s8 gDemoSceneID;
+extern s8 gDemoID;
 
 #endif // _VARIABLES_H_

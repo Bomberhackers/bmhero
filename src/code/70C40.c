@@ -39,20 +39,19 @@ void func_8007EE40(f32 arg0, f32 arg1, s32 arg2, s32 arg3) {
 void func_8007F3F0(void) {
     struct PlayerStruct* sp34;
     s32 sp30;
-    f32 sp2C;
-    f32 sp28;
-    f32 sp24;
+    struct Vec3f sp24;
 
     func_8001838C();
     for(sp30 = 6, sp34 = gPlayerData + 6; sp30 < 0xE; sp30++, sp34++)
     {
         if (sp34->unkA4 != 0) 
         {
-            if (func_8001C300(sp30, 0) != 0) {
-                sp2C = gView.eye.x - sp34->PosX;
-                sp28 = gView.eye.y - sp34->PosY;
-                sp24 = gView.eye.z - sp34->PosZ;
-                func_800158B4(sp2C, sp28, sp24, &sp34->RotX, &sp34->RotY);
+            if (func_8001C300(sp30, 0) != 0) 
+            {
+                sp24.z = gView.eye.x - sp34->PosX;
+                sp24.y = gView.eye.y - sp34->PosY;
+                sp24.x = gView.eye.z - sp34->PosZ;
+                func_800158B4(sp24.z, sp24.y, sp24.x, &sp34->RotX, &sp34->RotY);
                 sp34->RotZ = 0.0f;
                 func_80019510(sp30, 1, 1);
                 func_8001C384(sp30, 0);

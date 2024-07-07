@@ -186,7 +186,7 @@ struct PlayerStruct
     s16 unkAA;
     s16 unkAC;
     s16 unkAE;                          /* inferred */
-    char padB0[2];
+    s16 unkB0;
     s16 unkB2;
     char padding8[0x30];
     s16 unkE4;

@@ -882,12 +882,12 @@ void func_800F8028(void) {
     if (sp2C != -1) {
         sp24 = (s32) gPlayerData[sp2C].unkE8[0];
         sp28 = (s32) gPlayerData[sp2C].unkE8[1];
-        gPlayerData[sp24].PosX = gPlayerData[sp2C].PosX - 60.0f;
-        gPlayerData[sp24].PosY = (f32) (gPlayerData[sp2C].PosY - 180.0f);
-        gPlayerData[sp24].PosZ = (f32) gPlayerData[sp2C].PosZ;
-        gPlayerData[sp28].PosX = gPlayerData[sp2C].PosX + 60.0f;
-        gPlayerData[sp28].PosY = (f32) (gPlayerData[sp2C].PosY - 180.0f);
-        gPlayerData[sp28].PosZ = (f32) gPlayerData[sp2C].PosZ;
+        gPlayerData[sp24].Pos.x = gPlayerData[sp2C].Pos.x - 60.0f;
+        gPlayerData[sp24].Pos.y = (f32) (gPlayerData[sp2C].Pos.y - 180.0f);
+        gPlayerData[sp24].Pos.z = (f32) gPlayerData[sp2C].Pos.z;
+        gPlayerData[sp28].Pos.x = gPlayerData[sp2C].Pos.x + 60.0f;
+        gPlayerData[sp28].Pos.y = (f32) (gPlayerData[sp2C].Pos.y - 180.0f);
+        gPlayerData[sp28].Pos.z = (f32) gPlayerData[sp2C].Pos.z;
     }
 }
 

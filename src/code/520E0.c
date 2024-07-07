@@ -9,12 +9,6 @@ extern struct UnkStruct_800600B8
     u8 Padding[3];
 } UnkStruct_800600B8;
 
-struct UnkStruct_80060278
-{
-    s32 Unk01;
-    u8 Padding[4];
-} UnkStruct_80060278;
-
 //funcs
 void func_8001EA68(s32, s32, s32);
 
@@ -22,10 +16,8 @@ void func_8001EA68(s32, s32, s32);
 extern struct UnkStruct_800600B8 D_801039D4[];
 extern s8 D_80134801;
 extern s8 D_80134802;
-extern struct UnkStruct_80060278 D_8016CAA0[];
 extern s32 D_80321428;
 extern s32* D_80324994;
-
 
 //rom
 extern u8 unk_bin_0_2_ROM_START[]; 
@@ -102,10 +94,10 @@ s32 func_800600B8(s8 arg0, s8 arg1) {
 }
 
 void func_80060278(void) {
-    s32 sp1C;
-    for(sp1C = 0; sp1C < 0x2BC; sp1C++)
+    s32 i;
+    for(i = 0; i < 700; i++)
     {
-        D_8016CAA0[sp1C].Unk01 = 0;
+        D_8016CAA0[i].unk0 = 0;
     }
     func_8001E954(0x8024C000);
     func_8001E98C(0, unk_bin_0_2_ROM_START, code_extra_0_ROM_START);

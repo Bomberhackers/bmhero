@@ -46,7 +46,7 @@ void main(void* arg) {
     u8 *ptr;
 
     // clears code segment in RAM. Whats the need to do this, when a soft reset does this anyway?
-    for (ptr = (u8*)func_8005BAD0; (u32)ptr < (u32)0x80400000; ptr++) {
+    for (ptr = (u8*)game_VRAM; (u32)ptr < (u32)0x80400000; ptr++) {
         *ptr = 0;
     }
     if (D_8004A280 != 0) {

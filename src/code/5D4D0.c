@@ -18,10 +18,6 @@ extern u16 D_8017794A;
 
 extern u16 D_80177942;
 extern u16 D_80177946;
-
-extern f32 D_8016E140;
-extern f32 D_8016E144;
-extern f32 D_8016E148;
 extern u8 D_801776E0;
 extern s8 D_801775EE;
 extern s8 D_801348B2;
@@ -71,9 +67,9 @@ void func_8006AFB0(void) {
     f32 sp20;
     f32 sp1C;
 
-    sp24 = (f32) func_80014E80(-0x3C0) + D_8016E140;
-    sp20 = (f32) func_80014E80(0xF0) + (D_8016E144 + 540.0f);
-    sp1C = (f32) func_80014E80(-0x3C0) + D_8016E148;
+    sp24 = (f32) func_80014E80(-0x3C0) + gView.at.x;
+    sp20 = (f32) func_80014E80(0xF0) + (gView.at.y + 540.0f);
+    sp1C = (f32) func_80014E80(-0x3C0) + gView.at.z;
     func_80067748(sp24, sp20, sp1C);
     if (!(D_801776E0 & 1)) {
         func_80081468(0x2C1, sp24, sp20, sp1C);
@@ -91,9 +87,9 @@ void func_8006B084(void) {
     }
     if (D_80177933 == 0) {
         D_80177933 = 5;
-        sp24 = (f32) func_80014E80(-960) + D_8016E140;
-        sp20 = (f32) func_80014E80(240) + (D_8016E144 + 540.0f);
-        sp1C = (f32) func_80014E80(-960) + D_8016E148;
+        sp24 = (f32) func_80014E80(-960) + gView.at.x;
+        sp20 = (f32) func_80014E80(240) + (gView.at.y + 540.0f);
+        sp1C = (f32) func_80014E80(-960) + gView.at.z;
         func_80067748(sp24, sp20, sp1C);
         if (!(D_801776E0 & 1)) {
             func_80081468(706, sp24, sp20, sp1C);

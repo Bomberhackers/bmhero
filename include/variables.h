@@ -323,4 +323,22 @@ struct UnkStructSTCG
 
 extern struct PlayerStruct gPlayerData[];
 
+struct UnkStruct_80060278
+{
+    s32 unk0;
+    u8 Padding[4];
+};
+
+extern struct UnkStruct_80060278 D_8016CAA0[700];
+
+struct View {
+    /* 0x00 */ struct Vec3f at;
+    /* 0x0C */ struct Vec3f eye;
+    /* 0x18 */ struct Vec3f rot;
+    /* 0x24 */ struct Vec3f up;
+    /* 0x30 */ f32 dist;
+}; // size=0x34
+
+extern struct View gView;
+
 #endif // _VARIABLES_H_

@@ -66,7 +66,7 @@ void func_800FC1D8(void) {
     }
     if (D_80177A64 == 0) {
         D_80165242 += 1;
-        func_80081468(0x2CB, sp1C->PosX, sp1C->PosY + 120.0f, sp1C->PosZ);
+        func_80081468(0x2CB, sp1C->Pos.x, sp1C->Pos.y + 120.0f, sp1C->Pos.z);
         sp1C->unk108 = 0;
         sp1C->unkA4 = 3;
         sp1C->unk132 = 0;

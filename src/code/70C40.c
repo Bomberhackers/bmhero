@@ -48,18 +48,18 @@ void func_8007F3F0(void) {
         {
             if (func_8001C300(sp30, 0) != 0) 
             {
-                sp24.z = gView.eye.x - sp34->PosX;
-                sp24.y = gView.eye.y - sp34->PosY;
-                sp24.x = gView.eye.z - sp34->PosZ;
-                func_800158B4(sp24.z, sp24.y, sp24.x, &sp34->RotX, &sp34->RotY);
-                sp34->RotZ = 0.0f;
+                sp24.z = gView.eye.x - sp34->Pos.x;
+                sp24.y = gView.eye.y - sp34->Pos.y;
+                sp24.x = gView.eye.z - sp34->Pos.z;
+                func_800158B4(sp24.z, sp24.y, sp24.x, &sp34->Rot.x, &sp34->Rot.y);
+                sp34->Rot.z = 0.0f;
                 func_80019510(sp30, 1, 1);
                 func_8001C384(sp30, 0);
             }
             if (func_8001C300(sp30, 1) != 0) {
-                sp34->RotY = 0.0f;
-                sp34->RotX = 0.0f;
-                sp34->RotZ = 0.0f;
+                sp34->Rot.y = 0.0f;
+                sp34->Rot.x = 0.0f;
+                sp34->Rot.z = 0.0f;
                 func_80019510(sp30, 1, 1);
                 func_8001C384(sp30, 1);
             }

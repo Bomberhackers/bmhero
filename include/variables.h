@@ -159,18 +159,10 @@ struct UnkStruct80088B80_3
 
 struct PlayerStruct
 {
-    f32 PosX; //00
-    f32 PosY; //04
-    f32 PosZ; //08
-    f32 ScaleX;
-    f32 ScaleY;
-    f32 ScaleZ;
-    f32 RotX; //18
-    f32 RotY; //1C
-    f32 RotZ; //20
-    f32 VelX; //24
-    f32 VelY; //28
-    f32 VelZ; //2C
+    struct Vec3f Pos;
+    struct Vec3f Scale;
+    struct Vec3f Rot;
+    struct Vec3f Vel;
     char pad30[0x8];
     f32 unk38;
     f32 unk3C;

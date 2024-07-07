@@ -9,14 +9,16 @@ extern s32 func_8001B4AC(s32, s32);
 extern s32 func_8001B754(s32, s32);
 extern s32 func_8001C0EC(s32, s32, s32, s32, void*);
 extern s32 func_80028FA0(s32);
-extern s32 func_8002A8B4(s32, s32);
+extern s32 func_8002A8B4(s32, f32);
 extern s32 func_800E3EE4();
 extern f32 func_8002A46C(s32);
 extern s32 func_80014E80(s32);
 extern f32 func_80015538(f32, f32);
 extern s32 func_80029018(s32, s32, s32, f32, f32, f32);
+extern s32 func_800295C0(s32, f32*, f32*, f32, f32, f32);
 extern s32 func_800297DC();
 extern s32 func_8002A0D0(s32, f32, f32, f32);
+extern s32 func_8002A2EC(s32, f32);
 extern s32 func_8001B44C(s32, s32);
 extern s32 func_800261E8(s32, s32);
 extern s32 func_80026260(s32);
@@ -150,7 +152,7 @@ void func_800DB0F8(void) {
         sp24->unk132 = (u8) (sp24->unk132 + 1);
         func_8001C0EC(D_80177A60, 0, 1, 0x54, &D_80118E9C);
     }
-    func_8002A8B4(D_80177A60, 0x40C00000);
+    func_8002A8B4(D_80177A60, 6.0f);
     sp24->RotY = (f32) sp24->unk3C;
     if (func_8001B4AC(D_80177A60, 0) != 0) {
         sp24->unkA4 = 3;
@@ -282,7 +284,58 @@ void func_800DBBA8(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DBCFC.s")
+void func_800DBCFC(void) {
+    struct PlayerStruct* sp44;
+    f32 sp40;
+    f32 sp3C;
+
+    sp44 = &gPlayerData[D_80177A60];
+    if (sp44->unk132 == 0) {
+        sp44->unk132 = (u8) (sp44->unk132 + 1);
+        sp44->unk3C = func_8002A46C(D_80177A60);
+        sp44->RotY = (f32) sp44->unk3C;
+        sp44->unk44 = 15.0f;
+        func_8001C0EC(D_80177A60, 0, 3, 0x56, &D_80118EB4);
+        sp44->unkC0 = 0;
+    }
+    if (sp44->unkC0 == 0) {
+        sp44->unkC0 = 4;
+        func_800175F0(D_80177A60, 0, 0x11, -1, 0);
+    } else {
+        sp44->unkC0 = (s16) (sp44->unkC0 - 1);
+    }
+    if (func_80028FA0(D_80177A60) != 0) {
+        func_80029B60(D_80177A60);
+    }
+    if (sp44->unkA6 != 0) {
+        if (--sp44->unk44 < 5.0f) {
+            sp44->unkA6 = 0;
+        }
+    }
+    func_8002A8B4(D_80177A60, (f32) (func_80014E80(4) + 2));
+    sp44->RotY = (f32) sp44->unk3C;
+    func_80029C40(D_80177A60);
+    if (func_80029018(D_80177A60, 1, 0x41F00000, 0, 0.0f, 0.0f) != 0) {
+        sp44->VelZ = 0.0f;
+        sp44->VelX = sp44->VelY = sp44->VelZ;
+        sp44->unkA4 = 5;
+        sp44->unk132 = 0U;
+    }
+    if (func_800295C0(D_80177A60, &sp40, &sp3C, 0.0f, 0.0f, 0.0f) != 0) {
+        sp44->PosY = sp3C;
+    } else {
+        sp44->PosY = sp40;
+    }
+    if (func_8002A2EC(D_80177A60, 600.0f) != 0) {
+
+    } else {
+        sp44->VelZ = 0.0f;
+        sp44->VelX = sp44->VelY = sp44->VelZ;
+        sp44->unk44 = 0.0f;
+        sp44->unkA4 = 5;
+        sp44->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DC07C.s")
 
@@ -372,7 +425,7 @@ void func_800DDAA8(void) {
         func_800E3EE4();
         return;
     }
-    func_8002A8B4(D_80177A60, 0x40C00000);
+    func_8002A8B4(D_80177A60, 6.0f);
     sp24->RotY = (f32) sp24->unk3C;
     if (func_8001B4AC(D_80177A60, 0) != 0) {
         sp24->unkA4 = 3;

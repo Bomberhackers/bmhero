@@ -869,7 +869,19 @@ void func_800E3474(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F770C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F7800.s")
+void func_800F7800(void) {
+
+    switch (gPlayerData[D_80177A60].unkA4) {
+    case 1:
+        func_800F7544();
+        break;
+    case 2:
+        func_800F770C();
+        break;
+    default:
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F7894.s")
 

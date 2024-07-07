@@ -1,10 +1,6 @@
 #include "common.h"
 #include "variables.h"
 
-extern f32 D_8016E14C; //lord have mercy with these variables
-extern f32 D_8016E150;
-extern f32 D_8016E154;
-
 void func_8001A928(s32); 
 void func_8007EBEC(f32, f32, s32, s32, s32);
 void func_800158B4(f32, f32, f32, f32*, f32*);         /* extern */
@@ -53,9 +49,9 @@ void func_8007F3F0(void) {
         if (sp34->unkA4 != 0) 
         {
             if (func_8001C300(sp30, 0) != 0) {
-                sp2C = D_8016E14C - sp34->PosX;
-                sp28 = D_8016E150 - sp34->PosY;
-                sp24 = D_8016E154 - sp34->PosZ;
+                sp2C = gView.eye.x - sp34->PosX;
+                sp28 = gView.eye.y - sp34->PosY;
+                sp24 = gView.eye.z - sp34->PosZ;
                 func_800158B4(sp2C, sp28, sp24, &sp34->RotX, &sp34->RotY);
                 sp34->RotZ = 0.0f;
                 func_80019510(sp30, 1, 1);

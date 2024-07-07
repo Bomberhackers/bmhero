@@ -353,7 +353,41 @@ void func_800DC07C(void) {
     }
 }
 
+#ifdef NON_MATCHING
+// matches but needs rodata
+void func_800DC188(void) {
+    struct PlayerStruct* sp1C;
+
+    sp1C = &gPlayerData[D_80177A60];
+    switch (sp1C->unkA4) {
+    case 1:
+        func_800DB840();
+        break;
+    case 2:
+        func_800DB910();
+        break;
+    case 3:
+        func_800DBA0C();
+        break;
+    case 4:
+        func_800DBB78();
+        break;
+    case 5:
+        func_800DBBA8();
+        break;
+    case 6:
+        func_800DBCFC();
+        break;
+    case 7:
+        func_800DC07C();
+        break;
+    default:
+        break;
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DC188.s")
+#endif
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DC288.s")
 

@@ -56,6 +56,7 @@ extern UnkStruct80165100 D_801137D8;
 extern UnkStruct80165100 D_801137E4;
 extern UnkStruct80165100 D_8011436C;
 extern UnkStruct80165100 D_801142E8;
+extern UnkStruct80165100 D_80114300;
 extern struct PlayerStruct D_80118E9C;
 extern UnkStruct80165100 D_801142F4;
 extern struct PlayerStruct D_801137F0;
@@ -379,7 +380,9 @@ void func_800DC188(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DC188.s")
 #endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DC288.s")
+void func_800DC288(void) {
+    func_80027464(1, &D_80114300, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DC300.s")
 

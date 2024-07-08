@@ -23,7 +23,7 @@ extern s32* D_80324994;
 extern u8 unk_bin_0_2_ROM_START[]; 
 extern u8 code_extra_0_ROM_START[]; 
 extern u8 _64C3C0_ROM_START[];
-extern u8 _64EC60_ROM_START;
+extern u8 _64EC60_ROM_START[];
 
 void func_8005FBC0(void) {
 

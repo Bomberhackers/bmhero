@@ -9,6 +9,15 @@ extern u32 game_VRAM[];
 
 #define code_extra_VRAM 0x80280000
 
+extern u8 _64C3C0_ROM_START[];
+extern u8 _64C3C0_ROM_END[];
+
+extern u8 _64EC60_ROM_START[];
+extern u8 _64EC60_ROM_END[];
+
+extern u8 _64EC60_ROM_START[];
+extern u8 _64EC60_ROM_END[];
+
 extern u8 code_extra_0_ROM_START[];   // 0x128D20
 extern u8 code_extra_0_ROM_END[];     // 0x134440
 
@@ -31,6 +40,9 @@ extern u8 code_extra_6_ROM_START[];   // 0x144420
 extern u8 code_extra_6_ROM_END[];     // 0x147BB0
 
 // extern ROM labels
+extern u8 unk_bin_0_2_ROM_START[];
+extern u8 unk_bin_0_2_ROM_END[];
+
 extern u8 unk_bin_1_ROM_START[];      // 0x147BB0
 extern u8 unk_bin_1_ROM_END[];        // 0x14C540
 

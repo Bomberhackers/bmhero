@@ -71,8 +71,6 @@ struct UnkStruct80052EB4 {
     u32 unkC;
 };
 
-struct UnkStruct80052ED8* sp3C;
-
 struct UnkStruct80052ED8 {
     struct UnkStruct80052ED8* unk0;
     char filler4[0x10];

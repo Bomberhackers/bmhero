@@ -243,8 +243,8 @@ void func_800B55B0(void) {
     if (sp2F != -1) {
         gPlayerData[sp2F].unkA4 = 1;
         gPlayerData[sp2F].unk132 = 0;
-        gPlayerData[sp2F].ScaleX = 1.5f;
-        gPlayerData[sp2F].ScaleZ = gPlayerData[sp2F].ScaleY = gPlayerData[sp2F].ScaleX;
+        gPlayerData[sp2F].Scale.x = 1.5f;
+        gPlayerData[sp2F].Scale.z = gPlayerData[sp2F].Scale.y = gPlayerData[sp2F].Scale.x;
         if (D_80165100->unkA != 0) {
             gPlayerData[sp2F].unkB0 = 1;
         }
@@ -304,7 +304,7 @@ void func_800B5978(void) {
     }
 
     func_8002A8B4(D_80177A60, 8.0f);
-    sp34->RotY = sp34->unk3C;
+    sp34->Rot.y = sp34->unk3C;
     sp34->unkA6 -= 3;
     if (func_80028FA0(D_80177A60) != 0) {
         func_80029B60(D_80177A60);
@@ -315,10 +315,10 @@ void func_800B5978(void) {
         func_80029824(D_80177A60, func_800297DC());
     }
     if ((sp34->unkB0 == 1)) {
-        if ((sp34->PosZ + sp34->VelZ) < -5760.0f) {
+        if ((sp34->Pos.z + sp34->Vel.z) < -5760.0f) {
             func_80029824(D_80177A60, func_800297DC());
-            sp34->VelX = 0.0f;
-            sp34->VelZ = 0.0f;
+            sp34->Vel.x = 0.0f;
+            sp34->Vel.z = 0.0f;
         }
     }
 
@@ -373,7 +373,7 @@ void func_800B5D18(void) {
                 func_800175F0(D_80177A60, 0, 4, -1, 0);
             }
         }
-        if (sp44->VelY <= 0.0f) {
+        if (sp44->Vel.y <= 0.0f) {
             sp44->unkA8 = 7;
             sp44->unk132 = 3;
         }
@@ -399,21 +399,21 @@ void func_800B5D18(void) {
             func_80029824(D_80177A60, func_800297DC());
         }
         if ((sp44->unkB0 == 1)) {
-            if ((sp44->PosZ + sp44->VelZ) < -5760.0f) {
+            if ((sp44->Pos.z + sp44->Vel.z) < -5760.0f) {
                 func_80029824(D_80177A60, func_800297DC());
-                sp44->VelX = 0.0f;
-                sp44->VelZ = 0.0f;
+                sp44->Vel.x = 0.0f;
+                sp44->Vel.z = 0.0f;
             }
         }
     }
 
-    sp44->VelX = MIN_CLAMP(sp44->VelX, 48.0f);
+    sp44->Vel.x = MIN_CLAMP(sp44->Vel.x, 48.0f);
 
-    sp44->VelY = MIN_CLAMP(sp44->VelY, 48.0f);
+    sp44->Vel.y = MIN_CLAMP(sp44->Vel.y, 48.0f);
 
-    sp44->VelZ = MIN_CLAMP(sp44->VelZ, 48.0f);
+    sp44->Vel.z = MIN_CLAMP(sp44->Vel.z, 48.0f);
 
-    sp44->RotY = sp44->unk3C;
+    sp44->Rot.y = sp44->unk3C;
 }
 
 void func_800B62C8(void) {
@@ -439,12 +439,12 @@ void func_800B62C8(void) {
         if ((sp44->unk132 == 1)) {
             if (sp44->unkA8 == 5) {
                 sp44->unk132 = 2;
-                sp40 = gPlayerData->PosX - sp44->PosX;
-                sp3C = gPlayerData->PosZ - sp44->PosZ;
+                sp40 = gPlayerData->Pos.x - sp44->Pos.x;
+                sp3C = gPlayerData->Pos.z - sp44->Pos.z;
                 sp3A = (s16) (s32) (sqrtf((sp40 * sp40) + (sp3C * sp3C)) / 60.0f);
                 sp44->unkAA = sp3A + 0x20;
                 sp44->unkAC = sp3A + 0x10;
-                if ((sp3A < 6) && ((gPlayerData->PosY - sp44->PosY) > 120.0f)) {
+                if ((sp3A < 6) && ((gPlayerData->Pos.y - sp44->Pos.y) > 120.0f)) {
                     sp44->unkAA = 0x30;
                     sp44->unkAC = 0;
                     sp44->unkAE = 1;
@@ -455,7 +455,7 @@ void func_800B62C8(void) {
                 func_800175F0(D_80177A60, 0, 4, -1, 0);
             }
         }
-        if (sp44->VelY <= 0.0f) {
+        if (sp44->Vel.y <= 0.0f) {
             sp44->unkA8 = 7;
             sp44->unk132 = 3;
             if (sp44->unkAE == 1) {
@@ -467,13 +467,13 @@ void func_800B62C8(void) {
     if ((s32) sp44->unk132 >= 2) {
         if (func_80028FA0(D_80177A60) != 0) {
             func_80029B60(D_80177A60);
-            if ((gPlayerData[sp44->unk104].PosY + 60.0f) >= sp44->PosY) {
+            if ((gPlayerData[sp44->unk104].Pos.y + 60.0f) >= sp44->Pos.y) {
                 sp44->unkA8 = 7;
                 sp44->unk132 = 3;
                 sp44->unk44 = 4.0f;
                 sp44->unk40 = 90.0f;
-                if (sp44->VelY > -6.0f) {
-                    sp44->VelY = -6.0f;
+                if (sp44->Vel.y > -6.0f) {
+                    sp44->Vel.y = -6.0f;
                 }
             }
         }
@@ -488,20 +488,20 @@ void func_800B62C8(void) {
             func_80029824(D_80177A60, func_800297DC());
         }
         if ((sp44->unkB0 == 1)) {
-            if ((sp44->PosZ + sp44->VelZ) < -5760.0f) {
+            if ((sp44->Pos.z + sp44->Vel.z) < -5760.0f) {
                 func_80029824(D_80177A60, func_800297DC());
-                sp44->VelX = 0.0f;
-                sp44->VelZ = 0.0f;
+                sp44->Vel.x = 0.0f;
+                sp44->Vel.z = 0.0f;
             }
         }
     }
-    sp44->VelX = MIN_CLAMP(sp44->VelX, 48.0f);
+    sp44->Vel.x = MIN_CLAMP(sp44->Vel.x, 48.0f);
 
-    sp44->VelY = MIN_CLAMP(sp44->VelY, 48.0f);
+    sp44->Vel.y = MIN_CLAMP(sp44->Vel.y, 48.0f);
 
-    sp44->VelZ = MIN_CLAMP(sp44->VelZ, 48.0f);
+    sp44->Vel.z = MIN_CLAMP(sp44->Vel.z, 48.0f);
 
-    sp44->RotY = sp44->unk3C;
+    sp44->Rot.y = sp44->unk3C;
 }
 
 void func_800B6A94(void) {
@@ -569,7 +569,7 @@ void func_800B6D40(void) {
             sp2C->unk132 = 0;
         }
     }
-    sp2C->VelY = MIN_CLAMP(sp2C->VelY, 48.0f);
+    sp2C->Vel.y = MIN_CLAMP(sp2C->Vel.y, 48.0f);
 }
 
 void func_800B6F2C(void) {
@@ -624,7 +624,7 @@ void func_800B7158(void) {
         sp1C->unkA4 = 5;
         sp1C->unk132 = 0;
     }
-    sp1C->RotY = sp1C->unk3C;
+    sp1C->Rot.y = sp1C->unk3C;
 }
 
 void func_800B725C(void) {
@@ -689,8 +689,8 @@ void func_800B73FC(void) {
         func_80019448(D_80177A60, 2, 0, 1);
         func_800272E8(D_80177A60);
     }
-    sp2C->RotY = sp2C->unk3C;
-    sp2C->RotX = func_80015538(sp2C->RotX, 30.0f);
+    sp2C->Rot.y = sp2C->unk3C;
+    sp2C->Rot.x = func_80015538(sp2C->Rot.x, 30.0f);
     func_80029C40(D_80177A60);
     func_80029D04(D_80177A60);
     if (func_80029018(D_80177A60, 3U, 30.0f, 0.0f, 0.0f, 0.0f) != 0) {
@@ -733,20 +733,20 @@ s16 func_800B7720(struct PlayerStruct *arg0, s16 arg1, UNUSED s32 arg2) {
     struct PlayerStruct *sp34;
     s16 sp32;
 
-    sp32 = func_80027464(1, &D_80113A18, arg0->PosX, arg0->PosY + 120.0f, arg0->PosZ, arg0->unk3C);
+    sp32 = func_80027464(1, &D_80113A18, arg0->Pos.x, arg0->Pos.y + 120.0f, arg0->Pos.z, arg0->unk3C);
     if (sp32 != -1) {
         func_80026F10(arg1, sp32);
 
         sp34 = &gPlayerData[sp32];
         sp34->unk40 = arg0->unk40;
         sp34->unk44 = 10.0f;
-        sp34->RotY = arg0->unk3C;
+        sp34->Rot.y = arg0->unk3C;
         sp34->unkA4 = 1;
         sp34->unkB2 = 0x28;
         sp34->unk132 = 0;
         sp34->unk108 = 1;
-        sp34->ScaleX = 1.0f;
-        sp34->ScaleZ = sp34->ScaleY = sp34->ScaleX;
+        sp34->Scale.x = 1.0f;
+        sp34->Scale.z = sp34->Scale.y = sp34->Scale.x;
         func_80029C40((s32) sp32);
         func_80029D04((s32) sp32);
     }
@@ -761,8 +761,8 @@ void func_800B78A4(void) {
     if (sp2F != -1) {
         gPlayerData[sp2F].unkA4 = 1;
         gPlayerData[sp2F].unk132 = 0;
-        gPlayerData[sp2F].ScaleX = 1.5f;
-        gPlayerData[sp2F].ScaleZ = gPlayerData[sp2F].ScaleY = gPlayerData[sp2F].ScaleX;
+        gPlayerData[sp2F].Scale.x = 1.5f;
+        gPlayerData[sp2F].Scale.z = gPlayerData[sp2F].Scale.y = gPlayerData[sp2F].Scale.x;
         func_8001C0EC((s32) sp2F, 0, 0, 0xB9, &D_80117AA0);
     }
 }
@@ -802,8 +802,8 @@ void func_800B7BB4(void) {
         sp2C->unk132 = 1;
         sp2C->unk44 = 0.0f;
         sp2C->unk48 = 0.0f;
-        sp28 = gPlayerData->PosX - sp2C->PosX;
-        sp24 = gPlayerData->PosZ - sp2C->PosZ;
+        sp28 = gPlayerData->Pos.x - sp2C->Pos.x;
+        sp24 = gPlayerData->Pos.z - sp2C->Pos.z;
         sp23 = (s8) (s32) ((sqrtf((sp28 * sp28) + (sp24 * sp24)) / 60.0f) + 1.0f);
         sp2C->unk108 = 0;
         sp2C->unkA6 = sp23 * 0x3C;
@@ -813,7 +813,7 @@ void func_800B7BB4(void) {
     }
     func_80029C40(D_80177A60);
     func_80029D04(D_80177A60);
-    sp2C->RotY = sp2C->unk3C;
+    sp2C->Rot.y = sp2C->unk3C;
     if (func_80028FA0(D_80177A60) != 0) {
         func_80029B60(D_80177A60);
     }
@@ -858,7 +858,7 @@ void func_800B7F90(void) {
     }
     func_80029C40(D_80177A60);
     func_80029D04(D_80177A60);
-    sp2C->RotY = sp2C->unk3C;
+    sp2C->Rot.y = sp2C->unk3C;
     if (sp2C->unk132 == 1) {
         if (func_80029F58(D_80177A60, 0.0f, 0.0f, 0.0f, 120.0f) == 1) {
             sp2C->unk132 = 2;
@@ -949,7 +949,7 @@ void func_800B846C(void) {
     }
     func_80029C40(D_80177A60);
     func_80029D04(D_80177A60);
-    sp24->RotY = func_8002A46C(D_80177A60);
+    sp24->Rot.y = func_8002A46C(D_80177A60);
     if (func_8001B44C(D_80177A60, 0) != 0) {
         sp22 = func_80014E80(0xA);
         if (sp22 < 6) {
@@ -1172,14 +1172,14 @@ s16 func_800B9070(struct PlayerStruct *arg0, s16 arg1, s16 arg2) {
     struct PlayerStruct *sp2C;
     s16 sp2A;
 
-    sp2A = func_80027C00(arg1, arg2, &D_80113A48, arg0->PosX, arg0->PosY, arg0->PosZ, 0.0f);
+    sp2A = func_80027C00(arg1, arg2, &D_80113A48, arg0->Pos.x, arg0->Pos.y, arg0->Pos.z, 0.0f);
     if (sp2A != -1) {
         sp2C = &gPlayerData[sp2A];
-        sp2C->PosX = arg0->PosX;
-        sp2C->PosY = arg0->PosY + 240.0f;
-        sp2C->PosY += (f32) (arg2 << 5);
-        sp2C->PosZ = arg0->PosZ;
-        sp2C->RotY = arg0->unk3C;
+        sp2C->Pos.x = arg0->Pos.x;
+        sp2C->Pos.y = arg0->Pos.y + 240.0f;
+        sp2C->Pos.y += (f32) (arg2 << 5);
+        sp2C->Pos.z = arg0->Pos.z;
+        sp2C->Rot.y = arg0->unk3C;
         sp2C->unk40 = arg0->unk40;
         sp2C->unk3C = arg0->unk3C;
         sp2C->unk44 = 0.0f;
@@ -1213,7 +1213,7 @@ void func_800B9234(void) {
         if (D_80165100->unkC != 0) {
             gPlayerData[sp2F].unkAE = 1;
         }
-        gPlayerData[sp2F].ScaleX = gPlayerData[sp2F].ScaleY = gPlayerData[sp2F].ScaleZ = 1.3f;
+        gPlayerData[sp2F].Scale.x = gPlayerData[sp2F].Scale.y = gPlayerData[sp2F].Scale.z = 1.3f;
         gPlayerData[sp2F].unkAA = 0x140;
         func_8001ABF4((s32) sp2F, 0, 0, &D_80117C78);
         func_80019448((s32) sp2F, 2, 0, 1);
@@ -1238,7 +1238,7 @@ void func_800B955C(void) {
         func_80029D04(D_80177A60);
     }
     sp18 = gPlayerData;
-    if (sp18->PosZ >= (sp1C->unk58 + 360.0f)) {
+    if (sp18->Pos.z >= (sp1C->unk58 + 360.0f)) {
         sp1C->unkA4 = 3;
         sp1C->unk44 = 16.0f;
         sp1C->unkAC = 0x28;
@@ -1260,9 +1260,9 @@ void func_800B969C(void) {
         func_80029EF8(D_80177A60, sp34->unk48, 3.0f);
     }
     func_80029C40(D_80177A60);
-    sp2C = sp34->VelY;
+    sp2C = sp34->Vel.y;
     if (func_80029018(D_80177A60, 3U, 140.0f, 0.0f, 0.0f, 0.0f) != 0) {
-        sp34->VelY = sp2C;
+        sp34->Vel.y = sp2C;
     }
     sp32 = func_80029F58(D_80177A60, 0.0f, 0.0f, -180.0f, 180.0f);
     if (sp32 == 1) {
@@ -1282,9 +1282,9 @@ void func_800B969C(void) {
             sp34->unk132 = 0;
         }
     }
-    sp34->VelY = MIN_CLAMP(sp34->VelY, 48.0f);
-    sp34->RotX = func_80015538(sp34->RotX, 16.0f);
-    sp34->RotY = sp34->unk3C;
+    sp34->Vel.y = MIN_CLAMP(sp34->Vel.y, 48.0f);
+    sp34->Rot.x = func_80015538(sp34->Rot.x, 16.0f);
+    sp34->Rot.y = sp34->unk3C;
 }
 
 void func_800B99A4(void) {
@@ -1305,9 +1305,9 @@ void func_800B99A4(void) {
     func_80029D04(D_80177A60);
     if (func_80028FA0(D_80177A60) != 0) {
         if (sp34->unkAE == 0) {
-            sp34->VelX = 0.0f;
-            sp34->VelZ = 0.0f;
-            if ((gPlayerData[sp34->unk104].PosZ) < sp34->PosZ) {
+            sp34->Vel.x = 0.0f;
+            sp34->Vel.z = 0.0f;
+            if ((gPlayerData[sp34->unk104].Pos.z) < sp34->Pos.z) {
                 func_80029C40(D_80177A60);
             }
         }
@@ -1338,8 +1338,8 @@ void func_800B99A4(void) {
         func_800175F0(D_80177A60, 0, 0x19, -1, 0);
     }
     func_800C00F4(sp34, 180.0f);
-    sp34->RotX = func_80015538(sp34->RotX, 16.0f);
-    sp34->RotY = sp34->unk3C;
+    sp34->Rot.x = func_80015538(sp34->Rot.x, 16.0f);
+    sp34->Rot.y = sp34->unk3C;
 }
 
 void func_800B9D6C(void) {
@@ -1483,7 +1483,7 @@ void func_800BA5A8(void) {
     sp24 = &gPlayerData[D_80177A60];
     sp24->unk108 = 0;
     func_800175F0(D_80177A60, 0, 0x29, -1, 0);
-    func_8007EDF4(sp24->PosX, sp24->PosY, sp24->PosZ, 5.0f);
+    func_8007EDF4(sp24->Pos.x, sp24->Pos.y, sp24->Pos.z, 5.0f);
     func_8002B114(D_80177A60);
 }
 
@@ -1563,11 +1563,11 @@ s16 func_800BA9C8(struct PlayerStruct *arg0, s16 arg1, UNUSED s32 arg2) {
     struct PlayerStruct *sp24;
     s16 sp22;
 
-    sp22 = func_80027464(1, &D_80113AE4, arg0->PosX, arg0->PosY + 390.0f, arg0->PosZ, arg0->unk3C);
+    sp22 = func_80027464(1, &D_80113AE4, arg0->Pos.x, arg0->Pos.y + 390.0f, arg0->Pos.z, arg0->unk3C);
     if (sp22 != -1) {
         func_80026F10(arg1, sp22);
         sp24 = &gPlayerData[sp22];
-        sp24->RotY = arg0->unk3C;
+        sp24->Rot.y = arg0->unk3C;
         sp24->unk40 = arg0->unk40;
         sp24->unk3C = arg0->unk3C;
         sp24->unk44 = 0.0f;
@@ -1642,12 +1642,12 @@ void func_800BAE94(void) {
     }
     func_80029C40(D_80177A60);
     func_80029D04(D_80177A60);
-    if ((f64) sp24->ScaleX < 2.0) {
-        sp24->ScaleX = (f32) ((f64) sp24->ScaleX + 0.05);
-        sp24->PosY = (f32) ((f64) sp24->PosY + 2.5);
+    if ((f64) sp24->Scale.x < 2.0) {
+        sp24->Scale.x = (f32) ((f64) sp24->Scale.x + 0.05);
+        sp24->Pos.y = (f32) ((f64) sp24->Pos.y + 2.5);
     }
 
-    sp24->ScaleY = sp24->ScaleZ = sp24->ScaleX;
+    sp24->Scale.y = sp24->Scale.z = sp24->Scale.x;
     if (sp24->unkA6 < 9) {
         sp24->unk44 -= 1.0f;
     }
@@ -1671,12 +1671,12 @@ void func_800BB080(void) {
     }
     func_80029C40(D_80177A60);
     func_80029D04(D_80177A60);
-    if ((f64) sp24->ScaleX >= 1.0) {
-        sp24->ScaleX = (f32) ((f64) sp24->ScaleX - 0.05);
-        sp24->PosY = (f32) ((f64) sp24->PosY - 2.5);
+    if ((f64) sp24->Scale.x >= 1.0) {
+        sp24->Scale.x = (f32) ((f64) sp24->Scale.x - 0.05);
+        sp24->Pos.y = (f32) ((f64) sp24->Pos.y - 2.5);
     }
 
-    sp24->ScaleY = sp24->ScaleZ = sp24->ScaleX;
+    sp24->Scale.y = sp24->Scale.z = sp24->Scale.x;
     if (sp24->unkA6 < 9) {
         sp24->unk44 -= 1.0f;
     }
@@ -1720,7 +1720,7 @@ void func_800BB388(void) {
     }
     func_80029C40(D_80177A60);
     func_80029D04(D_80177A60);
-    func_8007EDF4(sp1C->PosX, sp1C->PosY, sp1C->PosZ, 5.0f);
+    func_8007EDF4(sp1C->Pos.x, sp1C->Pos.y, sp1C->Pos.z, 5.0f);
     func_8002B114(D_80177A60);
 }
 
@@ -1785,10 +1785,10 @@ void func_800BB748(void) {
     }
     func_80029C40(D_80177A60);
     func_80029D04(D_80177A60);
-    if ((f64) sp2C->ScaleX < 2.0) {
-        sp2C->ScaleX = (f32) ((f64) sp2C->ScaleX + 0.01);
+    if ((f64) sp2C->Scale.x < 2.0) {
+        sp2C->Scale.x = (f32) ((f64) sp2C->Scale.x + 0.01);
     }
-    sp2C->ScaleY = sp2C->ScaleZ = sp2C->ScaleX;
+    sp2C->Scale.y = sp2C->Scale.z = sp2C->Scale.x;
     if (func_80029018(D_80177A60, 3U, 60.0f, 0.0f, 0.0f, 0.0f) != 0) {
         sp2C->unkA4 = 2;
         sp2C->unk132 = 0;
@@ -1837,11 +1837,11 @@ s16 func_800BBAD4(struct PlayerStruct *arg0, s16 arg1, UNUSED s32 arg2) {
     struct PlayerStruct *sp24;
     s16 sp22;
 
-    sp22 = func_80027464(1, &D_80113B68, arg0->PosX, arg0->PosY + 20.0f, arg0->PosZ, arg0->unk3C);
+    sp22 = func_80027464(1, &D_80113B68, arg0->Pos.x, arg0->Pos.y + 20.0f, arg0->Pos.z, arg0->unk3C);
     if (sp22 != -1) {
         func_80026F10(arg1, sp22);
         sp24 = &gPlayerData[sp22];
-        sp24->RotY = arg0->unk3C;
+        sp24->Rot.y = arg0->unk3C;
         sp24->unk40 = arg0->unk40;
         sp24->unk3C = arg0->unk3C;
         sp24->unk44 = 0.0f;
@@ -1851,9 +1851,9 @@ s16 func_800BBAD4(struct PlayerStruct *arg0, s16 arg1, UNUSED s32 arg2) {
         sp24->unk100 = -1;
         sp24->unk102 = 0;
         sp24->unk103 = 1;
-        sp24->ScaleX = 0.25f;
-        sp24->ScaleY = 0.25f;
-        sp24->ScaleZ = 0.25f;
+        sp24->Scale.x = 0.25f;
+        sp24->Scale.y = 0.25f;
+        sp24->Scale.z = 0.25f;
         sp24->unkA4 = 1;
         sp24->unkB2 = 0x84;
         sp24->unk132 = 0;
@@ -1876,7 +1876,7 @@ void func_800BBCA4(void) {
         gPlayerData[sp27].unk48 = 0.0f;
         gPlayerData[sp27].unk102 = 0;
         gPlayerData[sp27].unk108 = -1;
-        gPlayerData[sp27].ScaleX = 1.2f;
+        gPlayerData[sp27].Scale.x = 1.2f;
         gPlayerData[sp27].unkA4 = 1;
         gPlayerData[sp27].unk132 = 0;
         gPlayerData[sp27].unkB2 = func_80014E80(0x10) + 0x20;
@@ -1919,9 +1919,9 @@ void func_800BC148(void) {
         sp1C->unk132 = 1;
         sp1C->unk44 = 0.0f;
         sp1C->unk48 = 0.0f;
-        sp1C->PosX = sp1C->unk50;
-        sp1C->PosY = sp1C->unk54;
-        sp1C->PosZ = sp1C->unk58;
+        sp1C->Pos.x = sp1C->unk50;
+        sp1C->Pos.y = sp1C->unk54;
+        sp1C->Pos.z = sp1C->unk58;
         sp1C->unk40 = 45.0f;
         sp1C->unkA6 = 0;
     }
@@ -1957,27 +1957,27 @@ void func_800BC2C8(void) {
     func_80029C40(D_80177A60);
     func_80029D04(D_80177A60);
     if (sp2C->unk132 == 2) {
-        if (sp2C->VelY > 0.0f) {
-            if ((f64) sp2C->ScaleX < 2.0) {
-                sp2C->ScaleX = (f32) ((f64) sp2C->ScaleX + 0.025);
+        if (sp2C->Vel.y > 0.0f) {
+            if ((f64) sp2C->Scale.x < 2.0) {
+                sp2C->Scale.x = (f32) ((f64) sp2C->Scale.x + 0.025);
             }
-        } else if ((f64) sp2C->ScaleX > 1.2) {
-            sp2C->ScaleX = (f32) ((f64) sp2C->ScaleX - 0.025);
+        } else if ((f64) sp2C->Scale.x > 1.2) {
+            sp2C->Scale.x = (f32) ((f64) sp2C->Scale.x - 0.025);
         }
 
-        sp2C->ScaleY = sp2C->ScaleZ = sp2C->ScaleX;
+        sp2C->Scale.y = sp2C->Scale.z = sp2C->Scale.x;
 
         sp2C->unk40 = func_80015538(sp2C->unk40, 8.0f);
         if (sp2C->unk40 >= 270.0f) {
             sp2C->unk40 = 270.0f;
         }
         if (sp2C->unkA6 >= 0x1C) {
-            if (sp2C->PosY < (sp2C->unk54 - 200.0f)) {
+            if (sp2C->Pos.y < (sp2C->unk54 - 200.0f)) {
                 sp2C->unk44 = 0.0f;
                 sp2C->unk48 = 0.0f;
             }
             if ((sp2C->unk44 == 0.0f)) {
-                if ((gPlayerData[sp2C->unkA8].PosY < sp2C->unk54)) {
+                if ((gPlayerData[sp2C->unkA8].Pos.y < sp2C->unk54)) {
                     sp2C->unkA4 = 1;
                     sp2C->unk132 = 0;
                 }
@@ -2056,19 +2056,19 @@ s16 func_800BC91C(s16 arg0, s8 arg1) {
         sp8 = &gPlayerData[sp7];
         spC = &gPlayerData[sp8->unkA8];
         if (arg1 == 1) {
-            sp8->PosX = spC->PosX;
-            sp8->PosY = spC->PosY;
-            sp8->PosZ = spC->PosZ;
+            sp8->Pos.x = spC->Pos.x;
+            sp8->Pos.y = spC->Pos.y;
+            sp8->Pos.z = spC->Pos.z;
         }
 
-        sp8->RotY = spC->unk3C;
+        sp8->Rot.y = spC->unk3C;
         sp8->unk3C = spC->unk3C;
         sp8->unk40 = spC->unk40;
         sp8->unk44 = spC->unk44;
         sp8->unk48 = spC->unk48;
-        sp8->ScaleX = spC->ScaleX;
-        sp8->ScaleY = spC->ScaleY;
-        sp8->ScaleZ = spC->ScaleZ;
+        sp8->Scale.x = spC->Scale.x;
+        sp8->Scale.y = spC->Scale.y;
+        sp8->Scale.z = spC->Scale.z;
     } else {
     }
     return ~(sp7 != 0) ? 0 : 1;
@@ -2139,8 +2139,8 @@ void func_800BCD60(void) {
     gPlayerData[sp2F].unkA4 = 2;
     gPlayerData[sp2F].unk132 = 0;
     func_8001ABF4((s32) sp2F, 0, 0, &D_80117E48);
-    gPlayerData[sp2F].ScaleX = 0.6f;
-    gPlayerData[sp2F].ScaleY = gPlayerData[sp2F].ScaleZ = gPlayerData[sp2F].ScaleX;
+    gPlayerData[sp2F].Scale.x = 0.6f;
+    gPlayerData[sp2F].Scale.y = gPlayerData[sp2F].Scale.z = gPlayerData[sp2F].Scale.x;
     func_8001BB34((s32) sp2F, 1);
     func_800BCF08(sp2F);
 }
@@ -2156,8 +2156,8 @@ s8 func_800BCF08(s8 arg0) {
         gPlayerData[sp27].unkA8 = gPlayerData[arg0].unkE6[sp26];
         gPlayerData[sp27].unkAA = 1;
         func_8001ABF4((s32) sp27, 0, 0, &D_80117E48);
-        gPlayerData[sp27].ScaleX = (sp26 + 1) * 0.200000000000000011 + 0.6000000238418579;
-        gPlayerData[sp27].ScaleY = gPlayerData[sp27].ScaleZ = gPlayerData[sp27].ScaleX;
+        gPlayerData[sp27].Scale.x = (sp26 + 1) * 0.200000000000000011 + 0.6000000238418579;
+        gPlayerData[sp27].Scale.y = gPlayerData[sp27].Scale.z = gPlayerData[sp27].Scale.x;
         if (sp26 == 0) {
             gPlayerData[sp27].unkA8 = (s16) arg0;
         }
@@ -2185,7 +2185,7 @@ void func_800BD188(void) {
     }
     func_80029C40(D_80177A60);
     func_80029D04(D_80177A60);
-    sp1C->RotY = func_80015538(sp1C->RotY, 20.0f);
+    sp1C->Rot.y = func_80015538(sp1C->Rot.y, 20.0f);
     if (!(sp1C->unkA6 & 1)) {
         func_800BD4B0();
     }
@@ -2261,14 +2261,14 @@ s16 func_800BD558(s16 arg0) {
     if (sp2F != -1) {
         sp30 = &gPlayerData[sp2F];
         sp34 = &gPlayerData[sp30->unkA8];
-        sp28 = func_80015538(sp34->RotY, (f32) ((arg0 * 20) + 20));
-        sp30->VelX = sinf((f32) ((f64) sp28 * 0.017453292519943295)) * 65.0f;
-        sp30->VelY = cosf((f32) ((f64) sp28 * 0.017453292519943295)) * 65.0f;
-        sp30->VelZ = (f32) ((arg0 * 16) + 16);
-        sp30->PosX = sp34->PosX + sp30->VelX;
-        sp30->PosY = sp34->PosY + sp30->VelY;
-        sp30->PosZ = sp34->PosZ - sp30->VelZ;
-        sp30->RotY = sp34->RotY;
+        sp28 = func_80015538(sp34->Rot.y, (f32) ((arg0 * 20) + 20));
+        sp30->Vel.x = sinf((f32) ((f64) sp28 * 0.017453292519943295)) * 65.0f;
+        sp30->Vel.y = cosf((f32) ((f64) sp28 * 0.017453292519943295)) * 65.0f;
+        sp30->Vel.z = (f32) ((arg0 * 16) + 16);
+        sp30->Pos.x = sp34->Pos.x + sp30->Vel.x;
+        sp30->Pos.y = sp34->Pos.y + sp30->Vel.y;
+        sp30->Pos.z = sp34->Pos.z - sp30->Vel.z;
+        sp30->Rot.y = sp34->Rot.y;
         sp30->unk3C = sp34->unk3C;
         sp30->unk40 = sp34->unk40;
         sp30->unk44 = sp34->unk44;
@@ -2359,10 +2359,10 @@ void func_800BDCF4(void) {
     func_80029C40(D_80177A60);
     func_80029D04(D_80177A60);
     if (sp1C->unkAE == 0) {
-        sp1C->RotY = func_8002A46C(D_80177A60);
+        sp1C->Rot.y = func_8002A46C(D_80177A60);
     } else if (func_80028FA0(D_80177A60) != 0) {
         func_80029B60(D_80177A60);
-        sp1C->RotY = sp1C->unk3C;
+        sp1C->Rot.y = sp1C->unk3C;
     }
     sp1C->unkA6 += 1;
     if (sp1C->unkA6 == 0xA) {
@@ -2391,7 +2391,7 @@ void func_800BDEE0(void) {
         sp34->unkD4 = func_80015538(sp34->unk3C, func_80014E80(-0x5A) + 3);
         sp34->unkB4 = func_8002A800(sp34->unkD4, sp34->unk3C, 4.0f);
     }
-    sp34->RotY = sp34->unk3C;
+    sp34->Rot.y = sp34->unk3C;
     sp34->unkB6 -= 1;
     if (func_80028FA0(D_80177A60) != 0) {
         func_80029B60(D_80177A60);
@@ -2403,7 +2403,7 @@ void func_800BDEE0(void) {
     if (func_8002A800(sp34->unk3C, sp34->unkD4, 4.0f) == 0) {
         sp34->unkA4 = 3;
         sp34->unk132 = 0;
-        sp34->RotY = sp34->unk3C;
+        sp34->Rot.y = sp34->unk3C;
         return;
     }
     sp30 = (f32) sp34->unkB4 * 1.5f;
@@ -2431,14 +2431,14 @@ void func_800BE14C(void) {
     if (func_80028FA0(D_80177A60) != 0) {
         sp24->unkA4 = 2;
         sp24->unk132 = 0;
-        sp24->RotY = sp24->unk3C;
+        sp24->Rot.y = sp24->unk3C;
         return;
     }
     func_80029C40(D_80177A60);
     if (func_80029018(D_80177A60, 1U, 240.0f, 0.0f, 0.0f, 0.0f) != 0) {
         sp24->unkA4 = 2;
         sp24->unk132 = 0;
-        sp24->RotY = sp24->unk3C;
+        sp24->Rot.y = sp24->unk3C;
     } else {
         func_800C00F4(sp24, 0.0f);
     }
@@ -2509,7 +2509,7 @@ void func_800BE5CC(void) {
         sp24->unkAA = -sp24->unkAA;
         sp24->unk3C = func_80015538(360.0f, (f32) (sp24->unkAA * 0x5A));
     } else {
-        if ((sp24->PosX <= (sp24->unk50 - sp24->unkB0)) || ((sp24->unk50 + sp24->unkB0) < sp24->PosX)) {
+        if ((sp24->Pos.x <= (sp24->unk50 - sp24->unkB0)) || ((sp24->unk50 + sp24->unkB0) < sp24->Pos.x)) {
             sp24->unkAA = -sp24->unkAA;
             sp24->unk3C = func_80015538(360.0f, (f32) (sp24->unkAA * 0x5A));
         }
@@ -2521,9 +2521,9 @@ void func_800BE5CC(void) {
         sp24->unk132 = 0;
     }
     if (sp24->unkAE == 0) {
-        sp24->RotY = func_8002A46C(D_80177A60);
+        sp24->Rot.y = func_8002A46C(D_80177A60);
     } else {
-        sp24->RotY = sp24->unk3C;
+        sp24->Rot.y = sp24->unk3C;
     }
 }
 
@@ -2541,7 +2541,7 @@ void func_800BE928(void) {
     func_80029C40(D_80177A60);
     func_80029D04(D_80177A60);
     func_8002A8B4(D_80177A60, 12.0f);
-    sp1C->RotY = sp1C->unk3C;
+    sp1C->Rot.y = sp1C->unk3C;
     if ((sp1C->unk132 == 1) && ((func_8002A560(D_80177A60, 8.0f) == 0) || (sp1C->unkAE == 0))) {
         func_8001BBDC(D_80177A60, 1);
         func_800BFD94(sp1C, D_80177A60, 2);
@@ -2572,9 +2572,9 @@ void func_800BEB10(void) {
     func_80029D04(D_80177A60);
     if (sp24->unkA6 >= 0xF0) {
         if (sp24->unkA6 & 1) {
-            sp24->RotZ += 4.0f;
+            sp24->Rot.z += 4.0f;
         } else {
-            sp24->RotZ -= 4.0f;
+            sp24->Rot.z -= 4.0f;
         }
     }
     sp24->unkA6 += 1;
@@ -2593,7 +2593,7 @@ void func_800BEB10(void) {
             }
             sp24->unkA4 = 1;
             sp24->unk132 = 0;
-            sp24->RotZ = 0.0f;
+            sp24->Rot.z = 0.0f;
             sp24->unk108 = 1;
             func_8001ABF4(D_80177A60, 0, 0, &D_80117EA8);
         }
@@ -2613,9 +2613,9 @@ void func_800BEDB0(void) {
         func_80029EF8(D_80177A60, sp34->unk48, 0.98f);
     }
     func_80029C40(D_80177A60);
-    sp30 = sp34->VelY;
+    sp30 = sp34->Vel.y;
     if (func_80029018(D_80177A60, 3U, 140.0f, 0.0f, 0.0f, 0.0f) != 0) {
-        sp34->VelY = sp30;
+        sp34->Vel.y = sp30;
     }
     sp2E = func_80029F58(D_80177A60, 0.0f, 0.0f, 0.0f, 0.0f);
     if (sp2E == 1) {
@@ -2626,8 +2626,8 @@ void func_800BEDB0(void) {
             sp34->unk132 = 0;
         }
     }
-    sp34->VelY = MIN_CLAMP(sp34->VelY, 48.0f);
-    sp34->RotY = sp34->unk3C;
+    sp34->Vel.y = MIN_CLAMP(sp34->Vel.y, 48.0f);
+    sp34->Rot.y = sp34->unk3C;
 }
 
 void func_800BEFF0(void) {
@@ -2667,7 +2667,7 @@ void func_800BEFF0(void) {
         func_8001BBDC(D_80177A60, 1);
     }
     if (sp24->unkA6 <= 0) {
-        func_8007EDF4(sp24->PosX, sp24->PosY, sp24->PosZ, 3.0f);
+        func_8007EDF4(sp24->Pos.x, sp24->Pos.y, sp24->Pos.z, 3.0f);
         func_8002B114(D_80177A60);
     }
 }
@@ -2703,10 +2703,10 @@ s16 func_800BF3A4(struct PlayerStruct *arg0, s16 arg1, s16 arg2) {
     s16 ret;
 
     if (arg0->unkA8 == 0) {
-        ret = func_80027C00((s32) arg1, (s32) arg2, &D_80113DB4, arg0->PosX, arg0->PosY, arg0->PosZ,
+        ret = func_80027C00((s32) arg1, (s32) arg2, &D_80113DB4, arg0->Pos.x, arg0->Pos.y, arg0->Pos.z,
                             0.0f);
     } else {
-        ret = func_80027C00((s32) arg1, (s32) arg2, &D_80113DA8, arg0->PosX, arg0->PosY, arg0->PosZ,
+        ret = func_80027C00((s32) arg1, (s32) arg2, &D_80113DA8, arg0->Pos.x, arg0->Pos.y, arg0->Pos.z,
                             0.0f);
     }
 
@@ -2714,9 +2714,9 @@ s16 func_800BF3A4(struct PlayerStruct *arg0, s16 arg1, s16 arg2) {
         sp2C = &gPlayerData[ret];
         ;
         sp2C->unkA8 = arg0->unkA8;
-        sp2C->PosX = arg0->PosX;
-        sp2C->PosY = arg0->PosY;
-        sp2C->PosZ = arg0->PosZ;
+        sp2C->Pos.x = arg0->Pos.x;
+        sp2C->Pos.y = arg0->Pos.y;
+        sp2C->Pos.z = arg0->Pos.z;
         sp2C->unk3C = arg0->unk3C;
         sp2C->unk40 = arg0->unk40;
         sp2C->unkA4 = 1;
@@ -2891,7 +2891,7 @@ void func_800BFB20(void) {
         }
         func_80029C40(D_80177A60);
         func_80029D04(D_80177A60);
-        sp24->RotY = sp24->unk3C;
+        sp24->Rot.y = sp24->unk3C;
         sp24->unkA6 += 1;
         if (func_80029018(D_80177A60, 3U, 0.0f, 0.0f, 0.0f, 0.0f) != 0) {
             func_8002B0E4(D_80177A60);
@@ -2908,12 +2908,12 @@ s16 func_800BFD94(struct PlayerStruct *arg0, s16 arg1, UNUSED s16 arg2) {
     struct PlayerStruct *sp24;
     s16 sp22;
 
-    sp22 = func_80027464(1, &D_80113DC0, arg0->PosX, arg0->PosY, arg0->PosZ, arg0->unk3C);
+    sp22 = func_80027464(1, &D_80113DC0, arg0->Pos.x, arg0->Pos.y, arg0->Pos.z, arg0->unk3C);
     if (sp22 != -1) {
         func_80026F10(arg1, sp22);
         sp24 = &gPlayerData[sp22];
-        sp24->PosY = arg0->PosY + (f32) (arg0->unkA8 * 0x73) + 90.0f;
-        sp24->RotY = arg0->unk3C;
+        sp24->Pos.y = arg0->Pos.y + (f32) (arg0->unkA8 * 0x73) + 90.0f;
+        sp24->Rot.y = arg0->unk3C;
         sp24->unk40 = arg0->unk40;
         sp24->unk3C = arg0->unk3C;
         sp24->unk44 = 0.0f;
@@ -2953,11 +2953,11 @@ s8 func_800C00F4(struct PlayerStruct *arg0, f32 arg1) {
     f32 sp28;
     s8 sp27;
 
-    sp27 = func_800294F0(D_80177A60, &sp2C, &sp28, arg0->VelX, arg0->VelY, arg0->VelZ);
+    sp27 = func_800294F0(D_80177A60, &sp2C, &sp28, arg0->Vel.x, arg0->Vel.y, arg0->Vel.z);
     if (sp27 != 0) {
-        arg0->PosY = sp28 + arg1;
+        arg0->Pos.y = sp28 + arg1;
     } else {
-        arg0->PosY = sp2C + arg1;
+        arg0->Pos.y = sp2C + arg1;
     }
     return sp27;
 }

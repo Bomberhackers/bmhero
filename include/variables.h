@@ -169,19 +169,12 @@ struct UnkStruct80088B80_3
     char Padding[0x3];
 };
 
-struct PlayerStruct {
-    f32 PosX;
-    f32 PosY;
-    f32 PosZ;
-    f32 ScaleX;
-    f32 ScaleY;
-    f32 ScaleZ;
-    f32 RotX;
-    f32 RotY;
-    f32 RotZ;
-    f32 VelX;
-    f32 VelY;
-    f32 VelZ;
+struct PlayerStruct
+{
+    struct Vec3f Pos;
+    struct Vec3f Scale;
+    struct Vec3f Rot;
+    struct Vec3f Vel;
     char pad30[0x8];
     f32 unk38;
     f32 unk3C;
@@ -219,9 +212,11 @@ struct PlayerStruct {
     s16 unk104;
     s16 unk106;
     s16 unk108;
-    char padding14[0x28];
+    char Pad10A[1];
+    u8 unk10B;
+    char pad10C[0x26];
     u8 unk132;
-    char padding11[0x7];
+    char pad133[0x7];
     s8 unk13A;
     s8 unk13B;
     s8 unk13C;
@@ -229,7 +224,7 @@ struct PlayerStruct {
     s8 unk13E;
     s8 unk13F;
     s16 Unk140;
-    char padding12[0x150 - 0x140 - sizeof(s16)];
+    char pad142[0xE];
 };
 
 // extern symbols

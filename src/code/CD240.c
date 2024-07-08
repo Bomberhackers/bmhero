@@ -27,6 +27,7 @@ extern s32 func_80029F58(s32, f32, f32, f32, f32);
 extern void func_800175F0(s32, s32, s32, s32, s32);
 extern void func_8001B6BC(s32, s32, f32);
 extern void func_8001BBDC(s32, s32);
+extern void func_80026F10(s32, s32);
 extern void func_800281A4(s32, s32);
 extern void func_80029824(s32, s32);
 extern void func_80029D04(s32);
@@ -60,11 +61,13 @@ extern UnkStruct80165100 D_801142E8;
 extern UnkStruct80165100 D_80114300;
 extern UnkStruct80165100 D_8011433C;
 extern UnkStruct80165100 D_80114348;
+extern UnkStruct80165100 D_80114360;
 extern struct PlayerStruct D_80118E9C;
 extern UnkStruct80165100 D_801142F4;
 extern struct PlayerStruct D_801137F0;
 extern struct PlayerStruct D_80118EB4;
 extern struct PlayerStruct D_80118FE8;
+extern struct PlayerStruct D_8011935C;
 extern struct PlayerStruct D_8011BA88;
 extern struct PlayerStruct D_8011BA8C;
 extern struct PlayerStruct D_8011BB50;
@@ -724,8 +727,48 @@ void func_800DDE08(void) {
     }
 }
 
+void func_800DE1E8(void) {
+    struct PlayerStruct* sp3C;
+    s32 sp38;
+    f32 temp_f20;
+    f32 temp_f20_2;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DE1E8.s")
+    sp3C = &gPlayerData[D_80177A60];
+    if (sp3C->unk132 == 0) {
+        sp3C->unk132 = (u8) (sp3C->unk132 + 1);
+        sp3C->Vel.z = 0.0f;
+        sp3C->Vel.x = sp3C->Vel.y = sp3C->Vel.z;
+        func_8001C0EC(D_80177A60, 0, 9, 0x70, &D_80118FF4);
+        func_8001ABF4(D_80177A60, 0, 0, &D_80119128);
+        func_8001ABF4(D_80177A60, 1, 0, &D_80119128.unk38);
+        sp3C->unk3C = func_8002A46C(D_80177A60);
+        sp3C->Rot.y = (f32) sp3C->unk3C;
+        sp3C->unk44 = 6.0f;
+    }
+    if ((func_8001B62C(D_80177A60, 0) > 20.0f) && (sp3C->unkAA == 0)) {
+        sp38 = func_80027464(1, &D_80114360, sp3C->Pos.x, sp3C->Pos.y + 60.0f, sp3C->Pos.z, sp3C->unk3C);
+        if (sp38 != -1) {
+            func_8001ABF4(sp38, 0, 3, &D_8011935C);
+            func_80026F10(D_80177A60, sp38);
+            gPlayerData[sp38].unk3C = gPlayerData[sp38].Rot.y = sp3C->unk3C;
+            gPlayerData[sp38].unkB2 = 1;
+            sp3C->unkAA = (s16) (sp3C->unkAA + 1);
+        }
+    }
+    if (func_80028FA0(D_80177A60) != 0) {
+        if ((sp3C->unk106 == 0xA1) || (sp3C->unk106 == 0xA3)) {
+            func_800E3EE4();
+            return;
+        } else {
+            func_80029B60(D_80177A60);
+        }
+    }
+    if (func_8001B4AC(D_80177A60, 0) != 0) {
+        sp3C->unkA4 = 3;
+        sp3C->unkAA = 0;
+        sp3C->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DE534.s")
 

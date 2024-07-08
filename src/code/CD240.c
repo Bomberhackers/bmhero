@@ -976,7 +976,32 @@ void func_800DE894(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DE95C.s")
+void func_800DE95C(void) {
+    struct PlayerStruct* sp24;
+    s16 temp_t9;
+
+    sp24 = &gPlayerData[D_80177A60];
+    if (sp24->unk132 == 0) {
+        sp24->unk132 = (u8) (sp24->unk132 + 1);
+        func_8001C0EC(D_80177A60, 0, 0, 0x70, &D_80118FF4);
+        func_8001ABF4(D_80177A60, 0, 0, &D_80119194);
+        func_8001ABF4(D_80177A60, 1, 0, &D_80119194.Rot.y);
+        sp24->Pos.y = (f32) (sp24->Pos.y - 5.0f);
+        func_8001B754(D_80177A60, 0);
+        func_80029EF8(D_80177A60, 0, 4.0f);
+        sp24->unk13A = 0;
+    }
+    if ((func_80028FA0(D_80177A60) != 0) && (((sp24->unk106 == 0xA2)) || (sp24->unk106 == 0xA1))) {
+        func_800E3EE4();
+        return;
+    }
+    sp24->Rot.y = func_8002A46C(D_80177A60);
+    sp24->unk3C = (f32) sp24->Rot.y;
+    if (func_8002A0D0(D_80177A60, 0, 0, 0) == 1) {
+        sp24->unkA4 = 3;
+        sp24->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DEB3C.s")
 

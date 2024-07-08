@@ -80,6 +80,9 @@ extern s32 D_80113838;
 extern s32 D_8011BA94;
 extern s32 D_8016519C;
 extern void* D_80114354;
+extern f64 D_801153B8;
+extern f64 D_801153C0;
+extern f64 D_801153C8;
 
 
 void func_800DAD20(void) {
@@ -1222,7 +1225,41 @@ void func_800DF92C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DF9A8.s")
+void func_800DF9A8(void) {
+    struct PlayerStruct* sp34;
+    f32 sp30;
+
+    sp34 = &gPlayerData[D_80177A60];
+    if (sp34->unk132 == 0) {
+        sp34->unk132 = (u8) (sp34->unk132 + 1);
+        func_80029EF8(D_80177A60, 0, 4.0f);
+    }
+    if (func_80028FA0(D_80177A60) != 0) {
+        func_80029B60(D_80177A60);
+    }
+    sp34->Rot.y = func_8002A46C(D_80177A60);
+    sp34->unk3C = (f32) sp34->Rot.y;
+    func_8002A8B4(D_80177A60, 5.0f);
+    sp34->Rot.y = (f32) sp34->unk3C;
+    sp30 = sp34->Vel.y;
+    sp34->Vel.y = 0.0f;
+    if (func_80029018(D_80177A60, 0, 80.0f, 0.0f, 0.0f, 0.0f) != 0) {
+        func_80029824(D_80177A60, func_800297DC());
+    }
+    sp34->Vel.y = sp30;
+    if (func_80029F58(D_80177A60, 0, 0, 0, 0.0f) == 1) {
+        sp34->Vel.y = 0.0f;
+    }
+    if (sp34->Scale.x < 2.0f) {
+        sp34->Scale.x = (f32) ((f64) sp34->Scale.x + D_801153B8);
+        sp34->Scale.y = (f32) ((f64) sp34->Scale.y + D_801153C0);
+        sp34->Scale.z = (f32) ((f64) sp34->Scale.z + D_801153C8);
+    } else {
+        sp34->unk108 = 1;
+        sp34->unkA4 = 2;
+        sp34->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DFC2C.s")
 

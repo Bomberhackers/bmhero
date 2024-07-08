@@ -536,7 +536,27 @@ void func_800DCD20(void) {
     func_8002B0E4(D_80177A60);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DCD50.s")
+void func_800DCD50(void) {
+    struct PlayerStruct* sp24;
+
+    sp24 = &gPlayerData[D_80177A60];
+    switch (sp24->unkA4) {
+    case 1:
+        func_800DC6D0();
+        break;
+    case 2:
+        func_800DC984();
+        break;
+    case 3:
+        func_800DCAFC();
+        break;
+    case 4:
+        func_800DCD20();
+        break;
+    default:
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DCE2C.s")
 

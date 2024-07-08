@@ -1028,7 +1028,58 @@ void func_800DEB3C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DECE0.s")
+void func_800DECE0(void) {
+    struct PlayerStruct* sp3C;
+    f32 sp38;
+    s16 temp_t1;
+    s32 temp;
+
+    sp3C = &gPlayerData[D_80177A60];
+    if (sp3C->unk132 == 0) {
+        sp3C->unk132 = (u8) (sp3C->unk132 + 1);
+        func_8001C0EC(D_80177A60, 0, 8, 0x70, &D_80118FF4);
+        func_8001ABF4(D_80177A60, 0, 0, &D_80119194);
+        func_8001ABF4(D_80177A60, 1, 0, &D_80119194.Rot.y);
+        sp3C->unk3C = func_8002A46C(D_80177A60);
+        sp3C->Rot.y = (f32) sp3C->unk3C;
+        sp3C->unkA6 = 0;
+        sp3C->unkA8 = 0;
+    }
+    if ((func_80028FA0(D_80177A60) != 0) && (((sp3C->unk106 == 0xA2)) || (sp3C->unk106 == 0xA1))) {
+        func_800E3EE4();
+        return;
+    }
+    if (func_8001B62C(D_80177A60, 0) > 10.0f) {
+        if (sp3C->unkA6 == 0) {
+            sp3C->unkA6 = 1;
+            func_80029EF8(D_80177A60, 20.0f, 2.0f);
+        }
+        sp38 = sp3C->Vel.y;
+        sp3C->Vel.y = 0.0f;
+        if (func_80029018(D_80177A60, 0, 80.0f, 0.0f, 0.0f, 0.0f) != 0) {
+            func_80029824(D_80177A60, func_800297DC());
+        }
+        sp3C->Vel.y = sp38;
+        if (func_80029F58(D_80177A60, 0.0f, 0.0f, 0.0f, 30.0f) == 1) {
+            sp3C->Vel.y = 0.0f;
+        }
+        if (func_8001B4AC(D_80177A60, 0) != 0) {
+            if (func_8002A1FC(D_80177A60, 300.0f) != 0) {
+                sp3C->unkA4 = 5;
+                sp3C->unkA6 = 0;
+                sp3C->unkA8 = 0;
+                sp3C->unk132 = 0U;
+            } else {
+                sp3C->unkA6 = 0;
+            }
+        }
+    } else if (func_8002A1FC(D_80177A60, 300.0f) != 0) {
+        sp3C->unkA4 = 5;
+        sp3C->unkA6 = 0;
+        sp3C->unkA8 = 0;
+        sp3C->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DF034.s")
 

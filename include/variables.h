@@ -198,7 +198,9 @@ struct PlayerStruct
     s16 unkB6;
     s16 unkB8;
     s16 unkBA;
-    char padding8[0x17];
+    char padding14[0x4];
+    s16 unkC0;
+    char padding8[0x12];
     f32 unkD4;
     char padding9[0xB];
     s16 unkE4;

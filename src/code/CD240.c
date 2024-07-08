@@ -9,14 +9,16 @@ extern s32 func_8001B4AC(s32, s32);
 extern s32 func_8001B754(s32, s32);
 extern s32 func_8001C0EC(s32, s32, s32, s32, void*);
 extern s32 func_80028FA0(s32);
-extern s32 func_8002A8B4(s32, s32);
+extern s32 func_8002A8B4(s32, f32);
 extern s32 func_800E3EE4();
 extern f32 func_8002A46C(s32);
 extern s32 func_80014E80(s32);
 extern f32 func_80015538(f32, f32);
 extern s32 func_80029018(s32, s32, s32, f32, f32, f32);
+extern s32 func_800295C0(s32, f32*, f32*, f32, f32, f32);
 extern s32 func_800297DC();
 extern s32 func_8002A0D0(s32, f32, f32, f32);
+extern s32 func_8002A2EC(s32, f32);
 extern s32 func_8001B44C(s32, s32);
 extern s32 func_800261E8(s32, s32);
 extern s32 func_80026260(s32);
@@ -54,6 +56,7 @@ extern UnkStruct80165100 D_801137D8;
 extern UnkStruct80165100 D_801137E4;
 extern UnkStruct80165100 D_8011436C;
 extern UnkStruct80165100 D_801142E8;
+extern UnkStruct80165100 D_80114300;
 extern struct PlayerStruct D_80118E9C;
 extern UnkStruct80165100 D_801142F4;
 extern struct PlayerStruct D_801137F0;
@@ -140,7 +143,7 @@ void func_800DB0F8(void) {
         sp24->unk132 = (u8) (sp24->unk132 + 1);
         func_8001C0EC(D_80177A60, 0, 1, 0x54, &D_80118E9C);
     }
-    func_8002A8B4(D_80177A60, 0x40C00000);
+    func_8002A8B4(D_80177A60, 6.0f);
     sp24->Rot.y = (f32) sp24->unk3C;
     if (func_8001B4AC(D_80177A60, 0) != 0) {
         sp24->unkA4 = 3;
@@ -228,19 +231,158 @@ void func_800DB910(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DBA0C.s")
+void func_800DBA0C(void) {
+    struct PlayerStruct* sp2C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DBB78.s")
+    sp2C = &gPlayerData[D_80177A60];
+    if (sp2C->unk132 == 0) {
+        sp2C->unk132 = (u8) (sp2C->unk132 + 1);
+        sp2C->Vel.z = 0.0f;
+        sp2C->Vel.x = sp2C->Vel.y = sp2C->Vel.z;
+        func_8001C0EC(D_80177A60, 0, 1, 0x56, &D_80118EB4);
+    }
+    sp2C->Rot.y = func_8002A46C(D_80177A60);
+    sp2C->unk3C = (f32) sp2C->Rot.y;
+    if (func_8001B4AC(D_80177A60, 0) != 0) {
+        sp2C->Vel.z = 0.0f;
+        sp2C->Vel.x = sp2C->Vel.y = sp2C->Vel.z;
+        sp2C->unkA4 = 5;
+        sp2C->unk132 = 0U;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DBBA8.s")
+void func_800DBB78(void) {
+    func_8002B0E4(D_80177A60);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DBCFC.s")
+void func_800DBBA8(void) {
+    struct PlayerStruct* sp2C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DC07C.s")
+    sp2C = &gPlayerData[D_80177A60];
+    if (sp2C->unk132 == 0) {
+        sp2C->unk132 = (u8) (sp2C->unk132 + 1);
+        func_8001C0EC(D_80177A60, 0, 2, 0x56, &D_80118EB4);
+    }
+    sp2C->Rot.y = func_8002A46C(D_80177A60);
+    sp2C->unk3C = (f32) sp2C->Rot.y;
+    if (func_8001B4AC(D_80177A60, 0) != 0) {
+        sp2C->Vel.z = 0.0f;
+        sp2C->Vel.x = sp2C->Vel.y = sp2C->Vel.z;
+        if (func_8002A1FC(D_80177A60, 0x44160000) != 0) {
+            sp2C->unkA4 = 6;
+            sp2C->unk132 = 0U;
+        }
+    }
+}
 
+void func_800DBCFC(void) {
+    struct PlayerStruct* sp44;
+    f32 sp40;
+    f32 sp3C;
+
+    sp44 = &gPlayerData[D_80177A60];
+    if (sp44->unk132 == 0) {
+        sp44->unk132 = (u8) (sp44->unk132 + 1);
+        sp44->unk3C = func_8002A46C(D_80177A60);
+        sp44->Rot.y = (f32) sp44->unk3C;
+        sp44->unk44 = 15.0f;
+        func_8001C0EC(D_80177A60, 0, 3, 0x56, &D_80118EB4);
+        sp44->unkC0 = 0;
+    }
+    if (sp44->unkC0 == 0) {
+        sp44->unkC0 = 4;
+        func_800175F0(D_80177A60, 0, 0x11, -1, 0);
+    } else {
+        sp44->unkC0 = (s16) (sp44->unkC0 - 1);
+    }
+    if (func_80028FA0(D_80177A60) != 0) {
+        func_80029B60(D_80177A60);
+    }
+    if (sp44->unkA6 != 0) {
+        if (--sp44->unk44 < 5.0f) {
+            sp44->unkA6 = 0;
+        }
+    }
+    func_8002A8B4(D_80177A60, (f32) (func_80014E80(4) + 2));
+    sp44->Rot.y = (f32) sp44->unk3C;
+    func_80029C40(D_80177A60);
+    if (func_80029018(D_80177A60, 1, 0x41F00000, 0, 0.0f, 0.0f) != 0) {
+        sp44->Vel.z = 0.0f;
+        sp44->Vel.x = sp44->Vel.y = sp44->Vel.z;
+        sp44->unkA4 = 5;
+        sp44->unk132 = 0U;
+    }
+    if (func_800295C0(D_80177A60, &sp40, &sp3C, 0.0f, 0.0f, 0.0f) != 0) {
+        sp44->Pos.y = sp3C;
+    } else {
+        sp44->Pos.y = sp40;
+    }
+    if (func_8002A2EC(D_80177A60, 600.0f) != 0) {
+
+    } else {
+        sp44->Vel.z = 0.0f;
+        sp44->Vel.x = sp44->Vel.y = sp44->Vel.z;
+        sp44->unk44 = 0.0f;
+        sp44->unkA4 = 5;
+        sp44->unk132 = 0U;
+    }
+}
+
+void func_800DC07C(void) {
+    struct PlayerStruct* sp2C;
+
+    sp2C = &gPlayerData[D_80177A60];
+    if (sp2C->unk132 == 0) {
+        sp2C->unk132 = (u8) (sp2C->unk132 + 1);
+        func_8001C0EC(D_80177A60, 0, 4, 0x56, &D_80118EB4);
+    }
+    if (func_8001B4AC(D_80177A60, 0) != 0) {
+        sp2C->Vel.z = 0.0f;
+        sp2C->Vel.x = sp2C->Vel.y = sp2C->Vel.z;
+        sp2C->unkA4 = 5;
+        sp2C->unk132 = 0U;
+    }
+}
+
+#ifdef NON_MATCHING
+// matches but needs rodata
+void func_800DC188(void) {
+    struct PlayerStruct* sp1C;
+
+    sp1C = &gPlayerData[D_80177A60];
+    switch (sp1C->unkA4) {
+    case 1:
+        func_800DB840();
+        break;
+    case 2:
+        func_800DB910();
+        break;
+    case 3:
+        func_800DBA0C();
+        break;
+    case 4:
+        func_800DBB78();
+        break;
+    case 5:
+        func_800DBBA8();
+        break;
+    case 6:
+        func_800DBCFC();
+        break;
+    case 7:
+        func_800DC07C();
+        break;
+    default:
+        break;
+    }
+}
+#else
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DC188.s")
+#endif
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DC288.s")
+void func_800DC288(void) {
+    func_80027464(1, &D_80114300, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DC300.s")
 
@@ -324,7 +466,7 @@ void func_800DDAA8(void) {
         func_800E3EE4();
         return;
     }
-    func_8002A8B4(D_80177A60, 0x40C00000);
+    func_8002A8B4(D_80177A60, 6.0f);
     sp24->Rot.y = (f32) sp24->unk3C;
     if (func_8001B4AC(D_80177A60, 0) != 0) {
         sp24->unkA4 = 3;
@@ -857,19 +999,79 @@ void func_800E3474(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F7544.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F770C.s")
+void func_800F770C(void) {
+    struct PlayerStruct* sp4;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F7800.s")
+    sp4 = &gPlayerData[D_80177A60];
+    if (sp4->unk132 == 0) {
+        sp4->unk132 = (u8) (sp4->unk132 + 1);
+        sp4->unkAA = 0xF;
+    }
+    sp4->Vel.z = 0.0f;
+    sp4->Vel.x = sp4->Vel.y = sp4->Vel.z;
+    sp4->unkAA = (s16) (sp4->unkAA - 1);
+    if (sp4->unkAA <= 0) {
+        sp4->unkA4 = 1;
+        sp4->unk132 = 0U;
+    }
+}
+
+void func_800F7800(void) {
+
+    switch (gPlayerData[D_80177A60].unkA4) {
+    case 1:
+        func_800F7544();
+        break;
+    case 2:
+        func_800F770C();
+        break;
+    default:
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F7894.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F7A0C.s")
+void func_800F7A0C(void) {
+    struct PlayerStruct* sp1C;
+
+    sp1C = &gPlayerData[D_80177A60];
+    if (sp1C->unk132 == 0) {
+        sp1C->unk132 = 1U;
+        if (sp1C->unkA6 != 0) {
+            sp1C->unkA8 = (s16) sp1C->unkA6;
+            sp1C->unk40 = func_80015538(sp1C->unk40, 180.0f);
+            sp1C->unk48 = 4.0f;
+        } else {
+            sp1C->unk48 = 0.0f;
+            sp1C->unk40 = (f32) sp1C->unk48;
+        }
+        sp1C->unk44 = 0.0f;
+        sp1C->unk3C = (f32) sp1C->unk44;
+        sp1C->unkB0 = 1;
+    }
+    if (sp1C->unkA6 == 0) {
+        return;
+    }
+    func_80029D04(D_80177A60);
+    sp1C->unkA8 = (s16) (s32) ((f32) sp1C->unkA8 - sp1C->unk48);
+    if (sp1C->unkA8 <= 0) {
+        sp1C->unkB0 = 2;
+        sp1C->unkA4 = (s16) sp1C->unkB0;
+        sp1C->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F7BF4.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F7D08.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F7E2C.s")
+void func_800F7E2C(void) {
+    if (D_80177A64 == 1) {
+        gPlayerData[D_80177A60].unkA4 = 3;
+        gPlayerData[D_80177A60].unk132 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F7EA4.s")
 

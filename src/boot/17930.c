@@ -3,14 +3,14 @@
 extern Gfx* gMasterDisplayList;
 
 extern Lights2 D_8004A590;
-extern Lights2 D_8004A5B8;
+extern Lights2 gLightingSettings;
 
 struct UnkStruct8010B3FC {
     char filler0[0x20];
     Lights2 *unk20;
 };
 
-extern struct UnkStruct8010B3FC *D_8010B3FC[];
+extern struct UnkStruct8010B3FC *gLevelInfo[];
 
 extern s32 D_8016E084;
 extern s32 D_8016E08C;
@@ -94,12 +94,12 @@ s32 func_8001EC84();                                  /* extern */
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_80017FD8.s")
 
 s32 func_80017FF8(void) {
-    Lights2 *sp4 = D_8010B3FC[D_8016E428]->unk20;
+    Lights2 *sp4 = gLevelInfo[gCurrentLevel]->unk20;
 
     if (sp4) {
-        D_8004A5B8 = *sp4;
+        gLightingSettings = *sp4;
 
-        if ((D_8016E428 == 0x3B) || (D_8016E428 == 0x40)) {
+        if ((gCurrentLevel == 0x3B) || (gCurrentLevel == 0x40)) {
             return 2;
         } else {
             return 1;
@@ -111,7 +111,7 @@ s32 func_80017FF8(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_800180C4.s")
 
 void func_8001819C(void) {
-    D_8004A5B8 = D_8004A590;
+    gLightingSettings = D_8004A590;
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_800181F0.s")
@@ -130,9 +130,9 @@ void func_800183E8(s32 r, s32 g, s32 b, s32 a, s32 arg4, s32 arg5) {
     gDPSetTextureFilter(gMasterDisplayList++, G_TF_BILERP); 
     gDPSetTexturePersp(gMasterDisplayList++, G_TP_PERSP);
     gSPNumLights(gMasterDisplayList++, 2);
-    gSPLight(gMasterDisplayList++, &D_8004A5B8.l[0], 1);
-    gSPLight(gMasterDisplayList++, &D_8004A5B8.l[1], 2);
-    gSPLight(gMasterDisplayList++, &D_8004A5B8.a, 3);
+    gSPLight(gMasterDisplayList++, &gLightingSettings.l[0], 1);
+    gSPLight(gMasterDisplayList++, &gLightingSettings.l[1], 2);
+    gSPLight(gMasterDisplayList++, &gLightingSettings.a, 3);
 }
 
 void func_80018794(s32 r, s32 g, s32 b, s32 a, s32 arg4, s32 arg5) {
@@ -151,9 +151,9 @@ void func_80018794(s32 r, s32 g, s32 b, s32 a, s32 arg4, s32 arg5) {
     gDPSetTextureFilter(gMasterDisplayList++, G_TF_BILERP); 
     gDPSetTexturePersp(gMasterDisplayList++, G_TP_PERSP);
     gSPNumLights(gMasterDisplayList++, 2);
-    gSPLight(gMasterDisplayList++, &D_8004A5B8.l[0], 1);
-    gSPLight(gMasterDisplayList++, &D_8004A5B8.l[1], 2);
-    gSPLight(gMasterDisplayList++, &D_8004A5B8.a, 3);
+    gSPLight(gMasterDisplayList++, &gLightingSettings.l[0], 1);
+    gSPLight(gMasterDisplayList++, &gLightingSettings.l[1], 2);
+    gSPLight(gMasterDisplayList++, &gLightingSettings.a, 3);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_80018C0C.s")
@@ -427,7 +427,7 @@ void func_8001ECB8(void) {
     gView.up.y = 1.0f;
     gView.up.z = 0.0f;
     gView.dist = 1000.0f;
-    D_8004A5B8 = D_8004A590;
+    gLightingSettings = D_8004A590;
     D_801775BC = 0;
     D_801775C4 = 0;
     D_801775CC = 0;

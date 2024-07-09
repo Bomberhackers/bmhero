@@ -66,7 +66,7 @@ extern s8 D_8016E134;
 extern s16 D_80177600;
 extern f32 D_80134F40;
 
-extern s32 D_801765EC;
+extern s32 gCameraType;
 
 extern s16 D_8010CD80[2];
 extern s16 D_80110B78[];
@@ -226,7 +226,7 @@ void func_80088ECC (void)
             D_80134C00 += 1;
             break;
           case 0x8:
-            D_801765EC = 0;
+            gCameraType = 0;
             break;
           case 0x27:
             func_8008BB0C ();
@@ -916,7 +916,7 @@ void func_8008B6E0(s16* arg0) {
 }
 
 void func_8008BA3C(void) {
-    gMegaStruct.D_80134FA0.unk0 = (s16) D_801765EC;
+    gMegaStruct.D_80134FA0.unk0 = (s16) gCameraType;
     gMegaStruct.D_80134FA0.unk2 = (s16) D_8016E134;
     gMegaStruct.D_80134F78.x = gView.at.x;
     gMegaStruct.D_80134F78.y = gView.at.y;
@@ -931,7 +931,7 @@ void func_8008BA3C(void) {
 }
 
 void func_8008BB0C(void) {
-    D_801765EC = (s32) gMegaStruct.D_80134FA0.unk0;
+    gCameraType = (s32) gMegaStruct.D_80134FA0.unk0;
     D_8016E134 = (s8) gMegaStruct.D_80134FA0.unk2;
     gView.at.x = gMegaStruct.D_80134F78.x;
     gView.at.y = gMegaStruct.D_80134F78.y;

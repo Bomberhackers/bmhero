@@ -22,7 +22,7 @@ extern f32 D_80177550[44];
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80084120.s")
 
 void func_800841E8(void) {
-    if ((D_8016E428 == 0x28) || (D_8016E428 == 0x29)) {
+    if ((gCurrentLevel == 0x28) || (gCurrentLevel == 0x29)) {
         D_8016E110 = 2;
         D_8016E112 = 0x3C;
     } else {

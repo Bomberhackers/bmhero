@@ -9,7 +9,7 @@ extern u32 D_010004D0_unk_bin_0_2[];
 extern Vtx D_010004E0_unk_bin_0_2[];
 extern Vp D_01000B68_unk_bin_0_2;
 
-extern Lights2 D_8004A5B8;
+extern Lights2 gLightingSettings;
 
 u8 D_8024C000_unk_bin_0_2[] = {
     #include "build/assets/unk_127FF0.ia4.inc"
@@ -153,6 +153,6 @@ Gfx D_8024CCB0_unk_bin_0_2[] = {
     gsDPSetBlendColor(0x00, 0x00, 0x00, 0x00),
     gsDPSetTextureFilter(G_TF_BILERP),
     gsDPSetTexturePersp(G_TP_PERSP),
-    gsSPSetLights2(D_8004A5B8),
+    gsSPSetLights2(gLightingSettings),
     gsSPEndDisplayList(),
 };

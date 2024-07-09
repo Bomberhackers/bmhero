@@ -462,7 +462,7 @@ void func_8006C18C(void) {
 }
 
 void func_8006C1DC(void) {
-    switch (D_8016E428) {
+    switch (gCurrentLevel) {
     case 0x4:
         func_8006B1B4();
         break;

@@ -13,26 +13,6 @@ struct UnkStruct801652A4 {
     char filler0[0x6F];
 };
 
-struct Light
-{
-    u8 LightData[8];
-};
-
-struct LightingStruct
-{
-    struct Light AmbientLight;
-    struct Light DiffuseLight;
-    s8 Direction[8];
-};
-
-struct ByteGroup
-{
-    s8 Unk0;
-    s8 Unk1;
-    s8 Unk2;
-    s8 Unk3;
-};
-
 //FUNCTIONS
 extern void func_80000964();                                  /* extern */
 extern void func_80019C84();                                  /* extern */
@@ -85,9 +65,9 @@ extern s16 D_80134730;
 extern s16 D_80134734;
 extern s16 D_80134738[];
 extern u16 D_8016E290[];
-extern s32 D_80134210;
-extern s32 D_8013421C;
-extern s32 D_80134220;
+extern s32 gDebugCurrentMenuItem;
+extern s32 gDebugSelectedMusicIndex;
+extern s32 gDebugSelectedSoundIndex;
 
 extern s32 D_8016E244;
 extern u16 D_8016E384;
@@ -103,7 +83,7 @@ extern u16 D_8016E2D0[];
 extern u16 D_8016E2F0[];
 extern s32 D_80134FD0;
 extern u16 D_8016E2B0[];
-extern struct LightingStruct D_8004A5B8[];
+extern struct LightingStruct gLightingSettings[];
 
 extern s16 D_80134C14;
 
@@ -130,7 +110,7 @@ extern f32 D_801651C0;
 extern struct UnkStruct801652A4 D_801652A4[];
 extern struct UnkStructSTCG* D_8017753C;
 extern struct UnkStruct80177778* D_80177778;
-extern s8 *D_8010B3FC[4];
+extern struct LevelInfo *gLevelInfo[4];
 
 //ROM ADDRESSES
 extern u8 unk_bin_0_2_ROM_START[];
@@ -172,28 +152,28 @@ void func_800FDD48(void) {
     debug_print_xy((s8* )0xD0, (s8* )0xD8);
     sprintf(&gDebugTextBuf, "[BOMBERMAN ACTION MENU]");
     debug_print_xy((s8* )0x20, (s8* )0x10);
-    sprintf(&gDebugTextBuf, "   GAME START = %d", D_80134228);
+    sprintf(&gDebugTextBuf, "   GAME START = %d", gDebugSaveIndex);
     debug_print_xy((s8* )0x20, (s8* )0x20);
-    sprintf(&gDebugTextBuf, "   MAP NUMBER  = 0x%X", D_8016E428);
+    sprintf(&gDebugTextBuf, "   MAP NUMBER  = 0x%X", gCurrentLevel);
     debug_print_xy((s8* )0x20, (s8* )0x30);
-    sprintf(&gDebugTextBuf, "   MAP TEST    = 0x%X", D_8016E428);
+    sprintf(&gDebugTextBuf, "   MAP TEST    = 0x%X", gCurrentLevel);
     debug_print_xy((s8* )0x20, (s8* )0x40);
-    sprintf(&gDebugTextBuf, "   CAMERA TYPE = %d", D_801765EC);
+    sprintf(&gDebugTextBuf, "   CAMERA TYPE = %d", gCameraType);
     debug_print_xy((s8* )0x20, (s8* )0x50);
     sprintf(&gDebugTextBuf, "   TITLE TEST");
     debug_print_xy((s8* )0x20, (s8* )0x60);
-    sprintf(&gDebugTextBuf, "   ENTRY EDIT = 0x%X", D_8016E428);
+    sprintf(&gDebugTextBuf, "   ENTRY EDIT = 0x%X", gCurrentLevel);
     debug_print_xy((s8* )0x20, (s8* )0x70);
-    sprintf(&gDebugTextBuf, "   MUSIC NUMBER = %d", D_8013421C);
+    sprintf(&gDebugTextBuf, "   MUSIC NUMBER = %d", gDebugSelectedMusicIndex);
     debug_print_xy((s8* )0x20, (s8* )0x80);
-    sprintf(&gDebugTextBuf, "   SOUND NUMBER = %d", D_80134220);
+    sprintf(&gDebugTextBuf, "   SOUND NUMBER = %d", gDebugSelectedSoundIndex);
     debug_print_xy((s8* )0x20, (s8* )0x90);
-    sprintf(&gDebugTextBuf, "   DEMO = %d", D_80134224);
+    sprintf(&gDebugTextBuf, "   DEMO = %d", gDebugSelectedDemoIndex);
     debug_print_xy((s8* )0x20, (s8* )0xA0);
     sprintf(&gDebugTextBuf, "   SHOCK TEST");
     debug_print_xy((s8* )0x20, (s8* )0xB0);
     sprintf(&gDebugTextBuf, "=");
-    debug_print_xy((s8* )0x28, (D_80134210 * 0x10) + 0x20);
+    debug_print_xy((s8* )0x28, (gDebugCurrentMenuItem * 0x10) + 0x20);
     sprintf(&gDebugTextBuf, "MASTER ----- DEBUG");
     debug_print_xy((s8* )0x98, (s8* )0xC0);
     func_8005FA90();
@@ -258,12 +238,12 @@ void func_800FE204(void) {
     s32 sp30;
 
     if (D_8016E2B0[0] & 0x8000) {
-        switch(D_80134210)
+        switch(gDebugCurrentMenuItem)
         {
             case 6:
             {
-                if (D_8013421C != 0) {
-                    PlayTrack_WithVolLoop(D_8013421C, -1, 0);
+                if (gDebugSelectedMusicIndex != 0) {
+                    PlayTrack_WithVolLoop(gDebugSelectedMusicIndex, -1, 0);
                 } else {
                     PlayTrack_WithVolLoop(-1, -1, 0);
                 }            
@@ -271,13 +251,13 @@ void func_800FE204(void) {
             }
             case 7:
             {
-                func_800175F0(-1, 0, D_80134220, -1, 0);
+                func_800175F0(-1, 0, gDebugSelectedSoundIndex, -1, 0);
                 break;
             }
             default:
             {
                 func_8001D2C0();
-                D_80134FD0 = D_80134210;
+                D_80134FD0 = gDebugCurrentMenuItem;
                 break;
             }
         }
@@ -292,26 +272,26 @@ void func_800FE204(void) {
     }
     sp30 = func_800FDF98();
     if (sp30 == 2) {
-        if (--D_80134210 < 0) {
-            D_80134210 = 9;
+        if (--gDebugCurrentMenuItem < 0) {
+            gDebugCurrentMenuItem = 9;
         }
     }   
     if (sp30 == -2) {
-        if (++D_80134210 >= 0xA) {
-            D_80134210 = 0;
+        if (++gDebugCurrentMenuItem >= 0xA) {
+            gDebugCurrentMenuItem = 0;
         }
     }
-    switch(D_80134210)
+    switch(gDebugCurrentMenuItem)
     {
         case 0:
         {
             if (sp30 == 1) {
-                if (++D_80134228 >= 8) {
-                    D_80134228 = 0;
+                if (++gDebugSaveIndex >= 8) {
+                    gDebugSaveIndex = 0;
                 }
             } else if (sp30 == -1) {
-                if (--D_80134228 < 0) {
-                    D_80134228 = 7;
+                if (--gDebugSaveIndex < 0) {
+                    gDebugSaveIndex = 7;
                 }
             }
             break;
@@ -321,15 +301,15 @@ void func_800FE204(void) {
         case 5:
         {
             if (sp30 == 1) {
-                if (++D_8016E428 >= 0xC0) 
+                if (++gCurrentLevel >= 0xC0) 
                 {
-                    D_8016E428 = 0;
+                    gCurrentLevel = 0;
                 }
             } 
             else if (sp30 == -1) {
-                if (--D_8016E428 < 0) 
+                if (--gCurrentLevel < 0) 
                 {
-                    D_8016E428 = 0xBF;
+                    gCurrentLevel = 0xBF;
                 }
             }
             break;
@@ -338,14 +318,14 @@ void func_800FE204(void) {
         {
             if (sp30 == 1) 
             {
-                if (++D_801765EC >= 0xB) 
+                if (++gCameraType >= 0xB) 
                 {
-                    D_801765EC = 0;
+                    gCameraType = 0;
                 }
             } else if (sp30 == -1) 
             {
-                if (--D_801765EC < 0) {
-                    D_801765EC = 0xA;
+                if (--gCameraType < 0) {
+                    gCameraType = 0xA;
                 }
             }
             break;
@@ -353,12 +333,12 @@ void func_800FE204(void) {
         case 6:
         {
             if (sp30 == 1) {
-                if (++D_8013421C >= 0x101) {
-                    D_8013421C = 0;
+                if (++gDebugSelectedMusicIndex >= 0x101) {
+                    gDebugSelectedMusicIndex = 0;
                 }
             } else if (sp30 == -1) {
-                if (--D_8013421C < 0) {
-                    D_8013421C = 0x100;
+                if (--gDebugSelectedMusicIndex < 0) {
+                    gDebugSelectedMusicIndex = 0x100;
                 }
             }
             break;                    
@@ -366,12 +346,12 @@ void func_800FE204(void) {
     case 7:
     {
         if (sp30 == 1) {
-            if (++D_80134220 >= 0x101) {
-                D_80134220 = 0;
+            if (++gDebugSelectedSoundIndex >= 0x101) {
+                gDebugSelectedSoundIndex = 0;
             }
         } else if (sp30 == -1) {
-            if (--D_80134220 < 0) {
-                D_80134220 = 0x100;
+            if (--gDebugSelectedSoundIndex < 0) {
+                gDebugSelectedSoundIndex = 0x100;
             }
         }
         break;            
@@ -379,12 +359,12 @@ void func_800FE204(void) {
     case 8:
         {                
             if (sp30 == 1) {
-                if (++D_80134224 >= 0xA) {
-                    D_80134224 = 0;
+                if (++gDebugSelectedDemoIndex >= 0xA) {
+                    gDebugSelectedDemoIndex = 0;
                 }
             } else if (sp30 == -1) {
-                if (--D_80134224 < 0) {
-                    D_80134224 = 9;
+                if (--gDebugSelectedDemoIndex < 0) {
+                    gDebugSelectedDemoIndex = 9;
                 }
             }
         break;
@@ -420,7 +400,7 @@ u32 func_800FE898(void) {
     func_8001ECB8();
     D_8016526C = &func_800FE6D8;
     D_80165274 = &func_800FE204;
-    D_80134228 = 0;
+    gDebugSaveIndex = 0;
     func_800FE854();
     gView.at.x = 0.0f;
     gView.at.y = 0.0f;
@@ -444,13 +424,13 @@ u32 func_800FE898(void) {
 void func_800FE9BC(void) {
     sprintf(&gDebugTextBuf, "[MAIN MENU]");
     debug_print_xy(0x20, 0x10);
-    sprintf(&gDebugTextBuf, "   TIMER BAR ON/OFF = %d", D_8016E3E4);
+    sprintf(&gDebugTextBuf, "   TIMER BAR ON/OFF = %d", gDebugShowTimerBar);
     debug_print_xy(0x20, 0x20);
-    sprintf(&gDebugTextBuf, "   DEBUG DISPLAY MODE = %d", D_8016E3F7);
+    sprintf(&gDebugTextBuf, "   DEBUG DISPLAY MODE = %d", gDebugDisplayMode);
     debug_print_xy(0x20, 0x30);
-    sprintf(&gDebugTextBuf, "   NO DAMAGE = %d", D_8016E3FC);
+    sprintf(&gDebugTextBuf, "   NO DAMAGE = %d", gDebugInvincibileFlag);
     debug_print_xy(0x20, 0x40);
-    sprintf(&gDebugTextBuf, "   NO ATTRIBUTE = %d", D_8016E404);
+    sprintf(&gDebugTextBuf, "   NO ATTRIBUTE = %d", gDebugAtrributeFlag);
     debug_print_xy(0x20, 0x50);
     sprintf(&gDebugTextBuf, "   G BUTTON DEBUG = %d", D_8016E40C);
     debug_print_xy(0x20, 0x60);
@@ -472,27 +452,27 @@ void func_800FEB6C(void) {
 
     sprintf(&gDebugTextBuf, "[LIGHT EDIT]");
     debug_print_xy((s8* )0x20, (s8* )0x10);
-    sprintf(&gDebugTextBuf, "   AMBIENT R = %d", (u8)D_8004A5B8[0].AmbientLight.LightData[0]);
+    sprintf(&gDebugTextBuf, "   AMBIENT R = %d", (u8)gLightingSettings[0].AmbientLight.LightData[0]);
     debug_print_xy((s8* )0x20, (s8* )0x20);
-    sprintf(&gDebugTextBuf, "   AMBIENT G = %d", D_8004A5B8[0].AmbientLight.LightData[1]);
+    sprintf(&gDebugTextBuf, "   AMBIENT G = %d", gLightingSettings[0].AmbientLight.LightData[1]);
     debug_print_xy((s8* )0x20, (s8* )0x30);
-    sprintf(&gDebugTextBuf, "   AMBIENT B = %d", D_8004A5B8[0].AmbientLight.LightData[2]);
+    sprintf(&gDebugTextBuf, "   AMBIENT B = %d", gLightingSettings[0].AmbientLight.LightData[2]);
     debug_print_xy((s8* )0x20, (s8* )0x40);
-    sprintf(&gDebugTextBuf, "   DIFFUSE R = %d", D_8004A5B8[0].DiffuseLight.LightData[0]);
+    sprintf(&gDebugTextBuf, "   DIFFUSE R = %d", gLightingSettings[0].DiffuseLight.LightData[0]);
     debug_print_xy((s8* )0x20, (s8* )0x50);
-    sprintf(&gDebugTextBuf, "   DIFFUSE G = %d", D_8004A5B8[0].DiffuseLight.LightData[1]);
+    sprintf(&gDebugTextBuf, "   DIFFUSE G = %d", gLightingSettings[0].DiffuseLight.LightData[1]);
     debug_print_xy((s8* )0x20, (s8* )0x60);
-    sprintf(&gDebugTextBuf, "   DIFFUSE B = %d", D_8004A5B8[0].DiffuseLight.LightData[2]);
+    sprintf(&gDebugTextBuf, "   DIFFUSE B = %d", gLightingSettings[0].DiffuseLight.LightData[2]);
     debug_print_xy((s8* )0x20, (s8* )0x70);
-    sprintf(&gDebugTextBuf, "   DIR     X = %d", D_8004A5B8[0].Direction[0]);
+    sprintf(&gDebugTextBuf, "   DIR     X = %d", gLightingSettings[0].Direction[0]);
     debug_print_xy((s8* )0x20, (s8* )0x80);
-    sprintf(&gDebugTextBuf, "   DIR     Y = %d", D_8004A5B8[0].Direction[1]);
+    sprintf(&gDebugTextBuf, "   DIR     Y = %d", gLightingSettings[0].Direction[1]);
     debug_print_xy((s8* )0x20, (s8* )0x90);
-    sprintf(&gDebugTextBuf, "   DIR     Z = %d", D_8004A5B8[0].Direction[2]);
+    sprintf(&gDebugTextBuf, "   DIR     Z = %d", gLightingSettings[0].Direction[2]);
     debug_print_xy((s8* )0x20, (s8* )0xA0);
-    sp24 = (f32) D_8004A5B8[0].Direction[0];
-    sp20 = (f32) D_8004A5B8[0].Direction[1];
-    sp1C = (f32) D_8004A5B8[0].Direction[2];
+    sp24 = (f32) gLightingSettings[0].Direction[0];
+    sp20 = (f32) gLightingSettings[0].Direction[1];
+    sp1C = (f32) gLightingSettings[0].Direction[2];
     sp18 = sqrtf((sp24 * sp24) + (sp20 * sp20) + (sp1C * sp1C));
     sprintf(&gDebugTextBuf, "   DIR TOTAL = %d", (s32) sp18);
     debug_print_xy((s8* )0x20, (s8* )0xB0);
@@ -567,8 +547,8 @@ void func_800FEFA0(void) {
     sp44 = (D_80177778->unk18 * sp38) + sp40;
     sprintf(&gDebugTextBuf, "[MAP INDEX=%d FLOOR=%d]", sp44, sp3C + 1);
     debug_print_xy((s8* )0x20, (s8* )0x30);
-    sprintf(&gDebugTextBuf, "STAGE=%d AREA=%d MAP=%d CLEAR=%d (%02X)", D_8010B3FC[(D_8016E428)][0], 
-        D_8010B3FC[(D_8016E428)][1], D_8010B3FC[(D_8016E428)][2], D_8010B3FC[(D_8016E428)][3], D_8016E428);
+    sprintf(&gDebugTextBuf, "STAGE=%d AREA=%d MAP=%d CLEAR=%d (%02X)", gLevelInfo[(gCurrentLevel)]->Stage, 
+        gLevelInfo[(gCurrentLevel)]->Area, gLevelInfo[(gCurrentLevel)]->Map, gLevelInfo[(gCurrentLevel)]->Clear, gCurrentLevel);
     debug_print_xy((s8* )0x20, (s8* )0x40);
     sprintf(&gDebugTextBuf, "prm=%d ny=%d y=%f", D_801651A8, D_801651BC, (f64) D_801651C0);
     debug_print_xy((s8* )0x20, (s8* )0x50);
@@ -631,13 +611,13 @@ void func_800FF88C(void) {
         case 0:
             {
                 if (*D_8016E2F0 & 0x200) {
-                    if (--D_8016E3E4 < 0) {
-                        D_8016E3E4 = 1;
+                    if (--gDebugShowTimerBar < 0) {
+                        gDebugShowTimerBar = 1;
                     }
                 }
                 if (*D_8016E2F0 & 0x100) {
-                    if (++D_8016E3E4 >= 2) {
-                        D_8016E3E4 = 0;
+                    if (++gDebugShowTimerBar >= 2) {
+                        gDebugShowTimerBar = 0;
                     }
                 }
                 break;                
@@ -645,13 +625,13 @@ void func_800FF88C(void) {
         case 1:
             {
                 if (*D_8016E2F0 & 0x200) {
-                    if (--D_8016E3F7 < 0) {
-                        D_8016E3F7 = 2;
+                    if (--gDebugDisplayMode < 0) {
+                        gDebugDisplayMode = 2;
                     }
                 }
                 if (*D_8016E2F0 & 0x100) {
-                    if (++D_8016E3F7 >= 3) {
-                        D_8016E3F7 = 0;
+                    if (++gDebugDisplayMode >= 3) {
+                        gDebugDisplayMode = 0;
                     }
                 }
                 break;                
@@ -659,14 +639,14 @@ void func_800FF88C(void) {
         case 2:
             {
                 if ((D_8016E3A0 & 0x200) || (D_8016E3A0 & 0x100)) {
-                    D_8016E3FC ^= 1;
+                    gDebugInvincibileFlag ^= 1;
                 }
                 break;                
             }
         case 3:
             {
                 if ((D_8016E3A0 & 0x200) || (D_8016E3A0 & 0x100)) {
-                    D_8016E404 ^= 1;
+                    gDebugAtrributeFlag ^= 1;
                 }                
                 break;
             }
@@ -742,22 +722,22 @@ void func_800FFD30(void) {
         case 1:
         case 2:
             sp18 = (s32) D_8016E3F4;
-            D_8004A5B8[0].AmbientLight.LightData[sp18] += sp1C;
-            D_8004A5B8[0].AmbientLight.LightData[sp18 + 4] = D_8004A5B8[0].AmbientLight.LightData[sp18];
+            gLightingSettings[0].AmbientLight.LightData[sp18] += sp1C;
+            gLightingSettings[0].AmbientLight.LightData[sp18 + 4] = gLightingSettings[0].AmbientLight.LightData[sp18];
             break;
         case 3:
         case 4:
         case 5:
             sp18 = D_8016E3F4 - 3; // - 3 so we index back to 0-2
-            D_8004A5B8[0].DiffuseLight.LightData[sp18] += sp1C;
-            D_8004A5B8[0].DiffuseLight.LightData[sp18 + 4] = D_8004A5B8[0].DiffuseLight.LightData[sp18];
+            gLightingSettings[0].DiffuseLight.LightData[sp18] += sp1C;
+            gLightingSettings[0].DiffuseLight.LightData[sp18 + 4] = gLightingSettings[0].DiffuseLight.LightData[sp18];
             break;
         case 6:
         case 7:
         case 8:
             sp18 = D_8016E3F4 - 6; // - 6 so we index back to 0-2
-            D_8004A5B8[0].Direction[sp18] += sp1C;
-            D_8004A5B8[0].Direction[sp18 + 0x10] = D_8004A5B8[0].Direction[sp18];
+            gLightingSettings[0].Direction[sp18] += sp1C;
+            gLightingSettings[0].Direction[sp18 + 0x10] = gLightingSettings[0].Direction[sp18];
             break;
         }
     }
@@ -806,7 +786,7 @@ void func_800FFF40(void) {
 void func_80100148(void) {
     if (D_8016E384 & 0x1000) {
         D_8016E3EE = 0;
-        D_8016E3EC = D_8016E3F7;
+        D_8016E3EC = gDebugDisplayMode;
         D_801765F4 = 0;
         return;
     }

@@ -1,5 +1,6 @@
 #include <ultra64.h>
 #include "38D0.h"
+#include "nusys/audio.h"
 
 // forward prototypes
 ALMicroTime initOsc(void **oscState, f32 *initVal,u8 oscType, u8 oscRate,u8 oscDepth,u8 oscDelay);
@@ -226,8 +227,6 @@ typedef struct oscData_s {
 #define  TWO_PI     6.2831853
 
 // in other files
-extern s32 func_8000D120(struct UnkStruct8004A2A4*, s32*);
-extern ALCSPlayer* func_8000D84C(u32);
 extern ALHeap D_80052D40;
 
 // .data
@@ -487,7 +486,7 @@ s32 func_80002E1C(s32 arg0, s32 arg1, s32 arg2, u8* arg3, s32 arg4) {
     D_8004A2E0 = arg0;
     D_8004A2E4 = arg1;
     D_8004A2D8 = D_8004A2A0;
-    sp1C = func_8000D120(&D_8004A2A4, &D_8004A2C8);
+    sp1C = amCreateAudioMgr(&D_8004A2A4, &D_8004A2C8);
     if (sp1C != 0) {
         return sp1C;
     }
@@ -825,24 +824,24 @@ void func_80003FE0(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
     D_8004A350 = arg4;
 }
 
-s32 func_8000401C(s16 arg0) {
+s32 func_8000401C(s16 trackID) {
     s8 sp27;
 
     if (D_8004A340 == NULL) {
         return -1;
     }
-    if ((arg0 >= D_80052EB0->seqCount) || (arg0 < 0)) {
+    if ((trackID >= D_80052EB0->seqCount) || (trackID < 0)) {
         return -1;
     }
     switch (D_80052EB0->revision) {                              /* irregular */
     case 0x5332:
-        if (D_80052EB0->seqArray[arg0].len < 0) {
+        if (D_80052EB0->seqArray[trackID].len < 0) {
             return -1;
         }
-        sp27 = D_80052EB4[arg0].unk1;
+        sp27 = D_80052EB4[trackID].unk1;
         break;
     case 0x5331:
-        if (D_80052EB0->seqArray[arg0].len < 0) {
+        if (D_80052EB0->seqArray[trackID].len < 0) {
             return -1;
         }
     default:
@@ -855,7 +854,7 @@ s32 func_8000401C(s16 arg0) {
         D_80052EBC = 1;
     }
     D_80052EC4 = 0.0f;
-    D_80052ECC = arg0;
+    D_80052ECC = trackID;
     D_80052EC0 = 1;
     return 0;
 }

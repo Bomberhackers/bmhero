@@ -37,7 +37,7 @@ segments:
     - [0x1050,  c, boot/1050] # main
     - [0x3490,  c, boot/3490]
     - [0x38D0,  c, boot/38D0]
-    - [0xDD20,  c, boot/DD20]
+    - [0xDD20,  c, boot/nusys/mus/audio]
     - [0xEE20,  c, boot/EE20] # Host functions for libmalloc
     - [0xEFE0,  c, boot/EFE0]
     - [0xF280,  c, boot/F280]
@@ -329,7 +329,7 @@ segments:
     # bss begins here I guess
     - {start: 0x4DFF0, vram: 0x8004D3F0, type: .bss, name: boot/1050}
     - {start: 0x4DFF0, vram: 0x80052D40, type: .bss, name: boot/38D0}
-    - {start: 0x4DFF0, vram: 0x80053160, type: .bss, name: boot/DD20}
+    - {start: 0x4DFF0, vram: 0x80053160, type: .bss, name: boot/nusys/mus/audio}
     - {start: 0x4DFF0, vram: 0x80053170, type:  bss, name: boot_bss_pad_2}
     - {start: 0x4DFF0, vram: 0x80057EC0, type: .bss, name: boot/malloc/malloc}
     - {start: 0x4DFF0, vram: 0x80057F60, type: .bss, name: boot/malloc/free}

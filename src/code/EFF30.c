@@ -263,9 +263,9 @@ void func_800FE204(void) {
             case 6:
             {
                 if (D_8013421C != 0) {
-                    func_80016F38(D_8013421C, -1, 0);
+                    PlayTrack_WithVolLoop(D_8013421C, -1, 0);
                 } else {
-                    func_80016F38(-1, -1, 0);
+                    PlayTrack_WithVolLoop(-1, -1, 0);
                 }            
                 break;
             }

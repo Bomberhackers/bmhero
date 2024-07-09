@@ -45,7 +45,7 @@ s32 func_8001EC84();                                  /* extern */
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_80016EE4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_80016F38.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/PlayTrack_WithVolLoop.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_80016FC8.s")
 

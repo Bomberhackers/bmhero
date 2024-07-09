@@ -487,7 +487,7 @@ void thread6_func(void* arg) {
             case 4: 
                 break;
             case 5:
-                func_80016F38(-1, -1, 0);
+                PlayTrack_WithVolLoop(-1, -1, 0);
                 func_8002F738();
                 break;
             case 8:

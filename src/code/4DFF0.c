@@ -680,43 +680,43 @@ void func_8005E230(s32 demoID) {
     if (gDemoID == 0) {
         D_80134794 = &D_80101F18[0];
         gDemoSceneID = 0;
-        func_80016F38(0x18, -1, 0);
+        PlayTrack_WithVolLoop(0x18, -1, 0);
     } else if (gDemoID == 1) {
         D_80134794 = &D_80101A14[0];
         gDemoSceneID = 0;
-        func_80016F38(0x1D, -1, 0);
+        PlayTrack_WithVolLoop(0x1D, -1, 0);
     } else if (gDemoID == 2) {
         D_80134794 = &D_80100720[5];
         gDemoSceneID = 5;
-        func_80016F38(0x13, -1, 0);
+        PlayTrack_WithVolLoop(0x13, -1, 0);
     } else if (gDemoID == 3) {
         D_80134794 = &D_80100A90[5];
         gDemoSceneID = 5;
-        func_80016F38(0x13, -1, 0);
+        PlayTrack_WithVolLoop(0x13, -1, 0);
     } else if (gDemoID == 4) {
         D_80134794 = &D_80100E00[5];
         gDemoSceneID = 5;
-        func_80016F38(0x13, -1, 0);
+        PlayTrack_WithVolLoop(0x13, -1, 0);
     } else if (gDemoID == 5) {
         D_80134794 = &D_80101170[5];
         gDemoSceneID = 5;
-        func_80016F38(0x13, -1, 0);
+        PlayTrack_WithVolLoop(0x13, -1, 0);
     } else if (gDemoID == 6) {
         D_80134794 = &D_80100720[0];
         gDemoSceneID = 0;
-        func_80016F38(0x20, -1, 0);
+        PlayTrack_WithVolLoop(0x20, -1, 0);
     } else if (gDemoID == 7) {
         D_80134794 = &D_80100A90[0];
         gDemoSceneID = 0;
-        func_80016F38(0x20, -1, 0);
+        PlayTrack_WithVolLoop(0x20, -1, 0);
     } else if (gDemoID == 8) {
         D_80134794 = &D_80100E00[0];
         gDemoSceneID = 0;
-        func_80016F38(0x20, -1, 0);
+        PlayTrack_WithVolLoop(0x20, -1, 0);
     } else if (gDemoID == 9) {
         D_80134794 = &D_80101170[0];
         gDemoSceneID = 0;
-        func_80016F38(0x20, -1, 0);
+        PlayTrack_WithVolLoop(0x20, -1, 0);
     }
     D_801347B0 = 0;
     D_801347E4 = 0;

@@ -126,17 +126,28 @@ extern s32 D_8005541C;
 extern u16 D_80055420;
 extern u32 D_80055424;
 extern s32 D_80055428;
-extern s32 D_8005542C;
+extern s32 minFrameSize;
 extern s32 D_80055430;
-extern u32 D_80055434;
+extern u32 frameSize;
 extern s32 D_80055438;
 extern s32 D_8005543C;
 extern struct UnkStruct80055440 D_80055440[];
 extern OSMesgQueue D_80055740;
 extern void* D_80055758;
 
+typedef struct {
+    /* 0x00 */ u16 unk0;
+    /* 0x04 */ u32 unk4;
+    /* 0x08 */ u32 framesPerField;
+    /* 0x0C */ u32 unkC;
+    /* 0x10 */ u32 outputRate;
+    /* 0x14 */ u32 unk14;
+    /* 0x18 */ u32 unk18;
+    /* 0x1C */ u32 unk1C;
+} amConfig; // size=0x20
+
 // functions
-s32 amCreateAudioMgr(struct UnkInputStruct8000D120_arg0* arg0, struct UnkInputStruct8000D120_arg1* arg1);
+s32 amCreateAudioMgr(ALSynConfig* c, amConfig* amc);
 void* func_8000D84C(s32);
 void __amMain(void*);
 s32 __amHandleFrameMsg(struct UnkStruct80053188_Ptr* arg0, struct UnkInputStruct8000DA70_Arg1 *arg1);

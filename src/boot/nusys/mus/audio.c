@@ -14,43 +14,49 @@ s32 func_8000ABB4();                                  /* extern */
 struct UnkStructPair D_80053160;
 struct UnkStructPair D_80053168;
 
-s32 amCreateAudioMgr(struct UnkInputStruct8000D120_arg0* arg0, struct UnkInputStruct8000D120_arg1* arg1) {
+s32 amCreateAudioMgr(ALSynConfig* c, amConfig* amc) {
     s32 sp3C;
-    f32 sp38;
+    f32 fsize;
     struct UnkInputStruct8000D120* sp34;
-    s16 sp32;
+    s16 ret = 0;
 
-    sp32 = 0;
     D_80053168.unk0 = D_80053168.unk4 = 0;
     D_80053160.unk0 = D_80053160.unk4 = 0;
-    D_80055428 = 0;
-    D_8005541C = 0;
-    D_80055418 = 0;
-    D_80055420 = arg1->unk0;
-    D_80055424 = arg1->unk4;
-    D_80055408 = (void*)arg0->unk14;
-    arg0->unk10 = &__amDmaNew;
-    arg0->unk18 = osAiSetFrequency(arg1->unk10);
+    D_80055428      = 0;
+    D_8005541C      = 0;
+    D_80055418      = 0;
+    D_80055420      = amc->unk0;
+    D_80055424      = amc->unk4;
+    D_80055408      = (void*)c->heap;
+    c->dmaproc      = &__amDmaNew;
+    c->outputRate   = osAiSetFrequency(amc->outputRate);
+
+    /*
+     * Calculate the frame sample parameters from the
+     * video field rate and the output rate
+     */
     if (D_8004A280 == 0) {
-        sp38 = ((f32)arg1->unk8 * (s32)arg0->unk18) / 60.0f;
+        fsize = ((f32)amc->framesPerField * (s32)c->outputRate) / 60.0f;
     } else {
-        sp38 = ((f32)arg1->unk8 * (s32)arg0->unk18) / 50.0f;
+        fsize = ((f32)amc->framesPerField * (s32)c->outputRate) / 50.0f;
     }
 
-    D_80055434 = (s32) sp38;
-    if (D_80055434 < sp38) {
-        D_80055434 += 1;
+    frameSize = (s32) fsize;
+    if (frameSize < fsize) {
+        frameSize += 1;
     }
 
-    if (D_80055434 & 0xF) {
-        D_80055434 = (D_80055434 & ~0xF) + 0x10;
+    if (frameSize & 0xF) {
+        frameSize = (frameSize & ~0xF) + 0x10;
     }
-    D_8005542C = D_80055434 - 0x10;
-    D_80055430 = D_80055434 + 0x60;
-    alInit(&D_80053180.unk238, (ALSynConfig* ) arg0);
+    minFrameSize = frameSize - 16;
+
+    D_80055430 = frameSize + 0x60;
+
+    alInit(&D_80053180.unk238, c);
     sp34 = (void*)func_8000D84C(D_80055420 * 0x14);
     if (sp34 == NULL) {
-        sp32 = 1;;
+        ret = 1;;
     } else {
         sp34[D_80055420-1].unk0 = 0;
         sp34->unk4 = sp34->unk0 = sp34[D_80055420-1].unk0;
@@ -60,23 +66,23 @@ s32 amCreateAudioMgr(struct UnkInputStruct8000D120_arg0* arg0, struct UnkInputSt
 
             sp34[sp3C].unk10 = func_8000D84C(D_80055424);
             if (sp34[sp3C].unk10 == 0) {
-                sp32 = 1;
+                ret = 1;
                 goto after;
             }
         }
 
         sp34[sp3C].unk10 = func_8000D84C(D_80055424);
         if (sp34[sp3C].unk10 == 0) {
-            sp32 = 1;;
+            ret = 1;;
         } else {
             D_80055410 = 0;
             D_80055414 = (void*)sp34;
-            D_80055438 = arg1->unkC;
+            D_80055438 = amc->unkC;
 
             for(sp3C = 0; sp3C < 2; sp3C++) {
                 D_80053180.unk0[sp3C] = func_8000D84C(D_80055438 * 8);
                 if (D_80053180.unk0[sp3C] == 0) {
-                    sp32 = 1;;
+                    ret = 1;;
                     goto after;
                 }
             }
@@ -84,14 +90,14 @@ s32 amCreateAudioMgr(struct UnkInputStruct8000D120_arg0* arg0, struct UnkInputSt
             for(sp3C = 0; sp3C < 3; sp3C++) {
                 D_80053188[sp3C] = (void*)func_8000D84C(0x90U);
                 if (D_80053188[sp3C] == 0) {
-                    sp32 = 1;;
+                    ret = 1;;
                     goto after;
                 }
                 D_80053188[sp3C]->unk8.unk68 = 2,
                 D_80053188[sp3C]->unk8.unk70 = D_80053188[sp3C];
                 **(u32**)&D_80053188[sp3C] = func_8000D84C(D_80055430 * 4);
                 if (**(u32**)&D_80053188[sp3C] == 0) {
-                    sp32 = 1;;
+                    ret = 1;;
                     goto after;
                 }
             }
@@ -100,14 +106,14 @@ s32 amCreateAudioMgr(struct UnkInputStruct8000D120_arg0* arg0, struct UnkInputSt
 after:;
     osCreateMesgQueue((u32)&D_80053180 + 0x200, (u32)&D_80053180 + 0x218, 8);
     osCreateMesgQueue((u32)&D_80055740, (u32)&D_80055758, 0x20);
-    if (arg1->unk14 != 0) {
+    if (amc->unk14 != 0) {
         osCreateMesgQueue((u32)&D_80053180 + 0x1C8, (u32)&D_80053180 + 0x1E0, 8);
-        D_80053170 = func_80001FDC(arg1->unk14);
-        func_80001E78(arg1->unk14, (u32)&D_80053178, (u32)&D_80053180 + 0x1C8);
+        D_80053170 = func_80001FDC(amc->unk14);
+        func_80001E78(amc->unk14, (u32)&D_80053178, (u32)&D_80053180 + 0x1C8);
     }
-    osCreateThread((u32)&D_80053180 + 0x18, (s32)arg1->unk1C, __amMain, NULL, (u32)&D_80053408 + 0x2000, *(u32*)&arg1->unk18);
+    osCreateThread((u32)&D_80053180 + 0x18, (s32)amc->unk1C, __amMain, NULL, (u32)&D_80053408 + 0x2000, *(u32*)&amc->unk18);
     osStartThread((u32)&D_80053180 + 0x18);
-    return (s32) sp32;
+    return (s32) ret;
 }
 
 // functions added(?) or that may have been present in the nusys-1.0 this was based on. It's hard to say.
@@ -186,9 +192,9 @@ s32 __amHandleFrameMsg(struct UnkStruct80053188_Ptr* arg0, struct UnkInputStruct
         osAiSetNextBuffer(arg1->unk0, arg1->unk4 * 4);
     }
     sp20 = osAiGetLength() >> 2;
-    *(s16*)&arg0->unk0[1] = ((((D_80055434 - sp20) + 0x50) & ~0xF) + 0x10);
-    if (*(s16*)&arg0->unk0[1] < (u32) D_8005542C) {
-        *(s16*)&arg0->unk0[1] = (s16) D_8005542C;
+    *(s16*)&arg0->unk0[1] = ((((frameSize - sp20) + 0x50) & ~0xF) + 0x10);
+    if (*(s16*)&arg0->unk0[1] < (u32) minFrameSize) {
+        *(s16*)&arg0->unk0[1] = (s16) minFrameSize;
     }
     sp28 = alAudioFrame((Acmd* ) D_80053180.unk0[D_80055428], &sp24, (s16* ) sp2C, *(s16*)&arg0->unk0[1]);
     if (sp24 == 0) {

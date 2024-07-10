@@ -1808,7 +1808,63 @@ void func_800E1F20(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E2068.s")
+void func_800E2068(void) {
+    struct PlayerStruct* sp44;
+    f32 sp40;
+    f32 temp_f20;
+
+    sp44 = &gPlayerData[D_80177A60];
+    if (sp44->unk132 == 0) {
+        sp44->unk132 = (u8) (sp44->unk132 + 1);
+        func_8001C0EC(D_80177A60, 0, 7, 0x70, &D_80118FF4);
+        func_8001ABF4(D_80177A60, 0, 0, &D_801192E0);
+        func_8001ABF4(D_80177A60, 1, 0, &D_801192E0.Rot.y);
+        sp44->unk3C = func_8002A46C(D_80177A60);
+        sp44->Rot.y = (f32) sp44->unk3C;
+        sp44->unk44 = 6.0f;
+        sp44->unkA6 = 0;
+        sp44->unkA8 = 0;
+        sp44->unkB2 = 1;
+    }
+    if (func_80028FA0(D_80177A60) != 0) {
+        func_80029B60(D_80177A60);
+    }
+    if (sp44->unkA8 < 4) {
+        if (sp44->unkA6 == 0) {
+            sp44->unkA6 = 1;
+            func_80029EF8(D_80177A60, 20.0f, 4.0f);
+        }
+        sp40 = sp44->Vel.y;
+        sp44->Vel.y = 0.0f;
+        func_80029C40(D_80177A60);
+        if (func_80029018(D_80177A60, 0, 80.0f, 0, 0.0f, 0.0f) != 0) {
+            func_80029824(D_80177A60, func_800297DC());
+        }
+        sp44->Vel.y = sp40;
+        if (func_80029F58(D_80177A60, 0, 0, 0, 30.0f) == 1) {
+            sp44->Vel.z = 0.0f;
+            sp44->Vel.x = sp44->Vel.y = sp44->Vel.z;
+            if (func_8001B4AC(D_80177A60, 0) != 0) {
+                if (func_8002A1FC(D_80177A60, 300.0f) != 0) {
+                    sp44->unkA4 = 4;
+                    sp44->unkA8 = 0;
+                    sp44->unkB2 = 1;
+                    sp44->unk132 = 0U;
+                } else {
+                    sp44->unkA8 = (s16) (sp44->unkA8 + 1);
+                }
+                sp44->unkA6 = 0;
+            } else {
+                sp44->Vel.z = 0.0f;
+                sp44->Vel.x = (f32) sp44->Vel.z;
+            }
+        }
+    } else {
+        sp44->unkA4 = 2;
+        sp44->unkB2 = 0;
+        sp44->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E2400.s")
 

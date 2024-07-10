@@ -1914,7 +1914,46 @@ void func_800E2400(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E2738.s")
+void func_800E2738(void) {
+    struct PlayerStruct* sp44;
+    f32 sp40;
+    f32 temp_f20;
+    f32 temp_f20_2;
+
+    sp44 = &gPlayerData[D_80177A60];
+    if (sp44->unk132 == 0) {
+        sp44->unk132 = (u8) (sp44->unk132 + 1);
+        func_8001C0EC(D_80177A60, 0, 0xB, 0x70, &D_80118FF4);
+        func_8001ABF4(D_80177A60, 0, 0, &D_801192E0);
+        func_8001ABF4(D_80177A60, 1, 0, &D_801192E0.Rot.y);
+        func_80029EF8(D_80177A60, -5.0f, 0);
+        sp44->unk44 = 6.0f;
+        sp44->unkA6 = 0;
+        sp44->unkB2 = 3;
+    }
+    func_8002A8B4(D_80177A60, 6.0f);
+    sp44->Rot.y = (f32) sp44->unk3C;
+    sp40 = sp44->Vel.y;
+    sp44->Vel.y = 0.0f;
+    func_80029C40(D_80177A60);
+    if (func_80029018(D_80177A60, 0, 80.0f, 0.0f, 0.0f, 0.0f) != 0) {
+        func_80029824(D_80177A60, func_800297DC());
+    }
+    sp44->Vel.y = sp40;
+    if (func_80029F58(D_80177A60, 0.0f, 0.0f, 0.0f, 0.0f) == 1) {
+        sp44->Vel.z = 0.0f;
+        sp44->Vel.x = sp44->Vel.y = sp44->Vel.z;
+        sp44->unk44 = 0.0f;
+    }
+    if (func_8001B4AC(D_80177A60, 0) != 0) {
+        sp44->Vel.z = 0.0f;
+        sp44->Vel.x = sp44->Vel.y = sp44->Vel.z;
+        sp44->unkA4 = 2;
+        sp44->unkA6 = 0;
+        sp44->unkB2 = 0;
+        sp44->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E2A00.s")
 

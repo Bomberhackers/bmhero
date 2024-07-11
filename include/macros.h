@@ -13,6 +13,8 @@
 
 #define UNUSED __attribute__((unused))
 
+#define SQ(x) (x * x)
+
 #ifndef __GNUC__
 #define __attribute__(x)
 #endif

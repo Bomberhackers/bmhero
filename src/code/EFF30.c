@@ -512,7 +512,7 @@ void func_800FEFA0(void) {
 
     sprintf(&gDebugTextBuf, "(%d %d %d) ST=%d CG=%d %d",
             (s32)D_8017753C->Unk0, (s32)D_8017753C->Unk4, (s32) D_8017753C->Unk8,
-            D_8017753C->UnkA4, D_801652A4[gPlayerData[0].Unk140].unk0,
+            D_8017753C->UnkA4, D_801652A4[gPlayerData[0].Unk140[0]].unk0,
             D_8017753C->Unk108
         );
     debug_print_xy((s8*)0x20, (s8*)0x10);

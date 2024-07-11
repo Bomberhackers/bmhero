@@ -17,7 +17,6 @@ typedef struct {
     s16 unkA;
     s16 unkC;
     s16 unkE;
-    char padding[0x150 - (sizeof(s16) * 5)];
 } UnkStruct80165100;
 
 struct UnkStruct8016E280 {
@@ -169,8 +168,7 @@ struct UnkStruct80088B80_3
     char Padding[0x3];
 };
 
-struct PlayerStruct
-{
+struct PlayerStruct {
     struct Vec3f Pos;
     struct Vec3f Scale;
     struct Vec3f Rot;
@@ -181,7 +179,7 @@ struct PlayerStruct
     f32 unk40;
     f32 unk44;
     f32 unk48;
-    char padding6[4];
+    f32 unk4C;
     f32 unk50;
     f32 unk54;
     f32 unk58;
@@ -207,7 +205,9 @@ struct PlayerStruct
     s16 unkE6[0x1];
     s16 unkE8[0x2];
     s16 unkEC;
-    char padding10[0x12];
+    char padding10[0xE];
+    s16 unkFC;
+    char padding11[0x2];
     s16 unk100;
     s8 unk102;
     s8 unk103;
@@ -216,7 +216,13 @@ struct PlayerStruct
     s16 unk108;
     char Pad10A[1];
     u8 unk10B;
-    char pad10C[0x26];
+    u8 unk10C;
+    s16 unk10E[1];
+    char pad10C[0x18];
+    f32 unk128;
+    f32 unk12C;
+    char pad[0x1];
+    u8 unk131;
     u8 unk132;
     char pad133[0x7];
     s8 unk13A;
@@ -225,8 +231,8 @@ struct PlayerStruct
     s8 unk13D;
     s8 unk13E;
     s8 unk13F;
-    s16 Unk140;
-    char pad142[0xE];
+    s16 Unk140[1];
+    char pad142[0xC];
 };
 
 // extern symbols

@@ -2283,7 +2283,33 @@ void func_800E3C8C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E3DD8.s")
+void func_800E3DD8(void) {
+    struct PlayerStruct* sp24;
+
+    sp24 = &gPlayerData[D_80177A60];
+    switch (sp24->unkA4) {
+        case 1:
+            func_800E3930();
+            break;
+        case 2:
+            switch (sp24->unkB2) {
+                case 1:
+                    func_800E39F4();
+                    break;
+                case 2:
+                    func_800E3B40();
+                    break;
+                case 3:
+                    func_800E3C8C();
+                    break;
+                default:
+                    break;
+            }
+            break;
+        default:
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E3EE4.s")
 

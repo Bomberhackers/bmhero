@@ -2213,7 +2213,21 @@ void func_800E38D8(void) {
     sp4->unk132 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E3930.s")
+void func_800E3930(void) {
+    struct PlayerStruct* sp4;
+
+    sp4 = &gPlayerData[D_80177A60];
+    if (sp4->unk132 == 0) {
+        sp4->unk132 = (u8) (sp4->unk132 + 1);
+        sp4->unkC2 = 0xE;
+    }
+    if (sp4->unkC2 == 0) {
+        sp4->unkA4 = 2;
+        sp4->unk132 = 0U;
+    } else {
+        sp4->unkC2 = (s16) (sp4->unkC2 - 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E39F4.s")
 

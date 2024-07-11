@@ -11,7 +11,6 @@ extern s32 func_8001C0EC(s32, s32, s32, s32, void*);
 extern f32 func_8001B62C(s32, s32);
 extern s32 func_80028FA0(s32);
 extern s32 func_8002A8B4(s32, f32);
-extern s32 func_800E3EE4();
 extern f32 func_8002A46C(s32);
 extern s32 func_80014E80(s32);
 extern f32 func_80015538(f32, f32);
@@ -35,6 +34,7 @@ extern void func_80029B60(s32);
 extern void func_80029C40(s32);
 extern void func_80029EF8(s32, f32, f32);
 extern void func_8002B114(s32);
+extern void func_800E3EE4();
 extern void func_800F9DE0();
 extern void func_800FA27C();
 extern void func_800F91A4();
@@ -66,6 +66,7 @@ extern UnkStruct80165100 D_80114360;
 extern UnkStruct80165100 D_80114390;
 extern UnkStruct80165100 D_8011439C;
 extern UnkStruct80165100 D_801143A8;
+extern UnkStruct80165100 D_801143B4;
 extern struct PlayerStruct D_80118E9C;
 extern UnkStruct80165100 D_801142F4;
 extern struct PlayerStruct D_801137F0;
@@ -81,6 +82,7 @@ extern struct PlayerStruct D_801192E0;
 extern struct PlayerStruct D_80119384;
 extern struct PlayerStruct D_8011935C;
 extern struct PlayerStruct D_801193AC;
+extern struct PlayerStruct D_8011940C;
 extern struct PlayerStruct D_8011BA88;
 extern struct PlayerStruct D_8011BA8C;
 extern struct PlayerStruct D_8011BB50;
@@ -2311,7 +2313,78 @@ void func_800E3DD8(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E3EE4.s")
+void func_800E3EE4(void) {
+    struct PlayerStruct* sp4C;
+    f32 sp48;
+    f32 sp44;
+    f32 sp40;
+    f32 sp3C;
+    f32 sp38;
+    f32 sp34;
+    s32 sp30;
+
+    sp4C = &gPlayerData[D_80177A60];
+    sp48 = sp4C->Pos.x;
+    sp44 = sp4C->Pos.y;
+    sp40 = sp4C->Pos.z;
+    sp3C = gPlayerData[sp4C->unk104].Pos.x;
+    sp38 = gPlayerData[sp4C->unk104].Pos.y;
+    sp34 = gPlayerData[sp4C->unk104].Pos.z;
+    sp30 = func_80027464(1, &D_801143B4, (sp48 + sp3C) / 2.0f, (sp44 + sp38) / 2.0f, (sp40 + sp34) / 2.0f, sp4C->unk3C);
+    if (sp30 != -1) {
+        func_8001ABF4(sp30, 0, 0, &D_8011940C);
+        gPlayerData[sp30].Rot.y = sp4C->Rot.y;
+        switch (sp4C->unkE4) {
+        case 0xA1:
+            if (sp4C->unk106 == 0xA2) {
+                if ((gPlayerData[sp4C->unk104].unkA4 == 0) || (gPlayerData[sp4C->unk104].unkA4 == 6)) {
+
+                } else {
+                    gPlayerData[sp30].unkB2 = 1;
+                }
+            } else {
+                if ((gPlayerData[sp4C->unk104].unkA4 == 0) || (gPlayerData[sp4C->unk104].unkA4 == 7)) {
+
+                } else {
+                    gPlayerData[sp30].unkB2 = 3;
+                }
+            }
+            break;
+        case 0xA2:
+            if (sp4C->unk106 == 0xA1) {
+                if ((gPlayerData[sp4C->unk104].unkA4 == 0) || (gPlayerData[sp4C->unk104].unkA4 == 5)) {
+
+                } else {
+                    gPlayerData[sp30].unkB2 = 1;
+                }
+            } else {
+                if ((gPlayerData[sp4C->unk104].unkA4 == 0) || (gPlayerData[sp4C->unk104].unkA4 == 7)) {
+
+                } else {
+                    gPlayerData[sp30].unkB2 = 2;
+                }
+            }
+            break;
+        case 0xA3:
+            if (sp4C->unk106 == 0xA2) {
+                if ((gPlayerData[sp4C->unk104].unkA4 == 0) || (gPlayerData[sp4C->unk104].unkA4 == 6)) {
+
+                } else {
+                    gPlayerData[sp30].unkB2 = 2;
+                }
+            } else {
+                if ((gPlayerData[sp4C->unk104].unkA4 == 0) || (gPlayerData[sp4C->unk104].unkA4 == 5)) {
+
+                } else {
+                    gPlayerData[sp30].unkB2 = 3;
+                }
+            }
+            break;
+        }
+    }
+    func_8002B114(sp4C->unk104);
+    func_8002B114(D_80177A60);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E445C.s")
 

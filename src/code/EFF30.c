@@ -432,7 +432,7 @@ void func_800FE9BC(void) {
     debug_print_xy(0x20, 0x40);
     sprintf(&gDebugTextBuf, "   NO ATTRIBUTE = %d", gDebugAtrributeFlag);
     debug_print_xy(0x20, 0x50);
-    sprintf(&gDebugTextBuf, "   G BUTTON DEBUG = %d", D_8016E40C);
+    sprintf(&gDebugTextBuf, "   G BUTTON DEBUG = %d", gGoldBomber);
     debug_print_xy(0x20, 0x60);
     sprintf(&gDebugTextBuf, "   BOM  = %d", gBombCount);
     debug_print_xy(0x20, 0x70);
@@ -500,6 +500,7 @@ void func_800FEE34(void) {
     debug_print_xy((s8* )0x28, (D_8016E3F4 * 0x10) + 0x20);
 }
 
+//TODO: redecomp due, some struct info here feels weird
 void func_800FEFA0(void) {
     s32 sp54;
     s32 sp50;
@@ -653,7 +654,7 @@ void func_800FF88C(void) {
         case 4:
             {
                 if ((D_8016E3A0 & 0x200) || (D_8016E3A0 & 0x100)) {
-                    D_8016E40C ^= 1;
+                    gGoldBomber ^= 1;
                 }
                 break;                
             }

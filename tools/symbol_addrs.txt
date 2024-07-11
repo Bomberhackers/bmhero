@@ -4477,3 +4477,4 @@ gDebugSelectedMusicIndex = 0x8013421C; //size:4 defined:true
 gDebugSelectedSoundIndex = 0x80134220; //size:4 defined:true
 gDebugSelectedDemoIndex = 0x80134224; //size:4 defined:true
 gLevelInfo = 0x8010B3FC; //size:0x10
+gGoldBomber = 0x8016E40C; //size:0x01

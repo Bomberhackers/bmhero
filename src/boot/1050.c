@@ -457,7 +457,7 @@ void thread6_func(void* arg) {
     D_8016E3F4 = 0;
     gShowDebugMenu = 0;
     gDebugInvincibileFlag = 0;
-    D_8016E40C = 0;
+    gGoldBomber = 0;
 #ifdef ENABLE_ISPRINT
     isPrintfInit();
 #endif

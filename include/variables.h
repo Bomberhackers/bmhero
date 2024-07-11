@@ -190,28 +190,6 @@ struct LevelInfo
     struct LightingStruct* LightingInfo;
 };
 
-struct Light
-{
-    u8 LightData[8];
-};
-
-struct LightingStruct
-{
-    struct Light AmbientLight;
-    struct Light DiffuseLight;
-    s8 Direction[8];
-};
-
-struct LevelInfo
-{
-    s8 Stage;
-    s8 Area;
-    s8 Map;
-    s8 Clear;
-    char Padding1[0x1C];
-    struct LightingStruct* LightingInfo;
-};
-
 struct PlayerStruct 
 {
     struct Vec3f Pos;
@@ -318,7 +296,7 @@ extern s16 D_8016E3F4;
 extern s8 gDebugDisplayMode;
 extern s8 gDebugInvincibileFlag;
 extern s8 gDebugAtrributeFlag;
-extern s8 D_8016E40C;
+extern s8 gGoldBomber;
 extern s8 D_8016E414;
 extern s16 D_8016E41C;
 extern s8 gShowDebugMenu;

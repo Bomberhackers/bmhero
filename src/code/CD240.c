@@ -3075,7 +3075,25 @@ void func_800E70D0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E71C0.s")
+void func_800E71C0(void) {
+    struct PlayerStruct* sp2C;
+
+    sp2C = &gPlayerData[D_80177A60];
+    if (sp2C->unk132 == 0) {
+        sp2C->unk132 = (u8) (sp2C->unk132 + 1);
+        sp2C->unk108 = 0;
+        sp2C->unkB2 = (s16) sp2C->unkA4;
+        sp2C->Vel.z = 0.0f;
+        sp2C->Vel.x = sp2C->Vel.y = sp2C->Vel.z;
+        func_8001C0EC(D_80177A60, 0, 0xC, 0xB4, &D_80119788);
+        func_8001ABF4(D_80177A60, 0, 0, &D_80119828.unk54);
+        func_8001ABF4(D_80177A60, 1, 0, &D_80119828.unk70);
+        func_8001ABF4(D_80177A60, 2, 0, &D_80119828.unk8C);
+    }
+    if (func_8001B4AC(D_80177A60, 0) != 0) {
+        func_8002B0E4(D_80177A60);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E7344.s")
 

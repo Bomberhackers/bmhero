@@ -2,34 +2,57 @@
 #include "../../38D0.h"
 #include "nusys/audio.h"
 
-// externs
-s32 func_80001E78(s32, s32*, void*);                    /* extern */
-s32 func_80001FDC(s32);                             /* extern */
-s32 func_80003C94();                                  /* extern */
-s32 func_80003FA0();                                  /* extern */
-s32 func_80007BC4();                                  /* extern */
-s32 func_8000ABB4();                                  /* extern */
+// might be based on an older nusys 1.0 version we dont have due to some of the absent safety checks.
 
-// .bss
+/**** audio manager globals ****/
+
 struct UnkStructPair D_80053160;
 struct UnkStructPair D_80053168;
+s32 D_80053170;
+s32 D_80053174_unused;
+s32 D_80053178;
+AMAudioMgr __am;
+u64 audioStack[AUDIO_STACKSIZE/sizeof(u64)];
+struct UnkStruct80055408 *D_80055408;
+AMDMAState dmaState;
+u32 audFrameCt;
+s32 nextDMA;
+u16 num_dmas;
+u32 audio_dma_length;
+u32 curAcmdList;
+u32 minFrameSize;
+s32 maxFrameSize;
+u32 frameSize;
+s32 D_80055438;
+s32 D_8005543C;
+OSIoMesg audio_IO_mess_buf[32];
+OSMesgQueue audDMAMessageQ;
+void* audio_mess_buf;
+u8 D_80055760_unused[0x80];
+
+static void __amMain(void* arg);
+static s32 __amHandleFrameMsg(AudioInfo* info, AudioInfo *lastInfo);
+static void __amHandleDoneMsg(AudioInfo *info);
+static s32 __amDMA(s32 addr, s32 len, void *state);
+static ALDMAproc *__amDmaNew(AMDMAState** state);
+static void __clearAudioDMA(void);
 
 s32 amCreateAudioMgr(ALSynConfig* c, amConfig* amc) {
-    s32 sp3C;
+    s32 i;
     f32 fsize;
-    struct UnkInputStruct8000D120* sp34;
+    AMDMABuffer* audio_dma_buffers;
     s16 ret = 0;
 
-    D_80053168.unk0 = D_80053168.unk4 = 0;
-    D_80053160.unk0 = D_80053160.unk4 = 0;
-    D_80055428      = 0;
-    D_8005541C      = 0;
-    D_80055418      = 0;
-    D_80055420      = amc->unk0;
-    D_80055424      = amc->unk4;
-    D_80055408      = (void*)c->heap;
-    c->dmaproc      = &__amDmaNew;
-    c->outputRate   = osAiSetFrequency(amc->outputRate);
+    D_80053168.unk0  = D_80053168.unk4 = 0;
+    D_80053160.unk0  = D_80053160.unk4 = 0;
+    curAcmdList      = 0;
+    nextDMA          = 0;
+    audFrameCt       = 0;
+    num_dmas         = amc->numDmas;
+    audio_dma_length = amc->unk4;
+    D_80055408       = (void*)c->heap;
+    c->dmaproc       = &__amDmaNew;
+    c->outputRate    = osAiSetFrequency(amc->outputRate);
 
     /*
      * Calculate the frame sample parameters from the
@@ -46,57 +69,62 @@ s32 amCreateAudioMgr(ALSynConfig* c, amConfig* amc) {
         frameSize += 1;
     }
 
-    if (frameSize & 0xF) {
-        frameSize = (frameSize & ~0xF) + 0x10;
-    }
+#ifdef N_AUDIO
+    frameSize = ((frameSize / SAMPLES) + 1) * SAMPLES;
+    minFrameSize = frameSize - SAMPLES;
+#else
+    if (frameSize & 0xf)
+        frameSize = (frameSize & ~0xf) + 0x10;
     minFrameSize = frameSize - 16;
+#endif
 
-    D_80055430 = frameSize + 0x60;
+    maxFrameSize = frameSize + EXTRA_SAMPLES + 16;
 
-    alInit(&D_80053180.unk238, c);
-    sp34 = (void*)func_8000D84C(D_80055420 * 0x14);
-    if (sp34 == NULL) {
+    alInit(&__am.g, c);
+
+    audio_dma_buffers = h_alHeapAlloc(num_dmas*sizeof(AMDMABuffer));
+    if (audio_dma_buffers == NULL) {
         ret = 1;;
     } else {
-        sp34[D_80055420-1].unk0 = 0;
-        sp34->unk4 = sp34->unk0 = sp34[D_80055420-1].unk0;
+        audio_dma_buffers[num_dmas-1].node.next = 0;
+        audio_dma_buffers->node.prev = audio_dma_buffers->node.next = audio_dma_buffers[num_dmas-1].node.next;
 
-        for(sp3C = 0; sp3C < D_80055420 - 1; sp3C++) {
-            alLink((void*)&sp34[sp3C+1].unk0, (void*)&sp34[sp3C].unk0);
-
-            sp34[sp3C].unk10 = func_8000D84C(D_80055424);
-            if (sp34[sp3C].unk10 == 0) {
+        for(i = 0; i < num_dmas-1; i++) {
+            alLink((ALLink*)&audio_dma_buffers[i+1],(ALLink*)&audio_dma_buffers[i]);
+            audio_dma_buffers[i].ptr = h_alHeapAlloc(audio_dma_length);
+            if (audio_dma_buffers[i].ptr == NULL) {
                 ret = 1;
                 goto after;
             }
         }
 
-        sp34[sp3C].unk10 = func_8000D84C(D_80055424);
-        if (sp34[sp3C].unk10 == 0) {
+        audio_dma_buffers[i].ptr = h_alHeapAlloc(audio_dma_length);
+        if (audio_dma_buffers[i].ptr == NULL) {
             ret = 1;;
         } else {
-            D_80055410 = 0;
-            D_80055414 = (void*)sp34;
+            dmaState.firstUsed = 0;
+            dmaState.firstFree = (void*)audio_dma_buffers;
             D_80055438 = amc->unkC;
 
-            for(sp3C = 0; sp3C < 2; sp3C++) {
-                D_80053180.unk0[sp3C] = func_8000D84C(D_80055438 * 8);
-                if (D_80053180.unk0[sp3C] == 0) {
+            for(i = 0; i < NUM_ACMD_LISTS; i++) {
+                __am.ACMDList[i] = (Acmd*)h_alHeapAlloc(D_80055438 * sizeof(Acmd));
+                if (__am.ACMDList[i] == NULL) {
                     ret = 1;;
                     goto after;
                 }
             }
             
-            for(sp3C = 0; sp3C < 3; sp3C++) {
-                D_80053188[sp3C] = (void*)func_8000D84C(0x90U);
-                if (D_80053188[sp3C] == 0) {
+            /**** initialize the done messages ****/
+            for(i = 0; i < 3; i++) {
+                __am.audioInfo[i] = (AudioInfo *)h_alHeapAlloc(sizeof(AudioInfo));
+                if (__am.audioInfo[i] == NULL) {
                     ret = 1;;
                     goto after;
                 }
-                D_80053188[sp3C]->unk8.unk68 = 2,
-                D_80053188[sp3C]->unk8.unk70 = D_80053188[sp3C];
-                **(u32**)&D_80053188[sp3C] = func_8000D84C(D_80055430 * 4);
-                if (**(u32**)&D_80053188[sp3C] == 0) {
+                __am.audioInfo[i]->msg.done.type = OS_SC_DONE_MSG;
+                __am.audioInfo[i]->msg.done.info = __am.audioInfo[i];
+                __am.audioInfo[i]->data = h_alHeapAlloc(4*maxFrameSize);
+                if (__am.audioInfo[i]->data == NULL) {
                     ret = 1;;
                     goto after;
                 }
@@ -104,16 +132,16 @@ s32 amCreateAudioMgr(ALSynConfig* c, amConfig* amc) {
         }
     }
 after:;
-    osCreateMesgQueue((u32)&D_80053180 + 0x200, (u32)&D_80053180 + 0x218, 8);
-    osCreateMesgQueue((u32)&D_80055740, (u32)&D_80055758, 0x20);
+    osCreateMesgQueue(&__am.audioReplyMsgQ, __am.audioReplyMsgBuf, MAX_MESGS);
+    osCreateMesgQueue(&audDMAMessageQ, &audio_mess_buf, 0x20);
     if (amc->unk14 != 0) {
-        osCreateMesgQueue((u32)&D_80053180 + 0x1C8, (u32)&D_80053180 + 0x1E0, 8);
+        osCreateMesgQueue(&__am.audioFrameMsgQ, __am.audioFrameMsgBuf, MAX_MESGS);
         D_80053170 = func_80001FDC(amc->unk14);
-        func_80001E78(amc->unk14, (u32)&D_80053178, (u32)&D_80053180 + 0x1C8);
+        func_80001E78(amc->unk14, (u32)&D_80053178, (u32)&__am.audioFrameMsgQ);
     }
-    osCreateThread((u32)&D_80053180 + 0x18, (s32)amc->unk1C, __amMain, NULL, (u32)&D_80053408 + 0x2000, *(u32*)&amc->unk18);
-    osStartThread((u32)&D_80053180 + 0x18);
-    return (s32) ret;
+    osCreateThread(&__am.thread, amc->threadID, __amMain, NULL, (void *)(audioStack+AUDIO_STACKSIZE/sizeof(u64)), amc->pri);
+    osStartThread(&__am.thread);
+    return ret;
 }
 
 // functions added(?) or that may have been present in the nusys-1.0 this was based on. It's hard to say.
@@ -129,195 +157,229 @@ s32 func_8000D834(void) {
     return 0;
 }
 
-void* func_8000D84C(s32 arg0) {
-    if ((D_80055408->unk8 - (D_80055408->unk4 - D_80055408->unk0)) < arg0) {
+/**
+ * Safer version of alHeapAlloc. Do not alloc anything if the heap size doesnt have enough.
+ */
+void* h_alHeapAlloc(s32 size) {
+    if ((D_80055408->unk8 - (D_80055408->unk4 - D_80055408->unk0)) < size) {
         D_80053160.unk0 |= 1;
         return NULL;
     }
-    return alHeapDBAlloc(NULL, 0, (ALHeap* ) D_80055408, 1, arg0);
+    return alHeapAlloc((ALHeap* ) D_80055408, 1, size);
 }
 
-void __amMain(void* arg0) {
-    s32 sp34;
-    s32 sp30;
-    OSMesg *sp2C;
-    s32 sp28;
+static void __amMain(void* arg) {
+    u32       validTask;
+    u32       done=0;
+    AudioMsg  *msg;
+    AudioInfo *lastInfo = 0;
 
-    sp30 = 0;
-    sp28 = 0;
-    if (sp30 == 0) {
-        do {
-            osRecvMesg((OSMesgQueue* ) &D_80053180.queue, &sp2C, 1);
-            switch (*(s16*)sp2C) {                      /* irregular */
-            case 1:
-                sp34 = __amHandleFrameMsg(D_80053188[(u32) D_80055418 % 3U], sp28);
-                if (sp34 != 0) {
-                    osRecvMesg((OSMesgQueue* ) &D_80053180.queue2, &sp2C, 1);
-                    __amHandleDoneMsg(((s32*)sp2C)[1]);
-                    sp28 = ((s32*)sp2C)[1];
-                    func_80003C94();
-                    func_80007BC4();
-                }
-                D_8005543C += 1;
-                break;
-            case 4:
-                func_80003FA0();
-                func_8000ABB4();
-                sp30 = 1;
-                break;
-            case 10:
-                sp30 = 1;
-                break;
+    while(!done) {
+        (void) osRecvMesg(&__am.audioFrameMsgQ, (OSMesg *)&msg, OS_MESG_BLOCK);
+        switch (msg->gen.type) {
+        case OS_SC_RETRACE_MSG:
+            validTask = __amHandleFrameMsg(__am.audioInfo[audFrameCt % NUM_OUTPUT_BUFFERS], lastInfo);
+            if (validTask) {
+                osRecvMesg(&__am.audioReplyMsgQ, (OSMesg *)&msg, OS_MESG_BLOCK);
+                __amHandleDoneMsg(msg->done.info);
+                lastInfo = msg->done.info;
+                func_80003C94();
+                func_80007BC4();
             }
-        } while (sp30 == 0);
+            D_8005543C += 1;
+            break;
+        case OS_SC_PRE_NMI_MSG:
+            func_80003FA0();
+            func_8000ABB4();
+            done = 1;
+            break;
+        case QUIT_MSG:
+            done = 1;
+            break;
+        }
     }
-    alClose(&D_80053180.unk238);
+    alClose(&__am.g);
 }
 
 extern u8 _4A060_data__s[];
 extern u8 _4DD30_bin[];
 
-s32 __amHandleFrameMsg(struct UnkStruct80053188_Ptr* arg0, struct UnkInputStruct8000DA70_Arg1 *arg1) {
-    u32 sp2C;
-    Acmd* sp28;
-    s32 sp24;
-    u32 sp20;
-    struct UnkInnerStruct80053188_Ptr * sp1C;
-    s8* temp_t8;
+static s32 __amHandleFrameMsg(AudioInfo* info, AudioInfo *lastInfo) {
+    s16 *audioPtr;
+    Acmd* cmdp;
+    s32 cmdLen;
+    int samplesLeft = 0;
+    OSScTask *t;
 
-    sp20 = 0;
-    __clearAudioDMA();
-    sp2C = osVirtualToPhysical((void* ) arg0->unk0[0]);
-    if (arg1 != 0) {
-        osAiSetNextBuffer(arg1->unk0, arg1->unk4 * 4);
-    }
-    sp20 = osAiGetLength() >> 2;
-    *(s16*)&arg0->unk0[1] = ((((frameSize - sp20) + 0x50) & ~0xF) + 0x10);
-    if (*(s16*)&arg0->unk0[1] < (u32) minFrameSize) {
-        *(s16*)&arg0->unk0[1] = (s16) minFrameSize;
-    }
-    sp28 = alAudioFrame((Acmd* ) D_80053180.unk0[D_80055428], &sp24, (s16* ) sp2C, *(s16*)&arg0->unk0[1]);
-    if (sp24 == 0) {
+    __clearAudioDMA(); /* call once a frame, before doing alAudioFrame */
+    audioPtr = (s16 *) osVirtualToPhysical(info->data);
+
+    if (lastInfo)
+        osAiSetNextBuffer(lastInfo->data, lastInfo->frameSamples << 2);
+
+    /* calculate how many samples needed for this frame to keep the DAC full */
+    /* this will vary slightly frame to frame, must recalculate every frame */
+    samplesLeft = osAiGetLength() >> 2; /* divide by four, to convert bytes */
+                                        /* to stereo 16 bit samples */
+
+    info->frameSamples = 16 + ((frameSize - samplesLeft + EXTRA_SAMPLES) & ~0xf); // need the extra parens to match.. why, its not there in the demo code
+    if (info->frameSamples < minFrameSize)
+        info->frameSamples = minFrameSize;
+    cmdp = alAudioFrame((Acmd* ) __am.ACMDList[curAcmdList], &cmdLen, audioPtr, info->frameSamples);
+    if (cmdLen == 0) /* no task produced, return zero to show no valid task */
         return 0;
-    }
 
-    sp1C = &arg0->unk8;
-    sp1C->unk0 = 0;
-    sp1C->unk8 = 2;
-    sp1C->unk50 = &D_80053180.filler8[0x1F8];
-    sp1C->unk54 = &arg0->unk8.unk68;
-    sp1C->unk40 = (s32) D_80053180.unk0[D_80055428];
-    sp1C->unk44 = (((s32) ((u32)sp28 - D_80053180.unk0[D_80055428]) >> 3) * 8);
-    sp1C->unk10 = 2;
-    sp1C->unk18 = &D_80047F60;
-    sp1C->unk1C = (s32) ((u32)&D_80048030 - (u32)&D_80047F60);
-    sp1C->unk14 = 0;
-    sp1C->unk20 = _4A060_data__s; // .data start?
-    sp1C->unk28 = _4DD30_bin;     // .data end?
-    sp1C->unk2C = 0x800;
-    sp1C->unk30 = 0;
-    sp1C->unk34 = 0;
-    sp1C->unk38 = 0;
-    sp1C->unk3C = 0;
-    sp1C->unk48 = 0;
-    sp1C->unk4C = 0;
-    osSendMesg((OSMesgQueue* ) D_80053170, sp1C, 1);
-    D_80055428 ^= 1;
+    t = &info->task;
+    
+    t->next      = 0;                    /* paranoia */
+    t->flags     = OS_SC_NEEDS_RSP;      // ...the flags write is up here instead i guess
+    t->msgQ      = &__am.audioReplyMsgQ; /* reply to when finished */
+    t->msg       = (OSMesg)&info->msg;   /* reply with this message */
+    
+    t->list.t.data_ptr    = (u64 *) __am.ACMDList[curAcmdList];
+    t->list.t.data_size   = (cmdp - __am.ACMDList[curAcmdList]) * sizeof(Acmd);
+    t->list.t.type  = M_AUDTASK;
+    t->list.t.ucode_boot = (u64 *)rspbootTextStart;
+    t->list.t.ucode_boot_size = ((int) rspbootTextEnd - (int) rspbootTextStart);
+    t->list.t.flags  = 0; //OS_TASK_DP_WAIT;
+    t->list.t.ucode = _4A060_data__s; // aspMainTextStart
+    t->list.t.ucode_data = _4DD30_bin; // aspMainDataStart
+    t->list.t.ucode_data_size = SP_UCODE_DATA_SIZE;
+    t->list.t.dram_stack = (u64 *) NULL;
+    t->list.t.dram_stack_size = 0;
+    t->list.t.output_buff = (u64 *) NULL;
+    t->list.t.output_buff_size = 0;
+    t->list.t.yield_data_ptr = NULL;
+    t->list.t.yield_data_size = 0;
+
+    osSendMesg((OSMesgQueue* ) D_80053170, t, OS_MESG_BLOCK);
+
+    curAcmdList ^= 1; /* swap which acmd list you use each frame */    
+
     return 1;
 }
 
-void __amHandleDoneMsg(s32 arg0) {
+static void __amHandleDoneMsg(AudioInfo *info) {
+/*
+    s32    samplesLeft;
+    static int firstTime = 1;
+
+    samplesLeft = osAiGetLength()>>2;
+    if (samplesLeft == 0 && !firstTime) 
+    {
+#ifdef _AUDIODEBUG
+        osSyncPrintf("AUDIO.C: ai out of samples\n");    
+#endif
+        firstTime = 0;
+    }
+*/
     return;
 }
 
-u32 __amDMA(u32 arg0, u32 arg1, s32 arg2) {
-    void* sp3C;                                     /* compiler-managed */
-    s32 sp38;
-    s32 sp34;
-    s32 sp30;
-    struct UnkInputStruct8000DD40_sp2C *sp2C;                                       /* compiler-managed */
-    struct UnkInputStruct8000DD40_sp28 *sp28;
+static s32 __amDMA(s32 addr, s32 len, void *state) {
+    void* foundBuffer;
+    s32 delta, addrEnd, buffEnd;
+    AMDMABuffer *dmaPtr, *lastDmaPtr;
 
-    sp28 = 0;
-    sp2C = D_80055410;
-    sp34 = arg0 + arg1;
-    while (sp2C != 0) {
-        sp30 = sp2C->unk8 + D_80055424;
-        if (sp2C->unk8 > arg0) {
-            break;
-        } else if (sp34 <= sp30) {
-            sp2C->unkC = D_80055418;
-            sp3C = (sp2C->unk10 + arg0) - sp2C->unk8;
-            return osVirtualToPhysical(sp3C);
+    lastDmaPtr = 0;
+    dmaPtr = dmaState.firstUsed;
+    addrEnd = addr + len;
+
+    /* first check to see if a currently existing buffer contains the
+       sample that you need.  */
+
+    while (dmaPtr) {
+        buffEnd = dmaPtr->startAddr + audio_dma_length;
+        if (dmaPtr->startAddr > addr) { /* since buffers are ordered */
+            break;                      /* abort if past possible */
+        } else if (addrEnd <= buffEnd) {    /* yes, found a buffer with samples */
+            dmaPtr->lastFrame = audFrameCt; /* mark it used */
+            foundBuffer = dmaPtr->ptr + addr - dmaPtr->startAddr;
+            return (int) osVirtualToPhysical(foundBuffer);
         }
-        sp28 = sp2C;
-        sp2C = sp2C->unk0;
+        lastDmaPtr = dmaPtr;
+        dmaPtr = (AMDMABuffer*)dmaPtr->node.next;
     }
-    sp2C = D_80055414;
-    if (sp2C == NULL) {
-        return osVirtualToPhysical((void* ) D_80055410);
+    
+    /* get here, and you didn't find a buffer, so dma a new one */
+    
+    /* get a buffer from the free list */
+    dmaPtr = dmaState.firstFree;
+    
+    /* if no dma buffer is free, return bogus value - stops crashes */
+    if (!dmaPtr) {
+        return osVirtualToPhysical(dmaState.firstUsed);
     }
-    D_80055414 = (ALCSPlayer* ) sp2C->unk0;
-    alUnlink((ALLink* ) sp2C);
-    if (sp28 != 0) {
-        alLink((ALLink* ) sp2C, (ALLink* ) sp28);
-    } else if (D_80055410 != 0) {
-        sp28 = D_80055410;
-        D_80055410 = (s32) sp2C;
-        sp2C->unk0 = (ALPlayer* ) sp28;
-        sp2C->unk4 = 0;
-        sp28->unk4 = sp2C;
-    } else {
-        D_80055410 = (s32) sp2C;
-        sp2C->unk0 = 0;
-        sp2C->unk4 = 0;
+
+    dmaState.firstFree = (ALCSPlayer* ) dmaPtr->node.next;
+    alUnlink((ALLink* ) dmaPtr);
+
+    /* add it to the used list */
+    if (lastDmaPtr) { /* if you have other dmabuffers used, add this one */
+                      /* to the list, after the last one checked above */
+        alLink((ALLink* ) dmaPtr, (ALLink* )lastDmaPtr);
+    } else if (dmaState.firstUsed != 0) { /* if this buffer is before any others */
+        lastDmaPtr = dmaState.firstUsed;  /* jam at begining of list */ 
+        dmaState.firstUsed = (s32) dmaPtr;
+        dmaPtr->node.next = (ALPlayer* ) lastDmaPtr;
+        dmaPtr->node.prev = 0;
+        lastDmaPtr->node.prev = (ALLink*)dmaPtr;
+    } else { /* no buffers in list, this is the first one */
+        dmaState.firstUsed = (s32) dmaPtr;
+        dmaPtr->node.next = 0;
+        dmaPtr->node.prev = 0;
     }
-    sp3C = sp2C->unk10;
-    sp38 = arg0 & 1;
-    arg0 -= sp38;
-    sp2C->unk8 = (s32 (*)(void*)) arg0;
-    sp2C->unkC = D_80055418;
-    osWritebackDCache((void* ) sp3C, (s32) D_80055424);
-    osInvalDCache((void* ) sp3C, (s32) D_80055424);
-    osPiStartDma(&D_80055440[D_8005541C++], 0, 0, arg0, (void* ) sp3C, D_80055424, &D_80055740);
-    return osVirtualToPhysical((void* ) sp3C) + sp38;
+
+    foundBuffer = dmaPtr->ptr;
+    delta = addr & 0x1;
+    addr -= delta;
+    dmaPtr->startAddr = addr;
+    dmaPtr->lastFrame = audFrameCt;  /* mark it */
+    osWritebackDCache(foundBuffer, audio_dma_length);
+    osInvalDCache(foundBuffer, audio_dma_length);
+    osPiStartDma(&audio_IO_mess_buf[nextDMA++], OS_MESG_PRI_NORMAL, OS_READ, (u32)addr, foundBuffer, audio_dma_length, &audDMAMessageQ);
+
+    return (int) osVirtualToPhysical(foundBuffer) + delta;
 }
 
-void *__amDmaNew(s32** arg0) {
-    *arg0 = &D_80055410;
+static ALDMAproc *__amDmaNew(AMDMAState** state) {
+    *state = &dmaState;
     return &__amDMA;
 }
 
-void __clearAudioDMA(void) {
-    u32 sp24;
-    void* sp20;
-    struct UnkStruct80055410 *sp1C;
-    s32 sp18;
+static void __clearAudioDMA(void) {
+    u32          i;
+    OSIoMesg     *iomsg;
+    AMDMABuffer  *dmaPtr,*nextPtr;
 
-    for(sp24 = 0; sp24 < D_8005541C; sp24++) {
-        osRecvMesg(&D_80055740, &sp20, 1);
+    for(i = 0; i < nextDMA; i++) {
+        osRecvMesg(&audDMAMessageQ, &iomsg, OS_MESG_BLOCK); // this blocks where as the original demo code doesnt...
     }
     
-    sp1C = D_80055410;
-    if (sp1C != 0) {
-        do {
-            sp18 = sp1C->unk0;
-            if ((u32) (sp1C->unkC + 1) < (u32) D_80055418) {
-                if (D_80055410 == sp1C) {
-                    D_80055410 = sp1C->unk0;
-                }
-                alUnlink((ALLink* ) sp1C);
-                if (D_80055414 != NULL) {
-                    alLink((ALLink* ) sp1C, (ALLink* ) D_80055414);
-                } else {
-                    D_80055414 = (ALCSPlayer* ) sp1C;
-                    sp1C->unk0 = 0;
-                    sp1C->unk4 = 0;
-                }
+    dmaPtr = dmaState.firstUsed;
+    while(dmaPtr) {
+        nextPtr = (AMDMABuffer*)dmaPtr->node.next;
+
+        /* remove old dma's from list */
+        /* Can change FRAME_LAG value.  Should be at least one.  */
+        /* Larger values mean more buffers needed, but fewer DMA's */
+        if (dmaPtr->lastFrame + FRAME_LAG  < audFrameCt) {
+            if (dmaState.firstUsed == dmaPtr) {
+                dmaState.firstUsed = (AMDMABuffer*)dmaPtr->node.next;
             }
-            sp1C = sp18;
-        } while (sp1C != 0);
+            alUnlink((ALLink* ) dmaPtr);
+            if (dmaState.firstFree != NULL) {
+                alLink((ALLink* ) dmaPtr, (ALLink* ) dmaState.firstFree);
+            } else {
+                dmaState.firstFree = (ALCSPlayer* ) dmaPtr;
+                dmaPtr->node.next = 0;
+                dmaPtr->node.prev = 0;
+            }
+        }
+        dmaPtr = nextPtr;
     }
-    D_8005541C = 0;
-    D_80055418 += 1;
+    nextDMA = 0; /* reset */
+    audFrameCt++;
 }
+
+/* end of file */

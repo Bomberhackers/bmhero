@@ -406,4 +406,12 @@ extern Gfx *gMasterDisplayList;
 extern s8 gDemoSceneID;
 extern s8 gDemoID;
 
+struct UnkStruct80165290 {
+    char padding0[0x14];
+    u8 unk14;
+    char padding15[0x5B];
+};
+
+extern struct UnkStruct80165290 D_80165290[256];
+
 #endif // _VARIABLES_H_

@@ -16,6 +16,10 @@ struct UnkStructPair D_80053168;
 
 static void __amMain(void* arg);
 static s32 __amHandleFrameMsg(AudioInfo* info, AudioInfo *lastInfo);
+static void __amHandleDoneMsg(AudioInfo *info);
+static s32 __amDMA(s32 addr, s32 len, void *state);
+static ALDMAproc *__amDmaNew(AMDMAState** state);
+static void __clearAudioDMA(void);
 
 s32 amCreateAudioMgr(ALSynConfig* c, amConfig* amc) {
     s32 i;
@@ -23,16 +27,16 @@ s32 amCreateAudioMgr(ALSynConfig* c, amConfig* amc) {
     AMDMABuffer* audio_dma_buffers;
     s16 ret = 0;
 
-    D_80053168.unk0 = D_80053168.unk4 = 0;
-    D_80053160.unk0 = D_80053160.unk4 = 0;
-    curAcmdList     = 0;
-    D_8005541C      = 0;
-    audFrameCt      = 0;
-    num_dmas        = amc->numDmas;
-    D_80055424      = amc->unk4;
-    D_80055408      = (void*)c->heap;
-    c->dmaproc      = &__amDmaNew;
-    c->outputRate   = osAiSetFrequency(amc->outputRate);
+    D_80053168.unk0  = D_80053168.unk4 = 0;
+    D_80053160.unk0  = D_80053160.unk4 = 0;
+    curAcmdList      = 0;
+    nextDMA          = 0;
+    audFrameCt       = 0;
+    num_dmas         = amc->numDmas;
+    audio_dma_length = amc->unk4;
+    D_80055408       = (void*)c->heap;
+    c->dmaproc       = &__amDmaNew;
+    c->outputRate    = osAiSetFrequency(amc->outputRate);
 
     /*
      * Calculate the frame sample parameters from the
@@ -71,19 +75,19 @@ s32 amCreateAudioMgr(ALSynConfig* c, amConfig* amc) {
 
         for(i = 0; i < num_dmas-1; i++) {
             alLink((ALLink*)&audio_dma_buffers[i+1],(ALLink*)&audio_dma_buffers[i]);
-            audio_dma_buffers[i].ptr = h_alHeapAlloc(D_80055424);
+            audio_dma_buffers[i].ptr = h_alHeapAlloc(audio_dma_length);
             if (audio_dma_buffers[i].ptr == NULL) {
                 ret = 1;
                 goto after;
             }
         }
 
-        audio_dma_buffers[i].ptr = h_alHeapAlloc(D_80055424);
+        audio_dma_buffers[i].ptr = h_alHeapAlloc(audio_dma_length);
         if (audio_dma_buffers[i].ptr == NULL) {
             ret = 1;;
         } else {
-            D_80055410 = 0;
-            D_80055414 = (void*)audio_dma_buffers;
+            dmaState.firstUsed = 0;
+            dmaState.firstFree = (void*)audio_dma_buffers;
             D_80055438 = amc->unkC;
 
             for(i = 0; i < NUM_ACMD_LISTS; i++) {
@@ -239,98 +243,127 @@ static s32 __amHandleFrameMsg(AudioInfo* info, AudioInfo *lastInfo) {
     return 1;
 }
 
-void __amHandleDoneMsg(s32 arg0) {
+static void __amHandleDoneMsg(AudioInfo *info) {
+/*
+    s32    samplesLeft;
+    static int firstTime = 1;
+
+    samplesLeft = osAiGetLength()>>2;
+    if (samplesLeft == 0 && !firstTime) 
+    {
+#ifdef _AUDIODEBUG
+        osSyncPrintf("AUDIO.C: ai out of samples\n");    
+#endif
+        firstTime = 0;
+    }
+*/
     return;
 }
 
-u32 __amDMA(u32 arg0, u32 arg1, s32 arg2) {
-    void* sp3C;                                     /* compiler-managed */
-    s32 sp38;
-    s32 sp34;
-    s32 sp30;
-    struct UnkInputStruct8000DD40_sp2C *sp2C;                                       /* compiler-managed */
-    struct UnkInputStruct8000DD40_sp28 *sp28;
+static s32 __amDMA(s32 addr, s32 len, void *state) {
+    void* foundBuffer;
+    s32 delta, addrEnd, buffEnd;
+    AMDMABuffer *dmaPtr, *lastDmaPtr;
 
-    sp28 = 0;
-    sp2C = D_80055410;
-    sp34 = arg0 + arg1;
-    while (sp2C != 0) {
-        sp30 = sp2C->unk8 + D_80055424;
-        if (sp2C->unk8 > arg0) {
-            break;
-        } else if (sp34 <= sp30) {
-            sp2C->unkC = audFrameCt;
-            sp3C = (sp2C->unk10 + arg0) - sp2C->unk8;
-            return osVirtualToPhysical(sp3C);
+    lastDmaPtr = 0;
+    dmaPtr = dmaState.firstUsed;
+    addrEnd = addr + len;
+
+    /* first check to see if a currently existing buffer contains the
+       sample that you need.  */
+
+    while (dmaPtr) {
+        buffEnd = dmaPtr->startAddr + audio_dma_length;
+        if (dmaPtr->startAddr > addr) { /* since buffers are ordered */
+            break;                      /* abort if past possible */
+        } else if (addrEnd <= buffEnd) {    /* yes, found a buffer with samples */
+            dmaPtr->lastFrame = audFrameCt; /* mark it used */
+            foundBuffer = dmaPtr->ptr + addr - dmaPtr->startAddr;
+            return (int) osVirtualToPhysical(foundBuffer);
         }
-        sp28 = sp2C;
-        sp2C = sp2C->unk0;
+        lastDmaPtr = dmaPtr;
+        dmaPtr = (AMDMABuffer*)dmaPtr->node.next;
     }
-    sp2C = D_80055414;
-    if (sp2C == NULL) {
-        return osVirtualToPhysical((void* ) D_80055410);
+    
+    /* get here, and you didn't find a buffer, so dma a new one */
+    
+    /* get a buffer from the free list */
+    dmaPtr = dmaState.firstFree;
+    
+    /* if no dma buffer is free, return bogus value - stops crashes */
+    if (!dmaPtr) {
+        return osVirtualToPhysical(dmaState.firstUsed);
     }
-    D_80055414 = (ALCSPlayer* ) sp2C->unk0;
-    alUnlink((ALLink* ) sp2C);
-    if (sp28 != 0) {
-        alLink((ALLink* ) sp2C, (ALLink* ) sp28);
-    } else if (D_80055410 != 0) {
-        sp28 = D_80055410;
-        D_80055410 = (s32) sp2C;
-        sp2C->unk0 = (ALPlayer* ) sp28;
-        sp2C->unk4 = 0;
-        sp28->unk4 = sp2C;
-    } else {
-        D_80055410 = (s32) sp2C;
-        sp2C->unk0 = 0;
-        sp2C->unk4 = 0;
+
+    dmaState.firstFree = (ALCSPlayer* ) dmaPtr->node.next;
+    alUnlink((ALLink* ) dmaPtr);
+
+    /* add it to the used list */
+    if (lastDmaPtr) { /* if you have other dmabuffers used, add this one */
+                      /* to the list, after the last one checked above */
+        alLink((ALLink* ) dmaPtr, (ALLink* )lastDmaPtr);
+    } else if (dmaState.firstUsed != 0) { /* if this buffer is before any others */
+        lastDmaPtr = dmaState.firstUsed;  /* jam at begining of list */ 
+        dmaState.firstUsed = (s32) dmaPtr;
+        dmaPtr->node.next = (ALPlayer* ) lastDmaPtr;
+        dmaPtr->node.prev = 0;
+        lastDmaPtr->node.prev = (ALLink*)dmaPtr;
+    } else { /* no buffers in list, this is the first one */
+        dmaState.firstUsed = (s32) dmaPtr;
+        dmaPtr->node.next = 0;
+        dmaPtr->node.prev = 0;
     }
-    sp3C = sp2C->unk10;
-    sp38 = arg0 & 1;
-    arg0 -= sp38;
-    sp2C->unk8 = (s32 (*)(void*)) arg0;
-    sp2C->unkC = audFrameCt;
-    osWritebackDCache((void* ) sp3C, (s32) D_80055424);
-    osInvalDCache((void* ) sp3C, (s32) D_80055424);
-    osPiStartDma(&D_80055440[D_8005541C++], 0, 0, arg0, (void* ) sp3C, D_80055424, &audDMAMessageQ);
-    return osVirtualToPhysical((void* ) sp3C) + sp38;
+
+    foundBuffer = dmaPtr->ptr;
+    delta = addr & 0x1;
+    addr -= delta;
+    dmaPtr->startAddr = addr;
+    dmaPtr->lastFrame = audFrameCt;  /* mark it */
+    osWritebackDCache(foundBuffer, audio_dma_length);
+    osInvalDCache(foundBuffer, audio_dma_length);
+    osPiStartDma(&audio_IO_mess_buf[nextDMA++], OS_MESG_PRI_NORMAL, OS_READ, (u32)addr, foundBuffer, audio_dma_length, &audDMAMessageQ);
+
+    return (int) osVirtualToPhysical(foundBuffer) + delta;
 }
 
-void *__amDmaNew(s32** arg0) {
-    *arg0 = &D_80055410;
+static ALDMAproc *__amDmaNew(AMDMAState** state) {
+    *state = &dmaState;
     return &__amDMA;
 }
 
-void __clearAudioDMA(void) {
-    u32 sp24;
-    void* sp20;
-    struct UnkStruct80055410 *sp1C;
-    s32 sp18;
+static void __clearAudioDMA(void) {
+    u32          i;
+    OSIoMesg     *iomsg;
+    AMDMABuffer  *dmaPtr,*nextPtr;
 
-    for(sp24 = 0; sp24 < D_8005541C; sp24++) {
-        osRecvMesg(&audDMAMessageQ, &sp20, 1);
+    for(i = 0; i < nextDMA; i++) {
+        osRecvMesg(&audDMAMessageQ, &iomsg, OS_MESG_BLOCK); // this blocks where as the original demo code doesnt...
     }
     
-    sp1C = D_80055410;
-    if (sp1C != 0) {
-        do {
-            sp18 = sp1C->unk0;
-            if ((u32) (sp1C->unkC + 1) < (u32) audFrameCt) {
-                if (D_80055410 == sp1C) {
-                    D_80055410 = sp1C->unk0;
-                }
-                alUnlink((ALLink* ) sp1C);
-                if (D_80055414 != NULL) {
-                    alLink((ALLink* ) sp1C, (ALLink* ) D_80055414);
-                } else {
-                    D_80055414 = (ALCSPlayer* ) sp1C;
-                    sp1C->unk0 = 0;
-                    sp1C->unk4 = 0;
-                }
+    dmaPtr = dmaState.firstUsed;
+    while(dmaPtr) {
+        nextPtr = (AMDMABuffer*)dmaPtr->node.next;
+
+        /* remove old dma's from list */
+        /* Can change FRAME_LAG value.  Should be at least one.  */
+        /* Larger values mean more buffers needed, but fewer DMA's */
+        if (dmaPtr->lastFrame + FRAME_LAG  < audFrameCt) {
+            if (dmaState.firstUsed == dmaPtr) {
+                dmaState.firstUsed = (AMDMABuffer*)dmaPtr->node.next;
             }
-            sp1C = sp18;
-        } while (sp1C != 0);
+            alUnlink((ALLink* ) dmaPtr);
+            if (dmaState.firstFree != NULL) {
+                alLink((ALLink* ) dmaPtr, (ALLink* ) dmaState.firstFree);
+            } else {
+                dmaState.firstFree = (ALCSPlayer* ) dmaPtr;
+                dmaPtr->node.next = 0;
+                dmaPtr->node.prev = 0;
+            }
+        }
+        dmaPtr = nextPtr;
     }
-    D_8005541C = 0;
-    audFrameCt += 1;
+    nextDMA = 0; /* reset */
+    audFrameCt++;
 }
+
+/* end of file */

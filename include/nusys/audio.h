@@ -8,6 +8,7 @@
 #define MAX_MESGS               8
 #define QUIT_MSG                10
 #define NUM_ACMD_LISTS          2
+#define FRAME_LAG               1
 
 #define AUDIO_STACKSIZE         0x2000
 
@@ -18,6 +19,12 @@ typedef struct {
     u32           lastFrame;
     char          *ptr;
 } AMDMABuffer;
+
+typedef struct 
+{
+    AMDMABuffer   *firstUsed;
+    AMDMABuffer   *firstFree;
+} AMDMAState;
 
 struct UnkInputStruct8000D120_arg0 {
     char filler0[0x10];
@@ -148,19 +155,18 @@ extern AMAudioMgr __am;
 extern struct UnkStruct80053188_Ptr *D_80053188[];
 extern u64 audioStack[];
 extern struct UnkStruct80055408 *D_80055408;
-extern struct UnkStruct80055410 *D_80055410;
-extern ALCSPlayer* D_80055414;
+extern AMDMAState dmaState;
 extern u32 audFrameCt;
-extern s32 D_8005541C;
+extern s32 nextDMA;
 extern u16 num_dmas;
-extern u32 D_80055424;
+extern u32 audio_dma_length;
 extern u32 curAcmdList;
 extern u32 minFrameSize;
 extern s32 maxFrameSize;
 extern u32 frameSize;
 extern s32 D_80055438;
 extern s32 D_8005543C;
-extern struct UnkStruct80055440 D_80055440[];
+extern OSIoMesg audio_IO_mess_buf[];
 extern OSMesgQueue audDMAMessageQ;
 extern void* audio_mess_buf;
 
@@ -178,9 +184,5 @@ typedef struct {
 // functions
 s32 amCreateAudioMgr(ALSynConfig* c, amConfig* amc);
 void* h_alHeapAlloc(s32);
-void __amHandleDoneMsg(s32 arg0);
-u32 __amDMA(u32 arg0, u32 arg1, s32 arg2);
-void *__amDmaNew(s32** arg0);
-void __clearAudioDMA(void);
 
 #endif // _NUSYS_AUDIO_H_

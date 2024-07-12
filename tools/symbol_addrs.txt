@@ -4484,3 +4484,7 @@ audFrameCt = 0x80055418; // defined:true
 curAcmdList = 0x80055428; // defined:true
 rspbootTextStart = 0x80047F60;
 rspbootTextEnd = 0x80048030;
+dmaState = 0x80055410; // size:8
+nextDMA = 0x8005541C;
+audio_IO_mess_buf = 0x80055440;
+audio_dma_length = 0x80055424;

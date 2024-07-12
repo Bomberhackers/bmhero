@@ -262,7 +262,20 @@ void func_80018794(s32 r, s32 g, s32 b, s32 a, s32 arg4, s32 arg5) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001BC84.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001BD44.s")
+void func_8001BD44(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 sp1C;
+
+    if (gPlayerData[arg0].Unk140[arg1] != -1) {
+        return;
+    }
+    sp1C = func_8001A988();
+    gPlayerData[arg0].Unk140[arg1] = sp1C;
+    D_80165290[sp1C].unk0 = arg3;
+    func_8001A2A0();
+    D_8016E3AC = func_800122F0(arg3);
+    D_80165290[sp1C].unk1C = func_80010408(arg3, arg2);
+    func_8001A300(sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001BE6C.s")
 

@@ -407,11 +407,15 @@ extern s8 gDemoSceneID;
 extern s8 gDemoID;
 
 struct UnkStruct80165290 {
-    char padding0[0x14];
+    s32 unk0;
+    char padding4[0x10];
     u8 unk14;
-    char padding15[0x5B];
+    char padding15[0x7];
+    s32 unk1C;
+    char padding20[0x50];
 };
 
 extern struct UnkStruct80165290 D_80165290[256];
+extern u32 *D_8016E3AC;
 
 #endif // _VARIABLES_H_

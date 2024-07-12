@@ -346,15 +346,15 @@ void func_8001DFC8(void) {
 
     }
     for(i = 0; i < 4; i++) {
-        D_8016E300.unk00[i] = 0;
-        D_8016E300.unk20[i] = 0;
-        D_8016E300.unk10[i] = 0;
-        D_8016E300.unk30[i] = 0;
-        D_8016E300.unk3C[i] = 0;
-        D_8016E300.unk44[i] = 0;
-        D_8016E300.unk50[i] = 0;
-        D_8016E300.unk60[i] = 0;
-        D_8016E300.unk70[i] = 0;
+        D_8016E300[i] = 0;
+        D_8016E320[i] = 0;
+        D_8016E310[i] = 0;
+        D_8016E330[i] = 0;
+        D_8016E33C[i] = 0;
+        D_8016E344[i] = 0;
+        D_8016E350[i] = 0;
+        D_8016E360[i] = 0;
+        D_8016E370[i] = 0;
         D_8016E280.unk20[i] = 0;
         D_8016E280.unk10[i] = 0;
         D_8016E280.unk30[i] = 0;
@@ -370,7 +370,57 @@ void func_8001DFC8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001E1C0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001E208.s")
+void func_8001E208(void) {
+    OSContPad* pad;
+    u16 dir;
+    u16 i;
+    s32 status;
+
+    status = 1;
+    if (D_8016E27C & 1) {
+        status = osContStartReadData(&D_801776B0);
+        if (status == 0) {
+            osRecvMesg(&D_801776B0, NULL, 1);
+            osContGetReadData(D_80177668);
+        }
+    }
+    for(i = 0; i < 4; i++) {
+        if ((D_8016E27C >> i) & 1) {
+            pad = &D_80177668[i];
+            // if any errors occurred or if no controllers are plugged in, treat the controller as if its not plugged in.
+            if ((pad->errno != 0) || (status != 0)) {
+                D_8016E300[i] = 0;;
+            } else {
+                D_8016E300[i] = 1;
+                dir = 0;
+                D_8016E33C[i] = pad->stick_x;
+                D_8016E344[i] = pad->stick_y;
+                if (D_8016E33C[i] >= 0x32) {
+                    dir |= CONT_RIGHT;
+                } else if (D_8016E33C[i] < -0x31) {
+                    dir |= CONT_LEFT;
+                }
+                if (D_8016E344[i] >= 0x32) {
+                    dir |= CONT_UP;
+                } else if (D_8016E344[i] < -0x31) {
+                    dir |= CONT_DOWN;
+                }
+                if (D_8016525C != 0) {
+                    D_8016E310[i] = 0;
+                    D_8016E350[i] = 0;
+                } else if (D_80165284 == 1) {
+                    D_8016E320[i] = D_8016E310[i];
+                    D_8016E310[i] = pad->button;
+                    D_8016E360[i] = D_8016E350[i];
+                    D_8016E350[i] = dir;
+                } else {
+                    D_8016E310[i] |= pad->button;
+                    D_8016E350[i] |= dir;
+                }
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001E560.s")
 

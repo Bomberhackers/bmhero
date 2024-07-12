@@ -41,7 +41,21 @@ struct UnkStruct8016E280 {
 };
 
 extern struct UnkStruct8016E280 D_8016E280;
-extern struct UnkStruct8016E280 D_8016E300;
+
+extern s32 D_8016525C;
+extern s32 D_80165284;
+extern u8 D_8016E27C;     // gControllerBits
+extern u16 D_8016E300[4]; // gContPlugged
+extern u16 D_8016E310[4]; // gContCurrPressed
+extern u16 D_8016E320[4]; // gContLastPressed
+extern u16 D_8016E330[4]; // unk
+extern s8 D_8016E33C[4];  // gContStickX
+extern s8 D_8016E344[4];  // gContStickY
+extern u16 D_8016E350[4]; // gContCurrDir
+extern u16 D_8016E360[4]; // gContLastDir
+extern u16 D_8016E370[4];
+extern OSContPad D_80177668[4]; // gContPads
+extern OSMesgQueue D_801776B0; // gContMesgQueue
 
 struct UnkInputStruct80001CF0 {
     u32 unk0;

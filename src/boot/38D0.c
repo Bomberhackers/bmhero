@@ -618,7 +618,7 @@ s32 func_80003304(void) {
     }
     sp2A = D_80052EB0->seqCount;
     switch (D_80052EB0->revision) {                              /* irregular */
-    case 0x5331:
+    case 'S1':
         sp34 = (sp2A * 8) + 4;
         if (func_800038A4(sp34) != 0) {
             return 1;

@@ -467,7 +467,7 @@ void thread6_func(void* arg) {
     while(1) {
         D_8016E3DC = 0;
         D_8016E134 = 0;
-        sp1C = func_800FE898();
+        sp1C = func_800FE898(); // get the action selected from the debug menu?
         switch (sp1C) {
             case 0:
                 gCurrentLevel = 0;

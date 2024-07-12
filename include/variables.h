@@ -19,41 +19,27 @@ typedef struct {
     s16 unkE;
 } UnkStruct80165100;
 
-struct UnkStruct8016E280 {
-    u16 unk00[4];
-    char filler8[0x8];
-    u16 unk10[4];
-    char filler18[0x8];
-    u16 unk20[4];
-    char filler28[0x8];
-    u16 unk30[4];
-    char filler38[0x4];
-    u8 unk3C[4];
-    char filler40[0x4];
-    u8 unk44[4];
-    char filler48[0x8];
-    u16 unk50[4];
-    char filler58[0x8];
-    u16 unk60[4];
-    char filler68[0x8];
-    u16 unk70[4];
-    char filler78[0x8];
-};
-
-extern struct UnkStruct8016E280 D_8016E280;
-
 extern s32 D_8016525C;
 extern s32 D_80165284;
 extern u8 D_8016E27C;     // gControllerBits
+extern u16 D_8016E280[4];
+extern u16 D_8016E290[4];
+extern u16 D_8016E2A0[4];
+extern u16 D_8016E2B0[4];
+extern s8 D_8016E2BC[4];
+extern s8 D_8016E2C4[4];
+extern u16 D_8016E2D0[4];
+extern u16 D_8016E2E0[4];
+extern u16 D_8016E2F0[4];
 extern u16 D_8016E300[4]; // gContPlugged
 extern u16 D_8016E310[4]; // gContCurrPressed
 extern u16 D_8016E320[4]; // gContLastPressed
-extern u16 D_8016E330[4]; // unk
+extern u16 D_8016E330[4]; // gContCurrButtonDown
 extern s8 D_8016E33C[4];  // gContStickX
 extern s8 D_8016E344[4];  // gContStickY
 extern u16 D_8016E350[4]; // gContCurrDir
 extern u16 D_8016E360[4]; // gContLastDir
-extern u16 D_8016E370[4];
+extern u16 D_8016E370[4]; // gContDirPressed
 extern OSContPad D_80177668[4]; // gContPads
 extern OSMesgQueue D_801776B0; // gContMesgQueue
 

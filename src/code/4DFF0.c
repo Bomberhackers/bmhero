@@ -107,7 +107,6 @@ extern s8 D_801347E4;
 extern s8 D_801347E5;
 extern s8 D_801347E6;
 extern s32 D_80165264;
-extern u16 D_8016E2B0[1];
 
 extern u32 D_8016E3A4;
 extern Mtx* D_8016E104;

@@ -14,6 +14,8 @@ s32 func_8000ABB4();                                  /* extern */
 struct UnkStructPair D_80053160;
 struct UnkStructPair D_80053168;
 
+static void __amMain(void* arg);
+
 s32 amCreateAudioMgr(ALSynConfig* c, amConfig* amc) {
     s32 i;
     f32 fsize;
@@ -24,7 +26,7 @@ s32 amCreateAudioMgr(ALSynConfig* c, amConfig* amc) {
     D_80053160.unk0 = D_80053160.unk4 = 0;
     D_80055428      = 0;
     D_8005541C      = 0;
-    D_80055418      = 0;
+    audFrameCt      = 0;
     num_dmas        = amc->numDmas;
     D_80055424      = amc->unk4;
     D_80055408      = (void*)c->heap;
@@ -134,8 +136,9 @@ s32 func_8000D834(void) {
     return 0;
 }
 
-// h_alHeapAlloc
-// safer version of alloc. Do not alloc anything if the heap size doesnt have enough.
+/**
+ * Safer version of alHeapAlloc. Do not alloc anything if the heap size doesnt have enough.
+ */
 void* h_alHeapAlloc(s32 size) {
     if ((D_80055408->unk8 - (D_80055408->unk4 - D_80055408->unk0)) < size) {
         D_80053160.unk0 |= 1;
@@ -144,39 +147,35 @@ void* h_alHeapAlloc(s32 size) {
     return alHeapAlloc((ALHeap* ) D_80055408, 1, size);
 }
 
-void __amMain(void* arg0) {
-    s32 sp34;
-    s32 sp30;
-    OSMesg *sp2C;
-    s32 sp28;
+static void __amMain(void* arg) {
+    u32       validTask;
+    u32       done=0;
+    AudioMsg  *msg;
+    AudioInfo *lastInfo = 0;
 
-    sp30 = 0;
-    sp28 = 0;
-    if (sp30 == 0) {
-        do {
-            osRecvMesg((OSMesgQueue* ) &__am.audioFrameMsgQ, &sp2C, 1);
-            switch (*(s16*)sp2C) {                      /* irregular */
-            case 1:
-                sp34 = __amHandleFrameMsg(__am.audioInfo[(u32) D_80055418 % 3U], sp28);
-                if (sp34 != 0) {
-                    osRecvMesg((OSMesgQueue* ) &__am.audioReplyMsgQ, &sp2C, 1);
-                    __amHandleDoneMsg(((s32*)sp2C)[1]);
-                    sp28 = ((s32*)sp2C)[1];
-                    func_80003C94();
-                    func_80007BC4();
-                }
-                D_8005543C += 1;
-                break;
-            case 4:
-                func_80003FA0();
-                func_8000ABB4();
-                sp30 = 1;
-                break;
-            case 10:
-                sp30 = 1;
-                break;
+    while(!done) {
+        (void) osRecvMesg(&__am.audioFrameMsgQ, (OSMesg *)&msg, OS_MESG_BLOCK);
+        switch (msg->gen.type) {
+        case OS_SC_RETRACE_MSG:
+            validTask = __amHandleFrameMsg(__am.audioInfo[audFrameCt % NUM_OUTPUT_BUFFERS], lastInfo);
+            if (validTask) {
+                osRecvMesg(&__am.audioReplyMsgQ, (OSMesg *)&msg, OS_MESG_BLOCK);
+                __amHandleDoneMsg(msg->done.info);
+                lastInfo = msg->done.info;
+                func_80003C94();
+                func_80007BC4();
             }
-        } while (sp30 == 0);
+            D_8005543C += 1;
+            break;
+        case OS_SC_PRE_NMI_MSG:
+            func_80003FA0();
+            func_8000ABB4();
+            done = 1;
+            break;
+        case QUIT_MSG:
+            done = 1;
+            break;
+        }
     }
     alClose(&__am.g);
 }
@@ -253,7 +252,7 @@ u32 __amDMA(u32 arg0, u32 arg1, s32 arg2) {
         if (sp2C->unk8 > arg0) {
             break;
         } else if (sp34 <= sp30) {
-            sp2C->unkC = D_80055418;
+            sp2C->unkC = audFrameCt;
             sp3C = (sp2C->unk10 + arg0) - sp2C->unk8;
             return osVirtualToPhysical(sp3C);
         }
@@ -283,7 +282,7 @@ u32 __amDMA(u32 arg0, u32 arg1, s32 arg2) {
     sp38 = arg0 & 1;
     arg0 -= sp38;
     sp2C->unk8 = (s32 (*)(void*)) arg0;
-    sp2C->unkC = D_80055418;
+    sp2C->unkC = audFrameCt;
     osWritebackDCache((void* ) sp3C, (s32) D_80055424);
     osInvalDCache((void* ) sp3C, (s32) D_80055424);
     osPiStartDma(&D_80055440[D_8005541C++], 0, 0, arg0, (void* ) sp3C, D_80055424, &audDMAMessageQ);
@@ -309,7 +308,7 @@ void __clearAudioDMA(void) {
     if (sp1C != 0) {
         do {
             sp18 = sp1C->unk0;
-            if ((u32) (sp1C->unkC + 1) < (u32) D_80055418) {
+            if ((u32) (sp1C->unkC + 1) < (u32) audFrameCt) {
                 if (D_80055410 == sp1C) {
                     D_80055410 = sp1C->unk0;
                 }
@@ -326,5 +325,5 @@ void __clearAudioDMA(void) {
         } while (sp1C != 0);
     }
     D_8005541C = 0;
-    D_80055418 += 1;
+    audFrameCt += 1;
 }

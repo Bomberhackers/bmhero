@@ -6,6 +6,7 @@
 #define EXTRA_SAMPLES           80
 #define NUM_OUTPUT_BUFFERS      3
 #define MAX_MESGS               8
+#define QUIT_MSG                10
 #define NUM_ACMD_LISTS          2
 
 #define AUDIO_STACKSIZE         0x2000
@@ -149,7 +150,7 @@ extern u64 audioStack[];
 extern struct UnkStruct80055408 *D_80055408;
 extern struct UnkStruct80055410 *D_80055410;
 extern ALCSPlayer* D_80055414;
-extern s32 D_80055418;
+extern u32 audFrameCt;
 extern s32 D_8005541C;
 extern u16 num_dmas;
 extern u32 D_80055424;
@@ -177,7 +178,6 @@ typedef struct {
 // functions
 s32 amCreateAudioMgr(ALSynConfig* c, amConfig* amc);
 void* h_alHeapAlloc(s32);
-void __amMain(void*);
 s32 __amHandleFrameMsg(struct UnkStruct80053188_Ptr* arg0, struct UnkInputStruct8000DA70_Arg1 *arg1);
 void __amHandleDoneMsg(s32 arg0);
 u32 __amDMA(u32 arg0, u32 arg1, s32 arg2);

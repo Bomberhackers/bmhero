@@ -4480,3 +4480,4 @@ h_alHeapAlloc = 0x8000D84C; // defined:true
 audDMAMessageQ = 0x80055740; // defined:true
 audio_mess_buf = 0x80055758; // defined:true
 audioStack = 0x80053408; // defined:true
+audFrameCt = 0x80055418; // defined:true

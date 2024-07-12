@@ -454,7 +454,42 @@ void func_8001E560(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001E80C.s")
+extern s32 D_8016525C;
+extern void (*D_80165274)();
+extern s32 D_8016527C;
+extern s32 D_80165284;
+extern s32 D_8016E0B0;
+extern s32 D_8016E244;
+
+void func_8001E80C(void) {
+    func_8001E208();
+    func_8001DCEC();
+    if (D_80165284 == 0) {
+        func_8005F088();
+        func_8001E560();
+        if (D_8016E0B0 != 0) {
+            if (D_80165274 != NULL) {
+                D_80165274();
+            }
+            func_8001D2FC();
+            func_80016EE4();
+            func_8001FBAC();
+        }
+        func_8005F0B8();
+    }
+    if (D_8016525C != 0) {
+        if (D_8016525C == 8) {
+            D_8016525C = 0;
+        } else {
+            D_8016525C += 1;
+        }
+    }
+    D_80165284 += 1;
+    if (D_80165284 >= D_8016527C) {
+        D_80165284 = 0;
+    }
+    D_8016E244 += 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001E954.s")
 

@@ -32,9 +32,9 @@ extern u16 D_8016E2D0[4];
 extern u16 D_8016E2E0[4];
 extern u16 D_8016E2F0[4];
 extern u16 D_8016E300[4]; // gContPlugged
-extern u16 D_8016E310[4]; // gContCurrPressed
-extern u16 D_8016E320[4]; // gContLastPressed
-extern u16 D_8016E330[4]; // gContCurrButtonDown
+extern u16 D_8016E310[4]; // gContCurrButton
+extern u16 D_8016E320[4]; // gContLastButton
+extern u16 D_8016E330[4]; // gContButtonPressed
 extern s8 D_8016E33C[4];  // gContStickX
 extern s8 D_8016E344[4];  // gContStickY
 extern u16 D_8016E350[4]; // gContCurrDir

@@ -600,7 +600,7 @@ s32 func_80003304(void) {
     u32 sp2C;                                       /* compiler-managed */
     s16 sp2A;
 
-    D_80052EA4 = func_8000D84C(0x7CU);
+    D_80052EA4 = h_alHeapAlloc(0x7CU);
     if (D_80052EA4 == 0) {
         return 1;
     }
@@ -667,21 +667,21 @@ s32 func_80003304(void) {
         D_8004A340 = NULL;
         return 0;
     }
-    D_80052EAC = func_8000D84C(0xF8U);
+    D_80052EAC = h_alHeapAlloc(0xF8U);
     if (D_80052EAC == NULL) {
         return 1;
     }
     if (sp2C & 1) {
         sp2C += 1;
     }
-    D_80052EA8 = func_8000D84C(sp2C);
+    D_80052EA8 = h_alHeapAlloc(sp2C);
     if (D_80052EA8 == NULL) {
         return 1;
     }
     if (sp30 & 1) {
         sp30 += 1;
     }
-    D_80052EA0 = func_8000D84C(sp30);
+    D_80052EA0 = h_alHeapAlloc(sp30);
     if (D_80052EA0 == NULL) {
         return 1;
     }
@@ -700,7 +700,7 @@ s32 func_800038A4(s32 arg0) {
     if (arg0 & 1) {
         arg0 += 1;
     }
-    D_80052EB0 = func_8000D84C(arg0);
+    D_80052EB0 = h_alHeapAlloc(arg0);
     if (D_80052EB0 == 0) {
         return 1;
     }
@@ -1255,13 +1255,13 @@ s32 func_80005B14(void) {
     sp2A = D_8004A364;
     D_8004A364 = 0;
     D_8004A30C = D_8004A304 + D_8004A308;
-    D_80052D54 = func_8000D84C(0x54U);
+    D_80052D54 = h_alHeapAlloc(0x54U);
     if (D_80052D54 == NULL) {
         return 1;
     }
     alSndpNew(D_80052D54, (ALSndpConfig* ) &D_8004A30C);
     sp2C = D_8004A30C * 0x2C;
-    D_80052D5C = func_8000D84C(sp2C);
+    D_80052D5C = h_alHeapAlloc(sp2C);
     if (D_80052D5C == NULL) {
         return 1;
     }
@@ -1319,7 +1319,7 @@ s32 func_80005B14(void) {
         }
         sp34 = D_8004A354 + sp2C + ((s32) sp2C % 8);
         sp2C = 0x24;
-        sp38 = func_8000D84C(sp2C);
+        sp38 = h_alHeapAlloc(sp2C);
         if (sp38 == NULL) {
             return 1;
         }
@@ -1362,7 +1362,7 @@ s32 func_800060AC(s32 arg0) {
     if (arg0 & 1) {
         arg0 += 1;
     }
-    D_80052D58 = func_8000D84C(arg0);
+    D_80052D58 = h_alHeapAlloc(arg0);
     if (D_80052D58 == NULL) {
         return 1;
     }
@@ -1385,7 +1385,7 @@ s32 func_8000616C(void) {
     if (sp1C & 1) {
         sp1C += 1;
     }
-    D_80052D50 = func_8000D84C(sp1C);
+    D_80052D50 = h_alHeapAlloc(sp1C);
     if (D_80052D50 == NULL) {
         return 2;
     }
@@ -1412,7 +1412,7 @@ s32 func_80006284(ALSynConfig* arg0) {
     if (sp24 & 1) {
         sp24 += 1;
     }
-    D_80052D50 = func_8000D84C(sp24);
+    D_80052D50 = h_alHeapAlloc(sp24);
     if (D_80052D50 == NULL) {
         return 2;
     }
@@ -1456,7 +1456,7 @@ s32 func_800064BC(ALSynConfig* arg0) {
     if ((s32) sp1C & 1) {
         sp1C += 1;
     }
-    D_80052D60 = func_8000D84C(sp1C);
+    D_80052D60 = h_alHeapAlloc(sp1C);
     if (D_80052D60 == 0) {
         return 2;
     }
@@ -1476,7 +1476,7 @@ s32 func_800065B8(ALSynConfig* arg0) {
     if (sp1C & 1) {
         sp1C += 1;
     }
-    D_80052D80 = func_8000D84C(sp1C);
+    D_80052D80 = h_alHeapAlloc(sp1C);
     if (D_80052D80 == NULL) {
         return 1;
     }
@@ -1485,7 +1485,7 @@ s32 func_800065B8(ALSynConfig* arg0) {
     *(u32*)&D_80052D80->unk0 += (u32)D_80052D80;
     *(u32*)&D_80052D80->unk4 += (u32)D_80052D80;
     sp1C = D_8004A30C * 0x54;
-    D_80052D84 = func_8000D84C(sp1C);
+    D_80052D84 = h_alHeapAlloc(sp1C);
     if (D_80052D84 == NULL) {
         return 1;
     }
@@ -1952,7 +1952,7 @@ s32 func_800080D8(void) {
     u32 sp1C;
 
     sp1C = D_8004A30C * 0x10;
-    D_80052D88 = func_8000D84C(sp1C);
+    D_80052D88 = h_alHeapAlloc(sp1C);
     if (D_80052D88 == NULL) {
         return 1;
     }
@@ -1974,7 +1974,7 @@ s32 func_800081B0(void) {
         return 0;
     }
     sp1C = D_8004A364 * 0xC;
-    D_80052DA8 = func_8000D84C(sp1C);
+    D_80052DA8 = h_alHeapAlloc(sp1C);
     if (D_80052DA8 == NULL) {
         return 1;
     }

@@ -52,8 +52,6 @@ typedef struct {
 } UnkStruct80114354;
 
 extern UnkStruct80165100* D_80165100;
-extern struct PlayerStruct D_80119128;
-extern struct PlayerStruct D_80118FF4;
 extern UnkStruct80165100 D_80113790;
 extern UnkStruct80165100 D_801137D8;
 extern UnkStruct80165100 D_801137E4;
@@ -74,13 +72,15 @@ extern UnkStruct80165100 D_80114450;
 extern UnkStruct80165100 D_8011445C;
 extern UnkStruct80165100 D_80114468;
 extern UnkStruct80165100 D_80114474;
-extern struct PlayerStruct D_80118E9C;
 extern struct PlayerStruct D_801137F0;
 extern struct PlayerStruct D_80114378;
 extern struct PlayerStruct D_80114384;
+extern struct PlayerStruct D_80118E9C;
 extern struct PlayerStruct D_80118EB4;
 extern struct PlayerStruct D_80118FE8;
+extern struct PlayerStruct D_80118FF4;
 extern struct PlayerStruct D_801190CC;
+extern struct PlayerStruct D_80119128;
 extern struct PlayerStruct D_80119194;
 extern struct PlayerStruct D_801191F0;
 extern struct PlayerStruct D_80119268;
@@ -95,6 +95,7 @@ extern struct PlayerStruct D_80119504;
 extern struct PlayerStruct D_80119750;
 extern struct PlayerStruct D_80119788;
 extern struct PlayerStruct D_80119828;
+extern struct PlayerStruct D_801198D0;
 extern struct PlayerStruct D_8011BA88;
 extern struct PlayerStruct D_8011BA8C;
 extern struct PlayerStruct D_8011BB50;
@@ -3262,9 +3263,33 @@ void func_800E802C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E80E0.s")
+void func_800E80E0(void) {
+    struct PlayerStruct* sp4;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E816C.s")
+    sp4 = &gPlayerData[D_80177A60];
+    if (D_80177A64 == 0) {
+        sp4->unk108 = 0;
+        sp4->unkA4 = 5;
+        sp4->unk132 = 0;
+    } else {
+        sp4->unkA4 = (s16) sp4->unkB2;
+    }
+}
+
+void func_800E816C(void) {
+    struct PlayerStruct* sp24;
+
+    sp24 = &gPlayerData[D_80177A60];
+    if (sp24->unk132 == 0) {
+        sp24->unk132 = (u8) (sp24->unk132 + 1);
+        sp24->unkB2 = (s16) sp24->unkA4;
+        func_8001C0EC(D_80177A60, 0, 0, 0xB5, &D_801198D0);
+    }
+    if (func_8002A1FC(D_80177A60, 480.0f) != 0) {
+        sp24->unkA4 = 2;
+        sp24->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E8250.s")
 

@@ -2508,7 +2508,40 @@ void func_800E49AC(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E4BF4.s")
+void func_800E4BF4(void) {
+    struct PlayerStruct* sp34;
+    f32 sp30;
+    f32 temp_f20;
+
+    sp34 = &gPlayerData[D_80177A60];
+    if (sp34->unk132 == 0) {
+        sp34->unk132 = (u8) (sp34->unk132 + 1);
+        sp34->unkB2 = (s16) sp34->unkA4;
+        func_8001C0EC(D_80177A60, 0, 4, 0x7E, &D_80119428);
+        func_8001ABF4(D_80177A60, 0, 0, &D_80119494.unk54);
+    }
+    if (func_8001B4AC(D_80177A60, 0) != 0) {
+        sp34->unk44 = 222.0f;
+        func_80029EF8(D_80177A60, 86.0f, 0);
+        sp30 = sp34->Vel.y;
+        sp34->Vel.y = 0.0f;
+        func_80029C40(D_80177A60);
+        if (func_80029018(D_80177A60, 0, 30.0f, 0, 0.0f, 0.0f) != 0) {
+            sp34->unkA4 = 7;
+            sp34->unk132 = 0U;
+        } else if (func_80029F58(D_80177A60, 0, 0, 0, 0.0f) == 1) {
+            sp34->unkA4 = 7;
+            sp34->unk132 = 0U;
+        } else {
+            sp34->unkA4 = 5;
+            sp34->unk132 = 0U;
+        }
+        sp34->Vel.y = sp30;
+        sp34->unk44 = 0.0f;
+        sp34->Vel.z = 0.0f;
+        sp34->Vel.x = sp34->Vel.y = sp34->Vel.z;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E4E3C.s")
 

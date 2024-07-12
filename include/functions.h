@@ -13,7 +13,7 @@ void PlayTrack_WithVolLoop(s16 trackID, s8 vol, s8 loop);
 void func_80017FD8(char* str);
 s32 func_8001D9E4(void*);
 void func_8001DFC8();
-s32 func_8001E80C();
+void func_8001E80C(void);
 s32 func_8001ECA0();
 s32 func_8001D1F4();
 s32 func_8001D440();

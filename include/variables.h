@@ -32,9 +32,9 @@ extern u16 D_8016E2D0[4];
 extern u16 D_8016E2E0[4];
 extern u16 D_8016E2F0[4];
 extern u16 D_8016E300[4]; // gContPlugged
-extern u16 D_8016E310[4]; // gContCurrPressed
-extern u16 D_8016E320[4]; // gContLastPressed
-extern u16 D_8016E330[4]; // gContCurrButtonDown
+extern u16 D_8016E310[4]; // gContCurrButton
+extern u16 D_8016E320[4]; // gContLastButton
+extern u16 D_8016E330[4]; // gContButtonPressed
 extern s8 D_8016E33C[4];  // gContStickX
 extern s8 D_8016E344[4];  // gContStickY
 extern u16 D_8016E350[4]; // gContCurrDir
@@ -405,5 +405,17 @@ extern Gfx *gMasterDisplayList;
 
 extern s8 gDemoSceneID;
 extern s8 gDemoID;
+
+struct UnkStruct80165290 {
+    s32 unk0;
+    char padding4[0x10];
+    u8 unk14;
+    char padding15[0x7];
+    s32 unk1C;
+    char padding20[0x50];
+};
+
+extern struct UnkStruct80165290 D_80165290[256];
+extern u32 *D_8016E3AC;
 
 #endif // _VARIABLES_H_

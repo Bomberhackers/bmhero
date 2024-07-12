@@ -3025,7 +3025,39 @@ void func_800E6D2C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E6E80.s")
+void func_800E6E80(void) {
+    struct PlayerStruct* sp2C;
+
+    sp2C = &gPlayerData[D_80177A60];
+    if (sp2C->unk132 == 0) {
+        sp2C->unk132 = (u8) (sp2C->unk132 + 1);
+        sp2C->unkB2 = (s16) sp2C->unkA4;
+        sp2C->unk44 = 18.0f;
+        func_8001C0EC(D_80177A60, 0, 6, 0xB4, &D_80119788);
+        sp2C->unkB6 = 0;
+    }
+    if (func_8002A1FC(D_80177A60, 960.0f) != 0) {
+        if (sp2C->unkB6 == 0) {
+            sp2C->unkB6 = 0xF;
+            func_800175F0(D_80177A60, 0, 0x53, -1, 0);
+        } else {
+            sp2C->unkB6 = (s16) (sp2C->unkB6 - 1);
+        }
+    }
+    func_8002A8B4(D_80177A60, 6.0f);
+    sp2C->Rot.y = (f32) sp2C->unk3C;
+    sp2C->Rot.y = func_80015538(sp2C->Rot.y, 270.0f);
+    func_80029C40(D_80177A60);
+    if (func_80029018(D_80177A60, 0, 120.0f, 0.0f, 0.0f, 0.0f) != 0) {
+        func_80029824(D_80177A60, 0);
+    }
+    if (func_8002A1FC(D_80177A60, 240.0f) != 0) {
+        sp2C->unk44 = 0.0f;
+        sp2C->Vel.x = sp2C->Vel.z =sp2C->unk44;
+        sp2C->unkA4 = 8;
+        sp2C->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E70D0.s")
 

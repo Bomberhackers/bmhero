@@ -2,17 +2,33 @@
 #include "../../38D0.h"
 #include "nusys/audio.h"
 
-// externs
-s32 func_80001E78(s32, s32*, void*);                    /* extern */
-s32 func_80001FDC(s32);                             /* extern */
-s32 func_80003C94();                                  /* extern */
-s32 func_80003FA0();                                  /* extern */
-s32 func_80007BC4();                                  /* extern */
-s32 func_8000ABB4();                                  /* extern */
+// might be based on an older nusys 1.0 version we dont have due to some of the absent safety checks.
 
-// .bss
+/**** audio manager globals ****/
+
 struct UnkStructPair D_80053160;
 struct UnkStructPair D_80053168;
+s32 D_80053170;
+s32 D_80053174_unused;
+s32 D_80053178;
+AMAudioMgr __am;
+u64 audioStack[AUDIO_STACKSIZE/sizeof(u64)];
+struct UnkStruct80055408 *D_80055408;
+AMDMAState dmaState;
+u32 audFrameCt;
+s32 nextDMA;
+u16 num_dmas;
+u32 audio_dma_length;
+u32 curAcmdList;
+u32 minFrameSize;
+s32 maxFrameSize;
+u32 frameSize;
+s32 D_80055438;
+s32 D_8005543C;
+OSIoMesg audio_IO_mess_buf[32];
+OSMesgQueue audDMAMessageQ;
+void* audio_mess_buf;
+u8 D_80055760_unused[0x80];
 
 static void __amMain(void* arg);
 static s32 __amHandleFrameMsg(AudioInfo* info, AudioInfo *lastInfo);

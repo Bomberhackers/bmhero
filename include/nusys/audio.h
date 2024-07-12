@@ -149,26 +149,7 @@ struct UnkStruct80055410 {
 extern s32 D_80047F60;
 extern s32 D_80048030;
 extern s32 D_80049460;
-extern s32 D_80053170;
-extern s32 D_80053178;
-extern AMAudioMgr __am;
 extern struct UnkStruct80053188_Ptr *D_80053188[];
-extern u64 audioStack[];
-extern struct UnkStruct80055408 *D_80055408;
-extern AMDMAState dmaState;
-extern u32 audFrameCt;
-extern s32 nextDMA;
-extern u16 num_dmas;
-extern u32 audio_dma_length;
-extern u32 curAcmdList;
-extern u32 minFrameSize;
-extern s32 maxFrameSize;
-extern u32 frameSize;
-extern s32 D_80055438;
-extern s32 D_8005543C;
-extern OSIoMesg audio_IO_mess_buf[];
-extern OSMesgQueue audDMAMessageQ;
-extern void* audio_mess_buf;
 
 typedef struct {
     /* 0x00 */ u16 numDmas;

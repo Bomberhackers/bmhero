@@ -445,19 +445,19 @@ void thread6_func(void* arg) {
     D_8016E092 = 0x1234;
     D_8016527C = 2;
     D_8016E134 = 0;
-    D_8016E428 = 0;
-    D_801765EC = 2;
-    D_8016E3E4 = 0;
-    D_8016E3F7 = 0;
-    D_8016E404 = 0;
+    gCurrentLevel = 0;
+    gCameraType = 2;
+    gDebugShowTimerBar = 0;
+    gDebugDisplayMode = 0;
+    gDebugAtrributeFlag = 0;
     D_8016E414 = 0;
     D_8016E41C = 0;
     D_8016E3EC = 0;
     D_8016E3EE = 0;
     D_8016E3F4 = 0;
     gShowDebugMenu = 0;
-    D_8016E3FC = 0;
-    D_8016E40C = 0;
+    gDebugInvincibileFlag = 0;
+    gGoldBomber = 0;
 #ifdef ENABLE_ISPRINT
     isPrintfInit();
 #endif
@@ -470,9 +470,9 @@ void thread6_func(void* arg) {
         sp1C = func_800FE898();
         switch (sp1C) {
             case 0:
-                D_8016E428 = 0;
+                gCurrentLevel = 0;
                 D_8016E3DC = 0;
-                func_80083180(D_80134228);
+                func_80083180(gDebugSaveIndex);
                 break;
             case 1:
                 D_8016E3DC = 0;
@@ -491,7 +491,7 @@ void thread6_func(void* arg) {
                 func_8002F738();
                 break;
             case 8:
-                func_8005E230(D_80134224);
+                func_8005E230(gDebugSelectedDemoIndex);
                 break;
             case 9:
                 func_80021158();

@@ -168,7 +168,30 @@ struct UnkStruct80088B80_3
     char Padding[0x3];
 };
 
-struct PlayerStruct {
+struct Light
+{
+    u8 LightData[8];
+};
+
+struct LightingStruct
+{
+    struct Light AmbientLight;
+    struct Light DiffuseLight;
+    s8 Direction[8];
+};
+
+struct LevelInfo
+{
+    s8 Stage;
+    s8 Area;
+    s8 Map;
+    s8 Clear;
+    char Padding1[0x1C];
+    struct LightingStruct* LightingInfo;
+};
+
+struct PlayerStruct 
+{
     struct Vec3f Pos;
     struct Vec3f Scale;
     struct Vec3f Rot;
@@ -261,25 +284,25 @@ extern u32 D_8010BC30[];
 
 extern struct UnkStruct80340000 D_80340000[2];
 
-extern s32 D_80134224;
-extern s32 D_80134228;
+extern s32 gDebugSelectedDemoIndex;
+extern s32 gDebugSaveIndex;
 extern s32 D_8016527C;
 extern s16 D_8016E092;
 extern s8 D_8016E134;
 extern s8 D_8016E3DC;
-extern s8 D_8016E3E4;
+extern s8 gDebugShowTimerBar;
 extern s8 D_8016E3EC;
 extern s8 D_8016E3EE;
 extern s16 D_8016E3F4;
-extern s8 D_8016E3F7;
-extern s8 D_8016E3FC;
-extern s8 D_8016E404;
-extern s8 D_8016E40C;
+extern s8 gDebugDisplayMode;
+extern s8 gDebugInvincibileFlag;
+extern s8 gDebugAtrributeFlag;
+extern s8 gGoldBomber;
 extern s8 D_8016E414;
 extern s16 D_8016E41C;
 extern s8 gShowDebugMenu;
-extern s32 D_8016E428;
-extern s32 D_801765EC;
+extern s32 gCurrentLevel;
+extern s32 gCameraType;
 extern s32 osViClock;
 
 extern OSViMode osViModeTable[];

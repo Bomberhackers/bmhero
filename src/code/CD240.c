@@ -87,6 +87,7 @@ extern struct PlayerStruct D_801193AC;
 extern struct PlayerStruct D_8011940C;
 extern struct PlayerStruct D_80119428;
 extern struct PlayerStruct D_80119494;
+extern struct PlayerStruct D_80119504;
 extern struct PlayerStruct D_8011BA88;
 extern struct PlayerStruct D_8011BA8C;
 extern struct PlayerStruct D_8011BB50;
@@ -2690,7 +2691,55 @@ void func_800E589C(void) {
     sp4->unk132 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E594C.s")
+void func_800E594C(void) {
+    struct PlayerStruct* sp34;
+    s32 sp30;
+
+    sp34 = &gPlayerData[D_80177A60];
+    if (sp34->unk132 == 0) {
+        sp34->unk132 = (u8) (sp34->unk132 + 1);
+        func_8001C0EC(D_80177A60, 0, 0, 0x82, &D_80119504);
+        sp34->unk44 = 1.0f;
+    }
+    if (func_80028FA0(D_80177A60) != 0) {
+        func_80029B60(D_80177A60);
+    }
+    func_80029C40(D_80177A60);
+    if (func_80029018(D_80177A60, 0, 30.0f, 0.0f, 0.0f, 0.0f) != 0) {
+        func_80029824(D_80177A60, func_800297DC());
+    }
+    if (func_8001B4AC(D_80177A60, 0) != 0) {
+        if (sp34->unkA6 == 0) {
+            sp30 = func_80014E80(4);
+            switch (sp30) {                         /* irregular */
+            case 0:
+                sp34->Rot.y = 0.0f;
+                sp34->unk3C = (f32) sp34->Rot.y;
+                break;
+            case 1:
+                sp34->Rot.y = 90.0f;
+                sp34->unk3C = (f32) sp34->Rot.y;
+                break;
+            case 2:
+                sp34->Rot.y = 180.0f;
+                sp34->unk3C = (f32) sp34->Rot.y;
+                break;
+            default:
+                sp34->Rot.y = 270.0f;
+                sp34->unk3C = (f32) sp34->Rot.y;
+                break;
+            }
+            sp34->unkA6 = 3;
+        } else {
+            sp34->unkA6 = (s16) (sp34->unkA6 - 1);
+        }
+    }
+    if (func_8002A1FC(D_80177A60, 600.0f) != 0) {
+        sp34->unkA4 = 2;
+        sp34->unk132 = 0U;
+        sp34->unkA6 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E5C14.s")
 

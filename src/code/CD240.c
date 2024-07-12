@@ -75,6 +75,7 @@ extern UnkStruct80165100 D_80114474;
 extern struct PlayerStruct D_801137F0;
 extern struct PlayerStruct D_80114378;
 extern struct PlayerStruct D_80114384;
+extern struct PlayerStruct D_80114480;
 extern struct PlayerStruct D_80118E9C;
 extern struct PlayerStruct D_80118EB4;
 extern struct PlayerStruct D_80118FE8;
@@ -3492,7 +3493,11 @@ void func_800E8DF0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E8EC0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E904C.s")
+void func_800E904C(void) {
+    s32 sp24;
+
+    sp24 = func_80027464(1, &D_80114480, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E90C8.s")
 

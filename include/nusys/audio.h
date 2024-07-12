@@ -154,8 +154,8 @@ extern u32 audFrameCt;
 extern s32 D_8005541C;
 extern u16 num_dmas;
 extern u32 D_80055424;
-extern s32 D_80055428;
-extern s32 minFrameSize;
+extern u32 curAcmdList;
+extern u32 minFrameSize;
 extern s32 maxFrameSize;
 extern u32 frameSize;
 extern s32 D_80055438;
@@ -178,7 +178,6 @@ typedef struct {
 // functions
 s32 amCreateAudioMgr(ALSynConfig* c, amConfig* amc);
 void* h_alHeapAlloc(s32);
-s32 __amHandleFrameMsg(struct UnkStruct80053188_Ptr* arg0, struct UnkInputStruct8000DA70_Arg1 *arg1);
 void __amHandleDoneMsg(s32 arg0);
 u32 __amDMA(u32 arg0, u32 arg1, s32 arg2);
 void *__amDmaNew(s32** arg0);

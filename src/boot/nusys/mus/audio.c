@@ -15,6 +15,7 @@ struct UnkStructPair D_80053160;
 struct UnkStructPair D_80053168;
 
 static void __amMain(void* arg);
+static s32 __amHandleFrameMsg(AudioInfo* info, AudioInfo *lastInfo);
 
 s32 amCreateAudioMgr(ALSynConfig* c, amConfig* amc) {
     s32 i;
@@ -24,7 +25,7 @@ s32 amCreateAudioMgr(ALSynConfig* c, amConfig* amc) {
 
     D_80053168.unk0 = D_80053168.unk4 = 0;
     D_80053160.unk0 = D_80053160.unk4 = 0;
-    D_80055428      = 0;
+    curAcmdList     = 0;
     D_8005541C      = 0;
     audFrameCt      = 0;
     num_dmas        = amc->numDmas;
@@ -183,52 +184,58 @@ static void __amMain(void* arg) {
 extern u8 _4A060_data__s[];
 extern u8 _4DD30_bin[];
 
-s32 __amHandleFrameMsg(struct UnkStruct80053188_Ptr* arg0, struct UnkInputStruct8000DA70_Arg1 *arg1) {
-    u32 sp2C;
-    Acmd* sp28;
-    s32 sp24;
-    u32 sp20;
-    struct UnkInnerStruct80053188_Ptr * sp1C;
-    s8* temp_t8;
+static s32 __amHandleFrameMsg(AudioInfo* info, AudioInfo *lastInfo) {
+    s16 *audioPtr;
+    Acmd* cmdp;
+    s32 cmdLen;
+    int samplesLeft = 0;
+    OSScTask *t;
 
-    sp20 = 0;
-    __clearAudioDMA();
-    sp2C = osVirtualToPhysical((void* ) arg0->unk0[0]);
-    if (arg1 != 0) {
-        osAiSetNextBuffer(arg1->unk0, arg1->unk4 * 4);
-    }
-    sp20 = osAiGetLength() >> 2;
-    *(s16*)&arg0->unk0[1] = ((((frameSize - sp20) + 0x50) & ~0xF) + 0x10);
-    if (*(s16*)&arg0->unk0[1] < (u32) minFrameSize) {
-        *(s16*)&arg0->unk0[1] = (s16) minFrameSize;
-    }
-    sp28 = alAudioFrame((Acmd* ) __am.ACMDList[D_80055428], &sp24, (s16* ) sp2C, *(s16*)&arg0->unk0[1]);
-    if (sp24 == 0) {
+    __clearAudioDMA(); /* call once a frame, before doing alAudioFrame */
+    audioPtr = (s16 *) osVirtualToPhysical(info->data);
+
+    if (lastInfo)
+        osAiSetNextBuffer(lastInfo->data, lastInfo->frameSamples << 2);
+
+    /* calculate how many samples needed for this frame to keep the DAC full */
+    /* this will vary slightly frame to frame, must recalculate every frame */
+    samplesLeft = osAiGetLength() >> 2; /* divide by four, to convert bytes */
+                                        /* to stereo 16 bit samples */
+
+    info->frameSamples = 16 + ((frameSize - samplesLeft + EXTRA_SAMPLES) & ~0xf); // need the extra parens to match.. why, its not there in the demo code
+    if (info->frameSamples < minFrameSize)
+        info->frameSamples = minFrameSize;
+    cmdp = alAudioFrame((Acmd* ) __am.ACMDList[curAcmdList], &cmdLen, audioPtr, info->frameSamples);
+    if (cmdLen == 0) /* no task produced, return zero to show no valid task */
         return 0;
-    }
 
-    sp1C = &arg0->unk8;
-    sp1C->unk0 = 0;
-    sp1C->unk8 = 2;
-    sp1C->unk50 = &__am.audioReplyMsgQ;
-    sp1C->unk54 = &arg0->unk8.unk68;
-    sp1C->unk40 = (s32) __am.ACMDList[D_80055428];
-    sp1C->unk44 = (((s32) ((u32)sp28 - (u32)__am.ACMDList[D_80055428]) >> 3) * 8);
-    sp1C->unk10 = 2;
-    sp1C->unk18 = &D_80047F60;
-    sp1C->unk1C = (s32) ((u32)&D_80048030 - (u32)&D_80047F60);
-    sp1C->unk14 = 0;
-    sp1C->unk20 = _4A060_data__s; // .data start?
-    sp1C->unk28 = _4DD30_bin;     // .data end?
-    sp1C->unk2C = 0x800;
-    sp1C->unk30 = 0;
-    sp1C->unk34 = 0;
-    sp1C->unk38 = 0;
-    sp1C->unk3C = 0;
-    sp1C->unk48 = 0;
-    sp1C->unk4C = 0;
-    osSendMesg((OSMesgQueue* ) D_80053170, sp1C, 1);
-    D_80055428 ^= 1;
+    t = &info->task;
+    
+    t->next      = 0;                    /* paranoia */
+    t->flags     = OS_SC_NEEDS_RSP;      // ...the flags write is up here instead i guess
+    t->msgQ      = &__am.audioReplyMsgQ; /* reply to when finished */
+    t->msg       = (OSMesg)&info->msg;   /* reply with this message */
+    
+    t->list.t.data_ptr    = (u64 *) __am.ACMDList[curAcmdList];
+    t->list.t.data_size   = (cmdp - __am.ACMDList[curAcmdList]) * sizeof(Acmd);
+    t->list.t.type  = M_AUDTASK;
+    t->list.t.ucode_boot = (u64 *)rspbootTextStart;
+    t->list.t.ucode_boot_size = ((int) rspbootTextEnd - (int) rspbootTextStart);
+    t->list.t.flags  = 0; //OS_TASK_DP_WAIT;
+    t->list.t.ucode = _4A060_data__s; // aspMainTextStart
+    t->list.t.ucode_data = _4DD30_bin; // aspMainDataStart
+    t->list.t.ucode_data_size = SP_UCODE_DATA_SIZE;
+    t->list.t.dram_stack = (u64 *) NULL;
+    t->list.t.dram_stack_size = 0;
+    t->list.t.output_buff = (u64 *) NULL;
+    t->list.t.output_buff_size = 0;
+    t->list.t.yield_data_ptr = NULL;
+    t->list.t.yield_data_size = 0;
+
+    osSendMesg((OSMesgQueue* ) D_80053170, t, OS_MESG_BLOCK);
+
+    curAcmdList ^= 1; /* swap which acmd list you use each frame */    
+
     return 1;
 }
 

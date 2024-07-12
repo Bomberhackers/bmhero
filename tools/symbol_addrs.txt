@@ -4481,3 +4481,6 @@ audDMAMessageQ = 0x80055740; // defined:true
 audio_mess_buf = 0x80055758; // defined:true
 audioStack = 0x80053408; // defined:true
 audFrameCt = 0x80055418; // defined:true
+curAcmdList = 0x80055428; // defined:true
+rspbootTextStart = 0x80047F60;
+rspbootTextEnd = 0x80048030;

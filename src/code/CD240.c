@@ -67,6 +67,7 @@ extern UnkStruct80165100 D_80114390;
 extern UnkStruct80165100 D_8011439C;
 extern UnkStruct80165100 D_801143A8;
 extern UnkStruct80165100 D_801143B4;
+extern UnkStruct80165100 D_801143C0;
 extern struct PlayerStruct D_80118E9C;
 extern UnkStruct80165100 D_801142F4;
 extern struct PlayerStruct D_801137F0;
@@ -2386,7 +2387,14 @@ void func_800E3EE4(void) {
     func_8002B114(D_80177A60);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E445C.s")
+void func_800E445C(void) {
+    s32 sp24;
+
+    sp24 = func_80027464(1, &D_801143C0, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    if (sp24 != -1) {
+        gPlayerData[sp24].unkA6 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E450C.s")
 

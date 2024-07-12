@@ -2396,7 +2396,20 @@ void func_800E445C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E450C.s")
+void func_800E450C(void) {
+    struct PlayerStruct* sp4;
+
+    sp4 = &gPlayerData[D_80177A60];
+    if (D_80177A64 == 0) {
+        sp4->unk108 = 0;
+        sp4->unkA4 = 0xB;
+    } else {
+        sp4->Vel.z = 0.0f;
+        sp4->Vel.x = sp4->Vel.y = sp4->Vel.z;
+        sp4->unkA4 = 0xC;
+    }
+    sp4->unk132 = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E45C4.s")
 

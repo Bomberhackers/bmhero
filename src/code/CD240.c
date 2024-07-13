@@ -27,6 +27,7 @@ extern void func_800175F0(s32, s32, s32, s32, s32);
 extern void func_8001B6BC(s32, s32, f32);
 extern void func_8001BBDC(s32, s32);
 extern void func_80026F10(s32, s32);
+extern void func_80027C00(s32, s32, void*, f32, f32, f32, f32);
 extern void func_800281A4(s32, s32);
 extern void func_80029824(s32, s32);
 extern void func_80029D04(s32);
@@ -76,6 +77,9 @@ extern struct PlayerStruct D_801137F0;
 extern struct PlayerStruct D_80114378;
 extern struct PlayerStruct D_80114384;
 extern struct PlayerStruct D_80114480;
+extern struct PlayerStruct D_8011448C;
+extern struct PlayerStruct D_80114498;
+extern struct PlayerStruct D_801144A4;
 extern struct PlayerStruct D_80118E9C;
 extern struct PlayerStruct D_80118EB4;
 extern struct PlayerStruct D_80118FE8;
@@ -97,6 +101,11 @@ extern struct PlayerStruct D_80119750;
 extern struct PlayerStruct D_80119788;
 extern struct PlayerStruct D_80119828;
 extern struct PlayerStruct D_801198D0;
+extern struct PlayerStruct D_801198EC;
+extern struct PlayerStruct D_8011990C;
+extern struct PlayerStruct D_8011993C;
+extern struct PlayerStruct D_80119974;
+extern struct PlayerStruct D_80119978;
 extern struct PlayerStruct D_8011BA88;
 extern struct PlayerStruct D_8011BA8C;
 extern struct PlayerStruct D_8011BB50;
@@ -120,6 +129,7 @@ extern f64 D_80115460;
 extern f64 D_80115468;
 extern f32 D_8011550C;
 extern f32 D_80115510;
+extern f32 D_8011553C;
 
 
 void func_800DAD20(void) {
@@ -3521,7 +3531,27 @@ void func_800E90C8(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E91E4.s")
+void func_800E91E4(void) {
+    struct PlayerStruct* sp2C;
+
+    sp2C = &gPlayerData[D_80177A60];
+    if (sp2C->unk132 == 0) {
+        sp2C->unk132 = (u8) (sp2C->unk132 + 1);
+        sp2C->unkB2 = (s16) sp2C->unkA4;
+        func_8001C0EC(D_80177A60, 0, 0, 0xC3, &D_801198EC);
+        func_80027C00(D_80177A60, 0, &D_80114498, sp2C->Pos.x, sp2C->Pos.y + 172.0f, sp2C->Pos.z, sp2C->Rot.y);
+        func_80027C00(D_80177A60, 1, &D_801144A4, sp2C->Pos.x, sp2C->Pos.y + 172.0f, sp2C->Pos.z, sp2C->Rot.y);
+        func_80027C00(D_80177A60, 2, &D_8011448C, sp2C->Pos.x, sp2C->Pos.y + D_8011553C, sp2C->Pos.z, sp2C->Rot.y);
+        func_8001ABF4((s32) sp2C->unkE8[0], 0, 0, &D_8011993C);
+        func_8001C0EC((s32) sp2C->unkE8[0], 0, 0, 0xC6, &D_80119974);
+        func_8001C0EC((s32) sp2C->unkE8[1], 0, 0, 0xC7, &D_80119978);
+        func_8001C0EC((s32) sp2C->unkEC, 0, 0, 0xC5, &D_8011990C);
+    }
+    if (func_8002A2EC(D_80177A60, 1500.0f) != 0) {
+        sp2C->unkA4 = 2;
+        sp2C->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E9420.s")
 

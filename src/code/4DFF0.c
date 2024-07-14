@@ -650,8 +650,10 @@ void func_8005E040(void) {
     Demo_HandlePrintText();
 }
 
-// Demo_Start
-void func_8005E230(s32 demoID) {
+/**
+ * Start the demo ID given.
+ */
+void Demo_Start(s32 demoID) {
     u32 unused;
 
     func_8001ECB8();

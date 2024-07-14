@@ -35,7 +35,7 @@ s32 func_8002F738();
 // 4DFF0.c
 void Demo_RenderTextBG(void);
 void Demo_SetupTextPal(void);
-void func_8005E230(s32);
+void Demo_Start(s32);
 
 // 71AA0.c
 s32 func_80083180(s32);

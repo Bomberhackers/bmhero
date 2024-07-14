@@ -491,7 +491,7 @@ void thread6_func(void* arg) {
                 func_8002F738();
                 break;
             case 8:
-                func_8005E230(gDebugSelectedDemoIndex);
+                Demo_Start(gDebugSelectedDemoIndex);
                 break;
             case 9:
                 func_80021158();

@@ -4537,12 +4537,25 @@ void func_800EE134(void) {
     }
 }
 
-void func_800EE1F4(s32 arg0) {
+f32 func_800EE1F4(s32 arg0) {
     func_80015634(D_8017753C->Pos.x - gPlayerData[arg0].Pos.x, (D_8017753C->Pos.z - 240.0f) - gPlayerData[arg0].Pos.z);
     return;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EE274.s")
+s32 func_800EE274(s32 arg0, f32 arg1) {
+    f32 sp1C;
+    f32 sp18;
+
+    sp1C = func_800EE1F4(arg0);
+    sp18 = func_80015538(sp1C, -gPlayerData[arg0].unk3C);
+    if ((sp18 < arg1) || ((360.0f - arg1) < sp18)) {
+        return 0;
+    }
+    if (sp18 >= 180.0f) {
+        return -1;
+    }
+    return 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EE354.s")
 

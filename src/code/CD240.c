@@ -14,11 +14,14 @@ extern s32 func_8002A8B4(s32, f32);
 extern f32 func_8002A46C(s32);
 extern s32 func_80014E80(s32);
 extern f32 func_80015538(f32, f32);
+extern f32 func_800156C4(f32, f32);
+extern f32 func_80015744(f32);
 extern s32 func_80029018(s32, s32, f32, f32, f32, f32);
 extern s32 func_800295C0(s32, f32*, f32*, f32, f32, f32);
 extern s32 func_800297DC();
 extern s32 func_8002A0D0(s32, f32, f32, f32);
 extern s32 func_8002A2EC(s32, f32);
+extern s32 func_8002A800(f32, f32, f32);
 extern s32 func_8001B44C(s32, s32);
 extern s32 func_800261E8(s32, s32);
 extern s32 func_80026260(s32);
@@ -37,6 +40,7 @@ extern void func_80029EF8(s32, f32, f32);
 extern void func_8002B114(s32);
 extern void func_80069D88(s32, s32);
 extern void func_8007EDF4(f32, f32, f32, f32);
+extern void func_800EE354(s32, f32);
 extern void func_800E3EE4();
 extern void func_800F9DE0();
 extern void func_800FA27C();
@@ -4464,7 +4468,30 @@ void func_800EDAE0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EDDE4.s")
+void func_800EDDE4(void) {
+    struct PlayerStruct* sp2C;
+    f32 sp28;
+    f32 sp24;
+
+    sp2C = &gPlayerData[D_80177A60];
+    if (sp2C->unk132 == 0) {
+        sp2C->unk132 = (u8) (sp2C->unk132 + 1);
+        func_8001C0EC(D_80177A60, 0, 2, 0x60, &D_80118FE8);
+    }
+    func_800EE354(D_80177A60, 6.0f);
+    sp2C->Rot.y = (f32) sp2C->unk3C;
+    sp28 = func_800156C4(D_8017753C->Pos.x - sp2C->Pos.x, D_8017753C->Pos.y - sp2C->Pos.y);
+    sp28 = func_80015744(sp28);
+    sp24 = (f32) func_8002A800(sp2C->unk40, sp28, 3.0f);
+    if (sp24 != 0.0f) {
+        sp2C->unk40 = func_80015538(sp2C->unk40, 1.0f * sp24);
+    }
+    sp2C->Rot.x = func_80015538(450.0f, -sp2C->unk40);
+    if (func_8001B4AC(D_80177A60, 0) != 0) {
+        sp2C->unkA4 = 3;
+        sp2C->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EDFA4.s")
 

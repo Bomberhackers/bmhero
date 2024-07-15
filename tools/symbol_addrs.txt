@@ -1,4 +1,4 @@
-main = 0x80000450;
+Eeprom_Write = 0x8001F798;
 osInitialize = 0x80030E20;
 osCreateThread = 0x800310B0;
 osStartThread = 0x80031200;

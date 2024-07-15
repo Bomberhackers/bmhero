@@ -35,6 +35,7 @@ extern void func_80029B60(s32);
 extern void func_80029C40(s32);
 extern void func_80029EF8(s32, f32, f32);
 extern void func_8002B114(s32);
+extern void func_80069D88(s32, s32);
 extern void func_8007EDF4(f32, f32, f32, f32);
 extern void func_800E3EE4();
 extern void func_800F9DE0();
@@ -43,7 +44,8 @@ extern void func_800F91A4();
 extern void func_800F9294();
 extern void func_800F94A8();
 extern void func_800F95F4();
-extern void func_80284DF8();         
+extern void func_80284DF8();
+
 
 typedef struct {
     s16 unk0;
@@ -4118,7 +4120,21 @@ void func_800EC144(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EC260.s")
+void func_800EC260(void) {
+    struct PlayerStruct* sp24;
+
+    sp24 = &gPlayerData[D_80177A60];
+    if (sp24->unk132 == 0) {
+        sp24->unk132 = (u8) (sp24->unk132 + 1);
+        sp24->unkA6 = 0xB4;
+        func_800175F0(D_80177A60, 0, 0x3A, -1, 0);
+    }
+    if (sp24->unkA6 == 0) {
+        func_80069D88(0, 1);
+    } else {
+        sp24->unkA6 = (s16) (sp24->unkA6 - 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EC348.s")
 

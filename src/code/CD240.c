@@ -116,6 +116,7 @@ extern s32 D_80177A60;
 extern s32 D_80177A64;
 extern s32 D_801137FC;
 extern s32 D_80113838;
+extern s32 D_801144BC;
 extern s32 D_8011BA94;
 extern s32 D_8016519C;
 extern void* D_80114354;
@@ -4071,7 +4072,11 @@ void func_800EBEA0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EBF24.s")
+void func_800EBF24(void) {
+    s32 sp24;
+
+    sp24 = func_80027464(1, &D_801144BC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EBFA0.s")
 

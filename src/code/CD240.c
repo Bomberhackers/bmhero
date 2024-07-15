@@ -79,6 +79,7 @@ extern UnkStruct80165100 D_801143A8;
 extern UnkStruct80165100 D_801143B4;
 extern UnkStruct80165100 D_801143C0;
 extern UnkStruct80165100 D_801143CC;
+extern UnkStruct80165100 D_801143D8;
 extern UnkStruct80165100 D_80114450;
 extern UnkStruct80165100 D_8011445C;
 extern UnkStruct80165100 D_80114468;
@@ -113,6 +114,8 @@ extern struct PlayerStruct D_8011940C;
 extern struct PlayerStruct D_80119428;
 extern struct PlayerStruct D_80119494;
 extern struct PlayerStruct D_80119504;
+extern struct PlayerStruct D_801195D0;
+extern struct PlayerStruct D_801196AC;
 extern struct PlayerStruct D_80119750;
 extern struct PlayerStruct D_80119788;
 extern struct PlayerStruct D_80119828;
@@ -4556,9 +4559,43 @@ s32 func_800EE274(s32 arg0, f32 arg1) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EE354.s")
+void func_800EE354(s32 arg0, f32 arg1) {
+    f32 sp1C;
+    s32 sp18;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EE444.s")
+    sp1C = gPlayerData[arg0].unk3C;
+    sp18 = func_800EE274(arg0, arg1);
+    if (sp18 < 0) {
+        sp1C = func_80015538(sp1C, -arg1);
+    } else if (sp18 > 0) {
+        sp1C = func_80015538(sp1C, arg1);
+    } else {
+        sp1C = func_800EE1F4(arg0);
+    }
+    gPlayerData[arg0].unk3C = sp1C;
+}
+
+void func_800EE444(void) {
+    s32 sp2C;
+    f32 sp28;
+    f32 sp24;
+
+    sp2C = func_80027464(2, &D_801143D8, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    if (sp2C != -1) {
+        func_8001ABF4(sp2C, 0, 3, &D_801195D0.Rot.y);
+        func_8001ABF4((s32) gPlayerData[sp2C].unkE8[0], 1, 0, &D_801196AC.unk38);
+        if (func_800295C0(D_80177A60, &sp28, &sp24, 0.0f, 0.0f, 0.0f) != 0) {
+            gPlayerData[sp2C].Pos.y = sp24;
+        } else {
+            gPlayerData[sp2C].Pos.y = sp28;
+        }
+        gPlayerData[sp2C].Pos.y = (f32) (gPlayerData[sp2C].Pos.y + 600.0f);
+        (&gPlayerData[gPlayerData[sp2C].unkE8[0]])->Pos.y = (f32) gPlayerData[sp2C].Pos.y;
+        gPlayerData[sp2C].unk13A = 1;
+        gPlayerData[sp2C].unkC0 = (s16) (s32) gPlayerData[sp2C].Pos.x;
+        gPlayerData[sp2C].unkC2 = (s16) (s32) gPlayerData[sp2C].Pos.z;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EE6F8.s")
 

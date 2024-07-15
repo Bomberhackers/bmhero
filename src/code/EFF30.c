@@ -8,11 +8,6 @@ struct UnkStruct80177778 {
     s16 unk18;
 };
 
-struct UnkStruct801652A4 {
-    u8 unk0;
-    char filler0[0x6F];
-};
-
 //FUNCTIONS
 extern void func_80000964();                                  /* extern */
 extern void func_80019C84();                                  /* extern */
@@ -107,7 +102,6 @@ extern s32 D_801651B8;
 extern s32 D_801651BC;
 extern f32 D_801651C0;
 
-extern struct UnkStruct801652A4 D_801652A4[];
 extern struct UnkStructSTCG* D_8017753C;
 extern struct UnkStruct80177778* D_80177778;
 extern struct LevelInfo *gLevelInfo[4];
@@ -513,7 +507,7 @@ void func_800FEFA0(void) {
 
     sprintf(&gDebugTextBuf, "(%d %d %d) ST=%d CG=%d %d",
             (s32)D_8017753C->Unk0, (s32)D_8017753C->Unk4, (s32) D_8017753C->Unk8,
-            D_8017753C->UnkA4, D_801652A4[gPlayerData[0].Unk140[0]].unk0,
+            D_8017753C->UnkA4, D_80165290[gPlayerData[0].Unk140[0]].unk14,
             D_8017753C->Unk108
         );
     debug_print_xy((s8*)0x20, (s8*)0x10);

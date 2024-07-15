@@ -130,8 +130,6 @@ extern s32 D_80055D4C;
 extern struct UnkStruct80055D50 *D_80055D50;
 extern struct UnkStruct80055D54 *D_80055D54;
 
-extern u32 *D_8016E3AC;
-
 // functions
 void func_8000FEB0(struct UnkInputStruct8000FEB0* arg0);
 void func_8000FF44(struct UnkInputStruct8000FF44* arg0);

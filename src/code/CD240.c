@@ -43,6 +43,7 @@ extern void func_800F91A4();
 extern void func_800F9294();
 extern void func_800F94A8();
 extern void func_800F95F4();
+extern void func_80284DF8();         
 
 typedef struct {
     s16 unk0;
@@ -4101,7 +4102,21 @@ void func_800EBFA0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EC144.s")
+void func_800EC144(void) {
+    struct PlayerStruct* sp1C;
+
+    sp1C = &gPlayerData[D_80177A60];
+    if (sp1C->unk132 == 0) {
+        sp1C->unk132 = (u8) (sp1C->unk132 + 1);
+    }
+    sp1C->Rot.y = func_80015538(sp1C->Rot.y, 12.0f);
+    if ((sp1C->unkB2 == 4) && (D_8017753C->unk108 != 0) && (func_8002A2EC(D_80177A60, 60.0f) != 0)) {
+        func_8001BBDC(D_80177A60, 0);
+        sp1C->unkA4 = 3;
+        sp1C->unk132 = 0U;
+        func_80284DF8();
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EC260.s")
 

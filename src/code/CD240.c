@@ -4166,7 +4166,16 @@ void func_800EC408(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EC4AC.s")
+void func_800EC4AC(void) {
+    struct PlayerStruct* sp1C;
+
+    sp1C = &gPlayerData[D_80177A60];
+    if (D_80177A64 == 0) {
+        sp1C->unk108 = 0;
+        sp1C->unkA6 = 1;
+        func_80069E60(0, 1, 0x3C);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EC534.s")
 

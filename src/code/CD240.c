@@ -4016,7 +4016,9 @@ void func_800EB9A4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EBA48.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EBC58.s")
+void func_800EBC58(void) {
+    func_8002B0E4(D_80177A60);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EBC88.s")
 

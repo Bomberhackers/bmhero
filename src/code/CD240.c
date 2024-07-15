@@ -27,7 +27,7 @@ extern s32 func_800261E8(s32, s32);
 extern s32 func_80026260(s32);
 extern s32 func_800281A4(s32, s32);
 extern s32 func_80029F58(s32, f32, f32, f32, f32);
-extern void func_80015634(f32, f32);
+extern f32 func_80015634(f32, f32);
 extern void func_800175F0(s32, s32, s32, s32, s32);
 extern void func_8001B6BC(s32, s32, f32);
 extern void func_8001BBDC(s32, s32);
@@ -4538,8 +4538,7 @@ void func_800EE134(void) {
 }
 
 f32 func_800EE1F4(s32 arg0) {
-    func_80015634(D_8017753C->Pos.x - gPlayerData[arg0].Pos.x, (D_8017753C->Pos.z - 240.0f) - gPlayerData[arg0].Pos.z);
-    return;
+    return func_80015634(D_8017753C->Pos.x - gPlayerData[arg0].Pos.x, (D_8017753C->Pos.z - 240.0f) - gPlayerData[arg0].Pos.z);
 }
 
 s32 func_800EE274(s32 arg0, f32 arg1) {

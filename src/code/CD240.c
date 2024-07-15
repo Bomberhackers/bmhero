@@ -109,9 +109,11 @@ extern struct PlayerStruct D_8011990C;
 extern struct PlayerStruct D_8011993C;
 extern struct PlayerStruct D_80119974;
 extern struct PlayerStruct D_80119978;
+extern struct PlayerStruct D_8011997C;
 extern struct PlayerStruct D_8011BA88;
 extern struct PlayerStruct D_8011BA8C;
 extern struct PlayerStruct D_8011BB50;
+extern struct PlayerStruct* D_8017753C;
 extern s32 D_80177A60;
 extern s32 D_80177A64;
 extern s32 D_801137FC;
@@ -4078,7 +4080,26 @@ void func_800EBF24(void) {
     sp24 = func_80027464(1, &D_801144BC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EBFA0.s")
+void func_800EBFA0(void) {
+    struct PlayerStruct* sp24;
+
+    sp24 = &gPlayerData[D_80177A60];
+    if (sp24->unk132 == 0) {
+        if (sp24->unkB2 == 4) {
+            sp24->unk132 = (u8) (sp24->unk132 + 1);
+            func_800175F0(D_80177A60, 0, 0x3A, -1, 0);
+            func_8001C0EC(D_80177A60, 3, 0, 0x107, &D_8011997C);
+        }
+    }
+    if ((sp24->unkB2 == 4) && (D_8017753C->unk108 != 0) && (func_8002A2EC(D_80177A60, 60.0f) != 0) && (sp24->unk132 == 1)) {
+        sp24->unk132 = (u8) (sp24->unk132 + 1);
+    }
+    if (func_8001B62C(D_80177A60, 3) >= 88.0f) {
+        func_8001BBDC(D_80177A60, 1);
+        sp24->unkA4 = 2;
+        sp24->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EC144.s")
 

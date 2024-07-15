@@ -73,6 +73,7 @@ extern UnkStruct80165100 D_80114450;
 extern UnkStruct80165100 D_8011445C;
 extern UnkStruct80165100 D_80114468;
 extern UnkStruct80165100 D_80114474;
+extern UnkStruct80165100 D_801144B0;
 extern struct PlayerStruct D_801137F0;
 extern struct PlayerStruct D_80114378;
 extern struct PlayerStruct D_80114384;
@@ -135,6 +136,7 @@ extern f32 D_80115544;
 extern f32 D_80115548;
 extern f32 D_8011554C;
 extern f32 D_80115550;
+extern f32 D_80115554;
 
 
 void func_800DAD20(void) {
@@ -3761,7 +3763,63 @@ void func_800EA194(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EA55C.s")
+void func_800EA55C(void) {
+    struct PlayerStruct* sp34;
+    s32 sp30;
+    s16 sp2E;
+    f32 sp28;
+    f32 sp24;
+
+    sp34 = &gPlayerData[D_80177A60];
+    if (sp34->unk132 == 0) {
+        sp34->unk132 = (u8) (sp34->unk132 + 1);
+        sp34->unkB2 = (s16) sp34->unkA4;
+        sp34->unk3C = 180.0f;
+        sp34->unk44 = 24.0f;
+        func_8001C0EC(D_80177A60, 0, 4, 0xC3, &D_801198EC);
+        func_8001C0EC((s32) sp34->unkEC, 0, 0, 0xC5, &D_8011990C);
+    }
+    if ((func_8001B62C(D_80177A60, 0) > 20.0f) && (sp34->unk132 == 1)) {
+        sp34->unk132 = (u8) (sp34->unk132 + 1);
+        sp30 = func_80027464(1, &D_801144B0, sp34->Pos.x + 160.0f, sp34->Pos.y + 134.0f, sp34->Pos.z + 36.0f, sp34->Rot.y);
+        if (sp30 != -1) {
+            func_80026F10(sp30, D_80177A60);
+        }
+        sp30 = func_80027464(1, &D_801144B0, sp34->Pos.x - 160.0f, sp34->Pos.y + 134.0f, sp34->Pos.z + 36.0f, sp34->Rot.y);
+        if (sp30 != -1) {
+            func_80026F10(sp30, D_80177A60);
+        }
+    }
+    func_80029C40(D_80177A60);
+    if (func_80029018(D_80177A60, 1, 120.0f, 0.0f, 0.0f, 0.0f) != 0) {
+        sp34->Vel.z = 0.0f;
+        sp34->Vel.x = (f32) sp34->Vel.z;
+    }
+    if (func_800295C0(D_80177A60, &sp28, &sp24, 0.0f, 0.0f, 0.0f) != 0) {
+        sp34->Pos.y = sp24;
+    } else {
+        sp34->Pos.y = sp28;
+    }
+    sp2E = 0;
+    do {
+        gPlayerData[sp34->unkE8[sp2E]].Pos.x = sp34->Pos.x + sp34->Vel.x;
+        gPlayerData[sp34->unkE8[sp2E]].Pos.y = sp34->Pos.y + sp34->Vel.y;
+        gPlayerData[sp34->unkE8[sp2E]].Pos.z = sp34->Pos.z + sp34->Vel.z;
+    } while (++sp2E < 3);
+    gPlayerData[sp34->unkE8[0]].Pos.y = (f32) (gPlayerData[sp34->unkE8[0]].Pos.y + 172.0f);
+    gPlayerData[sp34->unkE8[1]].Pos.y = (f32) (gPlayerData[sp34->unkE8[1]].Pos.y + 172.0f);
+    gPlayerData[sp34->unkEC].Pos.y = (f32) (gPlayerData[sp34->unkEC].Pos.y + D_80115554);
+    if (func_8001B4AC(D_80177A60, 0) != 0) {
+        sp34->unkA4 = 3;
+        sp34->unk132 = 0U;
+    }
+    if (sp34->unkA6 == 3) {
+        if (gPlayerData[sp34->unkE8[1]].Rot.z < 19.0f) {
+            sp34->unkA4 = 7;
+            sp34->unk132 = 0U;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EAAB8.s")
 

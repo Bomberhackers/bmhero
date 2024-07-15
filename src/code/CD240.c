@@ -81,6 +81,7 @@ extern UnkStruct80165100 D_801144B0;
 extern UnkStruct80165100 D_801144C8;
 extern UnkStruct80165100 D_801144D4;
 extern UnkStruct80165100 D_801144E0;
+extern UnkStruct80165100 D_801144EC;
 extern struct PlayerStruct D_801137F0;
 extern struct PlayerStruct D_80114378;
 extern struct PlayerStruct D_80114384;
@@ -4297,7 +4298,42 @@ void func_800ECA50(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800ECC54.s")
+void func_800ECC54(void) {
+    struct PlayerStruct* sp2C;
+    s32 sp28;
+    f32 sp24;
+    f32 sp20;
+
+    sp2C = &gPlayerData[D_80177A60];
+    if (sp2C->unk132 == 0) {
+        sp2C->unk132 = (u8) (sp2C->unk132 + 1);
+        func_8001C0EC(D_80177A60, 0, 3, 0x16B, &D_80119A60);
+        if (func_800295C0(D_80177A60, &sp24, &sp20, 0.0f, 0.0f, 0.0f) != 0) {
+            sp2C->Pos.y = sp20;
+        } else {
+            sp2C->Pos.y = sp24;
+        }
+        if (sp2C->unkA8 == 0) {
+            sp28 = func_80027464(1, &D_801144EC, sp2C->Pos.x, sp2C->Pos.y + 165.0f, sp2C->Pos.z, sp2C->unk3C);
+            if (sp28 != -1) {
+                func_80026F10(D_80177A60, sp28);
+                gPlayerData[sp28].unkC2 = (s16) D_80177A60;
+                gPlayerData[sp28].unkC0 = 1;
+                sp2C->unkB4 = (s16) sp28;
+                sp2C->unkA8 = 1;
+            }
+        }
+    }
+    if (func_800295C0(D_80177A60, &sp24, &sp20, 0.0f, 0.0f, 0.0f) != 0) {
+        sp2C->Pos.y = sp20;
+    } else {
+        sp2C->Pos.y = sp24;
+    }
+    if (func_8001B4AC(D_80177A60, 0) != 0) {
+        sp2C->unkA4 = 4;
+        sp2C->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800ECEB0.s")
 

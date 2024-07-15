@@ -3999,7 +3999,20 @@ void func_800EB61C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EB9A4.s")
+void func_800EB9A4(void) {
+    struct PlayerStruct* sp24;
+    s32 sp20;
+    s16 sp1E;
+    s16 temp_t1;
+
+    sp24 = &gPlayerData[D_80177A60];
+    sp1E = 0;
+    do {
+        sp20 = func_800281A4(D_80177A60, (s32) sp1E);
+        func_8002B114(sp20);
+    } while (++sp1E < 3);
+    func_8002B0E4(D_80177A60);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EBA48.s")
 

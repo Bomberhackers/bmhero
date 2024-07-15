@@ -4414,7 +4414,10 @@ void func_800ED9E8(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EDA88.s")
+void func_800EDA88(void) {
+    gPlayerData[D_80177A60].unk108 = 0;
+    func_8002B0E4(D_80177A60);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EDAE0.s")
 

@@ -122,6 +122,7 @@ extern struct PlayerStruct D_801199E4;
 extern struct PlayerStruct D_80119A40;
 extern struct PlayerStruct D_80119A60;
 extern struct PlayerStruct D_801199AC;
+extern struct PlayerStruct D_80119A60;
 extern struct PlayerStruct D_8011BA88;
 extern struct PlayerStruct D_8011BA8C;
 extern struct PlayerStruct D_8011BB50;
@@ -4264,7 +4265,37 @@ void func_800EC91C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800ECA50.s")
+void func_800ECA50(void) {
+    struct PlayerStruct* sp34;
+    f32 sp30;
+    f32 sp2C;
+
+    sp34 = &gPlayerData[D_80177A60];
+    if (sp34->unk132 == 0) {
+        sp34->unk132 = (u8) (sp34->unk132 + 1);
+        func_8001C0EC(D_80177A60, 0, 1, 0x16B, &D_80119A60);
+    }
+    if (func_80028FA0(D_80177A60) != 0) {
+        func_80029B60(D_80177A60);
+    }
+    sp34->unk44 = 3.0f;
+    func_8002A8B4(D_80177A60, 4.0f);
+    sp34->Rot.y = (f32) sp34->unk3C;
+    func_80029C40(D_80177A60);
+    func_80029018(D_80177A60, 1, 70.0f, 0.0f, 0.0f, 0.0f);
+    if (func_800295C0(D_80177A60, &sp30, &sp2C, 0.0f, 0.0f, 0.0f) != 0) {
+        sp34->Pos.y = sp2C;
+    } else {
+        sp34->Pos.y = sp30;
+    }
+    if (func_8002A2EC(D_80177A60, 480.0f) != 0) {
+        sp34->Vel.z = 0.0f;
+        sp34->Vel.x = sp34->Vel.y = sp34->Vel.z;
+        sp34->unk44 = 0.0f;
+        sp34->unkA4 = 3;
+        sp34->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800ECC54.s")
 

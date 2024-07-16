@@ -13,9 +13,30 @@ extern s16 D_80177788;
 extern s16 D_80177798;
 extern s16 D_801777A8;
 
+extern u8 D_80106DA0[]; //THIS MIGHT BE INCORRECT!!! unless for some reason there's two ways of accessing the same array??
+extern u8 D_80106DA1[];
+
+extern s32 D_801778F4;
+extern s32 D_801778FC;
+extern s32 D_80177904;
+
+extern struct LevelInfo* gLevelInfo[];
+
 void func_800250A0(s8);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_800642E0.s")
+//find free slot
+s32 func_800642E0(void) {
+    s32 sp4;
+    
+    for(sp4 = 0xE; sp4 < 0x4E; sp4++)
+    {
+        if(gPlayerData[sp4].unkA4 == 0)
+        {
+            return sp4;
+        }
+    }
+    return -1;
+}
 
 s32 func_80064358(s32 arg0) {
 
@@ -117,7 +138,17 @@ s32 func_800699B0(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80069AD8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80069D04.s")
+void func_80069D04(s32 arg0, s32 arg1) {
+    if (D_8016E3CC != 0) {
+        return;
+    }
+    if (D_8017753C->Unk108 == 0) {
+        return;
+    }
+    func_80069AD8(arg0, arg1);
+    D_8016E3CC = 2;
+}
+
 
 void func_80069D88(s32 arg0, s32 arg1) {
     if (D_8016E3CC != 0) {
@@ -135,11 +166,37 @@ void func_80069D88(s32 arg0, s32 arg1) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80069E60.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80069E88.s")
+void func_80069E88(void) {
+    if (D_801778F4 == 0) {
+        return;
+    }
+    D_801778F4 -= 1;
+    if (D_801778F4 != 0) {
+        return;
+    }
+    func_80069D88(D_801778FC, D_80177904);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80069F0C.s")
+//looks like this is handling level loading in some way
+void func_80069F0C(s32 arg0) {
+    if(arg0 != 0)
+    {
+        gCurrentLevel = D_80106DA1[D_80134801 * 0x2A + D_80134802 * 0xE + D_80134803 * 2];
+    }
+    else
+    {
+        gCurrentLevel = D_80106DA0[D_80134801 * 0x2A + D_80134802 * 0xE + D_80134803 * 2];
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80069FD8.s")
+void func_80069FD8(void) {
+    struct LevelInfo* sp4;
+
+    sp4 = gLevelInfo[gCurrentLevel];
+    D_80134801 = sp4->Stage - 1;
+    D_80134802 = sp4->Area - 1;
+    D_80134803 = sp4->Map - 1;
+}
 
 s32 func_8006A054(void) {
     u8 sp7;

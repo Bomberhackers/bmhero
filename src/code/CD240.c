@@ -4697,7 +4697,64 @@ void func_800EEA50(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EEE30.s")
+void func_800EEE30(void) {
+    struct PlayerStruct* sp2C;
+    f32 sp28;
+    f32 sp24;
+    s32 sp20;
+
+    sp2C = &gPlayerData[D_80177A60];
+    sp20 = (s32) sp2C->unkE8[0];
+    if (sp2C->unk132 == 0) {
+        sp2C->unk132 = (u8) (sp2C->unk132 + 1);
+        sp2C->unkB2 = (s16) sp2C->unkA4;
+        func_8001C0EC(D_80177A60, 3, 1, 0x84, &D_80119578);
+        func_8001C0EC(sp20, 0, 1, 0x86, &D_80119654);
+        func_8001ABF4(D_80177A60, 0, 3, &D_801195D0.Rot.y);
+        func_8001ABF4(sp20, 1, 0, &D_801196AC.unk38);
+        if (sp2C->unkB0 == 0) {
+            func_80029EF8(D_80177A60, 0.0f, 3.0f);
+        }
+    }
+    sp2C->unk44 = 6.0f;
+    if (func_80028FA0(D_80177A60) != 0) {
+        func_80029B60(D_80177A60);
+    }
+    func_8002A8B4(D_80177A60, 4.0f);
+    func_80029C40(D_80177A60);
+    func_80029018(D_80177A60, 1, 90.0f, 0.0f, 0.0f, 0.0f);
+    if ((sp2C->unk132 == 1) && (sp2C->unkB0 == 0)) {
+        if (func_8002A0D0(D_80177A60, 0.0f, 0.0f, -360.0f) == 1) {
+            sp2C->unk132 = (u8) (sp2C->unk132 + 1);
+        }
+    } else {
+        if (func_800295C0(D_80177A60, &sp28, &sp24, 0.0f, 0.0f, 0.0f) != 0) {
+            sp2C->Pos.y = sp24;
+        } else {
+            sp2C->Pos.y = sp28;
+        }
+        sp2C->Pos.y = (f32) (sp2C->Pos.y + 360.0f);
+        gPlayerData[sp20].Pos.y = sp2C->Pos.y;
+        if (sp2C->unkB6 == 0) {
+            if (func_8002A2EC(D_80177A60, 180.0f) != 0) {
+                sp2C->unkB6 = 0xA;
+                sp2C->unkA4 = 4;
+                sp2C->unk132 = 0U;
+            }
+        } else {
+            sp2C->unkB6 = (s16) (sp2C->unkB6 - 1);
+        }
+    }
+    gPlayerData[sp20].Pos.x = sp2C->Pos.x + sp2C->Vel.x;
+    gPlayerData[sp20].Pos.y = sp2C->Pos.y + sp2C->Vel.y;
+    gPlayerData[sp20].Pos.z = sp2C->Pos.z + sp2C->Vel.z;
+    if (func_8002A2EC(D_80177A60, 840.0f) != 0) {
+
+    } else {
+        sp2C->unkA4 = 5;
+        sp2C->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EF250.s")
 

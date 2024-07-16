@@ -20,8 +20,8 @@ s32 func_8001D440();
 s32 func_8001EE64();
 
 // 1FAB0.c
-s32 func_8001F9DC();
-s32 func_8001FAD4();
+void func_8001F9DC();
+void func_8001FAD4();
 s32 func_80021158();
 
 // 25810.c

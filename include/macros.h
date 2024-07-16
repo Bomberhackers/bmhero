@@ -15,6 +15,8 @@
 
 #define SQ(x) (x * x)
 
+#define HW_REG(reg, type)   *(volatile type *)(reg | 0xa0000000)
+
 #ifndef __GNUC__
 #define __attribute__(x)
 #endif

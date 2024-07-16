@@ -1,5 +1,7 @@
 #include "common.h"
 
+//LEVEL LOADING RELATED FILE
+
 extern s8 D_80134801;
 extern s8 D_80134802;
 extern s8 D_80134803;
@@ -19,6 +21,9 @@ extern u8 D_80106DA1[];
 extern s32 D_801778F4;
 extern s32 D_801778FC;
 extern s32 D_80177904;
+
+extern s16 D_80177608;
+extern u8 D_801779E0;
 
 extern struct LevelInfo* gLevelInfo[];
 
@@ -262,4 +267,15 @@ void func_8006A388(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006AD28.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006AF18.s")
+void func_8006AF18(s16 arg0) {
+    if (D_801779E0 != 0) {
+        return;
+    }
+    D_80177608 += arg0;
+    if (D_80177608 <= 0) {
+        D_80177608 = 0;
+    }
+    else if (D_80177608 >= 0x270F) {
+        D_80177608 = 0x270F;
+    }
+}

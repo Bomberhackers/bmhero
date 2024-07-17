@@ -1,12 +1,19 @@
 #include "common.h"
 
 //LEVEL LOADING RELATED FILE
+//F6220 is rodata
+
+void func_80069AD8(s32, s32);                          /* extern */
+void func_8001A928(s32);                               /* extern */
+void func_800650F0();                                  /* extern */
+void func_80065C20();                                  /* extern */
+void func_800669E0();                                  /* extern */
+void func_80066AE8();                                  /* extern */
 
 extern s8 D_80134801;
 extern s8 D_80134802;
 extern s8 D_80134803;
 extern u8 D_80134808[];
-void func_80069AD8(s32, s32);                          /* extern */
 extern s8 D_8016E3CC;
 extern struct UnkStructSTCG* D_8017753C;
 extern s8 D_8013488C;
@@ -24,6 +31,18 @@ extern s32 D_80177904;
 
 extern s16 D_80177608;
 extern u8 D_801779E0;
+
+extern s8 D_8016E3CD;
+extern s8 D_8016E3D4;
+extern s16 D_8016E432;
+
+extern s8 D_8016E3CD;
+extern s16 D_801775F6;
+extern s16 D_801775FA;
+extern s16 D_80177608;
+extern s8 D_80177628;
+
+extern s8 D_80177640;
 
 extern struct LevelInfo* gLevelInfo[];
 
@@ -84,7 +103,18 @@ void func_80065AEC(f32 arg0, f32 arg1, f32 arg2, s32* arg3, s32* arg4, s32* arg5
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80066AE8.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006707C.s")
+void func_8006707C(void) {
+    s32 sp1C;
+
+    func_80066AE8();
+    for(sp1C = 0x4E; sp1C < 0x8E; sp1C++)
+    {
+        func_8001A928(sp1C);
+    }
+    func_80065C20();
+    func_800669E0();
+    func_800650F0();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_800670E8.s")
 
@@ -135,11 +165,19 @@ s32 func_800699B0(void) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80069A54.s")
+s32 func_80069A54(s8 arg0, s8 arg1) {
+    if (D_8016E3CC != 0) {
+        return 0;
+    }
+    D_8016E3CC = arg0;
+    D_8016E3CD = arg1;
+    return 1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80069A98.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80069AA8.s")
+void func_80069AA8(s8 arg0, s8 arg1) {
+    D_8016E3CC = arg0;
+    D_8016E3CD = arg1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80069AD8.s")
 
@@ -165,11 +203,17 @@ void func_80069D88(s32 arg0, s32 arg1) {
     func_80069AD8(arg0, arg1);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80069E00.s")
+void func_80069E00(s32 arg0, s32 arg1) {
+    func_80069AD8(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80069E38.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80069E60.s")
+void func_80069E60(s32 arg0, s32 arg1, s32 arg2) {
+    D_801778F4 = arg2;
+    D_801778FC = arg0;
+    D_80177904 = arg1;
+}
 
 void func_80069E88(void) {
     if (D_801778F4 == 0) {
@@ -224,7 +268,20 @@ s32 func_8006A0E4(void) {
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006A168.s")
+void func_8006A168(void) {
+    s32 sp1C;
+
+    if (D_8016E3D4 == 0) {
+        gCurrentLevel = (s32) D_8016E432;
+    } else {
+        sp1C = gCurrentLevel;
+        gCurrentLevel = (s32) D_8016E432;
+        func_80069FD8();
+        if (func_8006A054() != 0) {
+            gCurrentLevel = sp1C;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006A1F4.s")
 
@@ -253,13 +310,30 @@ void func_8006A388(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006A898.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006A95C.s")
+void func_8006A95C(void) {
+    if (D_80177628 == 0) {
+        return;
+    }
+    if ((D_80177608 == 0) || (D_801775FA == D_801775F6)) {
+        D_8016E3CC = 3;
+        D_8016E3CD = 1;
+        if (D_80177608 == 0) {
+            func_80070664(2);
+        } else {
+            func_80070664(3);
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006AA0C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006AA24.s")
-
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006AA50.s")
+s32 func_8006AA24(s32 arg0) {
+    if (D_80177640 == 0) {
+        D_80177640 = arg0;
+        return 1;
+    }
+    return 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006AA60.s")
 

@@ -6,7 +6,7 @@
 extern OSMesgQueue D_801776B0;
 extern OSMesg D_801776CC;
 extern u8 D_8016E27C;
-extern OSContStatus D_80177650;
+extern OSContStatus D_80177650[];
 
 typedef struct {
     s16 unk0;

@@ -347,35 +347,39 @@ void func_8001BD44(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001DEDC.s")
 
-void func_8001DFC8(void) {
-    s32 sp1C;
+/**
+ * Setup the mesg queue for the controllers and init them.
+ */
+void InitControllers(void) {
+    s32 status;
     u16 i;
 
-    D_8016E27C = 0;
-    osCreateMesgQueue(&D_801776B0, &D_801776CC, 1);
-    osSetEventMesg(5U, &D_801776B0, (void* )1);
-    sp1C = osContInit(&D_801776B0, &D_8016E27C, &D_80177650);
-    if (sp1C != 0) {
-
+    gControllerBits = 0;
+    osCreateMesgQueue(&gContMesgQueue, &D_801776CC, 1);
+    osSetEventMesg(5U, &gContMesgQueue, (void* )1);
+    status = osContInit(&gContMesgQueue, &gControllerBits, &D_80177650);
+    if (status != 0) {
+        // presumedly for handling if the controller had an error, but there's nothing here.
+        // missing assert?
     }
     for(i = 0; i < 4; i++) {
-        D_8016E300[i] = 0;
-        D_8016E320[i] = 0;
-        D_8016E310[i] = 0;
-        D_8016E330[i] = 0;
-        D_8016E33C[i] = 0;
-        D_8016E344[i] = 0;
-        D_8016E350[i] = 0;
-        D_8016E360[i] = 0;
-        D_8016E370[i] = 0;
-        D_8016E2A0[i] = 0;
-        D_8016E290[i] = 0;
-        D_8016E2B0[i] = 0;
-        D_8016E2BC[i] = 0;
-        D_8016E2C4[i] = 0;
-        D_8016E2D0[i] = 0;
-        D_8016E2E0[i] = 0;
-        D_8016E2F0[i] = 0;
+        gContRawPlugged[i] = 0;
+        gContRawLastButton[i] = 0;
+        gContRawCurrButton[i] = 0;
+        gContRawButtonPressed[i] = 0;
+        gContRawStickX[i] = 0;
+        gContRawStickY[i] = 0;
+        gContRawCurrDir[i] = 0;
+        gContRawLastDir[i] = 0;
+        gContRawDirPressed[i] = 0;
+        gContLastButton[i] = 0;
+        gContCurrButton[i] = 0;
+        gContButtonPressed[i] = 0;
+        gContStickX[i] = 0;
+        gContStickY[i] = 0;
+        gContCurrDir[i] = 0;
+        gContLastDir[i] = 0;
+        gContDirPressed[i] = 0;
     }
     func_8001DEDC(0);
     func_8001DC78();
@@ -383,86 +387,95 @@ void func_8001DFC8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001E1C0.s")
 
-void func_8001E208(void) {
+/**
+ * Perform the reading of the raw arrays front the OSContPad data itself. This will be later read into the buffers to be
+ * used during gameplay.
+ */
+void UpdateRawControllers(void) {
     OSContPad* pad;
     u16 dir;
     u16 i;
     s32 status;
 
     status = 1;
-    if (D_8016E27C & 1) {
-        status = osContStartReadData(&D_801776B0);
+    if (gControllerBits & 1) {
+        status = osContStartReadData(&gContMesgQueue);
         if (status == 0) {
-            osRecvMesg(&D_801776B0, NULL, 1);
-            osContGetReadData(D_80177668);
+            osRecvMesg(&gContMesgQueue, NULL, 1);
+            osContGetReadData(gContPads);
         }
     }
     for(i = 0; i < 4; i++) {
-        if ((D_8016E27C >> i) & 1) {
-            pad = &D_80177668[i];
+        if ((gControllerBits >> i) & 1) {
+            pad = &gContPads[i];
             // if any errors occurred or if no controllers are plugged in, treat the controller as if its not plugged in.
             if ((pad->errno != 0) || (status != 0)) {
-                D_8016E300[i] = 0;;
+                gContRawPlugged[i] = 0;;
             } else {
-                D_8016E300[i] = 1;
+                gContRawPlugged[i] = 1;
                 dir = 0;
-                D_8016E33C[i] = pad->stick_x;
-                D_8016E344[i] = pad->stick_y;
-                if (D_8016E33C[i] >= 0x32) {
+                gContRawStickX[i] = pad->stick_x;
+                gContRawStickY[i] = pad->stick_y;
+                if (gContRawStickX[i] >= 0x32) {
                     dir |= CONT_RIGHT;
-                } else if (D_8016E33C[i] < -0x31) {
+                } else if (gContRawStickX[i] < -0x31) {
                     dir |= CONT_LEFT;
                 }
-                if (D_8016E344[i] >= 0x32) {
+                if (gContRawStickY[i] >= 0x32) {
                     dir |= CONT_UP;
-                } else if (D_8016E344[i] < -0x31) {
+                } else if (gContRawStickY[i] < -0x31) {
                     dir |= CONT_DOWN;
                 }
                 if (D_8016525C != 0) {
-                    D_8016E310[i] = 0;
-                    D_8016E350[i] = 0;
+                    gContRawCurrButton[i] = 0;
+                    gContRawCurrDir[i] = 0;
                 } else if (D_80165284 == 1) {
-                    D_8016E320[i] = D_8016E310[i];
-                    D_8016E310[i] = pad->button;
-                    D_8016E360[i] = D_8016E350[i];
-                    D_8016E350[i] = dir;
+                    gContRawLastButton[i] = gContRawCurrButton[i];
+                    gContRawCurrButton[i] = pad->button;
+                    gContRawLastDir[i] = gContRawCurrDir[i];
+                    gContRawCurrDir[i] = dir;
                 } else {
-                    D_8016E310[i] |= pad->button;
-                    D_8016E350[i] |= dir;
+                    gContRawCurrButton[i] |= pad->button;
+                    gContRawCurrDir[i] |= dir;
                 }
             }
         }
     }
 }
 
-void func_8001E560(void) {
+/**
+ * Set the pressed arrays and copy them to their live buffers later.
+ */
+void UpdateControllers(void) {
     u16 i;
 
     for(i = 0; i < 4; i++) {
-        if (D_8016E300[i] != 0) {
-            D_8016E330[i] = (D_8016E310[i] ^ D_8016E320[i]) & D_8016E310[i];
-            D_8016E370[i] = (D_8016E350[i] ^ D_8016E360[i]) & D_8016E350[i];
-            D_8016E280[i] = D_8016E300[i];
-            D_8016E2A0[i] = D_8016E320[i];
-            D_8016E290[i] = D_8016E310[i];
-            D_8016E2B0[i] = D_8016E330[i];
-            D_8016E2BC[i] = D_8016E33C[i];
-            D_8016E2C4[i] = D_8016E344[i];
-            D_8016E2E0[i] = D_8016E360[i];
-            D_8016E2D0[i] = D_8016E350[i];
-            D_8016E2F0[i] = D_8016E370[i];
+        // Only update if plugged in and initialized.
+        if (gContRawPlugged[i] != 0) {
+            gContRawButtonPressed[i] = (gContRawCurrButton[i] ^ gContRawLastButton[i]) & gContRawCurrButton[i];
+            gContRawDirPressed[i] = (gContRawCurrDir[i] ^ gContRawLastDir[i]) & gContRawCurrDir[i];
+            gContPlugged[i] = gContRawPlugged[i];
+            gContLastButton[i] = gContRawLastButton[i];
+            gContCurrButton[i] = gContRawCurrButton[i];
+            gContButtonPressed[i] = gContRawButtonPressed[i];
+            gContStickX[i] = gContRawStickX[i];
+            gContStickY[i] = gContRawStickY[i];
+            gContLastDir[i] = gContRawLastDir[i];
+            gContCurrDir[i] = gContRawCurrDir[i];
+            gContDirPressed[i] = gContRawDirPressed[i];
         } else {
-            D_8016E330[i] = 0;
-            D_8016E370[i] = 0;
-            D_8016E280[i] = 0;
-            D_8016E2A0[i] = 0;
-            D_8016E290[i] = 0;
-            D_8016E2B0[i] = 0;
-            D_8016E2BC[i] = 0;
-            D_8016E2C4[i] = 0;
-            D_8016E2E0[i] = 0;
-            D_8016E2D0[i] = 0;
-            D_8016E2F0[i] = 0;
+            // We dont want lingering inputs, so clear the raw arrays.
+            gContRawButtonPressed[i] = 0;
+            gContRawDirPressed[i] = 0;
+            gContPlugged[i] = 0;
+            gContLastButton[i] = 0;
+            gContCurrButton[i] = 0;
+            gContButtonPressed[i] = 0;
+            gContStickX[i] = 0;
+            gContStickY[i] = 0;
+            gContLastDir[i] = 0;
+            gContCurrDir[i] = 0;
+            gContDirPressed[i] = 0;
         }
     }
 }
@@ -475,11 +488,11 @@ extern s32 D_8016E0B0;
 extern s32 D_8016E244;
 
 void func_8001E80C(void) {
-    func_8001E208();
+    UpdateRawControllers();
     func_8001DCEC();
     if (D_80165284 == 0) {
         func_8005F088();
-        func_8001E560();
+        UpdateControllers();
         if (D_8016E0B0 != 0) {
             if (D_80165274 != NULL) {
                 D_80165274();

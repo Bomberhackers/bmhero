@@ -59,7 +59,6 @@ extern s16 D_8016E3F4;
 extern s16 D_80134730;
 extern s16 D_80134734;
 extern s16 D_80134738[];
-extern u16 D_8016E290[];
 extern s32 gDebugCurrentMenuItem;
 extern s32 gDebugSelectedMusicIndex;
 extern s32 gDebugSelectedSoundIndex;
@@ -74,10 +73,7 @@ extern s16 D_80177944;
 extern s16 D_80177948;
 extern f32 D_801779C8;
 extern s32 D_80134218;
-extern u16 D_8016E2D0[];
-extern u16 D_8016E2F0[];
 extern s32 D_80134FD0;
-extern u16 D_8016E2B0[];
 extern struct LightingStruct gLightingSettings[];
 
 extern s16 D_80134C14;
@@ -113,26 +109,26 @@ extern u8 code_extra_0_ROM_START[];
 void func_800FDA10(void) {
     f32 sp4;
 
-    if (D_8016E290[0] & 2) {
+    if (gContCurrButton[0] & 2) {
         sp4 = (f32) ((f64) gView.rot.y + 2.0);
         gView.rot.y = sp4 - (f32) (((s32) sp4 / 360) * 360);
     }
-    if (D_8016E290[0] & 1) {
+    if (gContCurrButton[0] & 1) {
         sp4 = (f32) ((f64) gView.rot.y + 358.0);
         gView.rot.y = sp4 - (f32) (((s32) sp4 / 360) * 360);
     }
-    if (D_8016E290[0] & 8) {
+    if (gContCurrButton[0] & 8) {
         sp4 = (f32) ((f64) gView.rot.x + 2.0);
         gView.rot.x = sp4 - (f32) (((s32) sp4 / 360) * 360);
     }
-    if (D_8016E290[0] & 4) {
+    if (gContCurrButton[0] & 4) {
         sp4 = (f32) ((f64) gView.rot.x + 358.0);
         gView.rot.x = sp4 - (f32) (((s32) sp4 / 360) * 360);
     }
-    if (D_8016E290[0] & 0x400) {
+    if (gContCurrButton[0] & 0x400) {
         gView.dist += 10.0f;
     }
-    if (D_8016E290[0] & 0x800) {
+    if (gContCurrButton[0] & 0x800) {
         gView.dist -= 10.0f;
         if (gView.dist < 200.0f) {
             gView.dist = 200.0f;
@@ -182,39 +178,39 @@ s32 func_800FDF98(void) {
     }
     sp4 = 0;
     if (D_80134218 == 0) {
-        if (D_8016E2F0[0] & 0x100) {
+        if (gContDirPressed[0] & 0x100) {
             D_80134218 = 0xF;
             sp4 = 1;
         } else {
-            if (D_8016E2F0[0] & 0x200) {
+            if (gContDirPressed[0] & 0x200) {
                 D_80134218 = 0xF;
                 sp4 = -1;
             }
-            else if (D_8016E2F0[0] & 0x800) {
+            else if (gContDirPressed[0] & 0x800) {
                 D_80134218 = 0xF;
                 sp4 = 2;
             } 
-            else if (D_8016E2F0[0] & 0x400) {
+            else if (gContDirPressed[0] & 0x400) {
                 D_80134218 = 0xF;
                 sp4 = -2;
             }
         }
-    } else if (D_8016E2D0[0] & 0x100) {
+    } else if (gContCurrDir[0] & 0x100) {
         if (D_80134218 == 1) {
             sp4 = 1;
             D_80134218 = 2;
         }
-    } else if (D_8016E2D0[0] & 0x200) {
+    } else if (gContCurrDir[0] & 0x200) {
         if (D_80134218 == 1) {
             sp4 = -1;
             D_80134218 = 2;
         }
-    } else if (D_8016E2D0[0] & 0x800) {
+    } else if (gContCurrDir[0] & 0x800) {
         if (D_80134218 == 1) {
             sp4 = 2;
             D_80134218 = 2;
         }
-    } else if (D_8016E2D0[0] & 0x400) {
+    } else if (gContCurrDir[0] & 0x400) {
         if (D_80134218 == 1) {
             sp4 = -2;
             D_80134218 = 2;
@@ -231,7 +227,7 @@ void func_800FE204(void) {
     s32 sp34;
     s32 sp30;
 
-    if (D_8016E2B0[0] & 0x8000) {
+    if (gContButtonPressed[0] & 0x8000) {
         switch(gDebugCurrentMenuItem)
         {
             case 6:
@@ -592,12 +588,12 @@ void func_800FF7B4(void) {
 
 void func_800FF88C(void) {
 
-    if (*D_8016E2F0 & 0x800) {
+    if (gContDirPressed[0] & 0x800) {
         if (--D_8016E3F4 < 0) {
             D_8016E3F4 = 7;
         }
     }
-    if (*D_8016E2F0 & 0x400) {
+    if (gContDirPressed[0] & 0x400) {
         if (++D_8016E3F4 >= 8) {
             D_8016E3F4 = 0;
         }
@@ -605,12 +601,12 @@ void func_800FF88C(void) {
     switch (D_8016E3F4) {
         case 0:
             {
-                if (*D_8016E2F0 & 0x200) {
+                if (gContDirPressed[0] & 0x200) {
                     if (--gDebugShowTimerBar < 0) {
                         gDebugShowTimerBar = 1;
                     }
                 }
-                if (*D_8016E2F0 & 0x100) {
+                if (gContDirPressed[0] & 0x100) {
                     if (++gDebugShowTimerBar >= 2) {
                         gDebugShowTimerBar = 0;
                     }
@@ -619,12 +615,12 @@ void func_800FF88C(void) {
             }
         case 1:
             {
-                if (*D_8016E2F0 & 0x200) {
+                if (gContDirPressed[0] & 0x200) {
                     if (--gDebugDisplayMode < 0) {
                         gDebugDisplayMode = 2;
                     }
                 }
-                if (*D_8016E2F0 & 0x100) {
+                if (gContDirPressed[0] & 0x100) {
                     if (++gDebugDisplayMode >= 3) {
                         gDebugDisplayMode = 0;
                     }
@@ -654,12 +650,12 @@ void func_800FF88C(void) {
             }
         case 5:
             {
-                if (*D_8016E2F0 & 0x200) {
+                if (gContDirPressed[0] & 0x200) {
                     if (--gBombCount < 0) {
                         gBombCount = 3;
                     }
                 }
-                if (*D_8016E2F0 & 0x100) {
+                if (gContDirPressed[0] & 0x100) {
                     if (++gBombCount >= 4) {
                         gBombCount = 0;
                     }
@@ -668,12 +664,12 @@ void func_800FF88C(void) {
             }
         case 6:
             {
-                if (*D_8016E2F0 & 0x200) {
+                if (gContDirPressed[0] & 0x200) {
                     if (--gFireCount < 0) {
                         gFireCount = 3;
                     }
                 }
-                if (*D_8016E2F0 & 0x100) {
+                if (gContDirPressed[0] & 0x100) {
                     if (++gFireCount >= 4) {
                         gFireCount = 0;
                     }
@@ -682,12 +678,12 @@ void func_800FF88C(void) {
             }
         case 7:
             {
-                if (*D_8016E2F0 & 0x200) {
+                if (gContDirPressed[0] & 0x200) {
                     if ((--D_80177974) == 0xFF) {
                         D_80177974 = 0x1E;
                     }
                 }
-                if (*D_8016E2F0 & 0x100) {
+                if (gContDirPressed[0] & 0x100) {
                     if ((++D_80177974) >= 0x1F) {
                         D_80177974 = 0;
                     }

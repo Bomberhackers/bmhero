@@ -579,7 +579,7 @@ void func_8005DA00(void) {
 void func_8005DD80(void) {
     s32 sp24;
 
-    if ((D_8016E2B0[0] & 0x1000) && (func_8001D1D4() != -1) && (func_8001D1D4() != 1)) {
+    if ((gContButtonPressed[0] & 0x1000) && (func_8001D1D4() != -1) && (func_8001D1D4() != 1)) {
         D_801347E5 = 1;
         func_8001D244(0xFF, 0xFF, 0xFF, 0x10);
         func_8001D2C0();

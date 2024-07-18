@@ -3,9 +3,7 @@
 
 #include "ultra64.h"
 
-extern OSMesgQueue D_801776B0;
 extern OSMesg D_801776CC;
-extern u8 D_8016E27C;
 extern OSContStatus D_80177650[];
 
 typedef struct {
@@ -21,27 +19,27 @@ typedef struct {
 
 extern s32 D_8016525C;
 extern s32 D_80165284;
-extern u8 D_8016E27C;     // gControllerBits
-extern u16 D_8016E280[4];
-extern u16 D_8016E290[4];
-extern u16 D_8016E2A0[4];
-extern u16 D_8016E2B0[4];
-extern s8 D_8016E2BC[4];
-extern s8 D_8016E2C4[4];
-extern u16 D_8016E2D0[4];
-extern u16 D_8016E2E0[4];
-extern u16 D_8016E2F0[4];
-extern u16 D_8016E300[4]; // gContPlugged
-extern u16 D_8016E310[4]; // gContCurrButton
-extern u16 D_8016E320[4]; // gContLastButton
-extern u16 D_8016E330[4]; // gContButtonPressed
-extern s8 D_8016E33C[4];  // gContStickX
-extern s8 D_8016E344[4];  // gContStickY
-extern u16 D_8016E350[4]; // gContCurrDir
-extern u16 D_8016E360[4]; // gContLastDir
-extern u16 D_8016E370[4]; // gContDirPressed
-extern OSContPad D_80177668[4]; // gContPads
-extern OSMesgQueue D_801776B0; // gContMesgQueue
+extern u8 gControllerBits;
+extern u16 gContPlugged[4];
+extern u16 gContCurrButton[4];
+extern u16 gContLastButton[4];
+extern u16 gContButtonPressed[4];
+extern s8 gContStickX[4];
+extern s8 gContStickY[4];
+extern u16 gContCurrDir[4];
+extern u16 gContLastDir[4];
+extern u16 gContDirPressed[4];
+extern u16 gContRawPlugged[4];
+extern u16 gContRawCurrButton[4];
+extern u16 gContRawLastButton[4];
+extern u16 gContRawButtonPressed[4];
+extern s8 gContRawStickX[4];
+extern s8 gContRawStickY[4];
+extern u16 gContRawCurrDir[4];
+extern u16 gContRawLastDir[4];
+extern u16 gContRawDirPressed[4];
+extern OSContPad gContPads[4];
+extern OSMesgQueue gContMesgQueue;
 
 struct UnkInputStruct80001CF0 {
     u32 unk0;

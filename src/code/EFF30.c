@@ -106,9 +106,6 @@ extern struct LevelInfo *gLevelInfo[4];
 extern u8 unk_bin_0_2_ROM_START[];
 extern u8 code_extra_0_ROM_START[];
 
-extern u16* D_80134784[2];
-extern s16 D_80134738[];
-
 void func_800FDA10(void) {
     f32 sp4;
 
@@ -811,45 +808,4 @@ void func_80100260(void) {
     }
 }
 
-s32 func_801002BC(void) {
-    s16 sp6;
-    s16 sp4;
-
-    if(*D_8016E2B0 != 0) {
-        for (sp6 = 0; sp6 < 2; sp6++) {
-            if (!D_80134738[sp6]) {
-                if ((*D_8016E2B0 & D_80134784[sp6][D_80134734]) ==  D_80134784[sp6][D_80134734]) {
-                    if (D_80134784[sp6][D_80134734 + 1] == 1) {
-                        D_80134734 = 0;
-                        for (sp4 = 0; sp4 < 2; sp4++) {
-                            D_80134738[sp4] = 0;
-                        }
-                        return (sp6 + 2) & 0xFF;
-                    } else {                    
-                    D_80134730 = 0;
-                    }
-                } else {
-                    D_80134738[sp6] = 1;
-                }
-            }
-        }
-        for (sp6 = 0; sp6 < 2; sp6++) {
-            if (D_80134738[sp6] == 0) {
-                D_80134734 += 2;
-                return 1;
-            }      
-        }
-    } else {
-        if (D_80134730 < 0x1E) {
-            D_80134730 += 1;
-        } else {
-            D_80134734 = 0;
-            D_80134730 = 0;
-            for (sp6 = 0; sp6 < 2; sp6++) {
-                D_80134738[sp6] = 0;
-            }
-            return 0;            
-        }   
-    }
-    return 1;
-}
+#pragma GLOBAL_ASM("asm/nonmatchings/code/EFF30/func_801002BC.s")

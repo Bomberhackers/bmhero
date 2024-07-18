@@ -42,6 +42,7 @@ void func_800FFD30();                                  /* extern */
 void func_800FFF40();                                  /* extern */
 
 //RAM ADDRESSES
+extern u16* D_80134784[2];
 extern s8 D_80134334;
 extern s8 D_80134340;
 extern s8 D_8013435C;
@@ -808,4 +809,45 @@ void func_80100260(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/EFF30/func_801002BC.s")
+s32 func_801002BC(void) {
+    s16 sp6;
+    s16 sp4;
+
+    if(gContButtonPressed[0] != 0) {
+        for (sp6 = 0; sp6 < 2; sp6++) {
+            if (!D_80134738[sp6]) {
+                if ((gContButtonPressed[0] & D_80134784[sp6][D_80134734]) ==  D_80134784[sp6][D_80134734]) {
+                    if (D_80134784[sp6][D_80134734 + 1] == 1) {
+                        D_80134734 = 0;
+                        for (sp4 = 0; sp4 < 2; sp4++) {
+                            D_80134738[sp4] = 0;
+                        }
+                        return (sp6 + 2) & 0xFF;
+                    } else {                    
+                    D_80134730 = 0;
+                    }
+                } else {
+                    D_80134738[sp6] = 1;
+                }
+            }
+        }
+        for (sp6 = 0; sp6 < 2; sp6++) {
+            if (D_80134738[sp6] == 0) {
+                D_80134734 += 2;
+                return 1;
+            }      
+        }
+    } else {
+        if (D_80134730 < 0x1E) {
+            D_80134730 += 1;
+        } else {
+            D_80134734 = 0;
+            D_80134730 = 0;
+            for (sp6 = 0; sp6 < 2; sp6++) {
+                D_80134738[sp6] = 0;
+            }
+            return 0;            
+        }   
+    }
+    return 1;
+}

@@ -180,11 +180,13 @@ struct LightingStruct
 
 struct LevelInfo
 {
-    s8 Stage;
-    s8 Area;
-    s8 Map;
-    s8 Clear;
-    char Padding1[0x1C];
+    s8 Stage; //00
+    s8 Area; //01
+    s8 Map; //02
+    s8 Clear; //03
+    char Padding1[0x4];
+    u8* Unk8;
+    char Padding2[0x17];
     struct LightingStruct* LightingInfo;
 };
 

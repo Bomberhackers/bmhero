@@ -3,11 +3,6 @@
 
 //STRUCTS
 
-struct UnkStruct80177778 {
-    char filler0[0x18];
-    s16 unk18;
-};
-
 //FUNCTIONS
 extern void func_80000964();                                  /* extern */
 extern void func_80019C84();                                  /* extern */
@@ -536,7 +531,7 @@ void func_800FEFA0(void) {
     sprintf(&gDebugTextBuf, "(%d %d %d) R=%d GB=%d", sp54, (s32) D_8017753C->Unk4, sp50, (s32) (u8) D_8016E414, (s32) (u16) D_8016E41C);
     debug_print_xy((s8* )0x20, (s8* )0x20);
     func_80065AEC(gPlayerData[0].Pos.x, gPlayerData[0].Pos.y, gPlayerData[0].Pos.z, &sp40, &sp3C, &sp38);
-    sp44 = (D_80177778->unk18 * sp38) + sp40;
+    sp44 = (D_801776F0.Unk88->unk18 * sp38) + sp40;
     sprintf(&gDebugTextBuf, "[MAP INDEX=%d FLOOR=%d]", sp44, sp3C + 1);
     debug_print_xy((s8* )0x20, (s8* )0x30);
     sprintf(&gDebugTextBuf, "STAGE=%d AREA=%d MAP=%d CLEAR=%d (%02X)", gLevelInfo[(gCurrentLevel)]->Stage, 

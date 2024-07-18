@@ -53,8 +53,9 @@ extern s32 D_80113A0C;
 extern s32 D_80117AA0;
 extern UnkStruct80165100 *D_80165100;
 extern u8 D_801776E0;
-extern s32 D_80177740[];
 extern s32 D_8016519C;
+
+extern struct gMegaStructSceneData D_801776F0;
 
 // File variables
 extern UNK_TYPE D_80177A60;
@@ -564,7 +565,7 @@ void func_800B6D40(void) {
         sp2C->unk48 = 0.0f;
         sp2C->unkA4 = 2;
         sp2C->unk132 = 0;
-        if (D_80177740[D_801776E0 & 1] == 0xF5) {
+        if (D_801776F0.Unk50[D_801776E0 & 1] == 0xF5) {
             sp2C->unkA4 = 7;
             sp2C->unk132 = 0;
         }
@@ -1277,7 +1278,7 @@ void func_800B969C(void) {
         if (sp34->unkAC <= 0) {
             sp34->unkAC = 3;
         }
-        if (D_80177740[D_801776E0 & 1] == 0xF5) {
+        if (D_801776F0.Unk50[D_801776E0 & 1] == 0xF5) {
             sp34->unkA4 = 5;
             sp34->unk132 = 0;
         }
@@ -2621,7 +2622,7 @@ void func_800BEDB0(void) {
     if (sp2E == 1) {
         sp34->unkA4 = 3;
         sp34->unk132 = 0;
-        if (D_80177740[D_801776E0 & 1] == 0xF5) {
+        if (D_801776F0.Unk50[D_801776E0 & 1] == 0xF5) {
             sp34->unkA4 = 5;
             sp34->unk132 = 0;
         }

@@ -111,6 +111,52 @@ struct UnkInputStruct80010B6C {
     f32 unk8;
 };
 
+struct UnkInputStruct80010B6C_2 {
+    struct UnkStruct8004A3A0 unk0[3];
+};
+
+struct UnkInputStruct80010C88 {
+    u32 *unk0;
+    char filler4[0x4];
+    struct UnkInputStruct80010C88 **unk8;
+    s32 unkC;
+    u32 unk10[1]; // unk size
+    char filler14[0x4];
+    struct UnkInputStruct80010B6C_2 unk18[1];
+};
+
+struct UnkInputStruct80011084_Inner {
+    u8 filler0[0x14];
+    f32 unk14[3];
+};
+
+struct UnkInputStruct80011084 {
+    struct UnkInputStruct80011084_Inner *unk0;
+    u8 filler4[0x4];
+    u32 *unk8;
+    s32 unkC;
+    u32 unk10;
+    u32 unk14;
+    f32 unk18[3];
+    u8 filler24[0x18];
+    f32 unk3C[3];
+};
+
+struct UnkStruct800111D4_Inner {
+    u32 unk0[3];
+    struct UnkStruct800111D4_Inner *unkC;
+    u8 filler10[0x4];
+    f32 unk14[3];
+    f32 unk20[3];
+    f32 unk2C[3];
+};
+
+struct UnkStruct800111D4 {
+    u8 filler0[0x24];
+    u32 unk24;
+    struct UnkStruct800111D4_Inner *unk28;
+};
+
 // extern functions
 extern void* malloc(s32 size);
 extern void free(void*);
@@ -356,20 +402,6 @@ void func_80010C14(f32* arg0, f32* arg1, f32* arg2, f32 arg3) {
     arg0[2] = (f32) (((arg1[2] - arg2[2]) * arg3) + arg0[2]);
 }
 
-struct UnkInputStruct80010B6C_2 {
-    struct UnkStruct8004A3A0 unk0[3];
-};
-
-struct UnkInputStruct80010C88 {
-    u32 *unk0;
-    char filler4[0x4];
-    struct UnkInputStruct80010C88 **unk8;
-    s32 unkC;
-    u32 unk10[1]; // unk size
-    char filler14[0x4];
-    struct UnkInputStruct80010B6C_2 unk18[1];
-};
-
 void func_80010C88(struct UnkInputStruct80010C88* arg0, s32 arg1) {
     s32 sp24;
     struct UnkStruct80055D50* sp20;
@@ -421,9 +453,52 @@ void func_80010E0C(struct UnkInputStruct80010C88* arg0, s32 arg1, s32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_80011084.s")
+void func_80011084(struct UnkInputStruct80011084* arg0, f32 arg1) {
+    s32 sp24;
+    f32* sp20;
+    f32* sp1C;
+    f32* sp18;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_800111D4.s")
+    if (arg0 == NULL) {
+        return;
+    }
+    if ((arg0->unk14 | arg0->unk10) != 0) {
+        sp20 = arg0->unk18;
+        sp1C = arg0->unk3C;
+        sp18 = arg0->unk0->unk14;
+        func_80010A5C(sp20, sp1C, sp18, arg1);
+        func_80010B6C((struct UnkInputStruct80010B6C* ) (sp20 + 0x3), (struct UnkInputStruct80010B6C* ) (sp1C + 0x3), (struct UnkInputStruct80010B6C* ) (sp18 + 0x3), arg1);
+        func_80010A5C(sp20 + 0x6, sp1C + 0x6, sp18 + 0x6, arg1);
+    }
+    for(sp24 = 0; sp24 < arg0->unkC; sp24++) {
+        func_80011084(arg0->unk8[sp24], arg1);
+    }
+}
+
+void func_800111D4(struct UnkStruct800111D4* arg0, s32 arg1, f32 arg2) {
+    s32 sp3C;
+    s32 sp38;
+    s32 sp34;
+    struct UnkStruct800111D4_Inner *sp30;
+    s32 unused[3];
+    struct UnkInputStruct80010634_SP20* sp20;
+    struct UnkInputStruct80010634_SP20* sp1C;
+
+    sp20 = D_80055D54[arg1].unk4;
+    sp34 = D_80055D54[arg1].unk8;
+
+    for(sp3C = 0; sp3C < sp34; sp3C++) {
+        sp1C = &sp20[sp3C];
+        sp30 = arg0->unk28;
+
+        for(sp38 = 1; sp38 < sp1C->unk4; sp38++) {
+            sp30 = sp30->unkC->unk0[sp1C->unk0[sp38]];
+        }
+        func_80010C14(&sp30->unk14, &sp20[sp3C].unk8.unk0,  &D_80055D50[sp30->unk0[1]].unk4[0].unk0, arg2);
+        func_80010C14(&sp30->unk20, &sp20[sp3C].unk14.unk0, &D_80055D50[sp30->unk0[1]].unk4[1].unk0, arg2);
+        func_80010C14(&sp30->unk2C, &sp20[sp3C].unk20.unk0, &D_80055D50[sp30->unk0[1]].unk4[2].unk0, arg2);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_80011424.s")
 

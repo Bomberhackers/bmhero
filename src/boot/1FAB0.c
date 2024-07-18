@@ -72,8 +72,6 @@ extern struct UnkStruct_8001EFD0 D_80056EA4[];
 extern OSPfsState D_80057040[];
 extern s8 D_80057440;
 extern s8 D_80057441;
-extern u16 D_8016E2B0[];
-extern u16 D_8016E2F0[];
 
 extern void* D_8016526C;
 extern void* D_80165274;
@@ -99,14 +97,14 @@ int func_8001EEB0(void) {
 void func_8001EED8(void) {
     u8 sp1F;
 
-    osContStartQuery(&D_801776B0);
-    osRecvMesg(&D_801776B0, NULL, 1);
+    osContStartQuery(&gContMesgQueue);
+    osRecvMesg(&gContMesgQueue, NULL, 1);
     osContGetQuery(D_80177650);
     for (sp1F = 0; sp1F < 4; sp1F++) {
         if ((D_80177650[sp1F].type & 4) && (D_80177650[sp1F].type & 1) && (D_80177650[sp1F].errno == 0)) {
-            D_8016E27C |= 1 << sp1F;
+            gControllerBits |= 1 << sp1F;
         } else {
-            D_8016E27C &= ~(1 << sp1F);
+            gControllerBits &= ~(1 << sp1F);
         }
     }
 }
@@ -129,9 +127,9 @@ void func_8001F088(struct UnkStruct_8001EFD0* arg0) {
 
     for (sp1C = 0; sp1C < 4; sp1C++) {
         func_8001EFD0(arg0, sp1C);
-        if ((D_8016E27C >> sp1C) & 1) {
+        if ((gControllerBits >> sp1C) & 1) {
             if ((D_80177650[sp1C].type & CONT_JOYPORT) && (D_80177650[sp1C].type & CONT_ABSOLUTE)) {
-                sp18 = osPfsInitPak(&D_801776B0, (OSPfs*)&arg0[sp1C], sp1C);
+                sp18 = osPfsInitPak(&gContMesgQueue, (OSPfs*)&arg0[sp1C], sp1C);
                 arg0[sp1C].unk74 = sp18;
             }
         }
@@ -146,9 +144,9 @@ void func_8001F088(struct UnkStruct_8001EFD0* arg0) {
 void func_8001F174(struct UnkStruct_8001EFD0* arg0, s32 arg1) {
     s32 sp18;
     
-    if (((s32) D_8016E27C >> arg1) & 1) {
+    if (((s32) gControllerBits >> arg1) & 1) {
         if ((D_80177650[arg1].type & CONT_JOYPORT) && ( D_80177650[arg1].type & CONT_ABSOLUTE)) {
-            sp18 = osPfsInitPak(&D_801776B0, (OSPfs*)arg0[arg1].unk0, arg1);
+            sp18 = osPfsInitPak(&gContMesgQueue, (OSPfs*)arg0[arg1].unk0, arg1);
             arg0 [arg1].unk74 = sp18;
         }
     }
@@ -163,7 +161,7 @@ void func_8001F238(struct UnkStruct_8001EFD0* arg0) {
     u8 sp1F;
 
     func_8001EED8();
-    osPfsIsPlug(&D_801776B0, &sp1F);
+    osPfsIsPlug(&gContMesgQueue, &sp1F);
     for (sp24 = 0; sp24 < 4; sp24++) {
         if (((s32) sp1F >> sp24) & 1) {
             sp20 = 0;
@@ -257,7 +255,7 @@ s32 func_8001F8A0(void) {
     sp1C = osMotorStart(&D_80056D90);;
     if (sp1C != 0) {
         D_80056DF8 = 2; 
-        osMotorInit(&D_801776B0, &D_80056D90, 0);
+        osMotorInit(&gContMesgQueue, &D_80056D90, 0);
     }
 }
 
@@ -275,7 +273,7 @@ s32 func_8001F938(void) {
     sp1C = osMotorStop(&D_80056D90);;
     if (sp1C != 0) {
         D_80056DF8 = 2;
-        osMotorInit(&D_801776B0, &D_80056D90, 0);
+        osMotorInit(&gContMesgQueue, &D_80056D90, 0);
         osMotorStop(&D_80056D90);
     }
 }
@@ -286,7 +284,7 @@ void func_8001F9DC(void) {
     }
     if (func_8001EEB0() != 0) {
         D_80056DF8 = 1;
-    } else if (osMotorInit(&D_801776B0, &D_80056D90, 0) != 0) {
+    } else if (osMotorInit(&gContMesgQueue, &D_80056D90, 0) != 0) {
         D_80056DF8 = 1;
     } else {
         D_80056DF8 = 0;
@@ -448,7 +446,7 @@ void func_8001FF80(void) {
 void func_800200D8(void) {
     s32 sp24;
 
-    if (*D_8016E2B0 & 0x8000) {
+    if (gContButtonPressed[0] & 0x8000) {
         sp24 = 0;
         if (D_80056E98[sp24].unk0 == 0) {
             func_8001F174(D_80056E28, sp24);
@@ -471,7 +469,7 @@ void func_8002021C(void) {
     s32 sp24;
     s32 sp20;
 
-    if (*D_8016E2B0 & 0x8000) {
+    if (gContButtonPressed[0] & 0x8000) {
         sp24 = 0;
         for (sp20 = 0; sp20 < 0x20; sp20++) {
             D_80057240[sp20] = 0;
@@ -493,31 +491,29 @@ void func_8002021C(void) {
 
 
 void func_80020360(void) {
-    if ((D_8016E2B0[0] & 0x8000) && (Eeprom_Write(&D_801776B0, &D_8004A610, 0, 0x200) != 0)) {
+    if ((gContButtonPressed[0] & 0x8000) && (Eeprom_Write(&gContMesgQueue, &D_8004A610, 0, 0x200) != 0)) {
 
     }
 }
 
 void func_800203C0(void) {
-    if ((D_8016E2B0[0] & 0x8000) && (Eeprom_Read(&D_801776B0, D_80057240, 0, 0x200) != 0)) {
+    if ((gContButtonPressed[0] & 0x8000) && (Eeprom_Read(&gContMesgQueue, D_80057240, 0, 0x200) != 0)) {
     }
 }
 
 void func_80020420(void) {
     s32 sp1C;
 
-    if (D_8016E2F0[0] & 0x800) {
-       
+    if (gContDirPressed[0] & 0x800) {
         if ((D_80057440--, D_80057440) < 0) {
             D_80057440 = 0xF;
         }
-    } else if (D_8016E2F0[0] & 0x400) {
-
+    } else if (gContDirPressed[0] & 0x400) {
         if ((D_80057440++, D_80057440) >= 0x10) {
             D_80057440 = 0;
         }
     }
-    if (D_8016E2B0[0] & 0x8000) {
+    if (gContButtonPressed[0] & 0x8000) {
         sp1C = 0;
         func_8001F728(D_80056E28, sp1C, D_80057040 + (D_80057440));
         func_8001F328(D_80056E28, sp1C, D_80057440, D_80057040 + (D_80057440));
@@ -529,7 +525,7 @@ void func_80020550(void) {
     UNUSED s32 pad;
     s32 sp24;
 
-    if (D_8016E2B0[0] & 0x1000) {
+    if (gContButtonPressed[0] & 0x1000) {
         func_8001D2C0();
     }
     if (func_8001D1D4() == 1) {
@@ -538,7 +534,7 @@ void func_80020550(void) {
     if (func_8001D1D4() == 2) {
         D_80165264 = 1;
     }
-    if (D_8016E2B0[0] & 0x20) {
+    if (gContButtonPressed[0] & 0x20) {
         if (D_80057441 == 0) {
             D_80057441 = 1;
             D_80057440 = 0;
@@ -553,11 +549,11 @@ void func_80020550(void) {
         }
     }
     if (D_80057441 == 0) {
-        if (D_8016E2F0[0] & 0x800) {
+        if (gContDirPressed[0] & 0x800) {
             if ((D_80057440--, D_80057440) < 0) {
                 D_80057440 = 3;
             }
-        } else if (D_8016E2F0[0] & 0x400) {
+        } else if (gContDirPressed[0] & 0x400) {
          
             if ((D_80057440++, D_80057440) >= 4) {
                 D_80057440 = 0;
@@ -646,7 +642,7 @@ void func_80020844(void) {
 void func_80020C44(void) {
     UNUSED char pad[0x8];
 
-    if (D_8016E2B0[0] & 0x1000) {
+    if (gContButtonPressed[0] & 0x1000) {
         func_8001D2C0();
     }
     if (func_8001D1D4() == 1) {
@@ -655,11 +651,11 @@ void func_80020C44(void) {
     if (func_8001D1D4() == 2) {
         D_80165264 = 1;
     }
-    if (D_8016E2F0[0] & 0x800) {
+    if (gContDirPressed[0] & 0x800) {
         if ((D_8004A63C--, D_8004A63C) < 0) {
             D_8004A63C = 2;
         }
-    } else if (D_8016E2F0[0] & 0x400) {
+    } else if (gContDirPressed[0] & 0x400) {
 
         if ((D_8004A63C++, D_8004A63C) >= 3) {
             D_8004A63C = 0;
@@ -667,28 +663,28 @@ void func_80020C44(void) {
     }
     switch (D_8004A63C) {                           /* irregular */
     case 0:
-        if (D_8016E2F0[0] & 0x200) {
+        if (gContDirPressed[0] & 0x200) {
             D_8004A630 -= 1;
-        } else if (D_8016E2F0[0] & 0x100) {
+        } else if (gContDirPressed[0] & 0x100) {
             D_8004A630 += 1;
         }
         break;
     case 1:
-        if (D_8016E2F0[0] & 0x200) {
+        if (gContDirPressed[0] & 0x200) {
             D_8004A634 -= 1;
-        } else if (D_8016E2F0[0] & 0x100) {
+        } else if (gContDirPressed[0] & 0x100) {
             D_8004A634 += 1;
         }
         break;
     case 2:
-        if (D_8016E2F0[0] & 0x200) {
+        if (gContDirPressed[0] & 0x200) {
             D_8004A638 -= 1;
-        } else if (D_8016E2F0[0] & 0x100) {
+        } else if (gContDirPressed[0] & 0x100) {
             D_8004A638 += 1;
         }
         break;
     }
-    if (D_8016E2B0[0] & 0x8000) {
+    if (gContButtonPressed[0] & 0x8000) {
         func_8001FB3C(D_8004A630, D_8004A634, D_8004A638);
     }
     func_8001FBAC();

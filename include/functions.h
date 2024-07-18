@@ -12,7 +12,7 @@ s32 func_80016E84();
 void PlayTrack_WithVolLoop(s16 trackID, s8 vol, s8 loop);
 void func_80017FD8(char* str);
 s32 func_8001D9E4(void*);
-void func_8001DFC8();
+void InitControllers();
 void func_8001E80C(void);
 s32 func_8001ECA0();
 s32 func_8001D1F4();
@@ -35,7 +35,7 @@ s32 func_8002F738();
 // 4DFF0.c
 void Demo_RenderTextBG(void);
 void Demo_SetupTextPal(void);
-void func_8005E230(s32);
+void Demo_Start(s32);
 
 // 71AA0.c
 s32 func_80083180(s32);

@@ -426,7 +426,7 @@ void thread6_func(void* arg) {
     func_800007F4();
     load_game_section();
     func_8001D440();
-    func_8001DFC8();
+    InitControllers();
     
     // might be special code that runs if on PAL only.
     if (D_8004A280 != 0) {
@@ -490,7 +490,7 @@ void thread6_func(void* arg) {
                 func_8002F738();
                 break;
             case 8:
-                func_8005E230(gDebugSelectedDemoIndex);
+                Demo_Start(gDebugSelectedDemoIndex);
                 break;
             case 9:
                 func_80021158();

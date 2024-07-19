@@ -110,6 +110,12 @@ extern s16 D_801651A0;
 extern struct UnkStruct_80026548 D_80124D94[];
 extern struct UnkStruct_80026548 D_80124DA4[];
 extern struct UnkStruct_80026548 D_80124DC0[];
+extern s32 D_801776F0[];
+extern s32 D_80177700[];
+extern s32 D_80177710[];
+extern s32 D_80177720[];
+extern s32 D_80177730[];
+extern f32 D_80177760[];
 extern s8 D_8013488C;
 extern s8 D_80177630;
 extern u8 D_801776E0;
@@ -982,7 +988,6 @@ s32 func_800293B8(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f3
     return sp1C;
 }
 
-#ifdef NONMATCHING
 s32 func_800294F0(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) {
     struct PlayerStruct *sp1C;
 
@@ -992,11 +997,7 @@ s32 func_800294F0(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) 
     *arg2 = D_80177760[1];
     return D_801776E0 & 1;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/26CE0/func_800294F0.s")
-#endif
 
-#ifdef NONMATCHING
 s32 func_800295C0(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) {
     struct PlayerStruct *sp1C;
 
@@ -1007,9 +1008,6 @@ s32 func_800295C0(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) 
     *arg2 = D_80177760[1];
     return D_801776E0 & 1;
 }
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/26CE0/func_800295C0.s")
-#endif
 
 s32 func_800296AC(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
     struct PlayerStruct *sp2C;

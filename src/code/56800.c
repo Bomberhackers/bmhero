@@ -1,5 +1,4 @@
 #include "common.h"
-#include "variables.h"
 
 //LEVEL LOADING RELATED FILE
 //F6220 is rodata
@@ -49,8 +48,6 @@ extern s8 D_80177628;
 extern s8 D_80177640;
 extern s32 D_80177778;
 
-extern f64 D_80104F90;
-
 extern struct LevelInfo* gLevelInfo[];
 
 void func_800250A0(s8);
@@ -90,14 +87,14 @@ s32 func_80064358(s32 arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_800657E8.s")
 
-struct UnkStruct80177778* func_80065ACC(void) {
-    return D_801776F0.Unk88;
+s32 func_80065ACC(void) {
+    return D_80177778;
 }
 
 void func_80065AEC(f32 arg0, f32 arg1, f32 arg2, s32* arg3, s32* arg4, s32* arg5) {
-    *arg3 = (s32) (((arg0 - (f32) D_801776F0.unk98) / 60.0f) / 16.0f);
-    *arg4 = (s32) (((arg1 - (f32) D_801776F0.unkA8) / 60.0f) / 16.0f);
-    *arg5 = (s32) (((arg2 - (f32) D_801776F0.unkB8) / 60.0f) / 16.0f);
+    *arg3 = (s32) (((arg0 - (f32) D_80177788) / 60.0f) / 16.0f);
+    *arg4 = (s32) (((arg1 - (f32) D_80177798) / 60.0f) / 16.0f);
+    *arg5 = (s32) (((arg2 - (f32) D_801777A8) / 60.0f) / 16.0f);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80065C20.s")
@@ -300,24 +297,9 @@ void func_8006A168(void) {
     }
 }
 
-u32 func_8006A1F4(u32 arg0) {
+#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006A1F4.s")
 
-    if(gLevelInfo[arg0]->Clear != 0)
-    {
-        arg0 = D_8016E432;
-    }
-    else
-    {
-        while(1) {
-            arg0 = *gLevelInfo[arg0]->Unk8;
-            if (gLevelInfo[arg0]->Clear != 0)
-                break;
-        } 
-        arg0 = *gLevelInfo[arg0]->Unk8;
-    }
-
-    return arg0;
-}
+#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006A2AC.s")
 
 void func_8006A2BC(void) {
     u8 sp1F;
@@ -369,12 +351,7 @@ s32 func_8006AA24(s32 arg0) {
     return 0;
 }
 
-//rodata will go brr here
-void func_8006AA60(s32* arg0, s32* arg1, s32* arg2) {
-    *arg0 = (s16) D_80177608 / 1800;
-    *arg1 = (s32) ((s16) D_80177608 % 1800) / 30;
-    *arg2 = (s32) ((f64) ((s16) D_80177608 % 30) * D_80104F90);
-}
+#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006AA60.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006AB14.s")
 

@@ -423,40 +423,4 @@ struct UnkStruct80165290 {
 extern struct UnkStruct80165290 D_80165290[256];
 extern u32 *D_8016E3AC;
 
-extern struct gMegaStructSceneData D_801776F0;
-
-struct UnkStruct80177778 {
-    char filler0[0x18];
-    s16 unk18;
-};
-
-struct gMegaStructSceneData {
-    /* 0x000 */ s32 Unk00;
-    /* 0x004 */ char pad4[0xC];                     /* maybe part of Unk00[4]? */
-    /* 0x010 */ s32 Unk10;
-    /* 0x014 */ char pad14[0xC];                    /* maybe part of Unk10[4]? */
-    /* 0x020 */ s32 Unk20;
-    /* 0x024 */ char pad24[0xC];                    /* maybe part of Unk20[4]? */
-    /* 0x030 */ s32 Unk30;
-    /* 0x034 */ char pad34[0xC];                    /* maybe part of Unk30[4]? */
-    /* 0x040 */ s32 Unk40;
-    /* 0x044 */ char pad44[0xC];                    /* maybe part of Unk40[4]? */
-    /* 0x050 */ s32* Unk50;
-    /* 0x054 */ char pad54[0xC];                    /* maybe part of Unk50[4]? */
-    /* 0x060 */ s32 Unk60;
-    /* 0x064 */ char pad64[0xC];                    /* maybe part of Unk60[4]? */
-    /* 0x070 */ f32 Unk70;
-    /* 0x074 */ char pad74[0xC];                    /* maybe part of Unk70[4]? */
-    /* 0x080 */ s32 Unk80;
-    /* 0x084 */ char pad84[4];
-    /* 0x088 */ struct UnkStruct80177778* Unk88;
-    /* 0x08C */ char pad8C[0xC];                    /* maybe part of Unk88[4]? */
-    /* 0x098 */ s16 unk98;                          /* inferred */
-    /* 0x09A */ char pad9A[0xE];                    /* maybe part of unk98[8]? */
-    /* 0x0A8 */ s16 unkA8;                          /* inferred */
-    /* 0x0AA */ char padAA[0xE];                    /* maybe part of unkA8[8]? */
-    /* 0x0B8 */ s16 unkB8;                          /* inferred */
-    /* 0x0BA */ char padBA[0x146];                  /* maybe part of unkB8[0xA6]? */
-};                                                  /* size = 0x200 */
-
 #endif // _VARIABLES_H_

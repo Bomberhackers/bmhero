@@ -73,9 +73,7 @@ extern OSPfsState D_80057040[];
 extern s8 D_80057440;
 extern s8 D_80057441;
 
-extern void* D_8016526C;
 extern void* D_80165274;
-extern Mtx* D_8016E104;
 extern s32 D_8016E3A4;
 
 // File functions
@@ -594,7 +592,7 @@ void func_80020844(void) {
     func_8001D638(1, 64, 64, 0);
     guPerspective(D_8016E104, &sp4E, 50.0f, 1.3333334f, 100.0f, 4000.0f, 1.0f);
     gSPPerspNormalize(gMasterDisplayList++, sp4E);
-    guLookAt(D_8016E104 + 2, gView.eye.x, gView.eye.y, gView.eye.z, gView.at.x, gView.at.y, gView.at.z, gView.up.x, gView.up.y, gView.up.z);
+    guLookAt(&D_8016E104->unk00[2], gView.eye.x, gView.eye.y, gView.eye.z, gView.at.x, gView.at.y, gView.at.z, gView.up.x, gView.up.y, gView.up.z);
     gSPMatrix(gMasterDisplayList++, D_8016E104, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
 
     D_8016E3A4 = 0;
@@ -701,7 +699,7 @@ void* func_80020F18(void) {
     guPerspective(D_8016E104, &sp46, 50.0f, 1.3333334f, 100.0f, 4000.0f, 1.0f);
     gSPPerspNormalize(gMasterDisplayList++, sp46);
 
-    guLookAt(D_8016E104 + 0x2, gView.eye.x, gView.eye.y, gView.eye.z, gView.at.x, gView.at.y, gView.at.z, gView.up.x, gView.up.y, gView.up.z);
+    guLookAt(&D_8016E104->unk00[2], gView.eye.x, gView.eye.y, gView.eye.z, gView.at.x, gView.at.y, gView.at.z, gView.up.x, gView.up.y, gView.up.z);
     gSPMatrix(gMasterDisplayList++, D_8016E104, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
 
     D_8016E3A4 = 0;

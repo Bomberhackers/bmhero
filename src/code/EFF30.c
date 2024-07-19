@@ -65,7 +65,6 @@ extern s32 gDebugSelectedMusicIndex;
 extern s32 gDebugSelectedSoundIndex;
 
 extern s32 D_8016E244;
-extern u16 D_8016E384;
 extern s32 D_801765F4;
 extern u8 D_8017793A;
 extern u8 D_8017793E;
@@ -79,16 +78,13 @@ extern struct LightingStruct gLightingSettings[];
 
 extern s16 D_80134C14;
 
-extern u16 D_8016E3A0;
 extern u8 D_80177932;
 extern u8 D_80177934;
 extern u8 D_80177938;
 
-extern Mtx* D_8016E104;
 extern s32 D_8016E3A4;
 extern Gfx* gMasterDisplayList;
 
-extern void* D_8016526C;
 extern void* D_80165274;
 
 extern u8 D_801651A8;
@@ -373,7 +369,7 @@ void func_800FE6D8(void) {
     func_8001D638(1, 0x40, 0x40, 0);
     guPerspective(D_8016E104, &sp3E, 50.0f, 1.3333334f, 100.0f, 4000.0f, 1.0f);
     gSPPerspNormalize(gMasterDisplayList++, (s32) sp3E);
-    guLookAt(D_8016E104 + 2, gView.eye.x, gView.eye.y, gView.eye.z, gView.at.x, gView.at.y, gView.at.z, gView.up.x, gView.up.y, gView.up.z);
+    guLookAt(&D_8016E104->unk00[2], gView.eye.x, gView.eye.y, gView.eye.z, gView.at.x, gView.at.y, gView.at.z, gView.up.x, gView.up.y, gView.up.z);
     gSPMatrix(gMasterDisplayList++, D_8016E104, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
     D_8016E3A4 = 0;
     func_800FDD48();
@@ -630,21 +626,21 @@ void func_800FF88C(void) {
             }
         case 2:
             {
-                if ((D_8016E3A0 & 0x200) || (D_8016E3A0 & 0x100)) {
+                if ((gActiveContDirPressed & 0x200) || (gActiveContDirPressed & 0x100)) {
                     gDebugInvincibileFlag ^= 1;
                 }
                 break;                
             }
         case 3:
             {
-                if ((D_8016E3A0 & 0x200) || (D_8016E3A0 & 0x100)) {
+                if ((gActiveContDirPressed & 0x200) || (gActiveContDirPressed & 0x100)) {
                     gDebugAtrributeFlag ^= 1;
                 }                
                 break;
             }
         case 4:
             {
-                if ((D_8016E3A0 & 0x200) || (D_8016E3A0 & 0x100)) {
+                if ((gActiveContDirPressed & 0x200) || (gActiveContDirPressed & 0x100)) {
                     gGoldBomber ^= 1;
                 }
                 break;                
@@ -776,13 +772,13 @@ void func_800FFF40(void) {
 }
 
 void func_80100148(void) {
-    if (D_8016E384 & 0x1000) {
+    if (gActiveContPressed & 0x1000) {
         D_8016E3EE = 0;
         D_8016E3EC = gDebugDisplayMode;
         D_801765F4 = 0;
         return;
     }
-    if (D_8016E384 & 0x20) {
+    if (gActiveContPressed & 0x20) {
         D_8016E3EC += 1;
         D_8016E3F4 = 0;
         if (D_8016E3EC == 0x67) {

@@ -337,15 +337,107 @@ void func_8001BD44(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001D814.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001D9E4.s")
+extern u8 D_1000C68[];
+extern u8 D_1000B78[];
+extern u8 D_1000C50[];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001DC78.s")
+void func_8001D9E4(void* arg0) {
+    func_8005F0F4();
+    D_8016E10C = arg0;
+    D_8016E104 = (void*)((u32)D_8016E10C + 0x68);
+    gMasterDisplayList = (void*)((u32)D_8016E10C + 0x8148);
+    gSPSegment(gMasterDisplayList++, 0x00, 0x00000000);
+    gSPSegment(gMasterDisplayList++, 0x01, osVirtualToPhysical(D_8016CAA0[0].unk0));
+    gSPDisplayList(gMasterDisplayList++, D_1000C68);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001DCD4.s")
+    if(D_80165254 == 1) {
+        gSPDisplayList(gMasterDisplayList++, D_1000B78);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001DCEC.s")
+    gSPDisplayList(gMasterDisplayList++, D_1000C50);
+    if (D_80165254 == 0) {
+        if ((D_8016E0A8 != 0) && (D_8016526C != NULL)) {
+            D_8016526C();
+        }
+    } else if (D_80165254 == 2) {
+        D_80165254 = 0;
+    } else {
+        D_80165254 += 1;
+    }
+    func_8001D3CC();
+    gDPFullSync(gMasterDisplayList++);
+    gSPEndDisplayList(gMasterDisplayList++);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001DEDC.s")
+    osWritebackDCacheAll();
+    func_8001D814();
+}
+
+void func_8001DC78(void) {
+    D_801776F8 = 0;
+    D_80177708 = 0;
+    D_80177718 = 0;
+    D_80177728 = 0;
+    D_80177738 = 0;
+    D_80177748[0] = 0;
+    D_80177758[0] = 0;
+    D_80177768[0] = 0;
+}
+
+void func_8001DCD4(int arg0) {
+    D_80177708 = arg0;
+}
+
+void func_8001DCEC(void) {
+    s32 port;
+    OSContPad* pad;
+
+    if (D_80177708 == 0) {
+        return;
+    }
+    // whats the point of setting this var? was there a for loop here?
+    port = 0;
+    if ((gControllerBits >> port) & 1) {
+        pad = &gContPads[port];
+        if (pad->errno != 0) {
+            return;
+        }
+        D_80177748[port] = D_80177758[port];
+        D_80177758[port] = pad->button;
+        D_80177768[port] = (D_80177758[port] ^ D_80177748[port]) & D_80177758[port];
+    }
+    if (D_80177768[port] & 0x1000) {
+        D_80177718 += 1;
+        D_80177728 = 0;
+    } else {
+        D_80177728 += 1;
+    }
+    if (D_80177728 >= 7) {
+        D_80177718 = 0;
+        D_80177738 = 0;
+    }
+    if (D_80177738 == 0x3C) {
+        if ((D_80177718 >= 0xA) && (D_80177718 < 0xF)) {
+            D_801776F8 = 1;
+        }
+        D_80177718 = 0;
+        D_80177738 = 0;
+    } else {
+        D_80177738 += 1;
+    }
+}
+
+/**
+ * Update the active controller masks.
+ */
+void UpdateActiveController(u16 port) {
+    gActiveContPort = port;
+    gActiveContButton = gContCurrButton[gActiveContPort];
+    gActiveContPressed = gContButtonPressed[gActiveContPort];
+    gActiveContStickX = gContStickX[gActiveContPort];
+    gActiveContStickY = gContStickY[gActiveContPort];
+    gActiveContCurrDir = gContCurrDir[gActiveContPort];
+    gActiveContDirPressed = gContDirPressed[gActiveContPort];
+}
 
 /**
  * Setup the mesg queue for the controllers and init them.
@@ -381,15 +473,25 @@ void InitControllers(void) {
         gContLastDir[i] = 0;
         gContDirPressed[i] = 0;
     }
-    func_8001DEDC(0);
+    UpdateActiveController(0);
     func_8001DC78();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001E1C0.s")
+/**
+ * Reset the active controller masks.
+ */
+void ResetActiveController(void) {
+    gActiveContButton = 0;
+    gActiveContPressed = 0;
+    gActiveContStickX = 0.0f;
+    gActiveContStickY = 0.0f;
+    gActiveContCurrDir = 0;
+    gActiveContDirPressed = 0;
+}
 
 /**
- * Perform the reading of the raw arrays front the OSContPad data itself. This will be later read into the buffers to be
- * used during gameplay.
+ * Perform the reading of the raw arrays front the OSContPad data itself. This will be later read
+ * into the buffers to be used during gameplay.
  */
 void UpdateRawControllers(void) {
     OSContPad* pad;

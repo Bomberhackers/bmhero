@@ -5,15 +5,6 @@ extern struct UnkStruct8016E230 {
     u32 unk4;
 } UnkStruct8016E230;
 
-struct UnkStruct8016E10C {
-    char filler0[0x58];
-    u32 unk58;
-    char filler5C[0x4];
-    u32 unk60;
-};
-
-extern struct UnkStruct8016E10C* D_8016E10C;
-
 extern struct UnkStruct8016E230 D_8016E220[1];
 extern struct UnkStruct8016E230 D_8016E230[1];
 

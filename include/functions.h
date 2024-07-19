@@ -11,13 +11,13 @@ s32 func_80016DD4();
 s32 func_80016E84();
 void PlayTrack_WithVolLoop(s16 trackID, s8 vol, s8 loop);
 void func_80017FD8(char* str);
-s32 func_8001D9E4(void*);
 void InitControllers();
 void func_8001E80C(void);
 s32 func_8001ECA0();
 s32 func_8001D1F4();
 s32 func_8001D440();
 s32 func_8001EE64();
+void func_8001D9E4(void* arg0);
 
 // 1FAB0.c
 void func_8001F9DC();

@@ -335,7 +335,40 @@ void func_8001BD44(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001D638.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001D814.s")
+extern u8 gspF3DEX_fifoTextStart_bin[];
+extern u8 D_801D04B0[];
+extern u32 D_801C1A50;
+extern u32 D_801C0E50;
+extern OSMesgQueue *D_8004D9D0;
+
+void func_8001D814(void) {
+    struct UnkStruct8016E10C* sp1C;
+    struct UnkStruct8016E10C* sp18 = D_8016E10C;
+    sp1C = sp18;
+
+    sp1C->task.t.data_ptr = (s32) ((u32)D_8016E104 + 0x80E0);
+    sp1C->task.t.data_size = (s32) (((s32) (((u32)gMasterDisplayList - (u32)D_8016E104 - 0x80E0)) >> 3) << 3);
+    sp1C->task.t.type = 1;
+    sp1C->task.t.flags = 0;
+    sp1C->task.t.ucode_boot = (u64*)rspbootTextStart;
+    sp1C->task.t.ucode_boot_size = (u32)rspbootTextEnd - (u32)rspbootTextStart;
+    sp1C->task.t.ucode = (u64*)rspbootTextEnd; // this is probably F3DEX Data start. TODO: Rename
+    sp1C->task.t.ucode_size = 0x1000;
+    sp1C->task.t.ucode_data = (u64*)gspF3DEX_fifoTextStart_bin;
+    sp1C->task.t.ucode_data_size = 0x800;
+    sp1C->task.t.dram_stack = D_801D04B0;
+    sp1C->task.t.dram_stack_size = 0x400;
+    sp1C->task.t.output_buff = (void*)&D_801C1A50;
+    sp1C->task.t.output_buff_size = (void*)((u32)&D_801C1A50 + 0xEA60);
+    sp1C->task.t.yield_data_ptr = &D_801C0E50;
+    sp1C->task.t.yield_data_size = 0xC00;
+    sp1C->unk0 = 0;
+    sp1C->unk8 = 0x63;
+    sp1C->unk50 = &D_8016E0B8;
+    sp1C->unk54 = &sp18->unk18148;
+    sp1C->unkC = sp18->unk18168;
+    osSendMesg(D_8004D9D0, sp1C, 1);
+}
 
 extern u8 D_1000C68[];
 extern u8 D_1000B78[];

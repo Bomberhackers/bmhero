@@ -3,10 +3,7 @@
 
 #include "ultra64.h"
 
-extern Lights2 gLightingSettings;
-
-extern OSMesg D_801776CC;
-extern OSContStatus D_80177650[];
+// structs and defines
 
 typedef struct {
     s16 unk0;
@@ -19,57 +16,11 @@ typedef struct {
     s16 unkE;
 } UnkStruct80165100;
 
-extern s32 D_8016525C;
-extern s32 D_80165284;
-extern u8 gControllerBits;
-extern u16 gContPlugged[4];
-extern u16 gContCurrButton[4];
-extern u16 gContLastButton[4];
-extern u16 gContButtonPressed[4];
-extern s8 gContStickX[4];
-extern s8 gContStickY[4];
-extern u16 gContCurrDir[4];
-extern u16 gContLastDir[4];
-extern u16 gContDirPressed[4];
-extern u16 gContRawPlugged[4];
-extern u16 gContRawCurrButton[4];
-extern u16 gContRawLastButton[4];
-extern u16 gContRawButtonPressed[4];
-extern s8 gContRawStickX[4];
-extern s8 gContRawStickY[4];
-extern u16 gContRawCurrDir[4];
-extern u16 gContRawLastDir[4];
-extern u16 gContRawDirPressed[4];
-extern OSContPad gContPads[4];
-extern OSMesgQueue gContMesgQueue;
-
-extern u16 gActiveContPort;
-extern u16 gActiveContButton;
-extern u16 gActiveContPressed;
-extern f32 gActiveContStickX;
-extern f32 gActiveContStickY;
-extern u16 gActiveContCurrDir;
-extern u16 gActiveContDirPressed;
-
-extern s8 D_801776F8;
-extern s8 D_80177708;
-extern s32 D_80177718;
-extern s32 D_80177728;
-extern s32 D_80177738;
-extern u16 D_80177748[];
-extern u16 D_80177758[];
-extern u16 D_80177768[];
-
-extern void (*D_8016526C)();
-extern s32 D_8016E0A8;
-
 struct UnkStruct8016E104 {
     /* 0x00 */ Mtx unk00[3];
     /* 0xC0 */ Hilite hilites[2];
     /* 0xE0 */ Mtx unkE0[1];
 };
-
-extern struct UnkStruct8016E104 *D_8016E104;
 
 struct UnkStruct8016E10C {
     u32 unk0;
@@ -87,8 +38,6 @@ struct UnkStruct8016E10C {
     u8 filler1814C[0x1C];
     u32 unk18168;
 };
-
-extern struct UnkStruct8016E10C* D_8016E10C;
 
 struct UnkInputStruct80001CF0 {
     u32 unk0;
@@ -313,6 +262,121 @@ struct ObjectStruct
     char pad142[0xC];
 };
 
+struct UnkStruct80134D48 {
+    u32 *unk0;
+    f32 unk4;
+    f32 unk8;
+    s16 unkC;
+    s16 unkE;
+    s16 unk10;
+}; // size = 0x14
+
+struct UnkStructSTCG
+{
+    f32 Unk0;
+    f32 Unk4;
+    f32 Unk8;
+    char Padding_3[0x24 - (sizeof(f32) * 3)];
+    f32 Unk24;
+    f32 Unk28;
+    f32 Unk2C;
+    char Padding_1[0xA4 - 0x24 - (sizeof(s32) * 3)];
+    s16 UnkA4;
+    char Padding_2[0x108 - 0xA4 - sizeof(s16)];
+    s16 Unk108;
+};
+
+struct UnkStruct_80060278
+{
+    s32 unk0;
+    u8 Padding[4];
+};
+
+struct View {
+    /* 0x00 */ struct Vec3f at;
+    /* 0x0C */ struct Vec3f eye;
+    /* 0x18 */ struct Vec3f rot;
+    /* 0x24 */ struct Vec3f up;
+    /* 0x30 */ f32 dist;
+}; // size=0x34
+
+// DEMO IDs
+#define DEMO_TITLE_INTRO                0
+#define DEMO_CREDIT_SCENE               1
+#define DEMO_BOMBER_CHANGE_JET_QUICK    2
+#define DEMO_BOMBER_CHANGE_MARINE_QUICK 3
+#define DEMO_BOMBER_CHANGE_COPTER_QUICK 4
+#define DEMO_BOMBER_CHANGE_SLIDER_QUICK 5
+#define DEMO_BOMBER_CHANGE_JET          6
+#define DEMO_BOMBER_CHANGE_MARINE       7
+#define DEMO_BOMBER_CHANGE_COPTER       8
+#define DEMO_BOMBER_CHANGE_SLIDER       9
+#define DEMO_LAST DEMO_BOMBER_CHANGE_SLIDER
+
+struct UnkStruct80165290 {
+    s32 unk0;
+    char padding4[0x10];
+    u8 unk14;
+    char padding15[0x7];
+    s32 unk1C;
+    char padding20[0x50];
+};
+
+// externs
+
+extern Lights2 gLightingSettings;
+
+extern OSMesg D_801776CC;
+extern OSContStatus D_80177650[];
+
+extern s32 D_8016525C;
+extern s32 D_80165284;
+extern u8 gControllerBits;
+extern u16 gContPlugged[4];
+extern u16 gContCurrButton[4];
+extern u16 gContLastButton[4];
+extern u16 gContButtonPressed[4];
+extern s8 gContStickX[4];
+extern s8 gContStickY[4];
+extern u16 gContCurrDir[4];
+extern u16 gContLastDir[4];
+extern u16 gContDirPressed[4];
+extern u16 gContRawPlugged[4];
+extern u16 gContRawCurrButton[4];
+extern u16 gContRawLastButton[4];
+extern u16 gContRawButtonPressed[4];
+extern s8 gContRawStickX[4];
+extern s8 gContRawStickY[4];
+extern u16 gContRawCurrDir[4];
+extern u16 gContRawLastDir[4];
+extern u16 gContRawDirPressed[4];
+extern OSContPad gContPads[4];
+extern OSMesgQueue gContMesgQueue;
+
+extern u16 gActiveContPort;
+extern u16 gActiveContButton;
+extern u16 gActiveContPressed;
+extern f32 gActiveContStickX;
+extern f32 gActiveContStickY;
+extern u16 gActiveContCurrDir;
+extern u16 gActiveContDirPressed;
+
+extern s8 D_801776F8;
+extern s8 D_80177708;
+extern s32 D_80177718;
+extern s32 D_80177728;
+extern s32 D_80177738;
+extern u16 D_80177748[];
+extern u16 D_80177758[];
+extern u16 D_80177768[];
+
+extern void (*D_8016526C)();
+extern s32 D_8016E0A8;
+
+extern struct UnkStruct8016E104 *D_8016E104;
+
+extern struct UnkStruct8016E10C* D_8016E10C;
+
 // extern symbols
 extern u32 D_8004A280;
 extern s32 D_8004A294;
@@ -393,81 +457,20 @@ extern s16 D_80134CB8[0x18];
 extern s16 D_80134CE8[0x18];
 extern s16 D_80134D18[0x18];
 
-struct UnkStruct80134D48 {
-    u32 *unk0;
-    f32 unk4;
-    f32 unk8;
-    s16 unkC;
-    s16 unkE;
-    s16 unk10;
-}; // size = 0x14
-
 extern struct UnkStruct80134D48 D_80134D48[0x18];
-extern struct MegaStruct gMegaStruct; // 80134F28
+extern struct MegaStruct gMegaStruct;
 
 extern u8 gDebugTextBuf[0xC8];
 
-struct UnkStructSTCG
-{
-    f32 Unk0;
-    f32 Unk4;
-    f32 Unk8;
-    char Padding_3[0x24 - (sizeof(f32) * 3)];
-    f32 Unk24;
-    f32 Unk28;
-    f32 Unk2C;
-    char Padding_1[0xA4 - 0x24 - (sizeof(s32) * 3)];
-    s16 UnkA4;
-    char Padding_2[0x108 - 0xA4 - sizeof(s16)];
-    s16 Unk108;
-};
-
 extern struct ObjectStruct gObjects[];
 
-struct UnkStruct_80060278
-{
-    s32 unk0;
-    u8 Padding[4];
-};
-
 extern struct UnkStruct_80060278 D_8016CAA0[700];
-
-struct View {
-    /* 0x00 */ struct Vec3f at;
-    /* 0x0C */ struct Vec3f eye;
-    /* 0x18 */ struct Vec3f rot;
-    /* 0x24 */ struct Vec3f up;
-    /* 0x30 */ f32 dist;
-}; // size=0x34
-
 extern struct View gView;
 
 extern Gfx *gMasterDisplayList;
 
-// DEMO IDs
-#define DEMO_TITLE_INTRO                0
-#define DEMO_CREDIT_SCENE               1
-#define DEMO_BOMBER_CHANGE_JET_QUICK    2
-#define DEMO_BOMBER_CHANGE_MARINE_QUICK 3
-#define DEMO_BOMBER_CHANGE_COPTER_QUICK 4
-#define DEMO_BOMBER_CHANGE_SLIDER_QUICK 5
-#define DEMO_BOMBER_CHANGE_JET          6
-#define DEMO_BOMBER_CHANGE_MARINE       7
-#define DEMO_BOMBER_CHANGE_COPTER       8
-#define DEMO_BOMBER_CHANGE_SLIDER       9
-#define DEMO_LAST DEMO_BOMBER_CHANGE_SLIDER
-
 extern s8 gDemoSceneID;
 extern s8 gDemoID;
-
-struct UnkStruct80165290 {
-    s32 unk0;
-    char padding4[0x10];
-    u8 unk14;
-    char padding15[0x7];
-    s32 unk1C;
-    char padding20[0x50];
-};
 
 extern struct UnkStruct80165290 D_80165290[256];
 extern u32 *D_8016E3AC;

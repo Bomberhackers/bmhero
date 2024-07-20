@@ -12,16 +12,38 @@ s32 func_80016E84();
 void PlayTrack_WithVolLoop(s16 trackID, s8 vol, s8 loop);
 void func_80017FD8(char* str);
 void InitControllers();
+void func_8001994C(void);
 void func_8001E80C(void);
+void func_8001D244(char arg0, char arg1, char arg2, char arg3);
+void func_8001D4D0();
+void func_8001D638(s32, s32, s32, s32);
+void func_8001E954(s32*);
+void func_8001E98C(s32, void*, void*);
+void func_8001ECB8(void);
+void func_80019C84(void);
+void func_80019D2C(void);
+void func_8001A258(void);
+void func_8001D284(void);
+void func_8001D2C0(void);
+s32 func_8001D1D4(void);
 s32 func_8001ECA0();
 s32 func_8001D1F4();
 s32 func_8001D440();
 s32 func_8001EE64();
 void func_8001D9E4(void* arg0);
+s32 func_8001EBE8();
+s32 func_8001EC1C();
+s32 func_8001EC50();
+s32 func_8001EC84();
 
 // 1FAB0.c
+void func_8001F38C(struct UnkStruct_8001EFD0*, s32);
 void func_8001F9DC();
 void func_8001FAD4();
+void func_800200D8(void);
+void func_8002021C(void);
+void func_80020360(void);
+void func_80020420(void);
 s32 func_80021158();
 
 // 25810.c

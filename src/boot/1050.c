@@ -1,6 +1,6 @@
 #include <ultra64.h>
 #include "../libultra/io/viint.h"
-#include "prevent_bss_reordering.h"
+#include "1050.h"
 
 // .bss start
 OSMesg D_8004D3F0;
@@ -24,21 +24,6 @@ u32 D_80052D38[2];
 #ifdef ENABLE_ISPRINT
 OSPiHandle* sISVHandle; // official name : is_Handle
 #endif
-
-// functions
-void thread1_idle(void* arg);
-void thread6_func(void* arg);
-void func_80001CF0(struct UnkStruct80001CF0* arg0, void* arg1, s32 arg2, u8 arg3, u8 arg4);
-void func_80001E78(struct UnkStruct80001CF0* arg0, u32* arg1, s32 arg2);
-OSMesgQueue *func_80001FDC(struct UnkStruct80001CF0 *arg0);
-void thread4_func(void*);
-void func_80002130(struct UnkStruct80001CF0* arg0);
-void func_800022A0(struct UnkStruct80001CF0* arg0);
-void func_80002424(struct UnkStruct80001CF0* arg0);
-s32 func_80002574(s32 arg0, struct UnkStruct80002424* arg1);
-void func_8000265C(struct UnkStruct80001CF0* arg0, struct UnkStruct8000265C* arg1);
-void func_800026F4(struct UnkStruct80001CF0* arg0, struct UnkStruct800026F4_Arg1* arg1, struct UnkStruct800026F4_Arg2* arg2);
-void func_8000281C(struct UnkStruct80001CF0* arg0);
 
 void main(void* arg) {
     int i;

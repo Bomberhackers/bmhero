@@ -13,13 +13,11 @@ extern void func_80000964();                                  /* extern */
 extern void func_80019C84();                                  /* extern */
 extern void func_80019D2C();                                  /* extern */
 extern void func_8001A258();                                  /* extern */
-extern void func_8001D244(s32, s32, s32, s32);                        /* extern */
 extern void func_8001D284();                                  /* extern */
 extern void func_8001ECB8();                                  /* extern */
 extern void func_800FE854();                                  /* extern */
 extern void func_8005F96C(u8, u8, u8);                           /* extern */
 extern void func_8001E954(s32*);                                 /* extern */
-extern void func_8001E98C(s32, s32*, s32*);                         /* extern */
 extern void func_800175F0(s32, s32, s32, s32, s32);                 /* extern */
 extern void func_8001994C();                                  /* extern */
 extern s32 func_8001D1D4();                                /* extern */
@@ -81,10 +79,7 @@ extern u8 D_80177932;
 extern u8 D_80177934;
 extern u8 D_80177938;
 
-extern s32 D_8016E3A4;
 extern Gfx* gMasterDisplayList;
-
-extern void* D_80165274;
 
 extern u8 D_801651A8;
 extern s32 D_801651AC;

@@ -48,8 +48,6 @@ extern s8 D_80177628;
 extern s8 D_80177640;
 extern s32 D_80177778;
 
-extern struct LevelInfo* gLevelInfo[];
-
 void func_800250A0(s8);
 
 //find free slot

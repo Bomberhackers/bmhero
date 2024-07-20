@@ -1,4 +1,5 @@
-#include "common.h"
+#include <ultra64.h>
+#include "50BC0.h"
 
 extern struct UnkStruct8016E230 {
     u32 unk0;
@@ -22,7 +23,6 @@ extern u32 D_8016E254;
 extern s32 D_8016E23C;
 
 // functions
-void debug_print_xy(s32 x, s32 y);
 void func_8005F124(void);
 void func_8005FA90(void);
 
@@ -129,7 +129,7 @@ void debug_print_char(s16 c, s16 x, s16 y, f32 unused1, f32 unused2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/50BC0/func_8005F96C.s")
 
-void debug_print_xy(s32 x, s32 y) {
+void debug_print_xy(int x, int y) {
     s32 i;
 
     for(i = 0; i < 0xC8; i++) {

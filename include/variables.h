@@ -5,6 +5,11 @@
 
 // structs and defines
 
+struct UnkStruct8010B3FC {
+    char filler0[0x20];
+    Lights2 *unk20;
+};
+
 typedef struct {
     s16 unk0;
     s16 unk2;
@@ -176,16 +181,16 @@ struct LightingStruct
     s8 Direction[8];
 };
 
-struct LevelInfo
-{
-    s8 Stage; //00
-    s8 Area; //01
-    s8 Map; //02
-    s8 Clear; //03
-    char Padding1[0x4];
-    u8* Unk8;
-    char Padding2[0x17];
-    struct LightingStruct* LightingInfo;
+struct LevelInfo {
+    /* 0x00 */ s8 Stage;
+    /* 0x01 */ s8 Area;
+    /* 0x02 */ s8 Map;
+    /* 0x03 */ s8 Clear;
+    char filler4[0x4];
+    /* 0x08 */ u8* Unk8;
+    char fillerC[0x13];
+    /* 0x20 */ Lights2* unk20;
+    /* 0x24 */ Lights2* LightingInfo;
 };
 
 struct ObjectStruct 
@@ -322,7 +327,93 @@ struct UnkStruct80165290 {
     char padding20[0x50];
 };
 
+struct UnkStruct_8001EFD0 {
+    s32 unk0;
+    char pad[0x64];
+    s32 unk68;
+    s32 unk6C;
+    s32 unk70;
+    s32 unk74;
+    s32 unk78;
+    s32 unk7C;
+    s32 unk80;
+};
+
+struct UnkStruct_8004A5F0 {
+    s32 unk0;
+    char pad [0xE];
+    s8 unkE;
+};
+
 // externs
+
+extern struct UnkStruct_8004A5F0 D_8004A5F0;
+extern s32 D_8004A5F4;
+extern u8 D_8004A610;
+extern s32 D_8004A630;
+extern s32 D_8004A634;
+extern s32 D_8004A638;
+extern s32 D_8004A63C;
+extern OSPfs D_80056D90;
+extern s32 D_80056DF8;
+extern s32 D_80056DFC;
+extern s32 D_80056E00;
+extern s32 D_80056E04;
+extern s32 D_80056E08;
+extern s32 D_80056E0C;
+extern s32 D_80056E10;
+extern s32 D_80056E14;
+extern s32 D_80056E18;
+extern s32 D_80056E1C;
+extern s32 D_80056E20;
+extern u8 D_80057240[];
+extern u8 D_8005704E[2][1];
+extern struct UnkStruct_8001EFD0 D_80056E28[];
+extern struct UnkStruct_8001EFD0 D_80056E98[];
+extern struct UnkStruct_8001EFD0 D_80056E9C[];
+extern struct UnkStruct_8001EFD0 D_80056EA4[];
+extern OSPfsState D_80057040[];
+extern s8 D_80057440;
+extern s8 D_80057441;
+
+extern s32 D_8016E3A4;
+
+extern u8 D_1000C68[];
+extern u8 D_1000B78[];
+extern u8 D_1000C50[];
+
+extern s32 D_8016525C;
+extern void (*D_80165274)();
+extern s32 D_8016527C;
+extern s32 D_80165284;
+extern s32 D_8016E0B0;
+extern s32 D_8016E244;
+
+extern Gfx* gMasterDisplayList;
+
+extern Lights2 D_8004A590;
+
+extern struct LevelInfo* gLevelInfo[];
+
+extern s32 D_8016E084;
+extern s32 D_8016E08C;
+extern s32 D_8016E244;
+extern s32 D_8016E26C;
+extern s32 D_8016E274;
+extern s32 D_801765F4;
+extern s8 D_80176602;
+extern u8 D_801775BC;
+extern u8 D_801775C4;
+extern u8 D_801775CC;
+extern u8 D_801775D4;
+extern u8 D_801775DC;
+extern u8 D_801775E4;
+extern u8 D_801775EC;
+
+extern u8 gspF3DEX_fifoTextStart_bin[];
+extern u8 D_801D04B0[];
+extern u32 D_801C1A50;
+extern u32 D_801C0E50;
 
 extern Lights2 gLightingSettings;
 

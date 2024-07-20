@@ -13,10 +13,12 @@ extern s16 D_80104B64[];
 extern s16 D_80104C18[];
 extern s16 D_801348B0;
 extern struct UnkStruct_56400 D_801348B8[];
-void func_8006389C(s32, s16, s32, s32);
-s32 func_800641E4(s16* ptr, s16 arg1, s16 arg2);
-void func_8006357C();
 
+// functions
+void func_80063EE0(void);
+void func_80064000(void);
+void func_80064120(void);
+s32 func_800641E4(s16* ptr, s16 arg1, s16 arg2);
 
 void func_80063EE0(void) {
     s32 sp4;

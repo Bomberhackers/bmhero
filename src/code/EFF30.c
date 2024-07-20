@@ -8,37 +8,6 @@ struct UnkStruct80177778 {
     s16 unk18;
 };
 
-//FUNCTIONS
-extern void func_80000964();                                  /* extern */
-extern void func_80019C84();                                  /* extern */
-extern void func_80019D2C();                                  /* extern */
-extern void func_8001A258();                                  /* extern */
-extern void func_8001D284();                                  /* extern */
-extern void func_8001ECB8();                                  /* extern */
-extern void func_800FE854();                                  /* extern */
-extern void func_8005F96C(u8, u8, u8);                           /* extern */
-extern void func_8001E954(s32*);                                 /* extern */
-extern void func_800175F0(s32, s32, s32, s32, s32);                 /* extern */
-extern void func_8001994C();                                  /* extern */
-extern s32 func_8001D1D4();                                /* extern */
-extern void func_8001D2C0();                                  /* extern */
-extern void func_8001D4D0();                               /* extern */
-extern void func_8001D638(s32, s32, s32, s32);             /* extern */
-extern void func_8005E6A0(s32, s32);                              /* extern */
-extern void func_80065AEC(f32, f32, f32, s32*, s32*, s32*);
-void func_800FDD48();                                  /* extern */
-void func_800FDA10();                                  /* extern */
-s32 func_800FDF98();                                /* extern */
-void func_8005FA90();                                  /* extern */
-void func_800FE9BC();                                  /* extern */
-void func_800FEB6C();                                  /* extern */
-void func_800FEE34();                                  /* extern */
-void func_800FEFA0();                                  /* extern */
-void func_800FF43C();                                  /* extern */
-void func_800FF88C();                                  /* extern */
-void func_800FFD30();                                  /* extern */
-void func_800FFF40();                                  /* extern */
-
 //RAM ADDRESSES
 extern u16* D_80134784[2];
 extern s8 D_80134334;

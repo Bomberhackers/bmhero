@@ -5,19 +5,6 @@ extern s32 gCurrentParsedObject;
 extern s32 D_80177A64;
 extern void* D_80117F08;
 
-//functions
-void func_800C0CC0();                                  /* extern */
-void func_800C0D78();                                  /* extern */
-void func_800C0F18();                                  /* extern */
-void func_800C11F4();                                  /* extern */
-void func_800C1204();                                  /* extern */
-void func_800C1214();                                  /* extern */
-void func_800C04C4();                                  /* extern */
-void func_800C0858();                                  /* extern */
-void func_800C0898();                                  /* extern */
-void func_8002B0E4(s32);
-extern s32 func_8001C0EC(s32, s32, s32, s32, void*);
-
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B27B0/func_800C0290.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B27B0/func_800C04B4.s")
@@ -28,8 +15,7 @@ void func_800C0858(void) {
     func_8002B0E4(gCurrentParsedObject);
 }
 
-void func_800C0858_stub()
-{
+void func_800C0858_stub() {
     
 }
 

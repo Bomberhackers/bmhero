@@ -1,13 +1,4 @@
-#include "common.h"
-#include "variables.h"
-
-void func_8001A928(s32); 
-void func_8007EBEC(f32, f32, s32, s32, s32);
-void func_800158B4(f32, f32, f32, f32*, f32*);         /* extern */
-void func_8001838C();                                  /* extern */
-void func_80019510(s32, s32, s32);                         /* extern */
-s32 func_8001C300(s32, s32);                          /* extern */
-void func_8001C384(s32, s32);                            /* extern */
+#include <ultra64.h>
 
 void func_8007E720(void) {
     s32 sp1C;
@@ -22,11 +13,11 @@ void func_8007E720(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/70C40/func_8007EBEC.s")
 
-void func_8007EDF4(f32 arg0, f32 arg1, s32 arg2, s32 arg3) {
+void func_8007EDF4(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     func_8007EBEC(arg0, arg1, arg2, arg3, 1);
 }
 
-void func_8007EE40(f32 arg0, f32 arg1, s32 arg2, s32 arg3) {
+void func_8007EE40(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     func_8007EBEC(arg0, arg1, arg2, arg3, 0);
 }
 

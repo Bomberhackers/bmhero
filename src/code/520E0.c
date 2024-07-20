@@ -1,16 +1,11 @@
 #include "common.h"
 
 extern u8 D_80134808[];
-s32 func_8005FE88(s8, s8);                          /* extern */
 
-extern struct UnkStruct_800600B8
-{
+typedef struct UnkStruct_800600B8 {
     u8 Unk01;
     u8 Padding[3];
 } UnkStruct_800600B8;
-
-//funcs
-void func_8001EA68(s32, s32, s32);
 
 //ram
 extern struct UnkStruct_800600B8 D_801039D4[];

@@ -1,9 +1,5 @@
 #include <ultra64.h>
 
-// extern functions
-extern f32 func_8001B62C(s32, s32);
-extern f32 func_8001B580(s32, s32);
-
 extern s8 D_801039B0;
 extern s8 D_801039B4;
 extern s8 D_801039C4;

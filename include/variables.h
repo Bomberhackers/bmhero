@@ -70,10 +70,20 @@ struct UnkStruct8016E104 {
 extern struct UnkStruct8016E104 *D_8016E104;
 
 struct UnkStruct8016E10C {
-    char filler0[0x58];
+    u32 unk0;
+    u8 filler4[0x4];
+    u32 unk8;
+    u32 unkC;
+    OSTask task;
+    OSMesgQueue *unk50;
+    u32 unk54;
     u32 unk58;
-    char filler5C[0x4];
+    u8 filler5C[0x4];
     u32 unk60;
+    u8 filler64[0x18148-0x64];
+    u32 unk18148[1];
+    u8 filler1814C[0x1C];
+    u32 unk18168;
 };
 
 extern struct UnkStruct8016E10C* D_8016E10C;

@@ -37,12 +37,12 @@ void func_8007EE40(f32 arg0, f32 arg1, s32 arg2, s32 arg3) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/70C40/func_8007F24C.s")
 
 void func_8007F3F0(void) {
-    struct PlayerStruct* sp34;
+    struct ObjectStruct* sp34;
     s32 sp30;
     struct Vec3f sp24;
 
     func_8001838C();
-    for(sp30 = 6, sp34 = gPlayerData + 6; sp30 < 0xE; sp30++, sp34++)
+    for(sp30 = 6, sp34 = gObjects + 6; sp30 < 0xE; sp30++, sp34++)
     {
         if (sp34->unkA4 != 0) 
         {

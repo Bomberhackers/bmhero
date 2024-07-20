@@ -1,10 +1,4 @@
-#include "common.h"
-#include "variables.h"
-
-extern void func_800FB804();                                  /* extern */
-extern void func_800FBA24();                                  /* extern */
-extern void func_8002B0E4(s32);
-extern void func_80081468(s32, f32, f32, f32);  
+#include <ultra64.h>
 
 extern s32 gCurrentParsedObject;
 extern s32 D_80177A64;

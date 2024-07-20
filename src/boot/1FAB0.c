@@ -7,7 +7,6 @@ s32 func_8001F550(struct UnkStruct_8001EFD0* arg0, s32 arg1);
 s32 func_8001F5F0(struct UnkStruct_8001EFD0*  arg0, s32 arg1, s32 arg2, s32 arg3, u8 *arg4);
 s32 func_8001F68C(struct UnkStruct_8001EFD0* arg0, s32 arg1, s32 arg2, s32 arg3, u8 *arg4);
 s32 func_8001F728(struct UnkStruct_8001EFD0* arg0, s32 arg1, OSPfsState* arg2);
-s32 func_8001FB3C(s32, s32, s32);
 void func_8001FBAC(void);
 void func_80020C44(void);
 void* func_80020F18(void);

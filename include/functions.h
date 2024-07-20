@@ -66,6 +66,9 @@ void Demo_RenderTextBG(void);
 void Demo_SetupTextPal(void);
 void Demo_Start(s32);
 
+//56800
+extern void func_80067748(f32 arg0, f32 arg1, f32 arg2);
+
 // 71AA0.c
 s32 func_80083180(s32);
 

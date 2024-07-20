@@ -862,8 +862,10 @@ struct UnkStruct_80026548 {
     char _pad[0x4B];
 };
 
-struct other {
+
+struct UnkStruct_80027464 {
     s32 unk24[1];
+    char pad[0x20];
 };
 
 // externs

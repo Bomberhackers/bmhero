@@ -1,146 +1,4 @@
-#include "variables.h"
-
-// Structs and types
-typedef float Matrix[4][4];
-
-struct UnkStruct_8011670C {
-    s32 unk0;
-    char pad[0x18];
-};
-
-struct UnkStruct_80027B34 {
-    /* 0x0 */ s8 unk0;
-    /* 0x2 */ s16 unk2;
-    /* 0x4 */ s8 unk4;
-    /* 0x8 */ s32 unk8;
-    /* 0xC*/ s8 unkC;
-};
-
-struct UnkStruct_80027C00 {
-    /* 0x0 */ s8 unk0;
-    /* 0x2 */ s16 unk2;
-    /* 0x4 */ s16 unk4;
-    /* 0x6 */ s8 unk6;
-    /* 0x7 */ s8 unk7;
-    /* 0x8 */ s8 unk8;
-    /* 0x9 */ s8 unk9;
-    /* 0xA */ char unkA;
-};
-
-struct UnkStruct_80028260 {
-    union {
-        s32 unk0;
-        f32 _unk0;
-    };
-    union {
-        s32 unk4;
-        f32 _unk4;
-    };
-};
-
-struct UnkStruct_80026548 {
-    // Dunno if this is real or not
-    union {
-        char unk0;
-        s8 unk1;
-        void *(*routine)();
-        u64 ull;
-    };
-    s16 unk8;
-    s16 unkA;
-    s16 unkC;
-    char _pad[0x4B];
-};
-
-#undef NON_MATCHING
-
-// External functions
-extern s32 func_800642E0(void);
-extern s32 func_80064358(s32 arg0);
-extern s32 func_80025460(s8, s16);
-extern s32 func_800256E0(s32, s32, s32);
-extern void func_80067748(f32, f32, f32);
-extern s32 func_80014E80(s32);
-extern f32 func_80015538(f32, f32);
-extern f32 func_80015634(f32, f32);
-extern f32 func_800156C4(f32, f32);
-extern s32 func_8001608C(s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32, s32,
-                         s32); /* extern */
-extern void func_8001A928(s32 arg0);
-extern s32 func_8001ABF4(s32, s32, s32, void *);
-extern void func_8001AD6C(s32);
-extern s32 func_8001B44C(s32 arg0, s32 arg1);
-extern void func_8001BB34(s32, s32);
-extern void func_8001BD44(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
-extern void func_8001BE6C(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
-extern void func_8001CD20(s32);
-extern void func_8001CEF4(s32);
-
-// File variables
-extern s32 D_80116674[];                       //.rodata
-extern s8 D_8004A650[];                        //.data
-extern struct UnkStruct_8011670C D_8011670C[]; //.rodata
-extern s32 D_801168CC[];                       //.rodata
-extern s32 D_801168D0[];                       //.rodata
-// rodata float and double constants
-extern f32 D_8004BDB0;
-extern f64 D_8004BDB8;
-extern f64 D_8004BDC0;
-extern f32 D_8004BDC8;
-extern f64 D_8004BDD0;
-extern f64 D_8004BDD8;
-extern f64 D_8004BDF8;
-extern f64 D_8004BE00;
-extern f64 D_8004BE08;
-extern f64 D_8004BE10;
-extern f64 D_8004BE18;
-extern f64 D_8004BE20;
-extern f64 D_8004BE28;
-extern f64 D_8004BE30;
-
-// External variables
-
-extern struct ObjectStruct *D_8017753C;
-extern struct UnkStruct_80026548 D_80124D90[];
-extern struct UnkStruct_80026548 D_80124D9E[];
-extern struct UnkStruct_80026548 D_80124D9F[];
-extern struct UnkStruct_80026548 D_80124DA8[];
-extern u8 D_80165118[0x80];
-extern s16 D_801651A0;
-extern struct UnkStruct_80026548 D_80124D94[];
-extern struct UnkStruct_80026548 D_80124DA4[];
-extern struct UnkStruct_80026548 D_80124DC0[];
-extern s32 D_801776F0[];
-extern s32 D_80177700[];
-extern s32 D_80177710[];
-extern s32 D_80177720[];
-extern s32 D_80177730[];
-extern f32 D_80177760[];
-extern s8 D_8013488C;
-extern s8 D_80177630;
-extern u8 D_801776E0;
-extern s32 gCurrentParsedObject;
-extern UnkStruct80165100 *D_8017796C;
-// TODO: are these global variables declared in this file?
-extern s16 *D_80165100;
-extern s16 D_80165108;
-extern s16 D_8016510A;
-extern s16 D_8016510C;
-extern s16 D_8016510E;
-extern s16 D_80165110;
-extern s16 D_80165112;
-extern s16 D_80165114;
-extern s16 D_80165116;
-extern s32 D_80165198;
-extern s32 D_8016519C;
-extern u32 D_8017797C;
-extern u32 D_80177984;
-extern s16 D_8017798C;
-extern s16 D_80177994;
-extern s16 D_8017799C;
-extern s16 D_801779A4;
-extern s16 D_801779AC;
-extern s16 D_801779B8;
+#include <ultra64.h>
 
 // File functions
 void func_800260E0(s32 arg0);
@@ -156,12 +14,10 @@ s32 func_80026DBC(s32 arg0);
 s32 func_80026E58(s32 arg0, s32 pos);
 void func_80026F10(s32 arg0, s32 arg1);
 void func_800272E8(s32 arg0);
-s32 func_80027464(s32 arg0, struct flo *arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5);
 s32 func_80027B34(s32 arg0, struct UnkStruct_80027B34 *arg1);
 s32 func_80027C00(s32 arg0, s32 arg1, struct UnkStruct_80027C00 *arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
 s32 func_800281A4(s32 arg0, s32 arg1);
 s32 func_80028260(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5);
-s32 func_8002894C(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4);
 s32 func_80028E60(s32 arg0);
 s32 func_80028FA0(s32 arg0);
 s32 func_80029018(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 arg5);
@@ -510,12 +366,8 @@ void func_800272E8(s32 arg0) {
 
 // Stack problems
 #ifdef NON_MATCHING
-extern s32 D_80165198;
-
-struct other {
-    s32 unk24[1];
-};
-
+// Will fix later
+/*
 s32 func_80027464(s32 arg0, struct flo *arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
     struct other sp;
 
@@ -523,6 +375,7 @@ s32 func_80027464(s32 arg0, struct flo *arg1, f32 arg2, f32 arg3, f32 arg4, f32 
     s32 sp1C;
 
     s32 sp18;
+    s32 sp24[1]; // to compile
 
     for (index = 0; index < 11; index++) {
         sp.unk24[index] = -1;
@@ -583,7 +436,7 @@ s32 func_80027464(s32 arg0, struct flo *arg1, f32 arg2, f32 arg3, f32 arg4, f32 
     }
     return sp24[0];
 }
-
+*/
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/26CE0/func_80027464.s")
 #endif
@@ -670,6 +523,8 @@ s32 func_800281A4(s32 arg0, s32 arg1) {
 
 // TODO: What is the real type of D_801776F0???
 #ifdef NON_MATCHING
+// Will fix later
+/*
 s32 func_80028260(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5) {
     struct ObjectStruct *spA4;
     f32 spA0;
@@ -762,11 +617,14 @@ s32 func_80028260(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5) {
     }
     return sp70;
 }
+*/
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/26CE0/func_80028260.s")
 #endif
 
 #ifdef NON_MATCHING
+// Will fix later
+/*
 s32 func_8002894C(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     struct ObjectStruct *spA4;
     f32 spA0;
@@ -844,6 +702,7 @@ s32 func_8002894C(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     }
     return sp70;
 }
+*/
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/26CE0/func_8002894C.s")
 #endif
@@ -879,9 +738,8 @@ s32 func_80028FA0(s32 arg0) {
 
 // Matched but needs rodata
 #ifdef NON_MATCHING
-s32 func_8002894C(s32, s32, s32, s32, f32); /* extern */
-s32 func_80028E60(s32);                     /* extern */
-
+// will fix later
+/*
 s32 func_80029018(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 arg5) {
     struct ObjectStruct *sp2C;
     s32 sp28;
@@ -955,6 +813,7 @@ s32 func_80029018(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 arg5) {
     sp2C->Vel.z = 0.0f;
     return TRUE;
 }
+*/
 #else
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/26CE0/func_80029018.s")
 #endif
@@ -1362,8 +1221,6 @@ s32 func_8002AB40(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     return sp2C;
 }
 
-extern s32 gCurrentParsedObject;
-
 void func_8002AD90(void) {
     struct ObjectStruct *sp1C;
 
@@ -1387,9 +1244,8 @@ void func_8002AE84(s32 arg0, s32 arg1) {
     f32 oz;
     f32 spB0;
     s32 spAC;
-    Matrix sp6C;
-    Matrix sp2C;
-    UNUSED char pad[0x2];
+    Mtx_t sp6C;
+    Mtx_t sp2C;
 
     spC4 = &gObjects[arg0];
 

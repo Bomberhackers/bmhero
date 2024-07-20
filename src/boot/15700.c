@@ -1,7 +1,5 @@
 #include <ultra64.h>
 
-extern u8 D_80055D70[];
-
 s16 func_80014B00(u8** arg0, s32* arg1) {
     s16 sp6;
 

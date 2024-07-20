@@ -1,37 +1,5 @@
 #include <ultra64.h>
-
-extern Gfx* gMasterDisplayList;
-
-extern Lights2 D_8004A590;
-extern Lights2 gLightingSettings;
-
-struct UnkStruct8010B3FC {
-    char filler0[0x20];
-    Lights2 *unk20;
-};
-
-extern struct UnkStruct8010B3FC *gLevelInfo[];
-
-extern s32 D_8016E084;
-extern s32 D_8016E08C;
-extern s32 D_8016E244;
-extern s32 D_8016E26C;
-extern s32 D_8016E274;
-extern s32 D_801765F4;
-extern s8 D_80176602;
-extern u8 D_801775BC;
-extern u8 D_801775C4;
-extern u8 D_801775CC;
-extern u8 D_801775D4;
-extern u8 D_801775DC;
-extern u8 D_801775E4;
-extern u8 D_801775EC;
-
-// functions
-s32 func_8001EBE8();                                  /* extern */
-s32 func_8001EC1C();                                  /* extern */
-s32 func_8001EC50();                                  /* extern */
-s32 func_8001EC84();                                  /* extern */
+#include "1050.h"
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_80016D30.s")
 
@@ -335,12 +303,6 @@ void func_8001BD44(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001D638.s")
 
-extern u8 gspF3DEX_fifoTextStart_bin[];
-extern u8 D_801D04B0[];
-extern u32 D_801C1A50;
-extern u32 D_801C0E50;
-extern OSMesgQueue *D_8004D9D0;
-
 void func_8001D814(void) {
     struct UnkStruct8016E10C* sp1C;
     struct UnkStruct8016E10C* sp18 = D_8016E10C;
@@ -369,10 +331,6 @@ void func_8001D814(void) {
     sp1C->unkC = sp18->unk18168;
     osSendMesg(D_8004D9D0, sp1C, 1);
 }
-
-extern u8 D_1000C68[];
-extern u8 D_1000B78[];
-extern u8 D_1000C50[];
 
 void func_8001D9E4(void* arg0) {
     func_8005F0F4();
@@ -614,13 +572,6 @@ void UpdateControllers(void) {
         }
     }
 }
-
-extern s32 D_8016525C;
-extern void (*D_80165274)();
-extern s32 D_8016527C;
-extern s32 D_80165284;
-extern s32 D_8016E0B0;
-extern s32 D_8016E244;
 
 void func_8001E80C(void) {
     UpdateRawControllers();

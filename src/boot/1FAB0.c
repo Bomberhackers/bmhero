@@ -1,80 +1,5 @@
-#include "common.h"
-#include "variables.h"
-
-// Structs
-struct UnkStruct_8001EFD0 {
-    s32 unk0;
-    char pad[0x64];
-    s32 unk68;
-    s32 unk6C;
-    s32 unk70;
-    s32 unk74;
-    s32 unk78;
-    s32 unk7C;
-    s32 unk80;
-};
-
-struct UnkStruct_8004A5F0 {
-    s32 unk0;
-    char pad [0xE];
-    s8 unkE;
-};
-
-// External functions
-extern void func_80000964(void);
-extern void func_8001994C(void);
-extern void func_8001D244(char arg0, char arg1, char arg2, char arg3);
-extern void func_8001D4D0();
-extern void func_8001D638(s32, s32, s32, s32);
-extern void func_8001E954(s32*);
-extern void func_8001E98C(s32, void*, void*);
-extern void func_8001ECB8(void);
-extern void func_80019C84(void);
-extern void func_80019D2C(void);
-extern void func_8001A258(void);
-extern void func_8001D284(void);
-extern void func_8001D2C0(void);
-extern s32 func_8001D1D4(void);
-extern void func_800200D8(void);
-extern void func_8002021C(void);
-extern void func_80020360(void);
-extern void func_80020420(void);
-extern void func_8001F38C(struct UnkStruct_8001EFD0*, s32);
-extern void func_8005F96C(u8 arg0, u8 arg1, u8 arg2);
-extern void debug_print_xy(int x, int y);
-
-// External variables
-extern struct UnkStruct_8004A5F0 D_8004A5F0;
-extern s32 D_8004A5F4;
-extern u8 D_8004A610;
-extern s32 D_8004A630;
-extern s32 D_8004A634;
-extern s32 D_8004A638;
-extern s32 D_8004A63C;
-extern OSPfs D_80056D90;
-extern s32 D_80056DF8;
-extern s32 D_80056DFC;
-extern s32 D_80056E00;
-extern s32 D_80056E04;
-extern s32 D_80056E08;
-extern s32 D_80056E0C;
-extern s32 D_80056E10;
-extern s32 D_80056E14;
-extern s32 D_80056E18;
-extern s32 D_80056E1C;
-extern s32 D_80056E20;
-extern u8 D_80057240[];
-extern u8 D_8005704E[2][1];
-extern struct UnkStruct_8001EFD0 D_80056E28[];
-extern struct UnkStruct_8001EFD0 D_80056E98[];
-extern struct UnkStruct_8001EFD0 D_80056E9C[];
-extern struct UnkStruct_8001EFD0 D_80056EA4[];
-extern OSPfsState D_80057040[];
-extern s8 D_80057440;
-extern s8 D_80057441;
-
-extern void* D_80165274;
-extern s32 D_8016E3A4;
+#include <ultra64.h>
+#include "1050.h"
 
 // File functions
 void func_8001F4B8(struct UnkStruct_8001EFD0*, s32);
@@ -86,7 +11,6 @@ s32 func_8001FB3C(s32, s32, s32);
 void func_8001FBAC(void);
 void func_80020C44(void);
 void* func_80020F18(void);
-
 
 int func_8001EEB0(void) {
     return HW_REG(SI_STATUS_REG, unsigned) & 3;

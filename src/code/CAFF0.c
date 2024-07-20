@@ -1,4 +1,4 @@
-#include "common.h"
+#include <ultra64.h>
 
 void func_800D97A4();                                  /* extern */
 void func_800D9A14();                                  /* extern */
@@ -10,7 +10,6 @@ void func_8001BBDC(s32, s32);                            /* extern */
 void func_8001C0EC(s32, s32, s32, s32, s32*);                  /* extern */
 s32 func_8001B44C(s32, s32);                          /* extern */
 s32 func_80027464(s32, s32*, f32, f32, f32, f32);       /* extern */
-void func_8001ABF4(s32, s32, s32, s32*);                     /* extern */
 f32 func_80015538(f32, f32);                        /* extern */
 
 extern s32 gCurrentParsedObject;

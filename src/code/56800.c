@@ -1,4 +1,4 @@
-#include "common.h"
+#include <ultra64.h>
 
 //LEVEL LOADING RELATED FILE
 //F6220 is rodata
@@ -12,13 +12,11 @@ void func_80066AE8();                                  /* extern */
 void func_800675DC();                                  /* extern */
 void func_80067674();                                  /* extern */
 
-extern s8 D_801776E0;
 extern s8 D_80134801;
 extern s8 D_80134802;
 extern s8 D_80134803;
 extern u8 D_80134808[];
 extern s8 D_8016E3CC;
-extern struct UnkStructSTCG* D_8017753C;
 extern s8 D_8013488C;
 
 extern s16 D_80177788;
@@ -48,8 +46,6 @@ extern s8 D_80177628;
 extern s8 D_80177640;
 extern s32 D_80177778;
 
-extern struct LevelInfo* gLevelInfo[];
-
 void func_800250A0(s8);
 
 //find free slot
@@ -66,6 +62,7 @@ s32 func_800642E0(void) {
     return -1;
 }
 
+//find free slot above N slot
 s32 func_80064358(s32 arg0) {
 
     while(arg0 < 0x4E)
@@ -195,7 +192,7 @@ void func_80069D04(s32 arg0, s32 arg1) {
     if (D_8016E3CC != 0) {
         return;
     }
-    if (D_8017753C->Unk108 == 0) {
+    if (D_8017753C->unk108 == 0) {
         return;
     }
     func_80069AD8(arg0, arg1);
@@ -207,7 +204,7 @@ void func_80069D88(s32 arg0, s32 arg1) {
     if (D_8016E3CC != 0) {
         return;
     }
-    if (D_8017753C->Unk108 == 0) {
+    if (D_8017753C->unk108 == 0) {
         return;
     }
     func_80069AD8(arg0, arg1);

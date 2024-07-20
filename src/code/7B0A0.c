@@ -1,29 +1,11 @@
 #include <ultra64.h>
-#include "common.h"
-#include "variables.h"
+#include "prevent_bss_reordering2.h"
+#include "7B0A0.h"
 
 extern void func_80019B7C();
 extern void func_8006AA60(s32*, s32*, s32*);
-void func_8008A870(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4);
 extern void func_80069E00(s32, s32);
-void func_8008B030(void);
-void func_8008A6A4(void);
-void func_8008A384(void);
-void func_8008A824(s16 arg0, s16 arg1, s16 arg2);
 extern void func_8001FB3C (s16, s16, s16);
-void func_8008884C (s32);
-void func_8008ABC4 (s16 *);
-void func_8008ABF4 (s16 *);
-void func_8008AC08 (s16 *);
-void func_8008AD58 (s16 *);
-void func_8008AE64 (s16 *);
-void func_8008B5D4 (s16*);
-void func_8008B624 (s16*);
-void func_8008B6E0 (s16*);
-void func_8008BA3C(void);
-void func_8008BB0C(void);
-void func_8008BC04(s16*);
-void func_80088D84();
 extern void func_8008C61C();
 extern void func_8008C638();
 extern void func_8008C650();
@@ -61,18 +43,24 @@ extern void func_8008F63C(s16*);
 extern void func_8008F6AC(s16*);
 extern f32 func_80015538(f32, f32); 
 
-
-extern s8 D_8016E134;
-extern s16 D_80177600;
-extern f32 D_80134F40;
-
-extern s32 gCameraType;
-
-extern s16 D_8010CD80[2];
-extern s16 D_80110B78[];
-extern s16* D_80110D4C[];
-
-extern Gfx* gMasterDisplayList;
+void func_8008A870(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4);
+void func_8008B030(void);
+void func_8008A6A4(void);
+void func_8008A384(void);
+void func_8008A824(s16 arg0, s16 arg1, s16 arg2);
+void func_8008884C (s32);
+void func_8008ABC4 (s16 *);
+void func_8008ABF4 (s16 *);
+void func_8008AC08 (s16 *);
+void func_8008AD58 (s16 *);
+void func_8008AE64 (s16 *);
+void func_8008B5D4 (s16*);
+void func_8008B624 (s16*);
+void func_8008B6E0 (s16*);
+void func_8008BA3C(void);
+void func_8008BB0C(void);
+void func_8008BC04(s16*);
+void func_80088D84();
 
 // .bss
 s8 D_80134BF0;

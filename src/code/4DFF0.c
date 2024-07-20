@@ -1,9 +1,7 @@
 #include <ultra64.h>
 
 // extern functions
-extern s32 func_8005F96C(s32, s32, s32);                           /* extern */
 extern f32 func_8001B62C(s32, s32);
-extern s32 func_8001ABF4(s32, s32, s32, void*);
 extern f32 func_8001B580(s32, s32);
 
 extern s8 D_801039B0;
@@ -35,8 +33,6 @@ extern s32 D_801347B0;
 extern s8 D_801347E4;
 extern s8 D_801347E5;
 extern s8 D_801347E6;
-
-extern void *D_80165274;
 
 struct UnkStruct80134794 {
     u32 unk0;
@@ -106,8 +102,6 @@ extern s8 D_801347E4;
 extern s8 D_801347E5;
 extern s8 D_801347E6;
 extern s32 D_80165264;
-
-extern u32 D_8016E3A4;
 
 extern struct UnkStruct80134794 D_80101F18[];
 extern struct UnkStruct80134794 D_80101A14[];

@@ -1,249 +1,16 @@
 #include <ultra64.h>
 #include "38D0.h"
 #include "nusys/audio.h"
-#include "prevent_bss_reordering.h"
 
 // forward prototypes
 ALMicroTime initOsc(void **oscState, f32 *initVal,u8 oscType, u8 oscRate,u8 oscDepth,u8 oscDelay);
 ALMicroTime updateOsc(void *oscState, f32 *updateVal);
 void stopOsc(void *oscState);
 
-struct UnkInputStruct800069D0 {
-    u32 unk0;
-    f32 unk4;
-    u32 unk8;
-    s16 unkC;
-    s16 unkE;
-    s16 unk10;
-    u8 unk12;
-    u8 unk13;
-    s8 unk14;
-    u8 unk15;
-    u8 unk16;
-};
-
-struct UnkInputStruct80002F94 {
-    u32 unk0;
-    u32 unk4;
-    u32 unk8;
-    u32 unkC;
-    u8 unk10;
-    s32 *unk14;
-    u32 unk18;
-    u32 unk1C;
-    u32 unk20;
-    u32 unk24;
-    u32 unk28;
-    u16 unk2C;
-    u32 unk30;
-    u32 unk34;
-    u32 unk38;
-    u32 unk3C;
-};
-
-struct UnkStruct80052D5C {
-    u32 unk0;
-    f32 unk4;
-    u32 unk8;
-    u32 unkC;
-    u32 unk10;
-    s16 unk14;
-    s16 unk16;
-    s16 unk18;
-    u16 unk1A;
-    f32 unk1C;
-    s16 unk20;
-    s8 unk22;
-    s8 unk23;
-    u8 unk24;
-    u8 unk25;
-    u8 unk26;
-    u8 unk27;
-    u8 unk28;
-    s8 unk29;
-    char filler2A[0x2];
-};
-
-struct UnkStruct80052EB4 {
-    u8 unk0;
-    u8 unk1;
-    char filler2[0x2];
-    u32 len;
-    u32 unk8;
-    u32 unkC;
-};
-
-struct UnkStruct80052ED8 {
-    struct UnkStruct80052ED8* unk0;
-    char filler4[0x10];
-};
-
-struct UnkInputStruct800047C8 {
-    u32 unk0;
-    u8 unk4;
-    u8 unk5;
-    u8 unk6;
-};
-
-struct UnkStruct80052D58 {
-    s16 unk0;
-    s16 unk2;
-    char filler4[0x1]; // unk size
-};
-
-// this is some pointer ALBank has to, but it doesnt match up with an ALBank struct. What is this.
-struct UnkALStruct {
-    u8 unk0;
-    u8 unk1;
-    u8 unk2;
-    u8 unk3;
-    u16 unk4;
-    u16 unk6;
-};
-
-struct UnkStruct80052D60 {
-    u8 unk0;
-    u8 unk1;
-    char filler2[0x6];
-};
-
-struct UnkStructSP1C {
-    u32 unk0;
-    u32 unk4;
-    u32 unk8;
-    u8  unkC;
-    u8  unkD;
-    u8  unkE;
-    u8  unkF;
-};
-
-struct UnkStructSP18 {
-    u32 unk0;
-    char filler4[0x5];
-    u8 unk9;
-    char fillera[0x2];
-    u32 unkC;
-    u32 unk10;
-};
-
-struct UnkInputStruct80007140 {
-    char filler0[0x13];
-    u8 unk13;
-};
-
-typedef struct {  
-    u8      rate;
-    u8      depth;
-    u8      oscCount;
-} defData;
-
-typedef struct {
-    u8      halfdepth;
-    u8      baseVol;
-} tremSinData;
-    
-typedef struct {
-    u8      curVal;
-    u8      hiVal;
-    u8      loVal;
-} tremSqrData;
-
-typedef struct {
-    u8      baseVol;
-    u8      depth;
-} tremSawData;
-    
-typedef struct {
-    f32     depthcents;
-} vibSinData;
-
-typedef struct {
-    f32     loRatio;
-    f32     hiRatio;
-} vibSqrData;
-
-typedef struct {
-    s32     hicents;
-    s32     centsrange;
-} vibDSawData;
-
-typedef struct {
-    s32     locents;
-    s32     centsrange;
-} vibASawData;
-
-// based on case 0xC9
-typedef struct {
-    f32    unkC;
-} unkC9Data;
-
-typedef struct oscData_s {
-    struct oscData_s  *next;
-    u8      type;
-    u8      stateFlags;
-    u16     maxCount;
-    u16     curCount;
-    union {
-        defData         def;
-        tremSinData     tsin;
-        tremSqrData     tsqr;
-        tremSawData     tsaw;
-        vibSinData      vsin;
-        vibSqrData      vsqr;
-        vibDSawData     vdsaw;
-        vibASawData     vasaw;
-        unkC9Data       unk;
-    } data;        
-} oscData;
-
-#define MAX_VOICES              22
-
-/*
- * Number of osc states needed. In worst case will need two for each
- * voice. But if tremelo and vibrato not used on all instruments will
- * need less.
- */
-#define  OSC_STATE_COUNT    2*MAX_VOICES 
-
-#define  TREMELO_SIN        1
-#define  TREMELO_SQR        2
-#define  TREMELO_DSC_SAW    3
-#define  TREMELO_ASC_SAW    4
-#define  VIBRATO_SIN        128
-#define  VIBRATO_SQR        129
-#define  VIBRATO_DSC_SAW    130
-#define  VIBRATO_ASC_SAW    131
-
-#define AL_PAN_CENTER   64
-#define AL_PAN_LEFT     0
-#define AL_PAN_RIGHT    127
-#define AL_VOL_FULL     127
-#define AL_KEY_MIN      0
-#define AL_KEY_MAX      127
-#define AL_DEFAULT_FXMIX	0
-#define AL_SUSTAIN      63
-
-#define  OSC_HIGH   0
-#define  OSC_LOW    1
-#define  TWO_PI     6.2831853
-
-// in other files
-extern ALHeap D_80052D40;
-
 // .data
 s32 D_8004A2A0 = 0x00007D00;
 
 // some unidentified struct between now and 8004A2C0. size 0x1C
-
-struct UnkStruct8004A2A4 {
-    u32 unk0;
-    u32 unk4;
-    u32 unk8;
-    u32 unkC;
-    u32 unk10;
-    void* unk14;
-    u32 unk18;
-};
 
 struct UnkStruct8004A2A4 D_8004A2A4 = {
     0x00000010,
@@ -280,13 +47,6 @@ ALSeqpConfig D_8004A2E8 = {
 s32 D_8004A304 = 0x00000004;
 s32 D_8004A308 = 0x00000004;
 s32 D_8004A30C = 0x00000008;
-
-// this is probably a struct since a pointer is after D_8004A310 and isnt
-// called, but i am not sure how it gets referenced yet. TODO: Fix
-struct UnkStruct8004A310 {
-    s32 unk0;
-    void *unk4;
-};
 
 struct UnkStruct8004A310 D_8004A310 = {
     0x00000100,
@@ -340,22 +100,9 @@ u8 D_80052D7B;
 u8 D_80052D7C;
 s8 D_80052D7D;
 
-struct UnkStruct80052D80 {
-    u32 unk0;
-    u32 unk4;
-};
-
 struct UnkStruct80052D80* D_80052D80;
 
 struct UnkStruct80052D84 *D_80052D84;
-
-struct UnkStruct80052D88 {
-    f32 unk0;
-    f32 unk4;
-    f32 unk8;
-    s16 unkC;
-    s8 unkE;
-};
 
 struct UnkStruct80052D88 *D_80052D88;
 
@@ -367,18 +114,6 @@ s16 D_80052D9C;
 s16 D_80052D9E;
 f32 D_80052DA0;
 f32 D_80052DA4;
-
-struct UnkStruct80052DA8 {
-    s16 unk0;
-    s16 unk2;
-    s8 unk4;
-    s8 unk5;
-    u8 unk6;
-    s8 unk7;
-    s8 unk8;
-    s8 unk9;
-    char fillerA[0x2];
-};
 
 struct UnkStruct80052DA8 *D_80052DA8;
 f32 D_80052DAC;

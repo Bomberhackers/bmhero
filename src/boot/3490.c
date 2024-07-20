@@ -1,7 +1,5 @@
 #include <ultra64.h>
 
-s32 func_800024F4(s32);                              /* extern */
-
 struct UnkStructSp20 {
     u32 unk0;
     u32 unk4;

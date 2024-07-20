@@ -201,9 +201,6 @@ static void __amMain(void* arg) {
     alClose(&__am.g);
 }
 
-extern u8 _4A060_data__s[];
-extern u8 _4DD30_bin[];
-
 static s32 __amHandleFrameMsg(AudioInfo* info, AudioInfo *lastInfo) {
     s16 *audioPtr;
     Acmd* cmdp;

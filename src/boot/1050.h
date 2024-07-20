@@ -17,6 +17,7 @@ extern u64 gIdleThreadStack[0x200];
 extern u32 D_80052D38[2];
 
 // functions
+s32 func_800024F4(s32);
 void thread1_idle(void* arg);
 void thread6_func(void* arg);
 void func_80001CF0(struct UnkStruct80001CF0* arg0, void* arg1, s32 arg2, u8 arg3, u8 arg4);

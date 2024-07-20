@@ -6,6 +6,13 @@
 // 3490.c
 s32 func_80002890(struct UnkStruct80001CF0* arg0, s32* arg1, s32* arg2, s32 arg3);
 
+// 12AF0.c
+s32 func_80013AE0(f32*, f32, f32, f32);               /* extern */
+s32 func_80013B70(f32*, f32, f32, f32);               /* extern */
+s32 func_80013F6C(f32*, f32);                         /* extern */
+s32 func_80014098(f32*, f32);                         /* extern */
+s32 func_800141C4(f32*, f32);                         /* extern */
+
 // 17930.c
 s32 func_80016DD4();
 s32 func_80016E84();
@@ -67,5 +74,26 @@ u32 func_800FE898();
 
 // isprint.c (enhancement)
 void osSyncPrintf(const char* fmt, ...);
+
+// unsorted externs
+extern s32 func_800642E0(void);
+extern s32 func_80064358(s32 arg0);
+extern s32 func_80025460(s8, s16);
+extern s32 func_800256E0(s32, s32, s32);
+extern void func_80067748(f32, f32, f32);
+extern s32 func_80014E80(s32);
+extern f32 func_80015538(f32, f32);
+extern f32 func_80015634(f32, f32);
+extern f32 func_800156C4(f32, f32);
+extern s32 func_8001608C(s64 arg0, s64 arg2, s64 arg4, s64 arg6, s64 arg8, s64 argA, s64 argC, s64 argE);
+extern void func_8001A928(s32 arg0);
+extern s32 func_8001ABF4(s32, s32, s32, void *);
+extern void func_8001AD6C(s32);
+extern s32 func_8001B44C(s32 arg0, s32 arg1);
+extern void func_8001BB34(s32, s32);
+extern void func_8001BD44(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void func_8001BE6C(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+extern void func_8001CD20(s32);
+extern void func_8001CEF4(s32);
 
 #endif // _FUNCTIONS_H_

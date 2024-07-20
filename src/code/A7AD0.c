@@ -1,5 +1,4 @@
 #include "ultra64.h"
-#include "variables.h"
 
 // Macros
 #define FABS(x) ((x) < 0.0f ? -(x) : (x))
@@ -9,12 +8,10 @@
 #define UNK_TYPE s32
 
 // Extern Functions
-extern s32 func_80014E80(s16 arg0);
 extern f32 func_80015538(f32 arg0, f32 arg1);
 extern void func_800175F0(s32 arg0, s32 arg1, s16 arg2, s16 arg3, s32 arg4);
 extern void func_80017664(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 extern void func_80019448(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
-extern void func_8001ABF4(s32, s32, s32, void *);
 extern void func_8001BB04(s32 arg0, s8 arg1);
 extern s32 func_8001B44C(s32 arg0, s32 arg1);
 extern void func_8001BB34(s32, s32);
@@ -51,8 +48,6 @@ extern s32 func_80029F58(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4);
 // Extern variables
 extern s32 D_80113A0C;
 extern s32 D_80117AA0;
-extern UnkStruct80165100 *D_80165100;
-extern u8 D_801776E0;
 extern s32 D_80177740[];
 extern s32 D_8016519C;
 

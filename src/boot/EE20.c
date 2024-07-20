@@ -1,8 +1,5 @@
 #include <ultra64.h>
 
-extern s32* D_8004A370;
-extern s32 D_80380000;
-
 void* memset(void* dest, u32 c, s32 size) 
 {
     u8 *dest_new = (u8*)dest;

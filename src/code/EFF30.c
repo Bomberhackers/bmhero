@@ -89,7 +89,6 @@ extern s32 D_801651B8;
 extern s32 D_801651BC;
 extern f32 D_801651C0;
 
-extern struct UnkStructSTCG* D_8017753C;
 extern struct UnkStruct80177778* D_80177778;
 extern struct LevelInfo *gLevelInfo[4];
 
@@ -491,13 +490,13 @@ void func_800FEFA0(void) {
     s32 sp38;
 
     sprintf(&gDebugTextBuf, "(%d %d %d) ST=%d CG=%d %d",
-            (s32)D_8017753C->Unk0, (s32)D_8017753C->Unk4, (s32) D_8017753C->Unk8,
-            D_8017753C->UnkA4, D_80165290[gObjects[0].Unk140[0]].unk14,
-            D_8017753C->Unk108
+            (s32)D_8017753C->Pos.x, (s32)D_8017753C->Pos.y, (s32) D_8017753C->Pos.z,
+            D_8017753C->unkA4, D_80165290[gObjects[0].Unk140[0]].unk14,
+            D_8017753C->unk108
         );
     debug_print_xy((s8*)0x20, (s8*)0x10);
-    sp54 = (s32)D_8017753C->Unk0 / 60;
-    sp4C = (s32)D_8017753C->Unk0 % 60;
+    sp54 = (s32)D_8017753C->Pos.x / 60;
+    sp4C = (s32)D_8017753C->Pos.x % 60;
 
     if((sp4C < 0 ? -sp4C : sp4C) >= 0x1E)
     {
@@ -509,8 +508,8 @@ void func_800FEFA0(void) {
     }
 
     sp54 *= 0x3C;
-    sp50 = (s32) D_8017753C->Unk8 / 60;
-    sp48 = (s32) D_8017753C->Unk8 % 60;
+    sp50 = (s32) D_8017753C->Pos.z / 60;
+    sp48 = (s32) D_8017753C->Pos.z % 60;
 
     if ((sp48 < 0 ? -sp48 : sp48) >= 0x1E) {
         if (sp48 >= 0) {
@@ -521,7 +520,7 @@ void func_800FEFA0(void) {
     }
 
     sp50 *= 0x3C;
-    sprintf(&gDebugTextBuf, "(%d %d %d) R=%d GB=%d", sp54, (s32) D_8017753C->Unk4, sp50, (s32) (u8) D_8016E414, (s32) (u16) D_8016E41C);
+    sprintf(&gDebugTextBuf, "(%d %d %d) R=%d GB=%d", sp54, (s32) D_8017753C->Pos.y, sp50, (s32) (u8) D_8016E414, (s32) (u16) D_8016E41C);
     debug_print_xy((s8* )0x20, (s8* )0x20);
     func_80065AEC(gObjects[0].Pos.x, gObjects[0].Pos.y, gObjects[0].Pos.z, &sp40, &sp3C, &sp38);
     sp44 = (D_80177778->unk18 * sp38) + sp40;

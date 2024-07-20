@@ -1,9 +1,4 @@
-#include "common.h"
-#include "variables.h"
-
-// File variables
-extern f32 D_8004BC10; // .rodata
-extern f32 D_8004A400[]; // .rodata
+#include <ultra64.h>
 
 // External functions
 f32 func_800155A8(f32, f32);

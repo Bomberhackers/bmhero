@@ -2,7 +2,6 @@
 
 // extern functions
 extern f32 func_8001B62C(s32, s32);
-extern s32 func_8001ABF4(s32, s32, s32, void*);
 extern f32 func_8001B580(s32, s32);
 
 extern s8 D_801039B0;

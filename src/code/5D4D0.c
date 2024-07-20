@@ -1,5 +1,5 @@
-#include "common.h"
-#include "variables.h"
+#include <ultra64.h>
+#include "7B0A0.h"
 
 struct UnkBigStruct_8006B64C
 {
@@ -18,7 +18,6 @@ extern u16 D_8017794A;
 
 extern u16 D_80177942;
 extern u16 D_80177946;
-extern u8 D_801776E0;
 extern s8 D_801775EE;
 extern s8 D_801348B2;
 extern s16 D_80134C22;
@@ -28,7 +27,6 @@ extern u16 D_8017793C;
 
 extern u16 D_80177936;
 extern u8 D_80177939;
-extern struct UnkStructSTCG* D_8017753C;
 extern u8 D_801775BC;
 extern u8 D_801775C4;
 extern u8 D_801775CC;
@@ -46,12 +44,10 @@ extern struct UnkBigStruct_8006B64C D_801541F8[];
 
 extern u8 D_80177933;
 
-extern s32 func_80014E80(s32);                               /* extern */
 extern void func_80067748(f32, f32, f32);                     /* extern */
 extern void func_80081468(s32, f32, f32, f32);                  /* extern */
 extern void func_80017BEC(s32, s32, s32, s32); 
 extern void func_80017CFC(s32, s32, s32, s32); 
-extern s32 func_80014E80(s32);                               /* extern */
 extern void func_80067748(f32, f32, f32);                     /* extern */
 extern void func_80081468(s32, f32, f32, f32);                  /* extern */
 extern s32 func_80027464(s32, void*, f32, f32, f32, f32);
@@ -110,14 +106,14 @@ void func_8006B1B4(void) {
 
     if(D_80177939 == 0)
     {
-        if(D_8017753C->Unk0 >= 3600.0f)
+        if(D_8017753C->Pos.x >= 3600.0f)
         {
             D_80177939 = 1; 
         }
 
         if(D_80177936 == 0)
         {
-            sp04 = (s32) (3000.0f - D_8017753C->Unk0);
+            sp04 = (s32) (3000.0f - D_8017753C->Pos.x);
             if(sp04 < 0)
             {
                 sp04 = 0;
@@ -168,22 +164,22 @@ void func_8006B3BC(void) {
         D_8017793C = 0;
     }
 
-    if(D_8017753C->Unk4 < 480.0f)
+    if(D_8017753C->Pos.y < 480.0f)
     {
         if (D_8017793C == 0)
         {
             D_8017793C = func_80014E80(0xA) + 15;
-            if(D_8017753C->Unk24 == 0.0f && D_8017753C->Unk2C == 0.0f)
+            if(D_8017753C->Vel.x == 0.0f && D_8017753C->Vel.z == 0.0f)
             {
-                sp30 = (f32)func_80014E80(-480) + D_8017753C->Unk0;
+                sp30 = (f32)func_80014E80(-480) + D_8017753C->Pos.x;
             }
             else
             {
-                sp30 = (f32)func_80014E80(-960) + D_8017753C->Unk0;
+                sp30 = (f32)func_80014E80(-960) + D_8017753C->Pos.x;
             }
 
-            sp2C = D_8017753C->Unk4 + 540.0f;
-            sp28 = (f32)func_80014E80(-240) + D_8017753C->Unk8;
+            sp2C = D_8017753C->Pos.y + 540.0f;
+            sp28 = (f32)func_80014E80(-240) + D_8017753C->Pos.z;
             func_80067748(sp30, sp2C, sp28);
             if(D_801776E0 % 2 == 0)
             {

@@ -28,7 +28,7 @@ extern s32 D_80118B38;
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CAFF0/func_800D8E30.s")
 
 void func_800D8E40(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -52,7 +52,7 @@ void func_800D8E40(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CAFF0/func_800D9298.s")
 
 void func_800D9420(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
     s32 sp20;
 
     sp24 = &gObjects[gCurrentParsedObject];
@@ -69,7 +69,7 @@ void func_800D9420(void) {
 }
 
 void func_800D9520(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -140,7 +140,7 @@ void func_800D9A44(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CAFF0/func_800DA264.s")
 
 void func_800DA304(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -163,7 +163,7 @@ void func_800DA304(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CAFF0/func_800DA6BC.s")
 
 void func_800DA760(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (sp4->unk132 == 0) {

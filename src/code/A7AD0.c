@@ -121,7 +121,7 @@ void func_800B7398(void);
 void func_800B73FC(void);
 void func_800B765C(void);
 void func_800B768C(void);
-s16 func_800B7720(struct PlayerStruct *arg0, s16 arg1, UNUSED s32 arg2);
+s16 func_800B7720(struct ObjectStruct *arg0, s16 arg1, UNUSED s32 arg2);
 void func_800B78A4(void);
 void func_800B7A28(void);
 void func_800B7BB4(void);
@@ -141,7 +141,7 @@ void func_800B8DCC(void);
 s8 func_800B8EBC(s8 arg0);
 s8 func_800B8F38(void);
 void func_800B8FB4(void);
-s16 func_800B9070(struct PlayerStruct *arg0, s16 arg1, s16 arg2);
+s16 func_800B9070(struct ObjectStruct *arg0, s16 arg1, s16 arg2);
 void func_800B9234(void);
 void func_800B954C(void);
 void func_800B955C(void);
@@ -161,7 +161,7 @@ void func_800BA734(void);
 void func_800BA7C0(void);
 void func_800BA904(void);
 void func_800BA934(void);
-s16 func_800BA9C8(struct PlayerStruct *arg0, s16 arg1, UNUSED s32 arg2);
+s16 func_800BA9C8(struct ObjectStruct *arg0, s16 arg1, UNUSED s32 arg2);
 void func_800BAB44(void);
 void func_800BAC94(void);
 void func_800BAD34(void);
@@ -175,7 +175,7 @@ void func_800BB6BC(void);
 void func_800BB748(void);
 void func_800BB91C(void);
 void func_800BBA0C(void);
-s16 func_800BBAD4(struct PlayerStruct *arg0, s16 arg1, UNUSED s32 arg2);
+s16 func_800BBAD4(struct ObjectStruct *arg0, s16 arg1, UNUSED s32 arg2);
 void func_800BBCA4(void);
 s8 func_800BBF30(s8 arg0);
 void func_800BC124(void);
@@ -218,7 +218,7 @@ void func_800BEDB0(void);
 void func_800BEFF0(void);
 void func_800BF240(void);
 void func_800BF394(void);
-s16 func_800BF3A4(struct PlayerStruct *arg0, s16 arg1, s16 arg2);
+s16 func_800BF3A4(struct ObjectStruct *arg0, s16 arg1, s16 arg2);
 void func_800BF5D0(void);
 void func_800BF71C();
 void func_800BF72C(void);
@@ -228,10 +228,10 @@ void func_800BFA14(void);
 void func_800BFAD0(void);
 void func_800BFAF0(void);
 void func_800BFB20(void);
-s16 func_800BFD94(struct PlayerStruct *arg0, s16 arg1, UNUSED s16 arg2);
-s8 func_800BFF20(struct PlayerStruct *arg0, f32 arg1, f32 arg2);
-s8 func_800BFFCC(struct PlayerStruct *arg0, s8 arg1, f32 arg2, f32 arg3);
-s8 func_800C00F4(struct PlayerStruct *arg0, f32 arg1);
+s16 func_800BFD94(struct ObjectStruct *arg0, s16 arg1, UNUSED s16 arg2);
+s8 func_800BFF20(struct ObjectStruct *arg0, f32 arg1, f32 arg2);
+s8 func_800BFFCC(struct ObjectStruct *arg0, s8 arg1, f32 arg2, f32 arg3);
+s8 func_800C00F4(struct ObjectStruct *arg0, f32 arg1);
 s32 func_800C0194(struct UnkStructSTCG *arg0, f32 arg1);
 void stub();
 
@@ -253,7 +253,7 @@ void func_800B55B0(void) {
 }
 
 void func_800B5778(void) {
-    struct PlayerStruct *sp4;
+    struct ObjectStruct *sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
 
@@ -268,7 +268,7 @@ void func_800B5778(void) {
 }
 
 void func_800B5814(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -289,7 +289,7 @@ void func_800B5814(void) {
 }
 
 void func_800B5978(void) {
-    struct PlayerStruct *sp34;
+    struct ObjectStruct *sp34;
     s16 sp32;
 
     sp34 = &gObjects[gCurrentParsedObject];
@@ -349,7 +349,7 @@ void func_800B5978(void) {
 }
 
 void func_800B5D18(void) {
-    struct PlayerStruct *sp44;
+    struct ObjectStruct *sp44;
     UNUSED char pad[0x8];
 
     sp44 = &gObjects[gCurrentParsedObject];
@@ -417,7 +417,7 @@ void func_800B5D18(void) {
 }
 
 void func_800B62C8(void) {
-    struct PlayerStruct *sp44;
+    struct ObjectStruct *sp44;
     f32 sp40;
     f32 sp3C;
     s16 sp3A;
@@ -505,7 +505,7 @@ void func_800B62C8(void) {
 }
 
 void func_800B6A94(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -532,7 +532,7 @@ void func_800B6A94(void) {
 }
 
 void func_800B6C60(void) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -549,7 +549,7 @@ void func_800B6C60(void) {
 }
 
 void func_800B6D40(void) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
 
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
@@ -578,7 +578,7 @@ void func_800B6F2C(void) {
 }
 
 void func_800B6F6C(void) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
 
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
@@ -609,7 +609,7 @@ void func_800B7148(void) {
 }
 
 void func_800B7158(void) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -676,7 +676,7 @@ void func_800B7398(void) {
 }
 
 void func_800B73FC(void) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
     f32 sp28;
     f32 sp24;
 
@@ -729,8 +729,8 @@ void func_800B768C(void) {
     }
 }
 
-s16 func_800B7720(struct PlayerStruct *arg0, s16 arg1, UNUSED s32 arg2) {
-    struct PlayerStruct *sp34;
+s16 func_800B7720(struct ObjectStruct *arg0, s16 arg1, UNUSED s32 arg2) {
+    struct ObjectStruct *sp34;
     s16 sp32;
 
     sp32 = func_80027464(1, &D_80113A18, arg0->Pos.x, arg0->Pos.y + 120.0f, arg0->Pos.z, arg0->unk3C);
@@ -768,7 +768,7 @@ void func_800B78A4(void) {
 }
 
 void func_800B7A28(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -792,7 +792,7 @@ void func_800B7A28(void) {
 }
 
 void func_800B7BB4(void) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
     f32 sp28;
     f32 sp24;
     s8 sp23;
@@ -844,7 +844,7 @@ void func_800B7BB4(void) {
 }
 
 void func_800B7F90(void) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
     UNUSED char pad[0x5];
 
     sp2C = &gObjects[gCurrentParsedObject];
@@ -938,7 +938,7 @@ void func_800B8414(void) {
 }
 
 void func_800B846C(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
     s16 sp22;
 
     sp24 = &gObjects[gCurrentParsedObject];
@@ -961,7 +961,7 @@ void func_800B846C(void) {
 }
 
 void func_800B85C0(void) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
     f32 sp28;
     f32 sp24;
 
@@ -1024,8 +1024,8 @@ s8 func_800B890C(void) {
 }
 
 s8 func_800B8968(s8 arg0) {
-    struct PlayerStruct *sp24;
-    struct PlayerStruct *sp20;
+    struct ObjectStruct *sp24;
+    struct ObjectStruct *sp20;
     s8 sp1F;
 
     sp24 = &gObjects[gCurrentParsedObject];
@@ -1044,7 +1044,7 @@ s8 func_800B8968(s8 arg0) {
 }
 
 void func_800B8A78(void) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -1063,7 +1063,7 @@ void func_800B8A78(void) {
 }
 
 void func_800B8B98(void) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
     s8 sp1B;
 
     sp1C = &gObjects[gCurrentParsedObject];
@@ -1106,7 +1106,7 @@ void func_800B8B98(void) {
 }
 
 void func_800B8DCC(void) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
     s8 sp1B;
 
     sp1C = &gObjects[gCurrentParsedObject];
@@ -1126,7 +1126,7 @@ void func_800B8DCC(void) {
 }
 
 s8 func_800B8EBC(s8 arg0) {
-    struct PlayerStruct *spC;
+    struct ObjectStruct *spC;
     UNUSED char pad[0x4];
     s8 sp7;
 
@@ -1168,8 +1168,8 @@ void func_800B8FB4(void) {
     }
 }
 
-s16 func_800B9070(struct PlayerStruct *arg0, s16 arg1, s16 arg2) {
-    struct PlayerStruct *sp2C;
+s16 func_800B9070(struct ObjectStruct *arg0, s16 arg1, s16 arg2) {
+    struct ObjectStruct *sp2C;
     s16 sp2A;
 
     sp2A = func_80027C00(arg1, arg2, &D_80113A48, arg0->Pos.x, arg0->Pos.y, arg0->Pos.z, 0.0f);
@@ -1225,8 +1225,8 @@ void func_800B954C(void) {
 }
 
 void func_800B955C(void) {
-    struct PlayerStruct *sp1C;
-    struct PlayerStruct *sp18;
+    struct ObjectStruct *sp1C;
+    struct ObjectStruct *sp18;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -1248,7 +1248,7 @@ void func_800B955C(void) {
 }
 
 void func_800B969C(void) {
-    struct PlayerStruct *sp34;
+    struct ObjectStruct *sp34;
     s16 sp32;
     f32 sp2C;
 
@@ -1288,7 +1288,7 @@ void func_800B969C(void) {
 }
 
 void func_800B99A4(void) {
-    struct PlayerStruct *sp34;
+    struct ObjectStruct *sp34;
     UNUSED char pad[0x3];
     s16 sp2E;
 
@@ -1393,7 +1393,7 @@ void func_800B9FFC(void) {
 }
 
 void func_800BA09C(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -1413,7 +1413,7 @@ void func_800BA09C(void) {
 }
 
 void func_800BA1E4(void) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
     f32 sp28;
     f32 sp24;
 
@@ -1436,7 +1436,7 @@ void func_800BA1E4(void) {
 }
 
 void func_800BA334(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -1456,7 +1456,7 @@ void func_800BA334(void) {
 }
 
 void func_800BA468(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -1478,7 +1478,7 @@ void func_800BA468(void) {
 }
 
 void func_800BA5A8(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     sp24->unk108 = 0;
@@ -1522,7 +1522,7 @@ void func_800BA734(void) {
 }
 
 void func_800BA7C0(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -1559,8 +1559,8 @@ void func_800BA934(void) {
     }
 }
 
-s16 func_800BA9C8(struct PlayerStruct *arg0, s16 arg1, UNUSED s32 arg2) {
-    struct PlayerStruct *sp24;
+s16 func_800BA9C8(struct ObjectStruct *arg0, s16 arg1, UNUSED s32 arg2) {
+    struct ObjectStruct *sp24;
     s16 sp22;
 
     sp22 = func_80027464(1, &D_80113AE4, arg0->Pos.x, arg0->Pos.y + 390.0f, arg0->Pos.z, arg0->unk3C);
@@ -1607,7 +1607,7 @@ void func_800BAC94(void) {
 }
 
 void func_800BAD34(void) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -1630,7 +1630,7 @@ void func_800BAD34(void) {
 }
 
 void func_800BAE94(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -1659,7 +1659,7 @@ void func_800BAE94(void) {
 }
 
 void func_800BB080(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -1688,7 +1688,7 @@ void func_800BB080(void) {
 }
 
 void func_800BB270(void) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -1708,7 +1708,7 @@ void func_800BB270(void) {
 }
 
 void func_800BB388(void) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -1774,7 +1774,7 @@ void func_800BB6BC(void) {
 }
 
 void func_800BB748(void) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
 
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
@@ -1802,7 +1802,7 @@ void func_800BB748(void) {
 }
 
 void func_800BB91C(void) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -1833,8 +1833,8 @@ void func_800BBA0C(void) {
     }
 }
 
-s16 func_800BBAD4(struct PlayerStruct *arg0, s16 arg1, UNUSED s32 arg2) {
-    struct PlayerStruct *sp24;
+s16 func_800BBAD4(struct ObjectStruct *arg0, s16 arg1, UNUSED s32 arg2) {
+    struct ObjectStruct *sp24;
     s16 sp22;
 
     sp22 = func_80027464(1, &D_80113B68, arg0->Pos.x, arg0->Pos.y + 20.0f, arg0->Pos.z, arg0->unk3C);
@@ -1912,7 +1912,7 @@ void func_800BC134(UNUSED s8 arg0) {
 }
 
 void func_800BC148(void) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -1938,7 +1938,7 @@ void func_800BC148(void) {
 }
 
 void func_800BC2C8(void) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
 
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
@@ -1991,7 +1991,7 @@ void func_800BC2C8(void) {
 }
 
 void func_800BC684(void) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
     s8 sp1B;
 
     sp1C = &gObjects[gCurrentParsedObject];
@@ -2010,7 +2010,7 @@ void func_800BC684(void) {
 }
 
 s8 func_800BC774(s8 arg0) {
-    struct PlayerStruct *sp4;
+    struct ObjectStruct *sp4;
     s8 sp3;
 
     sp4 = &gObjects[gCurrentParsedObject];
@@ -2033,7 +2033,7 @@ s8 func_800BC7F0(void) {
 }
 
 s8 func_800BC86C(s8 arg0) {
-    UNUSED struct PlayerStruct *sp24;
+    UNUSED struct ObjectStruct *sp24;
     s8 sp23;
     s8 sp22;
 
@@ -2046,8 +2046,8 @@ s8 func_800BC86C(s8 arg0) {
 }
 
 s16 func_800BC91C(s16 arg0, s8 arg1) {
-    struct PlayerStruct *spC;
-    struct PlayerStruct *sp8;
+    struct ObjectStruct *spC;
+    struct ObjectStruct *sp8;
     s8 sp7;
 
     spC = &gObjects[gCurrentParsedObject];
@@ -2103,7 +2103,7 @@ void func_800BCBE0(void) {
 }
 
 void func_800BCC10(void) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
 
@@ -2172,7 +2172,7 @@ void func_800BD174(UNUSED s8 arg0) {
 }
 
 void func_800BD188(void) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -2193,7 +2193,7 @@ void func_800BD188(void) {
 }
 
 void func_800BD2C8(void) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
     s8 sp1B;
 
     sp1C = &gObjects[gCurrentParsedObject];
@@ -2212,7 +2212,7 @@ void func_800BD2C8(void) {
 }
 
 s8 func_800BD3B8(s8 arg0) {
-    struct PlayerStruct *spC;
+    struct ObjectStruct *spC;
     UNUSED char pad[0x3];
     s8 sp7;
 
@@ -2238,7 +2238,7 @@ s8 func_800BD434(void) {
 }
 
 s8 func_800BD4B0(void) {
-    UNUSED struct PlayerStruct *sp24;
+    UNUSED struct ObjectStruct *sp24;
     s8 sp23;
     s8 sp22;
 
@@ -2251,8 +2251,8 @@ s8 func_800BD4B0(void) {
 }
 
 s16 func_800BD558(s16 arg0) {
-    struct PlayerStruct *sp34;
-    struct PlayerStruct *sp30;
+    struct ObjectStruct *sp34;
+    struct ObjectStruct *sp30;
     s8 sp2F;
     f32 sp28;
 
@@ -2318,7 +2318,7 @@ void func_800BD86C(void) {
 }
 
 void func_800BDB8C(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if ((D_80177A64 == 1)) {
@@ -2346,7 +2346,7 @@ void func_800BDB8C(void) {
 }
 
 void func_800BDCF4(void) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -2380,7 +2380,7 @@ void func_800BDCF4(void) {
 }
 
 void func_800BDEE0(void) {
-    struct PlayerStruct *sp34;
+    struct ObjectStruct *sp34;
     f32 sp30;
 
     sp34 = &gObjects[gCurrentParsedObject];
@@ -2414,7 +2414,7 @@ void func_800BDEE0(void) {
 }
 
 void func_800BE14C(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -2454,7 +2454,7 @@ void func_800BE14C(void) {
 }
 
 void func_800BE3B4(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -2489,7 +2489,7 @@ void func_800BE3B4(void) {
 }
 
 void func_800BE5CC(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -2528,7 +2528,7 @@ void func_800BE5CC(void) {
 }
 
 void func_800BE928(void) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -2557,7 +2557,7 @@ void func_800BE928(void) {
 }
 
 void func_800BEB10(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -2601,7 +2601,7 @@ void func_800BEB10(void) {
 }
 
 void func_800BEDB0(void) {
-    struct PlayerStruct *sp34;
+    struct ObjectStruct *sp34;
     f32 sp30;
     s16 sp2E;
 
@@ -2631,7 +2631,7 @@ void func_800BEDB0(void) {
 }
 
 void func_800BEFF0(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
     s16 sp22;
 
     sp24 = &gObjects[gCurrentParsedObject];
@@ -2673,7 +2673,7 @@ void func_800BEFF0(void) {
 }
 
 void func_800BF240(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -2698,8 +2698,8 @@ void func_800BF240(void) {
 void func_800BF394(void) {
 }
 
-s16 func_800BF3A4(struct PlayerStruct *arg0, s16 arg1, s16 arg2) {
-    struct PlayerStruct *sp2C;
+s16 func_800BF3A4(struct ObjectStruct *arg0, s16 arg1, s16 arg2) {
+    struct ObjectStruct *sp2C;
     s16 ret;
 
     if (arg0->unkA8 == 0) {
@@ -2789,7 +2789,7 @@ void func_800BF72C(void) {
 }
 
 void func_800BF75C(void) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -2812,7 +2812,7 @@ void func_800BF75C(void) {
 }
 
 void func_800BF8AC(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -2836,7 +2836,7 @@ void func_800BF8AC(void) {
 }
 
 void func_800BFA14(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unkE6[0] == -1) {
@@ -2863,7 +2863,7 @@ void func_800BFAF0(void) {
 }
 
 void func_800BFB20(void) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unkE6[0] == -1) {
@@ -2904,8 +2904,8 @@ void func_800BFB20(void) {
     }
 }
 
-s16 func_800BFD94(struct PlayerStruct *arg0, s16 arg1, UNUSED s16 arg2) {
-    struct PlayerStruct *sp24;
+s16 func_800BFD94(struct ObjectStruct *arg0, s16 arg1, UNUSED s16 arg2) {
+    struct ObjectStruct *sp24;
     s16 sp22;
 
     sp22 = func_80027464(1, &D_80113DC0, arg0->Pos.x, arg0->Pos.y, arg0->Pos.z, arg0->unk3C);
@@ -2927,7 +2927,7 @@ s16 func_800BFD94(struct PlayerStruct *arg0, s16 arg1, UNUSED s16 arg2) {
     return sp22;
 }
 
-s8 func_800BFF20(struct PlayerStruct *arg0, f32 arg1, f32 arg2) {
+s8 func_800BFF20(struct ObjectStruct *arg0, f32 arg1, f32 arg2) {
     s8 sp27;
 
     sp27 = func_8002A800(arg0->unk3C, arg1, FABS(arg2));
@@ -2935,7 +2935,7 @@ s8 func_800BFF20(struct PlayerStruct *arg0, f32 arg1, f32 arg2) {
     return sp27;
 }
 
-s8 func_800BFFCC(struct PlayerStruct *arg0, s8 arg1, f32 arg2, f32 arg3) {
+s8 func_800BFFCC(struct ObjectStruct *arg0, s8 arg1, f32 arg2, f32 arg3) {
     s8 sp27;
 
     if (arg1 == 0) {
@@ -2948,7 +2948,7 @@ s8 func_800BFFCC(struct PlayerStruct *arg0, s8 arg1, f32 arg2, f32 arg3) {
     return sp27;
 }
 
-s8 func_800C00F4(struct PlayerStruct *arg0, f32 arg1) {
+s8 func_800C00F4(struct ObjectStruct *arg0, f32 arg1) {
     f32 sp2C;
     f32 sp28;
     s8 sp27;

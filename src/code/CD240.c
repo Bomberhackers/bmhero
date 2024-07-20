@@ -91,58 +91,58 @@ extern UnkStruct80165100 D_801144D4;
 extern UnkStruct80165100 D_801144E0;
 extern UnkStruct80165100 D_801144EC;
 extern UnkStruct80165100 D_801144F8;
-extern struct PlayerStruct D_801137F0;
-extern struct PlayerStruct D_80114378;
-extern struct PlayerStruct D_80114384;
-extern struct PlayerStruct D_80114480;
-extern struct PlayerStruct D_8011448C;
-extern struct PlayerStruct D_80114498;
-extern struct PlayerStruct D_801144A4;
-extern struct PlayerStruct D_80118E9C;
-extern struct PlayerStruct D_80118EB4;
-extern struct PlayerStruct D_80118FE8;
-extern struct PlayerStruct D_80118FF4;
-extern struct PlayerStruct D_801190CC;
-extern struct PlayerStruct D_80119128;
-extern struct PlayerStruct D_80119194;
-extern struct PlayerStruct D_801191F0;
-extern struct PlayerStruct D_80119268;
-extern struct PlayerStruct D_801192E0;
-extern struct PlayerStruct D_80119384;
-extern struct PlayerStruct D_8011935C;
-extern struct PlayerStruct D_801193AC;
-extern struct PlayerStruct D_8011940C;
-extern struct PlayerStruct D_80119428;
-extern struct PlayerStruct D_80119494;
-extern struct PlayerStruct D_80119504;
-extern struct PlayerStruct D_8011955C;
-extern struct PlayerStruct D_801195D0;
-extern struct PlayerStruct D_80119578;
-extern struct PlayerStruct D_801195D0;
-extern struct PlayerStruct D_80119654;
-extern struct PlayerStruct D_801196AC;
-extern struct PlayerStruct D_80119750;
-extern struct PlayerStruct D_80119788;
-extern struct PlayerStruct D_80119828;
-extern struct PlayerStruct D_801198D0;
-extern struct PlayerStruct D_801198EC;
-extern struct PlayerStruct D_80119908;
-extern struct PlayerStruct D_8011990C;
-extern struct PlayerStruct D_8011993C;
-extern struct PlayerStruct D_80119974;
-extern struct PlayerStruct D_80119978;
-extern struct PlayerStruct D_8011997C;
-extern struct PlayerStruct D_80119980;
-extern struct PlayerStruct D_801199AC;
-extern struct PlayerStruct D_801199E4;
-extern struct PlayerStruct D_80119A40;
-extern struct PlayerStruct D_80119A60;
-extern struct PlayerStruct D_801199AC;
-extern struct PlayerStruct D_80119A60;
-extern struct PlayerStruct D_8011BA88;
-extern struct PlayerStruct D_8011BA8C;
-extern struct PlayerStruct D_8011BB50;
-extern struct PlayerStruct* D_8017753C;
+extern struct ObjectStruct D_801137F0;
+extern struct ObjectStruct D_80114378;
+extern struct ObjectStruct D_80114384;
+extern struct ObjectStruct D_80114480;
+extern struct ObjectStruct D_8011448C;
+extern struct ObjectStruct D_80114498;
+extern struct ObjectStruct D_801144A4;
+extern struct ObjectStruct D_80118E9C;
+extern struct ObjectStruct D_80118EB4;
+extern struct ObjectStruct D_80118FE8;
+extern struct ObjectStruct D_80118FF4;
+extern struct ObjectStruct D_801190CC;
+extern struct ObjectStruct D_80119128;
+extern struct ObjectStruct D_80119194;
+extern struct ObjectStruct D_801191F0;
+extern struct ObjectStruct D_80119268;
+extern struct ObjectStruct D_801192E0;
+extern struct ObjectStruct D_80119384;
+extern struct ObjectStruct D_8011935C;
+extern struct ObjectStruct D_801193AC;
+extern struct ObjectStruct D_8011940C;
+extern struct ObjectStruct D_80119428;
+extern struct ObjectStruct D_80119494;
+extern struct ObjectStruct D_80119504;
+extern struct ObjectStruct D_8011955C;
+extern struct ObjectStruct D_801195D0;
+extern struct ObjectStruct D_80119578;
+extern struct ObjectStruct D_801195D0;
+extern struct ObjectStruct D_80119654;
+extern struct ObjectStruct D_801196AC;
+extern struct ObjectStruct D_80119750;
+extern struct ObjectStruct D_80119788;
+extern struct ObjectStruct D_80119828;
+extern struct ObjectStruct D_801198D0;
+extern struct ObjectStruct D_801198EC;
+extern struct ObjectStruct D_80119908;
+extern struct ObjectStruct D_8011990C;
+extern struct ObjectStruct D_8011993C;
+extern struct ObjectStruct D_80119974;
+extern struct ObjectStruct D_80119978;
+extern struct ObjectStruct D_8011997C;
+extern struct ObjectStruct D_80119980;
+extern struct ObjectStruct D_801199AC;
+extern struct ObjectStruct D_801199E4;
+extern struct ObjectStruct D_80119A40;
+extern struct ObjectStruct D_80119A60;
+extern struct ObjectStruct D_801199AC;
+extern struct ObjectStruct D_80119A60;
+extern struct ObjectStruct D_8011BA88;
+extern struct ObjectStruct D_8011BA8C;
+extern struct ObjectStruct D_8011BB50;
+extern struct ObjectStruct* D_8017753C;
 extern s32 gCurrentParsedObject;
 extern s32 D_80177A64;
 extern s32 D_801137FC;
@@ -191,7 +191,7 @@ void func_800DAD20(void) {
 
 
 void func_800DAD98(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 0) {
@@ -204,7 +204,7 @@ void func_800DAD98(void) {
 }
 
 void func_800DAE20(void) {
-    struct PlayerStruct* sp34;
+    struct ObjectStruct* sp34;
     s32 sp30;
 
     sp34 = &gObjects[gCurrentParsedObject];
@@ -248,7 +248,7 @@ void func_800DAE20(void) {
 }
 
 void func_800DB0F8(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -266,7 +266,7 @@ void func_800DB0F8(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB1EC.s")
 
 void func_800DB3E8(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -289,7 +289,7 @@ void func_800DB504(void) {
 }
 
 void func_800DB534(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (sp4->unk132 == 0) {
@@ -314,7 +314,7 @@ void func_800DB710(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB788.s")
 
 void func_800DB840(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -328,7 +328,7 @@ void func_800DB840(void) {
 }
 
 void func_800DB910(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -344,7 +344,7 @@ void func_800DB910(void) {
 }
 
 void func_800DBA0C(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
 
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
@@ -368,7 +368,7 @@ void func_800DBB78(void) {
 }
 
 void func_800DBBA8(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
 
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
@@ -388,7 +388,7 @@ void func_800DBBA8(void) {
 }
 
 void func_800DBCFC(void) {
-    struct PlayerStruct* sp44;
+    struct ObjectStruct* sp44;
     f32 sp40;
     f32 sp3C;
 
@@ -441,7 +441,7 @@ void func_800DBCFC(void) {
 }
 
 void func_800DC07C(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
 
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
@@ -459,7 +459,7 @@ void func_800DC07C(void) {
 #ifdef NON_MATCHING
 // matches but needs rodata
 void func_800DC188(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     switch (sp1C->unkA4) {
@@ -497,7 +497,7 @@ void func_800DC288(void) {
 }
 
 void func_800DC300(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -511,7 +511,7 @@ void func_800DC300(void) {
 }
 
 void func_800DC3D0(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -538,7 +538,7 @@ void func_800DC5CC(void) {
 }
 
 void func_800DC66C(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     sp4->unk108 = 0;
@@ -547,7 +547,7 @@ void func_800DC66C(void) {
 }
 
 void func_800DC6D0(void) {
-    struct PlayerStruct* sp34;
+    struct ObjectStruct* sp34;
     s32 sp30;
 
     sp34 = &gObjects[gCurrentParsedObject];
@@ -589,7 +589,7 @@ void func_800DC6D0(void) {
 }
 
 void func_800DC984(void) {
-    struct PlayerStruct* sp34;
+    struct ObjectStruct* sp34;
     s32 temp;
 
     sp34 = &gObjects[gCurrentParsedObject];
@@ -611,7 +611,7 @@ void func_800DC984(void) {
 }
 
 void func_800DCAFC(void) {
-    struct PlayerStruct* sp34;
+    struct ObjectStruct* sp34;
     s32 sp30;
 
     sp34 = &gObjects[gCurrentParsedObject];
@@ -647,7 +647,7 @@ void func_800DCD20(void) {
 }
 
 void func_800DCD50(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     switch (sp24->unkA4) {
@@ -678,7 +678,7 @@ void func_800DCE2C(void) {
 }
 
 void func_800DCEE4(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -692,7 +692,7 @@ void func_800DCEE4(void) {
 }
 
 void func_800DCFAC(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
     s16 temp_t9;
 
     sp24 = &gObjects[gCurrentParsedObject];
@@ -718,7 +718,7 @@ void func_800DCFAC(void) {
 }
 
 void func_800DD160(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
     s16 temp_t9;
 
     sp24 = &gObjects[gCurrentParsedObject];
@@ -744,7 +744,7 @@ void func_800DD160(void) {
 }
 
 void func_800DD300(void) {
-    struct PlayerStruct* sp44;
+    struct ObjectStruct* sp44;
     f32 sp40;
     f32 temp_f20;
 
@@ -805,7 +805,7 @@ void func_800DD690(void) {
 }
 
 void func_800DD6C0(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (sp4->unk132 == 0) {
@@ -826,7 +826,7 @@ void func_800DD6C0(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DD7B0.s")
 
 void func_800DD8A0(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 0) {
@@ -850,7 +850,7 @@ void func_800DD928(void) {
 }
 
 void func_800DD9E0(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -864,7 +864,7 @@ void func_800DD9E0(void) {
 }
 
 void func_800DDAA8(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -889,7 +889,7 @@ void func_800DDAA8(void) {
 }
 
 void func_800DDC5C(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -914,7 +914,7 @@ void func_800DDC5C(void) {
 }
 
 void func_800DDE08(void) {
-    struct PlayerStruct* sp44;
+    struct ObjectStruct* sp44;
     f32 sp40;
     f32 temp_f20;
 
@@ -976,7 +976,7 @@ void func_800DDE08(void) {
 }
 
 void func_800DE1E8(void) {
-    struct PlayerStruct* sp3C;
+    struct ObjectStruct* sp3C;
     s32 sp38;
     f32 temp_f20;
     f32 temp_f20_2;
@@ -1023,7 +1023,7 @@ void func_800DE534(void) {
 }
 
 void func_800DE564(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (sp4->unk132 == 0) {
@@ -1044,7 +1044,7 @@ void func_800DE564(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DE654.s")
 
 void func_800DE754(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 0) {
@@ -1066,7 +1066,7 @@ void func_800DE7DC(void) {
 }
 
 void func_800DE894(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -1080,7 +1080,7 @@ void func_800DE894(void) {
 }
 
 void func_800DE95C(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
     s16 temp_t9;
 
     sp24 = &gObjects[gCurrentParsedObject];
@@ -1107,7 +1107,7 @@ void func_800DE95C(void) {
 }
 
 void func_800DEB3C(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -1132,7 +1132,7 @@ void func_800DEB3C(void) {
 }
 
 void func_800DECE0(void) {
-    struct PlayerStruct* sp3C;
+    struct ObjectStruct* sp3C;
     f32 sp38;
     s16 temp_t1;
     s32 temp;
@@ -1185,7 +1185,7 @@ void func_800DECE0(void) {
 }
 
 void func_800DF034(void) {
-    struct PlayerStruct* sp44;
+    struct ObjectStruct* sp44;
     f32 sp40;
     f32 temp_f20;
     s16 temp_t1;
@@ -1241,7 +1241,7 @@ void func_800DF034(void) {
 }
 
 void func_800DF3D4(void) {
-    struct PlayerStruct* sp44;
+    struct ObjectStruct* sp44;
     f32 sp40;
     f32 temp_f20;
 
@@ -1294,7 +1294,7 @@ void func_800DF704(void) {
 }
 
 void func_800DF734(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     sp4->unk44 = 0.0f;
@@ -1314,7 +1314,7 @@ void func_800DF734(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DF81C.s")
 
 void func_800DF92C(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 0) {
@@ -1326,7 +1326,7 @@ void func_800DF92C(void) {
 }
 
 void func_800DF9A8(void) {
-    struct PlayerStruct* sp34;
+    struct ObjectStruct* sp34;
     f32 sp30;
 
     sp34 = &gObjects[gCurrentParsedObject];
@@ -1362,7 +1362,7 @@ void func_800DF9A8(void) {
 }
 
 void func_800DFC2C(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -1389,7 +1389,7 @@ void func_800DFC2C(void) {
 }
 
 void func_800DFDBC(void) {
-    struct PlayerStruct* sp44;
+    struct ObjectStruct* sp44;
     f32 sp40;
     f32 temp_f20;
 
@@ -1447,7 +1447,7 @@ void func_800DFDBC(void) {
 }
 
 void func_800E0154(void) {
-    struct PlayerStruct* sp44;
+    struct ObjectStruct* sp44;
     s32 sp40;
     f32 temp_f20;
     s16 temp_t8;
@@ -1497,7 +1497,7 @@ void func_800E047C(void) {
 }
 
 void func_800E04AC(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
 
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
@@ -1532,7 +1532,7 @@ void func_800E04AC(void) {
 }
 
 void func_800E06E0(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     sp4->unk44 = 0.0f;
@@ -1554,7 +1554,7 @@ void func_800E06E0(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E07DC.s")
 
 void func_800E0938(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 0) {
@@ -1567,7 +1567,7 @@ void func_800E0938(void) {
 }
 
 void func_800E09D0(void) {
-    struct PlayerStruct* sp34;
+    struct ObjectStruct* sp34;
     f32 sp30;
 
     sp34 = &gObjects[gCurrentParsedObject];
@@ -1603,7 +1603,7 @@ void func_800E09D0(void) {
 }
 
 void func_800E0C54(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -1630,7 +1630,7 @@ void func_800E0C54(void) {
 }
 
 void func_800E0DE4(void) {
-    struct PlayerStruct* sp44;
+    struct ObjectStruct* sp44;
     f32 sp40;
     f32 temp_f20;
 
@@ -1690,7 +1690,7 @@ void func_800E0DE4(void) {
 }
 
 void func_800E119C(void) {
-    struct PlayerStruct* sp44;
+    struct ObjectStruct* sp44;
     s32 sp40;
     s32 temp1;
     s16 temp2;
@@ -1756,7 +1756,7 @@ void func_800E1640(void) {
 }
 
 void func_800E1670(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
 
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
@@ -1802,7 +1802,7 @@ void func_800E1670(void) {
 }
 
 void func_800E1978(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     sp4->unk44 = 0.0f;
@@ -1827,7 +1827,7 @@ void func_800E1978(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E1AA8.s")
 
 void func_800E1C04(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 0) {
@@ -1840,7 +1840,7 @@ void func_800E1C04(void) {
 }
 
 void func_800E1C9C(void) {
-    struct PlayerStruct* sp34;
+    struct ObjectStruct* sp34;
     f32 sp30;
 
     sp34 = &gObjects[gCurrentParsedObject];
@@ -1876,7 +1876,7 @@ void func_800E1C9C(void) {
 }
 
 void func_800E1F20(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -1896,7 +1896,7 @@ void func_800E1F20(void) {
 }
 
 void func_800E2068(void) {
-    struct PlayerStruct* sp44;
+    struct ObjectStruct* sp44;
     f32 sp40;
     f32 temp_f20;
 
@@ -1954,7 +1954,7 @@ void func_800E2068(void) {
 }
 
 void func_800E2400(void) {
-    struct PlayerStruct* sp4C;
+    struct ObjectStruct* sp4C;
     f32 sp48;
     f32 temp_f20;
     s32 temp;
@@ -2002,7 +2002,7 @@ void func_800E2400(void) {
 }
 
 void func_800E2738(void) {
-    struct PlayerStruct* sp44;
+    struct ObjectStruct* sp44;
     f32 sp40;
     f32 temp_f20;
     f32 temp_f20_2;
@@ -2047,7 +2047,7 @@ void func_800E2A00(void) {
 }
 
 void func_800E2A30(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
 
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
@@ -2088,7 +2088,7 @@ void func_800E2A30(void) {
 }
 
 void func_800E2CDC(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     sp4->unk44 = 0.0f;
@@ -2114,7 +2114,7 @@ void func_800E2CDC(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E2E28.s")
 
 void func_800E2F94(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 0) {
@@ -2127,7 +2127,7 @@ void func_800E2F94(void) {
 }
 
 void func_800E302C(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
     f32 sp20;
 
     sp24 = &gObjects[gCurrentParsedObject];
@@ -2159,7 +2159,7 @@ void func_800E31E4(void) {
 }
 
 void func_800E3214(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
     f32 sp28;
     s32 temp;
 
@@ -2202,7 +2202,7 @@ void func_800E3474(void) {
 }
 
 void func_800E34A4(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
     f32 sp28;
     s32 temp;
 
@@ -2244,7 +2244,7 @@ void func_800E3704(void) {
 }
 
 void func_800E3734(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     switch (sp24->unkB2) {
@@ -2290,7 +2290,7 @@ void func_800E3734(void) {
 }
 
 void func_800E38D8(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     sp4->unkA4 = 2;
@@ -2298,7 +2298,7 @@ void func_800E38D8(void) {
 }
 
 void func_800E3930(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (sp4->unk132 == 0) {
@@ -2314,7 +2314,7 @@ void func_800E3930(void) {
 }
 
 void func_800E39F4(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
     s32 sp20;
 
     sp24 = &gObjects[gCurrentParsedObject];
@@ -2331,7 +2331,7 @@ void func_800E39F4(void) {
 }
 
 void func_800E3B40(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
     s32 sp20;
 
     sp24 = &gObjects[gCurrentParsedObject];
@@ -2348,7 +2348,7 @@ void func_800E3B40(void) {
 }
 
 void func_800E3C8C(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
     s32 sp20;
 
     sp24 = &gObjects[gCurrentParsedObject];
@@ -2365,7 +2365,7 @@ void func_800E3C8C(void) {
 }
 
 void func_800E3DD8(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     switch (sp24->unkA4) {
@@ -2393,7 +2393,7 @@ void func_800E3DD8(void) {
 }
 
 void func_800E3EE4(void) {
-    struct PlayerStruct* sp4C;
+    struct ObjectStruct* sp4C;
     f32 sp48;
     f32 sp44;
     f32 sp40;
@@ -2475,7 +2475,7 @@ void func_800E445C(void) {
 }
 
 void func_800E450C(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 0) {
@@ -2490,7 +2490,7 @@ void func_800E450C(void) {
 }
 
 void func_800E45C4(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -2513,7 +2513,7 @@ void func_800E45C4(void) {
 }
 
 void func_800E4728(void) {
-    struct PlayerStruct* sp34;
+    struct ObjectStruct* sp34;
     s16 temp;
     f32 sp2C;
 
@@ -2551,7 +2551,7 @@ void func_800E4728(void) {
 }
 
 void func_800E49AC(void) {
-    struct PlayerStruct* sp34;
+    struct ObjectStruct* sp34;
     f32 sp30;
 
     sp34 = &gObjects[gCurrentParsedObject];
@@ -2585,7 +2585,7 @@ void func_800E49AC(void) {
 }
 
 void func_800E4BF4(void) {
-    struct PlayerStruct* sp34;
+    struct ObjectStruct* sp34;
     f32 sp30;
     f32 temp_f20;
 
@@ -2620,7 +2620,7 @@ void func_800E4BF4(void) {
 }
 
 void func_800E4E3C(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
     s32 temp;
     s32 temp2;
 
@@ -2638,7 +2638,7 @@ void func_800E4E3C(void) {
 }
 
 void func_800E4F40(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
     s32 temp;
     s32 temp2;
 
@@ -2657,7 +2657,7 @@ void func_800E4F40(void) {
 }
 
 void func_800E5058(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
     s32 temp;
     s32 temp2;
 
@@ -2675,7 +2675,7 @@ void func_800E5058(void) {
 }
 
 void func_800E515C(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
     s32 temp;
     s32 temp2;
 
@@ -2693,7 +2693,7 @@ void func_800E515C(void) {
 }
 
 void func_800E5260(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
     s32 temp;
     s32 temp2;
 
@@ -2711,7 +2711,7 @@ void func_800E5260(void) {
 }
 
 void func_800E5364(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
     s32 temp;
     s32 temp2;
 
@@ -2751,7 +2751,7 @@ void func_800E5824(void) {
 }
 
 void func_800E589C(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 0) {
@@ -2766,7 +2766,7 @@ void func_800E589C(void) {
 }
 
 void func_800E594C(void) {
-    struct PlayerStruct* sp34;
+    struct ObjectStruct* sp34;
     s32 sp30;
 
     sp34 = &gObjects[gCurrentParsedObject];
@@ -2816,7 +2816,7 @@ void func_800E594C(void) {
 }
 
 void func_800E5C14(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -2847,7 +2847,7 @@ void func_800E5C14(void) {
 }
 
 void func_800E5DF0(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -2866,7 +2866,7 @@ void func_800E5DF0(void) {
 }
 
 void func_800E5F18(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -2894,7 +2894,7 @@ void func_800E5F18(void) {
 }
 
 void func_800E60D8(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -2941,7 +2941,7 @@ void func_800E63F4(void) {
 }
 
 void func_800E64D0(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 0) {
@@ -2965,7 +2965,7 @@ void func_800E64D0(void) {
 }
 
 void func_800E660C(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -2983,7 +2983,7 @@ void func_800E660C(void) {
 }
 
 void func_800E6720(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -3001,7 +3001,7 @@ void func_800E6720(void) {
 }
 
 void func_800E683C(void) {
-    struct PlayerStruct* sp3C;
+    struct ObjectStruct* sp3C;
 
     sp3C = &gObjects[gCurrentParsedObject];
     if (sp3C->unk132 == 0) {
@@ -3035,7 +3035,7 @@ void func_800E683C(void) {
 }
 
 void func_800E6AA0(void) {
-    struct PlayerStruct* sp3C;
+    struct ObjectStruct* sp3C;
 
     sp3C = &gObjects[gCurrentParsedObject];
     if (sp3C->unk132 == 0) {
@@ -3058,7 +3058,7 @@ void func_800E6AA0(void) {
 }
 
 void func_800E6C48(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -3073,7 +3073,7 @@ void func_800E6C48(void) {
 }
 
 void func_800E6D2C(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -3095,7 +3095,7 @@ void func_800E6D2C(void) {
 }
 
 void func_800E6E80(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
 
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
@@ -3129,7 +3129,7 @@ void func_800E6E80(void) {
 }
 
 void func_800E70D0(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -3145,7 +3145,7 @@ void func_800E70D0(void) {
 }
 
 void func_800E71C0(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
 
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
@@ -3173,7 +3173,7 @@ void func_800E74C0(void) {
 }
 
 void func_800E753C(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 0) {
@@ -3194,7 +3194,7 @@ void func_800E753C(void) {
 }
 
 void func_800E764C(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -3212,7 +3212,7 @@ void func_800E764C(void) {
 }
 
 void func_800E778C(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -3239,7 +3239,7 @@ void func_800E778C(void) {
 }
 
 void func_800E7974(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -3256,7 +3256,7 @@ void func_800E7974(void) {
 }
 
 void func_800E7A7C(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
 
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
@@ -3282,7 +3282,7 @@ void func_800E7A7C(void) {
 }
 
 void func_800E7C54(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -3299,7 +3299,7 @@ void func_800E7C54(void) {
 }
 
 void func_800E7D5C(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
 
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
@@ -3330,7 +3330,7 @@ void func_800E802C(void) {
 }
 
 void func_800E80E0(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 0) {
@@ -3343,7 +3343,7 @@ void func_800E80E0(void) {
 }
 
 void func_800E816C(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -3358,7 +3358,7 @@ void func_800E816C(void) {
 }
 
 void func_800E8250(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -3379,7 +3379,7 @@ void func_800E8250(void) {
 }
 
 void func_800E839C(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -3397,7 +3397,7 @@ void func_800E839C(void) {
 }
 
 void func_800E84D4(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -3447,7 +3447,7 @@ void func_800E84D4(void) {
 }
 
 void func_800E8804(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
 
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
@@ -3465,7 +3465,7 @@ void func_800E8804(void) {
 }
 
 void func_800E8934(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -3486,7 +3486,7 @@ void func_800E8934(void) {
 }
 
 void func_800E8AAC(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -3503,7 +3503,7 @@ void func_800E8AAC(void) {
 }
 
 void func_800E8BC8(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -3521,7 +3521,7 @@ void func_800E8BC8(void) {
 }
 
 void func_800E8CD4(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -3540,7 +3540,7 @@ void func_800E8CD4(void) {
 }
 
 void func_800E8DF0(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -3563,7 +3563,7 @@ void func_800E904C(void) {
 }
 
 void func_800E90C8(void) {
-    struct PlayerStruct* spC;
+    struct ObjectStruct* spC;
     s32 temp;
     s16 sp6;
 
@@ -3585,7 +3585,7 @@ void func_800E90C8(void) {
 }
 
 void func_800E91E4(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
 
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
@@ -3607,8 +3607,8 @@ void func_800E91E4(void) {
 }
 
 void func_800E9420(void) {
-    struct PlayerStruct* sp34;
-    struct PlayerStruct* temp_t3;
+    struct ObjectStruct* sp34;
+    struct ObjectStruct* temp_t3;
     s16 sp2E;
     f32 sp28;
     f32 sp24;
@@ -3687,8 +3687,8 @@ void func_800E9420(void) {
 
 
 void func_800E9AFC(void) {
-    struct PlayerStruct* sp34;
-    struct PlayerStruct* temp_t4;
+    struct ObjectStruct* sp34;
+    struct ObjectStruct* temp_t4;
     s16 sp2E;
     f32 sp28;
     f32 sp24;
@@ -3765,12 +3765,12 @@ void func_800E9AFC(void) {
 }
 
 void func_800EA194(void) {
-    struct PlayerStruct* sp34;
-    struct PlayerStruct* temp_t0;
+    struct ObjectStruct* sp34;
+    struct ObjectStruct* temp_t0;
     s16 sp2E;
     f32 sp28;
     f32 sp24;
-    struct PlayerStruct* temp_t5;
+    struct ObjectStruct* temp_t5;
 
     sp34 = &gObjects[gCurrentParsedObject];
     if (sp34->unk132 == 0) {
@@ -3810,7 +3810,7 @@ void func_800EA194(void) {
 }
 
 void func_800EA55C(void) {
-    struct PlayerStruct* sp34;
+    struct ObjectStruct* sp34;
     s32 sp30;
     s16 sp2E;
     f32 sp28;
@@ -3868,7 +3868,7 @@ void func_800EA55C(void) {
 }
 
 void func_800EAAB8(void) {
-    struct PlayerStruct* sp34;
+    struct ObjectStruct* sp34;
     s32 sp30;
     s16 sp2E;
     f32 sp28;
@@ -3927,7 +3927,7 @@ void func_800EAAB8(void) {
 }
 
 void func_800EB01C(void) {
-    struct PlayerStruct* sp34;
+    struct ObjectStruct* sp34;
     s32 sp30;
     s32 sp2C;
     f32 temp;
@@ -3998,8 +3998,8 @@ void func_800EB01C(void) {
 }
 
 void func_800EB61C(void) {
-    struct PlayerStruct* sp34;
-    struct PlayerStruct* temp_t5;
+    struct ObjectStruct* sp34;
+    struct ObjectStruct* temp_t5;
     s16 sp2E;
     f32 sp28;
     f32 sp24;
@@ -4039,7 +4039,7 @@ void func_800EB61C(void) {
 }
 
 void func_800EB9A4(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
     s32 sp20;
     s16 sp1E;
     s16 temp_t1;
@@ -4060,7 +4060,7 @@ void func_800EBC58(void) {
 }
 
 void func_800EBC88(void) {
-    struct PlayerStruct* sp34;
+    struct ObjectStruct* sp34;
     s32 sp30;
     f32 sp2C;
     f32 sp28;
@@ -4097,7 +4097,7 @@ void func_800EBC88(void) {
 }
 
 void func_800EBEA0(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     switch (sp1C->unkA4) {
@@ -4116,7 +4116,7 @@ void func_800EBF24(void) {
 }
 
 void func_800EBFA0(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -4137,7 +4137,7 @@ void func_800EBFA0(void) {
 }
 
 void func_800EC144(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -4153,7 +4153,7 @@ void func_800EC144(void) {
 }
 
 void func_800EC260(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -4169,7 +4169,7 @@ void func_800EC260(void) {
 }
 
 void func_800EC348(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     switch (sp24->unkA4) {
@@ -4197,7 +4197,7 @@ void func_800EC408(void) {
 }
 
 void func_800EC4AC(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 0) {
@@ -4208,7 +4208,7 @@ void func_800EC4AC(void) {
 }
 
 void func_800EC534(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
     s32 sp20;
 
     sp24 = &gObjects[gCurrentParsedObject];
@@ -4252,7 +4252,7 @@ void func_800EC7B4(void) {
 }
 
 void func_800EC888(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 0) {
@@ -4266,7 +4266,7 @@ void func_800EC888(void) {
 }
 
 void func_800EC91C(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
     f32 sp28;
     f32 sp24;
 
@@ -4288,7 +4288,7 @@ void func_800EC91C(void) {
 }
 
 void func_800ECA50(void) {
-    struct PlayerStruct* sp34;
+    struct ObjectStruct* sp34;
     f32 sp30;
     f32 sp2C;
 
@@ -4320,7 +4320,7 @@ void func_800ECA50(void) {
 }
 
 void func_800ECC54(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
     s32 sp28;
     f32 sp24;
     f32 sp20;
@@ -4357,7 +4357,7 @@ void func_800ECC54(void) {
 }
 
 void func_800ECEB0(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
     f32 sp28;
     f32 sp24;
 
@@ -4382,7 +4382,7 @@ void func_800ECEB0(void) {
 }
 
 void func_800ED038(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unkB4 != 0) {
@@ -4404,7 +4404,7 @@ void func_800ED038(void) {
 }
 
 void func_800ED170(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
 
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
@@ -4440,7 +4440,7 @@ void func_800EDA88(void) {
 }
 
 void func_800EDAE0(void) {
-    struct PlayerStruct* sp3C;
+    struct ObjectStruct* sp3C;
     s32 sp38;
 
     sp3C = &gObjects[gCurrentParsedObject];
@@ -4485,7 +4485,7 @@ void func_800EDAE0(void) {
 }
 
 void func_800EDDE4(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
     f32 sp28;
     f32 sp24;
 
@@ -4510,7 +4510,7 @@ void func_800EDDE4(void) {
 }
 
 void func_800EDFA4(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -4533,7 +4533,7 @@ void func_800EDFA4(void) {
 }
 
 void func_800EE134(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     switch (sp24->unkA4) {
@@ -4609,7 +4609,7 @@ void func_800EE444(void) {
 }
 
 void func_800EE6F8(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 0) {
@@ -4623,7 +4623,7 @@ void func_800EE6F8(void) {
 }
 
 void func_800EE7A4(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
     s32 sp28;
     f32 sp24;
     f32 sp20;
@@ -4658,7 +4658,7 @@ void func_800EE7A4(void) {
 }
 
 void func_800EEA50(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
     s32 sp28;
     f32 sp24;
     f32 sp20;
@@ -4700,7 +4700,7 @@ void func_800EEA50(void) {
 }
 
 void func_800EEE30(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
     f32 sp28;
     f32 sp24;
     s32 sp20;
@@ -4759,7 +4759,7 @@ void func_800EEE30(void) {
 }
 
 void func_800EF250(void) {
-    struct PlayerStruct* sp34;
+    struct ObjectStruct* sp34;
     s32 sp30;
     s32 sp2C;
     f32 sp28;
@@ -4983,7 +4983,7 @@ void func_800EF250(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F7544.s")
 
 void func_800F770C(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (sp4->unk132 == 0) {
@@ -5016,7 +5016,7 @@ void func_800F7800(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F7894.s")
 
 void func_800F7A0C(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -5077,7 +5077,7 @@ void func_800F8028(void) {
 }
 
 void func_800F82EC(void) {
-    struct PlayerStruct* spC;
+    struct ObjectStruct* spC;
     s32 sp8;
     s32 sp4;
 
@@ -5101,7 +5101,7 @@ void func_800F82EC(void) {
 }
 
 void func_800F8418(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (sp4->unk132 == 0) {
@@ -5119,7 +5119,7 @@ void func_800F8418(void) {
 }
 
 void func_800F84F8(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
     s32 sp20;
     s32 sp1C;
 
@@ -5146,7 +5146,7 @@ void func_800F84F8(void) {
 }
 
 void func_800F8660(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -5159,7 +5159,7 @@ void func_800F8660(void) {
 }
 
 void func_800F8720(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (sp4->unk132 == 0) {
@@ -5232,7 +5232,7 @@ void func_800F90A8(void) {
 }
 
 void func_800F9120(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if ((D_80177A64 == 1) && (sp4->unkA4 == 1)) {
@@ -5242,7 +5242,7 @@ void func_800F9120(void) {
 }
 
 void func_800F91A4(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
 
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
@@ -5255,7 +5255,7 @@ void func_800F91A4(void) {
 }
 
 void func_800F9294(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -5287,7 +5287,7 @@ void func_800F9294(void) {
 }
 
 void func_800F94A8(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -5310,7 +5310,7 @@ void func_800F94A8(void) {
 }
 
 void func_800F95F4(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -5360,7 +5360,7 @@ void func_800F9800(void) {
 }
 
 void func_800F98C4(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
     s32 sp20;
 
     sp20 = func_80027464(1, &D_801137E4, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
@@ -5386,7 +5386,7 @@ void func_800F98C4(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F9C4C.s")
 
 void func_800F9CB8(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
     s32 sp20;
 
     sp20 = func_80027464(1, &D_801137F0, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
@@ -5405,7 +5405,7 @@ void func_800F9CB8(void) {
 }
 
 void func_800F9DE0(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
     s32 sp20;
 
     sp24 = &gObjects[gCurrentParsedObject];
@@ -5479,7 +5479,7 @@ void func_800FA1C0(void) {
 }
 
 void func_800FA27C(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
     s32 sp28;
 
     sp2C = &gObjects[gCurrentParsedObject];
@@ -5519,7 +5519,7 @@ void func_800FA27C(void) {
 }
 
 void func_800FA4D4(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
@@ -5529,7 +5529,7 @@ void func_800FA4D4(void) {
 }
 
 void func_800FA54C(void) {
-    struct PlayerStruct* sp34;
+    struct ObjectStruct* sp34;
     s32 sp30;
 
     sp34 = &gObjects[gCurrentParsedObject];
@@ -5585,7 +5585,7 @@ void func_800FA7D8(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800FA888.s")
 
 void func_800FAA88(void) {
-    struct PlayerStruct* sp2C;
+    struct ObjectStruct* sp2C;
 
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {

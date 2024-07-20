@@ -58,7 +58,7 @@ void func_800C08A8(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B27B0/func_800C0964.s")
 
 void func_800C0B78(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 1) {
@@ -88,7 +88,7 @@ void func_800C0B78(void) {
 }
 
 void func_800C0CC0(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
@@ -119,7 +119,7 @@ void func_800C1214(void)
 }
 
 void func_800C1224(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     switch (sp1C->unkA4) {

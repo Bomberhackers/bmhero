@@ -100,7 +100,7 @@ extern f64 D_8004BE30;
 
 // External variables
 
-extern struct PlayerStruct *D_8017753C;
+extern struct ObjectStruct *D_8017753C;
 extern struct UnkStruct_80026548 D_80124D90[];
 extern struct UnkStruct_80026548 D_80124D9E[];
 extern struct UnkStruct_80026548 D_80124D9F[];
@@ -300,7 +300,7 @@ void func_80026548(void) {
     f32 sp30;
     f32 sp2C;
     f32 sp28;
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
     s32 sp20;
     s32 sp1C;
     s32 sp18;
@@ -393,7 +393,7 @@ void func_80026548(void) {
 
 s32 func_80026DBC(s32 arg0) {
     s32 spC;
-    struct PlayerStruct *sp8;
+    struct ObjectStruct *sp8;
     s32 sp4;
 
     sp4 = FALSE;
@@ -414,7 +414,7 @@ s32 func_80026DBC(s32 arg0) {
 
 s32 func_80026E58(s32 arg0, s32 pos) {
     s32 spC;
-    struct PlayerStruct *sp8;
+    struct ObjectStruct *sp8;
     s32 sp4;
 
     sp4 = FALSE;
@@ -671,7 +671,7 @@ s32 func_800281A4(s32 arg0, s32 arg1) {
 // TODO: What is the real type of D_801776F0???
 #ifdef NON_MATCHING
 s32 func_80028260(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5) {
-    struct PlayerStruct *spA4;
+    struct ObjectStruct *spA4;
     f32 spA0;
     f32 sp9C;
     f32 sp98;
@@ -768,7 +768,7 @@ s32 func_80028260(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5) {
 
 #ifdef NON_MATCHING
 s32 func_8002894C(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
-    struct PlayerStruct *spA4;
+    struct ObjectStruct *spA4;
     f32 spA0;
     f32 sp9C;
     f32 sp98;
@@ -849,7 +849,7 @@ s32 func_8002894C(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
 #endif
 
 s32 func_80028E60(s32 arg0) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
     f32 sp20;
     f32 sp1C;
     f32 sp18;
@@ -866,7 +866,7 @@ s32 func_80028E60(s32 arg0) {
 }
 
 s32 func_80028FA0(s32 arg0) {
-    struct PlayerStruct *sp4;
+    struct ObjectStruct *sp4;
 
     sp4 = &gObjects[arg0];
     if ((sp4->unk104 != -1)) {
@@ -883,7 +883,7 @@ s32 func_8002894C(s32, s32, s32, s32, f32); /* extern */
 s32 func_80028E60(s32);                     /* extern */
 
 s32 func_80029018(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 arg5) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
     s32 sp28;
     s32 sp24;
 
@@ -989,7 +989,7 @@ s32 func_800293B8(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f3
 }
 
 s32 func_800294F0(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[arg0];
     func_80067748(sp1C->Pos.x + arg3, sp1C->Pos.y + arg4, sp1C->Pos.z + arg5);
@@ -999,7 +999,7 @@ s32 func_800294F0(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) 
 }
 
 s32 func_800295C0(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[arg0];
     func_80067748(sp1C->Pos.x + sp1C->Vel.x + arg3, sp1C->Pos.y + sp1C->Vel.y + arg4,
@@ -1010,7 +1010,7 @@ s32 func_800295C0(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) 
 }
 
 s32 func_800296AC(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
     f32 sp28;
     f32 sp24;
     f32 sp20;
@@ -1041,7 +1041,7 @@ s8 func_800297DC(void) {
 }
 
 void func_80029824(s32 arg0, s32 arg1) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
     f32 sp28;
 
     sp2C = &gObjects[arg0];
@@ -1073,7 +1073,7 @@ void func_80029824(s32 arg0, s32 arg1) {
 }
 
 void func_80029A9C(s32 arg0, s32 arg1) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
     f32 sp28;
 
     sp2C = &gObjects[arg0];
@@ -1085,20 +1085,20 @@ void func_80029A9C(s32 arg0, s32 arg1) {
 }
 
 void func_80029B60(s32 arg0) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
     sp1C = &gObjects[arg0];
     sp1C->unk3C = func_80015538(sp1C->unk128, 180.0f);
 }
 
 void func_80029BD0(s32 arg0) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[arg0];
     sp1C->unk40 = func_80015538(sp1C->unk12C, 180.0f);
 }
 
 void func_80029C40(s32 arg0) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[arg0];
     sp1C->Vel.x = sinf((f32) ((f64) sp1C->unk3C * D_8004BDF8)) * sp1C->unk44;
@@ -1106,14 +1106,14 @@ void func_80029C40(s32 arg0) {
 }
 
 void func_80029D04(s32 arg0) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[arg0];
     sp1C->Vel.y = sinf((f32) ((f64) sp1C->unk40 * D_8004BE08)) * sp1C->unk48;
 }
 
 void func_80029D8C(s32 arg0) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
     sp24 = &gObjects[arg0];
     sp24->Vel.x = (sp24->unk44 * cosf(sp24->unk40 * D_8004BE10)) * sinf(sp24->unk3C * D_8004BE18);
@@ -1122,7 +1122,7 @@ void func_80029D8C(s32 arg0) {
 }
 
 void func_80029EF8(s32 arg0, f32 arg1, f32 arg2) {
-    struct PlayerStruct *sp4;
+    struct ObjectStruct *sp4;
 
     sp4 = &gObjects[arg0];
     sp4->Vel.y = arg1;
@@ -1130,7 +1130,7 @@ void func_80029EF8(s32 arg0, f32 arg1, f32 arg2) {
 }
 
 s32 func_80029F58(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
     s32 sp28;
     f32 sp24;
     f32 sp20;
@@ -1154,7 +1154,7 @@ s32 func_80029F58(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
 }
 
 s32 func_8002A0D0(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
     s32 sp28;
     f32 sp24;
     f32 sp20;
@@ -1173,7 +1173,7 @@ s32 func_8002A0D0(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
 }
 
 s32 func_8002A1FC(s32 arg0, f32 arg1) {
-    struct PlayerStruct *spC;
+    struct ObjectStruct *spC;
     f32 sp8;
     f32 sp4;
     f32 sp0;
@@ -1189,7 +1189,7 @@ s32 func_8002A1FC(s32 arg0, f32 arg1) {
 }
 
 s32 func_8002A2EC(s32 arg0, f32 arg1) {
-    struct PlayerStruct *spC;
+    struct ObjectStruct *spC;
     f32 sp8;
     f32 sp4;
 
@@ -1203,7 +1203,7 @@ s32 func_8002A2EC(s32 arg0, f32 arg1) {
 }
 
 s32 func_8002A3A8(s32 arg0, f32 arg1) {
-    struct PlayerStruct *spC;
+    struct ObjectStruct *spC;
     f32 sp8;
     f32 sp4;
 
@@ -1333,7 +1333,7 @@ void func_8002AA94(s32 arg0) {
 
 s32 func_8002AB40(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     s32 sp2C;
-    struct PlayerStruct *sp28;
+    struct ObjectStruct *sp28;
 
     sp2C = func_800642E0();
     if (sp2C == -1) {
@@ -1365,7 +1365,7 @@ s32 func_8002AB40(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
 extern s32 gCurrentParsedObject;
 
 void func_8002AD90(void) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     sp1C->Rot.y = func_80015634(gView.eye.x - sp1C->Pos.x, gView.eye.z - sp1C->Pos.z);
@@ -1380,7 +1380,7 @@ void func_8002AE38(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
 }
 
 void func_8002AE84(s32 arg0, s32 arg1) {
-    struct PlayerStruct *spC4;
+    struct ObjectStruct *spC4;
     s32 spC0;
     f32 ox;
     f32 oy;

@@ -58,7 +58,7 @@ void func_800FBAB8(void)
 #pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FBF10.s")
 
 void func_800FC1D8(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
     if ((D_80177A64 != 0) && (D_80177A64 != 1)) {

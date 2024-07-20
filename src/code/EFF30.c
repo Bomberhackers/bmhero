@@ -74,7 +74,6 @@ extern s16 D_80177948;
 extern f32 D_801779C8;
 extern s32 D_80134218;
 extern s32 D_80134FD0;
-extern struct LightingStruct gLightingSettings[];
 
 extern s16 D_80134C14;
 
@@ -432,38 +431,36 @@ void func_800FE9BC(void) {
 }
 
 void func_800FEB6C(void) {
-    f32 sp24;
-    f32 sp20;
-    f32 sp1C;
-    f32 sp18;
+    f32 x, y, z;
+    f32 dist;
 
-    sprintf(&gDebugTextBuf, "[LIGHT EDIT]");
+    sprintf(gDebugTextBuf, "[LIGHT EDIT]");
     debug_print_xy((s8* )0x20, (s8* )0x10);
-    sprintf(&gDebugTextBuf, "   AMBIENT R = %d", (u8)gLightingSettings[0].AmbientLight.LightData[0]);
+    sprintf(gDebugTextBuf, "   AMBIENT R = %d", gLightingSettings.a.l.col[0]);
     debug_print_xy((s8* )0x20, (s8* )0x20);
-    sprintf(&gDebugTextBuf, "   AMBIENT G = %d", gLightingSettings[0].AmbientLight.LightData[1]);
+    sprintf(gDebugTextBuf, "   AMBIENT G = %d", gLightingSettings.a.l.col[1]);
     debug_print_xy((s8* )0x20, (s8* )0x30);
-    sprintf(&gDebugTextBuf, "   AMBIENT B = %d", gLightingSettings[0].AmbientLight.LightData[2]);
+    sprintf(gDebugTextBuf, "   AMBIENT B = %d", gLightingSettings.a.l.col[2]);
     debug_print_xy((s8* )0x20, (s8* )0x40);
-    sprintf(&gDebugTextBuf, "   DIFFUSE R = %d", gLightingSettings[0].DiffuseLight.LightData[0]);
+    sprintf(gDebugTextBuf, "   DIFFUSE R = %d", gLightingSettings.l[0].l.col[0]);
     debug_print_xy((s8* )0x20, (s8* )0x50);
-    sprintf(&gDebugTextBuf, "   DIFFUSE G = %d", gLightingSettings[0].DiffuseLight.LightData[1]);
+    sprintf(gDebugTextBuf, "   DIFFUSE G = %d", gLightingSettings.l[0].l.col[1]);
     debug_print_xy((s8* )0x20, (s8* )0x60);
-    sprintf(&gDebugTextBuf, "   DIFFUSE B = %d", gLightingSettings[0].DiffuseLight.LightData[2]);
+    sprintf(gDebugTextBuf, "   DIFFUSE B = %d", gLightingSettings.l[0].l.col[2]);
     debug_print_xy((s8* )0x20, (s8* )0x70);
-    sprintf(&gDebugTextBuf, "   DIR     X = %d", gLightingSettings[0].Direction[0]);
+    sprintf(gDebugTextBuf, "   DIR     X = %d", gLightingSettings.l[0].l.dir[0]);
     debug_print_xy((s8* )0x20, (s8* )0x80);
-    sprintf(&gDebugTextBuf, "   DIR     Y = %d", gLightingSettings[0].Direction[1]);
+    sprintf(gDebugTextBuf, "   DIR     Y = %d", gLightingSettings.l[0].l.dir[1]);
     debug_print_xy((s8* )0x20, (s8* )0x90);
-    sprintf(&gDebugTextBuf, "   DIR     Z = %d", gLightingSettings[0].Direction[2]);
+    sprintf(gDebugTextBuf, "   DIR     Z = %d", gLightingSettings.l[0].l.dir[2]);
     debug_print_xy((s8* )0x20, (s8* )0xA0);
-    sp24 = (f32) gLightingSettings[0].Direction[0];
-    sp20 = (f32) gLightingSettings[0].Direction[1];
-    sp1C = (f32) gLightingSettings[0].Direction[2];
-    sp18 = sqrtf((sp24 * sp24) + (sp20 * sp20) + (sp1C * sp1C));
-    sprintf(&gDebugTextBuf, "   DIR TOTAL = %d", (s32) sp18);
+    x = (f32) gLightingSettings.l[0].l.dir[0];
+    y = (f32) gLightingSettings.l[0].l.dir[1];
+    z = (f32) gLightingSettings.l[0].l.dir[2];
+    dist = sqrtf((x * x) + (y * y) + (z * z));
+    sprintf(gDebugTextBuf, "   DIR TOTAL = %d", (s32) dist);
     debug_print_xy((s8* )0x20, (s8* )0xB0);
-    sprintf(&gDebugTextBuf, "=");
+    sprintf(gDebugTextBuf, "=");
     debug_print_xy((s8* )0x28, (D_8016E3F4 * 0x10) + 0x20);
 }
 
@@ -710,22 +707,22 @@ void func_800FFD30(void) {
         case 1:
         case 2:
             sp18 = (s32) D_8016E3F4;
-            gLightingSettings[0].AmbientLight.LightData[sp18] += sp1C;
-            gLightingSettings[0].AmbientLight.LightData[sp18 + 4] = gLightingSettings[0].AmbientLight.LightData[sp18];
+            gLightingSettings.a.l.col[sp18] += sp1C;
+            gLightingSettings.a.l.col[sp18 + 4] = gLightingSettings.a.l.col[sp18];
             break;
         case 3:
         case 4:
         case 5:
             sp18 = D_8016E3F4 - 3; // - 3 so we index back to 0-2
-            gLightingSettings[0].DiffuseLight.LightData[sp18] += sp1C;
-            gLightingSettings[0].DiffuseLight.LightData[sp18 + 4] = gLightingSettings[0].DiffuseLight.LightData[sp18];
+            gLightingSettings.l[0].l.col[sp18] += sp1C;
+            gLightingSettings.l[0].l.col[sp18 + 4] = gLightingSettings.l[0].l.col[sp18];
             break;
         case 6:
         case 7:
         case 8:
             sp18 = D_8016E3F4 - 6; // - 6 so we index back to 0-2
-            gLightingSettings[0].Direction[sp18] += sp1C;
-            gLightingSettings[0].Direction[sp18 + 0x10] = gLightingSettings[0].Direction[sp18];
+            gLightingSettings.l[0].l.dir[sp18] += sp1C;
+            gLightingSettings.l[0].l.dir[sp18 + 0x10] = gLightingSettings.l[0].l.dir[sp18];
             break;
         }
     }

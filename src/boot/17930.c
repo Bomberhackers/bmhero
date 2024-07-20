@@ -3,7 +3,6 @@
 extern Gfx* gMasterDisplayList;
 
 extern Lights2 D_8004A590;
-extern Lights2 gLightingSettings;
 
 struct UnkStruct8010B3FC {
     char filler0[0x20];

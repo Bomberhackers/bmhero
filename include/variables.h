@@ -3,6 +3,8 @@
 
 #include "ultra64.h"
 
+extern Lights2 gLightingSettings;
+
 extern OSMesg D_801776CC;
 extern OSContStatus D_80177650[];
 

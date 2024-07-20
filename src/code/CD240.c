@@ -81,6 +81,7 @@ extern UnkStruct80165100 D_801143C0;
 extern UnkStruct80165100 D_801143CC;
 extern UnkStruct80165100 D_801143D8;
 extern UnkStruct80165100 D_801143F0;
+extern UnkStruct80165100 D_801143FC;
 extern UnkStruct80165100 D_80114450;
 extern UnkStruct80165100 D_8011445C;
 extern UnkStruct80165100 D_80114468;
@@ -4880,7 +4881,27 @@ void func_800EFA80(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EFB6C.s")
+void func_800EFB6C(void) {
+    s32 sp2C;
+    f32 sp28;
+    f32 sp24;
+
+    sp2C = func_80027464(2, &D_801143FC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    if (sp2C != -1) {
+        func_8001ABF4(sp2C, 0, 3, &D_801195D0.Rot.y);
+        func_8001ABF4((s32) gPlayerData[sp2C].unkE8[0], 1, 0, &D_801196AC.unk38);
+        if (func_800295C0(D_80177A60, &sp28, &sp24, 0.0f, 0.0f, 0.0f) != 0) {
+            gPlayerData[sp2C].Pos.y = sp24;
+        } else {
+            gPlayerData[sp2C].Pos.y = sp28;
+        }
+        gPlayerData[sp2C].Pos.y = (f32) (gPlayerData[sp2C].Pos.y + 600.0f);
+        gPlayerData[gPlayerData[sp2C].unkE8[0]].Pos.y = (f32) gPlayerData[sp2C].Pos.y;
+        gPlayerData[sp2C].unk13A = 1;
+        gPlayerData[sp2C].unkC0 = (s16) (s32) gPlayerData[sp2C].Pos.x;
+        gPlayerData[sp2C].unkC2 = (s16) (s32) gPlayerData[sp2C].Pos.z;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EFE20.s")
 

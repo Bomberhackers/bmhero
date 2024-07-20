@@ -6,7 +6,7 @@ extern void func_800FBA24();                                  /* extern */
 extern void func_8002B0E4(s32);
 extern void func_80081468(s32, f32, f32, f32);  
 
-extern s32 D_80177A60;
+extern s32 gCurrentParsedObject;
 extern s32 D_80177A64;
 extern s8 D_80165242;
 
@@ -34,7 +34,7 @@ extern s8 D_80165242;
 
 void func_800FBAB8(void) 
 {
-    switch (gPlayerData[D_80177A60].unkA4) 
+    switch (gObjects[gCurrentParsedObject].unkA4) 
     {                              
     case 1:
         func_800FB804();
@@ -58,9 +58,9 @@ void func_800FBAB8(void)
 #pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FBF10.s")
 
 void func_800FC1D8(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
-    sp1C = &gPlayerData[D_80177A60];
+    sp1C = &gObjects[gCurrentParsedObject];
     if ((D_80177A64 != 0) && (D_80177A64 != 1)) {
         return;
     }
@@ -97,7 +97,7 @@ void func_800FD3F8(void) {
 }
 
 void func_800FD408(void) {
-    func_8002B0E4(D_80177A60);
+    func_8002B0E4(gCurrentParsedObject);
     return;
 }
 

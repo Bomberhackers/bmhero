@@ -237,7 +237,7 @@ struct LevelInfo
     struct LightingStruct* LightingInfo;
 };
 
-struct PlayerStruct 
+struct ObjectStruct 
 {
     struct Vec3f Pos;
     struct Vec3f Scale;
@@ -420,7 +420,7 @@ struct UnkStructSTCG
     s16 Unk108;
 };
 
-extern struct PlayerStruct gPlayerData[];
+extern struct ObjectStruct gObjects[];
 
 struct UnkStruct_80060278
 {

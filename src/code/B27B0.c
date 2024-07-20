@@ -1,7 +1,7 @@
 #include "common.h"
 #include "variables.h"
 
-extern s32 D_80177A60;
+extern s32 gCurrentParsedObject;
 extern s32 D_80177A64;
 extern void* D_80117F08;
 
@@ -25,7 +25,7 @@ extern s32 func_8001C0EC(s32, s32, s32, s32, void*);
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B27B0/func_800C04C4.s")
 
 void func_800C0858(void) {
-    func_8002B0E4(D_80177A60);
+    func_8002B0E4(gCurrentParsedObject);
 }
 
 void func_800C0858_stub()
@@ -38,7 +38,7 @@ void func_800C0858_stub()
 void func_800C08A8(void) {
     s32 sp24;
 
-    sp24 = (s32) gPlayerData[D_80177A60].unkA4;
+    sp24 = (s32) gObjects[gCurrentParsedObject].unkA4;
     switch (sp24) 
     {     
     case 3:
@@ -58,9 +58,9 @@ void func_800C08A8(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B27B0/func_800C0964.s")
 
 void func_800C0B78(void) {
-    struct PlayerStruct* sp4;
+    struct ObjectStruct* sp4;
 
-    sp4 = &gPlayerData[D_80177A60];
+    sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 1) {
         if (sp4->unkAA == -1) {
             sp4->unkAC = 0;
@@ -88,14 +88,14 @@ void func_800C0B78(void) {
 }
 
 void func_800C0CC0(void) {
-    struct PlayerStruct* sp24;
+    struct ObjectStruct* sp24;
 
-    sp24 = &gPlayerData[D_80177A60];
+    sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
         sp24->unk132 = 1;
         sp24->unk44 = 0.0f;
         sp24->unk48 = 0.0f;
-        func_8001C0EC(D_80177A60, 0, sp24->unkA8, 0x12B, &D_80117F08);
+        func_8001C0EC(gCurrentParsedObject, 0, sp24->unkA8, 0x12B, &D_80117F08);
     }
 }
 
@@ -119,9 +119,9 @@ void func_800C1214(void)
 }
 
 void func_800C1224(void) {
-    struct PlayerStruct* sp1C;
+    struct ObjectStruct* sp1C;
 
-    sp1C = &gPlayerData[D_80177A60];
+    sp1C = &gObjects[gCurrentParsedObject];
     switch (sp1C->unkA4) {
     case 1:
         func_800C0CC0();

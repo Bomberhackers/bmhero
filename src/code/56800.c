@@ -58,7 +58,7 @@ s32 func_800642E0(void) {
     
     for(sp4 = 0xE; sp4 < 0x4E; sp4++)
     {
-        if(gPlayerData[sp4].unkA4 == 0)
+        if(gObjects[sp4].unkA4 == 0)
         {
             return sp4;
         }
@@ -70,7 +70,7 @@ s32 func_80064358(s32 arg0) {
 
     while(arg0 < 0x4E)
     {
-        if (gPlayerData[arg0].unkA4 == 0)
+        if (gObjects[arg0].unkA4 == 0)
         {
             return arg0;
         }

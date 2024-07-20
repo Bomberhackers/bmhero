@@ -100,7 +100,7 @@ extern f64 D_8004BE30;
 
 // External variables
 
-extern struct PlayerStruct *D_8017753C;
+extern struct ObjectStruct *D_8017753C;
 extern struct UnkStruct_80026548 D_80124D90[];
 extern struct UnkStruct_80026548 D_80124D9E[];
 extern struct UnkStruct_80026548 D_80124D9F[];
@@ -119,7 +119,7 @@ extern f32 D_80177760[];
 extern s8 D_8013488C;
 extern s8 D_80177630;
 extern u8 D_801776E0;
-extern s32 D_80177A60;
+extern s32 gCurrentParsedObject;
 extern UnkStruct80165100 *D_8017796C;
 // TODO: are these global variables declared in this file?
 extern s16 *D_80165100;
@@ -236,7 +236,7 @@ void func_800261E8(s32 arg0, char arg1) {
     u8 sp7;
     s16 sp4;
 
-    sp4 = gPlayerData[arg0].unkFC;
+    sp4 = gObjects[arg0].unkFC;
     sp7 = D_80165118[sp4] & 3;
     D_80165118[sp4] = sp7 | (arg1 << 2);
 }
@@ -300,7 +300,7 @@ void func_80026548(void) {
     f32 sp30;
     f32 sp2C;
     f32 sp28;
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
     s32 sp20;
     s32 sp1C;
     s32 sp18;
@@ -309,7 +309,7 @@ void func_80026548(void) {
     view_y = gView.at.y;
     view_z = gView.at.z;
 
-    for (sp24 = &gPlayerData[0xE], sp44 = 0xE; sp44 < 0x4E; sp24++, sp44++) {
+    for (sp24 = &gObjects[0xE], sp44 = 0xE; sp44 < 0x4E; sp24++, sp44++) {
         if (sp24->unkA4 != 0) {
             sp1C = 0;
             sp30 = sp24->Pos.x - view_x;
@@ -383,7 +383,7 @@ void func_80026548(void) {
                 D_8016519C = sp40;
                 D_80124DA4[sp18].routine();
                 if (D_80165198 != -1) {
-                    gPlayerData[D_80165198].unkFC = (s16) sp40;
+                    gObjects[D_80165198].unkFC = (s16) sp40;
                     func_8002617C(sp40);
                 }
             }
@@ -393,12 +393,12 @@ void func_80026548(void) {
 
 s32 func_80026DBC(s32 arg0) {
     s32 spC;
-    struct PlayerStruct *sp8;
+    struct ObjectStruct *sp8;
     s32 sp4;
 
     sp4 = FALSE;
 
-    for (spC = 0xE, sp8 = &gPlayerData[0xE]; spC < 0x4E; spC++, sp8++) {
+    for (spC = 0xE, sp8 = &gObjects[0xE]; spC < 0x4E; spC++, sp8++) {
         if (sp8->unkE4 == arg0) {
             sp4 = TRUE;
             break;
@@ -414,11 +414,11 @@ s32 func_80026DBC(s32 arg0) {
 
 s32 func_80026E58(s32 arg0, s32 pos) {
     s32 spC;
-    struct PlayerStruct *sp8;
+    struct ObjectStruct *sp8;
     s32 sp4;
 
     sp4 = FALSE;
-    for (sp8 = &gPlayerData[pos], spC = pos; spC < 0x4E; spC++, sp8++) {
+    for (sp8 = &gObjects[pos], spC = pos; spC < 0x4E; spC++, sp8++) {
         if (sp8->unkE4 == arg0) {
             sp4 = 1;
             break;
@@ -439,23 +439,23 @@ void func_80026F10(s32 arg0, s32 arg1) {
     s32 sp4;
 
     for (sp14 = 0; sp14 < 10; sp14++) {
-        if (gPlayerData[arg0].unk10E[sp14] == -1) {
-            gPlayerData[arg0].unk10E[sp14] = arg1;
+        if (gObjects[arg0].unk10E[sp14] == -1) {
+            gObjects[arg0].unk10E[sp14] = arg1;
             break;
         }
     }
 
     for (sp14 = 0; sp14 < 10; sp14++) {
-        if ((sp4 = gPlayerData[arg0].unk10E[sp14]) != -1) {
+        if ((sp4 = gObjects[arg0].unk10E[sp14]) != -1) {
             for (sp10 = 0; sp10 < 10; sp10++) {
-                if (gPlayerData[sp4].unk10E[sp10] == arg0) {
+                if (gObjects[sp4].unk10E[sp10] == arg0) {
                     break;
                 }
             }
             if (sp10 == 10) {
                 for (sp10 = 0; sp10 < 10; sp10++) {
-                    if (gPlayerData[sp4].unk10E[sp10] == -1) {
-                        gPlayerData[sp4].unk10E[sp10] = arg0;
+                    if (gObjects[sp4].unk10E[sp10] == -1) {
+                        gObjects[sp4].unk10E[sp10] = arg0;
                         break;
                     }
                 }
@@ -463,18 +463,18 @@ void func_80026F10(s32 arg0, s32 arg1) {
 
             for (spC = 0; spC < 10; spC++) {
                 for (sp10 = 0; sp10 < 10; sp10++) {
-                    if (gPlayerData[sp4].unk10E[sp10] == gPlayerData[arg0].unk10E[spC]) {
-                        if ((gPlayerData[arg0].unk10E[spC] != -1)) {
+                    if (gObjects[sp4].unk10E[sp10] == gObjects[arg0].unk10E[spC]) {
+                        if ((gObjects[arg0].unk10E[spC] != -1)) {
                             break;
                         }
                     }
                 }
 
                 if ((sp10 == 10)) {
-                    if ((gPlayerData[arg0].unk10E[spC] != sp4)) {
+                    if ((gObjects[arg0].unk10E[spC] != sp4)) {
                         for (sp8 = 0; sp8 < 10; sp8++) {
-                            if (gPlayerData[sp4].unk10E[sp8] == -1) {
-                                gPlayerData[sp4].unk10E[sp8] = gPlayerData[arg0].unk10E[spC];
+                            if (gObjects[sp4].unk10E[sp8] == -1) {
+                                gObjects[sp4].unk10E[sp8] = gObjects[arg0].unk10E[spC];
                                 break;
                             }
                         }
@@ -492,11 +492,11 @@ void func_800272E8(s32 arg0) {
     s32 sp0;
 
     for (spC = 0; spC < 10; spC++) {
-        if (gPlayerData[arg0].unk10E[spC] != -1) {
-            sp0 = gPlayerData[arg0].unk10E[spC];
+        if (gObjects[arg0].unk10E[spC] != -1) {
+            sp0 = gObjects[arg0].unk10E[spC];
             for (sp8 = 0; sp8 < 10; sp8++) {
-                if (gPlayerData[sp0].unk10E[sp8] == arg0) {
-                    gPlayerData[sp0].unk10E[sp8] = -1;
+                if (gObjects[sp0].unk10E[sp8] == arg0) {
+                    gObjects[sp0].unk10E[sp8] = -1;
                     break;
                 }
             }
@@ -504,7 +504,7 @@ void func_800272E8(s32 arg0) {
     }
 
     for (spC = 0; spC < 10; spC++) {
-        gPlayerData[arg0].unk10E[spC] = -1;
+        gObjects[arg0].unk10E[spC] = -1;
     }
 }
 
@@ -530,7 +530,7 @@ s32 func_80027464(s32 arg0, struct flo *arg1, f32 arg2, f32 arg3, f32 arg4, f32 
 
     index = 0;
     for (sp1C = 0xE; sp1C < 0x4E; sp1C++) {
-        if (gPlayerData[sp1C].unkA4 == 0) {
+        if (gObjects[sp1C].unkA4 == 0) {
             sp.unk24[index] = sp1C;
             index++;
             if (index == arg0) {
@@ -550,20 +550,20 @@ s32 func_80027464(s32 arg0, struct flo *arg1, f32 arg2, f32 arg3, f32 arg4, f32 
 
             func_8001A928(sp.unk24[index]);
             func_8001BD44(sp.unk24[index], arg1->unk0, arg1->unk6, D_8016CAA0[arg1->unk4].unk0);
-            gPlayerData[sp.unk24[index]].Pos.x = gPlayerData[sp.unk24[index]].unk50 = arg2;
-            gPlayerData[sp.unk24[index]].Pos.y = gPlayerData[sp.unk24[index]].unk54 = arg3;
-            gPlayerData[sp.unk24[index]].Pos.z = gPlayerData[sp.unk24[index]].unk58 = arg4;
-            gPlayerData[sp.unk24[index]].Rot.y = arg5;
-            gPlayerData[sp.unk24[index]].unk3C = arg5;
-            gPlayerData[sp.unk24[index]].unkA4 = 1;
-            gPlayerData[sp.unk24[index]].unkE4 = arg1->unk2;
-            gPlayerData[sp.unk24[index]].unk100 = arg1->unk7;
-            gPlayerData[sp.unk24[index]].unk108 = arg1->unk8;
-            gPlayerData[sp.unk24[index]].unk102 = arg1->unk9;
-            gPlayerData[sp.unk24[index]].unk103 = arg1->unkA;
+            gObjects[sp.unk24[index]].Pos.x = gObjects[sp.unk24[index]].unk50 = arg2;
+            gObjects[sp.unk24[index]].Pos.y = gObjects[sp.unk24[index]].unk54 = arg3;
+            gObjects[sp.unk24[index]].Pos.z = gObjects[sp.unk24[index]].unk58 = arg4;
+            gObjects[sp.unk24[index]].Rot.y = arg5;
+            gObjects[sp.unk24[index]].unk3C = arg5;
+            gObjects[sp.unk24[index]].unkA4 = 1;
+            gObjects[sp.unk24[index]].unkE4 = arg1->unk2;
+            gObjects[sp.unk24[index]].unk100 = arg1->unk7;
+            gObjects[sp.unk24[index]].unk108 = arg1->unk8;
+            gObjects[sp.unk24[index]].unk102 = arg1->unk9;
+            gObjects[sp.unk24[index]].unk103 = arg1->unkA;
             if (index > 0) {
-                gPlayerData[sp24[index]].unkE6[0] = sp24[0];
-                gPlayerData[sp24[0]].unkE6[index] = sp24[index];
+                gObjects[sp24[index]].unkE6[0] = sp24[0];
+                gObjects[sp24[0]].unkE6[index] = sp24[index];
             }
             arg1++;
             index++;
@@ -573,7 +573,7 @@ s32 func_80027464(s32 arg0, struct flo *arg1, f32 arg2, f32 arg3, f32 arg4, f32 
     for (index = 0; (sp.unk24[index] != -1) && (index < 11); index++) {
         for (sp18 = 0, sp1C = 0; (sp.unk24[sp1C] != -1) && (sp1C < 11); sp1C++) {
             if (sp24[sp1C] != sp24[index]) {
-                gPlayerData[sp24[index]].unk10E[sp18] = sp24[sp1C];
+                gObjects[sp24[index]].unk10E[sp18] = sp24[sp1C];
                 sp18++;
             }
         }
@@ -592,7 +592,7 @@ s32 func_80027B34(s32 arg0, struct UnkStruct_80027B34 *arg1) {
     s32 *sp1C;
 
     sp1C = (s32 *) arg1->unk8;
-    if (gPlayerData[arg0].Unk140[arg1->unk0] != -1) {
+    if (gObjects[arg0].Unk140[arg1->unk0] != -1) {
         return FALSE;
     }
     func_8001BD44(arg0, arg1->unk0, arg1->unk4, D_8016CAA0[arg1->unk2].unk0 + sp1C[arg1->unkC]);
@@ -612,41 +612,41 @@ s32 func_80027C00(s32 arg0, s32 arg1, struct UnkStruct_80027C00 *arg2, f32 arg3,
     }
     func_8001A928(sp24);
     func_8001BD44(sp24, arg2->unk0, arg2->unk6, D_8016CAA0[arg2->unk4].unk0);
-    gPlayerData[sp24].Pos.x = gPlayerData[sp24].unk50 = arg3;
-    gPlayerData[sp24].Pos.y = gPlayerData[sp24].unk54 = arg4;
-    gPlayerData[sp24].Pos.z = gPlayerData[sp24].unk58 = arg5;
-    gPlayerData[sp24].Rot.y = arg6;
-    gPlayerData[sp24].unk3C = arg6;
-    gPlayerData[sp24].unkA4 = 1;
-    gPlayerData[sp24].unkE4 = arg2->unk2;
-    gPlayerData[sp24].unk100 = (s16) arg2->unk7;
-    gPlayerData[sp24].unk108 = (s16) arg2->unk8;
-    gPlayerData[sp24].unk102 = arg2->unk9;
-    gPlayerData[sp24].unk103 = arg2->unkA;
-    gPlayerData[sp24].unkE6[0] = arg0;
-    gPlayerData[arg0].unkE8[arg1] = sp24;
-    gPlayerData[sp24].unk10E[0] = (s16) arg0;
+    gObjects[sp24].Pos.x = gObjects[sp24].unk50 = arg3;
+    gObjects[sp24].Pos.y = gObjects[sp24].unk54 = arg4;
+    gObjects[sp24].Pos.z = gObjects[sp24].unk58 = arg5;
+    gObjects[sp24].Rot.y = arg6;
+    gObjects[sp24].unk3C = arg6;
+    gObjects[sp24].unkA4 = 1;
+    gObjects[sp24].unkE4 = arg2->unk2;
+    gObjects[sp24].unk100 = (s16) arg2->unk7;
+    gObjects[sp24].unk108 = (s16) arg2->unk8;
+    gObjects[sp24].unk102 = arg2->unk9;
+    gObjects[sp24].unk103 = arg2->unkA;
+    gObjects[sp24].unkE6[0] = arg0;
+    gObjects[arg0].unkE8[arg1] = sp24;
+    gObjects[sp24].unk10E[0] = (s16) arg0;
 
     for (sp20 = 0; sp20 < 10; sp20++) {
-        if (gPlayerData[arg0].unk10E[sp20] == -1) {
-            gPlayerData[arg0].unk10E[sp20] = (s16) sp24;
+        if (gObjects[arg0].unk10E[sp20] == -1) {
+            gObjects[arg0].unk10E[sp20] = (s16) sp24;
             break;
         }
     }
 
     for (sp20 = 0; sp20 < 10; sp20++) {
-        if (((sp18 = gPlayerData[arg0].unkE8[sp20]) != -1)) {
+        if (((sp18 = gObjects[arg0].unkE8[sp20]) != -1)) {
             if (sp24 != sp18) {
                 for (sp1C = 0; sp1C < 10; sp1C++) {
-                    if (gPlayerData[sp18].unk10E[sp1C] == -1) {
-                        gPlayerData[sp18].unk10E[sp1C] = (s16) sp24;
+                    if (gObjects[sp18].unk10E[sp1C] == -1) {
+                        gObjects[sp18].unk10E[sp1C] = (s16) sp24;
                         break;
                     }
                 }
 
                 for (sp1C = 0; sp1C < 10; sp1C++) {
-                    if (gPlayerData[sp24].unk10E[sp1C] == -1) {
-                        gPlayerData[sp24].unk10E[sp1C] = (s16) sp18;
+                    if (gObjects[sp24].unk10E[sp1C] == -1) {
+                        gObjects[sp24].unk10E[sp1C] = (s16) sp18;
                         break;
                     }
                 }
@@ -659,19 +659,19 @@ s32 func_80027C00(s32 arg0, s32 arg1, struct UnkStruct_80027C00 *arg2, f32 arg3,
 s32 func_800281A4(s32 arg0, s32 arg1) {
     s32 sp4;
 
-    sp4 = gPlayerData[arg0].unkE8[arg1];
+    sp4 = gObjects[arg0].unkE8[arg1];
     if (sp4 == -1) {
         return -1;
     }
-    gPlayerData[arg0].unkE8[arg1] = -1;
-    gPlayerData[sp4].unkE6[0] = -1;
+    gObjects[arg0].unkE8[arg1] = -1;
+    gObjects[sp4].unkE6[0] = -1;
     return sp4;
 }
 
 // TODO: What is the real type of D_801776F0???
 #ifdef NON_MATCHING
 s32 func_80028260(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5) {
-    struct PlayerStruct *spA4;
+    struct ObjectStruct *spA4;
     f32 spA0;
     f32 sp9C;
     f32 sp98;
@@ -695,7 +695,7 @@ s32 func_80028260(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5) {
     f32 sp50;
     s32 sp4C;
 
-    spA4 = &gPlayerData[arg0];
+    spA4 = &gObjects[arg0];
     spA0 = spA4->Pos.x + arg2;
     sp9C = spA4->Pos.y + arg3;
     sp98 = spA4->Pos.z + arg4;
@@ -768,7 +768,7 @@ s32 func_80028260(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5) {
 
 #ifdef NON_MATCHING
 s32 func_8002894C(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
-    struct PlayerStruct *spA4;
+    struct ObjectStruct *spA4;
     f32 spA0;
     f32 sp9C;
     f32 sp98;
@@ -792,7 +792,7 @@ s32 func_8002894C(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     s32 sp4C;
     s32 temp_t9;
 
-    spA4 = &gPlayerData[arg0];
+    spA4 = &gObjects[arg0];
     spA0 = spA4->Pos.x + arg2;
     sp9C = spA4->Pos.y + arg3;
     sp98 = spA4->Pos.z + arg4;
@@ -849,26 +849,26 @@ s32 func_8002894C(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
 #endif
 
 s32 func_80028E60(s32 arg0) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
     f32 sp20;
     f32 sp1C;
     f32 sp18;
 
-    sp24 = &gPlayerData[arg0];
+    sp24 = &gObjects[arg0];
     sp20 = (sp24->Pos.x + sp24->Vel.x) - sp24->unk50;
     sp1C = (sp24->Pos.y + sp24->Vel.y) - sp24->unk54;
     sp18 = (sp24->Pos.z + sp24->Vel.z) - sp24->unk58;
 
-    if (((D_80124DC0[gPlayerData[arg0].unkE4].ull)) <= (SQ(sp20) + SQ(sp1C) + SQ(sp18))) {
+    if (((D_80124DC0[gObjects[arg0].unkE4].ull)) <= (SQ(sp20) + SQ(sp1C) + SQ(sp18))) {
         return TRUE;
     }
     return FALSE;
 }
 
 s32 func_80028FA0(s32 arg0) {
-    struct PlayerStruct *sp4;
+    struct ObjectStruct *sp4;
 
-    sp4 = &gPlayerData[arg0];
+    sp4 = &gObjects[arg0];
     if ((sp4->unk104 != -1)) {
         if ((sp4->Pad10A[0] == 4)) {
             return TRUE;
@@ -883,12 +883,12 @@ s32 func_8002894C(s32, s32, s32, s32, f32); /* extern */
 s32 func_80028E60(s32);                     /* extern */
 
 s32 func_80029018(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 arg5) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
     s32 sp28;
     s32 sp24;
 
     sp24 = FALSE;
-    sp2C = &gPlayerData[arg0];
+    sp2C = &gObjects[arg0];
     switch (arg1) {
         case 0:
             sp28 = func_80028260(arg0, arg2, arg3, arg4, arg5, 0);
@@ -989,9 +989,9 @@ s32 func_800293B8(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f3
 }
 
 s32 func_800294F0(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
-    sp1C = &gPlayerData[arg0];
+    sp1C = &gObjects[arg0];
     func_80067748(sp1C->Pos.x + arg3, sp1C->Pos.y + arg4, sp1C->Pos.z + arg5);
     *arg1 = D_80177760[0];
     *arg2 = D_80177760[1];
@@ -999,9 +999,9 @@ s32 func_800294F0(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) 
 }
 
 s32 func_800295C0(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
-    sp1C = &gPlayerData[arg0];
+    sp1C = &gObjects[arg0];
     func_80067748(sp1C->Pos.x + sp1C->Vel.x + arg3, sp1C->Pos.y + sp1C->Vel.y + arg4,
                   sp1C->Pos.z + sp1C->Vel.z + arg5);
     *arg1 = D_80177760[0];
@@ -1010,12 +1010,12 @@ s32 func_800295C0(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5) 
 }
 
 s32 func_800296AC(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
     f32 sp28;
     f32 sp24;
     f32 sp20;
 
-    sp2C = &gPlayerData[arg0];
+    sp2C = &gObjects[arg0];
     sp20 = sp2C->Pos.y;
     func_800294F0(arg0, &sp28, &sp24, 0.0f, 0.0f, 0.0f);
     if (arg2 == 0) {
@@ -1041,10 +1041,10 @@ s8 func_800297DC(void) {
 }
 
 void func_80029824(s32 arg0, s32 arg1) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
     f32 sp28;
 
-    sp2C = &gPlayerData[arg0];
+    sp2C = &gObjects[arg0];
     sp28 = sp2C->unk3C;
     if (arg1 == 0) {
         sp28 += 180.0f;
@@ -1073,10 +1073,10 @@ void func_80029824(s32 arg0, s32 arg1) {
 }
 
 void func_80029A9C(s32 arg0, s32 arg1) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
     f32 sp28;
 
-    sp2C = &gPlayerData[arg0];
+    sp2C = &gObjects[arg0];
     sp28 = sp2C->unk40;
     if (arg1 == 0) {
         sp28 = func_80015538(sp28, 180.0f);
@@ -1085,57 +1085,57 @@ void func_80029A9C(s32 arg0, s32 arg1) {
 }
 
 void func_80029B60(s32 arg0) {
-    struct PlayerStruct *sp1C;
-    sp1C = &gPlayerData[arg0];
+    struct ObjectStruct *sp1C;
+    sp1C = &gObjects[arg0];
     sp1C->unk3C = func_80015538(sp1C->unk128, 180.0f);
 }
 
 void func_80029BD0(s32 arg0) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
-    sp1C = &gPlayerData[arg0];
+    sp1C = &gObjects[arg0];
     sp1C->unk40 = func_80015538(sp1C->unk12C, 180.0f);
 }
 
 void func_80029C40(s32 arg0) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
-    sp1C = &gPlayerData[arg0];
+    sp1C = &gObjects[arg0];
     sp1C->Vel.x = sinf((f32) ((f64) sp1C->unk3C * D_8004BDF8)) * sp1C->unk44;
     sp1C->Vel.z = cosf((f32) ((f64) sp1C->unk3C * D_8004BE00)) * sp1C->unk44;
 }
 
 void func_80029D04(s32 arg0) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
-    sp1C = &gPlayerData[arg0];
+    sp1C = &gObjects[arg0];
     sp1C->Vel.y = sinf((f32) ((f64) sp1C->unk40 * D_8004BE08)) * sp1C->unk48;
 }
 
 void func_80029D8C(s32 arg0) {
-    struct PlayerStruct *sp24;
+    struct ObjectStruct *sp24;
 
-    sp24 = &gPlayerData[arg0];
+    sp24 = &gObjects[arg0];
     sp24->Vel.x = (sp24->unk44 * cosf(sp24->unk40 * D_8004BE10)) * sinf(sp24->unk3C * D_8004BE18);
     sp24->Vel.z = (sp24->unk44 * cosf(sp24->unk40 * D_8004BE20)) * cosf(sp24->unk3C * D_8004BE28);
     sp24->Vel.y = sinf(sp24->unk40 * D_8004BE30) * sp24->unk44;
 }
 
 void func_80029EF8(s32 arg0, f32 arg1, f32 arg2) {
-    struct PlayerStruct *sp4;
+    struct ObjectStruct *sp4;
 
-    sp4 = &gPlayerData[arg0];
+    sp4 = &gObjects[arg0];
     sp4->Vel.y = arg1;
     sp4->unk4C = arg2;
 }
 
 s32 func_80029F58(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
     s32 sp28;
     f32 sp24;
     f32 sp20;
 
-    sp2C = &gPlayerData[arg0];
+    sp2C = &gObjects[arg0];
     sp28 = 0;
     sp2C->Vel.y -= sp2C->unk4C;
     if (sp2C->Vel.y < -48.0f) {
@@ -1154,12 +1154,12 @@ s32 func_80029F58(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
 }
 
 s32 func_8002A0D0(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
-    struct PlayerStruct *sp2C;
+    struct ObjectStruct *sp2C;
     s32 sp28;
     f32 sp24;
     f32 sp20;
 
-    sp2C = &gPlayerData[arg0];
+    sp2C = &gObjects[arg0];
     sp28 = 0;
     sp2C->Vel.y -= sp2C->unk4C;
     if (sp2C->Vel.y < -48.0f) {
@@ -1173,12 +1173,12 @@ s32 func_8002A0D0(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
 }
 
 s32 func_8002A1FC(s32 arg0, f32 arg1) {
-    struct PlayerStruct *spC;
+    struct ObjectStruct *spC;
     f32 sp8;
     f32 sp4;
     f32 sp0;
 
-    spC = &gPlayerData[arg0];
+    spC = &gObjects[arg0];
     sp8 = D_8017753C->Pos.x - spC->Pos.x;
     sp4 = (D_8017753C->Pos.y + 60.0f) - spC->Pos.y;
     sp0 = D_8017753C->Pos.z - spC->Pos.z;
@@ -1189,11 +1189,11 @@ s32 func_8002A1FC(s32 arg0, f32 arg1) {
 }
 
 s32 func_8002A2EC(s32 arg0, f32 arg1) {
-    struct PlayerStruct *spC;
+    struct ObjectStruct *spC;
     f32 sp8;
     f32 sp4;
 
-    spC = &gPlayerData[arg0];
+    spC = &gObjects[arg0];
     sp8 = D_8017753C->Pos.x - spC->Pos.x;
     sp4 = D_8017753C->Pos.z - spC->Pos.z;
     if ((SQ(sp8) + SQ(sp4)) < SQ(arg1)) {
@@ -1203,11 +1203,11 @@ s32 func_8002A2EC(s32 arg0, f32 arg1) {
 }
 
 s32 func_8002A3A8(s32 arg0, f32 arg1) {
-    struct PlayerStruct *spC;
+    struct ObjectStruct *spC;
     f32 sp8;
     f32 sp4;
 
-    spC = &gPlayerData[arg0];
+    spC = &gObjects[arg0];
     sp8 = D_8017753C->Pos.x - spC->Pos.x;
     sp4 = (D_8017753C->Pos.y + 60.0f) - spC->Pos.y;
     if ((SQ(sp8) + SQ(sp4)) < SQ(arg1)) {
@@ -1217,14 +1217,14 @@ s32 func_8002A3A8(s32 arg0, f32 arg1) {
 }
 
 f32 func_8002A46C(s32 arg0) {
-    func_80015634(D_8017753C->Pos.x - gPlayerData[arg0].Pos.x,
-                  D_8017753C->Pos.z - gPlayerData[arg0].Pos.z);
+    func_80015634(D_8017753C->Pos.x - gObjects[arg0].Pos.x,
+                  D_8017753C->Pos.z - gObjects[arg0].Pos.z);
     return;
 }
 
 f32 func_8002A4E0(s32 arg0) {
-    func_800156C4(D_8017753C->Pos.x - gPlayerData[arg0].Pos.x,
-                  (D_8017753C->Pos.y + 60.0f) - gPlayerData[arg0].Pos.y);
+    func_800156C4(D_8017753C->Pos.x - gObjects[arg0].Pos.x,
+                  (D_8017753C->Pos.y + 60.0f) - gObjects[arg0].Pos.y);
     return;
 }
 
@@ -1233,7 +1233,7 @@ s32 func_8002A560(s32 arg0, f32 arg1) {
     f32 sp18;
 
     sp1C = func_8002A46C(arg0);
-    sp18 = func_80015538(sp1C, -gPlayerData[arg0].unk3C);
+    sp18 = func_80015538(sp1C, -gObjects[arg0].unk3C);
     if ((sp18 < arg1) || ((360.0f - arg1) < sp18)) {
         return 0;
     }
@@ -1248,7 +1248,7 @@ s32 func_8002A640(s32 arg0, f32 arg1) {
     f32 sp18;
 
     sp1C = func_8002A46C(arg0);
-    sp18 = func_80015538(sp1C, -gPlayerData[arg0].Rot.y);
+    sp18 = func_80015538(sp1C, -gObjects[arg0].Rot.y);
     if ((sp18 < arg1) || ((360.0f - arg1) < sp18)) {
         return 0;
     }
@@ -1263,7 +1263,7 @@ s32 func_8002A720(s32 arg0, f32 arg1) {
     f32 sp18;
 
     sp1C = func_8002A4E0(arg0);
-    sp18 = func_80015538(sp1C, -gPlayerData[arg0].unk40);
+    sp18 = func_80015538(sp1C, -gObjects[arg0].unk40);
     if ((sp18 < arg1) || ((360.0f - arg1) < sp18)) {
         return 0;
     }
@@ -1290,7 +1290,7 @@ void func_8002A8B4(s32 arg0, f32 arg1) {
     f32 sp1C;
     s32 sp18;
 
-    sp1C = gPlayerData[arg0].unk3C;
+    sp1C = gObjects[arg0].unk3C;
     sp18 = func_8002A560(arg0, arg1);
     if (sp18 < 0) {
         sp1C = func_80015538(sp1C, -arg1);
@@ -1300,14 +1300,14 @@ void func_8002A8B4(s32 arg0, f32 arg1) {
         sp1C = func_8002A46C(arg0);
     }
     sp1C = sp1C;
-    gPlayerData[arg0].unk3C = sp1C;
+    gObjects[arg0].unk3C = sp1C;
 }
 
 void func_8002A9A4(s32 arg0, f32 arg1) {
     f32 sp1C;
     s32 sp18;
 
-    sp1C = gPlayerData[arg0].unk40;
+    sp1C = gObjects[arg0].unk40;
     sp18 = func_8002A720(arg0, arg1);
     if (sp18 < 0) {
         sp1C = func_80015538(sp1C, -arg1);
@@ -1317,29 +1317,29 @@ void func_8002A9A4(s32 arg0, f32 arg1) {
         sp1C = func_8002A4E0(arg0);
     }
     sp1C = sp1C;
-    gPlayerData[arg0].unk40 = sp1C;
+    gObjects[arg0].unk40 = sp1C;
 }
 
 void func_8002AA94(s32 arg0) {
     s32 sp24;
 
-    if (gPlayerData[arg0].unk108 == 0) {
+    if (gObjects[arg0].unk108 == 0) {
         sp24 = 0;
     } else {
-        sp24 = !(gPlayerData[arg0].unk108 & 1);
+        sp24 = !(gObjects[arg0].unk108 & 1);
     }
     func_8001BB34(arg0, sp24);
 }
 
 s32 func_8002AB40(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     s32 sp2C;
-    struct PlayerStruct *sp28;
+    struct ObjectStruct *sp28;
 
     sp2C = func_800642E0();
     if (sp2C == -1) {
         return -1;
     }
-    sp28 = &gPlayerData[sp2C];
+    sp28 = &gObjects[sp2C];
     func_8001A928(sp2C);
     if (arg4 < 0x10) {
         func_8001BD44(sp2C, 3, 2, D_8016CAA0[0x43].unk0);
@@ -1362,15 +1362,15 @@ s32 func_8002AB40(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     return sp2C;
 }
 
-extern s32 D_80177A60;
+extern s32 gCurrentParsedObject;
 
 void func_8002AD90(void) {
-    struct PlayerStruct *sp1C;
+    struct ObjectStruct *sp1C;
 
-    sp1C = &gPlayerData[D_80177A60];
+    sp1C = &gObjects[gCurrentParsedObject];
     sp1C->Rot.y = func_80015634(gView.eye.x - sp1C->Pos.x, gView.eye.z - sp1C->Pos.z);
-    if (func_8001B44C(D_80177A60, 3) != 0) {
-        func_8001A928(D_80177A60);
+    if (func_8001B44C(gCurrentParsedObject, 3) != 0) {
+        func_8001A928(gCurrentParsedObject);
     }
 }
 
@@ -1380,7 +1380,7 @@ void func_8002AE38(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
 }
 
 void func_8002AE84(s32 arg0, s32 arg1) {
-    struct PlayerStruct *spC4;
+    struct ObjectStruct *spC4;
     s32 spC0;
     f32 ox;
     f32 oy;
@@ -1391,7 +1391,7 @@ void func_8002AE84(s32 arg0, s32 arg1) {
     Matrix sp2C;
     UNUSED char pad[0x2];
 
-    spC4 = &gPlayerData[arg0];
+    spC4 = &gObjects[arg0];
 
     for (spC0 = 0; spC0 < 10; spC0++) {
         if (spC4->unkE8[spC0] != -1) {
@@ -1433,12 +1433,12 @@ void func_8002B154(void) {
     s32 sp1C;
 
     for (sp1C = 0xE; sp1C < 0x4E; sp1C++) {
-        if (gPlayerData[sp1C].unkA4 != 0) {
-            D_80177A60 = sp1C;
-            D_80124DA8[gPlayerData[sp1C].unkE4].routine();
-            if (gPlayerData[sp1C].unkA4 != 0) {
-                if (gPlayerData[sp1C].unk108 >= 2) {
-                    gPlayerData[sp1C].unk108 -= 1;
+        if (gObjects[sp1C].unkA4 != 0) {
+            gCurrentParsedObject = sp1C;
+            D_80124DA8[gObjects[sp1C].unkE4].routine();
+            if (gObjects[sp1C].unkA4 != 0) {
+                if (gObjects[sp1C].unk108 >= 2) {
+                    gObjects[sp1C].unk108 -= 1;
                 }
                 func_8001CEF4(sp1C);
                 func_8001CD20(sp1C);

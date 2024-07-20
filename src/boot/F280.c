@@ -15,12 +15,6 @@ struct UnkInputStruct8000E680 {
     char filler2C[0x4];
 };
 
-struct UnkStruct8016E104 {
-    char filler0[0xC0];
-    /* 0xC0 */ Hilite hilites[2];
-    /* 0xE0 */ Mtx unkE0[1];
-};
-
 struct UnkInnerStruct8000E944 {
     union {
         s32 unk0;
@@ -76,8 +70,6 @@ extern u32 D_80055D40[];
 extern f32 D_8016E3B4;
 extern f32 D_8016E3BC;
 extern f32 D_8016E3C4;
-
-extern struct UnkStruct8016E104 *D_8016E104;
 
 // functions
 s32 func_8000EEE8(Gfx** gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6);
@@ -365,7 +357,7 @@ s32 func_8000FC08(struct UnkInputStruct8000FC08* arg0, s32* arg1, s32 arg2, s32 
 
 s32 func_8000FD9C(struct UnkInputStruct8000FC08* arg0, Gfx** arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) {
     D_80055820 = 0;
-    guMtxL2F((D_80055820 << 6) + (u32)&D_80055828, (Mtx* ) &D_8016E104->filler0[0x40]);
+    guMtxL2F((D_80055820 << 6) + (u32)&D_80055828, (Mtx* ) &D_8016E104->unk00[1]);
     if (arg0->unk0 == 0) {
         arg6 = func_8000EEE8(arg1, arg2, arg3, arg4, arg5, arg0->unk28, arg6);
     } else if (arg0->unk0 == 1) {

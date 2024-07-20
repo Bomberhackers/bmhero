@@ -41,6 +41,43 @@ extern u16 gContRawDirPressed[4];
 extern OSContPad gContPads[4];
 extern OSMesgQueue gContMesgQueue;
 
+extern u16 gActiveContPort;
+extern u16 gActiveContButton;
+extern u16 gActiveContPressed;
+extern f32 gActiveContStickX;
+extern f32 gActiveContStickY;
+extern u16 gActiveContCurrDir;
+extern u16 gActiveContDirPressed;
+
+extern s8 D_801776F8;
+extern s8 D_80177708;
+extern s32 D_80177718;
+extern s32 D_80177728;
+extern s32 D_80177738;
+extern u16 D_80177748[];
+extern u16 D_80177758[];
+extern u16 D_80177768[];
+
+extern void (*D_8016526C)();
+extern s32 D_8016E0A8;
+
+struct UnkStruct8016E104 {
+    /* 0x00 */ Mtx unk00[3];
+    /* 0xC0 */ Hilite hilites[2];
+    /* 0xE0 */ Mtx unkE0[1];
+};
+
+extern struct UnkStruct8016E104 *D_8016E104;
+
+struct UnkStruct8016E10C {
+    char filler0[0x58];
+    u32 unk58;
+    char filler5C[0x4];
+    u32 unk60;
+};
+
+extern struct UnkStruct8016E10C* D_8016E10C;
+
 struct UnkInputStruct80001CF0 {
     u32 unk0;
     u32 unk4;

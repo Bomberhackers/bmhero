@@ -36,7 +36,6 @@ extern s8 D_801347E4;
 extern s8 D_801347E5;
 extern s8 D_801347E6;
 
-extern void *D_8016526C;
 extern void *D_80165274;
 
 struct UnkStruct80134794 {
@@ -109,7 +108,6 @@ extern s8 D_801347E6;
 extern s32 D_80165264;
 
 extern u32 D_8016E3A4;
-extern Mtx* D_8016E104;
 
 extern struct UnkStruct80134794 D_80101F18[];
 extern struct UnkStruct80134794 D_80101A14[];
@@ -635,7 +633,7 @@ void func_8005E040(void) {
     func_8001D638(1, 0, 0, 0);
     guPerspective(D_8016E104, &sp3E, 50.0f, 1.3333334f, 10.0f, 8000.0f, 1.0f);
     gSPPerspNormalize(gMasterDisplayList++, sp3E);
-    guLookAt(D_8016E104 + 2, gView.eye.x, gView.eye.y, gView.eye.z, gView.at.x, gView.at.y, gView.at.z, gView.up.x, gView.up.y, gView.up.z);
+    guLookAt(&D_8016E104->unk00[2], gView.eye.x, gView.eye.y, gView.eye.z, gView.at.x, gView.at.y, gView.at.z, gView.up.x, gView.up.y, gView.up.z);
     gSPMatrix(gMasterDisplayList++, D_8016E104, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
     D_8016E3A4 = 0;
     func_8001838C();

@@ -11,6 +11,7 @@ void func_8001C0EC(s32, s32, s32, s32, s32*);                  /* extern */
 s32 func_8001B44C(s32, s32);                          /* extern */
 s32 func_80027464(s32, s32*, f32, f32, f32, f32);       /* extern */
 void func_8001ABF4(s32, s32, s32, s32*);                     /* extern */
+f32 func_80015538(f32, f32);                        /* extern */
 
 extern s32 gCurrentParsedObject;
 extern s32 D_80177A64;
@@ -18,12 +19,27 @@ extern s32 D_80114288[];
 
 extern s32 D_80118C8C[];
 extern s32 D_80118BDC;
+extern f64 D_80115120;
+extern f64 D_80115128;
+extern s32 D_80118B38;
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CAFF0/func_800D8AD0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CAFF0/func_800D8E30.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CAFF0/func_800D8E40.s")
+void func_800D8E40(void) {
+    struct PlayerStruct* sp1C;
+
+    sp1C = &gObjects[gCurrentParsedObject];
+    if (sp1C->unk132 == 0) {
+        sp1C->unk132 += 1;
+        func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118B38);
+    }
+
+    sp1C->unkA6 = func_80015538(sp1C->unkA6, sp1C->unkBC);
+    sp1C->Pos.x = sinf(sp1C->unkA6 * D_80115120) * (f32)sp1C->unkBA + (f32)sp1C->unkB6;
+    sp1C->Pos.y = cosf(sp1C->unkA6 * D_80115128) * (f32)sp1C->unkBA + (f32)sp1C->unkB8;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CAFF0/func_800D8FD0.s")
 

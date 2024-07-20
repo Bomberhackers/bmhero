@@ -500,7 +500,7 @@ void func_800FEFA0(void) {
 
     sprintf(&gDebugTextBuf, "(%d %d %d) ST=%d CG=%d %d",
             (s32)D_8017753C->Unk0, (s32)D_8017753C->Unk4, (s32) D_8017753C->Unk8,
-            D_8017753C->UnkA4, D_80165290[gPlayerData[0].Unk140[0]].unk14,
+            D_8017753C->UnkA4, D_80165290[gObjects[0].Unk140[0]].unk14,
             D_8017753C->Unk108
         );
     debug_print_xy((s8*)0x20, (s8*)0x10);
@@ -531,7 +531,7 @@ void func_800FEFA0(void) {
     sp50 *= 0x3C;
     sprintf(&gDebugTextBuf, "(%d %d %d) R=%d GB=%d", sp54, (s32) D_8017753C->Unk4, sp50, (s32) (u8) D_8016E414, (s32) (u16) D_8016E41C);
     debug_print_xy((s8* )0x20, (s8* )0x20);
-    func_80065AEC(gPlayerData[0].Pos.x, gPlayerData[0].Pos.y, gPlayerData[0].Pos.z, &sp40, &sp3C, &sp38);
+    func_80065AEC(gObjects[0].Pos.x, gObjects[0].Pos.y, gObjects[0].Pos.z, &sp40, &sp3C, &sp38);
     sp44 = (D_80177778->unk18 * sp38) + sp40;
     sprintf(&gDebugTextBuf, "[MAP INDEX=%d FLOOR=%d]", sp44, sp3C + 1);
     debug_print_xy((s8* )0x20, (s8* )0x30);
@@ -545,9 +545,9 @@ void func_800FEFA0(void) {
 }
 
 void func_800FF43C(void) {
-    sprintf(&gDebugTextBuf, "PLAY.POS X=%5d Y=%5d Z=%5d", (s32) gPlayerData[0].Pos.x, (s32) gPlayerData[0].Pos.y, (s32) gPlayerData[0].Pos.z);
+    sprintf(&gDebugTextBuf, "PLAY.POS X=%5d Y=%5d Z=%5d", (s32) gObjects[0].Pos.x, (s32) gObjects[0].Pos.y, (s32) gObjects[0].Pos.z);
     debug_print_xy((s8* )0x20, (s8* )0x10);
-    sprintf(&gDebugTextBuf, "PLAY.ROT X=%5d Y=%5d Z=%5d", (s32) gPlayerData[0].Rot.x, (s32) gPlayerData[0].Rot.y, (s32) gPlayerData[0].Rot.z);
+    sprintf(&gDebugTextBuf, "PLAY.ROT X=%5d Y=%5d Z=%5d", (s32) gObjects[0].Rot.x, (s32) gObjects[0].Rot.y, (s32) gObjects[0].Rot.z);
     debug_print_xy((s8* )0x20, (s8* )0x20);
     sprintf(&gDebugTextBuf, "VIEW.AT  X=%5d Y=%5d Z=%5d", (s32) gView.at.x, (s32) gView.at.y, (s32) gView.at.z);
     debug_print_xy((s8* )0x20, (s8* )0x30);

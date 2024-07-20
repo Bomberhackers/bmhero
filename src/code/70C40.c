@@ -42,7 +42,7 @@ void func_8007F3F0(void) {
     struct Vec3f sp24;
 
     func_8001838C();
-    for(sp30 = 6, sp34 = gPlayerData + 6; sp30 < 0xE; sp30++, sp34++)
+    for(sp30 = 6, sp34 = gObjects + 6; sp30 < 0xE; sp30++, sp34++)
     {
         if (sp34->unkA4 != 0) 
         {

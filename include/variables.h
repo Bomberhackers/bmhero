@@ -410,7 +410,7 @@ struct UnkStructSTCG
     s16 Unk108;
 };
 
-extern struct PlayerStruct gPlayerData[];
+extern struct PlayerStruct gObjects[];
 
 struct UnkStruct_80060278
 {

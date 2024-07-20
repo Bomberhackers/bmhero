@@ -116,7 +116,7 @@ void func_800250A0(s8);
 void func_80081468(s32, f32, f32, f32);
 void func_80017BEC(s32, s32, s32, s32); 
 void func_80017CFC(s32, s32, s32, s32); 
-s32 func_80027464(s32, void*, f32, f32, f32, f32);
+s32 func_80027464(s32 arg0, struct UnkStruct_80027C00 *arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5);
 void func_800178D4(s32, s32, s32, s32, s32);
 s32 func_80026E58(s32, s32);
 void func_8006BAC4();

@@ -181,6 +181,12 @@ extern f64 D_801155D8;
 extern f64 D_801155E0;
 extern f64 D_801155E8;
 extern f64 D_801155F0;
+extern f64 D_80115610;
+extern f64 D_80115618;
+extern f64 D_80115620;
+extern f64 D_80115628;
+extern f64 D_80115630;
+extern f64 D_80115638;
 extern struct Vec3f D_80115180[];
 extern struct Vec3f D_80115184[];
 extern struct Vec3f D_80115188[];
@@ -4952,7 +4958,47 @@ void func_800EFECC(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F0178.s")
+void func_800F0178(void) {
+    struct PlayerStruct* sp2C;
+    s32 sp28;
+    f32 sp24;
+    f32 sp20;
+
+    sp2C = &gPlayerData[D_80177A60];
+    sp28 = (s32) sp2C->unkE8[0];
+    if (sp2C->unk132 == 0) {
+        sp2C->unk132 = (u8) (sp2C->unk132 + 1);
+        sp2C->unkB2 = (s16) sp2C->unkA4;
+        func_8001C0EC(D_80177A60, 3, 0, 0x84, &D_80119578);
+        func_8001C0EC(sp28, 0, 0, 0x86, &D_80119654);
+        sp2C->unk13A = 0;
+    }
+    if (func_8001B62C(D_80177A60, 3) >= 6.0f) {
+        sp2C->Scale.x = (f32) ((f64) sp2C->Scale.x + D_80115610);
+        sp2C->Scale.y = (f32) ((f64) sp2C->Scale.y + D_80115618);
+        sp2C->Scale.z = (f32) ((f64) sp2C->Scale.z + D_80115620);
+        gPlayerData[sp28].Scale.x = (f32) ((f64) gPlayerData[sp28].Scale.x + D_80115628);
+        gPlayerData[sp28].Scale.y = (f32) ((f64) gPlayerData[sp28].Scale.y + D_80115630);
+        gPlayerData[sp28].Scale.z = (f32) ((f64) gPlayerData[sp28].Scale.z + D_80115638);
+    }
+    if (func_800295C0(D_80177A60, &sp24, &sp20, 0.0f, 0.0f, 0.0f) != 0) {
+        sp2C->Pos.y = sp20;
+    } else {
+        sp2C->Pos.y = sp24;
+    }
+    sp2C->Pos.y = (f32) (sp2C->Pos.y + 600.0f);
+    gPlayerData[sp28].Pos.y = sp2C->Pos.y;
+    if (func_8001B4AC(D_80177A60, 3) != 0) {
+        sp2C->Scale.x = 1.0f;
+        sp2C->Scale.y = 1.0f;
+        sp2C->Scale.z = 1.0f;
+        gPlayerData[sp28].Scale.x = 1.0f;
+        gPlayerData[sp28].Scale.y = 1.0f;
+        gPlayerData[sp28].Scale.z = 1.0f;
+        sp2C->unkA4 = 3;
+        sp2C->unk132 = 0U;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F0558.s")
 

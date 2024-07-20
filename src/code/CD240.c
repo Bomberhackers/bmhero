@@ -4822,7 +4822,36 @@ void func_800EF250(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EF6AC.s")
+void func_800EF6AC(void) {
+    struct PlayerStruct* sp24;
+    s32 sp20;
+
+    sp24 = &gPlayerData[D_80177A60];
+    sp20 = (s32) sp24->unkE8[0];
+    if (sp24->unk132 == 0) {
+        sp24->unk132 = (u8) (sp24->unk132 + 1);
+        sp24->unkB2 = (s16) sp24->unkA4;
+        sp24->Vel.z = 0.0f;
+        sp24->Vel.x = (f32) sp24->Vel.z;
+        sp24->unk44 = 0.0f;
+        func_8001C0EC(D_80177A60, 3, 0, 0x84, &D_80119578);
+        func_8001C0EC(sp20, 0, 0, 0x86, &D_80119654);
+        func_8001ABF4(D_80177A60, 0, 3, &D_801195D0.Rot.y);
+        func_8001ABF4((s32) sp24->unkE8[0], 1, 0, &D_801196AC.unk38);
+        sp24->unkBE = (s16) (s32) (sp24->Pos.y + 600.0f);
+        sp24->Vel.y = 4.0f;
+    }
+    if (sp24->Pos.y >= sp24->unkBE) 
+    {
+        sp24->Vel.y = 0.0f;
+        sp24->Pos.y = (f32) sp24->unkBE;
+        sp24->unkB0 = 0;
+        sp24->unkA4 = 1;
+        sp24->unk132 = 0U;
+    } else {
+        gPlayerData[sp20].Pos.y = (sp24->Pos.y + sp24->Vel.y);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800EF914.s")
 

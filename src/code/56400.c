@@ -1,24 +1,4 @@
-#include "common.h"
-
-extern s8 D_801348B2;
-struct UnkStruct_56400
-{
-    s16* ptr;
-    s16 Unk04;
-    s16 Unk06;
-} UnkStruct_56400;
-
-extern void* D_80104A14[];
-extern s16 D_80104B64[];
-extern s16 D_80104C18[];
-extern s16 D_801348B0;
-extern struct UnkStruct_56400 D_801348B8[];
-
-// functions
-void func_80063EE0(void);
-void func_80064000(void);
-void func_80064120(void);
-s32 func_800641E4(s16* ptr, s16 arg1, s16 arg2);
+#include <ultra64.h>
 
 void func_80063EE0(void) {
     s32 sp4;

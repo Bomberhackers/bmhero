@@ -1,9 +1,4 @@
-#include "common.h"
-#include "variables.h"
-
-extern s32 gCurrentParsedObject;
-extern s32 D_80177A64;
-extern void* D_80117F08;
+#include <ultra64.h>
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B27B0/func_800C0290.s")
 

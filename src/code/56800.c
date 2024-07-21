@@ -1,41 +1,6 @@
 #include <ultra64.h>
 
 //LEVEL LOADING RELATED FILE
-//F6220 is rodata
-
-extern s8 D_80134801;
-extern s8 D_80134802;
-extern s8 D_80134803;
-extern u8 D_80134808[];
-extern s8 D_8016E3CC;
-extern s8 D_8013488C;
-
-extern s16 D_80177788;
-extern s16 D_80177798;
-extern s16 D_801777A8;
-
-extern u8 D_80106DA0[]; //THIS MIGHT BE INCORRECT!!! unless for some reason there's two ways of accessing the same array??
-extern u8 D_80106DA1[];
-
-extern s32 D_801778F4;
-extern s32 D_801778FC;
-extern s32 D_80177904;
-
-extern s16 D_80177608;
-extern u8 D_801779E0;
-
-extern s8 D_8016E3CD;
-extern s8 D_8016E3D4;
-extern s16 D_8016E432;
-
-extern s8 D_8016E3CD;
-extern s16 D_801775F6;
-extern s16 D_801775FA;
-extern s16 D_80177608;
-extern s8 D_80177628;
-
-extern s8 D_80177640;
-extern s32 D_80177778;
 
 //find free slot
 s32 func_800642E0(void) {

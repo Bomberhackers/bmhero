@@ -1,44 +1,6 @@
 #include <ultra64.h>
 #include "7B0A0.h"
 
-struct UnkBigStruct_8006B64C
-{
-    u16 Unk0;
-    u16 Unk1;
-    u8 Padding[336 - sizeof(u32)];
-} UnkBigStruct_8006B64C;
-
-extern f32 D_80177760[];
-extern u16 D_8017794A;
-
-extern u16 D_80177942;
-extern u16 D_80177946;
-extern s8 D_801775EE;
-extern s8 D_801348B2;
-extern s16 D_80134C22;
-extern u16 D_80177958;
-extern u16 D_80177950;
-extern u16 D_8017793C;
-
-extern u16 D_80177936;
-extern u8 D_80177939;
-extern u8 D_801775BC;
-extern u8 D_801775C4;
-extern u8 D_801775CC;
-extern u8 D_801775D4;
-extern u8 D_801775DC;
-extern u8 D_801775E4;
-extern u8 D_801775EC;
-extern void* D_8011472C;
-
-extern s8 D_8017792D;
-
-extern s8 D_8017793F;
-extern s8 D_80165242;
-extern struct UnkBigStruct_8006B64C D_801541F8[];
-
-extern u8 D_80177933;
-
 void func_8006AFB0(void) {
     f32 sp24;
     f32 sp20;

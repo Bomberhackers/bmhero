@@ -1,23 +1,4 @@
-#include "common.h"
-
-extern u8 gLifeCount;
-extern u8 D_80165238;
-extern s8 D_80165239;
-extern s8 D_8016523A;
-extern s8 D_8016523B;
-extern s8 D_8016523C;
-extern u8 D_8016523D;
-extern u8 gGemCount;
-extern s8 gHealthCount;
-extern s8 gMaxHealth;
-extern s8 gBombCount;
-extern s8 gFireCount;
-
-extern s8 D_8016E110;
-extern s16 D_8016E112;
-extern s8 D_8016E115;
-
-extern f32 D_80177550[44];
+#include <ultra64.h>
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80084120.s")
 

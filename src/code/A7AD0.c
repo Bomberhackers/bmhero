@@ -1,60 +1,10 @@
-#include "ultra64.h"
+#include <ultra64.h>
 
 // Macros
 #define FABS(x) ((x) < 0.0f ? -(x) : (x))
 #define IABS(x) ((x) < 0 ? -(x) : (x))
 #define CLAMP_FLOAT(x) (((x) < -48.0f ? -48.0f : (x)))
 #define MIN_CLAMP(a, b) ((a) > (b) ? (b) : CLAMP_FLOAT(a))
-#define UNK_TYPE s32
-
-// Extern variables
-extern s32 D_80113A0C;
-extern s32 D_80117AA0;
-extern s32 D_80177740[];
-extern s32 D_8016519C;
-
-// File variables
-extern s32 gCurrentParsedObject;
-extern UNK_TYPE D_80177A64;
-extern UNK_TYPE D_80117B4C;
-extern UNK_TYPE D_80117B68;
-extern UNK_TYPE D_80117BBC;
-extern UNK_TYPE D_80113A18;
-extern UNK_TYPE D_80113A24;
-extern UNK_TYPE D_80117B84;
-extern UNK_TYPE D_80117BA0;
-extern UNK_TYPE D_80113A30;
-extern UNK_TYPE D_80117BC0;
-extern UNK_TYPE D_80113A3C;
-extern UNK_TYPE D_80117C00;
-extern UNK_TYPE D_80117C1C;
-extern UNK_TYPE D_80117C38;
-extern UNK_TYPE D_80113A6C;
-extern UNK_TYPE D_80117C78;
-extern UNK_TYPE D_80113A48;
-extern UNK_TYPE D_80113ACC;
-extern UNK_TYPE D_80117D8C;
-extern UNK_TYPE D_80117E04;
-extern UNK_TYPE D_80117D8C;
-extern UNK_TYPE D_80117DE8;
-extern UNK_TYPE D_80117E20;
-extern UNK_TYPE D_80113AE4;
-extern UNK_TYPE D_80117E48;
-extern UNK_TYPE D_80113AF0;
-extern UNK_TYPE D_80113B68;
-extern UNK_TYPE D_80113BB0;
-extern UNK_TYPE D_80113C1C;
-extern UNK_TYPE D_80113E50;
-extern UNK_TYPE D_80113D9C;
-extern UNK_TYPE D_80117E64;
-extern UNK_TYPE D_80117EA8;
-extern UNK_TYPE D_80117EC4;
-extern UNK_TYPE D_80113DA8;
-extern UNK_TYPE D_80113DB4;
-extern UNK_TYPE D_80117EE0;
-extern UNK_TYPE D_80117EE8;
-extern UNK_TYPE D_80117EF0;
-extern UNK_TYPE D_80113DC0;
 
 void func_800B55B0(void) {
     s8 sp2F;
@@ -1570,7 +1520,6 @@ void func_800BB480(void) {
     }
 }
 
-extern s32 D_80113B08;
 void func_800BB55C(void) {
     s8 sp27;
 

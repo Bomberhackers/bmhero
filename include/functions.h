@@ -475,5 +475,11 @@ void func_800FF43C();
 void func_800FF88C();
 void func_800FFD30();
 void func_800FFF40();
+void func_8005F124(void);
+void func_8005FA90(void);
+void func_80063EE0(void);
+void func_80064000(void);
+void func_80064120(void);
+s32 func_800641E4(s16* ptr, s16 arg1, s16 arg2);
 
 #endif // _FUNCTIONS_H_

@@ -1,6 +1,7 @@
 #include <ultra64.h>
 #include "../../38D0.h"
 #include "nusys/audio.h"
+#include "prevent_bss_reordering.h"
 
 // might be based on an older nusys 1.0 version we dont have due to some of the absent safety checks.
 

@@ -1,24 +1,4 @@
-#include "common.h"
-
-extern u8 D_80134808[];
-
-typedef struct UnkStruct_800600B8 {
-    u8 Unk01;
-    u8 Padding[3];
-} UnkStruct_800600B8;
-
-//ram
-extern struct UnkStruct_800600B8 D_801039D4[];
-extern s8 D_80134801;
-extern s8 D_80134802;
-extern s32 D_80321428;
-extern s32* D_80324994;
-
-//rom
-extern u8 unk_bin_0_2_ROM_START[]; 
-extern u8 code_extra_0_ROM_START[]; 
-extern u8 _64C3C0_ROM_START[];
-extern u8 _64EC60_ROM_START[];
+#include <ultra64.h>
 
 void func_8005FBC0(void) {
 

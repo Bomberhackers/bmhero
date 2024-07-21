@@ -1,16 +1,5 @@
 #include <ultra64.h>
 
-extern Gfx D_01000000_unk_bin_0_2[];
-extern u32 D_01000200_unk_bin_0_2[];
-extern Vtx D_01000210_unk_bin_0_2[];
-extern Vtx D_01000250_unk_bin_0_2[];
-extern Gfx D_010002D0_unk_bin_0_2[];
-extern u32 D_010004D0_unk_bin_0_2[];
-extern Vtx D_010004E0_unk_bin_0_2[];
-extern Vp D_01000B68_unk_bin_0_2;
-
-extern Lights2 gLightingSettings;
-
 u8 D_8024C000_unk_bin_0_2[] = {
     #include "build/assets/unk_127FF0.ia4.inc"
 };

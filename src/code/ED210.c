@@ -1,9 +1,5 @@
 #include <ultra64.h>
 
-extern s32 gCurrentParsedObject;
-extern s32 D_80177A64;
-extern s8 D_80165242;
-
 #pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FACF0.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FAE00.s")

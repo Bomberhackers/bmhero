@@ -1,31 +1,6 @@
 #include <ultra64.h>
 #include "50BC0.h"
 
-extern struct UnkStruct8016E230 {
-    u32 unk0;
-    u32 unk4;
-} UnkStruct8016E230;
-
-extern struct UnkStruct8016E230 D_8016E220[1];
-extern struct UnkStruct8016E230 D_8016E230[1];
-
-extern Gfx gDebugFont[];
-
-extern u8 D_80103948[];
-extern s8 D_8010399C[0x12];
-
-extern s32 D_8016E25C;
-extern u32 D_8016E264;
-
-extern s32 D_8016E244;
-extern u32 D_8016E254;
-
-extern s32 D_8016E23C;
-
-// functions
-void func_8005F124(void);
-void func_8005FA90(void);
-
 void func_8005E6A0(s32 arg0, s32 arg1) {
     struct UnkStruct8016E10C* sp8C;
     u32 i;

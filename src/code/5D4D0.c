@@ -8,11 +8,6 @@ struct UnkBigStruct_8006B64C
     u8 Padding[336 - sizeof(u32)];
 } UnkBigStruct_8006B64C;
 
-//const f32 D_80104FA0 = 3000;
-//const f32 D_80104FA4 = 0;
-//const f64 D_80104FA8 = 0.0174532925199432955;
-//const f64 D_80104FB0 = 0.0174532925199432955;
-
 extern f32 D_80177760[];
 extern u16 D_8017794A;
 
@@ -43,20 +38,6 @@ extern s8 D_80165242;
 extern struct UnkBigStruct_8006B64C D_801541F8[];
 
 extern u8 D_80177933;
-
-extern void func_80067748(f32, f32, f32);                     /* extern */
-extern void func_80081468(s32, f32, f32, f32);                  /* extern */
-extern void func_80017BEC(s32, s32, s32, s32); 
-extern void func_80017CFC(s32, s32, s32, s32); 
-extern void func_80067748(f32, f32, f32);                     /* extern */
-extern void func_80081468(s32, f32, f32, f32);                  /* extern */
-extern s32 func_80027464(s32, void*, f32, f32, f32, f32);
-extern void func_800178D4(s32, s32, s32, s32, s32);                   /* extern */
-extern s32 func_80026E58(s32, s32);                          /* extern */
-
-
-//REMOVE AFTER BEING DECOMPED
-extern void func_8006BAC4();
 
 void func_8006AFB0(void) {
     f32 sp24;

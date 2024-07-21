@@ -1,17 +1,5 @@
 #include <ultra64.h>
 
-void func_800D97A4();                                  /* extern */
-void func_800D9A14();                                  /* extern */
-void func_800DA9C8();                                  /* extern */
-void func_800DAA2C();                                  /* extern */
-void func_800DAC3C();                                  /* extern */
-void func_8002B0E4(s32);                               /* extern */
-void func_8001BBDC(s32, s32);                            /* extern */
-void func_8001C0EC(s32, s32, s32, s32, s32*);                  /* extern */
-s32 func_8001B44C(s32, s32);                          /* extern */
-s32 func_80027464(s32, s32*, f32, f32, f32, f32);       /* extern */
-f32 func_80015538(f32, f32);                        /* extern */
-
 extern s32 gCurrentParsedObject;
 extern s32 D_80177A64;
 extern s32 D_80114288[];

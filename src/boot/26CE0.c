@@ -1,64 +1,5 @@
 #include <ultra64.h>
 
-// File functions
-void func_800260E0(s32 arg0);
-void func_800260FC(s32 arg0);
-void func_8002613C(s32 arg0);
-void func_8002617C(s32 arg0);
-s32 func_800261BC(s32 arg0);
-void func_800261E8(s32 arg0, char arg1);
-u8 func_80026260(s32 arg0);
-void func_8002629C(void);
-void func_80026548(void);
-s32 func_80026DBC(s32 arg0);
-s32 func_80026E58(s32 arg0, s32 pos);
-void func_80026F10(s32 arg0, s32 arg1);
-void func_800272E8(s32 arg0);
-s32 func_80027B34(s32 arg0, struct UnkStruct_80027B34 *arg1);
-s32 func_80027C00(s32 arg0, s32 arg1, struct UnkStruct_80027C00 *arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6);
-s32 func_800281A4(s32 arg0, s32 arg1);
-s32 func_80028260(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5);
-s32 func_80028E60(s32 arg0);
-s32 func_80028FA0(s32 arg0);
-s32 func_80029018(s32 arg0, u32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5);
-s32 func_800293B8(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 *arg6, f32 *arg7, f32 *arg8, s32 arg9);
-s32 func_800294F0(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5);
-s32 func_800295C0(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5);
-s32 func_800296AC(s32 arg0, f32 arg1, s32 arg2, s32 arg3);
-s8 func_800297DC(void);
-void func_80029824(s32 arg0, s32 arg1);
-void func_80029A9C(s32 arg0, s32 arg1);
-void func_80029B60(s32 arg0);
-void func_80029BD0(s32 arg0);
-void func_80029C40(s32 arg0);
-void func_80029D04(s32 arg0);
-void func_80029D8C(s32 arg0);
-void func_80029EF8(s32 arg0, f32 arg1, f32 arg2);
-s32 func_80029F58(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4);
-s32 func_8002A0D0(s32 arg0, f32 arg1, f32 arg2, f32 arg3);
-s32 func_8002A1FC(s32 arg0, f32 arg1);
-s32 func_8002A2EC(s32 arg0, f32 arg1);
-s32 func_8002A3A8(s32 arg0, f32 arg1);
-f32 func_8002A46C(s32 arg0);
-f32 func_8002A4E0(s32 arg0);
-s32 func_8002A560(s32 arg0, f32 arg1);
-s32 func_8002A640(s32 arg0, f32 arg1);
-s32 func_8002A720(s32 arg0, f32 arg1);
-s32 func_8002A800(f32 arg0, f32 arg1, f32 arg2);
-void func_8002A8B4(s32 arg0, f32 arg1);
-void func_8002A9A4(s32 arg0, f32 arg1);
-void func_8002AA94(s32 arg0);
-s32 func_8002AB40(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
-void func_8002AD90(void);
-void func_8002AE38(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4);
-void func_8002AE84(s32 arg0, s32 arg1);
-void func_8002B0E4(s32 arg0);
-void func_8002B114(s32 arg0);
-void func_8002B144(void);
-void func_8002B154(void);
-void func_8002B2D4(void);
-void func_8002B2E4(void);
-
 void func_800260E0(s32 arg0) {
     D_80165118[arg0] = 0;
 }
@@ -868,7 +809,7 @@ s32 func_800296AC(s32 arg0, f32 arg1, s32 arg2, s32 arg3) {
     return FALSE;
 }
 
-s8 func_800297DC(void) {
+s32 func_800297DC(void) {
     s16 sp6;
 
     sp6 = (D_801651A0 | (D_801651A0 >> 3)) & 7;

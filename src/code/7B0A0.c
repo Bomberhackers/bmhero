@@ -2,66 +2,6 @@
 #include "prevent_bss_reordering2.h"
 #include "7B0A0.h"
 
-extern void func_80019B7C();
-extern void func_8006AA60(s32*, s32*, s32*);
-extern void func_80069E00(s32, s32);
-extern void func_8001FB3C (s16, s16, s16);
-extern void func_8008C61C();
-extern void func_8008C638();
-extern void func_8008C650();
-extern void func_8008C66C();
-extern void func_8008C684(s16*);
-extern void func_8008C778(s16*);
-extern void func_8008C9B4(s16*);
-extern void func_8008CADC(s16*);
-extern void func_8008CC04(s16*);
-extern void func_8008CD2C(s16*);
-extern void func_8008CE8C(s16*);
-extern void func_8008D074(s16*);
-extern void func_8008D114(s16*);
-extern void func_8008D530(s16*);
-extern void func_8008DC8C(s16*);
-extern void func_8008E328(s16*);
-extern void func_8008E3B0(s16*);
-extern void func_8008E418(s16*);
-extern void func_8008E81C(s16*);
-extern void func_8008E8A4(s16*);
-extern void func_8008E918(s16*);
-extern void func_8008EAE4(s16*);
-extern void func_8008EB10(s16*);
-extern void func_8008EB40(s16*);
-extern void func_8008EB6C(s16*);
-extern void func_8008EB9C(s16*);
-extern void func_8008EBEC(s16*);
-extern void func_8008EC3C(s16*);
-extern void func_8008ECD0(s16*);
-extern void func_8008ED64(s16*);
-extern void func_8008EF8C(s16*);
-extern void func_8008F078(s16*);
-extern void func_8008F3D4(s16*);
-extern void func_8008F63C(s16*);
-extern void func_8008F6AC(s16*);
-extern f32 func_80015538(f32, f32); 
-
-void func_8008A870(s16 arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4);
-void func_8008B030(void);
-void func_8008A6A4(void);
-void func_8008A384(void);
-void func_8008A824(s16 arg0, s16 arg1, s16 arg2);
-void func_8008884C (s32);
-void func_8008ABC4 (s16 *);
-void func_8008ABF4 (s16 *);
-void func_8008AC08 (s16 *);
-void func_8008AD58 (s16 *);
-void func_8008AE64 (s16 *);
-void func_8008B5D4 (s16*);
-void func_8008B624 (s16*);
-void func_8008B6E0 (s16*);
-void func_8008BA3C(void);
-void func_8008BB0C(void);
-void func_8008BC04(s16*);
-void func_80088D84();
-
 // .bss
 s8 D_80134BF0;
 s16 D_80134BF2;

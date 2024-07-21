@@ -1,58 +1,6 @@
 #include "common.h"
 #include "variables.h"
 
-extern s32 func_8002B0E4(s32);
-extern s32 func_80027464(s32, void*, f32, f32, f32, f32);
-extern s32 func_8001ABF4(s32, s32, s32, void*);
-extern s32 func_8002A1FC(s32, f32);
-extern s32 func_8001B4AC(s32, s32);
-extern s32 func_8001B754(s32, s32);
-extern s32 func_8001C0EC(s32, s32, s32, s32, void*);
-extern f32 func_8001B62C(s32, s32);
-extern s32 func_80028FA0(s32);
-extern s32 func_8002A8B4(s32, f32);
-extern f32 func_8002A46C(s32);
-extern s32 func_80014E80(s32);
-extern f32 func_80015538(f32, f32);
-extern f32 func_800156C4(f32, f32);
-extern f32 func_80015744(f32);
-extern s32 func_80029018(s32, s32, f32, f32, f32, f32);
-extern s32 func_800295C0(s32, f32*, f32*, f32, f32, f32);
-extern s32 func_800297DC();
-extern s32 func_8002A0D0(s32, f32, f32, f32);
-extern s32 func_8002A2EC(s32, f32);
-extern s32 func_8002A800(f32, f32, f32);
-extern s32 func_8001B44C(s32, s32);
-extern s32 func_800261E8(s32, s32);
-extern s32 func_80026260(s32);
-extern s32 func_800281A4(s32, s32);
-extern s32 func_80029F58(s32, f32, f32, f32, f32);
-extern f32 func_80015634(f32, f32);
-extern void func_800175F0(s32, s32, s32, s32, s32);
-extern void func_8001B6BC(s32, s32, f32);
-extern void func_8001BBDC(s32, s32);
-extern void func_80026F10(s32, s32);
-extern void func_80027C00(s32, s32, void*, f32, f32, f32, f32);
-extern void func_80029824(s32, s32);
-extern void func_80029D04(s32);
-extern void func_80029B60(s32);
-extern void func_80029C40(s32);
-extern void func_80029D8C(s32);
-extern void func_80029EF8(s32, f32, f32);
-extern void func_8002B114(s32);
-extern void func_80069D88(s32, s32);
-extern void func_8007EDF4(f32, f32, f32, f32);
-extern void func_800EE354(s32, f32);
-extern void func_800E3EE4();
-extern void func_800F9DE0();
-extern void func_800FA27C();
-extern void func_800F91A4();
-extern void func_800F9294();
-extern void func_800F94A8();
-extern void func_800F95F4();
-extern void func_80284DF8();
-
-
 typedef struct {
     s16 unk0;
     char padding[0x14E];

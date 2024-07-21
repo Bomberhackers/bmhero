@@ -20,7 +20,7 @@ s32 func_800281A4(s32 arg0, s32 arg1);
 s32 func_80028260(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5);
 s32 func_80028E60(s32 arg0);
 s32 func_80028FA0(s32 arg0);
-s32 func_80029018(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 arg5);
+s32 func_80029018(s32 arg0, u32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5);
 s32 func_800293B8(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 *arg6, f32 *arg7, f32 *arg8, s32 arg9);
 s32 func_800294F0(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5);
 s32 func_800295C0(s32 arg0, f32 *arg1, f32 *arg2, f32 arg3, f32 arg4, f32 arg5);
@@ -364,27 +364,21 @@ void func_800272E8(s32 arg0) {
     }
 }
 
-// Stack problems
-#ifdef NON_MATCHING
-// Will fix later
-/*
-s32 func_80027464(s32 arg0, struct flo *arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
-    struct other sp;
-
+s32 func_80027464(s32 arg0, struct UnkStruct_80027C00 *arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
+    UNUSED s32 pad[2];
+    struct UnkStruct_80027464 sp;
     s32 index;
     s32 sp1C;
-
     s32 sp18;
-    s32 sp24[1]; // to compile
-
+    
     for (index = 0; index < 11; index++) {
         sp.unk24[index] = -1;
     }
-
+    
     index = 0;
     for (sp1C = 0xE; sp1C < 0x4E; sp1C++) {
         if (gObjects[sp1C].unkA4 == 0) {
-            sp.unk24[index] = sp1C;
+            sp.unk24[index] = sp1C; 
             index++;
             if (index == arg0) {
                 break;
@@ -393,7 +387,7 @@ s32 func_80027464(s32 arg0, struct flo *arg1, f32 arg2, f32 arg3, f32 arg4, f32 
     }
 
     if (sp1C == 0x4E) {
-        sp24[0] = -1;
+        sp.unk24[0] = -1;
     } else {
         index = 0;
         for (; index < arg0;) {
@@ -402,44 +396,41 @@ s32 func_80027464(s32 arg0, struct flo *arg1, f32 arg2, f32 arg3, f32 arg4, f32 
             }
 
             func_8001A928(sp.unk24[index]);
-            func_8001BD44(sp.unk24[index], arg1->unk0, arg1->unk6, D_8016CAA0[arg1->unk4].unk0);
+            func_8001BD44(sp.unk24[index], arg1->unk0, arg1->unk6,
+                          D_8016CAA0[arg1->unk4].unk0);
             gObjects[sp.unk24[index]].Pos.x = gObjects[sp.unk24[index]].unk50 = arg2;
             gObjects[sp.unk24[index]].Pos.y = gObjects[sp.unk24[index]].unk54 = arg3;
             gObjects[sp.unk24[index]].Pos.z = gObjects[sp.unk24[index]].unk58 = arg4;
             gObjects[sp.unk24[index]].Rot.y = arg5;
             gObjects[sp.unk24[index]].unk3C = arg5;
             gObjects[sp.unk24[index]].unkA4 = 1;
-            gObjects[sp.unk24[index]].unkE4 = arg1->unk2;
+            gObjects[sp.unk24[index]].unkE4  = arg1->unk2;
             gObjects[sp.unk24[index]].unk100 = arg1->unk7;
             gObjects[sp.unk24[index]].unk108 = arg1->unk8;
-            gObjects[sp.unk24[index]].unk102 = arg1->unk9;
+            gObjects[sp.unk24[index]].unk102  = arg1->unk9;
             gObjects[sp.unk24[index]].unk103 = arg1->unkA;
             if (index > 0) {
-                gObjects[sp24[index]].unkE6[0] = sp24[0];
-                gObjects[sp24[0]].unkE6[index] = sp24[index];
+                gObjects[sp.unk24[index]].unkE6[0] = sp.unk24[0];
+                gObjects[sp.unk24[0]].unkE6[index] = sp.unk24[index];
             }
-            arg1++;
+             arg1++;
             index++;
         }
     }
 
     for (index = 0; (sp.unk24[index] != -1) && (index < 11); index++) {
         for (sp18 = 0, sp1C = 0; (sp.unk24[sp1C] != -1) && (sp1C < 11); sp1C++) {
-            if (sp24[sp1C] != sp24[index]) {
-                gObjects[sp24[index]].unk10E[sp18] = sp24[sp1C];
+            if (sp.unk24[index] != sp.unk24[sp1C]) {
+                gObjects[sp.unk24[index]].unk10E[sp18] = sp.unk24[sp1C];
                 sp18++;
             }
         }
     }
     if (D_80165198 == -1) {
-        D_80165198 = sp24[0];
+        D_80165198 = sp.unk24[0];
     }
-    return sp24[0];
+    return sp.unk24[0];
 }
-*/
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/26CE0/func_80027464.s")
-#endif
 
 s32 func_80027B34(s32 arg0, struct UnkStruct_80027B34 *arg1) {
     s32 *sp1C;
@@ -521,12 +512,8 @@ s32 func_800281A4(s32 arg0, s32 arg1) {
     return sp4;
 }
 
-// TODO: What is the real type of D_801776F0???
-#ifdef NON_MATCHING
-// Will fix later
-/*
 s32 func_80028260(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5) {
-    struct ObjectStruct *spA4;
+    struct ObjectStruct * spA4;
     f32 spA0;
     f32 sp9C;
     f32 sp98;
@@ -541,12 +528,12 @@ s32 func_80028260(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5) {
     f32 sp74;
     s32 sp70;
     s32 sp6C;
-    u8 sp6B;
+    UNUSED u8 sp6B;
     s32 sp64;
     s32 sp60;
     s32 sp5C;
     s32 sp58;
-    s32 sp54;
+    UNUSED s32 sp54;
     f32 sp50;
     s32 sp4C;
 
@@ -574,21 +561,20 @@ s32 func_80028260(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5) {
         } else if (sp4C == 1) {
             sp78 = sp7C;
         } else {
-            sp78 = sp7C + D_8004BDB0;
+            sp78 = sp7C + 315.0f;
         }
         if (sp78 >= 360.0f) {
             sp78 -= 360.0f;
         }
-        sp88 = sinf(sp78 * D_8004BDB8) * arg1 + (spA0 + sp94);
+        sp88 =   sinf(sp78 *  0.017453292519943295) * arg1 + (spA0 + sp94);
         sp84 = sp9C + sp90;
-        sp80 = (cosf((f32) ((f64) sp78 * D_8004BDC0)) * arg1) + (sp98 + sp8C);
+        sp80 = (cosf((f32) ((f64) sp78 *  0.017453292519943295)) * arg1) + (sp98 + sp8C);
         func_80067748(sp88, sp84, sp80);
         if (arg5 == 0) {
             if (!(D_801776E0 & 1)) {
-                // FABS?
                 sp74 = sp50 - D_80177760[0];
                 sp74 = sp74 < 0.0f ? -sp74 : sp74;
-
+                
                 if (sp74 > (sqrtf(SQ(sp94) + SQ(sp8C)) + arg1)) {
                     sp70 = sp70 | 1 << (sp4C + 3);
                 }
@@ -596,37 +582,31 @@ s32 func_80028260(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5) {
                 sp70 = sp70 | 1 << sp4C;
             }
         } else if (!(D_801776E0 & 1)) {
-            if (!func_8001608C(sp64, sp64, sp60, sp60, sp5C, sp5C, sp58, sp58, (s32) D_801776F0[0],
-                               D_801776F0[0], (s32) D_80177700[0], D_80177700[0], (s32) D_80177710[0],
-                               D_80177710[0], (s32) D_80177720[0], D_80177720[0])) {
-
+            if (!func_8001608C(sp64, sp60, 
+                sp5C, sp58, (s32) D_801776F0[0] , (s32) D_80177700[0],  (s32) D_80177710[0],              
+                D_80177720[0])) {
+                
                 sp70 = sp70 | 1 << (sp4C + 3);
             }
-        } else if (func_8001608C(sp64, sp64, sp60, sp60, sp5C, sp5C, sp58, sp58, (s32) D_801776F0[1],
-                                 D_801776F0[0], (s32) D_80177700[1], D_80177700[1], (s32) D_80177710[1],
-                                 D_80177710[1], (s32) D_80177720[1], D_80177720[1])
-                   == 0) {
+        } else if (func_8001608C(sp64,
+            sp60, sp5C,
+            sp58, (s32)D_801776F0[1], 
+            D_80177700[1], D_80177710[1],
+            D_80177720[1]) == 0) {
             sp70 = sp70 | 1 << sp4C;
         }
-    }
+    } 
     if (!(sp70 & 7)) {
         func_80067748(spA0 + sp94, sp9C + sp90, sp98 + sp8C);
-        if (!(D_801776E0 & 1) && ((sp50 - D_80177760[0]) > sqrtf(SQ(sp94) + SQ(sp8C)))) {
+        if (!(D_801776E0 & 1) && ( (sp50 - D_80177760[0]) > sqrtf(SQ(sp94) + SQ(sp8C)))) {
             sp70 = sp70 | 0x40;
         }
     }
     return sp70;
 }
-*/
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/26CE0/func_80028260.s")
-#endif
 
-#ifdef NON_MATCHING
-// Will fix later
-/*
 s32 func_8002894C(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
-    struct ObjectStruct *spA4;
+    struct ObjectStruct* spA4;
     f32 spA0;
     f32 sp9C;
     f32 sp98;
@@ -638,17 +618,18 @@ s32 func_8002894C(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     f32 sp80;
     f32 sp7C;
     f32 sp78;
+    UNUSED s32 sp74;
     s32 sp70;
     s32 sp6C;
-    u8 sp6B;
+    UNUSED u8 sp6B;
     s32 sp64;
     s32 sp60;
     s32 sp5C;
     s32 sp58;
-    s32 sp54;
-    f32 sp50;
+    UNUSED s32 sp54;
+    UNUSED f32 sp50;
     s32 sp4C;
-    s32 temp_t9;
+    UNUSED s32 temp_t9;
 
     spA4 = &gObjects[arg0];
     spA0 = spA4->Pos.x + arg2;
@@ -674,38 +655,41 @@ s32 func_8002894C(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
         } else if (sp4C == 1) {
             sp78 = sp7C;
         } else {
-            sp78 = sp7C + D_8004BDC8;
+            sp78 = sp7C + 315.0f;
         }
         if (sp78 >= 360.0f) {
             sp78 -= 360.0f;
         }
-        sp88 = (__sinf((f32) ((f64) sp78 * D_8004BDD0)) * arg1) + (spA0 + sp94);
+        sp88 = (sinf((f32) ((f64) sp78 *  0.017453292519943295)) * arg1) + (spA0 + sp94);
         sp84 = sp9C + sp90;
-        sp80 = (__cosf((f32) ((f64) sp78 * D_8004BDD8)) * arg1) + (sp98 + sp8C);
+        sp80 = (cosf((f32) ((f64) sp78 *  0.017453292519943295)) * arg1) + (sp98 + sp8C);
         func_80067748(sp88, sp84, sp80);
         if (!(D_801776E0 & 1)) {
-            if (func_8001608C(sp64 >> 0x1F, sp64, sp60 >> 0x1F, sp60, sp5C >> 0x1F, sp5C, sp58 >> 0x1F,
-                              sp58, (s32) D_801776F0[1] >> 0x1F, D_801776F0[1],
-                              (s32) D_80177700[1] >> 0x1F, D_80177700[1], (s32) D_80177710[1] >> 0x1F,
-                              D_80177710[1], (s32) D_80177720[1] >> 0x1F, D_80177720[1])
-                == 0) {
+            if (func_8001608C(
+                sp64, 
+                sp60, 
+                sp5C, 
+                sp58,
+                D_801776F0[1],  
+                D_80177700[1], 
+                D_80177710[1], 
+                D_80177720[1]) == 0) {
                 sp70 = sp70 | 1 << (sp4C + 3);
             }
-        } else if (func_8001608C(sp64 >> 0x1F, sp64, sp60 >> 0x1F, sp60, sp5C >> 0x1F, sp5C,
-                                 sp58 >> 0x1F, sp58, (s32) D_801776F0[0] >> 0x1F, D_801776F0[0],
-                                 (s32) D_80177700[0] >> 0x1F, D_80177700[0],
-                                 (s32) D_80177710[0] >> 0x1F, D_80177710[0],
-                                 (s32) D_80177720[0] >> 0x1F, D_80177720[0])
-                   == 0) {
+        } else if (func_8001608C(
+            sp64,
+            sp60, 
+            sp5C, 
+            sp58,
+            D_801776F0[0], 
+            D_80177700[0], 
+            D_80177710[0],
+            D_80177720[0]) == 0) {
             sp70 = sp70 | 1 << sp4C;
         }
-    }
+    } 
     return sp70;
 }
-*/
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/26CE0/func_8002894C.s")
-#endif
 
 s32 func_80028E60(s32 arg0) {
     struct ObjectStruct *sp24;
@@ -736,11 +720,7 @@ s32 func_80028FA0(s32 arg0) {
     return FALSE;
 }
 
-// Matched but needs rodata
-#ifdef NON_MATCHING
-// will fix later
-/*
-s32 func_80029018(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 arg5) {
+s32 func_80029018(s32 arg0, u32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
     struct ObjectStruct *sp2C;
     s32 sp28;
     s32 sp24;
@@ -756,7 +736,7 @@ s32 func_80029018(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 arg5) {
                 func_80067748(sp2C->Pos.x + sp2C->Vel.x, sp2C->Pos.y + sp2C->Vel.y,
                               sp2C->Pos.z + sp2C->Vel.z);
 
-                if ((D_801776F0[0].unk0 != 0) || (D_80177710[0].unk0 != 0)) {
+                if ((D_801776F0[0] != 0) || (D_80177710[0] != 0)) {
                     sp24 = TRUE;
                 }
             }
@@ -774,7 +754,7 @@ s32 func_80029018(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 arg5) {
             } else {
                 func_80067748(sp2C->Pos.x + sp2C->Vel.x, sp2C->Pos.y + sp2C->Vel.y,
                               sp2C->Pos.z + sp2C->Vel.z);
-                if ((D_801776F0[0].unk0 != 0) || (D_80177710[0].unk0 != 0)) {
+                if ((D_801776F0[0] != 0) || (D_80177710[0] != 0)) {
                     sp24 = TRUE;
                 }
             }
@@ -813,10 +793,6 @@ s32 func_80029018(s32 arg0, u32 arg1, s32 arg2, s32 arg3, s32 arg4, f32 arg5) {
     sp2C->Vel.z = 0.0f;
     return TRUE;
 }
-*/
-#else
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/26CE0/func_80029018.s")
-#endif
 
 s32 func_800293B8(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 *arg6, f32 *arg7,
                   f32 *arg8, s32 arg9) {
@@ -960,24 +936,24 @@ void func_80029C40(s32 arg0) {
     struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[arg0];
-    sp1C->Vel.x = sinf((f32) ((f64) sp1C->unk3C * D_8004BDF8)) * sp1C->unk44;
-    sp1C->Vel.z = cosf((f32) ((f64) sp1C->unk3C * D_8004BE00)) * sp1C->unk44;
+    sp1C->Vel.x = sinf((f32) ((f64) sp1C->unk3C *  0.0174532925199432955)) * sp1C->unk44;
+    sp1C->Vel.z = cosf((f32) ((f64) sp1C->unk3C *  0.0174532925199432955)) * sp1C->unk44;
 }
 
 void func_80029D04(s32 arg0) {
     struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[arg0];
-    sp1C->Vel.y = sinf((f32) ((f64) sp1C->unk40 * D_8004BE08)) * sp1C->unk48;
+    sp1C->Vel.y = sinf((f32) ((f64) sp1C->unk40 *  0.0174532925199432955)) * sp1C->unk48;
 }
 
 void func_80029D8C(s32 arg0) {
     struct ObjectStruct *sp24;
 
     sp24 = &gObjects[arg0];
-    sp24->Vel.x = (sp24->unk44 * cosf(sp24->unk40 * D_8004BE10)) * sinf(sp24->unk3C * D_8004BE18);
-    sp24->Vel.z = (sp24->unk44 * cosf(sp24->unk40 * D_8004BE20)) * cosf(sp24->unk3C * D_8004BE28);
-    sp24->Vel.y = sinf(sp24->unk40 * D_8004BE30) * sp24->unk44;
+    sp24->Vel.x = (sp24->unk44 * cosf(sp24->unk40 *  0.0174532925199432955)) * sinf(sp24->unk3C *  0.0174532925199432955);
+    sp24->Vel.z = (sp24->unk44 * cosf(sp24->unk40 *  0.0174532925199432955)) * cosf(sp24->unk3C *  0.0174532925199432955);
+    sp24->Vel.y = sinf(sp24->unk40 * 0.017453292519943295) * sp24->unk44;
 }
 
 void func_80029EF8(s32 arg0, f32 arg1, f32 arg2) {
@@ -1230,7 +1206,6 @@ void func_8002AD90(void) {
         func_8001A928(gCurrentParsedObject);
     }
 }
-
 
 void func_8002AE38(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     func_8002AB40(arg0, arg1, arg2, arg3, arg4);

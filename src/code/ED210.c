@@ -2,11 +2,12 @@
 //rodata for file: 107C60
 
 //RODATA TEMP START//
+extern s32 D_80115808[]; //huge table
+extern s32 D_80116EC4[]; //two item table
+
 extern f32 D_801157BC; //-930.0f
 
 extern f32 D_801157B8; //-1860.0f
-extern s32 D_80115808[]; //huge table
-
 extern f64 D_801157E8; //0.0174532925199432955
 extern f64 D_801157F0; //0.0174532925199432955
 
@@ -14,23 +15,75 @@ extern f64 D_80115770; //0.0299999999999999989
 extern f64 D_80115778; //0.0299999999999999989
 extern f64 D_80115780; //0.0299999999999999989
 
-extern s32 D_80116EC4[]; //two item table
 
 extern f32 D_80115768;
 
 extern f64 D_801157A0; //0.0449999999999999983
 extern f64 D_801157A8; //0.0449999999999999983
 extern f64 D_801157B0; //0.0449999999999999983
+
+extern f32 D_80115740; //0.1000000015
+extern f32 D_80115744; //0.1000000015
+extern f32 D_80115748; //0.1000000015
+
+extern f64 D_80115750; //0.0299999999999999989
+extern f64 D_80115758; //0.0299999999999999989
+extern f64 D_80115760; //0.0299999999999999989
+
+extern f32 D_801157C0; //-0.400000006
+
+extern f64 D_801157C8; //0.0174532925199432955
 //RODATA TEMP END//
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FACF0.s")
+void func_800FACF0(void) {
+    s32 sp24;
+
+    sp24 = func_80027464(1, &D_801136D0, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    if (sp24 != -1) {
+        gObjects[sp24].Scale.x = D_80115740;
+        gObjects[sp24].Scale.y = D_80115744;
+        gObjects[sp24].Scale.z = D_80115748;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FAE00.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FAE10.s")
+void func_800FAE10(void) {
+    struct ObjectStruct* sp24;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FAF10.s")
+    sp24 = &gObjects[gCurrentParsedObject];
+    if (sp24->unk132 == 0) {
+        sp24->unk132 += 1;
+        func_8001C0EC(gCurrentParsedObject, 3, 0, 0x19E, D_80116EC4);
+        func_8001BB34(gCurrentParsedObject, 1);
+    }
+    if (func_8002A1FC(gCurrentParsedObject, 660.0f) != 0) {
+        func_8002AE38(sp24->Pos.x, sp24->Pos.y, sp24->Pos.z, 1.0f, 0x10);
+        sp24->unkA4 = 2;
+        sp24->unk132 = 0;
+    }
+}
+
+void func_800FAF10(void) {
+    struct ObjectStruct* CurrentObject;
+
+    CurrentObject = &gObjects[gCurrentParsedObject];
+    if (CurrentObject->unk132 == 0) {
+        CurrentObject->unk132 += 1;
+        CurrentObject->unkA6 = 0x1E;
+        func_8001BB34(gCurrentParsedObject, 0);
+    }
+    if (CurrentObject->unkA6 == 0) {
+        CurrentObject->unkA4 = 3;
+        CurrentObject->unk132 = 0;
+    } else {
+        CurrentObject->unkA6 -= 1;
+        CurrentObject->Scale.x = (f32) ((f64) CurrentObject->Scale.x + D_80115750);
+        CurrentObject->Scale.y = (f32) ((f64) CurrentObject->Scale.y + D_80115758);
+        CurrentObject->Scale.z = (f32) ((f64) CurrentObject->Scale.z + D_80115760);
+    }
+}
 
 void func_800FB05C(void) {
     s32 spCC;
@@ -255,7 +308,6 @@ void func_800FBE54(void) {
 
 void func_800FBF10(void) {
     s16 sp26;
-    struct ObjectStruct* temp_t8;
 
     sp26 = func_80027464(1, &D_80113EBC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
     if (sp26 != -1) {
@@ -364,13 +416,112 @@ void func_800FC2E4(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FC6BC.s")
+void func_800FC6BC(void) {
+    struct ObjectStruct* CurrentObject;
 
+    CurrentObject = &gObjects[gCurrentParsedObject];
+    if (CurrentObject->unk132 == 0) {
+        CurrentObject->unk132 = 1;
+        CurrentObject->unk44 = 0.0f;
+        CurrentObject->unk48 = (f32) (CurrentObject->unkAA * 2);
+        CurrentObject->unk40 = 90.0f;
+        func_8001BBDC(gCurrentParsedObject, 1);
+        func_800175F0(gCurrentParsedObject, 0, 0x36, -1, 0);
+    }
+    func_80029C40(gCurrentParsedObject);
+    func_80029D04(gCurrentParsedObject);
+    if ((CurrentObject->unk54 - 50.0f) > (CurrentObject->Pos.y + CurrentObject->Vel.y)) {
+        CurrentObject->Pos.y = CurrentObject->unk54 - 50.0f;
+        CurrentObject->Vel.y = 0.0f;
+        CurrentObject->unk132 = 2;
+    }
+    if ((CurrentObject->unk54 + 20.0f) < (CurrentObject->Pos.y + CurrentObject->Vel.y)) {
+        CurrentObject->Pos.y = CurrentObject->unk54 + 20.0f;
+        CurrentObject->Vel.y = 0.0f;
+        CurrentObject->unk132 = 2;
+    }
+    if (CurrentObject->unk132 == 2) {
+        CurrentObject->unkA4 = 1;
+        CurrentObject->unk132 = 0;
+        func_8001BBDC(gCurrentParsedObject, 0);
+    }
+}
+
+//https://decomp.me/scratch/7mvQx - bss
 #pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FC8D0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FCA8C.s")
+void func_800FCA8C(void) {
+    struct ObjectStruct* CurrentObject;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FCC98.s")
+    CurrentObject = &gObjects[gCurrentParsedObject];
+    if (CurrentObject->unk132 == 0) {
+        CurrentObject->unk132 = 1;
+        CurrentObject->unk44 = 0.0f;
+        CurrentObject->unk48 = 0.0f;
+        CurrentObject->unkB2 = 0x3C;
+        CurrentObject->unk108 = 0;
+        func_80029C40(gCurrentParsedObject);
+        func_80029D04(gCurrentParsedObject);
+        func_8001BB34(gCurrentParsedObject, 0);
+        func_80029EF8(gCurrentParsedObject, 0.0f, 0.5f);
+    }
+    CurrentObject->Rot.x = func_80015538(CurrentObject->Rot.x, -2.0f);
+    CurrentObject->Rot.z = func_80015538(CurrentObject->Rot.z, D_801157C0);
+    if (CurrentObject->Rot.x < 180.0f) {
+        func_8001BB34(gCurrentParsedObject, 0);
+        func_8002B0E4(gCurrentParsedObject);
+        return;
+    }
+    CurrentObject->unkB2 -= 1;
+    if (CurrentObject->unkB2 <= 0) {
+        func_8002B0E4(gCurrentParsedObject);
+        return;
+    }
+    if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, 0.0f, 0.0f) == 1) {
+        func_8002B0E4(gCurrentParsedObject);
+        return;
+    }
+}
+
+void func_800FCC98() {
+    struct ObjectStruct* sp2C;
+    f32 sp28;
+
+    sp2C = &gObjects[gCurrentParsedObject];
+    if (sp2C->unk132 == 0) {
+        sp2C->unk132 = 1;
+        sp2C->unk108 = 0x3C;
+        sp2C->unkB0 = 0;
+    }
+    func_8001BB34(gCurrentParsedObject, !(sp2C->unk108 & 1));
+    sp2C->unkB0 = (s16) (s32) func_80015538((f32) sp2C->unkB0, 16.0f);
+    sp28 = sinf((f32) ((f64) sp2C->unk3C * D_801157C8)) * 20.0f;
+    sp2C->Rot.z = func_80015538(0.0f, sp28);
+    func_80029C40(gCurrentParsedObject);
+    func_80029D04(gCurrentParsedObject);
+    if ((sp2C->unk54 - 50.0f) > (sp2C->Pos.y + sp2C->Vel.y)) {
+        sp2C->Pos.y = sp2C->unk54 - 50.0f;
+        sp2C->Vel.y = 0.0f;
+        sp2C->unk132 = 2;
+    }
+    if ((sp2C->unk54 + 20.0f) < (sp2C->Pos.y + sp2C->Vel.y)) {
+        sp2C->Pos.y = sp2C->unk54 + 20.0f;
+        sp2C->Vel.y = 0.0f;
+        sp2C->unk132 = 2;
+    }
+    if (sp2C->unk108 == 1) {
+        if (sp2C->unkAA != -1) {
+            sp2C->unkA4 = 6;
+        } else {
+            sp2C->unkAA = 1;
+            sp2C->unkAC = 0;
+            sp2C->unkA4 = 2;
+        }
+        sp2C->unk132 = 0;
+        sp2C->Rot.z = 0.0f;
+        func_8001BB34(gCurrentParsedObject, 0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/ED210/func_800FCF68.s")
 

@@ -1099,6 +1099,7 @@ extern struct ObjectStruct D_801137F0;
 extern s32 D_801137FC;
 extern s32 D_80113838;
 extern struct UnkStruct_80027C00 D_80113694;
+extern struct UnkStruct_80027C00 D_801136D0;
 extern struct UnkStruct_80027C00 D_801136DC;
 extern s32 D_80113A0C;
 extern UNK_TYPE D_80113A18;

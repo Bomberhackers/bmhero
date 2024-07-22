@@ -456,7 +456,7 @@ segments:
     - [0x107360, rodata]
     - [0x107380, rodata]
     - [0x107500, rodata]
-    - [0x107630, rodata]
+    - [0x107630, .rodata, code/CAFF0]
     - [0x1076A0, rodata]
     - [0x107830, rodata]
     - [0x107C00, rodata]

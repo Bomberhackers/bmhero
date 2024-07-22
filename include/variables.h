@@ -852,16 +852,21 @@ struct UnkStruct_80028260 {
 
 struct UnkStruct_80026548 {
     // Dunno if this is real or not
-    union {
-        char unk0;
-        s8 unk1;
-        void *(*routine)();
-        u64 ull;
-    };
+    char unk0;
+    char filler1[0x3];
+    s8 unk4;
+    char filler5[0x3];
     s16 unk8;
     s16 unkA;
     s16 unkC;
-    char _pad[0x4B];
+    u8 unkE;
+    s8 unkF;
+    char filler10[0x4];
+    void *(*routine)( );
+    void *(*routine2)( );
+    char filler1C[0x14];
+    u64 unk30;
+    char filler28[0x24];
 };
 
 
@@ -1262,12 +1267,6 @@ extern struct ObjectStruct D_8011BA8C;
 extern struct ObjectStruct D_8011BB50;
 extern s32 D_8011BA94;
 extern struct UnkStruct_80026548 D_80124D90[];
-extern struct UnkStruct_80026548 D_80124D94[];
-extern struct UnkStruct_80026548 D_80124D9E[];
-extern struct UnkStruct_80026548 D_80124D9F[];
-extern struct UnkStruct_80026548 D_80124DA4[];
-extern struct UnkStruct_80026548 D_80124DA8[];
-extern struct UnkStruct_80026548 D_80124DC0[];
 extern s32 gDebugCurrentMenuItem;
 extern s32 D_80134218;
 extern s32 gDebugSelectedMusicIndex;

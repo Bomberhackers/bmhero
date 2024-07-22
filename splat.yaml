@@ -471,7 +471,6 @@ segments:
     - [0x115230, hasm, ../src/file_table] # need to do this to get splat to not see it as a C object.
     - [auto, .rodata, ../src/file_table] # right now we have to do this; IDO refuses to put it in .rodata. TODO: Find a workaround?
     - [0x1172B0, rodata]
-    - [0x1172F0, rodata]
     - [0x126730, rodata]
     - [0x126750, .rodata, code/EFF30]
     - [0x126C50, rodata]

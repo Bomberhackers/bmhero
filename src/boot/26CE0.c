@@ -112,7 +112,7 @@ void func_80026548(void) {
             sp30 = sp24->Pos.x - view_x;
             sp2C = sp24->Pos.y - view_y;
             sp28 = sp24->Pos.z - view_z;
-            if ((sp24->unkE6[0] == -1) && !(D_80124D94[sp24->unkE4].unk1 & 1)) {
+            if ((sp24->unkE6[0] == -1) && !(D_80124D90[sp24->unkE4].unk4 & 1)) {
                 if ((SQ(sp30) + SQ(sp2C) + SQ(sp28)) > D_80177984) {
                     for (sp48 = 0; sp48 < 0xA; sp48++) {
                         if (sp24->unk10E[sp48] != -1) {
@@ -137,7 +137,7 @@ void func_80026548(void) {
             }
             if (sp1C != 0) {
                 sp24->unk131 = 0;
-                if (!(D_80124D94[sp24->unkE4].unk1 & 4)) {
+                if (!(D_80124D90[sp24->unkE4].unk4 & 4)) {
                     if (!(D_8017798C <= sp30) || !(D_80177994 >= sp30) || !(D_8017799C <= sp2C)
                         || !(D_801779A4 >= sp2C) || !(D_801779AC <= sp28) || !(D_801779B8 >= sp28)) {
                         sp24->unk131 |= 2;
@@ -166,7 +166,7 @@ void func_80026548(void) {
             sp30 = sp4C[sp40].unk2 - view_x;
             sp2C = sp4C[sp40].unk4 - view_y;
             sp28 = sp4C[sp40].unk6 - view_z;
-            if (SQ(sp30) + SQ(sp2C) + SQ(sp28) <= (D_8017797C) || (D_80124D94[sp18].unk1 & 2)) {
+            if (SQ(sp30) + SQ(sp2C) + SQ(sp28) <= (D_8017797C) || (D_80124D90[sp18].unk4 & 2)) {
                 D_80165108 = (s16) sp18;
                 D_8016510A = sp4C[sp40].unk2;
                 D_8016510C = sp4C[sp40].unk4;
@@ -178,7 +178,7 @@ void func_80026548(void) {
                 D_80165100 = &D_80165108;
                 D_80165198 = -1;
                 D_8016519C = sp40;
-                D_80124DA4[sp18].routine();
+                D_80124D90[sp18].routine();
                 if (D_80165198 != -1) {
                     gObjects[D_80165198].unkFC = (s16) sp40;
                     func_8002617C(sp40);
@@ -643,7 +643,7 @@ s32 func_80028E60(s32 arg0) {
     sp1C = (sp24->Pos.y + sp24->Vel.y) - sp24->unk54;
     sp18 = (sp24->Pos.z + sp24->Vel.z) - sp24->unk58;
 
-    if (((D_80124DC0[gObjects[arg0].unkE4].ull)) <= (SQ(sp20) + SQ(sp1C) + SQ(sp18))) {
+    if (((D_80124D90[gObjects[arg0].unkE4].unk30)) <= (SQ(sp20) + SQ(sp1C) + SQ(sp18))) {
         return TRUE;
     }
     return FALSE;
@@ -1181,8 +1181,8 @@ void func_8002AE84(s32 arg0, s32 arg1) {
         guMtxXFMF(sp6C, D_80124D90[spC4->unkE4].unk8, D_80124D90[spC4->unkE4].unkA,
                   D_80124D90[spC4->unkE4].unkC, &ox, &oy, (f32 *) &oz);
 
-        spB0 = D_80124D9E[spC4->unkE4].unk0 / 10.0f;
-        spAC = D_80124D9F[spC4->unkE4].unk1;
+        spB0 = D_80124D90[spC4->unkE4].unkE / 10.0f;
+        spAC = D_80124D90[spC4->unkE4].unkF;
     }
     func_8001A928(arg0);
     if ((arg1 != 0) && (spAC != -1)) {
@@ -1207,7 +1207,7 @@ void func_8002B154(void) {
     for (sp1C = 0xE; sp1C < 0x4E; sp1C++) {
         if (gObjects[sp1C].unkA4 != 0) {
             gCurrentParsedObject = sp1C;
-            D_80124DA8[gObjects[sp1C].unkE4].routine();
+            D_80124D90[gObjects[sp1C].unkE4].routine2();
             if (gObjects[sp1C].unkA4 != 0) {
                 if (gObjects[sp1C].unk108 >= 2) {
                     gObjects[sp1C].unk108 -= 1;

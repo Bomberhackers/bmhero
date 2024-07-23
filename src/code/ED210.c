@@ -1,10 +1,4 @@
 #include <ultra64.h>
-#include "prevent_bss_reordering.h"
-//rodata for file: 107C60
-
-//s32 D_801175A8[7]; //bss
-//s32 D_80117570[7]; //bss
-//s32 D_801175C4[3]; //bss
 
 void func_800FACF0(void) {
     s32 sp24;

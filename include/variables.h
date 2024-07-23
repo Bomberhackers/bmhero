@@ -1204,14 +1204,18 @@ extern f64 D_80115628;
 extern f64 D_80115630;
 extern f64 D_80115638;
 extern f32 D_801157BC;
+extern s32 D_80115808[];
 extern s32 D_80116674[];                       //.rodata
 extern struct UnkStruct_8011670C D_8011670C[]; //.rodata
 extern s32 D_801168CC[];                       //.rodata
 extern s32 D_801168D0[];                       //.rodata
+extern s32 D_80116EC4[];
 extern s32 D_80117504;
 extern s32 D_80117554;
+
 extern s32 D_8011758C;
 extern s32 D_80117AA0;
+
 extern UNK_TYPE D_80117B4C;
 extern UNK_TYPE D_80117B68;
 extern UNK_TYPE D_80117B84;

@@ -93,6 +93,7 @@ void func_8001A928(s32 arg0);
 s32 func_8001ABF4(s32, s32, s32, void *);
 void func_8001AD6C(s32);
 s32 func_8001B44C(s32 arg0, s32 arg1);
+s32 func_8001B880(s32 arg0, s32 arg1);
 void func_8001BB34(s32, s32);
 void func_8001BD44(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 void func_8001BE6C(s32 arg0, s32 arg1, s32 arg2, s32 arg3);

@@ -1212,8 +1212,11 @@ extern s32 D_801168D0[];                       //.rodata
 extern s32 D_80116EC4[];
 extern s32 D_80117504;
 extern s32 D_80117554;
+//extern s32 D_80117570[];
 
 extern s32 D_8011758C;
+//extern s32 D_801175A8[];
+//extern s32 D_801175C4[]; 
 extern s32 D_80117AA0;
 
 extern UNK_TYPE D_80117B4C;

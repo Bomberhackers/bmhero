@@ -1,6 +1,5 @@
 #include <ultra64.h>
 #include "prevent_bss_reordering.h"
-#include "ED210.h"
 //rodata for file: 107C60
 
 //s32 D_801175A8[7]; //bss
@@ -440,7 +439,6 @@ void func_800FC6BC(void) {
     }
 }
 
-//https://decomp.me/scratch/7mvQx - bss
 void func_800FC8D0(void) {
     struct ObjectStruct* sp24;
 

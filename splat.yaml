@@ -461,7 +461,7 @@ segments:
     - [0x107830, rodata]
     - [0x107C00, rodata]
     - [0x107C10, rodata]
-    - [0x107C60, rodata]
+    - [0x107C60, .rodata, code/ED210]
     - [0x107D20, rodata]
     - [0x109540, rodata]
     - [0x109AF0, rodata]

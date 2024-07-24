@@ -269,17 +269,17 @@ void func_800FBCB0(void) {
     sp20 = func_8001B62C(0, 0);
     func_8001C0EC(gCurrentParsedObject, 0, sp24, 1, &D_80115808);
     func_8001B6BC(gCurrentParsedObject, 0, sp20);
-    sp2C->Pos.x = gPlayerObjectPointer->Pos.x;
-    sp2C->Pos.y = gPlayerObjectPointer->Pos.y;
-    sp2C->Pos.z = -1860.0f - gPlayerObjectPointer->Pos.z;
-    sp2C->Rot.y = 180.0f - gPlayerObjectPointer->Rot.y;
+    sp2C->Pos.x = gPlayerObject->Pos.x;
+    sp2C->Pos.y = gPlayerObject->Pos.y;
+    sp2C->Pos.z = -1860.0f - gPlayerObject->Pos.z;
+    sp2C->Rot.y = 180.0f - gPlayerObject->Rot.y;
     if (sp2C->Rot.y < 0.0f) {
         sp2C->Rot.y += 360.0f;
     }
 }
 
 void func_800FBE54(void) {
-    if (gPlayerObjectPointer->Pos.z < -930.0f) {
+    if (gPlayerObject->Pos.z < -930.0f) {
         func_8001BB34(gCurrentParsedObject, 1);
     } else {
         func_8001BB34(gCurrentParsedObject, 0);

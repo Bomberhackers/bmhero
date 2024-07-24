@@ -146,7 +146,7 @@ void func_80069D04(s32 arg0, s32 arg1) {
     if (D_8016E3CC != 0) {
         return;
     }
-    if (gPlayerObjectPointer->unk108 == 0) {
+    if (gPlayerObject->unk108 == 0) {
         return;
     }
     func_80069AD8(arg0, arg1);
@@ -158,7 +158,7 @@ void func_80069D88(s32 arg0, s32 arg1) {
     if (D_8016E3CC != 0) {
         return;
     }
-    if (gPlayerObjectPointer->unk108 == 0) {
+    if (gPlayerObject->unk108 == 0) {
         return;
     }
     func_80069AD8(arg0, arg1);

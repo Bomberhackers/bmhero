@@ -121,7 +121,28 @@ void func_80085884(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80085B34.s")
+void func_80085B34(f32 arg0, f32 arg1) {
+    s32 sp3C;
+
+    func_800843CC(gPlayerObject->Pos.x + arg0, gPlayerObject->Pos.y, gPlayerObject->Pos.z + arg1);
+    sp3C = D_801776E0 & 1;
+    D_801651A8 = D_801776E0;
+    D_801651AC = D_801776F0[sp3C];
+    D_801651B0 = D_80177700[sp3C];
+    D_801651B4 = D_80177710[sp3C];
+    D_801651B8 = D_80177720[sp3C];
+    D_801651BC = D_80177730[sp3C];
+    D_801651C0 = D_80177760[sp3C];
+    D_801651C4 = gPlayerObject->Pos.x + arg0;
+    D_801651C8 = gPlayerObject->Pos.y;
+    D_801651CC = gPlayerObject->Pos.z + arg1;
+    D_801651D0 = gPlayerObject->unk3C;
+    D_801651D4 = func_80015634(gActiveContStickX, -gActiveContStickY);
+    func_80016A80(D_801651AC, 
+        D_801651B0, D_801651B4, D_801651B8, 
+       &D_801651D8[0], &D_801651D8[1], &D_801651D8[2], &D_801651D8[3]);
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80085D54.s")
 
@@ -133,9 +154,9 @@ void func_80086AD0(void) {
     UNUSED s32 sp30;
 
     D_8016E080 = 0;
-    sp2C = gPlayerObjectPointer->Pos.x;
-    sp28 = gPlayerObjectPointer->Pos.y;
-    sp24 = gPlayerObjectPointer->Pos.z;
+    sp2C = gPlayerObject->Pos.x;
+    sp28 = gPlayerObject->Pos.y;
+    sp24 = gPlayerObject->Pos.z;
     if (D_8016523E == 4) {
         sp28 = (f32) ((f64) sp28 - D_8010CD50);
     }
@@ -177,11 +198,11 @@ void func_80086D50(void) {
     Mtx_t sp60;
     Mtx_t sp20;
     
-    guTranslateF((f32 (*)[4]) &sp120[0], gPlayerObjectPointer->Pos.x, gPlayerObjectPointer->Pos.y, gPlayerObjectPointer->Pos.z);
-    guScaleF((f32 (*)[4]) &spE0[0], gPlayerObjectPointer->Scale.x, gPlayerObjectPointer->Scale.y, gPlayerObjectPointer->Scale.z);
-    guRotateF((f32 (*)[4]) &spA0[0], gPlayerObjectPointer->Rot.x, 1.0f, 0.0f, 0.0f);
-    guRotateF((f32 (*)[4]) &sp60[0], gPlayerObjectPointer->Rot.y, 0.0f, 1.0f, 0.0f);
-    guRotateF((f32 (*)[4]) &sp20[0], gPlayerObjectPointer->Rot.z, 0.0f, 0.0f, 1.0f);
+    guTranslateF((f32 (*)[4]) &sp120[0], gPlayerObject->Pos.x, gPlayerObject->Pos.y, gPlayerObject->Pos.z);
+    guScaleF((f32 (*)[4]) &spE0[0], gPlayerObject->Scale.x, gPlayerObject->Scale.y, gPlayerObject->Scale.z);
+    guRotateF((f32 (*)[4]) &spA0[0], gPlayerObject->Rot.x, 1.0f, 0.0f, 0.0f);
+    guRotateF((f32 (*)[4]) &sp60[0], gPlayerObject->Rot.y, 0.0f, 1.0f, 0.0f);
+    guRotateF((f32 (*)[4]) &sp20[0], gPlayerObject->Rot.z, 0.0f, 0.0f, 1.0f);
     guMtxCatF((f32 (*)[4]) &sp20[0], (f32 (*)[4]) &sp60[0], (f32 (*)[4]) &sp20[0]);
     guMtxCatF((f32 (*)[4]) &sp20[0], (f32 (*)[4]) &spA0[0], (f32 (*)[4]) &sp20[0]);
     guMtxCatF((f32 (*)[4]) &sp20[0], (f32 (*)[4]) &spE0[0], (f32 (*)[4]) &sp20[0]);
@@ -199,8 +220,8 @@ void func_80086E70(f32* arg0, f32* arg1, f32* arg2) {
 void func_80087994(void) {
     UNUSED s16 sp20;
     
-    if ((gPlayerObjectPointer->unk108 >= 2) && (gPlayerObjectPointer->unk108 < 0x3D)) {
-        gPlayerObjectPointer->unk108 -= 1;
+    if ((gPlayerObject->unk108 >= 2) && (gPlayerObject->unk108 < 0x3D)) {
+        gPlayerObject->unk108 -= 1;
     }
     if (D_8016E0D0 != 0) {
         return;
@@ -248,7 +269,7 @@ void func_80087B1C(void) {
 
 void func_80087C58(void) {
     if (D_8016E0D0 == 0) {
-        if ((gPlayerObjectPointer->unk108 >= 2) && (gPlayerObjectPointer->unk108 < 0x3D)) {
+        if ((gPlayerObject->unk108 >= 2) && (gPlayerObject->unk108 < 0x3D)) {
             D_8016E250 += 1;
             if (D_8016E250 & 1) {
                 return;
@@ -260,7 +281,7 @@ void func_80087C58(void) {
         func_8001B014(0, 0);
         func_8001C384(0, 0);
     }
-    if ((gPlayerArmWindPointer->unkA4 != 0) && (func_8001C1A8(1, 0) != 0)) {
+    if ((gPlayerArmWindObject->unkA4 != 0) && (func_8001C1A8(1, 0) != 0)) {
         func_8001838C();
         func_8001B014(1, 0);
         func_8001C384(1, 0);
@@ -273,7 +294,7 @@ void func_80087D70(void) {
         func_8001B014(0, 3);
         func_8001C384(0, 3);
     }
-    if ((gPlayerArmWindPointer->unkA4 != 0) && (func_8001C248(1, 3) != 0)) {
+    if ((gPlayerArmWindObject->unkA4 != 0) && (func_8001C248(1, 3) != 0)) {
         func_8001838C();
         func_8001B014(1, 3);
         func_8001C384(1, 3);
@@ -342,12 +363,12 @@ void func_80088338(void) {
 void func_80088694(void) {
     func_8001A928(0);
     func_8001A928(1);
-    gPlayerObjectPointer->Pos.x = D_8016E438;
-    gPlayerObjectPointer->Pos.y = D_8016E43C;
-    gPlayerObjectPointer->Pos.z = D_8016E440;
-    gPlayerObjectPointer->Rot.y = D_8016E444;
-    gPlayerObjectPointer->unk3C = gPlayerObjectPointer->Rot.y;
-    gPlayerObjectPointer->unk108 = 1;
+    gPlayerObject->Pos.x = D_8016E438;
+    gPlayerObject->Pos.y = D_8016E43C;
+    gPlayerObject->Pos.z = D_8016E440;
+    gPlayerObject->Rot.y = D_8016E444;
+    gPlayerObject->unk3C = gPlayerObject->Rot.y;
+    gPlayerObject->unk108 = 1;
     func_80087E14();
     func_8006828C();
     func_80085B34(0, 0);
@@ -373,8 +394,8 @@ void func_8008884C(s32 arg0) {
     func_8001A928(1);
     func_8001BD44(0, 0, 0x10, D_8016CAA0[0x223].unk0 + D_80111880[arg0]);
     func_8001C0EC(0, 0, 0, 0x223, &D_80111888);
-    gPlayerObjectPointer->unkE4 = 0x266;
-    gPlayerObjectPointer->unkA4 = 1;
+    gPlayerObject->unkE4 = 0x266;
+    gPlayerObject->unkA4 = 1;
     func_80019448(0, 2, 0, 1);
     if (arg0 == 0) {
         func_8001ABF4(0, 0, 0, &D_80111A74);
@@ -400,13 +421,13 @@ void func_80088A88(s32 arg0) {
     {
         
     }
-    sp20 = gPlayerObjectPointer->Pos.x;
-    sp1C = gPlayerObjectPointer->Pos.y;
-    sp18 = gPlayerObjectPointer->Pos.z;
+    sp20 = gPlayerObject->Pos.x;
+    sp1C = gPlayerObject->Pos.y;
+    sp18 = gPlayerObject->Pos.z;
     func_800883A8();
     func_80088694();
-    gPlayerObjectPointer->Pos.x = sp20;
-    gPlayerObjectPointer->Pos.y = sp1C;
-    gPlayerObjectPointer->Pos.z = sp18;
+    gPlayerObject->Pos.x = sp20;
+    gPlayerObject->Pos.y = sp1C;
+    gPlayerObject->Pos.z = sp18;
     func_8001EBE8();
 }

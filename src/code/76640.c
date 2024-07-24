@@ -4,9 +4,28 @@
 
 extern f64 D_8010CD50;
 
+extern f64 D_8010CD60;
+extern f64 D_8010CD68;
+extern f64 D_8010CD70;
+extern f64 D_8010CD78;
+
 //RODATA END
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80084120.s")
+s32 func_80084120(f32 arg0, f32 arg1, f32 arg2) {
+    f32 sp4;
+
+    sp4 = arg1 - arg0;
+    if (sp4 < 0.0f) {
+        sp4 += 360.0f;
+    }
+    if ((sp4 < arg2) || ((360.0f - arg2) < sp4)) {
+        return 0;
+    }
+    if (sp4 >= 180.0f) {
+        return -1;
+    }
+    return 1;
+}
 
 void func_800841E8(void) {
     if ((gCurrentLevel == 0x28) || (gCurrentLevel == 0x29)) {
@@ -349,7 +368,23 @@ void func_80088694(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_8008884C.s")
+void func_8008884C(s32 arg0) {
+    func_8001A928(0);
+    func_8001A928(1);
+    func_8001BD44(0, 0, 0x10, D_8016CAA0[0x223].unk0 + D_80111880[arg0]);
+    func_8001C0EC(0, 0, 0, 0x223, &D_80111888);
+    gPlayerObjectPointer->unkE4 = 0x266;
+    gPlayerObjectPointer->unkA4 = 1;
+    func_80019448(0, 2, 0, 1);
+    if (arg0 == 0) {
+        func_8001ABF4(0, 0, 0, &D_80111A74);
+        func_8001ABF4(0, 1, 0, &D_80111A74[0x3F]);
+        func_8001ABF4(0, 2, 0, &D_80111A74[0x46]);
+        func_8001ABF4(0, 3, 0, &D_80111A74[0x4D]);
+    } else {
+        func_8001ABF4(0, 0, 0, &D_80111A74[0x69]);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_800889A8.s")
 

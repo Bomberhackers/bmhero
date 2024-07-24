@@ -13,6 +13,24 @@ s32 func_80013F6C(f32*, f32);
 s32 func_80014098(f32*, f32);
 s32 func_800141C4(f32*, f32);
 
+// 15A80.c
+f32 func_80014F50(f32 arg0, f32 arg1);
+f32 func_800155A8(f32 arg0, f32 arg1);
+f32 func_80015634(f32 arg0, f32 arg1);
+f32 func_800156C4(f32 arg0, f32 arg1);
+f32 func_80015744(f32 arg0);
+s32 func_800157EC(f32 arg0, f32 arg1, f32 arg2);
+void func_800158B4(f32 arg0, f32 arg1, f32 arg2, f32 *arg3, f32 *arg4);
+f32 func_80015C24(f32 arg0, f32 arg1, s64 arg2, s64 arg4, s64 arg6, s64 arg8);
+f32 func_80015D2C(f32 arg0, f32 arg1, s64 arg2, s64 arg3, s64 arg4, s64 arg5);
+s32 func_8001608C(s64 arg0, s64 arg2, s64 arg4, s64 arg6, s64 arg8, s64 argA, s64 argC, s64 argE);
+s32 func_800162F0(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5);
+s32 func_800163AC(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9);
+s32 func_80016560(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7,
+                  f32 arg8, f32 arg9);
+void func_80016A80(s64 arg0, s64 arg2, s64 arg4, f32 *arg8, f32 *arg9, f32 *argA, f32 *argB, f32 *argC,
+                   f32 *argD);
+
 // 17930.c
 s32 func_80016DD4();
 s32 func_80016E84();

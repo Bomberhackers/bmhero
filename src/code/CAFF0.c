@@ -82,7 +82,7 @@ void func_800D9134(void) {
     {
         if (func_8002A1FC(gCurrentParsedObject, 960.0f) != 0)
         {
-            if(D_8017753C->Pos.y - sp24->Pos.y > -360.0f && D_8017753C->Pos.y - sp24->Pos.y < 360.f)
+            if(gPlayerObjectPointer->Pos.y - sp24->Pos.y > -360.0f && gPlayerObjectPointer->Pos.y - sp24->Pos.y < 360.f)
             {
                 sp24->unkA4 = 2;
                 sp24->unk132 = 0;
@@ -301,10 +301,10 @@ void func_800D9BD4(void) {
         }
     }
     if (sp3C->unkAA == 0) {
-        sp30 = func_80015634(D_8017753C->Pos.x - sp3C->Pos.x, D_8017753C->Pos.z - sp3C->Pos.z);
+        sp30 = func_80015634(gPlayerObjectPointer->Pos.x - sp3C->Pos.x, gPlayerObjectPointer->Pos.z - sp3C->Pos.z);
         sp3C->unkB6 = func_800157EC(sp3C->unk3C, sp30, 2.0f);
         sp3C->unk3C = func_80015538(sp3C->unk3C, (f32) (sp3C->unkB6 * 2));
-        sp30 = func_800156C4(D_8017753C->Pos.x - sp3C->Pos.x, D_8017753C->Pos.y - (sp3C->Pos.y - 100.0f));
+        sp30 = func_800156C4(gPlayerObjectPointer->Pos.x - sp3C->Pos.x, gPlayerObjectPointer->Pos.y - (sp3C->Pos.y - 100.0f));
         sp30 = func_80015744(sp30);
         sp3C->unkB8 = func_800157EC(sp3C->unk40, sp30, 2.0f);
         sp3C->unk40 = func_80015538(sp3C->unk40, (f32) sp3C->unkB8);

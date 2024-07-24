@@ -851,24 +851,23 @@ struct UnkStruct_80028260 {
 };
 
 struct UnkStruct_80026548 {
-    // Dunno if this is real or not
-    char unk0;
-    char filler1[0x3];
-    s8 unk4;
-    char filler5[0x3];
-    s16 unk8;
-    s16 unkA;
-    s16 unkC;
-    u8 unkE;
-    s8 unkF;
-    char filler10[0x4];
-    void *(*routine)( );
-    void *(*routine2)( );
-    char filler1C[0x14];
-    u64 unk30;
-    char filler28[0x24];
-};
-
+    /* 0x00 */ s8 unk0;
+    /* 0x01 */ char pad1[3];                        /* maybe part of unk0[4]? */
+    /* 0x04 */ s8 unk4;
+    /* 0x05 */ char pad5[3];                        /* maybe part of unk4[4]? */
+    /* 0x08 */ s16 unk8;
+    /* 0x0A */ s16 unkA;
+    /* 0x0C */ s16 unkC;
+    /* 0x0E */ u8 unkE;
+    /* 0x0F */ s8 unkF;
+    /* 0x10 */ char pad10[4];                       /* maybe part of unkF[5]? */
+    /* 0x14 */ void* (*routine)();
+    /* 0x18 */ void* (*routine2)();
+    /* 0x1C */ char pad1C[0x10];                    /* maybe part of routine2[5]? */
+    /* 0x2C */ void* (*routine3)();                             /* inferred */
+    /* 0x30 */ u64 unk30;
+    /* 0x38 */ char pad38[0x24];                    /* maybe part of unk30[6]? */
+};                                                  /* size = 0x60 */
 
 struct UnkStruct_80027464 {
     s32 unk24[1];
@@ -1390,6 +1389,7 @@ extern s8 D_8016523A;
 extern s8 D_8016523B;
 extern s8 D_8016523C;
 extern u8 D_8016523D;
+extern s8 D_8016523E;
 extern s8 gBombCount;
 extern s8 gFireCount;
 extern u8 gGemCount;
@@ -1402,11 +1402,18 @@ extern s32 D_80165254;
 extern s32 D_8016525C;
 extern s32 D_80165264;
 extern void (*D_8016526C)();
+extern s16 D_80165270;
 extern void (*D_80165274)();
 extern s32 D_8016527C;
+extern s32 D_8016E238;
+extern s32 D_8016E240;
+extern s16 D_80165280;
 extern s32 D_80165284;
+extern s16 D_8016E2A8;
+extern s16 D_8016E2B8;
 extern struct UnkStruct80165290 D_80165290[256];
 extern struct UnkStruct_80060278 D_8016CAA0[700];
+extern s8  D_8016E080;
 extern s32 D_8016E084;
 extern s32 D_8016E08C;
 extern s16 D_8016E092;
@@ -1415,6 +1422,7 @@ extern s32 D_8016E0A0;
 extern s32 D_8016E0A8;
 extern s32 D_8016E0B0;
 extern OSMesgQueue D_8016E0B8;
+extern s8 D_8016E0D0;
 extern OSMesg D_8016E0D8;
 extern Gfx *gMasterDisplayList;
 extern struct UnkStruct8016E104 *D_8016E104;
@@ -1429,6 +1437,7 @@ extern struct UnkStruct8016E230 D_8016E220[1];
 extern struct UnkStruct8016E230 D_8016E230[1];
 extern s32 D_8016E23C;
 extern s32 D_8016E244;
+extern s8 D_8016E250;
 extern u32 D_8016E254;
 extern s32 D_8016E25C;
 extern u32 D_8016E264;
@@ -1482,11 +1491,16 @@ extern s16 D_8016E41C;
 extern s8 gShowDebugMenu;
 extern s32 gCurrentLevel;
 extern s16 D_8016E432;
+extern f32 D_8016E438;
+extern f32 D_8016E43C;
+extern f32 D_8016E440;
+extern f32 D_8016E444;
 extern u8 D_8016E450[];
 extern s32 gCameraType;
 extern s32 D_801765F4;
 extern s8 D_80176602;
-extern struct ObjectStruct *D_8017753C;
+extern struct ObjectStruct *gPlayerObjectPointer;
+extern struct ObjectStruct *gPlayerArmWindPointer;
 extern f32 D_80177550[44];
 extern u8 D_801775BC;
 extern u8 D_801775C4;
@@ -1525,6 +1539,7 @@ extern s32 D_80177740[];
 extern s8 D_80177708;
 extern struct UnkStruct80177778* D_80177778;
 extern u16 D_80177748[];
+extern UNK_TYPE D_80177750[]; //2 items?
 extern u16 D_80177758[];
 extern u16 D_80177768[];
 extern s32 D_801778F4;
@@ -1558,7 +1573,9 @@ extern s16 D_80177994;
 extern s16 D_8017799C;
 extern s16 D_801779A4;
 extern s16 D_801779AC;
+extern s16 D_801779B0[];
 extern s16 D_801779B8;
+extern s16 D_801779C0[];
 extern u8 D_801779E0;
 extern f32 D_801779C8;
 extern s32 gCurrentParsedObject;

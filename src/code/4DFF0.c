@@ -425,10 +425,10 @@ void func_8005DA00(void) {
     }
     func_8001E954(0x80280000);
     if (D_80134794->unk0 != 0) {
-        func_8001EA68(1, D_80134794->unk0, D_80134794->unk4);
+        DecompressFile(1, D_80134794->unk0, D_80134794->unk4);
     }
     if (D_80134794->unk8 != 0) {
-        func_8001EA68(2, D_80134794->unk8, D_80134794->unkC);
+        DecompressFile(2, D_80134794->unk8, D_80134794->unkC);
     }
     if (D_80134794->unk10 == -1) {
         D_8013479C = NULL;
@@ -556,8 +556,8 @@ void Demo_Start(s32 demoID) {
     func_80019D2C();
     func_8001A258();
     func_8001E954(0x8024C000);
-    func_8001E98C(0, &unk_bin_0_2_ROM_START, &code_extra_0_ROM_START);
-    func_8001EA68(3, &_64C3C0_ROM_START, &_64EC60_ROM_START);
+    func_8001E98C(0, &unk_bin_0_2_ROM_START, &unk_bin_0_2_ROM_END);
+    DecompressFile(3, &_64C3C0_ROM_START, &_64C3C0_ROM_END);
     D_80134790 = 1;
     gDemoID = demoID;
     if (gDemoID == 0) {

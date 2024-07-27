@@ -75,12 +75,12 @@ void func_80060278(void) {
         D_8016CAA0[i].unk0 = 0;
     }
     func_8001E954(0x8024C000);
-    func_8001E98C(0, unk_bin_0_2_ROM_START, code_extra_0_ROM_START);
+    func_8001E98C(0, unk_bin_0_2_ROM_START, unk_bin_0_2_ROM_END);
 
     //why compare like this??
     if(&D_80321428 != D_80324994)
     {
-        func_8001EA68(0x1A, &_64C3C0_ROM_START, &_64EC60_ROM_START);
+        DecompressFile(0x1A, &_64C3C0_ROM_START, &_64C3C0_ROM_END);
     }
 }
 

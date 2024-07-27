@@ -277,7 +277,7 @@ void func_800FE6D8(void) {
 
 void func_800FE854(void) {
     func_8001E954(0x8024C000);
-    func_8001E98C(0, unk_bin_0_2_ROM_START, code_extra_0_ROM_START);
+    func_8001E98C(0, unk_bin_0_2_ROM_START, unk_bin_0_2_ROM_END);
 }
 
 u32 func_800FE898(void) {

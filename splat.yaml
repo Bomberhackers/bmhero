@@ -332,6 +332,7 @@ segments:
     - {start: 0x4DFF0, vram: 0x80052D40, type: .bss, name: boot/38D0}
     - {start: 0x4DFF0, vram: 0x80053160, type: .bss, name: boot/nusys/mus/audio}
     - {start: 0x4DFF0, vram: 0x800557E0, type:  bss, name: boot_bss_pad_2}
+    - {start: 0x4DFF0, vram: 0x80057450, type:  bss, name: boot_bss_pad_3}
     - {start: 0x4DFF0, vram: 0x80057EC0, type: .bss, name: boot/malloc/malloc}
     - {start: 0x4DFF0, vram: 0x80057F60, type: .bss, name: boot/malloc/free}
     - {start: 0x4DFF0, vram: 0x80057F70, type: .bss, name: boot/malloc/realloc}

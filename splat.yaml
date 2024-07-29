@@ -43,7 +43,7 @@ segments:
     - [0xF280,  c, boot/F280]
     - [0x10AB0, c, boot/10AB0]
     - [0x12AF0, c, boot/12AF0]
-    - [0x15700, c, boot/15700]
+    - [0x15700, c, boot/LZSS] # LZSS decompression routines
     - [0x15A80, c, boot/15A80]
     - [0x17930, c, boot/17930]
     - [0x1FAB0, c, boot/1FAB0]

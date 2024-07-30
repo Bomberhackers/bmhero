@@ -5,6 +5,10 @@
 
 #define UNK_TYPE s32
 
+// constant headers
+
+#include "charmap.h"
+
 // structs and defines
 
 struct UnkStruct8010B3FC {
@@ -293,10 +297,10 @@ struct UnkStructSTCG
     s16 Unk108;
 };
 
-struct UnkStruct_80060278
+struct DecompressedFileEntry
 {
-    s32 unk0;
-    u8 Padding[4];
+    u8 *ptr; // ptr to the decompressed file area
+    u8 filler4[4]; // unused
 };
 
 struct View {
@@ -884,15 +888,27 @@ typedef struct {
     f32 unk0;
 } UnkStruct80114354;
 
-struct String {
-    u8 padding0[0x8];
+struct CutsceneString {
+    /* 0x00 */ s16 unk0;
+    /* 0x02 */ s16 unk2;
+    /* 0x04 */ s16 unk4;
+    /* 0x06 */ s16 unk6;
     /* 0x08 */ s16 len;
-    u8 padding8[0x2];
-    s16 str[1]; // dynamic length
+    /* 0x0A */ s16 str[1]; // dynamic length
+};
+
+struct DemoString {
+    /* 0x00 */ s16 unk0;
+    /* 0x02 */ s16 unk2;
+    /* 0x04 */ s16 unk4;
+    /* 0x06 */ s16 unk6;
+    /* 0x08 */ s16 len;
+    u8 paddingA[0x2];
+    /* 0x0C */ s16 str[1]; // dynamic length
 };
 
 struct StringInfo {
-    struct String *strInfo;
+    struct DemoString *strInfo;
     s16 x;
     s16 y;
     s16 renderBG;
@@ -1406,7 +1422,7 @@ extern void (*D_80165274)();
 extern s32 D_8016527C;
 extern s32 D_80165284;
 extern struct UnkStruct80165290 D_80165290[256];
-extern struct UnkStruct_80060278 D_8016CAA0[700];
+extern struct DecompressedFileEntry gFileArray[700];
 extern s32 D_8016E084;
 extern s32 D_8016E08C;
 extern s16 D_8016E092;
@@ -1499,7 +1515,7 @@ extern u8 D_801775EC;
 extern s16 D_801775F6;
 extern s16 D_801775FA;
 extern s16 D_80177600;
-extern s16 D_80177608;
+extern s16 gScore;
 extern s8 D_80177628;
 extern s8 D_80177630;
 extern s8 D_80177640;

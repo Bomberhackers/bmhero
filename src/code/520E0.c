@@ -72,7 +72,7 @@ void func_80060278(void) {
     s32 i;
     for(i = 0; i < 700; i++)
     {
-        D_8016CAA0[i].unk0 = 0;
+        gFileArray[i].ptr = NULL;
     }
     func_8001E954(0x8024C000);
     func_8001E98C(0, unk_bin_0_2_ROM_START, unk_bin_0_2_ROM_END);

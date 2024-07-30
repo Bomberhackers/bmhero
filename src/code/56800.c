@@ -279,10 +279,10 @@ void func_8006A95C(void) {
     if (D_80177628 == 0) {
         return;
     }
-    if ((D_80177608 == 0) || (D_801775FA == D_801775F6)) {
+    if ((gScore == 0) || (D_801775FA == D_801775F6)) {
         D_8016E3CC = 3;
         D_8016E3CD = 1;
-        if (D_80177608 == 0) {
+        if (gScore == 0) {
             func_80070664(2);
         } else {
             func_80070664(3);
@@ -302,21 +302,35 @@ s32 func_8006AA24(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006AA60.s")
+/**
+ * Calculate the min/sec/ms for the Slider Race timer.
+ */
+void Score_UpdateTimer(s32* min, s32* sec, s32* ms) {
+    *min = (gScore / 1800); // FPS(30) * 60
+    *sec = (gScore % 1800) / 30; // modulo to get the seconds
+    *ms  = (gScore % 30) * 3.33333;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006AB14.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006AD28.s")
 
-void func_8006AF18(s16 arg0) {
+/**
+ * Update the score value.
+ */
+void Score_Update(s16 c) {
     if (D_801779E0 != 0) {
         return;
     }
-    D_80177608 += arg0;
-    if (D_80177608 <= 0) {
-        D_80177608 = 0;
-    }
-    else if (D_80177608 >= 0x270F) {
-        D_80177608 = 0x270F;
+    // increase the score by the amount.
+    gScore += c;
+    // if the score got reduced below 0, cap it to 0.
+    if (gScore <= 0) {
+        gScore = 0;
+    } 
+    // if the score went above the maximum 99990 (score is multiplied by
+    // 10 to show the display amount), cap it to 9999.
+    else if (gScore >= 9999) {
+        gScore = 9999;
     }
 }

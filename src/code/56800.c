@@ -42,9 +42,9 @@ void func_800643C0(s32 id, f32* sPtr, f32* tPtr, s32 width, s32 height, s32 isRG
         D_80176458[id].vertices[i].n.tc[1] = arg9[i + 1].unk00s16; // But fixing that line breaks this line...
         D_80176458[id].vertices[i].n.a = (u32)(u8)arg9[0].unk00s16;// -> because it causes problems here... ^^^
     }
-    
     s = *sPtr;
     t = *tPtr;
+    
 
     gDPPipeSync(gMasterDisplayList++);
     gSPClearGeometryMode(gMasterDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
@@ -55,12 +55,13 @@ void func_800643C0(s32 id, f32* sPtr, f32* tPtr, s32 width, s32 height, s32 isRG
     gDPSetTexturePersp(gMasterDisplayList++, G_TP_PERSP);
     gDPSetCombineMode(gMasterDisplayList++, G_CC_DECALRGB, G_CC_DECALRGB);
     gSPTexture(gMasterDisplayList++, 32768, 32768, 0, G_TX_RENDERTILE, G_ON);
-
+    
     if (xlu) {
         gDPSetRenderMode(gMasterDisplayList++, G_RM_AA_ZB_XLU_SURF, G_RM_AA_ZB_XLU_SURF2);
     } else {
         gDPSetRenderMode(gMasterDisplayList++, G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2);
     }
+    
     if (isRGBA16 == FALSE) {
         gDPSetTextureLUT(gMasterDisplayList++, G_TT_RGBA16);
         gDPLoadTLUT_pal16(gMasterDisplayList++, 0, dram);
@@ -71,14 +72,61 @@ void func_800643C0(s32 id, f32* sPtr, f32* tPtr, s32 width, s32 height, s32 isRG
         gDPLoadTextureBlock(gMasterDisplayList++, timg, G_IM_FMT_RGBA, G_IM_SIZ_16b, width, height, 0, \
             G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, 5, 5, G_TX_NOLOD, G_TX_NOLOD);
     }
+    
     gDPSetTileSize(gMasterDisplayList++, G_TX_RENDERTILE, s * 4, t * 4, (s + width) * 4, (t + height) * 4);
     gSPVertex(gMasterDisplayList++, D_80176458[id].vertices, 4, 0);
     gSP1Triangle(gMasterDisplayList++, 0, 1, 2, 0);
     gSP1Triangle(gMasterDisplayList++, 2, 3, 0, 0);
     gSPTexture(gMasterDisplayList++, 0, 0, 0, G_TX_RENDERTILE, G_OFF);
+    
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_800650F0.s")
+void func_800650F0(void) {
+    s32 sp24;
+    struct UnkStruct80177964* sp20;
+    s32 sp1C;
+
+    sp20 = D_80177964;
+
+    for(sp24 = 0; sp24 < 0xA; sp24++) {
+        D_801765C0[sp24] = 0;
+    }
+    for(sp24 = 0; sp24 < 4; sp24++) {
+        D_80176458[sp24].unk40 = 0.0f;
+        D_80176458[sp24].unk44 = 0.0f;
+        D_80176458[sp24].unk48 = 0.0f;
+        D_80176458[sp24].unk4C = 0.0f;
+        D_80176458[sp24].unk50 = -1;
+    }
+    gFileArray[0x14].ptr = NULL;
+    gFileArray[0x15].ptr = NULL;
+    gFileArray[0x16].ptr = NULL;
+    gFileArray[0x17].ptr = NULL;
+
+    if (sp20 != NULL) {
+        for(sp24 = 0; sp24 < 4; sp24++) {
+            if (sp20[sp24].unk0 == -1) {
+                break;
+            }
+            if (D_801765C0[sp20->unk0] == 0) {
+                for(sp1C = 0x14; sp1C < 0x18; sp1C++) {
+                    if (gFileArray[sp1C].ptr == NULL) {
+                        DecompressFile(sp1C, D_80104C20[sp20->unk0].romAddr, D_80104C20[sp20->unk0].size);
+                        D_801765C0[sp20->unk0] = (s16) sp1C;
+                        break;
+                    }
+                }
+            } else {
+                sp1C = D_801765C0[sp20->unk0];
+            }
+            D_80176458[sp24].unk40 = 0.0f;
+            D_80176458[sp24].unk44 = 0.0f;
+            D_80176458[sp24].unk48 = sp20[sp24].unk2C;
+            D_80176458[sp24].unk4C = sp20[sp24].unk30;
+            D_80176458[sp24].unk50 = sp1C;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_800654AC.s")
 

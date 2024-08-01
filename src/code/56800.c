@@ -4,13 +4,11 @@
 
 //find free slot
 s32 func_800642E0(void) {
-    s32 sp4;
+    s32 i;
     
-    for(sp4 = 0xE; sp4 < 0x4E; sp4++)
-    {
-        if(gObjects[sp4].unkA4 == 0)
-        {
-            return sp4;
+    for(i = 14; i < 78; i++) {
+        if(gObjects[i].unkA4 == 0) {
+            return i;
         }
     }
     return -1;
@@ -18,11 +16,8 @@ s32 func_800642E0(void) {
 
 //find free slot above N slot
 s32 func_80064358(s32 arg0) {
-
-    while(arg0 < 0x4E)
-    {
-        if (gObjects[arg0].unkA4 == 0)
-        {
+    while(arg0 < 78) {
+        if (gObjects[arg0].unkA4 == 0) {
             return arg0;
         }
         arg0++;
@@ -30,7 +25,58 @@ s32 func_80064358(s32 arg0) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_800643C0.s")
+void func_800643C0(s32 id, f32* sPtr, f32* tPtr, s32 width, s32 height, s32 isRGBA16, s32 xlu, u32 timg, u32 dram, struct UnkInputStruct800643C0_arg9 *arg9) {
+    s32 s;
+    s32 t;
+    s32 i;
+
+    for (i = 0; i < 4; i++) {
+        D_80176458[id].vertices[i].n.ob[0] = arg9[i].unk02[0];
+        D_80176458[id].vertices[i].n.ob[1] = arg9[i].unk02[1];
+        D_80176458[id].vertices[i].n.ob[2] = arg9[i].unk02[2];
+        D_80176458[id].vertices[i].n.flag = 0;
+        D_80176458[id].vertices[i].n.n[0] = 0;
+        D_80176458[id].vertices[i].n.n[1] = 0;
+        D_80176458[id].vertices[i].n.n[2] = 0;
+        D_80176458[id].vertices[i].n.tc[0] = arg9[i].unk08;
+        D_80176458[id].vertices[i].n.tc[1] = arg9[i + 1].unk00s16; // But fixing that line breaks this line...
+        D_80176458[id].vertices[i].n.a = (u32)(u8)arg9[0].unk00s16;// -> because it causes problems here... ^^^
+    }
+    
+    s = *sPtr;
+    t = *tPtr;
+
+    gDPPipeSync(gMasterDisplayList++);
+    gSPClearGeometryMode(gMasterDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
+    gSPSetGeometryMode(gMasterDisplayList++, G_ZBUFFER | G_SHADE | G_CULL_BACK);
+    gDPSetColorDither(gMasterDisplayList++, G_CD_BAYER);
+    gDPPipelineMode(gMasterDisplayList++, G_PM_NPRIMITIVE);
+    gDPSetTextureFilter(gMasterDisplayList++, G_TF_BILERP);
+    gDPSetTexturePersp(gMasterDisplayList++, G_TP_PERSP);
+    gDPSetCombineMode(gMasterDisplayList++, G_CC_DECALRGB, G_CC_DECALRGB);
+    gSPTexture(gMasterDisplayList++, 32768, 32768, 0, G_TX_RENDERTILE, G_ON);
+
+    if (xlu) {
+        gDPSetRenderMode(gMasterDisplayList++, G_RM_AA_ZB_XLU_SURF, G_RM_AA_ZB_XLU_SURF2);
+    } else {
+        gDPSetRenderMode(gMasterDisplayList++, G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2);
+    }
+    if (isRGBA16 == FALSE) {
+        gDPSetTextureLUT(gMasterDisplayList++, G_TT_RGBA16);
+        gDPLoadTLUT_pal16(gMasterDisplayList++, 0, dram);
+        gDPLoadTextureBlock_4b(gMasterDisplayList++, timg, G_IM_FMT_CI, width, height, 0, \
+            G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, 5, 5, G_TX_NOLOD, G_TX_NOLOD);
+    } else {
+        gDPSetTextureLUT(gMasterDisplayList++, G_TT_NONE);
+        gDPLoadTextureBlock(gMasterDisplayList++, timg, G_IM_FMT_RGBA, G_IM_SIZ_16b, width, height, 0, \
+            G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, 5, 5, G_TX_NOLOD, G_TX_NOLOD);
+    }
+    gDPSetTileSize(gMasterDisplayList++, G_TX_RENDERTILE, s * 4, t * 4, (s + width) * 4, (t + height) * 4);
+    gSPVertex(gMasterDisplayList++, D_80176458[id].vertices, 4, 0);
+    gSP1Triangle(gMasterDisplayList++, 0, 1, 2, 0);
+    gSP1Triangle(gMasterDisplayList++, 2, 3, 0, 0);
+    gSPTexture(gMasterDisplayList++, 0, 0, 0, G_TX_RENDERTILE, G_OFF);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_800650F0.s")
 

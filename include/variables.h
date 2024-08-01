@@ -973,6 +973,18 @@ struct UnkBigStruct_8006B64C
     u8 Padding[336 - sizeof(u32)];
 };
 
+struct UnkStruct80176458 {
+    Vtx vertices[4];
+    u8 padding[0x18]; // Or, really, unidentified members
+}; // size 0x58;
+
+// Not entierly sure about this struct, needs more investigation
+struct UnkInputStruct800643C0_arg9 {
+    s16 unk00s16;
+    s16 unk02[3];
+    s16 unk08;
+}; // size = 0xA;
+
 // externs
 
 // ROM Externs
@@ -1378,7 +1390,7 @@ extern s8 D_801348B2;
 extern struct UnkStruct_56400 D_801348B8[];
 extern f32 D_80134F40;
 extern s32 D_80134FD0;
-extern struct ObjectStruct gObjects[];
+extern struct ObjectStruct gObjects[207];
 extern struct UnkBigStruct_8006B64C D_801541F8[];
 extern UnkStruct80165100 *D_80165100;
 extern s16 D_80165108;
@@ -1499,6 +1511,7 @@ extern s8 gShowDebugMenu;
 extern s32 gCurrentLevel;
 extern s16 D_8016E432;
 extern u8 D_8016E450[];
+extern struct UnkStruct80176458 D_80176458[4];
 extern s32 gCameraType;
 extern s32 D_801765F4;
 extern s8 D_80176602;

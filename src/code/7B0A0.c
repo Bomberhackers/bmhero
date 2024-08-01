@@ -92,7 +92,7 @@ void func_80088EAC(s32 arg0) {
 }
 
 void func_80088ECC(void) {
-    s16 sp1E;
+    s16 exit;
 
     if (D_80134BF2 == -1) {
         return;
@@ -111,16 +111,16 @@ void func_80088ECC(void) {
         D_80134C14 -= 1;
         return;
     }
-    sp1E = 0;
-    while (sp1E == 0) {
+    exit = 0;
+    while (exit == 0) {
         switch (D_80134C00[0]) {
             case 0x0:
                 D_80134BF2 = -1;
                 D_80134C0C = 0;
-                sp1E = 1;
+                exit = 1;
                 break;
             case 0x1:
-                sp1E = 1;
+                exit = 1;
                 break;
             case 0x2:
                 D_80134BF8 = D_80134C00[1];
@@ -131,7 +131,7 @@ void func_80088ECC(void) {
             case 0x5:
                 D_80134C14 = D_80134C00[1] - 1;
                 D_80134C00 += 1;
-                sp1E = 1;
+                exit = 1;
                 break;
             case 0x6:
                 func_8008ABC4 (D_80134C00 + 1);
@@ -389,7 +389,7 @@ void func_80088ECC(void) {
                 D_80134C00 += 1;
                 break;
             default:
-                sp1E = 1;
+                exit = 1;
                 break;
             }
             D_80134C00 += 1;
@@ -451,25 +451,28 @@ void Cutscene_PrintWithLeadingZeros(s32 value, s32 x, s32 y, s32 len) {
  * (Slider Race ending cutscene and Gold Bomber final score).
  */
 void Cutscene_HandleSpecialPrints(void) {
-    s16 c;
+    s16 c; // the special character to print
     s32 min;
     s32 sec;
     s32 ms;
 
     if (D_80134BF0 == 1) {
-        // Timer for Slider Race finishing dialogue "Your time was 00:00:00!"
+        // Timer for Slider Race finishing dialogue "Your time is XX:YY:ZZ!"
         c = CHAR_COLON;
+        // first calculate the minutes/seconds/ms from the timer score variable.
         Score_UpdateTimer(&min, &sec, &ms);
-        Cutscene_PrintWithLeadingZeros(min, 0xC0, 0xB8, 2);
-        Cutscene_RenderChar(0xC8, 0xB8, (c % 32) * 8, (c / 32) * 0x10, 0x1A);
-        Cutscene_PrintWithLeadingZeros(sec, 0xD8, 0xB8, 2);
-        Cutscene_RenderChar(0xE0, 0xB8, (c % 32) * 8, (c / 32) * 0x10, 0x1A);
-        Cutscene_PrintWithLeadingZeros(ms,  0xF0, 0xB8, 2);
+        // then print the timer
+        Cutscene_PrintWithLeadingZeros(min, 192, 184, 2);
+        Cutscene_RenderChar(200, 184, (c % 32) * 8, (c / 32) * 16, 26);
+        Cutscene_PrintWithLeadingZeros(sec, 216, 184, 2);
+        Cutscene_RenderChar(224, 184, (c % 32) * 8, (c / 32) * 16, 26);
+        Cutscene_PrintWithLeadingZeros(ms,  240, 184, 2);
         c = CHAR_EXCLAMATION;
-        Cutscene_RenderChar(0xF8, 0xB8, (c % 32) * 8, (c / 32) * 0x10, 0x1A);
+        // now print the ! after it
+        Cutscene_RenderChar(248, 184, (c % 32) * 8, (c / 32) * 16, 26);
     } else if (D_80134BF0 == 2) {
         // Timer for Gold Bomber final score "Final Score: 00000"
-        Cutscene_PrintWithLeadingZeros(D_80177600 * 0xA, 0xB4, 0xC8, 5);
+        Cutscene_PrintWithLeadingZeros(D_80177600 * 10, 180, 200, 5);
     }
 }
 
@@ -612,40 +615,29 @@ void func_8008ABF4(s16* arg0) {
 
 void func_8008AC08(s16* arg0) {
 
-    switch(*arg0)
-    {
+    switch(*arg0) {
         case 1:
-            {
-                D_8016E134 = 0;
-                gMegaStruct.D_80134FA4.unk0 = 0;
-                break;
-            }
+            D_8016E134 = 0;
+            gMegaStruct.D_80134FA4.unk0 = 0;
+            break;
         case 2:
-            {
-                D_8016E134 = 1;
-                gMegaStruct.D_80134FA4.unk0 = 1;
-                func_8008B030();
-                break;
-            }
+            D_8016E134 = 1;
+            gMegaStruct.D_80134FA4.unk0 = 1;
+            func_8008B030();
+            break;
         case 3:
-            {
-                D_8016E134 = 0;
-                gMegaStruct.D_80134FA4.unk0 = 1;
-                break;
-            }
+            D_8016E134 = 0;
+            gMegaStruct.D_80134FA4.unk0 = 1;
+            break;
         case 4:
-            {
-                D_8016E134 = 1;
-                gMegaStruct.D_80134FA4.unk0 = 0;
-                func_8008B030();
-                break;
-            }
+            D_8016E134 = 1;
+            gMegaStruct.D_80134FA4.unk0 = 0;
+            func_8008B030();
+            break;
         default:
-            {
-                D_8016E134 = 0;
-                gMegaStruct.D_80134FA4.unk0 = 0;
-                break;
-            }
+            D_8016E134 = 0;
+            gMegaStruct.D_80134FA4.unk0 = 0;
+            break;
     }
 
     func_80019B7C();

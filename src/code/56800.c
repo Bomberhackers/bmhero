@@ -2,7 +2,7 @@
 
 //LEVEL LOADING RELATED FILE
 
-//find free slot
+//find free slot above N slot
 s32 func_800642E0(void) {
     s32 sp4;
     
@@ -16,7 +16,7 @@ s32 func_800642E0(void) {
     return -1;
 }
 
-//find free slot above N slot
+//find free slot
 s32 func_80064358(s32 arg0) {
 
     while(arg0 < 0x4E)

@@ -40,7 +40,7 @@ void Demo_SetupTextPal(void) {
     gDPSetColorDither(gMasterDisplayList++, G_CD_BAYER);
     gDPSetTextureFilter(gMasterDisplayList++, G_TF_BILERP);
     gDPSetTextureLUT(gMasterDisplayList++, G_TT_RGBA16);
-    gDPLoadTLUT_pal16(gMasterDisplayList++, 0, D_8016CAA0[3].unk0 + 0x10);
+    gDPLoadTLUT_pal16(gMasterDisplayList++, 0, gFileArray[3].ptr + 0x10);
 }
 
 /**
@@ -49,7 +49,7 @@ void Demo_SetupTextPal(void) {
  */
 void Demo_RenderChar(s16 x, s16 y, s16 s, s16 t) {
     gDPLoadMultiTile_4b(gMasterDisplayList++,
-        D_8016CAA0[3].unk0 + 0x30, 0, 0,
+        gFileArray[3].ptr + 0x30, 0, 0,
         G_IM_FMT_CI,
         256, 256,
         s, t, (s + 8), (t + 16),
@@ -425,15 +425,15 @@ void func_8005DA00(void) {
     }
     func_8001E954(0x80280000);
     if (D_80134794->unk0 != 0) {
-        func_8001EA68(1, D_80134794->unk0, D_80134794->unk4);
+        DecompressFile(1, D_80134794->unk0, D_80134794->unk4);
     }
     if (D_80134794->unk8 != 0) {
-        func_8001EA68(2, D_80134794->unk8, D_80134794->unkC);
+        DecompressFile(2, D_80134794->unk8, D_80134794->unkC);
     }
     if (D_80134794->unk10 == -1) {
         D_8013479C = NULL;
     } else {
-        D_8013479C = (void*)(D_80134794->unk10 + D_8016CAA0[1].unk0);
+        D_8013479C = (void*)(D_80134794->unk10 + gFileArray[1].ptr);
         D_801347A8 = 0.0f;
         D_801347AC = 0;
         D_801347B0 = 0;
@@ -442,7 +442,7 @@ void func_8005DA00(void) {
     }
     for(i = 0; i < 8; i++) {
         if ((D_80134794->unk14[i] != -1) && (D_80134794->unk34[i] != -1)) {
-            func_8001BD44(i, 0, D_80134794->unk34[i], D_8016CAA0[1].unk0 + D_80134794->unk14[i]);
+            func_8001BD44(i, 0, D_80134794->unk34[i], gFileArray[1].ptr + D_80134794->unk14[i]);
             func_8001BE6C(i, 0, 0, 0);
             func_8001B754(0, 0);
             gObjects[i].unkA4 = 1;
@@ -556,8 +556,8 @@ void Demo_Start(s32 demoID) {
     func_80019D2C();
     func_8001A258();
     func_8001E954(0x8024C000);
-    func_8001E98C(0, &unk_bin_0_2_ROM_START, &code_extra_0_ROM_START);
-    func_8001EA68(3, &_64C3C0_ROM_START, &_64EC60_ROM_START);
+    func_8001E98C(0, &unk_bin_0_2_ROM_START, &unk_bin_0_2_ROM_END);
+    DecompressFile(3, &_64C3C0_ROM_START, &_64C3C0_ROM_END);
     D_80134790 = 1;
     gDemoID = demoID;
     if (gDemoID == 0) {

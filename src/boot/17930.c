@@ -338,7 +338,7 @@ void func_8001D9E4(void* arg0) {
     D_8016E104 = (void*)((u32)D_8016E10C + 0x68);
     gMasterDisplayList = (void*)((u32)D_8016E10C + 0x8148);
     gSPSegment(gMasterDisplayList++, 0x00, 0x00000000);
-    gSPSegment(gMasterDisplayList++, 0x01, osVirtualToPhysical(D_8016CAA0[0].unk0));
+    gSPSegment(gMasterDisplayList++, 0x01, osVirtualToPhysical(gFileArray[0].ptr));
     gSPDisplayList(gMasterDisplayList++, D_1000C68);
 
     if(D_80165254 == 1) {
@@ -609,7 +609,34 @@ void func_8001E80C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001E98C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001EA68.s")
+#define ALIGN16(val) (((val) + 0xF) & ~0xF)
+
+/**
+ * Decompress a given area and add it to the file array's ID pointer.
+ */
+void DecompressFile(u32 id, u32 rom_start, u32 rom_end) {
+    u32 heap;
+    u32 allocSize;
+    u32 size;
+    void* buf;
+
+    // align the heap pointer's size.
+    heap = gDecompressHeap;
+    if (heap & 0xF) {
+        // add 1 so the heap will point to the new blank area in the heap.
+        heap = ALIGN16(heap+1);
+        gDecompressHeap = heap;
+    }
+    allocSize = rom_end - rom_start;
+    buf = malloc(allocSize);
+    // first load the compressed bin to the buffer.
+    load_from_rom_to_addr(rom_start, buf, allocSize);
+    // decompress the bin to the heap.
+    size = Decode(buf, gDecompressHeap);
+    free(buf);
+    gFileArray[id].ptr = gDecompressHeap; // add the decompressed file to the file array.
+    gDecompressHeap += size;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001EB68.s")
 

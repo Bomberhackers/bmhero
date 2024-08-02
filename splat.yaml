@@ -43,7 +43,7 @@ segments:
     - [0xF280,  c, boot/F280]
     - [0x10AB0, c, boot/10AB0]
     - [0x12AF0, c, boot/12AF0]
-    - [0x15700, c, boot/15700]
+    - [0x15700, c, boot/LZSS] # LZSS decompression routines
     - [0x15A80, c, boot/15A80]
     - [0x17930, c, boot/17930]
     - [0x1FAB0, c, boot/1FAB0]
@@ -332,6 +332,7 @@ segments:
     - {start: 0x4DFF0, vram: 0x80052D40, type: .bss, name: boot/38D0}
     - {start: 0x4DFF0, vram: 0x80053160, type: .bss, name: boot/nusys/mus/audio}
     - {start: 0x4DFF0, vram: 0x800557E0, type:  bss, name: boot_bss_pad_2}
+    - {start: 0x4DFF0, vram: 0x80057450, type:  bss, name: boot_bss_pad_3}
     - {start: 0x4DFF0, vram: 0x80057EC0, type: .bss, name: boot/malloc/malloc}
     - {start: 0x4DFF0, vram: 0x80057F60, type: .bss, name: boot/malloc/free}
     - {start: 0x4DFF0, vram: 0x80057F70, type: .bss, name: boot/malloc/realloc}
@@ -392,6 +393,7 @@ segments:
     - [0xF5EF0, rodata]
     - [0xF5FE0, rodata]
     - [0xF6220, rodata]
+    - [0xF74B0, .rodata, code/56800]
     - [0xF74C0, .rodata, code/5D4D0]
     - [0xF7700, hasm, ../src/unk_rom_table_F7700]
     - [auto, .rodata, ../src/unk_rom_table_F7700] # might be part of F77F0, but split it out so I can label the ROM table.

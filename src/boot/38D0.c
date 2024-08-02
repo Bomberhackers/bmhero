@@ -1,7 +1,7 @@
 #include <ultra64.h>
+//#include "prevent_bss_reordering.h"
 #include "38D0.h"
 #include "nusys/audio.h"
-#include "prevent_bss_reordering.h"
 
 // forward prototypes
 ALMicroTime initOsc(void **oscState, f32 *initVal,u8 oscType, u8 oscRate,u8 oscDepth,u8 oscDelay);

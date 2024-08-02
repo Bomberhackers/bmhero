@@ -9,6 +9,8 @@ extern f64 D_8010CD68;
 extern f64 D_8010CD70;
 extern f64 D_8010CD78;
 
+extern f64 D_8010CD58;
+
 //RODATA END
 
 s32 func_80084120(f32 arg0, f32 arg1, f32 arg2) {
@@ -225,7 +227,123 @@ void func_80086E70(f32* arg0, f32* arg1, f32* arg2) {
     guMtxXFMF((f32 (*)[4]) D_80177550, *arg0, *arg1, *arg2, arg0, arg1, arg2);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80086ECC.s")
+void func_80086ECC(void) {
+    Mtx_t sp78;
+    Mtx_t sp38;
+    f32 sp34;
+
+    if (gPlayerArmWindObject->unkA4 == 0) 
+    {
+        return;
+    }
+    
+    if (gPlayerArmWindObject->unkE4 == 0x2A8) 
+    {
+        if (gPlayerArmWindObject->unkA4 == 1) {
+            gPlayerArmWindObject->Pos.x = gPlayerObject->Pos.x;
+            gPlayerArmWindObject->Pos.y = gPlayerObject->Pos.y;
+            gPlayerArmWindObject->Pos.z = gPlayerObject->Pos.z;
+            gPlayerArmWindObject->Rot.y = gPlayerObject->Rot.y;
+        } else if (gPlayerArmWindObject->unkA4 == 2) {
+            gPlayerArmWindObject->Pos.x = gPlayerObject->Pos.x;
+            gPlayerArmWindObject->Pos.y = gPlayerObject->Pos.y;
+            gPlayerArmWindObject->Pos.z = gPlayerObject->Pos.z;
+            gPlayerArmWindObject->Rot.y = gPlayerObject->Rot.y;
+        }
+    }
+    else if (gPlayerArmWindObject->unkE4 == 0x2A9) 
+    {
+        if (gPlayerArmWindObject->unkA4 == 1) 
+        {
+            gPlayerArmWindObject->Pos.x = gPlayerObject->Pos.x;
+            gPlayerArmWindObject->Pos.y = gPlayerObject->Pos.y;
+            gPlayerArmWindObject->Pos.z = gPlayerObject->Pos.z;
+            gPlayerArmWindObject->Rot.y = gPlayerObject->Rot.y;
+        }
+    }
+    else if (gPlayerArmWindObject->unkE4 == 0x2AE) 
+    {
+        if (gPlayerArmWindObject->unkA4 == 1) {
+            gPlayerArmWindObject->Pos.x = gPlayerObject->Pos.x;
+            gPlayerArmWindObject->Pos.y = gPlayerObject->Pos.y - 40.0f;
+            gPlayerArmWindObject->Pos.z = gPlayerObject->Pos.z;
+            gPlayerArmWindObject->Rot.y = gPlayerObject->Rot.y;
+            if (gPlayerArmWindObject->Scale.x < 1.0f) {
+                gPlayerArmWindObject->Scale.x = gPlayerArmWindObject->Scale.x + D_8010CD58;
+                gPlayerArmWindObject->Scale.y = gPlayerArmWindObject->Scale.z = gPlayerArmWindObject->Scale.x;
+            }
+            if (D_8016E21C < 0x5A) {
+                func_8001BB34(1, D_8016E21C & 1);
+            } else {
+                func_8001BB34(1, 0);
+            }
+        }
+    }
+    else if (gPlayerArmWindObject->unkE4 == 0x2AA) 
+    {
+        if (gPlayerArmWindObject->unkA4 == 1) 
+        {
+            gPlayerArmWindObject->Pos.x = gPlayerObject->Pos.x;
+            gPlayerArmWindObject->Pos.y = gPlayerObject->Pos.y;
+            gPlayerArmWindObject->Pos.z = gPlayerObject->Pos.z;
+            gPlayerArmWindObject->Rot.y = gPlayerObject->Rot.y;
+            if (func_8001B44C(1, 3) != 0) 
+            {
+                func_8001B6BC(1, 3, 120.0f);
+            }
+            func_8001AD6C(1);
+        }
+    }
+    else if (gPlayerArmWindObject->unkE4 == 0x2AB) 
+    {
+        if (gPlayerArmWindObject->unkA4 == 1) 
+        {
+            guRotateF((f32 (*)[4]) &sp78[0], gPlayerObject->Rot.y, 0.0f, 1.0f, 0.0f);
+            guTranslateF((f32 (*)[4]) &sp38[0], gPlayerObject->Pos.x, gPlayerObject->Pos.y, gPlayerObject->Pos.z);
+            guMtxCatF((f32 (*)[4]) &sp78[0], (f32 (*)[4]) &sp38[0], (f32 (*)[4]) &sp78[0]);
+            guMtxXFMF((f32 (*)[4]) &sp78[0], 0.0f, 130.0f, -18.6f, &gPlayerArmWindObject->Pos.x, &gPlayerArmWindObject->Pos.y, &gPlayerArmWindObject->Pos.z);
+            gPlayerArmWindObject->Rot.y = func_80015538(gPlayerArmWindObject->Rot.y, 50.0f);
+        }
+    }
+    else if (gPlayerArmWindObject->unkE4 == 0x2AC) 
+    {
+        if (gPlayerArmWindObject->unkA4 == 1) 
+        {
+            if (gPlayerObject->unkA4 == 0x26D) 
+            {
+                sp34 = func_8001B62C(1, 0);
+                if (sp34 < 50.0f) 
+                {
+                    gPlayerArmWindObject->Vel.y = 0.0f;
+                } else 
+                {
+                    gPlayerArmWindObject->Vel.y += 2.0f;
+                    gPlayerArmWindObject->Pos.y -= gPlayerArmWindObject->Vel.y;
+                }
+            } else 
+            {
+                gPlayerArmWindObject->Pos.x = gPlayerObject->Pos.x;
+                gPlayerArmWindObject->Pos.y = gPlayerObject->Pos.y;
+                gPlayerArmWindObject->Pos.z = gPlayerObject->Pos.z;
+                gPlayerArmWindObject->Rot.y = gPlayerObject->Rot.y;
+            }
+        }
+    }
+    else if ((gPlayerArmWindObject->unkE4 == 0x2AD)) 
+    {
+        if(gPlayerArmWindObject->unkA4 == 1)
+        {
+            gPlayerArmWindObject->Pos.x = gPlayerObject->Pos.x;
+            gPlayerArmWindObject->Pos.y = gPlayerObject->Pos.y;
+            gPlayerArmWindObject->Pos.z = gPlayerObject->Pos.z;
+            gPlayerArmWindObject->Rot.x = gPlayerObject->Rot.x;
+            gPlayerArmWindObject->Rot.y = gPlayerObject->Rot.y;
+            gPlayerArmWindObject->Rot.z = gPlayerObject->Rot.z;
+            func_8001AD6C(1);
+        }
+    }
+    func_8001CD20(1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80087694.s")
 
@@ -313,7 +431,70 @@ void func_80087D70(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80087E14.s")
+void func_80087E14(void) {
+    D_801651A4 = 0;
+    D_801651A8 = 0;
+    D_801651AC = 0;
+    D_801651B0 = 0;
+    D_801651B4 = 0;
+    D_801651B8 = 0;
+    D_801651BC = 0;
+    D_801651C0 = 0.0f;
+    D_801651C4 = 0.0f;
+    D_801651C8 = 0.0f;
+    D_801651CC = 0.0f;
+    D_801651D0 = 0.0f;
+    D_801651D4 = 0.0f;
+    D_801651D8[0] = 0.0f;
+    D_801651D8[1] = 0.0f;
+    D_801651D8[2] = 0.0f;
+    D_801651D8[3] = 0.0f;
+    D_80165270 = -1;
+    D_80165278 = -1;
+    D_80165288 = 0.0f;
+    D_8016C290 = 0.0f;
+    D_8016CA98 = 0.0f;
+    D_80165280 = 0;
+    D_8016E094 = 0;
+    D_8016E09C = 0;
+    D_8016E0AC = 0;
+    D_8016E0B4 = 0;
+    D_8016E0D0 = 0;
+    D_8016E0F8 = 0;
+    D_80165250 = 0;
+    D_80165260 = 0;
+    D_80165268 = 0;
+    D_80165246 = 0;
+    if ((D_80177630 == 0) && (D_80177628 == 1)) {
+        D_80165258 = 1;
+    } else {
+        D_80165258 = 0;
+    }
+    D_8016E080 = 0;
+    D_8016E088 = 0;
+    D_8016E2D8 = 0;
+    D_8016E090 = 0;
+    D_80165242 = 0;
+    D_80165248 = 0;
+    D_8016E100 = 0;
+    D_8016E108 = 0;
+    D_8016E118 = 0;
+    D_8016E21C = 0;
+    D_8016E228 = 0;
+    D_80165247 = 0;
+    D_8016E318 = 0;
+    D_8016E248 = 0;
+    D_8016E348 = 0;
+    D_8016E250 = 0;
+    D_8016E2E8 = 0;
+    D_8016E2F8 = 0;
+    D_8016E120 = 0;
+    D_8016E128 = 0;
+    D_8016E130 = 0.0f;
+    D_8016E138 = 0.0f;
+    D_8016E1B4 = 0.0f;
+    func_800841E8();
+}
 
 void func_80088094(void) {
     gLifeCount = 1;

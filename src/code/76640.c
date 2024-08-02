@@ -441,16 +441,16 @@ void func_80087694(void) {
     f32 sp0;
 
     if ((gActiveContStickX >= 10.0f) || (gActiveContStickX <= -10.0f)) {
-        gObjects->Pos.x += gActiveContStickX / 1.0f;
+        gObjects[0].Pos.x += gActiveContStickX / 1.0f;
     }
     if ((gActiveContStickY >= 10.0f) || (gActiveContStickY <= -10.0f)) {
-        gObjects->Pos.z -= gActiveContStickY / 1.0f;
+        gObjects[0].Pos.z -= gActiveContStickY / 1.0f;
     }
     if (*gContCurrButton & 0x8000) {
-        gObjects->Pos.y += 40.0f;
+        gObjects[0].Pos.y += 40.0f;
     }
     if (*gContCurrButton & 0x4000) {
-        gObjects->Pos.y -= 40.0f;
+        gObjects[0].Pos.y -= 40.0f;
     }
     if (((gActiveContStickX >= 10.0f) || (gActiveContStickX <= -10.0f) || (gActiveContStickY >= 10.0f) || (gActiveContStickY <= -10.0f))) {
         spC = (f32) ((f64) gActiveContStickX / D_8010CD60); 
@@ -459,9 +459,9 @@ void func_80087694(void) {
         sp0 = (f32) -((f64) gActiveContStickY / D_8010CD78);
 
         if (((spC != 0.0)) || (sp8 != 0.0)) {
-            gObjects->Rot.x = -sp4;
-            gObjects->Rot.y = 0.0f;
-            gObjects->Rot.z = -sp0;
+            gObjects[0].Rot.x = -sp4;
+            gObjects[0].Rot.y = 0.0f;
+            gObjects[0].Rot.z = -sp0;
         }
     }
 }

@@ -156,16 +156,13 @@ void func_800654AC(void) {
 }
 
 void func_800657E8(void) {
-    s32 sp1C4;
+    s32 i;
     Matrix sp184;
     Matrix sp144;
     Matrix sp104;
     Matrix spC4;
     Matrix sp84;
     Matrix sp44;
-    struct UnkStruct800657E8_sp40* sp40;
-    s32 sp3C;
-    u8* sp38;
 
     guTranslateF(sp184, 0.0f, 0.0f, 0.0f);
     guScaleF(sp144, 1.0f, 1.0f, 1.0f);
@@ -179,14 +176,18 @@ void func_800657E8(void) {
     guMtxL2F(sp44, &D_8016E104->unk00[2]);
     guMtxCatF(sp44, sp84, sp44);
 
-    for(sp1C4 = 0; sp1C4 < 4; sp1C4++) {
-        if (D_80176458[sp1C4].unk50 != -1) {
+    for(i = 0; i < 4; i++) {
+        if (D_80176458[i].unk50 != -1) {
+            struct UnkStruct800657E8_sp40* sp40;
+            s32 sp3C;
+            u8* sp38;
+
             guMtxF2L(sp44, &D_8016E104->unkE0[D_8016E3A4]);
             gSPMatrix(gMasterDisplayList++, &D_8016E104->unkE0[D_8016E3A4++], G_MTX_NOPUSH | G_MTX_LOAD);
-            sp40 = (void*)gFileArray[D_80176458[sp1C4].unk50].ptr;
+            sp40 = (void*)gFileArray[D_80176458[i].unk50].ptr;
             sp3C = ((sp40->unk4 << 1) + (u32)sp40->unk7 & ~7) + 0x10;
             sp38 = (void*)(sp40+1);
-            func_800643C0(sp1C4, &D_80176458[sp1C4].unk40[0], &D_80176458[sp1C4].unk40[1], sp40->unk7[1], sp40->unkC, 0, 1, sp3C, sp38, &D_80177964[sp1C4]);
+            func_800643C0(i, &D_80176458[i].unk40[0], &D_80176458[i].unk40[1], sp40->unk7[1], sp40->unkC, 0, 1, sp3C, sp38, &D_80177964[i]);
         }
     }
 }
@@ -346,12 +347,10 @@ void func_80069E88(void) {
 
 //looks like this is handling level loading in some way
 void func_80069F0C(s32 arg0) {
-    if(arg0 != 0)
-    {
+    if(arg0 != 0) {
         gCurrentLevel = D_80106DA1[D_80134801 * 0x2A + D_80134802 * 0xE + D_80134803 * 2];
     }
-    else
-    {
+    else {
         gCurrentLevel = D_80106DA0[D_80134801 * 0x2A + D_80134802 * 0xE + D_80134803 * 2];
     }
 }

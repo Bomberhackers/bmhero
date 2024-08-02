@@ -67,7 +67,7 @@ s32 func_80017FF8(void) {
     if (sp4) {
         gLightingSettings = *sp4;
 
-        if ((gCurrentLevel == 0x3B) || (gCurrentLevel == 0x40)) {
+        if ((gCurrentLevel == MAP_FREEZE_LAKE) || (gCurrentLevel == MAP_SNOWLAND)) {
             return 2;
         } else {
             return 1;

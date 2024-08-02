@@ -45,5 +45,6 @@
 // constant headers
 #include "sections.h"
 #include "charmap.h"
+#include "map_ids.h"
 
 #endif

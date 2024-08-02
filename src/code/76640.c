@@ -38,7 +38,16 @@ void func_800841E8(void) {
     D_8016E115 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_8008424C.s")
+void func_8008424C(void) {
+    if ((gCurrentLevel == 0x28) || (gCurrentLevel == 0x29)) {
+        if (D_8016E110 == 1) {
+            D_8016E112 = 0xB4;
+        }
+        else if (D_8016E110 == 2) {
+            D_8016E112 = 0x3C;
+        }
+    }
+}
 
 void func_800842C0(void) {
     if (D_8016E110 == 1) {
@@ -71,7 +80,10 @@ void func_800843CC(f32 arg0, f32 arg1, f32 arg2) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80085424.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_800857B0.s")
+void func_800857B0(void) {
+    func_80085424();
+    gObjects[D_80165270].unkA6 = 1;
+}
 
 void func_80085804(void) {
     func_80085424();
@@ -312,8 +324,14 @@ void func_80088094(void) {
     gGemCount = 0;
 }
 
-
-#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_800880E4.s")
+void func_800880E4(void) {
+    gLifeCount = 3;
+    gMaxHealth = 4;
+    gHealthCount = gMaxHealth;
+    gBombCount = 0;
+    gFireCount = 0;
+    gGemCount = 0;
+}
 
 void func_80088134(void) { //looks like the regular base stats
     gLifeCount = 3;
@@ -333,7 +351,15 @@ void func_80088184(void) { //looks like the regular base stats
     gGemCount = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_800881D4.s")
+void func_800881D4(void) {
+    gHealthCount = gMaxHealth;
+    if (gFireCount != 0) {
+        gFireCount -= 1;
+    }
+    else if (gBombCount != 0) {
+        gBombCount -= 1;
+    }
+}
 
 void func_80088248(s32 arg0) {
     if (arg0 > 0) {
@@ -347,7 +373,14 @@ void func_80088248(s32 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_800882C8.s")
+void func_800882C8(void) {
+    D_80165238 = gLifeCount;
+    D_80165239 = gHealthCount;
+    D_8016523A = gMaxHealth;
+    D_8016523B = gBombCount;
+    D_8016523C = gFireCount;
+    D_8016523D = gGemCount;
+}
 
 void func_80088338(void) {
     gLifeCount = D_80165238;

@@ -851,23 +851,23 @@ struct UnkStruct_80028260 {
 };
 
 struct UnkStruct_80026548 {
-    // Dunno if this is real or not
-    char unk0;
-    char filler1[0x3];
-    s8 unk4;
-    char filler5[0x3];
-    s16 unk8;
-    s16 unkA;
-    s16 unkC;
-    u8 unkE;
-    s8 unkF;
-    char filler10[0x4];
-    void *(*routine)( );
-    void *(*routine2)( );
-    char filler1C[0x14];
-    u64 unk30;
-    char filler28[0x24];
-};
+    /* 0x00 */ s8 unk0;
+    /* 0x01 */ char pad1[3];                        /* maybe part of unk0[4]? */
+    /* 0x04 */ s8 unk4;
+    /* 0x05 */ char pad5[3];                        /* maybe part of unk4[4]? */
+    /* 0x08 */ s16 unk8;
+    /* 0x0A */ s16 unkA;
+    /* 0x0C */ s16 unkC;
+    /* 0x0E */ u8 unkE;
+    /* 0x0F */ s8 unkF;
+    /* 0x10 */ char pad10[4];                       /* maybe part of unkF[5]? */
+    /* 0x14 */ void* (*routine)();
+    /* 0x18 */ void* (*routine2)();
+    /* 0x1C */ char pad1C[0x10];                    /* maybe part of routine2[5]? */
+    /* 0x2C */ void* (*routine3)();                             /* inferred */
+    /* 0x30 */ u64 unk30;
+    /* 0x38 */ char pad38[0x24];                    /* maybe part of unk30[6]? */
+};                                                  /* size = 0x60 */
 
 
 struct UnkStruct_80027464 {

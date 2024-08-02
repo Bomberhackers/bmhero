@@ -1012,4 +1012,10 @@ struct UnkStruct800657E8_sp40 {
     s8 fillerD[0x3];
 };
 
+struct Code_Extra_Entry
+{
+    s32 Start_Addr;
+    s32 End_Addr;
+};
+
 #endif // _BMHERO_TYPES_H_

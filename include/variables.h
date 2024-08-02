@@ -683,5 +683,10 @@ extern s16 D_8016E2E8;
 extern s16 D_8016E2F8;
 extern s16 D_8016E318;
 extern s32 D_8016E348;
+extern u8* _9B5440_ROM_START;
+extern u8* _9BD180_ROM_START;
+extern s16 D_8016E0A4;
+extern u8 D_801776E4;
+extern UNK_TYPE D_80177770;
 
 #endif // VARIABLES_H

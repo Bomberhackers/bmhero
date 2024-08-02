@@ -44,6 +44,7 @@ void func_8001D4D0();
 void func_8001D638(s32, s32, s32, s32);
 void func_8001E954(s32*);
 void func_8001E98C(s32, void*, void*);
+void func_8001EB68(s32, void*, void*);
 void func_8001ECB8(void);
 void func_80019C84(void);
 void func_80019D2C(void);

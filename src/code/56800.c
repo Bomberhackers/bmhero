@@ -92,10 +92,10 @@ void func_800650F0(void) {
         D_801765C0[sp24] = 0;
     }
     for(sp24 = 0; sp24 < 4; sp24++) {
-        D_80176458[sp24].unk40 = 0.0f;
-        D_80176458[sp24].unk44 = 0.0f;
-        D_80176458[sp24].unk48 = 0.0f;
-        D_80176458[sp24].unk4C = 0.0f;
+        D_80176458[sp24].unk40[0] = 0.0f;
+        D_80176458[sp24].unk40[1] = 0.0f;
+        D_80176458[sp24].unk40[2] = 0.0f;
+        D_80176458[sp24].unk40[3] = 0.0f;
         D_80176458[sp24].unk50 = -1;
     }
     gFileArray[0x14].ptr = NULL;
@@ -119,18 +119,77 @@ void func_800650F0(void) {
             } else {
                 sp1C = D_801765C0[sp20->unk0];
             }
-            D_80176458[sp24].unk40 = 0.0f;
-            D_80176458[sp24].unk44 = 0.0f;
-            D_80176458[sp24].unk48 = sp20[sp24].unk2C;
-            D_80176458[sp24].unk4C = sp20[sp24].unk30;
+            D_80176458[sp24].unk40[0] = 0.0f;
+            D_80176458[sp24].unk40[1] = 0.0f;
+            D_80176458[sp24].unk40[2] = sp20[sp24].unk2C;
+            D_80176458[sp24].unk40[3] = sp20[sp24].unk30;
             D_80176458[sp24].unk50 = sp1C;
         }
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_800654AC.s")
+void func_800654AC(void) {
+    s32 spC;
+    s32 sp8;
+    s32 i;
+    struct UnkStruct800654AC_SP0* sp0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_800657E8.s")
+    for(i = 0; i < 4; i++) {
+        if (D_80176458[i].unk50 != -1) {
+            sp0 = (void*)gFileArray[D_80176458[i].unk50].ptr;
+            spC = sp0->unk8;
+            sp8 = sp0->unkC;
+            D_80176458[i].unk40[0] += D_80176458[i].unk40[2];
+            if (D_80176458[i].unk40[0] < 0) {
+                D_80176458[i].unk40[0] += spC;
+            } else if (D_80176458[i].unk40[0] > spC) {
+                D_80176458[i].unk40[0] -= spC;
+            }
+            D_80176458[i].unk40[1] += D_80176458[i].unk40[3];
+            if (D_80176458[i].unk40[1] < 0) {
+                D_80176458[i].unk40[1] += sp8;
+            } else if (D_80176458[i].unk40[1] > sp8) {
+                D_80176458[i].unk40[1] -= sp8;
+            }
+        }
+    }
+}
+
+void func_800657E8(void) {
+    s32 sp1C4;
+    Matrix sp184;
+    Matrix sp144;
+    Matrix sp104;
+    Matrix spC4;
+    Matrix sp84;
+    Matrix sp44;
+    struct UnkStruct800657E8_sp40* sp40;
+    s32 sp3C;
+    u8* sp38;
+
+    guTranslateF(sp184, 0.0f, 0.0f, 0.0f);
+    guScaleF(sp144, 1.0f, 1.0f, 1.0f);
+    guRotateF(sp104, 0.0f, 1.0f, 0.0f, 0.0f);
+    guRotateF(spC4, 0.0f, 0.0f, 1.0f, 0.0f);
+    guRotateF(sp84, 0.0f, 0.0f, 0.0f, 1.0f);
+    guMtxCatF(sp84, spC4, sp84);
+    guMtxCatF(sp84, sp104, sp84);
+    guMtxCatF(sp84, sp144, sp84);
+    guMtxCatF(sp84, sp184, sp84);
+    guMtxL2F(sp44, &D_8016E104->unk00[2]);
+    guMtxCatF(sp44, sp84, sp44);
+
+    for(sp1C4 = 0; sp1C4 < 4; sp1C4++) {
+        if (D_80176458[sp1C4].unk50 != -1) {
+            guMtxF2L(sp44, &D_8016E104->unkE0[D_8016E3A4]);
+            gSPMatrix(gMasterDisplayList++, &D_8016E104->unkE0[D_8016E3A4++], G_MTX_NOPUSH | G_MTX_LOAD);
+            sp40 = (void*)gFileArray[D_80176458[sp1C4].unk50].ptr;
+            sp3C = ((sp40->unk4 << 1) + (u32)sp40->unk7 & ~7) + 0x10;
+            sp38 = (void*)(sp40+1);
+            func_800643C0(sp1C4, &D_80176458[sp1C4].unk40[0], &D_80176458[sp1C4].unk40[1], sp40->unk7[1], sp40->unkC, 0, 1, sp3C, sp38, &D_80177964[sp1C4]);
+        }
+    }
+}
 
 s32 func_80065ACC(void) {
     return D_80177778;

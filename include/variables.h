@@ -11,6 +11,8 @@
 
 // structs and defines
 
+typedef float Matrix[4][4];
+
 struct UnkStruct8010B3FC {
     char filler0[0x20];
     Lights2 *unk20;
@@ -975,10 +977,7 @@ struct UnkBigStruct_8006B64C
 
 struct UnkStruct80176458 {
     Vtx vertices[4];
-    f32 unk40;
-    f32 unk44;
-    f32 unk48;
-    f32 unk4C;
+    f32 unk40[4];
     u32 unk50;
     u8 padding54[0x4]; // Or, really, unidentified members
 }; // size 0x58;
@@ -1002,6 +1001,22 @@ struct UnkStruct80104C20 {
     int size;
 };
 
+struct UnkStruct800654AC_SP0 {
+    char filler0[0x8];
+    s8 unk8;
+    char filler9[0x3];
+    s8 unkC;
+};
+
+struct UnkStruct800657E8_sp40 {
+    char filler0[0x4];
+    s8 unk4;
+    s8 filler5[0x2];
+    s8 unk7[2]; // unk size, could be rest of struct
+    s8 filler9[0x3];
+    s8 unkC;
+    s8 fillerD[0x3];
+};
 // externs
 
 // ROM Externs

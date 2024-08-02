@@ -38,9 +38,12 @@
 #include <PR/ultralog.h>
 
 #include "macros.h"
+#include "types.h"
 #include "variables.h"
 #include "functions.h"
 
+// constant headers
 #include "sections.h"
+#include "charmap.h"
 
 #endif

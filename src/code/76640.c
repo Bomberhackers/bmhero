@@ -392,7 +392,7 @@ void func_80088694(void) {
 void func_8008884C(s32 arg0) {
     func_8001A928(0);
     func_8001A928(1);
-    func_8001BD44(0, 0, 0x10, D_8016CAA0[0x223].unk0 + D_80111880[arg0]);
+    func_8001BD44(0, 0, 0x10, gFileArray[0x223].ptr + D_80111880[arg0]);
     func_8001C0EC(0, 0, 0, 0x223, &D_80111888);
     gPlayerObject->unkE4 = 0x266;
     gPlayerObject->unkA4 = 1;

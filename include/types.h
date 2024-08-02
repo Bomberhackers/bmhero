@@ -188,11 +188,23 @@ struct LevelInfo {
     /* 0x01 */ s8 Area;
     /* 0x02 */ s8 Map;
     /* 0x03 */ s8 Clear;
-    char filler4[0x4];
+    /* 0x04 */ u8 unk4;
+    char filler5[0x1];
+    /* 0x06 */ u8 unk6;
+    char filler7[0x1];
     /* 0x08 */ u8* Unk8;
-    char fillerC[0x13];
+    /* 0x0C */ s16 unkC;
+    /* 0x0E */ s16 unkE;
+    /* 0x10 */ s16 unk10;
+    /* 0x12 */ s16 unk12;
+    /* 0x14 */ s16 unk14;
+    /* 0x16 */ s16 unk16;
+    /* 0x18 */ u32 unk18;
+    /* 0x1C */ u32 unk1C;
     /* 0x20 */ Lights2* unk20;
     /* 0x24 */ Lights2* LightingInfo;
+    u8 filler28[0x4];
+    /* 0x2C */ f32 unk2C;
 };
 
 struct ObjectStruct 
@@ -958,8 +970,44 @@ struct UnkStruct_56400 {
 };
 
 struct UnkStruct80177778 {
-    char filler0[0x18];
+    s16 unk0;
+    s16 unk2;
+    s16 unk4;
+    s16 unk6;
+    s16 unk8;
+    s16 unkA;
+    s16 unkC;
+    s16 unkE;
+    s16 unk10;
+    s16 unk12;
+    s16 unk14;
+    s16 unk16;
     s16 unk18;
+    s16 unk1A;
+    s16 unk1C;
+    u8 filler1E[0x6];
+    u8 unk24;
+    u8 unk25;
+    u8 unk26;
+    u8 unk27;
+    u8 unk28;
+    u8 filler29[0x1];
+    u8 unk2A;
+    u8 unk2B;
+    u8 unk2C;
+    u8 unk2D;
+    u8 unk2E;
+    u8 unk2F;
+    u8 unk30;
+    u8 unk31;
+    u8 unk32;
+    u8 unk33;
+    s16 unk34;
+    s16 unk36;
+    u32 unk38;
+    u32 unk3C;
+    u32 unk40;
+    u32 unk44;
 };
 
 struct UnkBigStruct_8006B64C
@@ -1010,6 +1058,18 @@ struct UnkStruct800657E8_sp40 {
     s8 filler9[0x3];
     s8 unkC;
     s8 fillerD[0x3];
+};
+
+struct UnkStruct80108238 {
+    u8 filler0[0x20];
+    u32 unk20;
+};
+
+struct UnkStruct8017791C {
+    u8 unk0;
+    u8 unk1;
+    u8 unk2;
+    u8 unk3;
 };
 
 #endif // _BMHERO_TYPES_H_

@@ -338,7 +338,7 @@ void func_8001D9E4(void* arg0) {
     D_8016E104 = (void*)((u32)D_8016E10C + 0x68);
     gMasterDisplayList = (void*)((u32)D_8016E10C + 0x8148);
     gSPSegment(gMasterDisplayList++, 0x00, 0x00000000);
-    gSPSegment(gMasterDisplayList++, 0x01, osVirtualToPhysical(D_8016CAA0[0].unk0));
+    gSPSegment(gMasterDisplayList++, 0x01, osVirtualToPhysical(gFileArray[0].ptr));
     gSPDisplayList(gMasterDisplayList++, D_1000C68);
 
     if(D_80165254 == 1) {
@@ -634,7 +634,7 @@ void DecompressFile(u32 id, u32 rom_start, u32 rom_end) {
     // decompress the bin to the heap.
     size = Decode(buf, gDecompressHeap);
     free(buf);
-    D_8016CAA0[id].unk0 = gDecompressHeap; // add the decompressed file to the file array.
+    gFileArray[id].ptr = gDecompressHeap; // add the decompressed file to the file array.
     gDecompressHeap += size;
 }
 

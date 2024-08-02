@@ -338,7 +338,7 @@ s32 func_80027464(s32 arg0, struct UnkStruct_80027C00 *arg1, f32 arg2, f32 arg3,
 
             func_8001A928(sp.unk24[index]);
             func_8001BD44(sp.unk24[index], arg1->unk0, arg1->unk6,
-                          D_8016CAA0[arg1->unk4].unk0);
+                          gFileArray[arg1->unk4].ptr);
             gObjects[sp.unk24[index]].Pos.x = gObjects[sp.unk24[index]].unk50 = arg2;
             gObjects[sp.unk24[index]].Pos.y = gObjects[sp.unk24[index]].unk54 = arg3;
             gObjects[sp.unk24[index]].Pos.z = gObjects[sp.unk24[index]].unk58 = arg4;
@@ -380,7 +380,7 @@ s32 func_80027B34(s32 arg0, struct UnkStruct_80027B34 *arg1) {
     if (gObjects[arg0].Unk140[arg1->unk0] != -1) {
         return FALSE;
     }
-    func_8001BD44(arg0, arg1->unk0, arg1->unk4, D_8016CAA0[arg1->unk2].unk0 + sp1C[arg1->unkC]);
+    func_8001BD44(arg0, arg1->unk0, arg1->unk4, gFileArray[arg1->unk2].ptr + sp1C[arg1->unkC]);
     return TRUE;
 }
 
@@ -396,7 +396,7 @@ s32 func_80027C00(s32 arg0, s32 arg1, struct UnkStruct_80027C00 *arg2, f32 arg3,
         return -1;
     }
     func_8001A928(sp24);
-    func_8001BD44(sp24, arg2->unk0, arg2->unk6, D_8016CAA0[arg2->unk4].unk0);
+    func_8001BD44(sp24, arg2->unk0, arg2->unk6, gFileArray[arg2->unk4].ptr);
     gObjects[sp24].Pos.x = gObjects[sp24].unk50 = arg3;
     gObjects[sp24].Pos.y = gObjects[sp24].unk54 = arg4;
     gObjects[sp24].Pos.z = gObjects[sp24].unk58 = arg5;
@@ -1118,15 +1118,15 @@ s32 func_8002AB40(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     sp28 = &gObjects[sp2C];
     func_8001A928(sp2C);
     if (arg4 < 0x10) {
-        func_8001BD44(sp2C, 3, 2, D_8016CAA0[0x43].unk0);
-        func_8001BE6C(sp2C, 3, 0, D_8016CAA0[0x43].unk0 + D_80116674[0]);
+        func_8001BD44(sp2C, 3, 2, gFileArray[0x43].ptr);
+        func_8001BE6C(sp2C, 3, 0, gFileArray[0x43].ptr + D_80116674[0]);
         func_8001ABF4(sp2C, 0, 3, &D_8011670C[arg4].unk0);
     } else if (arg4 == 0x10) {
-        func_8001BD44(sp2C, 3, 1, D_8016CAA0[0x44].unk0);
-        func_8001BE6C(sp2C, 3, 0, D_8016CAA0[0x44].unk0 + D_801168CC[0]);
+        func_8001BD44(sp2C, 3, 1, gFileArray[0x44].ptr);
+        func_8001BE6C(sp2C, 3, 0, gFileArray[0x44].ptr + D_801168CC[0]);
     } else {
-        func_8001BD44(sp2C, 3, 1, D_8016CAA0[0x45].unk0);
-        func_8001BE6C(sp2C, 3, 0, D_8016CAA0[0x45].unk0 + D_801168D0[0]);
+        func_8001BD44(sp2C, 3, 1, gFileArray[0x45].ptr);
+        func_8001BE6C(sp2C, 3, 0, gFileArray[0x45].ptr + D_801168D0[0]);
     }
     sp28->unkA4 = 1;
     sp28->unkE4 = 0x47;

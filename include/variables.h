@@ -5,6 +5,10 @@
 
 #define UNK_TYPE s32
 
+// constant headers
+
+#include "charmap.h"
+
 // structs and defines
 
 struct UnkStruct8010B3FC {
@@ -293,10 +297,10 @@ struct UnkStructSTCG
     s16 Unk108;
 };
 
-struct UnkStruct_80060278
+struct DecompressedFileEntry
 {
-    s32 unk0;
-    u8 Padding[4];
+    u8 *ptr; // ptr to the decompressed file area
+    u8 filler4[4]; // unused
 };
 
 struct View {
@@ -884,15 +888,27 @@ typedef struct {
     f32 unk0;
 } UnkStruct80114354;
 
-struct String {
-    u8 padding0[0x8];
+struct CutsceneString {
+    /* 0x00 */ s16 unk0;
+    /* 0x02 */ s16 unk2;
+    /* 0x04 */ s16 unk4;
+    /* 0x06 */ s16 unk6;
     /* 0x08 */ s16 len;
-    u8 padding8[0x2];
-    s16 str[1]; // dynamic length
+    /* 0x0A */ s16 str[1]; // dynamic length
+};
+
+struct DemoString {
+    /* 0x00 */ s16 unk0;
+    /* 0x02 */ s16 unk2;
+    /* 0x04 */ s16 unk4;
+    /* 0x06 */ s16 unk6;
+    /* 0x08 */ s16 len;
+    u8 paddingA[0x2];
+    /* 0x0C */ s16 str[1]; // dynamic length
 };
 
 struct StringInfo {
-    struct String *strInfo;
+    struct DemoString *strInfo;
     s16 x;
     s16 y;
     s16 renderBG;
@@ -955,6 +971,35 @@ struct UnkBigStruct_8006B64C
     u16 Unk0;
     u16 Unk1;
     u8 Padding[336 - sizeof(u32)];
+};
+
+struct UnkStruct80176458 {
+    Vtx vertices[4];
+    f32 unk40;
+    f32 unk44;
+    f32 unk48;
+    f32 unk4C;
+    u32 unk50;
+    u8 padding54[0x4]; // Or, really, unidentified members
+}; // size 0x58;
+
+// Not entierly sure about this struct, needs more investigation
+struct UnkInputStruct800643C0_arg9 {
+    s16 unk00s16;
+    s16 unk02[3];
+    s16 unk08;
+}; // size = 0xA;
+
+struct UnkStruct80177964 {
+    s8 unk0;
+    u8 padding1[0x2B];
+    f32 unk2C;
+    f32 unk30;
+}; // size=0x34
+
+struct UnkStruct80104C20 {
+    u8 *romAddr;
+    int size;
 };
 
 // externs
@@ -1084,6 +1129,7 @@ extern struct UnkStruct_800600B8 D_801039D4[];
 extern void* D_80104A14[];
 extern s16 D_80104B64[];
 extern s16 D_80104C18[];
+extern struct UnkStruct80104C20 D_80104C20[];
 extern u8 D_80106DA0[];
 extern u8 D_80106DA1[];
 extern struct LevelInfo *gLevelInfo[4];
@@ -1362,7 +1408,7 @@ extern s8 D_801348B2;
 extern struct UnkStruct_56400 D_801348B8[];
 extern f32 D_80134F40;
 extern s32 D_80134FD0;
-extern struct ObjectStruct gObjects[];
+extern struct ObjectStruct gObjects[207];
 extern struct UnkBigStruct_8006B64C D_801541F8[];
 extern UnkStruct80165100 *D_80165100;
 extern s16 D_80165108;
@@ -1406,7 +1452,7 @@ extern void (*D_80165274)();
 extern s32 D_8016527C;
 extern s32 D_80165284;
 extern struct UnkStruct80165290 D_80165290[256];
-extern struct UnkStruct_80060278 D_8016CAA0[700];
+extern struct DecompressedFileEntry gFileArray[700];
 extern s32 D_8016E084;
 extern s32 D_8016E08C;
 extern s16 D_8016E092;
@@ -1483,6 +1529,8 @@ extern s8 gShowDebugMenu;
 extern s32 gCurrentLevel;
 extern s16 D_8016E432;
 extern u8 D_8016E450[];
+extern struct UnkStruct80176458 D_80176458[4];
+extern s16 D_801765C0[];
 extern s32 gCameraType;
 extern s32 D_801765F4;
 extern s8 D_80176602;
@@ -1499,7 +1547,7 @@ extern u8 D_801775EC;
 extern s16 D_801775F6;
 extern s16 D_801775FA;
 extern s16 D_80177600;
-extern s16 D_80177608;
+extern s16 gScore;
 extern s8 D_80177628;
 extern s8 D_80177630;
 extern s8 D_80177640;
@@ -1550,6 +1598,7 @@ extern s16 D_80177948;
 extern u16 D_8017794A;
 extern u16 D_80177950;
 extern u16 D_80177958;
+extern struct UnkStruct80177964* D_80177964;
 extern UnkStruct80165100 *D_8017796C;
 extern u8 D_80177974;
 extern u32 D_8017797C;

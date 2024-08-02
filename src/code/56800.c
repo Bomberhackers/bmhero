@@ -4,13 +4,11 @@
 
 //find free slot
 s32 func_800642E0(void) {
-    s32 sp4;
+    s32 i;
     
-    for(sp4 = 0xE; sp4 < 0x4E; sp4++)
-    {
-        if(gObjects[sp4].unkA4 == 0)
-        {
-            return sp4;
+    for(i = 14; i < 78; i++) {
+        if(gObjects[i].unkA4 == 0) {
+            return i;
         }
     }
     return -1;
@@ -18,11 +16,8 @@ s32 func_800642E0(void) {
 
 //find free slot above N slot
 s32 func_80064358(s32 arg0) {
-
-    while(arg0 < 0x4E)
-    {
-        if (gObjects[arg0].unkA4 == 0)
-        {
+    while(arg0 < 78) {
+        if (gObjects[arg0].unkA4 == 0) {
             return arg0;
         }
         arg0++;
@@ -30,9 +25,108 @@ s32 func_80064358(s32 arg0) {
     return -1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_800643C0.s")
+void func_800643C0(s32 id, f32* sPtr, f32* tPtr, s32 width, s32 height, s32 isRGBA16, s32 xlu, u32 timg, u32 dram, struct UnkInputStruct800643C0_arg9 *arg9) {
+    s32 s;
+    s32 t;
+    s32 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_800650F0.s")
+    for (i = 0; i < 4; i++) {
+        D_80176458[id].vertices[i].n.ob[0] = arg9[i].unk02[0];
+        D_80176458[id].vertices[i].n.ob[1] = arg9[i].unk02[1];
+        D_80176458[id].vertices[i].n.ob[2] = arg9[i].unk02[2];
+        D_80176458[id].vertices[i].n.flag = 0;
+        D_80176458[id].vertices[i].n.n[0] = 0;
+        D_80176458[id].vertices[i].n.n[1] = 0;
+        D_80176458[id].vertices[i].n.n[2] = 0;
+        D_80176458[id].vertices[i].n.tc[0] = arg9[i].unk08;
+        D_80176458[id].vertices[i].n.tc[1] = arg9[i + 1].unk00s16; // But fixing that line breaks this line...
+        D_80176458[id].vertices[i].n.a = (u32)(u8)arg9[0].unk00s16;// -> because it causes problems here... ^^^
+    }
+    s = *sPtr;
+    t = *tPtr;
+    
+
+    gDPPipeSync(gMasterDisplayList++);
+    gSPClearGeometryMode(gMasterDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
+    gSPSetGeometryMode(gMasterDisplayList++, G_ZBUFFER | G_SHADE | G_CULL_BACK);
+    gDPSetColorDither(gMasterDisplayList++, G_CD_BAYER);
+    gDPPipelineMode(gMasterDisplayList++, G_PM_NPRIMITIVE);
+    gDPSetTextureFilter(gMasterDisplayList++, G_TF_BILERP);
+    gDPSetTexturePersp(gMasterDisplayList++, G_TP_PERSP);
+    gDPSetCombineMode(gMasterDisplayList++, G_CC_DECALRGB, G_CC_DECALRGB);
+    gSPTexture(gMasterDisplayList++, 32768, 32768, 0, G_TX_RENDERTILE, G_ON);
+    
+    if (xlu) {
+        gDPSetRenderMode(gMasterDisplayList++, G_RM_AA_ZB_XLU_SURF, G_RM_AA_ZB_XLU_SURF2);
+    } else {
+        gDPSetRenderMode(gMasterDisplayList++, G_RM_AA_ZB_OPA_SURF, G_RM_AA_ZB_OPA_SURF2);
+    }
+    
+    if (isRGBA16 == FALSE) {
+        gDPSetTextureLUT(gMasterDisplayList++, G_TT_RGBA16);
+        gDPLoadTLUT_pal16(gMasterDisplayList++, 0, dram);
+        gDPLoadTextureBlock_4b(gMasterDisplayList++, timg, G_IM_FMT_CI, width, height, 0, \
+            G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, 5, 5, G_TX_NOLOD, G_TX_NOLOD);
+    } else {
+        gDPSetTextureLUT(gMasterDisplayList++, G_TT_NONE);
+        gDPLoadTextureBlock(gMasterDisplayList++, timg, G_IM_FMT_RGBA, G_IM_SIZ_16b, width, height, 0, \
+            G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP, 5, 5, G_TX_NOLOD, G_TX_NOLOD);
+    }
+    
+    gDPSetTileSize(gMasterDisplayList++, G_TX_RENDERTILE, s * 4, t * 4, (s + width) * 4, (t + height) * 4);
+    gSPVertex(gMasterDisplayList++, D_80176458[id].vertices, 4, 0);
+    gSP1Triangle(gMasterDisplayList++, 0, 1, 2, 0);
+    gSP1Triangle(gMasterDisplayList++, 2, 3, 0, 0);
+    gSPTexture(gMasterDisplayList++, 0, 0, 0, G_TX_RENDERTILE, G_OFF);
+    
+}
+
+void func_800650F0(void) {
+    s32 sp24;
+    struct UnkStruct80177964* sp20;
+    s32 sp1C;
+
+    sp20 = D_80177964;
+
+    for(sp24 = 0; sp24 < 0xA; sp24++) {
+        D_801765C0[sp24] = 0;
+    }
+    for(sp24 = 0; sp24 < 4; sp24++) {
+        D_80176458[sp24].unk40 = 0.0f;
+        D_80176458[sp24].unk44 = 0.0f;
+        D_80176458[sp24].unk48 = 0.0f;
+        D_80176458[sp24].unk4C = 0.0f;
+        D_80176458[sp24].unk50 = -1;
+    }
+    gFileArray[0x14].ptr = NULL;
+    gFileArray[0x15].ptr = NULL;
+    gFileArray[0x16].ptr = NULL;
+    gFileArray[0x17].ptr = NULL;
+
+    if (sp20 != NULL) {
+        for(sp24 = 0; sp24 < 4; sp24++) {
+            if (sp20[sp24].unk0 == -1) {
+                break;
+            }
+            if (D_801765C0[sp20->unk0] == 0) {
+                for(sp1C = 0x14; sp1C < 0x18; sp1C++) {
+                    if (gFileArray[sp1C].ptr == NULL) {
+                        DecompressFile(sp1C, D_80104C20[sp20->unk0].romAddr, D_80104C20[sp20->unk0].size);
+                        D_801765C0[sp20->unk0] = (s16) sp1C;
+                        break;
+                    }
+                }
+            } else {
+                sp1C = D_801765C0[sp20->unk0];
+            }
+            D_80176458[sp24].unk40 = 0.0f;
+            D_80176458[sp24].unk44 = 0.0f;
+            D_80176458[sp24].unk48 = sp20[sp24].unk2C;
+            D_80176458[sp24].unk4C = sp20[sp24].unk30;
+            D_80176458[sp24].unk50 = sp1C;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_800654AC.s")
 
@@ -279,10 +373,10 @@ void func_8006A95C(void) {
     if (D_80177628 == 0) {
         return;
     }
-    if ((D_80177608 == 0) || (D_801775FA == D_801775F6)) {
+    if ((gScore == 0) || (D_801775FA == D_801775F6)) {
         D_8016E3CC = 3;
         D_8016E3CD = 1;
-        if (D_80177608 == 0) {
+        if (gScore == 0) {
             func_80070664(2);
         } else {
             func_80070664(3);
@@ -302,21 +396,35 @@ s32 func_8006AA24(s32 arg0) {
     return 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006AA60.s")
+/**
+ * Calculate the min/sec/ms for the Slider Race timer.
+ */
+void Score_UpdateTimer(s32* min, s32* sec, s32* ms) {
+    *min = (gScore / 1800); // FPS(30) * 60
+    *sec = (gScore % 1800) / 30; // modulo to get the seconds
+    *ms  = (gScore % 30) * 3.33333;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006AB14.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_8006AD28.s")
 
-void func_8006AF18(s16 arg0) {
+/**
+ * Update the score value.
+ */
+void Score_Update(s16 c) {
     if (D_801779E0 != 0) {
         return;
     }
-    D_80177608 += arg0;
-    if (D_80177608 <= 0) {
-        D_80177608 = 0;
-    }
-    else if (D_80177608 >= 0x270F) {
-        D_80177608 = 0x270F;
+    // increase the score by the amount.
+    gScore += c;
+    // if the score got reduced below 0, cap it to 0.
+    if (gScore <= 0) {
+        gScore = 0;
+    } 
+    // if the score went above the maximum 99990 (score is multiplied by
+    // 10 to show the display amount), cap it to 9999.
+    else if (gScore >= 9999) {
+        gScore = 9999;
     }
 }

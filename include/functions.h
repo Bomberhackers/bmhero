@@ -71,9 +71,11 @@ void func_8002021C(void);
 void func_80020360(void);
 void func_80020420(void);
 s32 func_80021158();
+s32 Eeprom_Read(OSMesgQueue*, u8*, u8, u16);
+s32 Eeprom_Write(OSMesgQueue*, u8*, u8, u16);
 
 // 25810.c
-s32 func_80025E28();
+void func_80025E28(void);
 
 // 2BF00.c
 s32 func_8002F738();
@@ -92,6 +94,9 @@ extern void func_8006828C();
 extern void func_80068CC4(f32, f32, f32);
 extern void func_80069314();  
 
+// 50BC0.c
+void func_8005FAA0(u8* arg0, u8* arg1);
+
 // 71AA0.c
 s32 func_80083180(s32);
 void func_80085424();
@@ -109,7 +114,7 @@ void osSyncPrintf(const char* fmt, ...);
 // unsorted externs
 s32 func_800642E0(void);
 s32 func_80064358(s32 arg0);
-s32 func_80025460(s8, s16);
+s32 func_80025460(s32, s32);
 s32 func_800256E0(s32, s32, s32);
 void func_80067748(f32, f32, f32);
 s32 func_80014E80(s32);
@@ -144,7 +149,7 @@ void func_800669E0();
 void func_80066AE8();
 void func_800675DC();
 void func_80067674();
-void func_800250A0(s8);
+void func_800250A0(s32);
 void func_80081468(s32, f32, f32, f32);
 void func_800843CC(f32, f32, f32);
 void func_80086ECC(); 

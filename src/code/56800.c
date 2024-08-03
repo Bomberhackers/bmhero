@@ -156,16 +156,13 @@ void func_800654AC(void) {
 }
 
 void func_800657E8(void) {
-    s32 sp1C4;
+    s32 i;
     Matrix sp184;
     Matrix sp144;
     Matrix sp104;
     Matrix spC4;
     Matrix sp84;
     Matrix sp44;
-    struct UnkStruct800657E8_sp40* sp40;
-    s32 sp3C;
-    u8* sp38;
 
     guTranslateF(sp184, 0.0f, 0.0f, 0.0f);
     guScaleF(sp144, 1.0f, 1.0f, 1.0f);
@@ -179,14 +176,18 @@ void func_800657E8(void) {
     guMtxL2F(sp44, &D_8016E104->unk00[2]);
     guMtxCatF(sp44, sp84, sp44);
 
-    for(sp1C4 = 0; sp1C4 < 4; sp1C4++) {
-        if (D_80176458[sp1C4].unk50 != -1) {
+    for(i = 0; i < 4; i++) {
+        if (D_80176458[i].unk50 != -1) {
+            struct UnkStruct800657E8_sp40* sp40;
+            s32 sp3C;
+            u8* sp38;
+
             guMtxF2L(sp44, &D_8016E104->unkE0[D_8016E3A4]);
             gSPMatrix(gMasterDisplayList++, &D_8016E104->unkE0[D_8016E3A4++], G_MTX_NOPUSH | G_MTX_LOAD);
-            sp40 = (void*)gFileArray[D_80176458[sp1C4].unk50].ptr;
+            sp40 = (void*)gFileArray[D_80176458[i].unk50].ptr;
             sp3C = ((sp40->unk4 << 1) + (u32)sp40->unk7 & ~7) + 0x10;
             sp38 = (void*)(sp40+1);
-            func_800643C0(sp1C4, &D_80176458[sp1C4].unk40[0], &D_80176458[sp1C4].unk40[1], sp40->unk7[1], sp40->unkC, 0, 1, sp3C, sp38, &D_80177964[sp1C4]);
+            func_800643C0(i, &D_80176458[i].unk40[0], &D_80176458[i].unk40[1], sp40->unk7[1], sp40->unkC, 0, 1, sp3C, sp38, &D_80177964[i]);
         }
     }
 }
@@ -211,7 +212,61 @@ void func_80065AEC(f32 arg0, f32 arg1, f32 arg2, s32* arg3, s32* arg4, s32* arg5
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_800669E0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80066AE8.s")
+void func_80066AE8(void) {
+    D_80177778 = *(u32*)gFileArray[0x1C].ptr;
+    D_80177788 = D_80177778->unk0;
+    D_80177798 = D_80177778->unk2;
+    D_801777A8 = D_80177778->unk4;
+    D_801777B8 = D_80177778->unk6;
+    D_801777C8 = D_80177778->unk8;
+    D_801777D8 = D_80177778->unkA;
+    D_801777E8 = D_80177778->unkC;
+    D_801778F0 = D_80177778->unkE;
+    D_801778F8 = D_80177778->unk10;
+    D_80177900 = D_80177778->unk12;
+    D_80177908 = D_80177778->unk14;
+    D_8017790C = D_80177778->unk16;
+    D_80177910 = D_80177778->unk18;
+    D_80177914 = D_80177778->unk1A;
+    D_80177918 = D_80177778->unk1C;
+    D_8017791C[0] = D_80177778->unk24;
+    D_8017791C[1] = D_80177778->unk25;
+    D_8017791C[2] = D_80177778->unk26;
+    D_8017791C[3] = D_80177778->unk27;
+    D_80177921 = D_80177778->unk28;
+    D_80177928 = D_80177778->unk2A;
+    D_8017792C = D_80177778->unk2B;
+    D_8017792E = D_80177778->unk2C;
+    D_80177930 = D_80177778->unk2D;
+    D_80177932 = D_80177778->unk2E;
+    D_80177934 = D_80177778->unk2F;
+    D_80177938 = D_80177778->unk30;
+    D_8017793A = D_80177778->unk31;
+    D_8017793E = D_80177778->unk32;
+    D_80177940 = D_80177778->unk33;
+    D_80177944 = D_80177778->unk34;
+    D_80177948 = D_80177778->unk36;
+    D_8017794C = D_80177778->unk38;
+    D_80177954 = D_80177778->unk3C;
+    D_8017795C = D_80177778->unk40;
+    D_80177964 = D_80177778->unk44;
+    if (D_80108238[gCurrentLevel]->unk20 != -1) {
+        D_80177928 = 1;
+        D_8017792C = 0;
+    }
+    D_80177974 = gLevelInfo[gCurrentLevel]->unk4;
+    D_8017796C = (UnkStruct80165100* ) D_8016E450;
+    D_8017797C = gLevelInfo[gCurrentLevel]->unk18;
+    D_80177984 = gLevelInfo[gCurrentLevel]->unk1C;
+    D_8017798C = gLevelInfo[gCurrentLevel]->unkC;
+    D_80177994 = gLevelInfo[gCurrentLevel]->unkE;
+    D_8017799C = gLevelInfo[gCurrentLevel]->unk10;
+    D_801779A4 = gLevelInfo[gCurrentLevel]->unk12;
+    D_801779AC = gLevelInfo[gCurrentLevel]->unk14;
+    D_801779B8 = gLevelInfo[gCurrentLevel]->unk16;
+    D_801779C8 = gLevelInfo[gCurrentLevel]->unk2C;
+    D_801779E0 = gLevelInfo[gCurrentLevel]->unk6;
+}
 
 void func_8006707C(void) {
     s32 sp1C;
@@ -346,23 +401,20 @@ void func_80069E88(void) {
 
 //looks like this is handling level loading in some way
 void func_80069F0C(s32 arg0) {
-    if(arg0 != 0)
-    {
+    if(arg0 != 0) {
         gCurrentLevel = D_80106DA1[D_80134801 * 0x2A + D_80134802 * 0xE + D_80134803 * 2];
     }
-    else
-    {
+    else {
         gCurrentLevel = D_80106DA0[D_80134801 * 0x2A + D_80134802 * 0xE + D_80134803 * 2];
     }
 }
 
 void func_80069FD8(void) {
-    struct LevelInfo* sp4;
+    struct LevelInfo* level = gLevelInfo[gCurrentLevel];
 
-    sp4 = gLevelInfo[gCurrentLevel];
-    D_80134801 = sp4->Stage - 1;
-    D_80134802 = sp4->Area - 1;
-    D_80134803 = sp4->Map - 1;
+    D_80134801 = level->Stage - 1;
+    D_80134802 = level->Area - 1;
+    D_80134803 = level->Map - 1;
 }
 
 s32 func_8006A054(void) {
@@ -387,16 +439,16 @@ s32 func_8006A0E4(void) {
 }
 
 void func_8006A168(void) {
-    s32 sp1C;
+    s32 backupMapID;
 
     if (D_8016E3D4 == 0) {
-        gCurrentLevel = (s32) D_8016E432;
+        gCurrentLevel = D_8016E432;
     } else {
-        sp1C = gCurrentLevel;
-        gCurrentLevel = (s32) D_8016E432;
+        backupMapID = gCurrentLevel;
+        gCurrentLevel = D_8016E432;
         func_80069FD8();
         if (func_8006A054() != 0) {
-            gCurrentLevel = sp1C;
+            gCurrentLevel = backupMapID;
         }
     }
 }

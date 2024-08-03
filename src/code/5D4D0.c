@@ -39,7 +39,8 @@ void func_8006B084(void) {
 
 void func_8006B1B4(void) {
     s32 sp04;
-    return; //stubbed?
+    return;
+
     if(D_801775EE == 0)
     {
         D_801775EE = 1;
@@ -402,69 +403,69 @@ void func_8006C18C(void) {
 
 void func_8006C1DC(void) {
     switch (gCurrentLevel) {
-    case 0x4:
-        func_8006B1B4();
-        break;
-    case 0xE:
-        func_8006B3BC();
-        break;
-    case 0x18:
-        func_8006B5A4();
-        break;
-    case 0x19:
-        func_8006B5F8();
-        break;
-    case 0x21:
-        func_8006B64C();
-        break;
-    case 0x28:
-        func_8006B754();
-        break;
-    case 0x3C:
-        func_8006B084();
-        break;
-    case 0x41:
-        func_8006AFB0();
-        func_8006B7BC();
-        break;
-    case 0x55:
-        func_8006B084();
-        break;
-    case 0x85:
-        func_8006B8CC();
-        break;
-    case 0x90:
-        func_8006B920();
-        break;
-    case 0x91:
-        func_8006B920();
-        break;
-    case 0x99:
-        func_8006B9A0();
-        break;
-    case 0x9F:
-        func_8006B9F4();
-        break;
-    case 0xA0:
-        func_8006BA5C();
-        break;
-    case 0xA8:
-        func_8006BAC4();
-        break;
-    case 0xA4:
-        func_8006B920();
-        break;
-    case 0xA9:
-        func_8006BBF4();
-        break;
-    case 0xAA:
-        func_8006BE9C();
-        break;
-    case 0xAC:
-        func_8006BF5C();
-        break;
-    case 0xBB:
-        func_8006C18C();
-        break;
+        case MAP_HEAVY_ROOM:
+            func_8006B1B4();
+            break;
+        case MAP_DRAGON_ROAD:
+            func_8006B3BC();
+            break;
+        case MAP_WATERWAY:
+            func_8006B5A4();
+            break;
+        case MAP_WATERSLIDER:
+            func_8006B5F8();
+            break;
+        case MAP_KILLER_GATE:
+            func_8006B64C();
+            break;
+        case MAP_MAGMA_LAKE:
+            func_8006B754();
+            break;
+        case MAP_JUN_FALLS:
+            func_8006B084();
+            break;
+        case MAP_STORM_VALLEY:
+            func_8006AFB0();
+            func_8006B7BC();
+            break;
+        case MAP_EVIL_BOMBER:
+            func_8006B084();
+            break;
+        case MAP_CUTSCENE_PRIMUS_AREA_2:
+            func_8006B8CC();
+            break;
+        case MAP_CUTSCENE_PRIMUS_AREA_3:
+            func_8006B920();
+            break;
+        case MAP_CUTSCENE_BARUDA:
+            func_8006B920();
+            break;
+        case MAP_CUTSCENE_AQUA_TANK_FILLING:
+            func_8006B9A0();
+            break;
+        case MAP_CUTSCENE_BAGULAR_1:
+            func_8006B9F4();
+            break;
+        case MAP_CUTSCENE_BAGULAR_2:
+            func_8006BA5C();
+            break;
+        case MAP_CUTSCENE_GROOG_HILLS_WINTER:
+            func_8006BAC4();
+            break;
+        case MAP_CUTSCENE_EVIL_BOMBER:
+            func_8006B920();
+            break;
+        case MAP_CUTSCENE_POST_AQUA_TANK:
+            func_8006BBF4();
+            break;
+        case MAP_CUTSCENE_GAME_START:
+            func_8006BE9C();
+            break;
+        case MAP_SLIDER_RACE_START:
+            func_8006BF5C();
+            break;
+        case MAP_CREDITS:
+            func_8006C18C();
+            break;
     }
 }

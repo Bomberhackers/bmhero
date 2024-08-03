@@ -60,10 +60,8 @@ s32 func_80084120(f32 arg0, f32 arg1, f32 arg2)
     return 1;
 }
 
-void func_800841E8(void)
-{
-    if ((gCurrentLevel == 0x28) || (gCurrentLevel == 0x29))
-    {
+void func_800841E8(void) {
+    if ((gCurrentLevel == MAP_MAGMA_LAKE) || (gCurrentLevel == MAP_MAGMA_DAM)) {
         D_8016E110 = 2;
         D_8016E112 = 0x3C;
     }

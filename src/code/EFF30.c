@@ -186,15 +186,13 @@ void func_800FE204(void) {
         case 5:
         {
             if (sp30 == 1) {
-                if (++gCurrentLevel >= 0xC0) 
-                {
+                if (++gCurrentLevel > LAST_MAP)  {
                     gCurrentLevel = 0;
                 }
             } 
             else if (sp30 == -1) {
-                if (--gCurrentLevel < 0) 
-                {
-                    gCurrentLevel = 0xBF;
+                if (--gCurrentLevel < 0)  {
+                    gCurrentLevel = LAST_MAP;
                 }
             }
             break;

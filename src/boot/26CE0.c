@@ -955,9 +955,9 @@ s32 func_8002A1FC(s32 arg0, f32 arg1) {
     f32 sp0;
 
     spC = &gObjects[arg0];
-    sp8 = D_8017753C->Pos.x - spC->Pos.x;
-    sp4 = (D_8017753C->Pos.y + 60.0f) - spC->Pos.y;
-    sp0 = D_8017753C->Pos.z - spC->Pos.z;
+    sp8 = gPlayerObject->Pos.x - spC->Pos.x;
+    sp4 = (gPlayerObject->Pos.y + 60.0f) - spC->Pos.y;
+    sp0 = gPlayerObject->Pos.z - spC->Pos.z;
     if ((SQ(sp8) + SQ(sp4) + SQ(sp0)) < SQ(arg1)) {
         return TRUE;
     }
@@ -970,8 +970,8 @@ s32 func_8002A2EC(s32 arg0, f32 arg1) {
     f32 sp4;
 
     spC = &gObjects[arg0];
-    sp8 = D_8017753C->Pos.x - spC->Pos.x;
-    sp4 = D_8017753C->Pos.z - spC->Pos.z;
+    sp8 = gPlayerObject->Pos.x - spC->Pos.x;
+    sp4 = gPlayerObject->Pos.z - spC->Pos.z;
     if ((SQ(sp8) + SQ(sp4)) < SQ(arg1)) {
         return TRUE;
     }
@@ -984,8 +984,8 @@ s32 func_8002A3A8(s32 arg0, f32 arg1) {
     f32 sp4;
 
     spC = &gObjects[arg0];
-    sp8 = D_8017753C->Pos.x - spC->Pos.x;
-    sp4 = (D_8017753C->Pos.y + 60.0f) - spC->Pos.y;
+    sp8 = gPlayerObject->Pos.x - spC->Pos.x;
+    sp4 = (gPlayerObject->Pos.y + 60.0f) - spC->Pos.y;
     if ((SQ(sp8) + SQ(sp4)) < SQ(arg1)) {
         return 1;
     }
@@ -993,14 +993,14 @@ s32 func_8002A3A8(s32 arg0, f32 arg1) {
 }
 
 f32 func_8002A46C(s32 arg0) {
-    func_80015634(D_8017753C->Pos.x - gObjects[arg0].Pos.x,
-                  D_8017753C->Pos.z - gObjects[arg0].Pos.z);
+    func_80015634(gPlayerObject->Pos.x - gObjects[arg0].Pos.x,
+                  gPlayerObject->Pos.z - gObjects[arg0].Pos.z);
     return;
 }
 
 f32 func_8002A4E0(s32 arg0) {
-    func_800156C4(D_8017753C->Pos.x - gObjects[arg0].Pos.x,
-                  (D_8017753C->Pos.y + 60.0f) - gObjects[arg0].Pos.y);
+    func_800156C4(gPlayerObject->Pos.x - gObjects[arg0].Pos.x,
+                  (gPlayerObject->Pos.y + 60.0f) - gObjects[arg0].Pos.y);
     return;
 }
 

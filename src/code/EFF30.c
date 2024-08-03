@@ -393,13 +393,13 @@ void func_800FEFA0(void) {
     s32 sp38;
 
     sprintf(&gDebugTextBuf, "(%d %d %d) ST=%d CG=%d %d",
-            (s32)D_8017753C->Pos.x, (s32)D_8017753C->Pos.y, (s32) D_8017753C->Pos.z,
-            D_8017753C->unkA4, D_80165290[gObjects[0].Unk140[0]].unk14,
-            D_8017753C->unk108
+            (s32)gPlayerObject->Pos.x, (s32)gPlayerObject->Pos.y, (s32) gPlayerObject->Pos.z,
+            gPlayerObject->unkA4, D_80165290[gObjects[0].Unk140[0]].unk14,
+            gPlayerObject->unk108
         );
     debug_print_xy((s8*)0x20, (s8*)0x10);
-    sp54 = (s32)D_8017753C->Pos.x / 60;
-    sp4C = (s32)D_8017753C->Pos.x % 60;
+    sp54 = (s32)gPlayerObject->Pos.x / 60;
+    sp4C = (s32)gPlayerObject->Pos.x % 60;
 
     if((sp4C < 0 ? -sp4C : sp4C) >= 0x1E)
     {
@@ -411,8 +411,8 @@ void func_800FEFA0(void) {
     }
 
     sp54 *= 0x3C;
-    sp50 = (s32) D_8017753C->Pos.z / 60;
-    sp48 = (s32) D_8017753C->Pos.z % 60;
+    sp50 = (s32) gPlayerObject->Pos.z / 60;
+    sp48 = (s32) gPlayerObject->Pos.z % 60;
 
     if ((sp48 < 0 ? -sp48 : sp48) >= 0x1E) {
         if (sp48 >= 0) {
@@ -423,7 +423,7 @@ void func_800FEFA0(void) {
     }
 
     sp50 *= 0x3C;
-    sprintf(&gDebugTextBuf, "(%d %d %d) R=%d GB=%d", sp54, (s32) D_8017753C->Pos.y, sp50, (s32) (u8) D_8016E414, (s32) (u16) D_8016E41C);
+    sprintf(&gDebugTextBuf, "(%d %d %d) R=%d GB=%d", sp54, (s32) gPlayerObject->Pos.y, sp50, (s32) (u8) D_8016E414, (s32) (u16) D_8016E41C);
     debug_print_xy((s8* )0x20, (s8* )0x20);
     func_80065AEC(gObjects[0].Pos.x, gObjects[0].Pos.y, gObjects[0].Pos.z, &sp40, &sp3C, &sp38);
     sp44 = (D_80177778->unk18 * sp38) + sp40;

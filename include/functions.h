@@ -13,6 +13,24 @@ s32 func_80013F6C(f32*, f32);
 s32 func_80014098(f32*, f32);
 s32 func_800141C4(f32*, f32);
 
+// 15A80.c
+f32 func_80014F50(f32 arg0, f32 arg1);
+f32 func_800155A8(f32 arg0, f32 arg1);
+f32 func_80015634(f32 arg0, f32 arg1);
+f32 func_800156C4(f32 arg0, f32 arg1);
+f32 func_80015744(f32 arg0);
+s32 func_800157EC(f32 arg0, f32 arg1, f32 arg2);
+void func_800158B4(f32 arg0, f32 arg1, f32 arg2, f32 *arg3, f32 *arg4);
+f32 func_80015C24(f32 arg0, f32 arg1, s64 arg2, s64 arg4, s64 arg6, s64 arg8);
+f32 func_80015D2C(f32 arg0, f32 arg1, s64 arg2, s64 arg3, s64 arg4, s64 arg5);
+s32 func_8001608C(s64 arg0, s64 arg2, s64 arg4, s64 arg6, s64 arg8, s64 argA, s64 argC, s64 argE);
+s32 func_800162F0(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5);
+s32 func_800163AC(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9);
+s32 func_80016560(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7,
+                  f32 arg8, f32 arg9);
+void func_80016A80(s64 arg0, s64 arg2, s64 arg4, s64 arg5, f32 *argA, f32 *argB, f32 *argC,
+                   f32 *argD);
+
 // 17930.c
 s32 func_80016DD4();
 s32 func_80016E84();
@@ -26,6 +44,7 @@ void func_8001D4D0();
 void func_8001D638(s32, s32, s32, s32);
 void func_8001E954(s32*);
 void func_8001E98C(s32, void*, void*);
+void func_8001EB68(s32, void*, void*);
 void func_8001ECB8(void);
 void func_80019C84(void);
 void func_80019D2C(void);
@@ -69,13 +88,22 @@ void Demo_SetupTextPal(void);
 void Demo_Start(s32);
 
 //56800
+extern void func_800670E8();
 extern void func_80067748(f32 arg0, f32 arg1, f32 arg2);
+extern void func_8006828C();
+extern void func_80068CC4(f32, f32, f32);
+extern void func_80069314();  
 
 // 50BC0.c
 void func_8005FAA0(u8* arg0, u8* arg1);
 
 // 71AA0.c
 s32 func_80083180(s32);
+void func_80085424();
+
+//76640.c
+void func_80085B34(f32, f32);
+void func_80087E14();
 
 // EFF30.c
 u32 func_800FE898();
@@ -97,11 +125,14 @@ s32 func_8001608C(s64 arg0, s64 arg2, s64 arg4, s64 arg6, s64 arg8, s64 argA, s6
 void func_8001A928(s32 arg0);
 s32 func_8001ABF4(s32, s32, s32, void *);
 void func_8001AD6C(s32);
+void func_8001B014(s32, s32); 
 s32 func_8001B44C(s32 arg0, s32 arg1);
 s32 func_8001B880(s32 arg0, s32 arg1);
 void func_8001BB34(s32, s32);
 void func_8001BD44(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 void func_8001BE6C(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
+s32 func_8001C1A8(s32, s32);
+s32 func_8001C248(s32, s32); 
 void func_8001CD20(s32);
 void func_8001CEF4(s32);
 f32 func_8001B62C(s32, s32);
@@ -120,6 +151,9 @@ void func_800675DC();
 void func_80067674();
 void func_800250A0(s32);
 void func_80081468(s32, f32, f32, f32);
+void func_800843CC(f32, f32, f32);
+void func_80086ECC(); 
+
 void func_80017BEC(s32, s32, s32, s32); 
 void func_80017CFC(s32, s32, s32, s32); 
 s32 func_80027464(s32 arg0, struct UnkStruct_80027C00 *arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5);
@@ -178,7 +212,10 @@ void func_8008B030(void);
 void Cutscene_RenderTextBG(void);
 void Cutscene_SetupTextPal(void);
 void func_8008A824(s16 arg0, s16 arg1, s16 arg2);
+void func_800883A8();
+void func_80088694(); 
 void func_8008884C (s32);
+void func_80088D84();
 void func_8008ABC4 (s16 *);
 void func_8008ABF4 (s16 *);
 void func_8008AC08 (s16 *);
@@ -190,7 +227,6 @@ void func_8008B6E0 (s16*);
 void func_8008BA3C(void);
 void func_8008BB0C(void);
 void func_8008BC04(s16*);
-void func_80088D84();
 f32 func_80015538(f32 arg0, f32 arg1);
 void func_800175F0(s32 arg0, s32 arg1, s16 arg2, s16 arg3, s32 arg4);
 void func_80017664(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
@@ -400,7 +436,28 @@ void func_800F91A4();
 void func_800F9294();
 void func_800F94A8();
 void func_800F95F4();
+void func_8028117C_code_extra_4();
+void func_80281440();
+void func_802814CC();
+void func_802812AC();
+void func_80281314(); 
+void func_802823A4(); 
+void func_802813E4(); 
+void func_802824DC();
+void func_80282698();
+void func_80282F24();
+void func_802831BC();
+void func_80283344(); 
+void func_802838DC();   
+void func_80283A40(); 
+void func_80283BD4();
 void func_80284DF8();
+void func_802860F8(); 
+void func_80286374();
+void func_80286508(); 
+void func_8028AA70();    
+void func_8028AF38();
+void func_8028ADB0(); 
 void func_800260E0(s32 arg0);
 void func_800260FC(s32 arg0);
 void func_8002613C(s32 arg0);
@@ -467,6 +524,7 @@ void func_80019C84();
 void func_80019D2C();
 void func_8001A258();
 void func_8001D284();
+void func_8001EC04(); 
 void func_8001ECB8();
 void func_800FE854();
 void func_8005F96C(u8, u8, u8);

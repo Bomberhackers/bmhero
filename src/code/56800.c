@@ -2,7 +2,7 @@
 
 //LEVEL LOADING RELATED FILE
 
-//find free slot
+//find free slot above N slot
 s32 func_800642E0(void) {
     s32 i;
     
@@ -14,7 +14,7 @@ s32 func_800642E0(void) {
     return -1;
 }
 
-//find free slot above N slot
+//find free slot
 s32 func_80064358(s32 arg0) {
     while(arg0 < 78) {
         if (gObjects[arg0].unkA4 == 0) {
@@ -354,7 +354,7 @@ void func_80069D04(s32 arg0, s32 arg1) {
     if (D_8016E3CC != 0) {
         return;
     }
-    if (D_8017753C->unk108 == 0) {
+    if (gPlayerObject->unk108 == 0) {
         return;
     }
     func_80069AD8(arg0, arg1);
@@ -366,7 +366,7 @@ void func_80069D88(s32 arg0, s32 arg1) {
     if (D_8016E3CC != 0) {
         return;
     }
-    if (D_8017753C->unk108 == 0) {
+    if (gPlayerObject->unk108 == 0) {
         return;
     }
     func_80069AD8(arg0, arg1);

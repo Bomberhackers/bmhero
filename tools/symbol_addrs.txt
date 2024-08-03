@@ -4506,3 +4506,5 @@ gCutsceneString = 0x80134C08; //defined:true size:4
 Score_UpdateTimer = 0x8006AA60; //defined:true
 Cutscene_PrintWithLeadingZeros = 0x80089D30; //defined:true
 Cutscene_HandleSpecialPrints = 0x80089E48; //defined:true
+gPlayerObject = 0x8017753C; //size:4 defined:true
+gPlayerArmWindObject = 0x80177544; //size:4 defined:true

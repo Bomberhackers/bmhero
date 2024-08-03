@@ -1072,4 +1072,8 @@ struct UnkStruct8017791C {
     u8 unk3;
 };
 
+struct UnkStruct_80057450 {
+    char unk0;
+    char pad[0x77];
+};
 #endif // _BMHERO_TYPES_H_

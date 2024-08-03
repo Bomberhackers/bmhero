@@ -107,6 +107,7 @@ extern u8 D_8005704E[2][1];
 extern u8 D_80057240[];
 extern s8 gDebugBackMemTestItem;
 extern s8 gDebugBackupMemTestMenu;
+extern s8 D_80057448[];
 extern struct UnkInputStruct_8001ABF4 D_80100560[4];
 extern struct UnkInputStruct_8001ABF4 D_801005D0[4];
 extern struct UnkInputStruct_8001ABF4 D_80100640[4];

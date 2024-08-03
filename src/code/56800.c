@@ -202,7 +202,24 @@ void func_80065AEC(f32 arg0, f32 arg1, f32 arg2, s32* arg3, s32* arg4, s32* arg5
     *arg5 = (s32) (((arg2 - (f32) D_801777A8) / 60.0f) / 16.0f);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80065C20.s")
+void func_80065C20(void) {
+    s32 i;
+    s32 j;
+    u32 fileID;
+    s32 k;
+
+    for (i = 0; i < (D_80177910 * D_80177914 * D_80177918); i++) {
+        for (j = 0; j < 4; j++) {
+            k = D_8017794C[i].unkB[j];
+            if (k != 0xFF) {
+                fileID = D_80122B08[k].unk0->unk14;
+                if (gFileArray[fileID].ptr == NULL) {
+                    DecompressFile(fileID, D_80122B08[k].romStart, D_80122B08[k].romEnd);
+                }
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80065D88.s")
 

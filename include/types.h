@@ -1083,4 +1083,25 @@ struct UnkStruct_80057450 {
     char pad[0x77];
 };
 
+struct UnkStruct8017794C {
+    char filler0[0xB];
+    u8 unkB[1];
+    char fillerC[0x4];
+};
+
+struct UnkStruct80122B08_Unk0 {
+    char filler0[0x4];
+    u32 unk4;
+    u32 unk8;
+    char fillerC[0x8];
+    s16 unk14;
+};
+
+struct UnkStruct80122B08 {
+    struct UnkStruct80122B08_Unk0 *unk0;
+    u32 romStart;
+    u32 romEnd;
+    char fillerC[0x4];
+};
+
 #endif // _BMHERO_TYPES_H_

@@ -1066,7 +1066,6 @@ struct Code_Extra_Entry
     s32 End_Addr;
 };
 
-=======
 struct UnkStruct80108238 {
     u8 filler0[0x20];
     u32 unk20;

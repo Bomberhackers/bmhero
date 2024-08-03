@@ -3,7 +3,7 @@
 #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80084120.s")
 
 void func_800841E8(void) {
-    if ((gCurrentLevel == 0x28) || (gCurrentLevel == 0x29)) {
+    if ((gCurrentLevel == MAP_MAGMA_LAKE) || (gCurrentLevel == MAP_MAGMA_DAM)) {
         D_8016E110 = 2;
         D_8016E112 = 0x3C;
     } else {

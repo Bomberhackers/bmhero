@@ -431,7 +431,7 @@ void thread6_func(void* arg) {
     D_8016E092 = 0x1234;
     D_8016527C = 2;
     D_8016E134 = 0;
-    gCurrentLevel = 0;
+    gCurrentLevel = MAP_BOMBER_BASE_ENTRANCE;
     gCameraType = 2;
     gDebugShowTimerBar = 0;
     gDebugDisplayMode = 0;
@@ -455,7 +455,7 @@ void thread6_func(void* arg) {
         sp1C = func_800FE898(); // get the action selected from the debug menu?
         switch (sp1C) {
             case 0:
-                gCurrentLevel = 0;
+                gCurrentLevel = MAP_BOMBER_BASE_ENTRANCE;
                 D_8016E3DC = 0;
                 func_80083180(gDebugSaveIndex);
                 break;

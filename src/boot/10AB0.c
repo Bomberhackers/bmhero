@@ -479,6 +479,35 @@ void *func_8001191C(struct UnkStruct80010408_SP2C* arg0, s32 arg1) {
     return sp30;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_80011D18.s")
+void func_80011D18(struct UnkStruct80011D18* arg0) {
+    s32 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_80011DD0.s")
+    if (arg0->unkC != 0) {
+        for(i = 0; i < arg0->unkC; i++) {
+            func_80011D18(arg0->unk8[i]);
+        }
+        free(arg0->unk8);
+    }
+    free(arg0);
+}
+
+void func_80011DD0(struct UnkStruct80011DD0 *arg0) {
+    s32 i;
+    struct UnkStruct80011DD0_SP28* sp28;
+
+    for(i = 0; i < arg0->unkC; i++) {
+        sp28 = &arg0->unk10[i];
+        switch (sp28->unk4) {
+            case 47:
+                free(sp28->unk10);
+                free(sp28->unk14);
+                func_80011D18(sp28->unk1C);
+                break;
+            case 48:
+            default:
+                break;
+        }
+    }
+    free(arg0->unk10);
+    free(arg0);
+}

@@ -1215,4 +1215,27 @@ struct UnkStruct8001191C_SP38 {
     u32 unk0;
 };
 
+struct UnkStruct80011D18 {
+    char filler0[0x8];
+    u32 *unk8;
+    s32 unkC;
+};
+
+struct UnkStruct80011DD0_SP28 {
+    char filler0[0x4];
+    u32 unk4;
+    char filler8[0x8];
+    u32 unk10;
+    u32 unk14;
+    char filler18[0x4];
+    u32 unk1C;
+    char filler20[0x8];
+};
+
+struct UnkStruct80011DD0 {
+    char filler0[0xC];
+    s32 unkC;
+    struct UnkStruct80011DD0_SP28 *unk10;
+};
+
 #endif // _BMHERO_TYPES_H_

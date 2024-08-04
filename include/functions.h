@@ -563,7 +563,7 @@ void func_80064000(void);
 void func_80064120(void);
 s32 func_800641E4(s16* ptr, s16 arg1, s16 arg2);
 void *func_8001191C(struct UnkStruct80010408_SP2C* arg0, s32 arg1);
-s32 func_80011DD0(s32);
+void func_80011DD0(struct UnkStruct80011DD0 *arg0);
 u32* func_800122F0(s32);
 s32 func_80013A00(u32*);
 s32 func_8001A300(s32);

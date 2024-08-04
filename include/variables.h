@@ -85,6 +85,7 @@ extern u32 D_80055D40[];
 extern s32 D_80055D4C;
 extern struct UnkStruct80055D50 *D_80055D50;
 extern struct UnkStruct80055D54 *D_80055D54;
+extern struct UnkStruct80055D5C *D_80055D5C;
 extern u8 text_buf[];
 extern OSPfs D_80056D90;
 extern s32 gRumblePakState;

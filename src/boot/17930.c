@@ -255,11 +255,11 @@ void func_8001BD44(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_8001A300(sp1C);
 }
 
-void func_8001BE6C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+void func_8001BE6C(s32 objID, s32 arg1, s32 arg2, s32 arg3) {
     s32 sp1C;
 
-    gObjects[arg0].unkFE = arg2;
-    sp1C = (s32) gObjects[arg0].Unk140[arg1];
+    gObjects[objID].unkFE = arg2;
+    sp1C = gObjects[objID].Unk140[arg1];
     func_8001A488(sp1C);
     if (D_80165290[sp1C].unk20 != 0) {
         func_80011DD0(D_80165290[sp1C].unk20);

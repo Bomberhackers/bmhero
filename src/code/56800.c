@@ -82,21 +82,21 @@ void func_800643C0(s32 id, f32* sPtr, f32* tPtr, s32 width, s32 height, s32 isRG
 }
 
 void func_800650F0(void) {
-    s32 sp24;
+    s32 i;
     struct UnkStruct80177964* sp20;
-    s32 sp1C;
+    s32 fileID;
 
     sp20 = D_80177964;
 
-    for(sp24 = 0; sp24 < 0xA; sp24++) {
-        D_801765C0[sp24] = 0;
+    for(i = 0; i < 0xA; i++) {
+        D_801765C0[i] = 0;
     }
-    for(sp24 = 0; sp24 < 4; sp24++) {
-        D_80176458[sp24].unk40[0] = 0.0f;
-        D_80176458[sp24].unk40[1] = 0.0f;
-        D_80176458[sp24].unk40[2] = 0.0f;
-        D_80176458[sp24].unk40[3] = 0.0f;
-        D_80176458[sp24].unk50 = -1;
+    for(i = 0; i < 4; i++) {
+        D_80176458[i].unk40[0] = 0.0f;
+        D_80176458[i].unk40[1] = 0.0f;
+        D_80176458[i].unk40[2] = 0.0f;
+        D_80176458[i].unk40[3] = 0.0f;
+        D_80176458[i].unk50 = -1;
     }
     gFileArray[0x14].ptr = NULL;
     gFileArray[0x15].ptr = NULL;
@@ -104,26 +104,27 @@ void func_800650F0(void) {
     gFileArray[0x17].ptr = NULL;
 
     if (sp20 != NULL) {
-        for(sp24 = 0; sp24 < 4; sp24++) {
-            if (sp20[sp24].unk0 == -1) {
+        for(i = 0; i < 4; i++) {
+            if (sp20[i].unk0 == -1) {
                 break;
             }
             if (D_801765C0[sp20->unk0] == 0) {
-                for(sp1C = 0x14; sp1C < 0x18; sp1C++) {
-                    if (gFileArray[sp1C].ptr == NULL) {
-                        DecompressFile(sp1C, D_80104C20[sp20->unk0].romAddr, D_80104C20[sp20->unk0].size);
-                        D_801765C0[sp20->unk0] = (s16) sp1C;
+                for(fileID = 0x14; fileID < 0x18; fileID++) {
+                    // is it not loaded?
+                    if (gFileArray[fileID].ptr == NULL) {
+                        DecompressFile(fileID, D_80104C20[sp20->unk0].romAddr, D_80104C20[sp20->unk0].size);
+                        D_801765C0[sp20->unk0] = fileID;
                         break;
                     }
                 }
             } else {
-                sp1C = D_801765C0[sp20->unk0];
+                fileID = D_801765C0[sp20->unk0];
             }
-            D_80176458[sp24].unk40[0] = 0.0f;
-            D_80176458[sp24].unk40[1] = 0.0f;
-            D_80176458[sp24].unk40[2] = sp20[sp24].unk2C;
-            D_80176458[sp24].unk40[3] = sp20[sp24].unk30;
-            D_80176458[sp24].unk50 = sp1C;
+            D_80176458[i].unk40[0] = 0.0f;
+            D_80176458[i].unk40[1] = 0.0f;
+            D_80176458[i].unk40[2] = sp20[i].unk2C;
+            D_80176458[i].unk40[3] = sp20[i].unk30;
+            D_80176458[i].unk50 = fileID;
         }
     }
 }
@@ -324,7 +325,29 @@ void func_8006770C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80069314.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_800695A0.s")
+void func_800695A0(void) {
+    UnkStruct80165100* sp1C;
+    struct UnkStruct_80026548_SP24 * sp18;
+
+    DecompressFile(0x43, (u32) &_9EC7B0_ROM_START, (u32) &_9ED1E0_ROM_START);
+    DecompressFile(0x44, (u32) &_9ED1E0_ROM_START, (u32) &_9ED670_ROM_START);
+    DecompressFile(0x45, (u32) &_9ED670_ROM_START, (u32) &_9ED920_ROM_START);
+
+    sp1C = D_8017796C;
+    while(sp1C->unk0 != -1) {
+        sp18 = D_80124D90[sp1C->unk0].unk24;
+        while(1) {
+            if (gFileArray[sp18->unk0].ptr == NULL) {
+                func_8001EB68(sp18->unk0, sp18->unk4, sp18->unk8);
+            }
+            if (sp18->unk2 == 0) {
+                break;
+            }
+            sp18++;
+        }
+        sp1C++;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_80069700.s")
 

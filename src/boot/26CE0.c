@@ -654,7 +654,7 @@ s32 func_80028FA0(s32 arg0) {
 
     sp4 = &gObjects[arg0];
     if ((sp4->unk104 != -1)) {
-        if ((sp4->Pad10A[0] == 4)) {
+        if ((sp4->unk10A == 4)) {
             return TRUE;
         }
     }

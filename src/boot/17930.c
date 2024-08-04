@@ -7,7 +7,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_80016DB4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_80016DD4.s")
+s32 func_80016DD4(void) {
+    s32 i;
+
+    for(i = 0; i < 1000000; i++) {
+        
+    }
+    func_80003FE0(_38A1F0_ROM_START, 0, 0, 0, 0);
+    func_8000ABEC(_229650_ROM_START, _229A60_ROM_START, _229A60_ROM_END, _230D50_ROM_START);
+    func_80002E1C(0xC, 2, (void*)&D_8004D748, (void*)&D_80177A70, 0x493E0);
+    func_80016D74(0);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_80016E84.s")
 
@@ -245,11 +255,41 @@ void func_8001BD44(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_8001A300(sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001BE6C.s")
+void func_8001BE6C(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    s32 sp1C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001C0EC.s")
+    gObjects[arg0].unkFE = arg2;
+    sp1C = (s32) gObjects[arg0].Unk140[arg1];
+    func_8001A488(sp1C);
+    if (D_80165290[sp1C].unk20 != 0) {
+        func_80011DD0(D_80165290[sp1C].unk20);
+        D_80165290[sp1C].unk20 = 0;
+    }
+    if (arg3 != 0) {
+        if (D_8016E3AC != NULL) {
+            func_80013A00(D_8016E3AC);
+            D_8016E3AC = NULL;
+        }
+        D_8016E3AC = func_800122F0(arg3);
+        D_80165290[sp1C].unk20 = func_8001191C(D_80165290[sp1C].unk1C, 0);
+        D_80165290[sp1C].unk15 = 0;
+    } else {
+        D_80165290[sp1C].unk20 = func_8001191C(D_80165290[sp1C].unk1C, arg2);
+        D_80165290[sp1C].unk15 = arg2;
+    }
+    D_80165290[sp1C].unk14 = arg2;
+    D_80165290[sp1C].unk24 = 0.0f;
+    D_80165290[sp1C].unk16 = 0;
+    func_8001A300(sp1C);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001C158.s")
+void func_8001C0EC(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u32* arg4) {
+    func_8001BE6C(arg0, arg1, arg2, (void*)&gFileArray[arg3].ptr[arg4[arg2]]);
+}
+
+void func_8001C158(s32 arg0, s32 arg1, s32 arg2) {
+    func_8001BE6C(arg0, arg1, 0, (void*)gFileArray[arg2].ptr);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001C1A8.s")
 

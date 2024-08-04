@@ -18,7 +18,23 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/5E8F0/func_8006DE90.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/5E8F0/func_8006E088.s")
+void func_8006E088(void) {
+    s32 tableIdx;
+    u32 romStart;
+    u32 romEnd;
+
+    if (D_8017792E != 0) {
+        tableIdx = D_8017792E - 1;
+        romStart = gUnkROMTable801051E0[tableIdx].romStart;
+        romEnd = gUnkROMTable801051E0[tableIdx].romEnd;
+        DecompressFile(0x18, romStart, romEnd);
+        func_8006DE90(gFileArray[0x18].ptr);
+    }
+    D_80177A14 = 0.0f;
+    D_80177A1A = 0xA;
+    D_80177A1E = 4;
+    D_80177A24 = D_801055B8;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/5E8F0/func_8006E160.s")
 

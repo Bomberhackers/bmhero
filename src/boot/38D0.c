@@ -1,5 +1,5 @@
 #include <ultra64.h>
-//#include "prevent_bss_reordering.h"
+#include "prevent_bss_reordering.h"
 #include "38D0.h"
 #include "nusys/audio.h"
 
@@ -553,8 +553,8 @@ void func_80003FA0(void) {
     alSeqpDelete(D_80052EA4);
 }
 
-void func_80003FE0(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
-    D_8004A340 = arg0;
+void func_80003FE0(s32 devAddr, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
+    D_8004A340 = devAddr;
     D_8004A344 = arg1;
     D_8004A348 = arg2;
     D_8004A34C = arg3;

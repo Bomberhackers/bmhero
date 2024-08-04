@@ -1169,7 +1169,7 @@ segments:
   - [0x229650, bin]
   - [0x229A60, bin]
   - [0x230D50, bin]
-  - [0x38A1F0, bin]
+  - [0x38A1F0, bin] # music sequences
   - [0x47A4E0, bin]
   - [0x47F500, bin]
   - [0x484360, bin]
@@ -1290,8 +1290,8 @@ segments:
   - [0x67E1E0, bin]
   - [0x681160, bin]
   - [0x681800, bin]
-  - [0x684190, bin]
-  - [0x6846A0, bin]
+  - [0x684190, bin] # 0x29E
+  - [0x6846A0, bin] # 0x29F
   - [0x684BB0, bin]
   - [0x6852C0, bin]
   - [0x6859D0, bin]

@@ -324,9 +324,84 @@ void func_800111D4(struct UnkStruct800111D4* arg0, s32 arg1, f32 arg2) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_80011424.s")
+void func_80011424(struct UnkInputStruct80011424* arg0, f32 arg1) {
+    s32 i;
+    s32 j;
+    s32 sp3C;
+    struct UnkStruct80011424_SP38* sp38;
+    f32 sp34;
+    struct UnkInputStruct80010098* sp30;
+    s32 *sp2C;
+    s32 sp28;
+    s32 *sp24;
+    f32 sp20;
+    u32 pad;
+    f32 sp18;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_800117F8.s")
+    arg0->unk4 = arg1;
+    sp30 = arg0->unk0;
+    func_80010098(sp30);
+
+    for(i = 0; i < arg0->unkC; i++)  {
+        sp38 = &arg0->unk10[i];
+        
+        if ((arg1 < sp38->unk8) || (arg1 > sp38->unkC))  {
+            continue;
+        } 
+        sp34 = arg1 - sp38->unk8;
+        if (sp38->unk4 == 0x2F) {
+            sp28 = sp38->unk18;
+            sp2C = sp38->unk14;
+            sp24 = sp38->unk10;
+            sp3C = sp34;
+            for(j = 1; j < sp28; j++) {
+                if (sp2C[j] > sp3C) {
+                    break;
+                }
+            }
+            if ((j == sp28) && (sp3C == sp34)) {
+                j-=1;
+            } else {
+            }
+            if (sp24[j-1] != sp38->unk20) {
+                sp38->unk20 = sp24[j-1];
+                func_80010E0C(sp38->unk1C, sp24[j-1], 0);
+            }
+            if (sp24[j] != sp38->unk24) {
+                sp38->unk24 = sp24[j];
+                func_80010E0C(sp38->unk1C, sp24[j], 1);
+            }
+            sp20 = (sp34 - sp2C[j-1]) / (sp2C[j] - sp2C[j-1]);
+            func_80011084(sp38->unk1C, sp20);
+        } else if (sp38->unk4 == 0x30) {
+            sp18 = func_800108D0(sp38->unk18, sp34);
+            func_800111D4(sp30, sp38->unk10, sp18);
+        }
+    }
+}
+
+void* func_800117F8(struct UnkStruct800117F8_Arg0* arg0) {
+    s32 i;
+    s32 count;
+    struct UnkStruct800117F8_SP1C* sp1C;
+
+    if (arg0 == NULL) {
+        return NULL;
+    }
+    sp1C = malloc(sizeof(struct UnkStruct800117F8_SP1C));
+    sp1C->unk0 = arg0;
+    if ((count = arg0->unk10) != 0) {
+        sp1C->unk8 = malloc(count * 4);
+        for(i = 0; i < count; i++) {
+            sp1C->unk8[i] = func_800117F8(arg0->unkC[i]);
+        }
+        sp1C->unkC = i;
+    } else {
+        sp1C->unkC = 0;
+        sp1C->unk8 = NULL;
+    }
+    return sp1C;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_8001191C.s")
 

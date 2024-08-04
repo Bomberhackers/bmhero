@@ -6,6 +6,11 @@
 // 3490.c
 s32 func_80002890(struct UnkStruct80001CF0* arg0, s32* arg1, s32* arg2, s32 arg3);
 
+// 38D0.c
+s32 func_80002E1C(s32 arg0, s32 arg1, s32 arg2, u8* arg3, s32 arg4);
+void func_80003FE0(s32 devAddr, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
+void func_8000ABEC(u32 arg0, s32 arg1, s32 arg2, u8* arg3);
+
 // 12AF0.c
 s32 func_80013AE0(f32*, f32, f32, f32);
 s32 func_80013B70(f32*, f32, f32, f32);
@@ -233,7 +238,7 @@ void func_80017664(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 void func_80019448(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 void func_8001BB04(s32 arg0, s8 arg1);
 void func_8001BBDC(s32 arg0, s32 arg1);
-void func_8001C0EC(s32, s32, s32, s32, void *);
+void func_8001C0EC(s32, s32, s32, s32, u32 *);
 u8 func_80026260(s32 arg0);
 void func_80026F10(s32 arg0, s32 arg1);
 void func_800272E8(s32);
@@ -557,5 +562,25 @@ void func_80063EE0(void);
 void func_80064000(void);
 void func_80064120(void);
 s32 func_800641E4(s16* ptr, s16 arg1, s16 arg2);
+s32 func_8001191C(s32, s32);
+s32 func_80011DD0(s32);
+u32* func_800122F0(s32);
+s32 func_80013A00(u32*);
+s32 func_8001A300(s32);
+s32 func_8001A488(s32);
+s32 func_8006DE90(u8*);
+s32 func_80016D74(s32);
+
+s32 func_80069700();   
+s32 func_8006AB14();   
+s32 func_8006E160();   
+s32 func_80070644();   
+s32 func_80070664(s32);  
+s32 func_80070A6C();   
+s32 func_800711B4();   
+s32 func_80076458();   
+s32 func_80076640();   
+s32 func_8007957C();   
+s32 func_8007F580();   
 
 #endif // _FUNCTIONS_H_

@@ -1,12 +1,29 @@
 #include <ultra64.h>
 
 // functions
-void func_8000FEB0(struct UnkInputStruct8000FEB0* arg0);
-void func_8000FF44(struct UnkInputStruct8000FF44* arg0);
-void func_8001000C(struct UnkInputStruct8000FF44* arg0);
-void func_80010098(struct UnkInputStruct80010098* arg0);
-void* func_800100E8(void* arg0, s32 arg1);
-void func_80010350(struct UnkInputStruct80010350* arg0);
+void func_8000FEB0(struct UnkInputStruct8000FEB0* arg0); // in file
+void func_8000FF44(struct UnkInputStruct8000FF44* arg0); // in file
+void func_8001000C(struct UnkInputStruct8000FF44* arg0); // in file
+void func_80010098(struct UnkInputStruct80010098* arg0); // in file
+void* func_800100E8(void* arg0, s32 arg1); // in file
+void func_80010350(struct UnkInputStruct80010350* arg0); // in file
+struct UnkStruct80010408_SP2C* func_80010408(struct UnkInputStruct80010408* arg0, u32 arg1); // externally called
+void func_800105D8(struct UnkStruct800105D8* arg0); // externally called
+void func_80010634(struct UnkInputStruct80010098* arg0, s32 arg1, s32 arg2); // in file
+f32 func_800108D0(struct UnkInputStruct800108D0* arg0, f32 arg1); // in file
+void func_80010A5C(f32* arg0, f32* arg1, f32* arg2, f32 arg3); // in file
+f32 func_80010AD0(f32 arg0, f32 arg1, f32 arg2); // in file
+void func_80010B6C(struct UnkInputStruct80010B6C* arg0, struct UnkInputStruct80010B6C* arg1, struct UnkInputStruct80010B6C* arg2, f32 arg3); // in file
+void func_80010C14(f32* arg0, f32* arg1, f32* arg2, f32 arg3); // in file
+void func_80010C88(struct UnkInputStruct80010C88* arg0, s32 arg1); // in file
+void func_80010E0C(struct UnkInputStruct80010C88* arg0, s32 arg1, s32 arg2); // in file
+void func_80011084(struct UnkInputStruct80011084* arg0, f32 arg1); // in file
+void func_800111D4(struct UnkStruct800111D4* arg0, s32 arg1, f32 arg2); // in file
+void func_80011424(struct UnkInputStruct80011424* arg0, f32 arg1); // externally called
+void* func_800117F8(struct UnkStruct800117F8_Arg0* arg0); // in file
+void *func_8001191C(struct UnkStruct80010408_SP2C* arg0, s32 arg1); // externally called
+void func_80011D18(struct UnkStruct80011D18* arg0); // in file
+void func_80011DD0(struct UnkStruct80011DD0 *arg0); // externally called
 
 void func_8000FEB0(struct UnkInputStruct8000FEB0* arg0) {
     arg0->unk0 = D_8004A3A0;

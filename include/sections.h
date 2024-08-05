@@ -40,6 +40,9 @@ extern u8 code_extra_6_ROM_START[];   // 0x144420
 extern u8 code_extra_6_ROM_END[];     // 0x147BB0
 
 // extern ROM labels
+extern u8 unk_bin_0_ROM_START[];
+extern u8 unk_bin_0_ROM_END[];
+
 extern u8 unk_bin_0_2_ROM_START[];
 extern u8 unk_bin_0_2_ROM_END[];
 
@@ -202,5 +205,101 @@ extern u8 unk_bin_52_ROM_END[];
 
 extern u8 unk_bin_53_ROM_START[];                 // 0x2193A0
 extern u8 unk_bin_53_ROM_END[];
+
+extern u8 _229650_ROM_START[];
+extern u8 _229A60_ROM_START[];
+extern u8 _229A60_ROM_END[];
+extern u8 _230D50_ROM_START[];
+extern u8 _38A1F0_ROM_START[];
+
+extern u8 _641EC0_ROM_START[];
+extern u8 _641EC0_ROM_END[];
+extern u8 _643690_ROM_START[];
+extern u8 _643690_ROM_END[];
+extern u8 _644550_ROM_START[];
+extern u8 _644550_ROM_END[];
+extern u8 _645370_ROM_START[];
+extern u8 _645370_ROM_END[];
+extern u8 _6469E0_ROM_START[];
+extern u8 _6469E0_ROM_END[];
+extern u8 _647D30_ROM_START[];
+extern u8 _647D30_ROM_END[];
+extern u8 _647ED0_ROM_START[];
+extern u8 _647ED0_ROM_END[];
+extern u8 _6484B0_ROM_START[];
+extern u8 _6484B0_ROM_END[];
+extern u8 _6489B0_ROM_START[];
+extern u8 _6489B0_ROM_END[];
+extern u8 _648B30_ROM_START[];
+extern u8 _648B30_ROM_END[];
+extern u8 _649020_ROM_START[];
+extern u8 _649020_ROM_END[];
+extern u8 _649670_ROM_START[];
+extern u8 _649670_ROM_END[];
+extern u8 _649DD0_ROM_START[];
+extern u8 _649DD0_ROM_END[];
+extern u8 _64A3E0_ROM_START[];
+extern u8 _64A3E0_ROM_END[];
+extern u8 _64A9E0_ROM_START[];
+extern u8 _64A9E0_ROM_END[];
+extern u8 _64AF80_ROM_START[];
+extern u8 _64AF80_ROM_END[];
+extern u8 _64B870_ROM_START[];
+extern u8 _64B870_ROM_END[];
+extern u8 _64BE10_ROM_START[];
+extern u8 _64BE10_ROM_END[];
+extern u8 _652B80_ROM_START[];
+extern u8 _652B80_ROM_END[];
+
+extern u8 _603530_ROM_START[];
+extern u8 _603530_ROM_END[];
+extern u8 _610A40_ROM_START[];
+extern u8 _610A40_ROM_END[];
+extern u8 _613370_ROM_START[];
+extern u8 _613370_ROM_END[];
+extern u8 _6165A0_ROM_START[];
+extern u8 _6165A0_ROM_END[];
+extern u8 _618410_ROM_START[];
+extern u8 _618410_ROM_END[];
+extern u8 _61A940_ROM_START[];
+extern u8 _61A940_ROM_END[];
+extern u8 _620560_ROM_START[];
+extern u8 _620560_ROM_END[];
+extern u8 _626CF0_ROM_START[];
+extern u8 _626CF0_ROM_END[];
+extern u8 _627030_ROM_START[];
+extern u8 _627030_ROM_END[];
+extern u8 _627330_ROM_START[];
+extern u8 _627330_ROM_END[];
+extern u8 _628770_ROM_START[];
+extern u8 _628770_ROM_END[];
+extern u8 _628B10_ROM_START[];
+extern u8 _628B10_ROM_END[];
+extern u8 _62C280_ROM_START[];
+extern u8 _62C280_ROM_END[];
+extern u8 _62CB20_ROM_START[];
+extern u8 _62CB20_ROM_END[];
+extern u8 _62D750_ROM_START[];
+extern u8 _62D750_ROM_END[];
+extern u8 _6407D0_ROM_START[];
+extern u8 _6407D0_ROM_END[];
+extern u8 _640F90_ROM_START[];
+extern u8 _640F90_ROM_END[];
+extern u8 _6414B0_ROM_START[];
+extern u8 _6414B0_ROM_END[];
+extern u8 _6419D0_ROM_START[];
+extern u8 _6419D0_ROM_END[];
+extern u8 _641EC0_ROM_START[];
+extern u8 _641EC0_ROM_END[];
+
+extern u8 _9EC7B0_ROM_START[];
+extern u8 _9EC7B0_ROM_END[];
+extern u8 _9ED1E0_ROM_START[];
+extern u8 _9ED1E0_ROM_END[];
+extern u8 _9ED670_ROM_START[];
+extern u8 _9ED670_ROM_END[];
+extern u8 _9ED920_ROM_START[];
+extern u8 _9ED920_ROM_END[];
+
 
 #endif // _SECTIONS_H_

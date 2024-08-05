@@ -3940,7 +3940,7 @@ void func_800EBFA0(void) {
             func_8001C0EC(gCurrentParsedObject, 3, 0, 0x107, &D_8011997C);
         }
     }
-    if ((sp24->unkB2 == 4) && (D_8017753C->unk108 != 0) && (func_8002A2EC(gCurrentParsedObject, 60.0f) != 0) && (sp24->unk132 == 1)) {
+    if ((sp24->unkB2 == 4) && (gPlayerObject->unk108 != 0) && (func_8002A2EC(gCurrentParsedObject, 60.0f) != 0) && (sp24->unk132 == 1)) {
         sp24->unk132 = (u8) (sp24->unk132 + 1);
     }
     if (func_8001B62C(gCurrentParsedObject, 3) >= 88.0f) {
@@ -3958,7 +3958,7 @@ void func_800EC144(void) {
         sp1C->unk132 = (u8) (sp1C->unk132 + 1);
     }
     sp1C->Rot.y = func_80015538(sp1C->Rot.y, 12.0f);
-    if ((sp1C->unkB2 == 4) && (D_8017753C->unk108 != 0) && (func_8002A2EC(gCurrentParsedObject, 60.0f) != 0)) {
+    if ((sp1C->unkB2 == 4) && (gPlayerObject->unk108 != 0) && (func_8002A2EC(gCurrentParsedObject, 60.0f) != 0)) {
         func_8001BBDC(gCurrentParsedObject, 0);
         sp1C->unkA4 = 3;
         sp1C->unk132 = 0U;
@@ -4310,7 +4310,7 @@ void func_800EDDE4(void) {
     }
     func_800EE354(gCurrentParsedObject, 6.0f);
     sp2C->Rot.y = (f32) sp2C->unk3C;
-    sp28 = func_800156C4(D_8017753C->Pos.x - sp2C->Pos.x, D_8017753C->Pos.y - sp2C->Pos.y);
+    sp28 = func_800156C4(gPlayerObject->Pos.x - sp2C->Pos.x, gPlayerObject->Pos.y - sp2C->Pos.y);
     sp28 = func_80015744(sp28);
     sp24 = (f32) func_8002A800(sp2C->unk40, sp28, 3.0f);
     if (sp24 != 0.0f) {
@@ -4366,7 +4366,7 @@ void func_800EE134(void) {
 }
 
 f32 func_800EE1F4(s32 arg0) {
-    return func_80015634(D_8017753C->Pos.x - gObjects[arg0].Pos.x, (D_8017753C->Pos.z - 240.0f) - gObjects[arg0].Pos.z);
+    return func_80015634(gPlayerObject->Pos.x - gObjects[arg0].Pos.x, (gPlayerObject->Pos.z - 240.0f) - gObjects[arg0].Pos.z);
 }
 
 s32 func_800EE274(s32 arg0, f32 arg1) {

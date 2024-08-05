@@ -50,14 +50,14 @@ void func_8006B1B4(void) {
 
     if(D_80177939 == 0)
     {
-        if(D_8017753C->Pos.x >= 3600.0f)
+        if(gPlayerObject->Pos.x >= 3600.0f)
         {
             D_80177939 = 1; 
         }
 
         if(D_80177936 == 0)
         {
-            sp04 = (s32) (3000.0f - D_8017753C->Pos.x);
+            sp04 = (s32) (3000.0f - gPlayerObject->Pos.x);
             if(sp04 < 0)
             {
                 sp04 = 0;
@@ -108,22 +108,22 @@ void func_8006B3BC(void) {
         D_8017793C = 0;
     }
 
-    if(D_8017753C->Pos.y < 480.0f)
+    if(gPlayerObject->Pos.y < 480.0f)
     {
         if (D_8017793C == 0)
         {
             D_8017793C = func_80014E80(0xA) + 15;
-            if(D_8017753C->Vel.x == 0.0f && D_8017753C->Vel.z == 0.0f)
+            if(gPlayerObject->Vel.x == 0.0f && gPlayerObject->Vel.z == 0.0f)
             {
-                sp30 = (f32)func_80014E80(-480) + D_8017753C->Pos.x;
+                sp30 = (f32)func_80014E80(-480) + gPlayerObject->Pos.x;
             }
             else
             {
-                sp30 = (f32)func_80014E80(-960) + D_8017753C->Pos.x;
+                sp30 = (f32)func_80014E80(-960) + gPlayerObject->Pos.x;
             }
 
-            sp2C = D_8017753C->Pos.y + 540.0f;
-            sp28 = (f32)func_80014E80(-240) + D_8017753C->Pos.z;
+            sp2C = gPlayerObject->Pos.y + 540.0f;
+            sp28 = (f32)func_80014E80(-240) + gPlayerObject->Pos.z;
             func_80067748(sp30, sp2C, sp28);
             if(D_801776E0 % 2 == 0)
             {

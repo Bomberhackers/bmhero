@@ -31,5 +31,6 @@ s32 func_80002574(s32 arg0, struct UnkStruct80002424* arg1);
 void func_8000265C(struct UnkStruct80001CF0* arg0, struct UnkStruct8000265C* arg1);
 void func_800026F4(struct UnkStruct80001CF0* arg0, struct UnkStruct800026F4_Arg1* arg1, struct UnkStruct800026F4_Arg2* arg2);
 void func_8000281C(struct UnkStruct80001CF0* arg0);
+void load_from_rom_to_addr(void *start, void* addr, s32 size);
 
 #endif // _BMHERO_1050_H_

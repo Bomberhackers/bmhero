@@ -404,6 +404,8 @@ void func_800C1214();
 void func_800C04C4();
 void func_800C0858();
 void func_800C0898();
+void func_800D2A04();
+void func_800D2D34();
 void func_800D9134();
 void func_800D9298();
 void func_800D9620();

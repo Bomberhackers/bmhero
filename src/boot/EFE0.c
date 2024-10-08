@@ -12,8 +12,7 @@ void HS_ParseArg(u8* arg0) {
 
     bufptr = &buf;
 
-    if(arg0 == 0 || (*arg0 == 0))
-    {
+    if(arg0 == 0 || (*arg0 == 0)) {
         return;
     }
 

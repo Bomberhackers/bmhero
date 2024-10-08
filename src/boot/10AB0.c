@@ -1,12 +1,29 @@
 #include <ultra64.h>
 
 // functions
-void func_8000FEB0(struct UnkInputStruct8000FEB0* arg0);
-void func_8000FF44(struct UnkInputStruct8000FF44* arg0);
-void func_8001000C(struct UnkInputStruct8000FF44* arg0);
-void func_80010098(struct UnkInputStruct80010098* arg0);
-void* func_800100E8(void* arg0, s32 arg1);
-void func_80010350(struct UnkInputStruct80010350* arg0);
+void func_8000FEB0(struct UnkInputStruct8000FEB0* arg0); // in file
+void func_8000FF44(struct UnkInputStruct8000FF44* arg0); // in file
+void func_8001000C(struct UnkInputStruct8000FF44* arg0); // in file
+void func_80010098(struct UnkInputStruct80010098* arg0); // in file
+void* func_800100E8(void* arg0, s32 arg1); // in file
+void func_80010350(struct UnkInputStruct80010350* arg0); // in file
+struct UnkStruct80010408_SP2C* func_80010408(struct UnkInputStruct80010408* arg0, u32 arg1); // externally called
+void func_800105D8(struct UnkStruct800105D8* arg0); // externally called
+void func_80010634(struct UnkInputStruct80010098* arg0, s32 arg1, s32 arg2); // in file
+f32 func_800108D0(struct UnkInputStruct800108D0* arg0, f32 arg1); // in file
+void func_80010A5C(f32* arg0, f32* arg1, f32* arg2, f32 arg3); // in file
+f32 func_80010AD0(f32 arg0, f32 arg1, f32 arg2); // in file
+void func_80010B6C(struct UnkInputStruct80010B6C* arg0, struct UnkInputStruct80010B6C* arg1, struct UnkInputStruct80010B6C* arg2, f32 arg3); // in file
+void func_80010C14(f32* arg0, f32* arg1, f32* arg2, f32 arg3); // in file
+void func_80010C88(struct UnkInputStruct80010C88* arg0, s32 arg1); // in file
+void func_80010E0C(struct UnkInputStruct80010C88* arg0, s32 arg1, s32 arg2); // in file
+void func_80011084(struct UnkInputStruct80011084* arg0, f32 arg1); // in file
+void func_800111D4(struct UnkStruct800111D4* arg0, s32 arg1, f32 arg2); // in file
+void func_80011424(struct UnkInputStruct80011424* arg0, f32 arg1); // externally called
+void* func_800117F8(struct UnkStruct800117F8_Arg0* arg0); // in file
+void *func_8001191C(struct UnkStruct80010408_SP2C* arg0, s32 arg1); // externally called
+void func_80011D18(struct UnkStruct80011D18* arg0); // in file
+void func_80011DD0(struct UnkStruct80011DD0 *arg0); // externally called
 
 void func_8000FEB0(struct UnkInputStruct8000FEB0* arg0) {
     arg0->unk0 = D_8004A3A0;
@@ -83,7 +100,7 @@ void func_80010350(struct UnkInputStruct80010350* arg0) {
     free(arg0);
 }
 
-void* func_80010408(struct UnkInputStruct80010408* arg0, u32 arg1) {
+struct UnkStruct80010408_SP2C* func_80010408(struct UnkInputStruct80010408* arg0, u32 arg1) {
     struct UnkStruct80010408_SP2C* sp2C;
     struct UnkInputStruct80010408_Inner *sp28;
     s32 sp24;
@@ -403,8 +420,111 @@ void* func_800117F8(struct UnkStruct800117F8_Arg0* arg0) {
     return sp1C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_8001191C.s")
+void *func_8001191C(struct UnkStruct80010408_SP2C* arg0, s32 arg1) {
+    s32 sp5C;
+    s32 sp58;
+    s32 sp54;
+    u8* sp50;
+    s32 sp4C;
+    s32 sp48;
+    s32 sp44;
+    s32 sp40;
+    u32* sp3C;
+    u32* sp38;
+    struct UnkStruct8001191C_SP34 *sp34;
+    struct UnkStruct80165290_Unk20* sp30;
+    struct UnkStruct80165290_Unk20_Unk10 * sp2C;
+    struct UnkStruct8001191C_SP28* sp28;
+    struct UnkStruct8001191C_SP2C* sp24;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_80011D18.s")
+    if (arg0->unk0 != 1) {
+        return 0;
+    }
+    sp30 = malloc(0x14);
+    sp30->unk0 = arg0;
+    sp30->unk4 = 0.0f;
+    sp30->unkC = sp4C = D_80055D5C[arg1].unk8;
+    sp30->unk10 = malloc(sp4C * 0x28);
+    sp34 = D_80055D5C[arg1].unk4;
+    sp54 = 0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/10AB0/func_80011DD0.s")
+    for(sp5C = 0; sp5C < sp4C; sp5C++) {
+        sp2C = &sp30->unk10[sp5C];
+        sp50 = NULL;
+        // todo: more stupid nested structs. Fix
+        switch(sp2C->unk4 = sp34[sp5C].unk0) {
+            case 47:
+                if (sp34[sp5C].unk8 <= 0) {
+                    
+                }
+                sp28 = (void*)&sp34[sp5C].unk4;
+                sp48 = sp28->unk4;
+                sp38 = malloc(sp48 * 4);
+                sp2C->unk10 = sp38;
+                sp3C = malloc(sp48 * 4);
+                sp2C->unk14 = sp3C;
+                sp2C->unk18 = (s32* ) sp48;
+                sp2C->unk1C = func_800117F8(arg0->unk28);
+                sp2C->unk20 = -1;
+                sp2C->unk24 = -1;
+                for(sp58 = 0; sp58 < sp48; sp58++) {
+                    sp38[sp58] = sp28->unk8[sp58];
+                    sp3C[sp58] = sp50;
+                    sp50 += sp28->unkC[sp58];
+                }
+                sp44 = sp28->unk0;
+                break;
+            case 48:
+                sp24 = (void*)&sp34[sp5C].unk4;
+                sp2C->unk10 = (void* ) sp24->unk8;
+                sp2C->unk14 = sp50 = sp24->unk4;
+                sp2C->unk18 = (s32* ) (sp24 + 0x1);
+                sp44 = sp24->unk0;
+                sp40 = sp24->unk0 + sp24->unk4;
+                break;
+            default:
+                break;
+        }
+        sp2C->unk8 = sp44;
+        sp2C->unkC = (void* ) (sp44 + sp50);
+        if (sp54 < (s32) sp50) {
+            sp54 = sp50;
+        }
+    }
+    sp30->unk8 = sp54;
+    func_80011424(sp30, 0);
+    return sp30;
+}
+
+void func_80011D18(struct UnkStruct80011D18* arg0) {
+    s32 i;
+
+    if (arg0->unkC != 0) {
+        for(i = 0; i < arg0->unkC; i++) {
+            func_80011D18(arg0->unk8[i]);
+        }
+        free(arg0->unk8);
+    }
+    free(arg0);
+}
+
+void func_80011DD0(struct UnkStruct80011DD0 *arg0) {
+    s32 i;
+    struct UnkStruct80011DD0_SP28* sp28;
+
+    for(i = 0; i < arg0->unkC; i++) {
+        sp28 = &arg0->unk10[i];
+        switch (sp28->unk4) {
+            case 47:
+                free(sp28->unk10);
+                free(sp28->unk14);
+                func_80011D18(sp28->unk1C);
+                break;
+            case 48:
+            default:
+                break;
+        }
+    }
+    free(arg0->unk10);
+    free(arg0);
+}

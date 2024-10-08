@@ -448,6 +448,7 @@ void thread6_func(void* arg) {
     isPrintfInit();
 #endif
     func_80083180(0);
+    
     // thread loop
     while(1) {
         D_8016E3DC = 0;

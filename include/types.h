@@ -332,18 +332,56 @@ struct View {
 #define DEMO_BOMBER_CHANGE_SLIDER       9
 #define DEMO_LAST DEMO_BOMBER_CHANGE_SLIDER
 
+struct UnkStruct80165290_Unk20_Unk10 {
+    char filler0[0x4];
+    u32 unk4;
+    u32 unk8;
+    u32 unkC;
+    u32 unk10;
+    u32 unk14;
+    u32 unk18;
+    u32 unk1C;
+    u32 unk20;
+    u32 unk24;
+};
+
+struct UnkStruct80165290_Unk20 {
+    struct UnkStruct80010408_SP2C *unk0;
+    f32 unk4;
+    u32 unk8;
+    u32 unkC;
+    struct UnkStruct80165290_Unk20_Unk10 *unk10;
+    char filler14[0x8];
+};
+
 struct UnkStruct80165290 {
     /* 0x00 */ s32 unk0;
     char filler4[0x10];
     /* 0x14 */ u8 unk14;
     /* 0x15 */ u8 unk15;
     /* 0x16 */ u8 unk16;
-    char filler17[0x5];
-    /* 0x1C */ s32 unk1C;
+    char filler17[0x1];
+    /* 0x18 */ u32 unk18;
+    /* 0x1C */ struct UnkStruct80010408_SP2C* unk1C;
     /* 0x20 */ u32 unk20;
     /* 0x24 */ f32 unk24;
-    char filler28[0x48];
-};   
+    /* 0x28 */ u32 unk28;
+    /* 0x2C */ u32 unk2C;
+    /* 0x30 */ u32 unk30;
+    /* 0x34 */ u32 unk34;
+    /* 0x38 */ u32 unk38;
+    /* 0x4C */ u32 unk3C;
+    /* 0x40 */ u32 unk40;
+    /* 0x44 */ u32 unk44;
+    /* 0x48 */ u32 unk48;
+    /* 0x4C */ u32 unk4C;
+    /* 0x50 */ u32 unk50;
+    /* 0x54 */ u32 unk54;
+    /* 0x58 */ u32 unk58;
+    /* 0x5C */ u32 unk5C;
+    /* 0x60 */ u32 unk60;
+    char filler64[0xC];
+}; // size:0x70
 
 struct UnkStruct_8001EFD0 {
     s32 unk0;
@@ -456,7 +494,7 @@ struct UnkInputStruct80010634_SP20 {
 };
 
 struct UnkStruct80055D54 {
-    char filler0[0x4];
+    s32 unk0;
     struct UnkInputStruct80010634_SP20 *unk4;
     u32 unk8;
 };
@@ -1160,6 +1198,72 @@ struct UnkStruct800117F8_Arg0 {
 struct FileEntry {
     u32 romStart;  
     u32 romEnd;
+};
+
+struct UnkStruct80055D5C {
+    s32 unk0;
+    u32 unk4;
+    u32 unk8;
+    char fillerC[0x4];
+};
+
+struct UnkStruct8001191C_SP34 {
+    u32 unk0;
+    u32 unk4;
+    s32 unk8;
+    char fillerC[0x14];
+};
+
+struct UnkStruct8001191C_SP2C {
+    u32 unk0;
+    u32 unk4;
+    u32 *unk8;
+};
+
+struct UnkStruct8001191C_SP28 {
+    u32 unk0;
+    u32 unk4;
+    u32 *unk8;
+    u32 *unkC;
+};
+
+struct UnkStruct8001191C_SP38 {
+    u32 unk0;
+};
+
+struct UnkStruct80011D18 {
+    char filler0[0x8];
+    u32 *unk8;
+    s32 unkC;
+};
+
+struct UnkStruct80011DD0_SP28 {
+    char filler0[0x4];
+    u32 unk4;
+    char filler8[0x8];
+    u32 unk10;
+    u32 unk14;
+    char filler18[0x4];
+    u32 unk1C;
+    char filler20[0x8];
+};
+
+struct UnkStruct80011DD0 {
+    char filler0[0xC];
+    s32 unkC;
+    struct UnkStruct80011DD0_SP28 *unk10;
+};
+
+struct UnkStruct80011EF0 {
+    char filler0[0x64];
+    u32 unk64;
+    u32 unk68;
+};
+
+struct UnkStruct800120FC {
+    char filler0[0x6C];
+    u32 unk6C;
+    u32 unk70;
 };
 
 #endif // _BMHERO_TYPES_H_

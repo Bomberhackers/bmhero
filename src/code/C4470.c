@@ -3,10 +3,10 @@
 // rodata = 107500
 extern f64 D_801150B8;
 extern f64 D_801150C0;
-extern f32 D_801150C8;
-extern f32 D_801150D0;
-extern f32 D_801150D8;
-extern f32 D_801150E0;
+extern f64 D_801150C8;
+extern f64 D_801150D0;
+extern f64 D_801150D8;
+extern f64 D_801150E0;
 
 // temp func defs
 extern void func_800D464C(); /* extern */
@@ -281,7 +281,118 @@ void func_800D4C8C(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4D74.s")
+void func_800D4D74(void) {
+    //something something "circle of 120.0f OR 140.0f size"
+    struct ObjectStruct* CurrentObject;
+    f32 sp38;
+    f32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s32 sp28;
+    s32 sp24;
+
+    CurrentObject = &gObjects[gCurrentParsedObject];
+    if (CurrentObject->unk132 == 0) {
+        CurrentObject->unk132 = 1;
+        CurrentObject->unkA6 = 0;
+        func_8001BBDC(gCurrentParsedObject, 0);
+    }
+
+    if (CurrentObject->unkA6 == 0)
+    {
+        CurrentObject->unk44 = 13.0f;
+        CurrentObject->Vel.y = 0.0f;
+        func_80029C40(gCurrentParsedObject);
+        sp30 = sinf(CurrentObject->unk3C * D_801150B8) * 120.0f + CurrentObject->Pos.x;
+        sp28 = cosf(CurrentObject->unk3C * D_801150C0) * 120.0f + CurrentObject->Pos.z;
+        sp2C = (s32) (CurrentObject->Pos.y - 120.0f);
+
+        func_80067748((f32) sp30, (f32) sp2C, (f32) sp28);
+        sp24 = D_801776E0 & 1;
+        if(sp24 == 0)
+        {
+            sp2C = D_80177760[sp24];
+            if(CurrentObject->Pos.y - 120.0f - sp2C >= 120.0f)
+            {
+                CurrentObject->unkA4 = 4;
+                CurrentObject->unk132 = 0;
+            }
+            else
+            {
+                if(func_800295C0(gCurrentParsedObject, &sp38, &sp34, 0.0f, 0.0f, 0.0f) != 0)
+                {
+                    CurrentObject->Pos.y = sp34;
+                }
+                else
+                {
+                    CurrentObject->Pos.y = sp38;
+                }
+                CurrentObject->Pos.y += 120.0f;
+            }
+        }
+        else
+        {
+            if (func_800295C0(gCurrentParsedObject, &sp38, &sp34, 0.0f, 0.0f, 0.0f) != 0) 
+            {
+                CurrentObject->Pos.y = sp34;
+            } 
+            else 
+            {
+                CurrentObject->Pos.y = sp38;
+            }
+
+            CurrentObject->Pos.y += 120.0f;
+            CurrentObject->unkA6 = 9;
+            CurrentObject->unk44 = 0.0f;
+            CurrentObject->Vel.z = 0.0f;
+            CurrentObject->Vel.x = CurrentObject->Vel.z;
+            CurrentObject->unkA8 = (s16) (s32) (CurrentObject->unk3C - 90.0f);
+
+            if (CurrentObject->unkA8 < 0) {
+
+            }
+            CurrentObject->unkAA = (s16) (s32) (CurrentObject->unk3C + 90.0f);
+            if (CurrentObject->unkAA >= 0x168) {
+
+            }
+
+            sp30 = sinf(CurrentObject->unkA8 * D_801150C8) * 140.0f + CurrentObject->Pos.x;
+            sp28 = cosf(CurrentObject->unkA8 * D_801150D0) * 140.0f + CurrentObject->Pos.z;
+            sp2C = CurrentObject->Pos.y - 120.0f;
+
+            func_80067748(sp30, sp2C, sp28);
+            sp24 = D_801776E0 & 1;
+            if(sp24 == 0 && CurrentObject->Pos.y - 120.0f - D_80177760[sp24] <= 120.0f)
+            {
+                CurrentObject->unkB6 = -0xA;
+            }
+            else
+            {
+                sp30 = sinf(CurrentObject->unkAA * D_801150D8) * 140.0f + CurrentObject->Pos.x;
+                sp28 = cosf(CurrentObject->unkAA * D_801150E0) * 140.0f + CurrentObject->Pos.z;
+                sp2C = CurrentObject->Pos.y - 120.0f;
+
+                func_80067748(sp30, sp2C, sp28);
+                sp24 = D_801776E0 & 1;
+
+                if(sp24 == 0 && CurrentObject->Pos.y - 120.0f - D_80177760[sp24] <= 120.0f)
+                {
+                    CurrentObject->unkB6 = 0xA;
+                }
+                else
+                {
+                    func_8002B114(gCurrentParsedObject);
+                }
+            }
+        }
+    }
+    else
+    {
+        CurrentObject->unk3C += CurrentObject->unkB6;
+        CurrentObject->Rot.y = CurrentObject->unk3C;
+        CurrentObject->unkA6 -= 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D5610.s")
 

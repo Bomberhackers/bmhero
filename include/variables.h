@@ -192,6 +192,7 @@ extern struct UnkStruct_80027C00 D_80113EBC;
 extern struct UnkStruct_80027C00 D_80113EBC;
 extern UNK_TYPE D_80113DC0;
 extern struct UnkStruct_80027C00 D_801140F0;
+extern struct UnkStruct_80027C00 D_80114108;
 extern struct UnkStruct_80027C00 D_80114228;
 extern struct UnkStruct_80027C00 D_80114240;
 extern struct UnkStruct_80027C00 D_80114270;

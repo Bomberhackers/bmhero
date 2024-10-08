@@ -14,7 +14,6 @@ extern void func_800D47C0(); /* extern */
 extern void func_800D6684(); /* extern */
 extern void func_800D6C14(); /* extern */
 extern void func_800D7704(); /* extern */
-extern void func_800D2D34(); /* extern */
 extern void func_800D88F4(); /* extern */
 extern void func_800D8958(); /* extern */
 
@@ -117,7 +116,9 @@ void func_800D2A04(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D2D34.s")
+void func_800D2D34(void) {
+    func_8002B0E4(gCurrentParsedObject);
+}
 
 void func_800D2D64(void)
 {
@@ -139,7 +140,10 @@ void func_800D2D64(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D2E2C.s")
+void func_800D2E2C(void) {
+    func_80027464(1, &D_80114108, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D2EA4.s")
 

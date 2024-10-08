@@ -151,7 +151,24 @@ void func_800D2EA4(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D2F1C.s")
+void func_800D2F1C(void) {
+    struct ObjectStruct* sp34;
+    UNUSED s32 sp30;
+
+    sp34 = &gObjects[gCurrentParsedObject];
+    if (sp34->unk132 == 0) {
+        sp34->unk132 = 1;
+        sp34->Vel.x = sp34->Vel.y = sp34->Vel.z = 0.0f;
+
+        func_8001C0EC(gCurrentParsedObject, 0, 0, 0x96, &D_80118754);
+        func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118784);
+        func_8001BB04(gCurrentParsedObject, 1);
+    }
+    if (func_8002A1FC(gCurrentParsedObject, 480.0f) != 0) {
+        sp34->unkA4 = 2;
+        sp34->unk132 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D3048.s")
 

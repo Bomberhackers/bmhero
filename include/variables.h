@@ -324,6 +324,8 @@ extern UNK_TYPE D_80117EE0;
 extern UNK_TYPE D_80117EE8;
 extern UNK_TYPE D_80117EF0;
 extern void* D_80117F08;
+extern u32 D_80118754;
+extern UNK_TYPE D_80118784;
 extern u32 D_80118864;
 extern UNK_TYPE* D_80118978[];
 extern UNK_TYPE* D_80118978[];

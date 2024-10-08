@@ -144,8 +144,12 @@ void func_800D2E2C(void) {
     func_80027464(1, &D_80114108, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
 }
 
-
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D2EA4.s")
+void func_800D2EA4(void) {
+    if (D_80177A64 == 0) {
+        gObjects[gCurrentParsedObject].unk132 = 0;
+        gObjects[gCurrentParsedObject].unkA4 = 4;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D2F1C.s")
 

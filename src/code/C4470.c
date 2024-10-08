@@ -25,7 +25,18 @@ void func_800D1F50(void)
     sp24 = func_80027464(1, &D_801140F0, (f32)D_80165100->unk2, (f32)D_80165100->unk4, (f32)D_80165100->unk6, (f32)D_80165100->unk8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D1FCC.s")
+void func_800D1FCC(void) {
+    if (D_80177A64 == 0) 
+    {
+        gObjects[gCurrentParsedObject].unkA4 = 6;
+        gObjects[gCurrentParsedObject].unk132 = 0;
+    }
+    else if(D_80177A64 == 1 && gObjects[gCurrentParsedObject].unk108 == 1)
+    {
+        gObjects[gCurrentParsedObject].unkA4 = 5;
+        gObjects[gCurrentParsedObject].unk132 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D20E4.s")
 

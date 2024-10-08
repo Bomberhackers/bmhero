@@ -1,8 +1,41 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D1F50.s")
+// rodata = 107500
+extern f64 D_801150B8;
+extern f64 D_801150C0;
+extern f64 D_801150C8;
+extern f64 D_801150D0;
+extern f64 D_801150D8;
+extern f64 D_801150E0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D1FCC.s")
+// temp func defs
+extern void func_800D464C(); /* extern */
+extern void func_800D47C0(); /* extern */
+extern void func_800D6684(); /* extern */
+extern void func_800D6C14(); /* extern */
+extern void func_800D7704(); /* extern */
+extern void func_800D88F4(); /* extern */
+extern void func_800D8958(); /* extern */
+
+void func_800D1F50(void)
+{
+    s32 sp24;
+
+    sp24 = func_80027464(1, &D_801140F0, (f32)D_80165100->unk2, (f32)D_80165100->unk4, (f32)D_80165100->unk6, (f32)D_80165100->unk8);
+}
+
+void func_800D1FCC(void) {
+    if (D_80177A64 == 0) 
+    {
+        gObjects[gCurrentParsedObject].unkA4 = 6;
+        gObjects[gCurrentParsedObject].unk132 = 0;
+    }
+    else if(D_80177A64 == 1 && gObjects[gCurrentParsedObject].unk108 == 1)
+    {
+        gObjects[gCurrentParsedObject].unkA4 = 5;
+        gObjects[gCurrentParsedObject].unk132 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D20E4.s")
 
@@ -20,17 +53,122 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D2980.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D2A04.s")
+void func_800D2A04(void)
+{
+    struct ObjectStruct *sp24;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D2D34.s")
+    sp24 = &gObjects[gCurrentParsedObject];
+    if (sp24->unk132 == 0)
+    {
+        sp24->unk132 += 1;
+        sp24->unk44 = 30.0f;
+        sp24->unkA6 = 1;
+        func_8001BBDC(gCurrentParsedObject, 1);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D2D64.s")
+    if (sp24->unkA6 != 0)
+    {
+        sp24->unkA6 -= 1;
+        sp24->unkA8 = (s16)(s32)func_8002A46C(gCurrentParsedObject);
+        if (sp24->unkA8 >= 0xB4)
+        {
+            sp24->unkAA = -5;
+            sp24->unkAC = -4;
+        }
+        else
+        {
+            sp24->unkAC = 5;
+            sp24->unkAA = 4;
+        }
+        sp24->unkAE = 4;
+    }
+    else
+    {
+        if (sp24->unkAE != 0)
+        {
+            sp24->unkB0 = (s16)(s32)func_80015538(sp24->unk3C, (f32)-sp24->unkA8);
+            if ((sp24->unkB0 < 6) || (sp24->unkB0 >= 0x163))
+            {
+                sp24->unk3C = func_80015538(sp24->unk3C, (f32)sp24->unkAA);
+                sp24->unkAE -= 1;
+            }
+            else
+            {
+                sp24->unkAE = 0;
+            }
+        }
+        else
+        {
+            sp24->unk3C = (f32)sp24->unkA8;
+        }
+        sp24->Rot.y = func_80015538(sp24->Rot.y, (f32)sp24->unkAC);
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D2E2C.s")
+    sp24->Vel.y = 0.0f;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D2EA4.s")
+    func_80029C40(gCurrentParsedObject);
+    if (func_80029018(gCurrentParsedObject, 3U, 30.0f, 0.0f, 0.0f, 0.0f) != 0)
+    {
+        sp24->Vel.z = 0.0f;
+        sp24->Vel.x = sp24->Vel.z;
+        sp24->unkA4 = 2;
+        sp24->unk132 = 0;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D2F1C.s")
+void func_800D2D34(void) {
+    func_8002B0E4(gCurrentParsedObject);
+}
+
+void func_800D2D64(void)
+{
+    if (gObjects[gCurrentParsedObject].unkE6[0] == -1)
+    {
+        switch (gObjects[gCurrentParsedObject].unkA4)
+        {
+        case 1:
+            func_800D2A04();
+            break;
+
+        case 2:
+            func_800D2D34();
+            break;
+
+        default:
+            break;
+        }
+    }
+}
+
+void func_800D2E2C(void) {
+    func_80027464(1, &D_80114108, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+}
+
+void func_800D2EA4(void) {
+    if (D_80177A64 == 0) {
+        gObjects[gCurrentParsedObject].unk132 = 0;
+        gObjects[gCurrentParsedObject].unkA4 = 4;
+    }
+}
+
+void func_800D2F1C(void) {
+    struct ObjectStruct* sp34;
+    UNUSED s32 sp30;
+
+    sp34 = &gObjects[gCurrentParsedObject];
+    if (sp34->unk132 == 0) {
+        sp34->unk132 = 1;
+        sp34->Vel.x = sp34->Vel.y = sp34->Vel.z = 0.0f;
+
+        func_8001C0EC(gCurrentParsedObject, 0, 0, 0x96, &D_80118754);
+        func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118784);
+        func_8001BB04(gCurrentParsedObject, 1);
+    }
+    if (func_8002A1FC(gCurrentParsedObject, 480.0f) != 0) {
+        sp34->unkA4 = 2;
+        sp34->unk132 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D3048.s")
 
@@ -76,15 +214,185 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D47C0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4A10.s")
+void func_800D4A10(void)
+{
+    switch (gObjects[gCurrentParsedObject].unkA4)
+    {
+    case 1:
+        func_800D464C();
+        break;
+    case 2:
+        func_800D47C0();
+        break;
+    default:
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4AA4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4AB4.s")
+void func_800D4AB4(void)
+{
+    struct ObjectStruct *sp24;
+    f32 sp20;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4C8C.s")
+    sp24 = &gObjects[gCurrentParsedObject];
+    if (sp24->unk132 == 0)
+    {
+        sp24->unk132 += 1;
+        sp24->unk44 = 0.0f;
+        func_80029EF8(gCurrentParsedObject, 0.0f, 2.0f);
+        func_8001C0EC(gCurrentParsedObject, 0, 0, 0xB3, &D_80118864);
+        func_8001BBDC(gCurrentParsedObject, 1);
+    }
+    sp20 = sp24->Vel.y;
+    sp24->Vel.y = 0.0f;
+    func_80029C40(gCurrentParsedObject);
+    if (func_80029018(gCurrentParsedObject, 2U, 60.0f, 0.0f, 0.0f, 0.0f) != 0)
+    {
+        sp24->Vel.z = 0.0f;
+        sp24->Vel.x = sp24->Vel.z;
+    }
+    sp24->Vel.y = sp20;
+    if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, -120.0f, 60.0f) == 1)
+    {
+        sp24->Vel.z = 0.0f;
+        sp24->Vel.x = sp24->Vel.z;
+        sp24->unkA4 = 2;
+        sp24->unk132 = 0;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4D74.s")
+void func_800D4C8C(void)
+{
+    struct ObjectStruct *sp24;
+
+    sp24 = &gObjects[gCurrentParsedObject];
+    if (sp24->unk132 == 0)
+    {
+        sp24->unk132 += 1;
+        sp24->unk44 = 0.0f;
+        func_80029EF8(gCurrentParsedObject, 8.0f, 1.0f);
+    }
+    if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, -120.0f, 60.0f) == 1)
+    {
+        sp24->unkA4 = 3;
+        sp24->unk132 = 0;
+    }
+}
+
+void func_800D4D74(void) {
+    //something something "circle of 120.0f OR 140.0f size"
+    struct ObjectStruct* CurrentObject;
+    f32 sp38;
+    f32 sp34;
+    s32 sp30;
+    s32 sp2C;
+    s32 sp28;
+    s32 sp24;
+
+    CurrentObject = &gObjects[gCurrentParsedObject];
+    if (CurrentObject->unk132 == 0) {
+        CurrentObject->unk132 = 1;
+        CurrentObject->unkA6 = 0;
+        func_8001BBDC(gCurrentParsedObject, 0);
+    }
+
+    if (CurrentObject->unkA6 == 0)
+    {
+        CurrentObject->unk44 = 13.0f;
+        CurrentObject->Vel.y = 0.0f;
+        func_80029C40(gCurrentParsedObject);
+        sp30 = sinf(CurrentObject->unk3C * D_801150B8) * 120.0f + CurrentObject->Pos.x;
+        sp28 = cosf(CurrentObject->unk3C * D_801150C0) * 120.0f + CurrentObject->Pos.z;
+        sp2C = (s32) (CurrentObject->Pos.y - 120.0f);
+
+        func_80067748((f32) sp30, (f32) sp2C, (f32) sp28);
+        sp24 = D_801776E0 & 1;
+        if(sp24 == 0)
+        {
+            sp2C = D_80177760[sp24];
+            if(CurrentObject->Pos.y - 120.0f - sp2C >= 120.0f)
+            {
+                CurrentObject->unkA4 = 4;
+                CurrentObject->unk132 = 0;
+            }
+            else
+            {
+                if(func_800295C0(gCurrentParsedObject, &sp38, &sp34, 0.0f, 0.0f, 0.0f) != 0)
+                {
+                    CurrentObject->Pos.y = sp34;
+                }
+                else
+                {
+                    CurrentObject->Pos.y = sp38;
+                }
+                CurrentObject->Pos.y += 120.0f;
+            }
+        }
+        else
+        {
+            if (func_800295C0(gCurrentParsedObject, &sp38, &sp34, 0.0f, 0.0f, 0.0f) != 0) 
+            {
+                CurrentObject->Pos.y = sp34;
+            } 
+            else 
+            {
+                CurrentObject->Pos.y = sp38;
+            }
+
+            CurrentObject->Pos.y += 120.0f;
+            CurrentObject->unkA6 = 9;
+            CurrentObject->unk44 = 0.0f;
+            CurrentObject->Vel.z = 0.0f;
+            CurrentObject->Vel.x = CurrentObject->Vel.z;
+            CurrentObject->unkA8 = (s16) (s32) (CurrentObject->unk3C - 90.0f);
+
+            if (CurrentObject->unkA8 < 0) {
+
+            }
+            CurrentObject->unkAA = (s16) (s32) (CurrentObject->unk3C + 90.0f);
+            if (CurrentObject->unkAA >= 0x168) {
+
+            }
+
+            sp30 = sinf(CurrentObject->unkA8 * D_801150C8) * 140.0f + CurrentObject->Pos.x;
+            sp28 = cosf(CurrentObject->unkA8 * D_801150D0) * 140.0f + CurrentObject->Pos.z;
+            sp2C = CurrentObject->Pos.y - 120.0f;
+
+            func_80067748(sp30, sp2C, sp28);
+            sp24 = D_801776E0 & 1;
+            if(sp24 == 0 && CurrentObject->Pos.y - 120.0f - D_80177760[sp24] <= 120.0f)
+            {
+                CurrentObject->unkB6 = -0xA;
+            }
+            else
+            {
+                sp30 = sinf(CurrentObject->unkAA * D_801150D8) * 140.0f + CurrentObject->Pos.x;
+                sp28 = cosf(CurrentObject->unkAA * D_801150E0) * 140.0f + CurrentObject->Pos.z;
+                sp2C = CurrentObject->Pos.y - 120.0f;
+
+                func_80067748(sp30, sp2C, sp28);
+                sp24 = D_801776E0 & 1;
+
+                if(sp24 == 0 && CurrentObject->Pos.y - 120.0f - D_80177760[sp24] <= 120.0f)
+                {
+                    CurrentObject->unkB6 = 0xA;
+                }
+                else
+                {
+                    func_8002B114(gCurrentParsedObject);
+                }
+            }
+        }
+    }
+    else
+    {
+        CurrentObject->unk3C += CurrentObject->unkB6;
+        CurrentObject->Rot.y = CurrentObject->unk3C;
+        CurrentObject->unkA6 -= 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D5610.s")
 
@@ -110,11 +418,39 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D6C14.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D6C44.s")
+void func_800D6C44(void)
+{
+    s16 temp_s0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D6D0C.s")
+    if (gObjects[gCurrentParsedObject].unkE6[0] == -1)
+    {
+        switch (gObjects[gCurrentParsedObject].unkA4)
+        {
+        case 1:
+            func_800D6684();
+            break;
+        case 2:
+            func_800D6C14();
+            break;
+        default:
+            break;
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D6D84.s")
+void func_800D6D0C(void)
+{
+    func_80027464(1, &D_80114228, (f32)D_80165100->unk2, (f32)D_80165100->unk4, (f32)D_80165100->unk6, (f32)D_80165100->unk8);
+}
+
+void func_800D6D84(void)
+{
+    if (D_80177A64 == 0)
+    {
+        gObjects[gCurrentParsedObject].unk132 = 0;
+        gObjects[gCurrentParsedObject].unkA4 = 2;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D6DFC.s")
 
@@ -128,11 +464,65 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D7704.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D7CD0.s")
+void func_800D7CD0(void)
+{
+    struct ObjectStruct *sp24;
+    f32 sp20;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D7F08.s")
+    sp24 = &gObjects[gCurrentParsedObject];
+    if (sp24->unk132 == 0)
+    {
+        sp24->unk132 += 1;
+        sp24->unkA6 = 0x1E;
+        sp24->unk44 = 5.0f;
+        sp24->unk3C = func_80015538(sp24->unk128, 180.0f);
+        func_80029EF8(gCurrentParsedObject, 14.378698f, 1.06089f);
+        func_8001BBDC(gCurrentParsedObject, 1);
+        sp24->unk108 = 0;
+    }
+    sp24->Rot.y = func_80015538(sp24->Rot.y, 25.0f);
+    sp20 = sp24->Vel.y;
+    sp24->Vel.y = 0.0f;
+    func_80029C40(gCurrentParsedObject);
+    if (func_80029018(gCurrentParsedObject, 0U, 60.0f, 0.0f, 0.0f, 0.0f) != 0)
+    {
+        sp24->Vel.z = 0.0f;
+        sp24->Vel.x = sp24->Vel.z;
+    }
+    sp24->Vel.y = sp20;
+    if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, 0.0f, 60.0f) == 1)
+    {
+        sp24->unkA6 = 0;
+    }
+    if (sp24->unkA6 == 0)
+    {
+        func_8002B0E4(gCurrentParsedObject);
+    }
+    else
+    {
+        sp24->unkA6 -= 1;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D7F9C.s")
+void func_800D7F08(void)
+{
+    switch (gObjects[gCurrentParsedObject].unkA4)
+    {
+    case 1:
+        func_800D7704();
+        break;
+    case 2:
+        func_800D7CD0();
+        break;
+    default:
+        break;
+    }
+}
+
+void func_800D7F9C(void)
+{
+    func_80027464(1, &D_80114240, (f32)D_80165100->unk2, (f32)D_80165100->unk4, (f32)D_80165100->unk6, (f32)D_80165100->unk8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D8014.s")
 
@@ -150,4 +540,17 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D8958.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D8A30.s")
+void func_800D8A30(void)
+{
+    switch (gObjects[gCurrentParsedObject].unkA4)
+    {
+    case 1:
+        func_800D88F4();
+        break;
+    case 2:
+        func_800D8958();
+        break;
+    default:
+        break;
+    }
+}

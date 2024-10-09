@@ -263,8 +263,33 @@ void func_800D2F1C(void)
     }
 }
 
-void func_800D3048(); /* extern */
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D3048.s")
+void func_800D3048(void)
+{
+    struct ObjectStruct *CurrentObject;
+    f32 sp28;
+    f32 sp24;
+
+    CurrentObject = &gObjects[gCurrentParsedObject];
+    if (CurrentObject->unk132 == 0)
+    {
+        CurrentObject->unk132 += 1;
+        CurrentObject->unk44 = 0.0f;
+        CurrentObject->unk40 = 90.0f;
+        CurrentObject->unk48 = 8.0f;
+        func_8001BB04(gCurrentParsedObject, 0);
+    }
+    func_80029D04(gCurrentParsedObject);
+    if ((func_800295C0(gCurrentParsedObject, &sp28, &sp24, 0.0f, 0.0f, 0.0f) == 0))
+    {
+        if ((CurrentObject->Pos.y >= (sp28 + 90.0f)))
+        {
+            CurrentObject->Vel.y = 0.0f;
+            CurrentObject->unk108 = 1;
+            CurrentObject->unkA4 = 3;
+            CurrentObject->unk132 = 0;
+        }
+    }
+}
 
 void func_800D31A8(void)
 {

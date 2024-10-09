@@ -170,6 +170,7 @@ void func_800D2F1C(void) {
     }
 }
 
+void func_800D3048();                                  /* extern */
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D3048.s")
 
 void func_800D31A8(void) {
@@ -184,7 +185,7 @@ void func_800D31A8(void) {
         sp3C->unkAC = 0;
         sp3C->unk44 = 0.0f;
         sp3C->unk3C = func_8002A46C(gCurrentParsedObject);
-        func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118784 + 0x1C / 4); //this line WILL have to be refactored later
+        func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118784 + 0x1C / 4); //this line WILL have to be refactored later, but we gotta figure out WHAT this is first
     }
     if (sp3C->unk44 != 12.0f) {
         sp3C->unk44 = (f32) ((f64) sp3C->unk44 + 0.5);
@@ -205,9 +206,28 @@ void func_800D31A8(void) {
     sp3C->Pos.y = 90.0f + sp30;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D33B0.s")
+void func_800D33B0(void) {
+    func_8002B0E4(gCurrentParsedObject);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D33E0.s")
+void func_800D33E0(void) {
+    switch (gObjects[gCurrentParsedObject].unkA4) {
+    case 1:
+        func_800D2F1C();
+        break;
+    case 2:
+        func_800D3048();
+        break;
+    case 3:
+        func_800D31A8();
+        break;
+    case 4:
+        func_800D33B0();
+        break;
+    default:
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D34AC.s")
 

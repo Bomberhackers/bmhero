@@ -585,7 +585,10 @@ void func_800D4064(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4114.s")
+void func_800D4114(void)
+{
+    func_80027464(1, &D_8011412C, (f32)D_80165100->unk2, (f32)D_80165100->unk4, (f32)D_80165100->unk6, (f32)D_80165100->unk8);
+}
 
 void func_800D418C(void)
 {

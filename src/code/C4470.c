@@ -340,7 +340,15 @@ void func_800D3E54(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4114.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D418C.s")
+void func_800D418C(void) {
+    s32 sp24;
+
+    sp24 = func_80027464(1, &D_80114138, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    if (sp24 != -1) {
+        gObjects[sp24].Rot.x = 90.0f;
+        func_80019448(sp24, 2, 0, 1);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4258.s")
 

@@ -567,7 +567,23 @@ void func_800D3E54(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4064.s")
+void func_800D4064(void)
+{
+    switch (gObjects[gCurrentParsedObject].unkA4)
+    {
+    case 1:
+        func_800D3824();
+        break;
+    case 2:
+        func_800D3974();
+        break;
+    case 3:
+        func_800D3E54();
+        break;
+    default:
+        break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4114.s")
 

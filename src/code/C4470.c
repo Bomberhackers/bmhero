@@ -229,7 +229,14 @@ void func_800D33E0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D34AC.s")
+void func_800D34AC(void) {
+    s32 sp24;
+
+    sp24 = func_80027464(1, &D_80114114, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    if (sp24 != -1) {
+        gObjects[sp24].unkBA = D_80165100->unkA;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D3568.s")
 

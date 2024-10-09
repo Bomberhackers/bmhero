@@ -604,9 +604,50 @@ void func_800D418C(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4258.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4268.s")
+void func_800D4268(void) {
+    struct ObjectStruct* sp34;
+    f32 sp30;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4430.s")
+    sp34 = &gObjects[gCurrentParsedObject];
+    if (sp34->unk132 == 0) {
+        sp34->unk132 = 1;
+        func_8001C0EC(gCurrentParsedObject, 3, 0, 0x98, &D_801187C8);
+        func_8001ABF4(gCurrentParsedObject, 0, 3, &D_80118848);
+        func_8001BB34(gCurrentParsedObject, 0);
+        func_8001BBDC(gCurrentParsedObject, 0);
+        sp34->Scale.x =  sp34->Scale.y = sp34->Scale.z = 1.5f;
+        func_800175F0(gCurrentParsedObject, 0, 0x44, -1, 0);
+    }
+    sp30 = func_8001B62C(gCurrentParsedObject, 3);
+    if ((sp30 >= 20.0f) && (sp30 <= 60.0f)) {
+        sp34->unk108 = 1;
+    } else {
+        sp34->unk108 = 0;
+    }
+    if (func_8001B44C(gCurrentParsedObject, 3) != 0) {
+        sp34->unkA4 = 2;
+        sp34->unk132 = 0;
+    }
+}
+
+void func_800D4430(void) {
+    struct ObjectStruct* CurrentObject;
+
+    CurrentObject = &gObjects[gCurrentParsedObject];
+    if (CurrentObject->unk132 == 0) {
+        CurrentObject->unk132 += 1;
+        CurrentObject->unkA6 = 0;
+        CurrentObject->unk108 = 0;
+        func_8001BB34(gCurrentParsedObject, 1);
+        func_8001BBDC(gCurrentParsedObject, 1);
+    }
+    if (CurrentObject->unkA6 >= 0x2E) {
+        CurrentObject->unkA4 = 1;
+        CurrentObject->unk132 = 0;
+    } else {
+        CurrentObject->unkA6 += 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4530.s")
 

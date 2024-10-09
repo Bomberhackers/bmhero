@@ -346,6 +346,8 @@ extern UNK_TYPE D_80118600; //this is an array, this is pain, we will refactor t
 extern u32 D_80118754;
 extern UNK_TYPE D_80118784;
 extern u32 D_801187BC;
+extern u32 D_801187C8;
+extern UNK_TYPE D_80118848;
 extern u32 D_80118864;
 extern u32 D_80118868;
 extern UNK_TYPE D_801188DC;

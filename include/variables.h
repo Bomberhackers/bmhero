@@ -206,6 +206,7 @@ extern struct UnkStruct_80027C00 D_8011412C;
 extern struct UnkStruct_80027C00 D_80114138;
 extern struct UnkStruct_80027C00 D_80114144;
 extern struct UnkStruct_80027C00 D_80114150;
+extern struct UnkStruct_80027C00 D_8011415C;
 extern struct UnkStruct_80027C00 D_80114168;
 extern struct UnkStruct_80027C00 D_80114228;
 extern struct UnkStruct_80027C00 D_80114240;

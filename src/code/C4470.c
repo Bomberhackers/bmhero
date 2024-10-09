@@ -988,7 +988,10 @@ void func_800D577C(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D5848.s")
+void func_800D5848(void)
+{
+    func_80027464(1, &D_8011415C, (f32)D_80165100->unk2, (f32)D_80165100->unk4, (f32)D_80165100->unk6, (f32)D_80165100->unk8);
+}
 
 void func_800D58C0(void)
 {
@@ -999,7 +1002,32 @@ void func_800D58C0(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D5938.s")
+void func_800D5938(void)
+{
+    struct ObjectStruct *CurrentObject;
+
+    CurrentObject = &gObjects[gCurrentParsedObject];
+    if (CurrentObject->unk132 == 0)
+    {
+        CurrentObject->unk132 += 1;
+        CurrentObject->Vel.x = CurrentObject->Vel.y = CurrentObject->Vel.z = 0.0f;
+        func_8001C0EC(gCurrentParsedObject, 0, 1, 0xA8, &D_80118868);
+        func_8001BBDC(gCurrentParsedObject, 1);
+    }
+    if (gObjects->Pos.y < (CurrentObject->Pos.y - 60.0f))
+    {
+        if (func_8002A1FC(gCurrentParsedObject, 1200.0f) != 0)
+        {
+            CurrentObject->unkA4 = 2;
+            CurrentObject->unk132 = 0;
+        }
+    }
+    else
+    {
+        CurrentObject->unkA4 = 3;
+        CurrentObject->unk132 = 0;
+    }
+}
 
 void func_800D5AA4(void)
 {

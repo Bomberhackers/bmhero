@@ -567,7 +567,9 @@ void func_800D5AA4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D6684.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D6C14.s")
+void func_800D6C14(void) {
+    func_8002B114(gCurrentParsedObject);
+}
 
 void func_800D6C44(void)
 {
@@ -603,7 +605,73 @@ void func_800D6D84(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D6DFC.s")
+void func_800D6DFC(void) {
+    struct ObjectStruct* CurrentObject;
+    f32 sp40;
+    f32 sp3C;
+
+    CurrentObject = &gObjects[gCurrentParsedObject];
+    if (CurrentObject->unk132 == 0) {
+        CurrentObject->unk132 = 1;
+        CurrentObject->unkA6 = CurrentObject->unkA8 = CurrentObject->unkB6 = 0;
+        CurrentObject->unk44 = 0.0f;
+        CurrentObject->Rot.y = CurrentObject->unk3C;
+        func_80017664(gCurrentParsedObject, 0, 0x59, -1, 0);
+    }
+    if ((CurrentObject->unkB6 == 0) && (CurrentObject->unkA6 == 0) && (func_80028FA0(gCurrentParsedObject) != 0)) {
+        CurrentObject->unkB6 = 5;
+        CurrentObject->unkB8 = (s16) (s32) CurrentObject->unk3C;
+        CurrentObject->unk44 = 8.0f;
+        CurrentObject->unk3C += 180.0f;
+        if (CurrentObject->unk3C >= 360.0f) {
+            CurrentObject->unk3C -= 360.0f;
+        }
+    }
+    if (CurrentObject->unkB6 != 0) {
+        CurrentObject->unkB6 -= 1;
+        if (CurrentObject->unkB6 == 0) {
+            CurrentObject->unk44 = CurrentObject->Vel.x = CurrentObject->Vel.z = 0;
+            CurrentObject->unkA8 = (s16) (s32) CurrentObject->unk3C;
+            CurrentObject->unk3C = (f32) CurrentObject->unkB8;
+            CurrentObject->unkA6 = 1;
+        }
+    }
+    if (CurrentObject->unkA6 != 0) {
+        CurrentObject->unk3C = func_80015538(CurrentObject->unk3C, 10.0f);
+        CurrentObject->Rot.y = CurrentObject->unk3C;
+        if ((CurrentObject->unk3C - (f32) CurrentObject->unkA8) == 0.0f) {
+            CurrentObject->unkA6 = 0;
+        }
+    } else {
+        if (CurrentObject->unk44 < 12.0f) {
+            CurrentObject->unk44 = (f32) ((f64) CurrentObject->unk44 + 0.25);
+        }
+        CurrentObject->Vel.y = 0.0f;
+        func_80029C40(gCurrentParsedObject);
+        if (CurrentObject->unkA6 == 0) {
+            if (func_80029018(gCurrentParsedObject, 1U, 60.0f, 0.0f, 0.0f, 0.0f) != 0) {
+                CurrentObject->Vel.x = CurrentObject->Vel.y = CurrentObject->Vel.z = 0;
+                if (CurrentObject->unkB6 == 0) {
+                    CurrentObject->unkB6 = 5;
+                    CurrentObject->unkB8 = (s16) (s32) CurrentObject->unk3C;
+                    CurrentObject->unk44 = 8.0f;
+                    CurrentObject->unk3C += 180.0f;
+                    if (CurrentObject->unk3C >= 360.0f) {
+                        CurrentObject->unk3C -= 360.0f;
+                    }
+                } else {
+                    CurrentObject->unkB6 = 1;
+                }
+            }
+            if (func_800295C0(gCurrentParsedObject, &sp40, &sp3C, 0.0f, 0.0f, 0.0f) != 0) {
+                CurrentObject->Pos.y = sp3C;
+            } else {
+                CurrentObject->Pos.y = sp40;
+            }
+        }
+    }
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D7348.s")
 

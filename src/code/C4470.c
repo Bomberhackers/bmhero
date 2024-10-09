@@ -192,7 +192,45 @@ void func_800D2F1C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D3974.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D3E54.s")
+void func_800D3E54(void) {
+    struct ObjectStruct* sp34;
+    s32 sp30;
+
+    sp34 = &gObjects[gCurrentParsedObject];
+    if (sp34->unk132 == 0) 
+    {
+        sp34->unk132 = 1;
+        sp34->unk108 = 0;
+        sp34->Vel.x = sp34->Vel.y = sp34->Vel.z = 0.0f;
+        func_8001C0EC(gCurrentParsedObject, 0, 2, 0x97, &D_801187BC);
+        func_8001BBDC(gCurrentParsedObject, 0);
+    }
+
+    if (func_8001B44C(gCurrentParsedObject, 0) != 0)
+    {
+        sp30 = 0xE;
+        
+        while (TRUE)
+        {
+            sp30 = func_80026E58(0xCC, sp30);
+
+            if (sp30 == -1)
+            {
+                break;
+            }
+            else if (gObjects[sp30].unkBA == sp34->unkBA)
+            {
+                if (gObjects[sp30].unkA8 != 0)
+                {
+                    gObjects[sp30].unkA8--;
+                }
+                break;
+            }    
+            else sp30++;    
+        }
+        func_8002B0E4(gCurrentParsedObject);   
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4064.s")
 
@@ -404,7 +442,120 @@ void func_800D4D74(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D5938.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D5AA4.s")
+void func_800D5AA4(void) {
+    struct ObjectStruct* CurrentObject;
+    s32 sp40;
+    f32 sp3C;
+
+    CurrentObject = &gObjects[gCurrentParsedObject];
+    if (CurrentObject->unk132 == 0) {
+        CurrentObject->unk132 += 1;
+        CurrentObject->Vel.x = CurrentObject->Vel.y = CurrentObject->Vel.z = 0.0f;
+        CurrentObject->unkA6 = CurrentObject->unkA8 = CurrentObject->unkAA = 0;
+
+        func_8001C0EC(gCurrentParsedObject, 0, 1, 0xA8, &D_80118868);
+        func_8001BBDC(gCurrentParsedObject, 0);
+        CurrentObject->unk108 = -1;
+    }
+    if(CurrentObject->unkA6 != 0)
+    {
+        if(CurrentObject->unkA8 == 1 || CurrentObject->unkA8 == 3)
+        {
+            if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
+                CurrentObject->unkA6 = 0;
+                CurrentObject->unkA8 += 1;
+                func_8001BBDC(gCurrentParsedObject, 1);
+            }
+        }
+        else if (CurrentObject->unkA8 == 3)
+        {
+            if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
+                CurrentObject->unkA6 = 0;
+                CurrentObject->unkA8 += 1;
+                func_8001C0EC(gCurrentParsedObject, 0, 1, 0xA8, &D_80118868);
+                func_8001BBDC(gCurrentParsedObject, 1);
+            }
+        }
+        else
+        {
+            if(CurrentObject->unkA8 == 0 || CurrentObject->unkA8 == 2)
+            {
+                if (CurrentObject->unkAA == 0)
+                {
+                    CurrentObject->unkA6 = 0;
+                    CurrentObject->unkA8++;
+                }
+                else
+                {
+                    CurrentObject->unkAA--;
+                }
+            }
+            else if(CurrentObject->unkA8 == 4)
+            {
+                if(CurrentObject->unkAA < 0x28 && CurrentObject->unkAA >= 0x10)
+                {
+                    sp3C = CurrentObject->unkAA & 0xF;
+                    if(sp3C == 3.0f || sp3C == 6.0f || sp3C == 9.0f)
+                    {
+                        sp40 = func_80027464(1, &D_80114168, CurrentObject->Pos.x, CurrentObject->Pos.y - 20.0f, CurrentObject->Pos.z + 80.0f, CurrentObject->Rot.y);
+                        if(sp40 != -1)
+                        {
+                            func_8001ABF4(sp40, 0, 3, &D_80118898);
+
+                            gObjects[sp40].Scale.x = gObjects[sp40].Scale.y = gObjects[sp40].Scale.z = D_801150E8;
+                            func_800175F0(gCurrentParsedObject, 0, 0x58, -1, 0);
+                        }
+                    }
+                }
+                if(CurrentObject->unkAA == 0)
+                {
+                    CurrentObject->unkA6 = 0;
+                    CurrentObject->unkA8++;
+                }
+                else
+                {
+                    CurrentObject->unkAA -= 1;
+                }
+            }
+        }
+    }
+    else
+    {
+        if(CurrentObject->unkA8 == 0 || CurrentObject->unkA8 == 2)
+        {
+            CurrentObject->unkA6 = 1;
+            CurrentObject->unkAA = 5;
+        }
+        else if(CurrentObject->unkA8 == 1)
+        {
+            func_8001C0EC(gCurrentParsedObject, 0, 1, 0xA8, &D_80118868);
+            func_8001BBDC(gCurrentParsedObject, 0);
+            CurrentObject->unkA6 = 1;
+        }
+        else if (CurrentObject->unkA8 == 3) 
+        {
+            func_8001C0EC(gCurrentParsedObject, 0, 2, 0xA8, &D_80118868);
+            func_8001BBDC(gCurrentParsedObject, 0);
+            CurrentObject->unkA6 = 1;
+        } 
+        else if (CurrentObject->unkA8 == 4) 
+        {
+            CurrentObject->unkA6 = 1;
+            CurrentObject->unkAA = 0x32;
+            CurrentObject->unk108 = 1;
+        } 
+        else if (CurrentObject->unkA8 == 5) 
+        {
+            func_8001BBDC(gCurrentParsedObject, 1);
+            if (func_8002A2EC(gCurrentParsedObject, 1200.0f) != 0) {
+                CurrentObject->unk132 = 0;
+            } else {
+                CurrentObject->unkA4 = 3;
+                CurrentObject->unk132 = 0;
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D613C.s")
 

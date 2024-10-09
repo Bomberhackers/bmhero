@@ -279,7 +279,18 @@ void func_800D36E8(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D375C.s")
+void func_800D375C(void) {
+    struct ObjectStruct* CurrentObject;
+
+    CurrentObject = &gObjects[gCurrentParsedObject];
+    if ((D_80177A64 == 0) && (CurrentObject->unkA4 == 2)) {
+        CurrentObject->unkA4 = 3;
+        CurrentObject->unk132 = 0;
+    } else if ((D_80177A64 == 2) && (CurrentObject->unkA4 == 2)) {
+        CurrentObject->unkA4 = 3;
+        CurrentObject->unk132 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D3824.s")
 

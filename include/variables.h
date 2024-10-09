@@ -340,6 +340,7 @@ extern UNK_TYPE D_80117EE8;
 extern UNK_TYPE D_80117EF0;
 extern void* D_80117F08;
 extern u32 D_80118530;
+extern UNK_TYPE D_80118600; //this is an array, this is pain, we will refactor this later
 extern u32 D_80118754;
 extern UNK_TYPE D_80118784;
 extern u32 D_801187BC;

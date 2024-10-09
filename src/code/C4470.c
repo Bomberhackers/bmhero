@@ -41,9 +41,55 @@ void func_800D1FCC(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D20E4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D2208.s")
+void func_800D2208(void)
+{
+    struct ObjectStruct *CurrentObject;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D2334.s")
+    CurrentObject = &gObjects[gCurrentParsedObject];
+    if (CurrentObject->unk132 == 0)
+    {
+        CurrentObject->unk132 = 1;
+        CurrentObject->unkA6 = 0x28;
+        func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118600);
+        func_8001ABF4(gCurrentParsedObject, 1, 0, &D_80118600 + 0x1C / 4);
+        func_8001ABF4(gCurrentParsedObject, 2, 0, &D_80118600 + 0x38 / 4);
+    }
+    if (CurrentObject->unkA6 == 0)
+    {
+        CurrentObject->unk108 = 1;
+        CurrentObject->unkA4 = 3;
+        CurrentObject->unk132 = 0;
+    }
+    else
+    {
+        CurrentObject->unkA6 -= 1;
+    }
+}
+
+void func_800D2334(void)
+{
+    struct ObjectStruct *CurrentObject;
+
+    CurrentObject = &gObjects[gCurrentParsedObject];
+    if (CurrentObject->unk132 == 0)
+    {
+        CurrentObject->unk132 = 1;
+        CurrentObject->unkA6 = 0x14;
+        func_8001C0EC(gCurrentParsedObject, 0, 0, 0x94, &D_80118530);
+        func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118600 + 0x54 / 4);
+        func_8001ABF4(gCurrentParsedObject, 1, 0, &D_80118600 + 0x70 / 4);
+        func_8001ABF4(gCurrentParsedObject, 2, 0, &D_80118600 + 0x8C / 4);
+    }
+    if (CurrentObject->unkA6 == 0)
+    {
+        CurrentObject->unkA4 = 4;
+        CurrentObject->unk132 = 0;
+    }
+    else
+    {
+        CurrentObject->unkA6 -= 1;
+    }
+}
 
 void func_800D247C(void)
 {
@@ -77,11 +123,21 @@ void func_800D247C(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D26A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D2870.s")
+void func_800D2870(void)
+{
+    func_8002B0E4(gCurrentParsedObject);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D28A0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D2980.s")
+void func_800D2980(void)
+{
+    if ((D_80177A64 == 0) || (D_80177A64 == 2))
+    {
+        gObjects[gCurrentParsedObject].unkA4 = 2;
+        gObjects[gCurrentParsedObject].unk132 = 0;
+    }
+}
 
 void func_800D2A04(void)
 {

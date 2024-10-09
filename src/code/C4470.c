@@ -9,6 +9,8 @@ extern f64 D_801150D8;
 extern f64 D_801150E0;
 extern f32 D_801150B4;
 extern f64 D_801150A8;
+extern f32 D_801150B0;
+extern f32 D_801150E8;
 
 // temp func defs
 extern void func_800D464C(); /* extern */
@@ -1226,7 +1228,26 @@ void func_800D63C4(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D6540.s")
+void func_800D6540(void)
+{
+    switch (gObjects[gCurrentParsedObject].unkA4)
+    {
+    case 1:
+        func_800D5938();
+        break;
+    case 2:
+        func_800D5AA4();
+        break;
+    case 3:
+        func_800D613C();
+        break;
+    case 4:
+        func_800D63C4();
+        break;
+    default:
+        break;
+    }
+}
 
 void func_800D660C(void)
 {

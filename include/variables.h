@@ -261,8 +261,6 @@ extern UnkStruct80165100 D_801144E0;
 extern UnkStruct80165100 D_801144EC;
 extern UnkStruct80165100 D_801144F8;
 extern void* D_8011472C;
-extern f32 D_801150B0;
-extern f32 D_801150E8;
 extern struct Vec3f D_80115180[];
 extern struct Vec3f D_80115184[];
 extern struct Vec3f D_80115188[];

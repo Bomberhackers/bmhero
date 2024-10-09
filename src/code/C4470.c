@@ -8,6 +8,7 @@ extern f64 D_801150D0;
 extern f64 D_801150D8;
 extern f64 D_801150E0;
 extern f32 D_801150B4;
+extern f64 D_801150A8;
 
 // temp func defs
 extern void func_800D464C(); /* extern */
@@ -433,9 +434,96 @@ void func_800D375C(void)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D3824.s")
+void func_800D3824(void)
+{
+    struct ObjectStruct *CurrentObject;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D3974.s")
+    CurrentObject = &gObjects[gCurrentParsedObject];
+    if (CurrentObject->unk132 == 0)
+    {
+        CurrentObject->unk132 = 1;
+        CurrentObject->unk44 = 0.0f;
+        CurrentObject->unk40 = 90.0f;
+        CurrentObject->unk48 = 5.0f;
+        func_8001C0EC(gCurrentParsedObject, 0, 0, 0x97, &D_801187BC);
+    }
+    func_80029C40(gCurrentParsedObject);
+    func_80029D04(gCurrentParsedObject);
+    if (func_8001B44C(gCurrentParsedObject, 0) != 0)
+    {
+        CurrentObject->unk48 = 0.0f;
+        CurrentObject->Vel.y = CurrentObject->unk48;
+        CurrentObject->unkA4 = 2;
+        CurrentObject->unk132 = 0;
+        func_8001BBDC(gCurrentParsedObject, 1);
+    }
+}
+
+void func_800D3974(void)
+{
+    struct ObjectStruct *CurrentObject;
+    f32 sp30;
+    f32 sp2C;
+
+    CurrentObject = &gObjects[gCurrentParsedObject];
+    if (CurrentObject->unk132 == 0)
+    {
+        CurrentObject->unk132 = 1;
+        CurrentObject->unkA8 = 0xA;
+        CurrentObject->unkAC = (s16)(s32)CurrentObject->Pos.x;
+        CurrentObject->unkAE = (s16)(s32)CurrentObject->Pos.z;
+        CurrentObject->unk3C = (f32)func_80014E80(0x168);
+        CurrentObject->unk44 = 4.0f;
+        CurrentObject->unkB6 = (s16)(s32)CurrentObject->Pos.y;
+        CurrentObject->unkB8 = 0;
+        CurrentObject->unk40 = 90.0f;
+        CurrentObject->unk48 = 30.0f;
+        CurrentObject->unk108 = 1;
+        func_8001C0EC(gCurrentParsedObject, 0, 1, 0x97, &D_801187BC);
+        func_8001BBDC(gCurrentParsedObject, 0);
+    }
+
+    if ((CurrentObject->unkA8 == 0) && (func_80028FA0(gCurrentParsedObject) != 0))
+    {
+        func_80029B60(gCurrentParsedObject);
+        CurrentObject->unkA8 = 0xA;
+    }
+
+    CurrentObject->unk3C = func_80015538(CurrentObject->unk3C, 0.5f);
+    func_80029C40(gCurrentParsedObject);
+    CurrentObject->unkB8 = func_80015538(CurrentObject->unkB8, 10.0f);
+    func_800294F0(gCurrentParsedObject, &sp30, &sp2C, 0.0f, 0.0f, 0.0f);
+    CurrentObject->unk48 = sinf(CurrentObject->unkB8 * D_801150A8) * 30.0f + CurrentObject->unkB6 - CurrentObject->Pos.y;
+    func_80029D04(gCurrentParsedObject);
+
+    if (func_80029018(gCurrentParsedObject, 3U, 60.0f, 0.0f, 0.0f, 0.0f) != 0)
+    {
+        func_80029824(gCurrentParsedObject, func_800297DC());
+        CurrentObject->unkA8 = 0xA;
+    }
+    if (CurrentObject->unkA8 == 0)
+    {
+        CurrentObject->unkB0 = (CurrentObject->Pos.x - CurrentObject->unkAC);
+        CurrentObject->unkB2 = (CurrentObject->Pos.z - CurrentObject->unkAE);
+        if ((CurrentObject->unkB0 >= 0x190) || (CurrentObject->unkB0 < -0x18F))
+        {
+            func_80029824(gCurrentParsedObject, func_800297DC());
+            CurrentObject->unkA8 = 0xA;
+        }
+        else
+        {
+            if ((CurrentObject->unkB2 >= 0x190) || (CurrentObject->unkB2 < -0x18F))
+            {
+                func_80029824(gCurrentParsedObject, func_800297DC());
+                CurrentObject->unkA8 = 0xA;
+            }
+        }
+    }
+    if (CurrentObject->unkA8 != 0)
+    {
+        CurrentObject->unkA8 -= 1;
+    }
+}
 
 void func_800D3E54(void)
 {

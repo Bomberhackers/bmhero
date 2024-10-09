@@ -371,8 +371,36 @@ void func_800D34AC(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D3568.s")
 
-void func_800D3578(); /* extern */
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D3578.s")
+void func_800D3578(void)
+{
+    struct ObjectStruct *CurrentObject;
+    s32 sp20;
+
+    CurrentObject = &gObjects[gCurrentParsedObject];
+    if (CurrentObject->unk132 == 0)
+    {
+        CurrentObject->unk132 = 1;
+        CurrentObject->unkA6 = 0x1E;
+        func_8001BB34(gCurrentParsedObject, 1);
+    }
+    if (CurrentObject->unkA6 == 0)
+    {
+        if (CurrentObject->unkA8 < 2)
+        {
+            sp20 = func_80027464(1, &D_80114120, CurrentObject->Pos.x, CurrentObject->Pos.y, CurrentObject->Pos.z, 0.0f);
+            if (sp20 != -1)
+            {
+                gObjects[sp20].unkBA = CurrentObject->unkBA;
+                CurrentObject->unkA6 = 0x1E;
+                CurrentObject->unkA8 += 1;
+            }
+        }
+    }
+    else
+    {
+        CurrentObject->unkA6 -= 1;
+    }
+}
 
 void func_800D36E8(void)
 {

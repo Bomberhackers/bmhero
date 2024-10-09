@@ -172,7 +172,38 @@ void func_800D2F1C(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D3048.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D31A8.s")
+void func_800D31A8(void) {
+    struct ObjectStruct* sp3C;
+    f32 sp38;
+    f32 sp34;
+    f32 sp30;
+
+    sp3C = &gObjects[gCurrentParsedObject];
+    if (sp3C->unk132 == 0) {
+        sp3C->unk132 = 1;
+        sp3C->unkAC = 0;
+        sp3C->unk44 = 0.0f;
+        sp3C->unk3C = func_8002A46C(gCurrentParsedObject);
+        func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118784 + 0x1C / 4); //this line WILL have to be refactored later
+    }
+    if (sp3C->unk44 != 12.0f) {
+        sp3C->unk44 = (f32) ((f64) sp3C->unk44 + 0.5);
+    }
+    if (func_80028FA0(gCurrentParsedObject) != 0) {
+        func_80029B60(gCurrentParsedObject);
+    }
+    sp3C->Vel.y = 0.0f;
+    func_80029C40(gCurrentParsedObject);
+    if (func_80029018(gCurrentParsedObject, 1U, 45.0f, 0.0f, 0.0f, 0.0f) != 0) {
+        func_80029824(gCurrentParsedObject, func_800297DC());
+    }
+    if (func_800295C0(gCurrentParsedObject, &sp38, &sp34, 0.0f, 0.0f, 0.0f) != 0) {
+        sp30 = sp34;
+    } else {
+        sp30 = sp38;
+    }
+    sp3C->Pos.y = 90.0f + sp30;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D33B0.s")
 

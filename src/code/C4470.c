@@ -7,6 +7,7 @@ extern f64 D_801150C8;
 extern f64 D_801150D0;
 extern f64 D_801150D8;
 extern f64 D_801150E0;
+extern f32 D_801150B4;
 
 // temp func defs
 extern void func_800D464C(); /* extern */
@@ -240,9 +241,20 @@ void func_800D34AC(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D3568.s")
 
+void func_800D3578();                                  /* extern */
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D3578.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D36E8.s")
+void func_800D36E8(void) {
+    switch (gObjects[gCurrentParsedObject].unkA4) {
+        case 1:
+            {
+            func_800D3578();
+                break;
+            }
+        default:
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D375C.s")
 
@@ -304,11 +316,51 @@ void func_800D3E54(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D4530.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D45C4.s")
+void func_800D45C4(void) {
+    func_80027464(1, &D_80114144, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+}
+
+void stub_unknown_800D45C4()
+{
+
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D464C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D47C0.s")
+void func_800D47C0(void) {
+    struct ObjectStruct* sp3C;
+    s32 sp38;
+    UNUSED s32 sp34;
+    UNUSED s32 sp30;
+    f32 sp2C;
+
+    sp3C = &gObjects[gCurrentParsedObject];
+    if (sp3C->unk132 == 0) {
+        sp3C->unk132 += 1;
+        sp3C->unkA6 = 0;
+        sp3C->unkAA = 0xFF;
+    }
+    if (sp3C->unkAA == 0xFF) {
+        if (sp3C->unkA6 == 0) {
+            sp38 = func_80027464(1, &D_80114150, sp3C->Pos.x, sp3C->Pos.y, sp3C->Pos.z, 0.0f);
+            if (sp38 != -1) {
+                gObjects[sp38].Rot.y= gObjects[sp38].unk3C = sp3C->Rot.y;
+                sp3C->unkA6 = 0x96;
+            }
+        } else {
+            sp3C->unkA6 -= 1;
+        }
+        sp2C = (gPlayerObject->Pos.y + D_801150B4) - sp3C->Pos.y;
+        if ((sp2C <= -800.0f) || (sp2C >= 50.0f)) {
+            sp3C->unkAA = 0x96;
+        }
+    } else if (sp3C->unkAA != 0) {
+        sp3C->unkAA -= 1;
+    } else {
+        sp3C->unkA4 = 1;
+        sp3C->unk132 = 0;
+    }
+}
 
 void func_800D4A10(void)
 {
@@ -496,7 +548,12 @@ void func_800D4D74(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D5848.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D58C0.s")
+void func_800D58C0(void) {
+    if (D_80177A64 == 0) {
+        gObjects[gCurrentParsedObject].unkA4 = 4;
+        gObjects[gCurrentParsedObject].unk132 = 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D5938.s")
 
@@ -617,7 +674,27 @@ void func_800D5AA4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D613C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D63C4.s")
+void func_800D63C4(void) {
+    struct ObjectStruct* CurrentObject;
+
+    CurrentObject = &gObjects[gCurrentParsedObject];
+    if (CurrentObject->unk132 == 0) {
+        CurrentObject->unk132 = 1;
+        CurrentObject->Vel.x = CurrentObject->Vel.y = CurrentObject->Vel.z = 0.0f;
+        CurrentObject->unkA8 = 0;
+        CurrentObject->unk108 = 0;
+        func_8001C0EC(gCurrentParsedObject, 0, 1, 0xA8, &D_80118868);
+        func_8001BBDC(gCurrentParsedObject, 1);
+    }
+    if (CurrentObject->Rot.z >= 180.0f) {
+        CurrentObject->unkA8 += 1;
+    } else {
+        CurrentObject->Rot.z += 10.0f;
+    }
+    if (CurrentObject->unkA8 == 0xF) {
+        func_8002B0E4(gCurrentParsedObject);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D6540.s")
 
@@ -631,8 +708,6 @@ void func_800D6C14(void) {
 
 void func_800D6C44(void)
 {
-    s16 temp_s0;
-
     if (gObjects[gCurrentParsedObject].unkE6[0] == -1)
     {
         switch (gObjects[gCurrentParsedObject].unkA4)
@@ -805,11 +880,15 @@ void func_800D7F9C(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D808C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D86E4.s")
+void func_800D86E4(void) {
+    func_8002B0E4(gCurrentParsedObject);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D8714.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D87A8.s")
+void func_800D87A8(void) {
+    func_80027464(1, &D_80114258, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D8820.s")
 

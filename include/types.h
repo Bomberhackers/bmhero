@@ -245,7 +245,8 @@ struct ObjectStruct {
     /* 0x0C2 */ s16 unkC2;
     char fillerC4[0x10];
     /* 0x0D4 */ f32 unkD4;
-    char fillerD8[0xC];
+    /* 0x0D8 */ f32 unkD8;
+    char fillerDC[0x8];
     /* 0x0E4 */ s16 unkE4;
     /* 0x0E6 */ s16 unkE6[1];
     /* 0x0E8 */ s16 unkE8[2];

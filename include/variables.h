@@ -209,6 +209,7 @@ extern struct UnkStruct_80027C00 D_80114150;
 extern struct UnkStruct_80027C00 D_8011415C;
 extern struct UnkStruct_80027C00 D_80114168;
 extern struct UnkStruct_80027C00 D_80114228;
+extern struct UnkStruct_80027C00 D_80114234;
 extern struct UnkStruct_80027C00 D_80114240;
 extern struct UnkStruct_80027C00 D_80114258;
 extern struct UnkStruct_80027C00 D_80114270;
@@ -353,6 +354,7 @@ extern UNK_TYPE D_801188DC;
 extern UNK_TYPE D_80118898;
 extern UNK_TYPE* D_80118978[];
 extern UNK_TYPE* D_80118978[];
+extern u32 D_80118A60; //rodata? no rodata?
 extern s32 D_80118B38;
 extern s32 D_80118BDC;
 extern s32 D_80118BE0;

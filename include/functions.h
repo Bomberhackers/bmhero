@@ -1,7 +1,7 @@
 #ifndef _FUNCTIONS_H_
 #define _FUNCTIONS_H_
 
-#include "ultra64.h"
+#include <ultra64.h>
 
 // 3490.c
 s32 func_80002890(struct UnkStruct80001CF0* arg0, s32* arg1, s32* arg2, s32 arg3);

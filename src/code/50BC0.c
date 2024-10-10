@@ -1,8 +1,9 @@
 #include <ultra64.h>
 #include "50BC0.h"
 
-void func_8005E6A0(s32 arg0, s32 arg1) {
-    struct UnkStruct8016E10C* sp8C;
+// DebugUtils_DrawProfiler
+void func_8005E6A0(s32 x, s32 y) {
+    struct UnkStruct8016E10C* sys;
     u32 i;
 
     func_8005F124();
@@ -13,32 +14,32 @@ void func_8005E6A0(s32 arg0, s32 arg1) {
     debug_print_xy(48, 216);
     func_8005FA90();
 
-    sp8C = D_8016E10C;
+    sys = D_8016E10C;
     gDPPipeSync(gMasterDisplayList++);
     gDPSetCycleType(gMasterDisplayList++, G_CYC_FILL);
     gDPSetRenderMode(gMasterDisplayList++, G_RM_NOOP, G_RM_NOOP2);
-    gDPSetFillColor(gMasterDisplayList++, -1);
-    gDPFillRectangle(gMasterDisplayList++, arg0, arg1, arg0 + 0xE4, arg1 + 7);
+    gDPSetFillColor(gMasterDisplayList++, GPACK_RGBA5551(255, 255, 255, 1) | GPACK_RGBA5551(255, 255, 255, 1) << 16); // white
+    gDPFillRectangle(gMasterDisplayList++, x, y, x + 0xE4, y + 7);
     gDPPipeSync(gMasterDisplayList++);
-    gDPSetFillColor(gMasterDisplayList++, 0x00010001);
-    gDPFillRectangle(gMasterDisplayList++, arg0 + 1, arg1 + 1, arg0 + 0xE3, arg1 + 6);
+    gDPSetFillColor(gMasterDisplayList++, GPACK_RGBA5551(0, 0, 0, 1) | GPACK_RGBA5551(0, 0, 0, 1) << 16); // black
+    gDPFillRectangle(gMasterDisplayList++, x + 1, y + 1, x + 0xE3, y + 6);
     gDPPipeSync(gMasterDisplayList++);
-    gDPSetFillColor(gMasterDisplayList++, 0xF801F801);
-    gDPFillRectangle(gMasterDisplayList++, arg0 + 1, arg1 + 1, arg0 + (sp8C->unk58 / 10000U) + 1, arg1 + 2);
+    gDPSetFillColor(gMasterDisplayList++, GPACK_RGBA5551(255, 0, 0, 1) | GPACK_RGBA5551(255, 0, 0, 1) << 16); // red
+    gDPFillRectangle(gMasterDisplayList++, x + 1, y + 1, x + (sys->redBarTimer / 10000U) + 1, y + 2);
     gDPPipeSync(gMasterDisplayList++);
-    gDPSetFillColor(gMasterDisplayList++, 0x07C107C1);
-    gDPFillRectangle(gMasterDisplayList++, arg0 + 1, arg1 + 3, arg0 + (sp8C->unk60 / 10000U) + 1, arg1 + 4);
+    gDPSetFillColor(gMasterDisplayList++, GPACK_RGBA5551(0, 255, 0, 1) | GPACK_RGBA5551(0, 255, 0, 1) << 16); // green
+    gDPFillRectangle(gMasterDisplayList++, x + 1, y + 3, x + (sys->greenBarTimer / 10000U) + 1, y + 4);
     gDPPipeSync(gMasterDisplayList++);
-    gDPSetFillColor(gMasterDisplayList++, 0xF83FF83F);
-    gDPFillRectangle(gMasterDisplayList++, arg0 + 1, arg1 + 5, arg0 + (D_8016E254 / 10000U) + 1, arg1 + 6);
+    gDPSetFillColor(gMasterDisplayList++, GPACK_RGBA5551(255, 0, 255, 1) | GPACK_RGBA5551(255, 0, 255, 1) << 16); // magenta
+    gDPFillRectangle(gMasterDisplayList++, x + 1, y + 5, x + (D_8016E254 / 10000U) + 1, y + 6);
     gDPPipeSync(gMasterDisplayList++);
-    gDPSetFillColor(gMasterDisplayList++, 0xFFC1FFC1);
-    gDPFillRectangle(gMasterDisplayList++, arg0 + (D_8016E254 / 10000) + 1, arg1 + 5, arg0 + (D_8016E254 / 10000) + (D_8016E264 / 10000) + 1, arg1 + 6);
+    gDPSetFillColor(gMasterDisplayList++, GPACK_RGBA5551(255, 255, 0, 1) | GPACK_RGBA5551(255, 255, 0, 1) << 16); // yellow
+    gDPFillRectangle(gMasterDisplayList++, x + (D_8016E254 / 10000) + 1, y + 5, x + (D_8016E254 / 10000) + (D_8016E264 / 10000) + 1, y + 6);
     gDPPipeSync(gMasterDisplayList++);
-    gDPSetFillColor(gMasterDisplayList++, 0xFFFFFFFF);
+    gDPSetFillColor(gMasterDisplayList++, GPACK_RGBA5551(255, 255, 255, 1) | GPACK_RGBA5551(255, 255, 255, 1) << 16); // white
 
     for(i = 1; i < 3; i++) {
-        gDPFillRectangle(gMasterDisplayList++, arg0 + (i * 0x4C) + 1, arg1 + 1, arg0 + (i * 0x4C) + 1, arg1 + 6);
+        gDPFillRectangle(gMasterDisplayList++, x + (i * 0x4C) + 1, y + 1, x + (i * 0x4C) + 1, y + 6);
     }
 
     gDPPipeSync(gMasterDisplayList++);
@@ -66,7 +67,7 @@ void func_8005EF30(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/50BC0/func_8005F0F4.s")
 
 void func_8005F124(void) {
-        D_8016E264 = osGetCount() - D_8016E25C;
+    D_8016E264 = osGetCount() - D_8016E25C;
 }
 
 void func_address() {}

@@ -412,8 +412,15 @@ void func_8001D814(void) {
     struct UnkStruct8016E10C* sp18 = D_8016E10C;
     sp1C = sp18;
 
-    sp1C->task.t.data_ptr = (s32) ((u32)D_8016E104 + 0x80E0);
-    sp1C->task.t.data_size = (s32) (((s32) (((u32)gMasterDisplayList - (u32)D_8016E104 - 0x80E0)) >> 3) << 3);
+    sp1C->task.t.data_ptr = &D_8016E104->gfxWork;
+    /**
+     * Here's whats happening here: the size of the GFX heap is being calculated here. At this
+     * moment, gMasterDisplayList points to at least D_8016E104->gfxWork or later. gfxWork begins
+     * at 0x80E0 into the GFX heap struct, so the offset needs to be removed from the pointer. Finally,
+     * after that, we account for Gfx work itself to get the size of the display list being sent, and then
+     * the size is clamped to a multiple of 64-bit due to Gfx being an array of 64-bit.
+     */
+    sp1C->task.t.data_size = ((s32)(((u32)gMasterDisplayList - (u32)D_8016E104 - 0x80E0)) >> 3) << 3;
     sp1C->task.t.type = 1;
     sp1C->task.t.flags = 0;
     sp1C->task.t.ucode_boot = (u64*)rspbootTextStart;
@@ -436,11 +443,12 @@ void func_8001D814(void) {
     osSendMesg(D_8004D9D0, sp1C, 1);
 }
 
+// init system area?
 void func_8001D9E4(void* arg0) {
     func_8005F0F4();
     D_8016E10C = arg0;
-    D_8016E104 = (void*)((u32)D_8016E10C + 0x68);
-    gMasterDisplayList = (void*)((u32)D_8016E10C + 0x8148);
+    D_8016E104 = &D_8016E10C->unk68;
+    gMasterDisplayList = &D_8016E10C->unk68.gfxWork;
     gSPSegment(gMasterDisplayList++, 0x00, 0x00000000);
     gSPSegment(gMasterDisplayList++, 0x01, osVirtualToPhysical(gFileArray[0].ptr));
     gSPDisplayList(gMasterDisplayList++, D_1000C68);
@@ -731,15 +739,15 @@ void DecompressFile(u32 id, u32 rom_start, u32 rom_end) {
         heap = ALIGN16(heap+1);
         gDecompressHeap = heap;
     }
-    allocSize = rom_end - rom_start;
-    buf = malloc(allocSize);
+    allocSize = rom_end - rom_start; // get size.
+    buf = malloc(allocSize); // alloc buf pointer.
     // first load the compressed bin to the buffer.
     load_from_rom_to_addr(rom_start, buf, allocSize);
-    // decompress the bin to the heap.
+    // then decompress the bin to the heap.
     size = Decode(buf, gDecompressHeap);
-    free(buf);
+    free(buf); // free buf, we dont need it anymore.
     gFileArray[id].ptr = gDecompressHeap; // add the decompressed file to the file array.
-    gDecompressHeap += size;
+    gDecompressHeap += size; // re-set the heap pointer to the new area.
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_8001EB68.s")

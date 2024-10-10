@@ -1,4 +1,7 @@
 #include "common.h"
+#include "7B0A0.h"
+
+//BYTECODE PARSER
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008BCC0.s")
 
@@ -12,7 +15,19 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008C66C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008C684.s")
+void func_8008C684(s16* arg0) {
+    s32 sp4;
+    for(sp4 = 0; sp4 < 0x4E; sp4++)
+    {
+        if(gObjects[sp4].unkE4 == arg0[0])
+        {
+            D_80134D48[arg0[1]].ObjectID = sp4;
+            D_80134D48[arg0[1]].unk4 = arg0[2] / 10.0f;
+            D_80134D48[arg0[1]].unk8 = arg0[3] / 10.0f;
+            break;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008C778.s")
 
@@ -38,7 +53,14 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008DA20.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008DC8C.s")
+void func_8008DC8C(s16* arg0) {
+    u32 ObjectID;
+
+    ObjectID = D_80134D48[arg0[0]].ObjectID;
+    gObjects[ObjectID].Vel.y = arg0[1] / 10.0f;
+    gObjects[ObjectID].unk4C = arg0[2] / 10.0f;
+    D_80134D18[arg0[0]] = 1;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008DD54.s")
 
@@ -48,7 +70,12 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008E328.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008E3B0.s")
+void func_8008E3B0(s16* arg0) {
+    u32 CurrentObject;
+
+    CurrentObject = D_80134D48[arg0[0]].ObjectID;
+    func_8001C158(CurrentObject, arg0[1], arg0[2]);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008E418.s")
 

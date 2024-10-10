@@ -283,7 +283,7 @@ struct ObjectStruct {
 }; /* size = 0x150 */
 
 struct UnkStruct80134D48 {
-    u32 *unk0;
+    u32 ObjectID;
     f32 unk4;
     f32 unk8;
     s16 unkC;

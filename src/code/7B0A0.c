@@ -54,7 +54,7 @@ void func_80088B80(void) {
     func_80088D84();
     for(sp1E = 0; sp1E < 0x18; sp1E++)
     {
-        D_80134D48[sp1E].unk0 = -1;
+        D_80134D48[sp1E].ObjectID = -1;
         D_80134D48[sp1E].unk4 = 0.0f;
         D_80134D48[sp1E].unk8 = 0.0f;
         D_80134D48[sp1E].unkC = 0;
@@ -667,7 +667,7 @@ void func_8008AD58(s16* arg0) {
 void func_8008AE64(s16* arg0) {
     s32 sp4;
 
-    sp4 = D_80134D48[arg0[0]].unk0;
+    sp4 = D_80134D48[arg0[0]].ObjectID;
     gMegaStruct.D_80134F28.x = gObjects[sp4].Pos.x;
     gMegaStruct.D_80134F28.y = gObjects[sp4].Pos.y + arg0[1];
     gMegaStruct.D_80134F28.z = gObjects[sp4].Pos.z;
@@ -735,7 +735,7 @@ void func_8008B0F4(void) {
             gMegaStruct.D_80134F28.y = gMegaStruct.D_80134F28.y + gMegaStruct.D_80134F50.y;
             gMegaStruct.D_80134F28.z = gMegaStruct.D_80134F28.z + gMegaStruct.D_80134F50.z;
         } else {
-            sp1C = D_80134D48[gMegaStruct.D_80134FA8].unk0;
+            sp1C = D_80134D48[gMegaStruct.D_80134FA8].ObjectID;
             gMegaStruct.D_80134F28.x = gObjects[sp1C].Pos.x;
             gMegaStruct.D_80134F28.y = gObjects[sp1C].Pos.y + (f32) gMegaStruct.D_80134FA4.unk2;
             gMegaStruct.D_80134F28.z = gObjects[sp1C].Pos.z;
@@ -753,7 +753,7 @@ void func_8008B0F4(void) {
         gMegaStruct.D_80134F44.y = gMegaStruct.D_80134F44.y + gMegaStruct.D_80134F68.y;
         gMegaStruct.D_80134F44.z = gMegaStruct.D_80134F44.z + gMegaStruct.D_80134F68.z;
         if (gMegaStruct.D_80134FA4.unk0 == 1) {
-            sp1C = D_80134D48[gMegaStruct.D_80134FA8].unk0;
+            sp1C = D_80134D48[gMegaStruct.D_80134FA8].ObjectID;
             gMegaStruct.D_80134F28.x = gObjects[sp1C].Pos.x;
             gMegaStruct.D_80134F28.y = gObjects[sp1C].Pos.y + (f32) gMegaStruct.D_80134FA4.unk2;
             gMegaStruct.D_80134F28.z = gObjects[sp1C].Pos.z;

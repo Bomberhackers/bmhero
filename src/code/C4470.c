@@ -121,8 +121,27 @@ void func_800D247C(void)
     }
 }
 
-void func_800D26A0();
-#pragma GLOBAL_ASM("asm/nonmatchings/code/C4470/func_800D26A0.s")
+void func_800D26A0(void) {
+    struct ObjectStruct* CurrentObject;
+
+    CurrentObject = &gObjects[gCurrentParsedObject];
+    if (CurrentObject->unk132 == 0) {
+        CurrentObject->unk132 += 1;
+        gObjects[gCurrentParsedObject].unk108 = 0x32;
+        func_8001C0EC(gCurrentParsedObject, 0, 0, 0x94, &D_80118530);
+        func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118600 + 0xA8/4);
+        func_8001ABF4(gCurrentParsedObject, 1, 0, &D_80118600 + 0xC4/4);
+        func_8001ABF4(gCurrentParsedObject, 2, 0, &D_80118600 + 0xE0/4);
+    }
+    if ((gObjects[gCurrentParsedObject].unk108) >= 2) {
+        func_8001BB34(gCurrentParsedObject, !(CurrentObject->unk108 % 2));
+    }
+    if (CurrentObject->unk108 == 1) {
+        func_8001BB34(gCurrentParsedObject, 0);
+        CurrentObject->unkA4 = 3;
+        CurrentObject->unk132 = 0;
+    }
+}
 
 void func_800D2870(void)
 {

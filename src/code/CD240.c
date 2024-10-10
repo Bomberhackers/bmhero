@@ -77,7 +77,36 @@ void func_800DB0F8(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB1EC.s")
+void func_800DB1EC(void) {
+    struct ObjectStruct* sp24;
+    s32 sp20;
+
+    sp24 = &gObjects[gCurrentParsedObject];
+    sp20 = 0;
+    if (sp24->unk132 == 0) {
+        sp24->unk132 += 1;
+        sp24->unk44 = 20.0f;
+        func_8001C0EC(gCurrentParsedObject, 0, 2, 0x54, (u32* ) &D_80118E9C);
+    }
+    if (func_80028FA0(gCurrentParsedObject) != 0) {
+        func_80029B60(gCurrentParsedObject);
+    }
+    if (sp24->unkAA != 0) {
+        if (--sp24->unk44 < 5.0f) {
+            sp24->unkAA = 0;
+        }
+    }
+    func_80029C40(gCurrentParsedObject);
+    if (func_80029018(gCurrentParsedObject, 4U, 60.0f, 0.0f, 0.0f, 0.0f) != 0) {
+        sp24->unk3C = func_80015538(sp24->unk3C, 180.0f);
+        sp24->unkAA = 1;
+    }
+    if ((func_8001B4AC(gCurrentParsedObject, 0) != 0) && (sp24->unkAA == 0)) {
+        sp24->unkA4 = 4;
+        sp24->unk132 = 0;
+    }
+}
+
 
 void func_800DB3E8(void) {
     struct ObjectStruct* sp24;

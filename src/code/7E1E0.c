@@ -91,15 +91,21 @@ void func_8008E3B0(s16* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008E9DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008EAE4.s")
+void func_8008EAE4(s16* arg0) {
+    D_80134D48[arg0[0]].unkE = 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008EB10.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008EB40.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008EB6C.s")
+void func_8008EB6C(s16* arg0) {
+    D_80134D48[arg0[0]].unk10= 1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008EB9C.s")
+void func_8008EB9C(s16* arg0) {
+    func_8001BBDC(D_80134D48[arg0[0]].ObjectID, 1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008EBEC.s")
 

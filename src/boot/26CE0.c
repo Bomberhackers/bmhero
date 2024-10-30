@@ -1152,7 +1152,7 @@ void func_8002AE38(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     func_8002AB40(arg0, arg1, arg2, arg3, arg4);
 }
 
-void func_8002AE84(s32 arg0, s32 arg1) {
+void func_8002AE84(s32 ObjectIndex, s32 arg1) {
     struct ObjectStruct *spC4;
     s32 spC0;
     f32 ox;
@@ -1163,7 +1163,7 @@ void func_8002AE84(s32 arg0, s32 arg1) {
     Mtx_t sp6C;
     Mtx_t sp2C;
 
-    spC4 = &gObjects[arg0];
+    spC4 = &gObjects[ObjectIndex];
 
     for (spC0 = 0; spC0 < 10; spC0++) {
         if (spC4->unkE8[spC0] != -1) {
@@ -1173,7 +1173,7 @@ void func_8002AE84(s32 arg0, s32 arg1) {
     if (spC4->unkFC != -1) {
         func_800260E0(spC4->unkFC);
     }
-    func_800272E8(arg0);
+    func_800272E8(ObjectIndex);
     if (arg1 != 0) {
         guRotateF(sp6C, spC4->Rot.y, 0, 1.0f, 0.0f);
         guTranslateF(sp2C, spC4->Pos.x, spC4->Pos.y, spC4->Pos.z);
@@ -1184,14 +1184,14 @@ void func_8002AE84(s32 arg0, s32 arg1) {
         spB0 = D_80124D90[spC4->unkE4].unkE / 10.0f;
         spAC = D_80124D90[spC4->unkE4].unkF;
     }
-    func_8001A928(arg0);
+    func_8001A928(ObjectIndex);
     if ((arg1 != 0) && (spAC != -1)) {
         func_8002AB40(ox, oy, oz, spB0, spAC);
     }
 }
 
-void func_8002B0E4(s32 arg0) {
-    func_8002AE84(arg0, 1);
+void func_8002B0E4(s32 ObjectIndex) {
+    func_8002AE84(ObjectIndex, 1);
 }
 
 void func_8002B114(s32 arg0) {

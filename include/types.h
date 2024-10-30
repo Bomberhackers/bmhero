@@ -23,27 +23,33 @@ typedef struct {
     s16 unkE;
 } UnkStruct80165100;
 
+// Gfx work area
 struct UnkStruct8016E104 {
     /* 0x00 */ Mtx unk00[3];
     /* 0xC0 */ Hilite hilites[2];
     /* 0xE0 */ Mtx unkE0[1];
-};
+    u8 filler120[0x80E0-0x120];
+    /* 0x80E0 */ Gfx gfxWork[1]; // unk size
+}; // size: unk due to Gfx
 
+// a kind of "SystemWork" struct?
 struct UnkStruct8016E10C {
-    u32 unk0;
+    /* 0x00000 */ u32 unk0;
     u8 filler4[0x4];
-    u32 unk8;
-    u32 unkC;
-    OSTask task;
-    OSMesgQueue *unk50;
-    u32 unk54;
-    u32 unk58;
+    /* 0x00008 */ u32 unk8;
+    /* 0x0000C */ u32 unkC;
+    /* 0x00010 */ OSTask task;
+    /* 0x00050 */ OSMesgQueue *unk50;
+    /* 0x00054 */ u32 unk54;
+    /* 0x00058 */ u32 redBarTimer; // seems to be never used or accessed.
     u8 filler5C[0x4];
-    u32 unk60;
-    u8 filler64[0x18148-0x64];
-    u32 unk18148[1];
+    /* 0x00060 */ u32 greenBarTimer; // same as redBarTimer.
+    u8 filler64[0x4];
+    /* 0x00068 */ struct UnkStruct8016E104 unk68; // Gfx work?
+    u8 filler8150[0x18148-0x8150];
+    /* 0x18148 */ u32 unk18148[1];
     u8 filler1814C[0x1C];
-    u32 unk18168;
+    /* 0x18168 */ u32 unk18168;
 };
 
 struct UnkInputStruct80001CF0 {
@@ -245,7 +251,8 @@ struct ObjectStruct {
     /* 0x0C2 */ s16 unkC2;
     char fillerC4[0x10];
     /* 0x0D4 */ f32 unkD4;
-    char fillerD8[0xC];
+    /* 0x0D8 */ f32 unkD8;
+    char fillerDC[0x8];
     /* 0x0E4 */ s16 unkE4;
     /* 0x0E6 */ s16 unkE6[1];
     /* 0x0E8 */ s16 unkE8[2];

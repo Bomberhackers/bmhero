@@ -2,6 +2,7 @@
 #define _NUSYS_AUDIO_H_
 
 #include <sched.h>
+#include "prevent_bss_reordering.h"
 
 #define EXTRA_SAMPLES           80
 #define NUM_OUTPUT_BUFFERS      3

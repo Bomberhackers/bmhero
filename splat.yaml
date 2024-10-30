@@ -298,7 +298,7 @@ segments:
     - [0x4C7F0, rodata]
     - [0x4C820, rodata]
     - [0x4C860, .rodata, boot/1FAB0]
-    - [0x4C940, rodata]
+    - [0x4C940, .rodata, boot/21E10]
     - [0x4C9B0, .rodata, boot/26CE0]
     - [0x4CA40, rodata]
     - [0x4CC10, rodata, libultra/os/setintmask]

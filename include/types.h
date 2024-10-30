@@ -211,6 +211,8 @@ struct LevelInfo {
     /* 0x24 */ void (*unk24)();
     /* 0x28 */ void (*unk28)();
     /* 0x2C */ f32 unk2C;
+               char pad[3];
+               s8 unk33;
 };
 
 struct ObjectStruct {
@@ -271,7 +273,8 @@ struct ObjectStruct {
     /* 0x10C */ u8 unk10C;
     char filler10D[1];
     /* 0x10E */ s16 unk10E[1];
-    char filler110[0x18];
+    char filler110[0x14];
+    /* 0x124 */ f32 unk124;
     /* 0x128 */ f32 unk128;
     /* 0x12C */ f32 unk12C;
     char filler130[1];
@@ -919,26 +922,31 @@ struct UnkStruct_80026548_SP24 {
 };
 
 struct UnkStruct_80026548 {
-    /* 0x00 */ s8 unk0;
-    /* 0x01 */ char pad1[3];                        /* maybe part of unk0[4]? */
-    /* 0x04 */ s8 unk4;
-    /* 0x05 */ char pad5[3];                        /* maybe part of unk4[4]? */
-    /* 0x08 */ s16 unk8;
-    /* 0x0A */ s16 unkA;
-    /* 0x0C */ s16 unkC;
-    /* 0x0E */ u8 unkE;
-    /* 0x0F */ s8 unkF;
-    /* 0x10 */ char pad10[4];                       /* maybe part of unkF[5]? */
-    /* 0x14 */ void* (*routine)();
-    /* 0x18 */ void* (*routine2)();
-    /* 0x1C */ char pad1C[0x8];                    /* maybe part of routine2[5]? */
-    /* 0x24 */ struct UnkStruct_80026548_SP24 *unk24;
-    /* 0x28 */ char pad28[0x4];
-    /* 0x2C */ void* (*routine3)();                             /* inferred */
-    /* 0x30 */ u64 unk30;
-    /* 0x38 */ char pad38[0x24];                    /* maybe part of unk30[6]? */
-};                                                  /* size = 0x60 */
+    s8 unk0;
+    char unk1;
+    char unk2;
+    char unk3;
+    s8 unk4;
+    char unk5;
+    char unk6;
+    char unk7;
 
+    s16 unk8;
+    s16 unkA;
+    s16 unkC;
+    u8 unkE;
+    s8 unkF;
+    char pad10[4];
+    void* (*routine)();
+    void* (*routine2)();
+    void* (*routine_1C)();
+    char pad1C[0x4];
+    struct UnkStruct_80026548_SP24 *unk24;
+    char pad28[0x4];
+    void* (*routine3)();
+    u64 unk30;
+    char pad38[0x24];
+};
 
 struct UnkStruct_80027464 {
     s32 unk24[1];
@@ -1271,6 +1279,10 @@ struct UnkStruct800120FC {
     char filler0[0x6C];
     u32 unk6C;
     u32 unk70;
+};
+
+struct UnkStruct_80022454_SP24 {
+    /* 0x0 */ s16 unk0;
 };
 
 #endif // _BMHERO_TYPES_H_

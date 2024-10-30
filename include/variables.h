@@ -771,5 +771,4 @@ extern u8* _9BD180_ROM_START;
 extern s16 D_8016E0A4;
 extern u8 D_801776E4;
 extern UNK_TYPE D_80177770;
-
 #endif // VARIABLES_H

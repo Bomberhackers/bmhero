@@ -903,17 +903,6 @@ struct UnkStruct_80027C00 {
     /* 0xA */ char unkA;
 };
 
-struct UnkStruct_80028260 {
-    union {
-        s32 unk0;
-        f32 _unk0;
-    };
-    union {
-        s32 unk4;
-        f32 _unk4;
-    };
-};
-
 struct UnkStruct_80026548_SP24 {
     /* 0x00 */ s16 unk0;
     /* 0x02 */ s16 unk2;

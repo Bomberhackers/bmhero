@@ -106,7 +106,7 @@ void func_80024744(void);
 void func_80025E28(void);
 
 // 2BF00.c
-s32 func_8002F738();
+void func_8002F738();
 
 #define FIRST_CODE_FUNCTION Demo_RenderTextBG
 

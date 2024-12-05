@@ -275,7 +275,13 @@ void func_800821E0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_800824A8.s")
+void func_800824A8(void) {
+    func_8001ECB8();
+    D_8016526C = func_800821E0;
+    D_80165274 = func_80024744;
+    func_80081D78();
+    func_80000964();
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80082500.s")
 

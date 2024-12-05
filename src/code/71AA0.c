@@ -115,7 +115,15 @@ void func_800819E0(void) {
     DecompressFile(0x19, (u32)&_64EC60_ROM_START, (u32)&_64EC60_ROM_END);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80081C50.s")
+void func_80081C50(void) {
+    D_8016E430 = 0;
+    D_8016E432 = (s16) gCurrentLevel;
+    D_8016E434 = (s16) gCurrentLevel;
+    D_8016E438 = (f32) *D_80108238[gCurrentLevel]->unk0;
+    D_8016E43C = (f32) *(D_80108238[gCurrentLevel]->unk0 + 0x1);
+    D_8016E440 = (f32) *(D_80108238[gCurrentLevel]->unk0 + 0x2);
+    D_8016E444 = (f32) *(D_80108238[gCurrentLevel]->unk0 + 0x3);
+}
 
 void func_80081D78(void) {
     u32 pad;
@@ -212,7 +220,60 @@ void func_80081D78(void) {
     func_8001D284();
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_800821E0.s")
+void func_800821E0(void) {
+    u16 sp3E;
+    s32 temp_t8;
+    Gfx* sp34;
+    Gfx* sp30;
+
+    func_8001D4D0();
+    if (D_80177A20 < 2) {
+        if (D_8017792E == 0) {
+            func_8001D638(1, (s32) D_80177932, (s32) D_80177934, (s32) D_80177938);
+        } else {
+            func_8001D638(0, 0, 0, 0);
+            func_8006D6F4();
+        }
+    } else {
+        func_8001D638(1, 0, 0, 0);
+    }
+    guPerspective(D_8016E104->unk00, &sp3E, 50.0f, 1.3333334f, 100.0f, D_801779C8, 1.0f);
+    sp34 = gMasterDisplayList++;
+    sp34->words.w0 = 0xBC00000E;
+    sp34->words.w1 = (u32) sp3E;
+    guLookAt(&D_8016E104->unk00[2], gView.eye.x, gView.eye.y, gView.eye.z, gView.at.x, gView.at.y, gView.at.z, gView.up.x, gView.up.y, gView.up.z);
+    sp30 = gMasterDisplayList++;
+    sp30->words.w0 = 0x01030040;
+    sp30->words.w1 = (u32) D_8016E104;
+    D_8016E3A4 = 0;
+    if (D_80177A20 < 2) {
+        func_80087C58();
+        func_8007E678();
+        func_8001C464();
+        func_8001C70C();
+        func_8001C96C();
+        func_8006E7CC();
+        func_80087D70();
+        func_8001C5B8();
+        func_8007F3F0();
+        func_800657E8();
+        func_800818CC();
+        func_80077528();
+        Cutscene_HandlePrintText();
+    } else {
+        func_80087C58();
+        func_80087D70();
+    }
+    func_80070B1C();
+    func_80071240();
+    func_8007070C();
+    func_8006F780();
+    func_80064120();
+    func_800FF7B4();
+    if (gDebugShowTimerBar != 0) {
+        func_8005E6A0(0x2E, 0xD0);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_800824A8.s")
 

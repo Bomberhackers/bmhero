@@ -321,7 +321,39 @@ void func_80082500(void) {
     D_8016E444 = sp2C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80082678.s")
+void func_80082678(void) {
+    f32 sp34;
+    f32 sp30;
+    f32 sp2C;
+    f32 sp28;
+    s16 temp;
+    s16 sp24;
+    s16 sp22;
+    s16 sp20;
+    s32 sp1C;
+
+    sp20 = D_8016E430;
+    sp22 = D_8016E432;
+    sp24 = D_8016E434;
+    sp28 = D_8016E438;
+    sp2C = D_8016E43C;
+    sp30 = D_8016E440;
+    sp34 = D_8016E444;
+    sp1C = gCurrentLevel;
+    gCurrentLevel = 0xAB;
+    func_80081C50();
+    D_80177628 = 0;
+    func_800824A8();
+    gCurrentLevel = sp1C;
+    D_8016E430 = sp20;
+    D_8016E432 = sp22;
+    D_8016E434 = sp24;
+    D_8016E438 = sp28;
+    D_8016E43C = sp2C;
+    D_8016E440 = sp30;
+    D_8016E444 = sp34;
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8008279C.s")
 

@@ -504,7 +504,35 @@ void func_80082BBC(void) {
     D_8016E444 = sp2C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80082CC4.s")
+void func_80082CC4(void) {
+    s32 sp1C;
+    s32 sp18;
+
+    sp18 = gCurrentLevel;
+    sp1C = 0;
+    if (sp18 == 0xA) {
+        sp1C = 7;
+    } else if ((sp18 == 0x17) || (sp18 == 0x33) || (sp18 == 0xA9) || (sp18 == 0x3B)) {
+        sp1C = 3;
+    } else {
+        if (sp18 == 0xD) {
+            sp1C = 6;
+        } else if ((sp18 == 0x1F) || (sp18 == 0x43) || (sp18 == 0x66)) {
+            sp1C = 2;
+        } else if (sp18 == 0x21) {
+            sp1C = 8;
+        } else if ((sp18 == 0x25) || (sp18 == 0x27)) {
+            sp1C = 4;
+        } else if (sp18 == 8) {
+            sp1C = 9;
+        } else if (sp18 == 0x4A) {
+            sp1C = 5;
+        }
+    }
+    if (sp1C != 0) {
+        Demo_Start(sp1C);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80082E38.s")
 

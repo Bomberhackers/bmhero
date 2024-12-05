@@ -355,7 +355,36 @@ void func_80082678(void) {
 }
 
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8008279C.s")
+void func_8008279C(void) {
+    f32 sp2C;
+    f32 sp28;
+    f32 sp24;
+    f32 sp20;
+    s16 temp;
+    s16 sp1C;
+    s16 sp1A;
+    s16 sp18;
+
+    sp18 = D_8016E430;
+    sp1A = D_8016E432;
+    sp1C = D_8016E434;
+    sp20 = D_8016E438;
+    sp24 = D_8016E43C;
+    sp28 = D_8016E440;
+    sp2C = D_8016E444;
+    gCurrentLevel = 0xAA;
+    func_80081C50();
+    D_80177628 = 0;
+    func_800824A8();
+    D_8016E430 = sp18;
+    D_8016E432 = sp1A;
+    D_8016E434 = sp1C;
+    D_8016E438 = sp20;
+    D_8016E43C = sp24;
+    D_8016E440 = sp28;
+    D_8016E444 = sp2C;
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_800828A4.s")
 

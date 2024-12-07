@@ -17,7 +17,16 @@ void func_8007F5CC(void) {
     gObjects[gCurrentParsedObject].unkC2 = 0x1E;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8007F688.s")
+void func_8007F688(void) {
+    struct ObjectStruct* sp34;
+
+    sp34 = &gObjects[gCurrentParsedObject];
+    sp34->unkA6 += 1;
+    sp34->Scale.x = sp34->Scale.y = sp34->Scale.z = ((f32) sp34->unkA6 / 10.0f) + 1.0f;
+    if (sp34->unkA6 >= 0x15) {
+        func_8001A928(gCurrentParsedObject);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8007F778.s")
 

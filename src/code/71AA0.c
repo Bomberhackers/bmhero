@@ -414,7 +414,17 @@ void func_800812D4(void) {
     sp24->unkC2 = 0x1E;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_800813B8.s")
+void func_800813B8(void) {
+    struct ObjectStruct* sp1C;
+
+    sp1C = &gObjects[gCurrentParsedObject];
+    if (sp1C->unkA6 == 0) {
+        func_8001A928(gCurrentParsedObject);
+    } else {
+        sp1C->unkA6 -= 1;
+        sp1C->Pos.y += sp1C->Vel.y;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80081468.s")
 

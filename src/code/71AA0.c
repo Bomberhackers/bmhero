@@ -222,7 +222,16 @@ void func_8008057C(void) {
     gObjects[gCurrentParsedObject].unkC2 = 0x24;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80080638.s")
+void func_80080638(void) {
+    struct ObjectStruct* sp1C;
+
+    sp1C = &gObjects[gCurrentParsedObject];
+    sp1C->unkC0 = sp1C->unkA6;
+    sp1C->unkA6 += 1;
+    if (sp1C->unkC0 >= 8) {
+        func_8001A928(gCurrentParsedObject);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_800806DC.s")
 

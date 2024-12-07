@@ -108,7 +108,14 @@ void func_8007FC98(struct ObjectStruct* arg0) {
     arg0->unkC2 = 0x21;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8007FD5C.s")
+void func_8007FD5C(void) {
+    struct ObjectStruct* sp1C;
+
+    sp1C = &gObjects[gCurrentParsedObject];
+    sp1C->unkE4 = 0x2BF;
+    sp1C->Vel.x = (f32) (func_80014E80(3) + 0xF);
+    func_8007FC98(sp1C);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8007FDDC.s")
 

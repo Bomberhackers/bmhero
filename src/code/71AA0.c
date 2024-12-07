@@ -10,7 +10,12 @@ void func_8007F580(void) {
     } while (++sp1C < 0xCF);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8007F5CC.s")
+void func_8007F5CC(void) {
+    gObjects[gCurrentParsedObject].unkE4 = 0x2BC;
+    gObjects[gCurrentParsedObject].unkBE = 2;
+    gObjects[gCurrentParsedObject].unkC0 = 0;
+    gObjects[gCurrentParsedObject].unkC2 = 0x1E;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8007F688.s")
 

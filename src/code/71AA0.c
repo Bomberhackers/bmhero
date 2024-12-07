@@ -78,7 +78,23 @@ void func_8007FB34(void) {
     sp4->unkC2 = 0x20;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8007FBA4.s")
+void func_8007FBA4(void) {
+    struct ObjectStruct* sp1C;
+
+    sp1C = &gObjects[gCurrentParsedObject];
+    if (sp1C->unkA8 == 0) {
+        if (sp1C->unkA6 == 9) {
+            func_8001A928(gCurrentParsedObject);
+            return;
+        } else {
+            sp1C->unkC0 = sp1C->unkA6;
+            sp1C->unkA6 += 1;
+            sp1C->unkA8 = 1;
+        }
+    } else {
+        sp1C->unkA8 -= 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8007FC98.s")
 

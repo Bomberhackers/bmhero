@@ -169,7 +169,16 @@ void func_80080014(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80080198.s")
+void func_80080198(void) {
+    struct ObjectStruct* sp1C;
+
+    sp1C = &gObjects[gCurrentParsedObject];
+    sp1C->unkE4 = 0x2C2;
+    sp1C->unkA6 = func_80014E80(5) + 8;
+    sp1C->unkBE = 3;
+    sp1C->unkC0 = 0;
+    sp1C->unkC2 = 0x22;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80080228.s")
 

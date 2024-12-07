@@ -96,7 +96,17 @@ void func_8007FBA4(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8007FC98.s")
+void func_8007FC98(struct ObjectStruct* arg0) {
+
+    arg0->Vel.y = (f32) func_80014E80(-7);
+    arg0->Vel.z = (f32) func_80014E80(-7);
+    arg0->Scale.z = 1.0f;
+    arg0->Scale.x = arg0->Scale.y = arg0->Scale.z;
+    arg0->unkA6 = 0x32;
+    arg0->unkBE = 2;
+    arg0->unkC0 = 0;
+    arg0->unkC2 = 0x21;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8007FD5C.s")
 

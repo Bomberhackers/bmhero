@@ -1,5 +1,6 @@
 #include <ultra64.h>
 #include "7B0A0.h"
+#include "71AA0.h"
 
 void func_8007F580(void) {
     s32 sp1C;
@@ -274,7 +275,23 @@ void func_80080834(void) {
     sp24->unk132 = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80080978.s")
+void func_80080978(void) {
+    struct ObjectStruct* sp1C;
+
+    sp1C = &gObjects[gCurrentParsedObject];
+    sp1C->Pos.x += sp1C->Vel.x;
+    sp1C->Pos.z += sp1C->Vel.z;
+    sp1C->Pos.y += sp1C->Vel.y;
+    sp1C->Vel.y = (f32) ((f64) sp1C->Vel.y - D_8010CB18);
+    if (sp1C->Scale.x <= 1.0f) {
+        sp1C->Scale.x = (f32) ((f64) sp1C->Scale.x + D_8010CB20);
+        sp1C->Scale.y = (f32) ((f64) sp1C->Scale.y + D_8010CB28);
+        sp1C->Scale.z = (f32) ((f64) sp1C->Scale.z + D_8010CB30);
+    }
+    if (sp1C->Pos.y <= 0.0f) {
+        func_8001A928(gCurrentParsedObject);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80080AFC.s")
 

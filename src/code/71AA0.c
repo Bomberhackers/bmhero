@@ -343,7 +343,13 @@ void func_80080E48(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80080EF4.s")
+void func_80080EF4(void) {
+    struct ObjectStruct* sp1C;
+
+    sp1C = &gObjects[gCurrentParsedObject];
+    func_8001BD44(gCurrentParsedObject, 0, 1, (s32) gFileArray[0x29].ptr);
+    sp1C->unkE4 = 0x2CA;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80080F6C.s")
 

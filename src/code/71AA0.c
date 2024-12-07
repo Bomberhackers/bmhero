@@ -49,9 +49,24 @@ void func_8007F834(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8007F964.s")
+void func_8007F964(void) {
+    gObjects[gCurrentParsedObject].unkE4 = 0x2C5;
+    gObjects[gCurrentParsedObject].unkBE = 2;
+    gObjects[gCurrentParsedObject].unkC0 = 0;
+    gObjects[gCurrentParsedObject].unkC2 = 0x25;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8007FA20.s")
+void func_8007FA20(void) {
+    struct ObjectStruct* sp34;
+
+    sp34 = &gObjects[gCurrentParsedObject];
+    sp34->unkC0 = (s16) ((s16) sp34->unkA6 / 2);
+    sp34->Scale.x = sp34->Scale.y = sp34->Scale.z = ((f32) sp34->unkA6 / 16.0f) + 1.0f;
+    sp34->unkA6 += 1;
+    if (sp34->unkA6 >= 0x10) {
+        func_8001A928(gCurrentParsedObject);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8007FB34.s")
 

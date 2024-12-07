@@ -293,7 +293,20 @@ void func_80080978(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80080AFC.s")
+void func_80080AFC(void) {
+    struct ObjectStruct* sp24;
+
+    sp24 = &gObjects[gCurrentParsedObject];
+    sp24->unkE4 = 0x2C8;
+    sp24->unkBE = 2;
+    sp24->unkC0 = func_80014E80(8);
+    sp24->unkC2 = 0x27;
+    sp24->Vel.x = (f32) func_80014E80(-0xC);
+    sp24->Vel.y = (f32) (func_80014E80(8) + 8);
+    sp24->Vel.z = (f32) func_80014E80(-0xC);
+    sp24->Scale.z = 3.0f;
+    sp24->Scale.x = sp24->Scale.y = sp24->Scale.z;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80080C0C.s")
 

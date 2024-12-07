@@ -215,7 +215,12 @@ void func_800804D0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8008057C.s")
+void func_8008057C(void) {
+    gObjects[gCurrentParsedObject].unkE4 = 0x2C4;
+    gObjects[gCurrentParsedObject].unkBE = 2;
+    gObjects[gCurrentParsedObject].unkC0 = 0;
+    gObjects[gCurrentParsedObject].unkC2 = 0x24;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80080638.s")
 

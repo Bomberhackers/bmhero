@@ -360,7 +360,21 @@ void func_80080F6C(void) {
     sp24->Scale.x = sp24->Scale.y = sp24->Scale.z = 2.0f;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80081024.s")
+void func_80081024(void) {
+    struct ObjectStruct* sp24;
+
+    sp24 = &gObjects[gCurrentParsedObject];
+    if (sp24->unk132 == 0) {
+        sp24->unk132 += 1;
+        func_8001C0EC(gCurrentParsedObject, 0, 0, 0x29, &D_80116EDC);
+        func_800175F0(gCurrentParsedObject, 0, 0x6A, -1, 0);
+    }
+    if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
+        func_8001A928(gCurrentParsedObject);
+        return;
+    }
+    func_8001CD20(gCurrentParsedObject);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80081120.s")
 

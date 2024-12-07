@@ -159,6 +159,7 @@ extern struct UnkStruct80108238 *D_80108238[];
 extern struct LevelInfo *gLevelInfo[4];
 extern u32 D_8010BC30[];
 extern f32 D_8010CB10;
+extern f32 D_8010CB14;
 extern s16 D_8010CD80[2];
 extern s16 D_80110B78[];
 extern s16* D_80110D4C[];

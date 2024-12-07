@@ -126,7 +126,19 @@ void func_8007FDDC(void) {
     func_8007FC98(sp1C);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8007FE5C.s")
+void func_8007FE5C(void) {
+    struct ObjectStruct* sp1C;
+
+    sp1C = &gObjects[gCurrentParsedObject];
+    sp1C->Pos.x += sp1C->Vel.x;
+    sp1C->Pos.y += sp1C->Vel.y;
+    sp1C->Pos.z += sp1C->Vel.z;
+    if (sp1C->unkA6 == 0) {
+        func_8001A928(gCurrentParsedObject);
+    } else {
+        sp1C->unkA6 -= 1;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8007FF44.s")
 

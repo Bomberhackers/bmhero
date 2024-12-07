@@ -245,7 +245,16 @@ void func_800806DC(void) {
     sp4->Scale.x = sp4->Scale.y = sp4->Scale.z;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80080780.s")
+void func_80080780(void) {
+    struct ObjectStruct* sp1C;
+
+    sp1C = &gObjects[gCurrentParsedObject];
+    sp1C->unkC0 = (s16) ((s16) sp1C->unkA6 / 2);
+    sp1C->unkA6 += 1;
+    if (sp1C->unkC0 >= 8) {
+        func_8001A928(gCurrentParsedObject);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80080834.s")
 

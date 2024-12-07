@@ -233,7 +233,17 @@ void func_80080638(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_800806DC.s")
+void func_800806DC(void) {
+    struct ObjectStruct* sp4;
+
+    sp4 = &gObjects[gCurrentParsedObject];
+    sp4->unkE4 = 0x2C6;
+    sp4->unkBE = 2;
+    sp4->unkC0 = 0;
+    sp4->unkC2 = 0x26;
+    sp4->Scale.z = 2.0f;
+    sp4->Scale.x = sp4->Scale.y = sp4->Scale.z;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80080780.s")
 

@@ -308,7 +308,20 @@ void func_80080AFC(void) {
     sp24->Scale.x = sp24->Scale.y = sp24->Scale.z;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80080C0C.s")
+extern f64 D_8010CB38;
+
+void func_80080C0C(void) {
+    struct ObjectStruct* sp1C;
+
+    sp1C = &gObjects[gCurrentParsedObject];
+    sp1C->Pos.x += sp1C->Vel.x;
+    sp1C->Pos.z += sp1C->Vel.z;
+    sp1C->Pos.y += sp1C->Vel.y;
+    sp1C->Vel.y = (f32) ((f64) sp1C->Vel.y - D_8010CB38);
+    if (sp1C->Vel.y < 0.0f) {
+        func_8001A928(gCurrentParsedObject);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80080D00.s")
 

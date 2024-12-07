@@ -7,5 +7,6 @@ extern f64 D_8010CB18;
 extern f64 D_8010CB20;
 extern f64 D_8010CB28;
 extern f64 D_8010CB30;
+extern f64 D_8010CB38;
 
 #endif // _BMHERO_71AA0_H_

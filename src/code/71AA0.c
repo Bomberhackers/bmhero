@@ -323,7 +323,13 @@ void func_80080C0C(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80080D00.s")
+void func_80080D00(void) {
+    gObjects[gCurrentParsedObject].unkE4 = 0x2C9;
+    gObjects[gCurrentParsedObject].Scale.x = gObjects[gCurrentParsedObject].Scale.y = gObjects[gCurrentParsedObject].Scale.z = 3.0f;
+    gObjects[gCurrentParsedObject].unkBE = 2;
+    gObjects[gCurrentParsedObject].unkC0 = 0;
+    gObjects[gCurrentParsedObject].unkC2 = 0x28;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80080E48.s")
 

@@ -1,7 +1,14 @@
 #include <ultra64.h>
 #include "7B0A0.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8007F580.s")
+void func_8007F580(void) {
+    s32 sp1C;
+
+    sp1C = 0x8F;
+    do {
+        func_8001A928(sp1C);
+    } while (++sp1C < 0xCF);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_8007F5CC.s")
 

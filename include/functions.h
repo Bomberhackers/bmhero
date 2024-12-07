@@ -610,7 +610,7 @@ s32 func_800711B4();
 s32 func_80076458();
 s32 func_80076640();
 s32 func_8007957C();
-s32 func_8007F580();
+void func_8007F580();
 void Score_Update(s16 c);
 void func_80022B54(void);
 void func_80086AD0(void);

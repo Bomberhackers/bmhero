@@ -153,7 +153,21 @@ void func_8007FF44(void) {
     sp24->unkC2 = 0x21;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80080014.s")
+void func_80080014(void) {
+    struct ObjectStruct* sp1C;
+
+    sp1C = &gObjects[gCurrentParsedObject];
+    sp1C->Pos.y -= (f32) sp1C->unkA6;
+    sp1C->Pos.x = (f32) func_80014E80(-3) + sp1C->Pos.x;
+    if ((sp1C->Pos.y < (gView.at.y - 320.0f)) ||
+        (sp1C->Pos.y > (gView.at.y + 960.0f)) ||
+        (sp1C->Pos.x < (gView.at.x - 960.0f)) ||
+        (sp1C->Pos.x > (gView.at.x + 960.0f)) ||
+        (sp1C->Pos.z < (gView.at.z - 960.0f)) ||
+        (sp1C->Pos.z) > (gView.at.z + 960.0f)) {
+            func_8001A928(gCurrentParsedObject);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80080198.s")
 

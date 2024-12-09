@@ -1,7 +1,7 @@
 #ifndef _FUNCTIONS_H_
 #define _FUNCTIONS_H_
 
-#include "ultra64.h"
+#include <ultra64.h>
 
 // 3490.c
 s32 func_80002890(struct UnkStruct80001CF0* arg0, s32* arg1, s32* arg2, s32 arg3);
@@ -79,11 +79,34 @@ s32 func_80021158();
 s32 Eeprom_Read(OSMesgQueue*, u8*, u8, u16);
 s32 Eeprom_Write(OSMesgQueue*, u8*, u8, u16);
 
+// 21E10.c
+s32 func_80021210(s32 arg0);
+s32 func_800212DC(s32 arg0, s32 arg1);
+s32 func_80021418(s32 arg0);
+s32 func_800214B8(s32 arg0);
+s32 func_80021584(s32 arg0, s32 arg1);
+void func_80021B74(void);
+void func_80021BCC(void);
+s32 func_80022454(void);
+s32 func_80022558(s32 arg0);
+s32 func_800225D8(s32 arg0, s32 arg1);
+void func_80022B54(void);
+void func_80023404(void);
+void func_80023534(void);
+void func_80023754(void);
+void func_80023904(void);
+void func_800239E4(void);
+void func_80023E78(void);
+void func_800241CC(void);
+s32 func_800242F0(void);
+void func_800246F0(void);
+void func_80024744(void);
+
 // 25810.c
 void func_80025E28(void);
 
 // 2BF00.c
-s32 func_8002F738();
+void func_8002F738();
 
 #define FIRST_CODE_FUNCTION Demo_RenderTextBG
 
@@ -101,6 +124,12 @@ extern void func_80069314();
 
 // 50BC0.c
 void func_8005FAA0(u8* arg0, u8* arg1);
+
+// 50BC0.c
+void func_8005FAA0(u8* arg0, u8* arg1);
+
+// 69AA0
+s32 func_80077CB0(s16 arg0, s16 arg1, s16 *arg2, s16 *arg3);
 
 // 71AA0.c
 s32 func_80083180(s32);
@@ -159,7 +188,6 @@ void func_800250A0(s32);
 void func_80081468(s32, f32, f32, f32);
 void func_800843CC(f32, f32, f32);
 void func_80086ECC(); 
-
 void func_80017BEC(s32, s32, s32, s32); 
 void func_80017CFC(s32, s32, s32, s32); 
 s32 func_80027464(s32 arg0, struct UnkStruct_80027C00 *arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5);
@@ -573,17 +601,50 @@ void func_8001A300(s32);
 void func_8001A488(s32);
 s32 func_8006DE90(u8*);
 s32 func_80016D74(s32);
-
-s32 func_80069700();   
-s32 func_8006AB14();   
-s32 func_8006E160();   
-s32 func_80070644();   
-s32 func_80070664(s32);  
-s32 func_80070A6C();   
-s32 func_800711B4();   
-s32 func_80076458();   
-s32 func_80076640();   
-s32 func_8007957C();   
-s32 func_8007F580();   
+s32 func_80069700();
+s32 func_8006AB14();
+s32 func_8006E160();
+s32 func_80070644();
+s32 func_80070664(s32);
+s32 func_80070A6C();
+s32 func_800711B4();
+s32 func_80076458();
+s32 func_80076640();
+s32 func_8007957C();
+void func_8007F580();
+void Score_Update(s16 c);
+void func_80022B54(void);
+void func_80086AD0(void);
+void func_80016FF8(int);
+void func_80100148(void);
+void func_80069AA8(s8, s8);
+void UpdateActiveController(u16);
+void func_8006C1DC(void);
+void func_80088ECC(void);
+void func_80089C18(void);
+s32 func_80076680(void);
+void func_80076720(void);
+void func_8008C128(void);
+void func_80087994(void);
+void func_8008BCC0(void);
+void func_80069E88(void);
+void func_80071E28();
+void func_80017EB8(void);
+void func_80016FC8(int);
+void func_80087B1C(void);
+void func_80070934(void);
+void func_800713D0(void);
+void func_8006A95C(void);
+void func_8007E454(void);
+void func_8007F24C(void);
+void func_800816FC(void);
+void func_8008B0F4(void);
+void func_80076374(void);
+void func_8006DDF4(void);
+void func_800663EC(void);
+void func_800654AC(void);
+void func_8006AD28(void);
+void func_800842C0(void);
+void func_80070AC8(void);
 
 #endif // _FUNCTIONS_H_

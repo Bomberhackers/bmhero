@@ -217,15 +217,15 @@ s32 func_80026E58(s32 arg0, s32 pos) {
     sp4 = FALSE;
     for (sp8 = &gObjects[pos], spC = pos; spC < 0x4E; spC++, sp8++) {
         if (sp8->unkE4 == arg0) {
-            sp4 = 1;
+            sp4 = TRUE;
             break;
         }
     }
 
-    if (sp4 != 0) {
+    if (sp4) {
         return spC;
     }
-    return -1;
+    return -1; // Item not found
 }
 
 void func_80026F10(s32 arg0, s32 arg1) {

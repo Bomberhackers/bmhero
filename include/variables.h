@@ -599,6 +599,7 @@ extern s8 D_8016E414;
 extern s16 D_8016E41C;
 extern s8 gShowDebugMenu;
 extern s32 gCurrentLevel;
+extern s16 D_8016E430;
 extern s16 D_8016E432;
 extern s16 D_8016E434;
 extern f32 D_8016E438;
@@ -721,6 +722,7 @@ extern f32 D_801779C8;
 extern f32 D_80177A14;
 extern s16 D_80177A1A;
 extern s16 D_80177A1E;
+extern s8 D_80177A20;
 extern f32 D_80177A24;
 extern s32 gCurrentParsedObject;
 extern s32 D_80177A64;
@@ -771,5 +773,4 @@ extern u8* _9BD180_ROM_START;
 extern s16 D_8016E0A4;
 extern u8 D_801776E4;
 extern UNK_TYPE D_80177770;
-
 #endif // VARIABLES_H

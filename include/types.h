@@ -8,7 +8,7 @@
 typedef float Matrix[4][4];
 
 struct UnkStruct8010B3FC {
-    char filler0[0x20];
+    char pad0[0x20];
     Lights2 *unk20;
 };
 
@@ -28,27 +28,27 @@ struct UnkStruct8016E104 {
     /* 0x00 */ Mtx unk00[3];
     /* 0xC0 */ Hilite hilites[2];
     /* 0xE0 */ Mtx unkE0[1];
-    u8 filler120[0x80E0-0x120];
+    u8 pad120[0x80E0-0x120];
     /* 0x80E0 */ Gfx gfxWork[1]; // unk size
 }; // size: unk due to Gfx
 
 // a kind of "SystemWork" struct?
 struct UnkStruct8016E10C {
     /* 0x00000 */ u32 unk0;
-    u8 filler4[0x4];
+    u8 pad4[0x4];
     /* 0x00008 */ u32 unk8;
     /* 0x0000C */ u32 unkC;
     /* 0x00010 */ OSTask task;
     /* 0x00050 */ OSMesgQueue *unk50;
     /* 0x00054 */ u32 unk54;
     /* 0x00058 */ u32 redBarTimer; // seems to be never used or accessed.
-    u8 filler5C[0x4];
+    u8 pad5C[0x4];
     /* 0x00060 */ u32 greenBarTimer; // same as redBarTimer.
-    u8 filler64[0x4];
+    u8 pad64[0x4];
     /* 0x00068 */ struct UnkStruct8016E104 unk68; // Gfx work?
-    u8 filler8150[0x18148-0x8150];
+    u8 pad8150[0x18148-0x8150];
     /* 0x18148 */ u32 unk18148[1];
-    u8 filler1814C[0x1C];
+    u8 pad1814C[0x1C];
     /* 0x18168 */ u32 unk18168;
 };
 
@@ -56,21 +56,21 @@ struct UnkInputStruct80001CF0 {
     u32 unk0;
     u32 unk4;
     u32 unk8;
-    char filler8[0x4];
+    char pad8[0x4];
     OSTask unk10;
 };
 
 struct UnkStruct80001CF0 {
     s16 unk0;
-    char filler2[0x1E];
+    char pad2[0x1E];
     s16 unk20;
-    char filler22[0x40-0x22];
+    char pad22[0x40-0x22];
     OSMesgQueue unk40;
     OSMesg unk58;
-    char filler5C[0x1C];
+    char pad5C[0x1C];
     OSMesgQueue unk78;
     OSMesg unk90;
-    char filler94[0x1C];
+    char pad94[0x1C];
     OSThread unkB0;
     u32 unk260;
     u32 unk264;
@@ -84,7 +84,7 @@ struct UnkStruct80001CF0 {
 };
 
 struct UnkStruct80340000 {
-    char filler0[0x18170];
+    char pad0[0x18170];
 }; // size = 0x18170
 
 struct UnkStruct260 {
@@ -93,12 +93,12 @@ struct UnkStruct260 {
 };
 
 struct UnkStruct80002424 {
-    char filler0[0x4];
+    char pad0[0x4];
     u32 unk4;
     u32 unk8;
     void *unkC;
     u32 unk10;
-    char filler14[0x3C];
+    char pad14[0x3C];
     OSMesgQueue *unk50;
     OSMesg unk54;
 };
@@ -107,19 +107,19 @@ struct UnkStruct8000265C {
     u32 unk0;
     u32 unk4;
     u32 unk8;
-    char fillerC[0x4];
+    char padC[0x4];
     u32 unk10;
 };
 
 struct UnkStruct800026F4_Arg1 {
-    char filler0[0x4];
+    char pad0[0x4];
     u32 unk4;
-    char filler8[0x8];
+    char pad8[0x8];
     OSTask unk10;
 };
 
 struct UnkStruct800026F4_Arg2 {
-    char filler0[0x38];
+    char pad0[0x38];
     u32 unk38;
     u64 *unk3C;
 };
@@ -156,25 +156,25 @@ struct MegaStruct {
 struct UnkStruct_8008AE64
 {
     s32 Unk0;
-    char Padding[9];
+    char padding[9];
 };
 
 struct UnkStruct80088B80
 {
     s16 Unk0;
-    char Padding[17];
+    char padding[17];
 };
 
 struct UnkStruct80088B80_2
 {
     f32 Unk0;
-    char Padding[13];
+    char padding[13];
 };
 
 struct UnkStruct80088B80_3
 {
     struct UnkStruct_8008AE64 Unk0;
-    char Padding[0x3];
+    char padding[0x3];
 };
 
 struct Light
@@ -195,7 +195,7 @@ struct LevelInfo {
     /* 0x02 */ s8 Map;
     /* 0x03 */ s8 Clear;
     /* 0x04 */ u8 unk4;
-    char filler5[0x1];
+    char pad5[0x1];
     /* 0x06 */ u8 unk6;
     /* 0x07 */ u8 trackID;
     /* 0x08 */ u8* Unk8;
@@ -220,8 +220,7 @@ struct ObjectStruct {
     /* 0x00C */ struct Vec3f Scale;
     /* 0x018 */ struct Vec3f Rot;
     /* 0x024 */ struct Vec3f Vel;
-    char filler30[0x8];
-    /* 0x038 */ f32 unk38;
+    /* 0x030 */ struct Vec3f unk30;
     /* 0x03C */ f32 unk3C;
     /* 0x040 */ f32 unk40;
     /* 0x044 */ f32 unk44;
@@ -230,11 +229,13 @@ struct ObjectStruct {
     /* 0x050 */ f32 unk50;
     /* 0x054 */ f32 unk54;
     /* 0x058 */ f32 unk58;
-    char filler5C[0x14];
+    /* 0x05C */ char pad5C[4];
+    /* 0x060 */ f32 unk60;                            /* inferred */
+    /* 0x060 */ char pad60[0x10];
     /* 0x070 */ f32 unk70;
-    char filler74[0x18];
+    /* 0x074 */ char pad74[0x18];                   /* maybe part of unk70[7]? */
     /* 0x08C */ f32 unk8C;
-    char filler90[0x14];
+    /* 0x090 */ char pad90[0x14];                   /* maybe part of unk8C[6]? */
     /* 0x0A4 */ s16 unkA4;
     /* 0x0A6 */ s16 unkA6;
     /* 0x0A8 */ s16 unkA8;
@@ -251,15 +252,15 @@ struct ObjectStruct {
     /* 0x0BE */ s16 unkBE;
     /* 0x0C0 */ s16 unkC0;
     /* 0x0C2 */ s16 unkC2;
-    char fillerC4[0x10];
+    /* 0x0C4 */ char padC4[0x10];                   /* maybe part of unkC2[9]? */
     /* 0x0D4 */ f32 unkD4;
     /* 0x0D8 */ f32 unkD8;
-    char fillerDC[0x8];
+    /* 0x0DC */ char padDC[8];                      /* maybe part of unkD8[3]? */
     /* 0x0E4 */ s16 unkE4;
     /* 0x0E6 */ s16 unkE6[1];
     /* 0x0E8 */ s16 unkE8[2];
     /* 0x0EC */ s16 unkEC;
-    char fillerEE[0xE];
+    /* 0x0EE */ char padEE[0xE];                    /* maybe part of unkEC[8]? */
     /* 0x0FC */ s16 unkFC;
     /* 0x0FE */ s16 unkFE;
     /* 0x100 */ s16 unk100;
@@ -271,16 +272,16 @@ struct ObjectStruct {
     /* 0x10A */ u8 unk10A;
     /* 0x10B */ u8 unk10B;
     /* 0x10C */ u8 unk10C;
-    char filler10D[1];
+    /* 0x10D */ char pad10D[1];
     /* 0x10E */ s16 unk10E[1];
-    char filler110[0x14];
+    /* 0x110 */ char pad110[0x14];                  /* maybe part of unk10E[0xB]? */
     /* 0x124 */ f32 unk124;
     /* 0x128 */ f32 unk128;
     /* 0x12C */ f32 unk12C;
-    char filler130[1];
+    /* 0x130 */ char pad130[1];
     /* 0x131 */ u8 unk131;
     /* 0x132 */ u8 unk132;
-    char filler133[7];
+    /* 0x133 */ char pad133[7];                     /* maybe part of unk132[8]? */
     /* 0x13A */ s8 unk13A;
     /* 0x13B */ s8 unk13B;
     /* 0x13C */ s8 unk13C;
@@ -288,8 +289,8 @@ struct ObjectStruct {
     /* 0x13E */ s8 unk13E;
     /* 0x13F */ s8 unk13F;
     /* 0x140 */ s16 Unk140[1];
-    char pad142[0xE];
-}; /* size = 0x150 */
+    /* 0x142 */ char pad142[0xE];                   /* maybe part of Unk140[8]? */
+};                                                  /* size = 0x150 */
 
 struct UnkStruct80134D48 {
     u32 ObjectID;
@@ -305,20 +306,20 @@ struct UnkStructSTCG
     f32 Unk0;
     f32 Unk4;
     f32 Unk8;
-    char Padding_3[0x24 - (sizeof(f32) * 3)];
+    char padding_3[0x24 - (sizeof(f32) * 3)];
     f32 Unk24;
     f32 Unk28;
     f32 Unk2C;
-    char Padding_1[0xA4 - 0x24 - (sizeof(s32) * 3)];
+    char padding_1[0xA4 - 0x24 - (sizeof(s32) * 3)];
     s16 UnkA4;
-    char Padding_2[0x108 - 0xA4 - sizeof(s16)];
+    char padding_2[0x108 - 0xA4 - sizeof(s16)];
     s16 Unk108;
 };
 
 struct DecompressedFileEntry
 {
     u8 *ptr; // ptr to the decompressed file area
-    u8 filler4[4]; // unused
+    u8 pad4[4]; // unused
 };
 
 struct View {
@@ -343,7 +344,7 @@ struct View {
 #define DEMO_LAST DEMO_BOMBER_CHANGE_SLIDER
 
 struct UnkStruct80165290_Unk20_Unk10 {
-    char filler0[0x4];
+    char pad0[0x4];
     u32 unk4;
     u32 unk8;
     u32 unkC;
@@ -361,16 +362,16 @@ struct UnkStruct80165290_Unk20 {
     u32 unk8;
     u32 unkC;
     struct UnkStruct80165290_Unk20_Unk10 *unk10;
-    char filler14[0x8];
+    char pad14[0x8];
 };
 
 struct UnkStruct80165290 {
     /* 0x00 */ s32 unk0;
-    char filler4[0x10];
+    char pad4[0x10];
     /* 0x14 */ u8 unk14;
     /* 0x15 */ u8 unk15;
     /* 0x16 */ u8 unk16;
-    char filler17[0x1];
+    char pad17[0x1];
     /* 0x18 */ u32 unk18;
     /* 0x1C */ struct UnkStruct80010408_SP2C* unk1C;
     /* 0x20 */ u32 unk20;
@@ -390,7 +391,7 @@ struct UnkStruct80165290 {
     /* 0x58 */ u32 unk58;
     /* 0x5C */ u32 unk5C;
     /* 0x60 */ u32 unk60;
-    char filler64[0xC];
+    char pad64[0xC];
 }; // size:0x70
 
 struct UnkStruct_8001EFD0 {
@@ -435,7 +436,7 @@ struct UnkStruct80055D50 {
 struct UnkInputStruct8000FF44 {
     u32 unk0;
     u32 unk4;
-    char filler8[0x4];
+    char pad8[0x4];
     struct UnkInputStruct8000FF44 **unkC;
     s32 unk10;
     struct UnkStruct8004A3A0 unk14[3];
@@ -443,7 +444,7 @@ struct UnkInputStruct8000FF44 {
 
 struct UnkInputStruct80010098 {
     u32 unk0;
-    char filler4[0x24];
+    char pad4[0x24];
     struct UnkInputStruct8000FF44 *unk28;
 };
 
@@ -454,32 +455,32 @@ struct UnkInputStruct800100E8_SP24 {
     u32 *unkC;
     u32 unk10;
     u32 unk14;
-    char filler18[0x18];
+    char pad18[0x18];
 };
 
 struct UnkInputStruct80010350 {
-    char filler0[0xC];
+    char pad0[0xC];
     u32 *unkC;
     s32 unk10;
 };
 
 struct UnkStruct8016E3AC {
-    char filler0[0xC];
+    char pad0[0xC];
     u32 unkC;
-    char filler10[0x8];
+    char pad10[0x8];
     u32 unk18;
 };
 
 struct UnkInputStruct80010408_Inner {
     u32 unk0;
     u32 unk4;
-    char filler8[0x4];
+    char pad8[0x4];
 };
 
 struct UnkInputStruct80010408 {
-    char filler0[0x4];
+    char pad0[0x4];
     u32 unk4;
-    char filler8[0x4];
+    char pad8[0x4];
     struct UnkInputStruct80010408_Inner unkC[1];
 };
 
@@ -491,7 +492,7 @@ struct UnkStruct80010408_SP2C {
 
 struct UnkStruct800105D8 {
     u32 unk0;
-    char filler4[0x24];
+    char pad4[0x24];
     struct UnkInputStruct80010350* unk28;
 };
 
@@ -528,42 +529,42 @@ struct UnkInputStruct80010B6C_2 {
 
 struct UnkInputStruct80010C88 {
     u32 *unk0;
-    char filler4[0x4];
+    char pad4[0x4];
     struct UnkInputStruct80010C88 **unk8;
     s32 unkC;
     u32 unk10[1]; // unk size
-    char filler14[0x4];
+    char pad14[0x4];
     struct UnkInputStruct80010B6C_2 unk18[1];
 };
 
 struct UnkInputStruct80011084_Inner {
-    u8 filler0[0x14];
+    u8 pad0[0x14];
     f32 unk14[3];
 };
 
 struct UnkInputStruct80011084 {
     struct UnkInputStruct80011084_Inner *unk0;
-    u8 filler4[0x4];
+    u8 pad4[0x4];
     u32 *unk8;
     s32 unkC;
     u32 unk10;
     u32 unk14;
     f32 unk18[3];
-    u8 filler24[0x18];
+    u8 pad24[0x18];
     f32 unk3C[3];
 };
 
 struct UnkStruct800111D4_Inner {
     u32 unk0[3];
     struct UnkStruct800111D4_Inner *unkC;
-    u8 filler10[0x4];
+    u8 pad10[0x4];
     f32 unk14[3];
     f32 unk20[3];
     f32 unk2C[3];
 };
 
 struct UnkStruct800111D4 {
-    u8 filler0[0x24];
+    u8 pad0[0x24];
     u32 unk24;
     struct UnkStruct800111D4_Inner *unk28;
 };
@@ -572,15 +573,15 @@ struct UnkInputStruct8000E680 {
     f32 unk0;
     f32 unk4;
     f32 unk8;
-    char fillerC[0x4];
+    char padC[0x4];
     f32 unk10;
     f32 unk14;
     f32 unk18;
-    char filler1C[0x4];
+    char pad1C[0x4];
     f32 unk20;
     f32 unk24;
     f32 unk28;
-    char filler2C[0x4];
+    char pad2C[0x4];
 };
 
 struct UnkInnerStruct8000E944 {
@@ -590,7 +591,7 @@ struct UnkInnerStruct8000E944 {
     } u;
     f32 unk4;
     f32 unk8;
-    char fillerC[0x1C];
+    char padC[0x1C];
     u32 unk28;
     u32 unk2C;
 };
@@ -613,10 +614,10 @@ struct UnkInputStruct8000EEE8_SPEC {
 
 struct UnkInputStruct8000FC08 {
     s32 unk0;
-    char filler4[0x8];
+    char pad4[0x8];
     u32 *unkC;
     s32 unk10;
-    char filler14[0x14];
+    char pad14[0x14];
     u32 unk28;
 };
 
@@ -673,13 +674,13 @@ struct UnkStruct80052D5C {
     u8 unk27;
     u8 unk28;
     s8 unk29;
-    char filler2A[0x2];
+    char pad2A[0x2];
 };
 
 struct UnkStruct80052EB4 {
     u8 unk0;
     u8 unk1;
-    char filler2[0x2];
+    char pad2[0x2];
     u32 len;
     u32 unk8;
     u32 unkC;
@@ -687,7 +688,7 @@ struct UnkStruct80052EB4 {
 
 struct UnkStruct80052ED8 {
     struct UnkStruct80052ED8* unk0;
-    char filler4[0x10];
+    char pad4[0x10];
 };
 
 struct UnkInputStruct800047C8 {
@@ -700,7 +701,7 @@ struct UnkInputStruct800047C8 {
 struct UnkStruct80052D58 {
     s16 unk0;
     s16 unk2;
-    char filler4[0x1]; // unk size
+    char pad4[0x1]; // unk size
 };
 
 // this is some pointer ALBank has to, but it doesnt match up with an ALBank struct. What is this.
@@ -716,7 +717,7 @@ struct UnkALStruct {
 struct UnkStruct80052D60 {
     u8 unk0;
     u8 unk1;
-    char filler2[0x6];
+    char pad2[0x6];
 };
 
 struct UnkStructSP1C {
@@ -731,15 +732,15 @@ struct UnkStructSP1C {
 
 struct UnkStructSP18 {
     u32 unk0;
-    char filler4[0x5];
+    char pad4[0x5];
     u8 unk9;
-    char fillera[0x2];
+    char pada[0x2];
     u32 unkC;
     u32 unk10;
 };
 
 struct UnkInputStruct80007140 {
-    char filler0[0x13];
+    char pad0[0x13];
     u8 unk13;
 };
 
@@ -876,7 +877,7 @@ struct UnkStruct80052DA8 {
     s8 unk7;
     s8 unk8;
     s8 unk9;
-    char fillerA[0x2];
+    char padA[0x2];
 };
 
 struct UnkStruct_8011670C {
@@ -1015,7 +1016,7 @@ extern struct UnkStruct8016E230 {
 
 typedef struct UnkStruct_800600B8 {
     u8 Unk01;
-    u8 Padding[3];
+    u8 padding[3];
 } UnkStruct_800600B8;
 
 struct UnkStruct_56400 {
@@ -1040,7 +1041,7 @@ struct UnkStruct80177778 {
     s16 unk18;
     s16 unk1A;
     s16 unk1C;
-    u8 filler1E[0x6];
+    u8 pad1E[0x6];
     u8 unk24;
     u8 unk25;
     u8 unk26;
@@ -1069,7 +1070,7 @@ struct UnkBigStruct_8006B64C
 {
     u16 Unk0;
     u16 Unk1;
-    u8 Padding[336 - sizeof(u32)];
+    u8 padding[336 - sizeof(u32)];
 };
 
 struct UnkStruct80176458 {
@@ -1099,20 +1100,20 @@ struct UnkStruct80104C20 {
 };
 
 struct UnkStruct800654AC_SP0 {
-    char filler0[0x8];
+    char pad0[0x8];
     s8 unk8;
-    char filler9[0x3];
+    char pad9[0x3];
     s8 unkC;
 };
 
 struct UnkStruct800657E8_sp40 {
-    char filler0[0x4];
+    char pad0[0x4];
     s8 unk4;
-    s8 filler5[0x2];
+    s8 pad5[0x2];
     s8 unk7[2]; // unk size, could be rest of struct
-    s8 filler9[0x3];
+    s8 pad9[0x3];
     s8 unkC;
-    s8 fillerD[0x3];
+    s8 padD[0x3];
 };
 
 struct Code_Extra_Entry
@@ -1127,7 +1128,7 @@ struct UnkStruct80108238 {
     u32 unk8;
     u32 unkC;
     u32 unk10;
-    u8 filler14[0xC];
+    u8 pad14[0xC];
     u32 unk20;
 };
 
@@ -1144,16 +1145,16 @@ struct UnkStruct_80057450 {
 };
 
 struct UnkStruct8017794C {
-    char filler0[0xB];
+    char pad0[0xB];
     u8 unkB[1];
-    char fillerC[0x4];
+    char padC[0x4];
 };
 
 struct UnkStruct80122B08_Unk0 {
-    char filler0[0x4];
+    char pad0[0x4];
     u32 unk4;
     u32 unk8;
-    char fillerC[0x8];
+    char padC[0x8];
     s16 unk14;
 };
 
@@ -1161,11 +1162,11 @@ struct UnkStruct80122B08 {
     struct UnkStruct80122B08_Unk0 *unk0;
     u32 romStart;
     u32 romEnd;
-    char fillerC[0x4];
+    char padC[0x4];
 };
 
 struct UnkStruct80011424_SP38 {
-    char filler0[0x4];
+    char pad0[0x4];
     u32 unk4;
     s32 unk8;
     s32 unkC;
@@ -1180,21 +1181,21 @@ struct UnkStruct80011424_SP38 {
 struct UnkInputStruct80011424 {
     struct UnkInputStruct80010098 *unk0;
     f32 unk4;
-    char filler8[0x4];
+    char pad8[0x4];
     s32 unkC;
     struct UnkStruct80011424_SP38 *unk10;
 };
 
 struct UnkStruct800117F8_SP1C {
     u32 unk0;
-    char filler4[0x4];
+    char pad4[0x4];
     u32 *unk8;
     u32 unkC;
-    char filler10[0x50];
+    char pad10[0x50];
 };
 
 struct UnkStruct800117F8_Arg0 {
-    char filler0[0xC];
+    char pad0[0xC];
     u32 *unkC;
     u32 unk10;
 };
@@ -1208,14 +1209,14 @@ struct UnkStruct80055D5C {
     s32 unk0;
     u32 unk4;
     u32 unk8;
-    char fillerC[0x4];
+    char padC[0x4];
 };
 
 struct UnkStruct8001191C_SP34 {
     u32 unk0;
     u32 unk4;
     s32 unk8;
-    char fillerC[0x14];
+    char padC[0x14];
 };
 
 struct UnkStruct8001191C_SP2C {
@@ -1236,36 +1237,36 @@ struct UnkStruct8001191C_SP38 {
 };
 
 struct UnkStruct80011D18 {
-    char filler0[0x8];
+    char pad0[0x8];
     u32 *unk8;
     s32 unkC;
 };
 
 struct UnkStruct80011DD0_SP28 {
-    char filler0[0x4];
+    char pad0[0x4];
     u32 unk4;
-    char filler8[0x8];
+    char pad8[0x8];
     u32 unk10;
     u32 unk14;
-    char filler18[0x4];
+    char pad18[0x4];
     u32 unk1C;
-    char filler20[0x8];
+    char pad20[0x8];
 };
 
 struct UnkStruct80011DD0 {
-    char filler0[0xC];
+    char pad0[0xC];
     s32 unkC;
     struct UnkStruct80011DD0_SP28 *unk10;
 };
 
 struct UnkStruct80011EF0 {
-    char filler0[0x64];
+    char pad0[0x64];
     u32 unk64;
     u32 unk68;
 };
 
 struct UnkStruct800120FC {
-    char filler0[0x6C];
+    char pad0[0x6C];
     u32 unk6C;
     u32 unk70;
 };

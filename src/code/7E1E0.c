@@ -66,7 +66,26 @@ void func_8008DC8C(s16* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008E074.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008E190.s")
+void func_8008E190(s16 arg0) {
+    u32 spC;
+    s32 sp8;
+    s16 sp6;
+    s16 temp_t4;
+    /*struct ObjectStruct* temp_t2;
+    struct ObjectStruct* temp_t5;
+    struct ObjectStruct* temp_t8;*/
+
+    spC = D_80134D48[arg0].ObjectID;
+    for(sp6 = 0; sp6 < 0xA; sp6++)
+    {
+        sp8 = gObjects[spC].unkE8[sp6];
+        if (sp8 != -1) {
+            gObjects[sp8].Rot.x = gObjects[spC].Rot.x + gObjects[spC].unk30.x; 
+            gObjects[sp8].Rot.y = gObjects[spC].Rot.y + gObjects[spC].unk30.y; 
+            gObjects[sp8].Rot.z = gObjects[spC].Rot.z + gObjects[spC].unk30.z; 
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008E328.s")
 

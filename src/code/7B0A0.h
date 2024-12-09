@@ -8,7 +8,7 @@ extern s16 D_80134BF6_unused;
 extern s16 D_80134BF8;
 extern s16 D_80134BFA;
 extern s16 D_80134BFC;
-extern s16 *D_80134C00;
+extern s16 *gByteCodePtr;
 extern s16 *D_80134C04_unused;
 extern struct CutsceneString* gCutsceneString;
 extern s16 D_80134C0C;

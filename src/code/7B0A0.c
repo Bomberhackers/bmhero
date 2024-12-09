@@ -9,7 +9,7 @@ s16 D_80134BF6_unused;
 s16 D_80134BF8;
 s16 D_80134BFA;
 s16 D_80134BFC;
-s16 *D_80134C00;
+s16 *gByteCodePtr;
 s16 *D_80134C04_unused;
 struct CutsceneString* gCutsceneString;
 s16 D_80134C0C;
@@ -104,7 +104,7 @@ void func_80088ECC(void) {
         D_80134C16 = 0;
         D_80134C14 = 0;
         D_80134BF8 = -1, D_80134BF4 = -1;
-        D_80134C00 = (s16 *)0x8033A000;
+        gByteCodePtr = (s16 *)0x8033A000;
     }
     if (D_80134C14 != 0) {
         D_80134C14 -= 1;
@@ -112,7 +112,7 @@ void func_80088ECC(void) {
     }
     exit = 0;
     while (exit == 0) {
-        switch (D_80134C00[0]) {
+        switch (gByteCodePtr[0]) {
             case 0x0:
                 D_80134BF2 = -1;
                 D_80134C0C = 0;
@@ -122,27 +122,27 @@ void func_80088ECC(void) {
                 exit = 1;
                 break;
             case 0x2:
-                D_80134BF8 = D_80134C00[1];
-                D_80134BFA = D_80134C00[2];
-                D_80134BFC = D_80134C00[3];
-                D_80134C00 += 3;
+                D_80134BF8 = gByteCodePtr[1];
+                D_80134BFA = gByteCodePtr[2];
+                D_80134BFC = gByteCodePtr[3];
+                gByteCodePtr += 3;
                 break;
             case 0x5:
-                D_80134C14 = D_80134C00[1] - 1;
-                D_80134C00 += 1;
+                D_80134C14 = gByteCodePtr[1] - 1;
+                gByteCodePtr += 1;
                 exit = 1;
                 break;
             case 0x6:
-                func_8008ABC4 (D_80134C00 + 1);
-                D_80134C00 += 4;
+                func_8008ABC4 (gByteCodePtr + 1);
+                gByteCodePtr += 4;
                 break;
             case 0x3C:
-                func_8008ABF4 (D_80134C00 + 1);
-                D_80134C00 += 4;
+                func_8008ABF4 (gByteCodePtr + 1);
+                gByteCodePtr += 4;
                 break;
             case 0x7:
-                func_8008AC08 (D_80134C00 + 1);
-                D_80134C00 += 1;
+                func_8008AC08 (gByteCodePtr + 1);
+                gByteCodePtr += 1;
                 break;
             case 0x8:
                 gCameraType = 0;
@@ -151,48 +151,48 @@ void func_80088ECC(void) {
                 func_8008BB0C ();
                 break;
             case 0x25:
-                func_8008AD58 (D_80134C00 + 1);
-                D_80134C00 += 7;
+                func_8008AD58 (gByteCodePtr + 1);
+                gByteCodePtr += 7;
                 break;
             case 0x26:
-                func_8008AE64 (D_80134C00 + 1);
-                D_80134C00 += 6;
+                func_8008AE64 (gByteCodePtr + 1);
+                gByteCodePtr += 6;
                 break;
             case 0x9:
-                gMegaStruct.D_80134F74 = (f32)D_80134C00[1] / 10.0f;
-                D_80134C00 += 1;
+                gMegaStruct.D_80134F74 = (f32)gByteCodePtr[1] / 10.0f;
+                gByteCodePtr += 1;
                 break;
             case 0xA:
-                gMegaStruct.D_80134F50.x = (f32)D_80134C00[1] / 10.0f;
-                D_80134C00 += 1;
+                gMegaStruct.D_80134F50.x = (f32)gByteCodePtr[1] / 10.0f;
+                gByteCodePtr += 1;
                 break;
             case 0xB:
-                gMegaStruct.D_80134F50.y = (f32)D_80134C00[1] / 10.0f;
-                D_80134C00 += 1;
+                gMegaStruct.D_80134F50.y = (f32)gByteCodePtr[1] / 10.0f;
+                gByteCodePtr += 1;
                 break;
             case 0xC:
-                gMegaStruct.D_80134F50.z = (f32)D_80134C00[1] / 10.0f;
-                D_80134C00 += 1;
+                gMegaStruct.D_80134F50.z = (f32)gByteCodePtr[1] / 10.0f;
+                gByteCodePtr += 1;
                 break;
             case 0xD:
-                gMegaStruct.D_80134F5C.x = (f32)D_80134C00[1] / 10.0f;
-                D_80134C00 += 1;
+                gMegaStruct.D_80134F5C.x = (f32)gByteCodePtr[1] / 10.0f;
+                gByteCodePtr += 1;
                 break;
             case 0xE:
-                gMegaStruct.D_80134F5C.y = (f32)D_80134C00[1] / 10.0f;
-                D_80134C00 += 1;
+                gMegaStruct.D_80134F5C.y = (f32)gByteCodePtr[1] / 10.0f;
+                gByteCodePtr += 1;
                 break;
             case 0xF:
-                func_8008B5D4 (D_80134C00 + 1);
-                D_80134C00 += 2;
+                func_8008B5D4 (gByteCodePtr + 1);
+                gByteCodePtr += 2;
                 break;
             case 0x10:
-                func_8008B624 (D_80134C00 + 1);
-                D_80134C00 += 4;
+                func_8008B624 (gByteCodePtr + 1);
+                gByteCodePtr += 4;
                 break;
             case 0x11:
-                func_8008B6E0 (D_80134C00 + 1);
-                D_80134C00 += 5;
+                func_8008B6E0 (gByteCodePtr + 1);
+                gByteCodePtr += 5;
                 break;
             case 0x12:
                 func_8008BA3C ();
@@ -210,144 +210,144 @@ void func_80088ECC(void) {
                 func_8008C66C ();
                 break;
             case 0x17:
-                func_8008C684 (D_80134C00 + 1);
-                D_80134C00 += 4;
+                func_8008C684 (gByteCodePtr + 1);
+                gByteCodePtr += 4;
                 break;
             case 0x18:
-                func_8008C778 (D_80134C00 + 1);
-                D_80134C00 += 5;
+                func_8008C778 (gByteCodePtr + 1);
+                gByteCodePtr += 5;
                 break;
             case 0x19:
-                func_8008C9B4 (D_80134C00 + 1);
-                D_80134C00 += 2;
+                func_8008C9B4 (gByteCodePtr + 1);
+                gByteCodePtr += 2;
                 break;
             case 0x1A:
-                func_8008CADC (D_80134C00 + 1);
-                D_80134C00 += 2;
+                func_8008CADC (gByteCodePtr + 1);
+                gByteCodePtr += 2;
                 break;
             case 0x1B:
-                func_8008CC04 (D_80134C00 + 1);
-                D_80134C00 += 2;
+                func_8008CC04 (gByteCodePtr + 1);
+                gByteCodePtr += 2;
                 break;
             case 0x1F:
-                func_8008CD2C (D_80134C00 + 1);
-                D_80134C00 += 4;
+                func_8008CD2C (gByteCodePtr + 1);
+                gByteCodePtr += 4;
                 break;
             case 0x20:
-                func_8008CE8C (D_80134C00 + 1);
-                D_80134C00 += 5;
+                func_8008CE8C (gByteCodePtr + 1);
+                gByteCodePtr += 5;
                 break;
             case 0x32:
-                func_8008D074 (D_80134C00 + 1);
-                D_80134C00 += 3;
+                func_8008D074 (gByteCodePtr + 1);
+                gByteCodePtr += 3;
                 break;
             case 0x33:
-                func_8008D114 (D_80134C00 + 1);
-                D_80134C00 += 2;
+                func_8008D114 (gByteCodePtr + 1);
+                gByteCodePtr += 2;
                 break;
             case 0x21:
-                func_8008D530 (D_80134C00 + 1);
-                D_80134C00 += 6;
+                func_8008D530 (gByteCodePtr + 1);
+                gByteCodePtr += 6;
                 break;
             case 0x22:
-                func_8008DC8C (D_80134C00 + 1);
-                D_80134C00 += 3;
+                func_8008DC8C (gByteCodePtr + 1);
+                gByteCodePtr += 3;
                 break;
             case 0x23:
-                func_8008E328 (D_80134C00 + 1);
-                D_80134C00 += 2;
+                func_8008E328 (gByteCodePtr + 1);
+                gByteCodePtr += 2;
                 break;
             case 0x34:
-                func_8008E3B0 (D_80134C00 + 1);
-                D_80134C00 += 3;
+                func_8008E3B0 (gByteCodePtr + 1);
+                gByteCodePtr += 3;
                 break;
             case 0x39:
-                func_8008E418 (D_80134C00 + 1);
-                D_80134C00 += 3;
+                func_8008E418 (gByteCodePtr + 1);
+                gByteCodePtr += 3;
                 break;
             case 0x24:
-                func_8008E81C (D_80134C00 + 1);
-                D_80134C00 += 3;
+                func_8008E81C (gByteCodePtr + 1);
+                gByteCodePtr += 3;
                 break;
             case 0x28:
-                gMegaStruct.D_80134F68.x = (f32)D_80134C00[1] / 10.0f;
-                D_80134C00 += 1;
+                gMegaStruct.D_80134F68.x = (f32)gByteCodePtr[1] / 10.0f;
+                gByteCodePtr += 1;
                 break;
             case 0x29:
-                gMegaStruct.D_80134F68.y = (f32)D_80134C00[1] / 10.0f;
-                D_80134C00 += 1;
+                gMegaStruct.D_80134F68.y = (f32)gByteCodePtr[1] / 10.0f;
+                gByteCodePtr += 1;
                 break;
             case 0x2A:
-                gMegaStruct.D_80134F68.z = (f32)D_80134C00[1] / 10.0f;
-                D_80134C00 += 1;
+                gMegaStruct.D_80134F68.z = (f32)gByteCodePtr[1] / 10.0f;
+                gByteCodePtr += 1;
                 break;
             case 0x2B:
-                func_8008BC04 (D_80134C00 + 1);
-                D_80134C00 += 4;
+                func_8008BC04 (gByteCodePtr + 1);
+                gByteCodePtr += 4;
                 break;
             case 0x2C:
-                func_8008E8A4 (D_80134C00 + 1);
-                D_80134C00 += 2;
+                func_8008E8A4 (gByteCodePtr + 1);
+                gByteCodePtr += 2;
                 break;
             case 0x2D:
-                func_8008E918 (D_80134C00 + 1);
-                D_80134C00 += 3;
+                func_8008E918 (gByteCodePtr + 1);
+                gByteCodePtr += 3;
                 break;
             case 0x2E:
-                func_8008EAE4 (D_80134C00 + 1);
-                D_80134C00 += 1;
+                func_8008EAE4 (gByteCodePtr + 1);
+                gByteCodePtr += 1;
                 break;
             case 0x2F:
-                func_8008EB10 (D_80134C00 + 1);
-                D_80134C00 += 1;
+                func_8008EB10 (gByteCodePtr + 1);
+                gByteCodePtr += 1;
                 break;
             case 0x30:
-                func_8008EB40 (D_80134C00 + 1);
-                D_80134C00 += 1;
+                func_8008EB40 (gByteCodePtr + 1);
+                gByteCodePtr += 1;
                 break;
             case 0x31:
-                func_8008EB6C (D_80134C00 + 1);
-                D_80134C00 += 1;
+                func_8008EB6C (gByteCodePtr + 1);
+                gByteCodePtr += 1;
                 break;
             case 0x36:
-                func_8008EB9C (D_80134C00 + 1);
-                D_80134C00 += 1;
+                func_8008EB9C (gByteCodePtr + 1);
+                gByteCodePtr += 1;
                 break;
             case 0x35:
-                func_8008EBEC (D_80134C00 + 1);
-                D_80134C00 += 1;
+                func_8008EBEC (gByteCodePtr + 1);
+                gByteCodePtr += 1;
                 break;
             case 0x37:
-                func_8008EC3C (D_80134C00 + 1);
-                D_80134C00 += 1;
+                func_8008EC3C (gByteCodePtr + 1);
+                gByteCodePtr += 1;
                 break;
             case 0x38:
-                func_8008ECD0 (D_80134C00 + 1);
-                D_80134C00 += 1;
+                func_8008ECD0 (gByteCodePtr + 1);
+                gByteCodePtr += 1;
                 break;
             case 0x3A:
-                func_8008ED64 (D_80134C00 + 1);
-                D_80134C00 += 2;
+                func_8008ED64 (gByteCodePtr + 1);
+                gByteCodePtr += 2;
                 break;
             case 0x3B:
-                func_8008EF8C (D_80134C00 + 1);
-                D_80134C00 += 4;
+                ByteParser_SetObjectScale (gByteCodePtr + 1);
+                gByteCodePtr += 4;
                 break;
             case 0x3D:
-                func_8008F078 (D_80134C00 + 1);
-                D_80134C00 += 5;
+                func_8008F078 (gByteCodePtr + 1);
+                gByteCodePtr += 5;
                 break;
             case 0x3E:
-                func_8008F3D4 (D_80134C00 + 1);
-                D_80134C00 += 1;
+                func_8008F3D4 (gByteCodePtr + 1);
+                gByteCodePtr += 1;
                 break;
             case 0x3F:
-                func_8008F63C (D_80134C00 + 1);
-                D_80134C00 += 5;
+                func_8008F63C (gByteCodePtr + 1);
+                gByteCodePtr += 5;
                 break;
             case 0x4C:
-                func_8008F6AC (D_80134C00 + 1);
-                D_80134C00 += 2;
+                func_8008F6AC (gByteCodePtr + 1);
+                gByteCodePtr += 2;
                 break;
             case 0x40:
                 D_80134C22 = 1;
@@ -368,8 +368,8 @@ void func_80088ECC(void) {
                 D_80134C24 = 0;
                 break;
             case 0x46:
-                func_8001FB3C (D_80134C00[1], D_80134C00[2], D_80134C00[3]);
-                D_80134C00 += 3;
+                func_8001FB3C (gByteCodePtr[1], gByteCodePtr[2], gByteCodePtr[3]);
+                gByteCodePtr += 3;
                 break;
             case 0x47:
                 D_80134C26 = 1;
@@ -384,14 +384,14 @@ void func_80088ECC(void) {
                 func_8008884C (0);
                 break;
             case 0x4B:
-                D_80134BF0 = (s8)D_80134C00[1];
-                D_80134C00 += 1;
+                D_80134BF0 = (s8)gByteCodePtr[1];
+                gByteCodePtr += 1;
                 break;
             default:
                 exit = 1;
                 break;
             }
-            D_80134C00 += 1;
+            gByteCodePtr += 1;
         }
 }
 

@@ -230,8 +230,8 @@ struct ObjectStruct {
     /* 0x054 */ f32 unk54;
     /* 0x058 */ f32 unk58;
     /* 0x05C */ f32 unk5C;
-    /* 0x060 */ f32 unk60;                            /* inferred */
-    /* 0x064 */ char pad60[0xC];
+    /* 0x060 */ f32 unk60;
+    /* 0x064 */ char pad64[0xC];                    /* maybe part of unk60[4]? */
     /* 0x070 */ f32 unk70;
     /* 0x074 */ char pad74[0x18];                   /* maybe part of unk70[7]? */
     /* 0x08C */ f32 unk8C;
@@ -255,7 +255,8 @@ struct ObjectStruct {
     /* 0x0C4 */ char padC4[0x10];                   /* maybe part of unkC2[9]? */
     /* 0x0D4 */ f32 unkD4;
     /* 0x0D8 */ f32 unkD8;
-    /* 0x0DC */ char padDC[8];                      /* maybe part of unkD8[3]? */
+    /* 0x0DC */ f32 unkDC;                          /* inferred */
+    /* 0x0E0 */ f32 unkE0;                          /* inferred */
     /* 0x0E4 */ s16 unkE4;
     /* 0x0E6 */ s16 unkE6[1];
     /* 0x0E8 */ s16 unkE8[2];

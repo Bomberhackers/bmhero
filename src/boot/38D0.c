@@ -1,5 +1,5 @@
 #include <ultra64.h>
-#include "prevent_bss_reordering.h"
+#include "prevent_bss_reordering2.h"
 #include "38D0.h"
 #include "nusys/audio.h"
 

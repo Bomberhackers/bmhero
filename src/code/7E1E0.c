@@ -317,9 +317,20 @@ void func_80090B00(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80090C8C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80090D08.s")
+void func_80090D08(void) {
+    s32 sp24;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80090D84.s")
+    sp24 = func_80027464(1, &D_801114B0, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+}
+
+void func_80090D84(void) {
+    s32 sp24;
+
+    sp24 = func_80027464(1, &D_801114BC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    func_8001ABF4(sp24, 0, 3, &D_80112518);
+    func_8001ABF4(sp24, 1, 3, &D_80112518[1]);
+    func_8001ABF4(sp24, 2, 3, &D_80112518[2]);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80090E50.s")
 

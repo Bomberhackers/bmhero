@@ -1276,4 +1276,10 @@ struct UnkStruct_80022454_SP24 {
     /* 0x0 */ s16 unk0;
 };
 
+struct UnkStruct_80112518
+{
+    char Pad[0x1C];
+};
+
+
 #endif // _BMHERO_TYPES_H_

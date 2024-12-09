@@ -1,6 +1,8 @@
 #include "common.h"
 #include "7B0A0.h"
 
+void func_8008E4A4(u32); 
+
 //BYTECODE PARSER
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008BCC0.s")
@@ -64,7 +66,18 @@ void func_8008DC8C(s16* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008DD54.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008E074.s")
+s32 func_8008E074(s32 arg0, f32* arg1, f32 arg2) {
+    struct Vec3f sp1C;
+
+    sp1C.z = gObjects[arg0].Pos.x + gObjects[arg0].Vel.x;
+    sp1C.y = gObjects[arg0].Pos.y + gObjects[arg0].Vel.y + arg2;
+    sp1C.x = gObjects[arg0].Pos.z + gObjects[arg0].Vel.z;
+
+    func_80067748(sp1C.z, sp1C.y, sp1C.x);
+
+    *arg1 = D_80177760[1];
+    return D_801776E0 & 1; 
+}
 
 void func_8008E190(s16 arg0) {
     u32 spC;
@@ -87,7 +100,13 @@ void func_8008E190(s16 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008E328.s")
+void func_8008E328(s16* arg0) {
+    u32 sp24;
+
+    sp24 = D_80134D48[arg0[0]].ObjectID;
+    func_8008E4A4(sp24);
+    func_8001C0EC((s32) sp24, D_80134FB0, (s32) arg0[1], D_80134FB4, D_80134FB8);
+}
 
 void func_8008E3B0(s16* arg0) {
     u32 CurrentObject;
@@ -108,7 +127,20 @@ void func_8008E3B0(s16* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008E918.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008E9DC.s")
+void func_8008E9DC(s16 arg0) {
+    u32 spC;
+    UNUSED s32 sp8;
+    UNUSED s32 sp4;
+
+    spC = D_80134D48[arg0].ObjectID;
+    gObjects[spC].unk3C += gObjects[spC].unk5C;
+    gObjects[spC].unk44 += gObjects[spC].unk60;
+    
+    if(D_80134D48[arg0].unkC == 1)
+    {
+        gObjects[spC].Rot.y = gObjects[spC].unk3C + gObjects[spC].unk5C;
+    }
+}
 
 void func_8008EAE4(s16* arg0) {
     D_80134D48[arg0[0]].unkE = 0;
@@ -346,7 +378,18 @@ void func_8008EB9C(s16* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8009359C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80093618.s")
+void func_80093618(void) {
+    s32 sp24;
+    s32 sp20;
+
+    sp24 = func_80027464(2, &D_80111838, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    if (sp24 != -1) {
+        func_80027B34(sp24, &D_80111828);
+        sp20 =  (gObjects[sp24].unkE8[0]);
+        func_8001ABF4(sp20, 0, 0, &D_8011698C);
+        func_8001ABF4(sp20, 1, 0, &D_8011698C + (0x1C / 4));
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80093714.s")
 

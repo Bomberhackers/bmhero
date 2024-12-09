@@ -229,9 +229,9 @@ struct ObjectStruct {
     /* 0x050 */ f32 unk50;
     /* 0x054 */ f32 unk54;
     /* 0x058 */ f32 unk58;
-    /* 0x05C */ char pad5C[4];
+    /* 0x05C */ f32 unk5C;
     /* 0x060 */ f32 unk60;                            /* inferred */
-    /* 0x060 */ char pad60[0x10];
+    /* 0x064 */ char pad60[0xC];
     /* 0x070 */ f32 unk70;
     /* 0x074 */ char pad74[0x18];                   /* maybe part of unk70[7]? */
     /* 0x08C */ f32 unk8C;

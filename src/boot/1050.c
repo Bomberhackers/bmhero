@@ -1,7 +1,7 @@
 #include <ultra64.h>
 #include "../libultra/io/viint.h"
-#include "1050.h"
 #include "prevent_bss_reordering2.h"
+#include "1050.h"
 
 // .bss start
 OSMesg D_8004D3F0;

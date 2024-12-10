@@ -5,6 +5,11 @@ void func_8008E4A4(u32);
 void func_8008E788(u32, s16);                          /* extern */
 void func_8008E9DC(s16);
 void func_8008ED8C(s16);
+void func_8008D188(UNK_TYPE);
+void func_8008D3F8(UNK_TYPE);
+void func_8008DD54(s16);
+void func_8008F1DC(s16);
+s32 func_8008E074(s32 arg0, f32* arg1, f32 arg2);
 
 //BYTECODE PARSER
 
@@ -151,7 +156,36 @@ void func_8008C684(s16* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008D530.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008DA20.s")
+void func_8008DA20(s16 arg0) {
+    f32 sp34;
+    f32 sp30;
+    f32 sp2C;
+    f32 sp28;
+    s16 sp26;
+    u32 sp20;
+    s32 sp1C;
+
+    sp20 = D_80134D48[arg0].ObjectID;
+    sp34 = gObjects[sp20].Pos.x + gObjects[sp20].Vel.x;
+    sp30 = gObjects[sp20].Pos.y + gObjects[sp20].Vel.y + D_80134D48[arg0].unk8;
+    sp2C = gObjects[sp20].Pos.z + gObjects[sp20].Vel.z;
+
+    func_80067748(sp34, sp30, sp2C);
+    sp28 = D_80177760[D_801776E0 & 1];
+
+    if(D_80134D18[0] == 0)
+    {
+        gObjects[sp20].Vel.y = (sp28 - gObjects[sp20].Pos.y) - D_80134D48[arg0].unk8;
+        for(sp26 = 0; sp26 < 0xA; sp26++)
+        {
+            sp1C = gObjects[sp20].unkE8[sp26];
+            if(sp1C != -1)
+            {
+                gObjects[sp1C].Pos.y = gObjects[sp20].Pos.y + gObjects[sp20].Vel.y;
+            }
+        }
+    }
+}
 
 void func_8008DC8C(s16* arg0) {
     u32 ObjectID;
@@ -162,7 +196,47 @@ void func_8008DC8C(s16* arg0) {
     D_80134D18[arg0[0]] = 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008DD54.s")
+void func_8008DD54(s16 arg0) {
+    u32 sp24;
+    s32 sp20;
+    f32 sp1C;
+    s16 sp1A;
+
+    sp24 = D_80134D48[arg0].ObjectID;
+    gObjects[sp24].Vel.y -= gObjects[sp24].unk4C;
+
+    if(gObjects[sp24].Vel.y < -48.0f)
+    {
+        gObjects[sp24].Vel.y = -48.0f;
+    }
+
+    if(D_80134D48[sp24].unk10 == 0)
+    {
+        if(gObjects[sp24].Vel.y < 0.0f)
+        {
+            if(func_8008E074(sp24, &sp1C, D_80134D48[arg0].unk8) != 0)
+            {
+                gObjects[sp24].Vel.y = 0.0f;
+                gObjects[sp24].Pos.y = sp1C - D_80134D48[arg0].unk8;
+
+                D_80134D18[arg0] = 0;
+            }
+        }
+        else if(func_8008E074(sp24, &sp1C, D_80134D48[arg0].unk4) != 0)
+        {
+            gObjects[sp24].Vel.y = 0.0f;
+        }
+    }
+
+    for(sp1A = 0; sp1A < 0xA; sp1A++)
+    {
+        sp20 = gObjects[sp24].unkE8[sp1A];
+        if(sp20 != -1)
+        {
+            gObjects[sp20].Pos.y = gObjects[sp24].Pos.y + gObjects[sp24].Vel.y;
+        }
+    }
+}
 
 s32 func_8008E074(s32 arg0, f32* arg1, f32 arg2) {
     struct Vec3f sp1C;

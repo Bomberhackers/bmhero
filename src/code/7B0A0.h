@@ -2,13 +2,13 @@
 #define _BMHERO_7B0A0_H_
 
 extern s8 D_80134BF0;
-extern s16 D_80134BF2;
+extern s16 gCutsceneLength;
 extern s16 D_80134BF4;
 extern s16 D_80134BF6_unused;
 extern s16 D_80134BF8;
 extern s16 D_80134BFA;
 extern s16 D_80134BFC;
-extern s16 *gByteCodePtr;
+extern s16 *gCutsceneByteCode;
 extern s16 *D_80134C04_unused;
 extern struct CutsceneString* gCutsceneString;
 extern s16 D_80134C0C;

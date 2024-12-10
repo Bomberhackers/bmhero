@@ -518,11 +518,11 @@ void func_80081D78(void) {
     D_8016E134 = 0;
     if (gCameraType != 1) {
         gCameraType = D_80177921;
-        if (D_80134BF2 != -1) {
+        if (gCutsceneLength != -1) {
             gCameraType = 0;
         }
     }
-    if (D_80134BF2 == -1) {
+    if (gCutsceneLength == -1) {
         D_8016523E = D_80177778->unk29;
         if ((gGoldBomber != 0) && (*gContCurrButton & 0x2000)) {
             D_80177638 = 1;

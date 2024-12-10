@@ -168,6 +168,7 @@ extern struct UnkStruct_80027C00 D_801114B0;
 extern struct UnkStruct_80027C00 D_801114BC;
 extern struct UnkStruct_80027B34 D_80111828;
 extern struct UnkStruct_80027C00 D_80111838;
+extern struct UnkStruct_80027C00 D_80111850;
 extern UNK_TYPE D_80111880[];
 extern UNK_TYPE D_80111888;
 extern UNK_TYPE D_80111A74[];

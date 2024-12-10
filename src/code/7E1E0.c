@@ -347,7 +347,27 @@ void func_8008F078(s16* arg0) {
     D_80134CE8[arg0[0]] = arg0[4];
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008F1DC.s")
+void func_8008F1DC(s16 arg0) {
+    u32 spC;
+    s32 sp8;
+    s16 sp6;
+    
+    spC = D_80134D48[(s16) arg0].ObjectID;
+    gObjects[spC].Scale.x = gObjects[spC].Scale.x + gObjects[spC].unkD8;
+    gObjects[spC].Scale.y = gObjects[spC].Scale.y + gObjects[spC].unkDC;
+    gObjects[spC].Scale.z = gObjects[spC].Scale.z + gObjects[spC].unkE0;
+
+    for(sp6 = 0; sp6 < 0xA; sp6++)
+    {
+        sp8 = gObjects[spC].unkE8[sp6];
+        if(sp8 != -1)
+        {
+            gObjects[sp8].Scale.x = gObjects[sp8].Scale.x + gObjects[sp8].unkD8;
+            gObjects[sp8].Scale.y = gObjects[sp8].Scale.y + gObjects[sp8].unkDC;
+            gObjects[sp8].Scale.z = gObjects[sp8].Scale.z + gObjects[sp8].unkE0;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008F3D4.s")
 

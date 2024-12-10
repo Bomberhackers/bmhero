@@ -651,6 +651,6 @@ void func_80070AC8(void);
 void func_8008D188(UNK_TYPE);
 void func_8008D3F8(UNK_TYPE);
 void func_8008DD54(UNK_TYPE);
-void func_8008F1DC(UNK_TYPE);
+void func_8008F1DC(s16);
 
 #endif // _FUNCTIONS_H_

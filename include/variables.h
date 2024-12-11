@@ -164,6 +164,8 @@ extern s16* D_80110D4C[];
 extern u32 D_801110F0[];
 extern struct UnkStruct_80027C00 D_80111474;
 extern struct UnkStruct_80027C00 D_80111480;
+extern struct UnkStruct_80027C00 D_8011148C;
+extern struct UnkStruct_80027C00 D_801114A4;
 extern struct UnkStruct_80027C00 D_801114B0;
 extern struct UnkStruct_80027C00 D_801114BC;
 extern struct UnkStruct_80027B34 D_80111828;

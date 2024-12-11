@@ -6,7 +6,7 @@ void func_8008E788(u32, s16);                          /* extern */
 void func_8008E9DC(s16);
 void func_8008ED8C(s16);
 void func_8008D188(s16);
-void func_8008D3F8(UNK_TYPE);
+void func_8008D3F8(s16);
 void func_8008DD54(s16);
 void func_8008F1DC(s16);
 void func_8008DA20(s16);
@@ -367,8 +367,27 @@ void func_8008D188(s16 arg0) {
     }
 }
 
+void func_8008D3F8(s16 arg0) {
+    u32 sp24;
+    s32 sp20;
+    s16 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008D3F8.s")
+    sp24 = D_80134D48[(s16) arg0].ObjectID;
+    if(D_80134D48[arg0].unkE == 0)
+    {
+        func_8008DA20(arg0);
+    }
+
+    for(i = 0; i < 0xA; i++)
+    {
+        sp20 = gObjects[sp24].unkE8[i];
+
+        if(sp20 != -1)
+        {
+            gObjects[sp20].Pos.y = gObjects[sp24].Pos.y + gObjects[sp24].Vel.y;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008D530.s")
 

@@ -11,6 +11,7 @@ void func_8008DD54(s16);
 void func_8008F1DC(s16);
 void func_8008DA20(s16);
 s32 func_8008E074(s32 arg0, f32* arg1, f32 arg2);
+void func_8008E190(s16 arg0);
 
 //BYTECODE PARSER
 
@@ -111,7 +112,89 @@ void func_8008BCC0(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008C128.s")
+void func_8008C128(void) {
+    u32 sp1C;
+    s16 sp1A;
+
+    for(sp1A = 1; sp1A < 0x18; sp1A++)
+    {
+        if(D_80134D48[sp1A].ObjectID != -1)
+        {
+            sp1C = D_80134D48[sp1A].ObjectID;
+
+            if(D_80134C28[sp1A] == 0)
+            {                
+                gObjects[sp1C].unk44 = 0;
+                D_80134D48[sp1A].unkC = 0;
+                D_80134C28[sp1A] = -1;
+            }        
+            else if(D_80134C28[sp1A] != -1)
+            {
+                D_80134C28[sp1A]--;
+            }
+    
+            if (D_80134C58[sp1A] == 0) {
+                gObjects[sp1C].Vel.y = 0.0f;
+                D_80134C58[sp1A] = -1;
+            } else if (D_80134C58[sp1A] != -1) {
+                D_80134C58[sp1A]--;
+            }
+            
+            if (D_80134C88[sp1A] == 0) 
+            {
+                gObjects[sp1C].unk30.x = 0.0f;
+                gObjects[sp1C].unk30.y = 0.0f;
+                D_80134C88[sp1A] = -1;
+            }
+            else if (D_80134C88[sp1A] != -1)
+            {
+                D_80134C88[sp1A]--;
+            }
+    
+            if (D_80134CB8[sp1A] == 0) 
+            {
+                func_8001BB34(sp1C, 0);
+                D_80134CB8[sp1A] = -1;
+            }
+            else if(D_80134CB8[sp1A] != -1)
+            {
+                func_8008ED8C(sp1A);
+                D_80134CB8[sp1A]--;
+            }
+    
+            if (D_80134CE8[sp1A] == 0)
+            {
+                gObjects[sp1C].unkD8 = 0;
+                gObjects[sp1C].unkDC = 0;
+                gObjects[sp1C].unkE0 = 0;
+                D_80134CE8[sp1A] = -1;
+            }
+            else if(D_80134CE8[sp1A] != -1)
+            {
+                D_80134CE8[sp1A]--;
+            }
+    
+            func_8008E9DC(sp1A);
+            func_8008D188(sp1A);
+            func_8008F1DC(sp1A);
+    
+            if (D_80134D18[sp1A] == 1)
+            {
+                func_8008DD54(sp1A);
+            }
+            else
+            {
+                func_8008D3F8(sp1A);
+            }
+    
+            func_8008E190(sp1A);
+            func_8001CEF4(sp1C);
+            func_8001CD20(sp1C);
+            func_8001AD6C(sp1C);
+        }
+    }
+
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008C61C.s")
 
@@ -296,9 +379,6 @@ void func_8008E190(s16 arg0) {
     s32 sp8;
     s16 sp6;
     s16 temp_t4;
-    /*struct ObjectStruct* temp_t2;
-    struct ObjectStruct* temp_t5;
-    struct ObjectStruct* temp_t8;*/
 
     spC = D_80134D48[arg0].ObjectID;
     for(sp6 = 0; sp6 < 0xA; sp6++)

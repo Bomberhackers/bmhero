@@ -218,7 +218,30 @@ void func_8008C684(s16* arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008C778.s")
+void func_8008C778(s16* arg0) {
+    u32 spC;
+    s32 sp8;
+    s16 i;
+
+    spC = D_80134D48[arg0[0]].ObjectID;
+
+    gObjects[spC].Pos.x = arg0[1];
+    gObjects[spC].Pos.y = arg0[2];
+    gObjects[spC].Pos.z = arg0[3];    
+
+    gObjects[spC].Rot.y = arg0[4];    
+
+    for(i = 0; i < 0xA; i++)
+    {
+        sp8 = gObjects[spC].unkE8[i];
+        if(sp8 != -1)
+        {
+            gObjects[sp8].Pos.x = gObjects[spC].Pos.x;
+            gObjects[sp8].Pos.y = gObjects[spC].Pos.y;
+            gObjects[sp8].Pos.z = gObjects[spC].Pos.z;
+        }
+    }
+}
 
 void func_8008C9B4(s16* arg0) {
     u32 spC;

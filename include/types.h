@@ -259,9 +259,7 @@ struct ObjectStruct {
     /* 0x0E0 */ f32 unkE0;                          /* inferred */
     /* 0x0E4 */ s16 unkE4;
     /* 0x0E6 */ s16 unkE6[1];
-    /* 0x0E8 */ s16 unkE8[2];
-    /* 0x0EC */ s16 unkEC;
-    /* 0x0EE */ char padEE[0xE];                    /* maybe part of unkEC[8]? */
+    /* 0x0E8 */ s16 unkE8[0xA];
     /* 0x0FC */ s16 unkFC;
     /* 0x0FE */ s16 unkFE;
     /* 0x100 */ s16 unk100;

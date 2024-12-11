@@ -137,7 +137,23 @@ void func_8008C684(s16* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008C778.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008C9B4.s")
+void func_8008C9B4(s16* arg0) {
+    u32 spC;
+    s32 sp8;
+    s16 i;
+    
+    spC = D_80134D48[arg0[0]].ObjectID;
+    gObjects[spC].unk30.x = arg0[1] / 10.0f;
+    
+    for(i = 0; i < 0xA; i++)
+    {
+        sp8 = gObjects[spC].unkE8[i];
+        if(sp8 != -1)
+        {
+            gObjects[sp8].unk30.x = gObjects[spC].unk30.x;
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008CADC.s")
 

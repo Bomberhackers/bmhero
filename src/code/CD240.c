@@ -3441,7 +3441,7 @@ void func_800E91E4(void) {
         func_8001ABF4((s32) sp2C->unkE8[0], 0, 0, &D_8011993C);
         func_8001C0EC((s32) sp2C->unkE8[0], 0, 0, 0xC6, &D_80119974);
         func_8001C0EC((s32) sp2C->unkE8[1], 0, 0, 0xC7, &D_80119978);
-        func_8001C0EC((s32) sp2C->unkEC, 0, 0, 0xC5, &D_8011990C);
+        func_8001C0EC((s32) sp2C->unkE8[2], 0, 0, 0xC5, &D_8011990C);
     }
     if (func_8002A2EC(gCurrentParsedObject, 1500.0f) != 0) {
         sp2C->unkA4 = 2;
@@ -3463,7 +3463,7 @@ void func_800E9420(void) {
         sp34->unk3C = 0.0f;
         sp34->unk44 = 10.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 1, 0xC3, &D_801198EC);
-        func_8001C0EC((s32) sp34->unkEC, 0, 0, 0xC5, &D_8011990C);
+        func_8001C0EC((s32) sp34->unkE8[2], 0, 0, 0xC5, &D_8011990C);
         gObjects[sp34->unkE8[0]].unk30.z = D_80115540;
         gObjects[sp34->unkE8[1]].unk30.z = D_80115544;
     }
@@ -3485,7 +3485,7 @@ void func_800E9420(void) {
     } while (++sp2E < 3);
     (&gObjects[sp34->unkE8[0]])->Pos.y = (f32) ((&gObjects[sp34->unkE8[0]])->Pos.y + 172.0f);
     (&gObjects[sp34->unkE8[1]])->Pos.y = (f32) ((&gObjects[sp34->unkE8[1]])->Pos.y + 172.0f);
-    (&gObjects[sp34->unkEC])->Pos.y = (f32) ((&gObjects[sp34->unkEC])->Pos.y + D_80115548);
+    (&gObjects[sp34->unkE8[2]])->Pos.y = (f32) ((&gObjects[sp34->unkE8[2]])->Pos.y + D_80115548);
     if (func_8002A2EC(gCurrentParsedObject, 120.0f) != 0) {
         sp34->unkA4 = 3;
         sp34->unk132 = 0U;
@@ -3543,7 +3543,7 @@ void func_800E9AFC(void) {
         sp34->unk3C = 180.0f;
         sp34->unk44 = 24.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 2, 0xC3, &D_801198EC);
-        func_8001C0EC((s32) sp34->unkEC, 0, 0, 0xC5, &D_8011990C);
+        func_8001C0EC((s32) sp34->unkE8[2], 0, 0, 0xC5, &D_8011990C);
     }
     func_80029C40(gCurrentParsedObject);
     if (func_80029018(gCurrentParsedObject, 1, 120.0f, 0.0f, 0.0f, 0.0f) != 0) {
@@ -3563,7 +3563,7 @@ void func_800E9AFC(void) {
     } while (++sp2E < 3);
     gObjects[sp34->unkE8[0]].Pos.y = (f32) (gObjects[sp34->unkE8[0]].Pos.y + 172.0f);
     gObjects[sp34->unkE8[1]].Pos.y = (f32) (gObjects[sp34->unkE8[1]].Pos.y + 172.0f);
-    gObjects[sp34->unkEC].Pos.y = (f32) (gObjects[sp34->unkEC].Pos.y + D_8011554C);
+    gObjects[sp34->unkE8[2]].Pos.y = (f32) (gObjects[sp34->unkE8[2]].Pos.y + D_8011554C);
     if (func_8002A2EC(gCurrentParsedObject, 780.0f) == 0) {
         sp34->unkA4 = 2;
         sp34->unk132 = 0U;
@@ -3623,7 +3623,7 @@ void func_800EA194(void) {
         sp34->unk44 = 24.0f;
         sp34->unkA6 = (s16) (sp34->unkA6 + 1);
         func_8001C0EC(gCurrentParsedObject, 0, 3, 0xC3, &D_801198EC);
-        func_8001C0EC((s32) sp34->unkEC, 0, 0, 0xC5, &D_8011990C);
+        func_8001C0EC((s32) sp34->unkE8[2], 0, 0, 0xC5, &D_8011990C);
         func_800175F0(gCurrentParsedObject, 0, 0x16, -1, 0);
     }
     func_80029C40(gCurrentParsedObject);
@@ -3644,7 +3644,7 @@ void func_800EA194(void) {
     } while (++sp2E < 3);
     gObjects[sp34->unkE8[0]].Pos.y = (f32) (gObjects[sp34->unkE8[0]].Pos.y + 172.0f);
     gObjects[sp34->unkE8[1]].Pos.y = (f32) (gObjects[sp34->unkE8[1]].Pos.y + 172.0f);
-    gObjects[sp34->unkEC].Pos.y = (f32) (gObjects[sp34->unkEC].Pos.y + D_80115550);
+    gObjects[sp34->unkE8[2]].Pos.y = (f32) (gObjects[sp34->unkE8[2]].Pos.y + D_80115550);
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         sp34->unkA4 = 3;
         sp34->unk132 = 0U;
@@ -3666,7 +3666,7 @@ void func_800EA55C(void) {
         sp34->unk3C = 180.0f;
         sp34->unk44 = 24.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 4, 0xC3, &D_801198EC);
-        func_8001C0EC((s32) sp34->unkEC, 0, 0, 0xC5, &D_8011990C);
+        func_8001C0EC((s32) sp34->unkE8[2], 0, 0, 0xC5, &D_8011990C);
     }
     if ((func_8001B62C(gCurrentParsedObject, 0) > 20.0f) && (sp34->unk132 == 1)) {
         sp34->unk132 = (u8) (sp34->unk132 + 1);
@@ -3697,7 +3697,7 @@ void func_800EA55C(void) {
     } while (++sp2E < 3);
     gObjects[sp34->unkE8[0]].Pos.y = (f32) (gObjects[sp34->unkE8[0]].Pos.y + 172.0f);
     gObjects[sp34->unkE8[1]].Pos.y = (f32) (gObjects[sp34->unkE8[1]].Pos.y + 172.0f);
-    gObjects[sp34->unkEC].Pos.y = (f32) (gObjects[sp34->unkEC].Pos.y + D_80115554);
+    gObjects[sp34->unkE8[2]].Pos.y = (f32) (gObjects[sp34->unkE8[2]].Pos.y + D_80115554);
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         sp34->unkA4 = 3;
         sp34->unk132 = 0U;
@@ -3724,7 +3724,7 @@ void func_800EAAB8(void) {
         sp34->unk3C = 0.0f;
         sp34->unk44 = 10.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 5, 0xC3, &D_801198EC);
-        func_8001C0EC((s32) sp34->unkEC, 0, 0, 0xC5, &D_8011990C);
+        func_8001C0EC((s32) sp34->unkE8[2], 0, 0, 0xC5, &D_8011990C);
     }
     if ((func_8001B62C(gCurrentParsedObject, 0) > 20.0f) && (sp34->unk132 == 1)) {
         sp34->unk132 = (u8) (sp34->unk132 + 1);
@@ -3755,7 +3755,7 @@ void func_800EAAB8(void) {
     } while (++sp2E < 3);
     gObjects[sp34->unkE8[0]].Pos.y = (f32) (gObjects[sp34->unkE8[0]].Pos.y + 172.0f);
     gObjects[sp34->unkE8[1]].Pos.y = (f32) (gObjects[sp34->unkE8[1]].Pos.y + 172.0f);
-    gObjects[sp34->unkEC].Pos.y = (f32) (gObjects[sp34->unkEC].Pos.y + D_80115558);
+    gObjects[sp34->unkE8[2]].Pos.y = (f32) (gObjects[sp34->unkE8[2]].Pos.y + D_80115558);
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         sp34->unkA4 = 2;
         sp34->unk132 = 0U;
@@ -3790,8 +3790,8 @@ void func_800EB01C(void) {
             gObjects[sp34->unkE8[sp30]].unk108 = -1;
         } while (++sp30 < 3);
         func_8001C0EC(gCurrentParsedObject, 0, 3, 0xC3, &D_801198EC);
-        func_8001C0EC((s32) sp34->unkEC, 0, 0, 0xC5, &D_8011990C);
-        func_8001ABF4((s32) sp34->unkEC, 1, 0, &D_8011993C.Rot.y);
+        func_8001C0EC((s32) sp34->unkE8[2], 0, 0, 0xC5, &D_8011990C);
+        func_8001ABF4((s32) sp34->unkE8[2], 1, 0, &D_8011993C.Rot.y);
         func_800175F0(gCurrentParsedObject, 0, 0x16, -1, 0);
         sp34->unkC2 = 0x11;
     }
@@ -3813,11 +3813,11 @@ void func_800EB01C(void) {
     } while (++sp30 < 3);
     gObjects[sp34->unkE8[0]].Pos.y = (f32) (gObjects[sp34->unkE8[0]].Pos.y + 172.0f);
     gObjects[sp34->unkE8[1]].Pos.y = (f32) (gObjects[sp34->unkE8[1]].Pos.y + 172.0f);
-    gObjects[sp34->unkEC].Pos.y = (f32) (gObjects[sp34->unkEC].Pos.y + D_8011555C);
+    gObjects[sp34->unkE8[2]].Pos.y = (f32) (gObjects[sp34->unkE8[2]].Pos.y + D_8011555C);
     
-    gObjects[sp34->unkEC].Scale.x = D_80115180[sp34->unkAE].x;
-    gObjects[sp34->unkEC].Scale.y = D_80115184[sp34->unkAE].x;
-    gObjects[sp34->unkEC].Scale.z = D_80115188[sp34->unkAE].x;
+    gObjects[sp34->unkE8[2]].Scale.x = D_80115180[sp34->unkAE].x;
+    gObjects[sp34->unkE8[2]].Scale.y = D_80115184[sp34->unkAE].x;
+    gObjects[sp34->unkE8[2]].Scale.z = D_80115188[sp34->unkAE].x;
     sp34->unkAE = (s16) (sp34->unkAE + 1);
     if (sp34->unkC2 == 0) {
         func_800175F0(gCurrentParsedObject, 0, 0x16, -1, 0);
@@ -3854,7 +3854,7 @@ void func_800EB61C(void) {
         sp34->unk3C = 180.0f;
         sp34->unk44 = 8.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 6, 0xC3, &D_801198EC);
-        func_8001C0EC((s32) sp34->unkEC, 0, 1, 0xC5, &D_8011990C);
+        func_8001C0EC((s32) sp34->unkE8[2], 0, 1, 0xC5, &D_8011990C);
     }
     func_80029C40(gCurrentParsedObject);
     if (func_80029018(gCurrentParsedObject, 1, 120.0f, 0.0f, 0.0f, 0.0f) != 0) {
@@ -3874,7 +3874,7 @@ void func_800EB61C(void) {
     } while (++sp2E < 3);
     gObjects[sp34->unkE8[0]].Pos.y = (f32) (gObjects[sp34->unkE8[0]].Pos.y + 172.0f);
     gObjects[sp34->unkE8[1]].Pos.y = (f32) (gObjects[sp34->unkE8[1]].Pos.y + 172.0f);
-    gObjects[sp34->unkEC].Pos.y = (f32) (gObjects[sp34->unkEC].Pos.y + D_80115560);
+    gObjects[sp34->unkE8[2]].Pos.y = (f32) (gObjects[sp34->unkE8[2]].Pos.y + D_80115560);
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         sp34->unkA4 = 3;
         sp34->unk132 = 0U;

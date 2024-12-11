@@ -316,7 +316,28 @@ void func_8008CD2C(s16* arg0) {
     D_80134D48[arg0[0]].unkC = (arg0[3] == 1) ? 1 : 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008CE8C.s")
+void func_8008CE8C(s16* arg0) {
+    f32 sp2C;
+    f32 sp28;
+    u32 sp24;
+
+    sp24 = D_80134D48[arg0[0]].ObjectID;
+    sp2C = arg0[1] - gObjects[sp24].Pos.x;
+    sp28 = arg0[2] - gObjects[sp24].Pos.z;
+
+    gObjects[sp24].unk3C = func_80015634(sp2C, sp28);
+    gObjects[sp24].unk44 = sqrtf((sp2C * sp2C) + (sp28 * sp28)) / arg0[3]; //pythagoras
+
+    D_80134C28[arg0[0]] = arg0[3];
+
+    if (arg0[4] == 1) 
+    {
+        D_80134D48[arg0[0]].unkC= 1;
+    } else 
+    {
+        D_80134D48[arg0[0]].unkC= 0;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008D074.s")
 

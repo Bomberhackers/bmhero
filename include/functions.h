@@ -166,6 +166,7 @@ void func_8001BB34(s32, s32);
 void func_8001BD44(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 void func_8001BE6C(s32 arg0, s32 arg1, s32 arg2, s32 arg3);
 s32 func_8001C1A8(s32, s32);
+void func_8001C158(s32, s32, s32); 
 s32 func_8001C248(s32, s32); 
 void func_8001CD20(s32);
 void func_8001CEF4(s32);
@@ -645,5 +646,6 @@ void func_800654AC(void);
 void func_8006AD28(void);
 void func_800842C0(void);
 void func_80070AC8(void);
+
 
 #endif // _FUNCTIONS_H_

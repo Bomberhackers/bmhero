@@ -12,6 +12,7 @@ void func_8008F1DC(s16);
 void func_8008DA20(s16);
 s32 func_8008E074(s32 arg0, f32* arg1, f32 arg2);
 void func_8008E190(s16 arg0);
+void func_8008F710(u32, s16); 
 
 //BYTECODE PARSER
 
@@ -196,13 +197,21 @@ void func_8008C128(void) {
 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008C61C.s")
+void func_8008C61C(void) {
+    D_80176606 = 1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008C638.s")
+void func_8008C638(void) {
+    D_80176606 = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008C650.s")
+void func_8008C650(void) {
+    D_8017660A = 1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008C66C.s")
+void func_8008C66C(void) {
+    D_8017660A = 0;
+}
 
 void func_8008C684(s16* arg0) {
     s32 sp4;
@@ -339,9 +348,22 @@ void func_8008CE8C(s16* arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008D074.s")
+void func_8008D074(s16* arg0) {
+    UNUSED UNK_TYPE sp4;
+    u32 sp0;
+    sp0 = D_80134D48[arg0[0]].ObjectID;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008D114.s")
+    gObjects[sp0].Vel.y = (arg0[1] - gObjects[sp0].Pos.y) / arg0[2];
+    D_80134C58[arg0[0]] = arg0[2];
+}
+
+void func_8008D114(s16* arg0) {
+    UNUSED UNK_TYPE sp4;
+    u32 sp0;
+
+    sp0 = D_80134D48[arg0[0]].ObjectID;
+    gObjects[sp0].Vel.y = arg0[1] / 10.0f;
+}
 
 void func_8008D188(s16 arg0) {
     u32 sp24;
@@ -389,7 +411,54 @@ void func_8008D3F8(s16 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008D530.s")
+void func_8008D530(s16* arg0) {
+    UNUSED UNK_TYPE spC;
+    UNUSED UNK_TYPE sp8;
+    u32 sp4;
+
+    sp4 = D_80134D48[arg0[0]].ObjectID;
+    if(arg0[4] == 1)
+    {
+        if(arg0[1] / 10.0f < gObjects[sp4].Rot.x)
+        {
+            gObjects[sp4].unk30.x = (((arg0[1] / 10.0f) - gObjects[sp4].Rot.x) + 360.0f) / arg0[3];
+        }
+        else
+        {
+            gObjects[sp4].unk30.x = ((arg0[1] / 10.0f) - gObjects[sp4].Rot.x) / arg0[3];
+        }
+    }
+    else if(arg0[1] / 10.0f <= gObjects[sp4].Rot.x)
+    {
+        gObjects[sp4].unk30.x = ((arg0[1] / 10.0f) - gObjects[sp4].Rot.x) / arg0[3]; 
+    }
+    else
+    {
+        gObjects[sp4].unk30.x = ((gObjects[sp4].Rot.x - (arg0[1] / 10.0f) + 360.0f) / arg0[3]) * -1.0f;
+    }
+
+    if(arg0[5] == 1)
+    {
+        if(arg0[2] / 10.0f < gObjects[sp4].Rot.y)
+        {
+            gObjects[sp4].unk30.y = (((arg0[2] / 10.0f) - gObjects[sp4].Rot.y) + 360.0f) / arg0[3];
+        }
+        else
+        {
+            gObjects[sp4].unk30.y = ((arg0[2] / 10.0f) - gObjects[sp4].Rot.y) / arg0[3];
+        }
+    }
+    else if(arg0[2] / 10.0f <= gObjects[sp4].Rot.y)
+    {
+        gObjects[sp4].unk30.y = ((arg0[2] / 10.0f) - gObjects[sp4].Rot.y) / arg0[3];
+    }
+    else
+    {
+        gObjects[sp4].unk30.y = ((gObjects[sp4].Rot.y - (arg0[2] / 10.0f) + 360.0f) / arg0[3]) * -1.0f;
+    }
+
+    D_80134C88[arg0[0]] = arg0[3]; 
+}
 
 void func_8008DA20(s16 arg0) {
     f32 sp34;
@@ -605,11 +674,23 @@ void func_8008E4A4(u32 arg0) {
     }
 }
 
+//https://decomp.me/scratch/E3YD6
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008E788.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008E81C.s")
+void func_8008E81C(s16* arg0) {
+    u32 sp1C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008E8A4.s")
+    sp1C = D_80134D48[arg0[0]].ObjectID;
+    func_8008F710(sp1C, arg0[1]);
+    func_8001ABF4((s32) sp1C, (s32) arg0[2], D_80134FC0, D_80134FC4);
+}
+
+void func_8008E8A4(s16* arg0) {
+    u32 sp4;
+
+    sp4 = D_80134D48[arg0[0]].ObjectID;
+    gObjects[sp4].unk60 = arg0[1] / 10.0f;
+}
 
 void func_8008E918(s16* arg0) {
     u32 sp4;
@@ -642,9 +723,13 @@ void func_8008EAE4(s16* arg0) {
     D_80134D48[arg0[0]].unkE = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008EB10.s")
+void func_8008EB10(s16* arg0) {
+    D_80134D48[arg0[0]].unkE = 1;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008EB40.s")
+void func_8008EB40(s16* arg0) {
+    D_80134D48[arg0[0]].unk10 = 0;
+}
 
 void func_8008EB6C(s16* arg0) {
     D_80134D48[arg0[0]].unk10= 1;
@@ -751,11 +836,53 @@ void func_8008F1DC(s16 arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008F3D4.s")
+void func_8008F3D4(s16* arg0) {
+    u32 sp24;
+    s32 sp20;
+    s32 sp1C;
+    s16 sp1A;
+    
+    sp24 = D_80134D48[arg0[0]].ObjectID;
+    D_80134D48[arg0[0]].ObjectID = -1U;
+    D_80134D48[arg0[0]].unk4 = 0.0f;
+    D_80134D48[arg0[0]].unk8 = 0.0f;
+    D_80134D48[arg0[0]].unkC = 0;
+    D_80134D48[arg0[0]].unkE = 0;
+    D_80134D48[arg0[0]].unk10 = 0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008F63C.s")
+    D_80134C28[arg0[0]] = -1;
+    D_80134C58[arg0[0]] = -1;
+    D_80134C88[arg0[0]] = -1;
+    D_80134CB8[arg0[0]] = -1;
+    D_80134CE8[arg0[0]] = -1;
+    D_80134D18[arg0[0]] = 0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008F6AC.s")
+    for(sp1A = 0; sp1A < 0xA; sp1A++)
+    {
+        sp20 = gObjects[sp24].unkE8[sp1A];
+        if(sp20 != -1)
+        {
+            sp1C = func_800281A4(sp24, sp1A);
+            func_8002B114(sp1C);
+        }
+    }
+
+    func_8002B114(sp24);
+}
+
+void func_8008F63C(s16* arg0) {
+    u32 sp24;
+
+    sp24 = D_80134D48[arg0[0]].ObjectID;
+    func_800178D4(sp24, arg0[1], arg0[2], arg0[3], arg0[4]);
+}
+
+void func_8008F6AC(s16* arg0) {
+    u32 sp1C;
+
+    sp1C = D_80134D48[arg0[0]].ObjectID;
+    func_80017B3C(sp1C, arg0[1]);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008F710.s")
 
@@ -1013,7 +1140,31 @@ void func_80093714(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80093B64.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80093F30.s")
+void func_80093F30(void) {
+    struct ObjectStruct* sp24;
+
+    sp24 = &gObjects[gCurrentParsedObject];
+    if (sp24->unkE4 == 0x32) {
+        if (sp24->unk132 == 0) {
+            sp24->unk132 += 1;
+            sp24->unkB2 = 0;
+            sp24->unk108 = 0;
+            func_8001BB34(gCurrentParsedObject, 1);
+            func_8001BB04(gCurrentParsedObject, 1);
+            func_8002AE38(sp24->Pos.x, sp24->Pos.y, sp24->Pos.z, 1.0f, 0x11);
+        }
+        if (sp24->unkB2 == 0x78) {
+            sp24->unkA4 = 1;
+            sp24->unk132 = 0;
+            sp24->unkD4 = 0.0f;
+            sp24->unkD8 = 0.0f;
+        } else {
+            sp24->unkB2 += 1;
+        }
+    } else {
+        func_8002B0E4(gCurrentParsedObject);
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8009409C.s")
 

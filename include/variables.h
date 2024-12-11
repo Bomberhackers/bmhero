@@ -325,6 +325,9 @@ extern struct UnkStruct_8011670C D_8011670C[]; //.rodata
 extern s32 D_801168CC[];                       //.rodata
 extern s32 D_801168D0[];                       //.rodata
 
+extern u32 D_8011694C;
+extern u32 D_80116950;
+
 extern UNK_TYPE D_8011698C; //size of 0x1C
 
 extern s32 D_80116EC4[]; 
@@ -485,6 +488,8 @@ extern f32 D_80134F40;
 extern s32 D_80134FB0;
 extern s32 D_80134FB4;
 extern u32* D_80134FB8;
+extern s32 D_80134FC0;
+extern UNK_TYPE* D_80134FC4;
 extern s32 D_80134FD0;
 extern struct ObjectStruct gObjects[207];
 extern struct UnkBigStruct_8006B64C D_801541F8[];

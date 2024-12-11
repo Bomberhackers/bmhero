@@ -5,10 +5,11 @@ void func_8008E4A4(u32);
 void func_8008E788(u32, s16);                          /* extern */
 void func_8008E9DC(s16);
 void func_8008ED8C(s16);
-void func_8008D188(UNK_TYPE);
+void func_8008D188(s16);
 void func_8008D3F8(UNK_TYPE);
 void func_8008DD54(s16);
 void func_8008F1DC(s16);
+void func_8008DA20(s16);
 s32 func_8008E074(s32 arg0, f32* arg1, f32 arg2);
 
 //BYTECODE PARSER
@@ -150,7 +151,30 @@ void func_8008C684(s16* arg0) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008D114.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008D188.s")
+void func_8008D188(s16 arg0) {
+    u32 sp24;
+    s32 sp20;
+    s16 sp1E;
+
+    sp24 = D_80134D48[(s16) arg0].ObjectID;
+    gObjects[sp24].Vel.x = gObjects[sp24].unk44 * sinf(gObjects[sp24].unk3C * 0.017453292519943295); //1°
+    gObjects[sp24].Vel.z = gObjects[sp24].unk44 * cosf(gObjects[sp24].unk3C * 0.017453292519943295);
+
+    if (D_80134D48[arg0].unkE == 0)
+    {
+        func_8008DA20(arg0);
+    }
+    for(sp1E = 0; sp1E < 0xA; sp1E++)
+    {
+        sp20 = gObjects[sp24].unkE8[sp1E];
+        if(sp20 != -1)
+        {
+            gObjects[sp20].Pos.x = gObjects[sp24].Pos.x + gObjects[sp24].Vel.x;
+            gObjects[sp20].Pos.z = gObjects[sp24].Pos.z + gObjects[sp24].Vel.z;
+        }
+    }
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008D3F8.s")
 
@@ -295,7 +319,83 @@ void func_8008E418(s16* arg0) {
     func_8001C0EC(sp24, arg0[1], arg0[2], D_80134FB4, D_80134FB8);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008E4A4.s")
+void func_8008E4A4(u32 arg0) {
+    switch(gObjects[arg0].unkE4)
+    {
+        case 0x266:
+            D_80134FB0 = 0;
+            D_80134FB4 = 0x223;
+            D_80134FB8 = &D_80111888;
+            break;
+        case 0x244:
+            D_80134FB0 = 0;
+            D_80134FB4 = 0x22A;
+            D_80134FB8 = &D_80116164;
+            break;
+        case 0x26A:
+            D_80134FB0 = 0;
+            D_80134FB4 = 0x275;
+            D_80134FB8 = &D_80115CF8;
+            break;
+        case 0x281:
+            D_80134FB0 = 0;
+            D_80134FB4 = 0x28A;
+            D_80134FB8 = &D_80116058;
+            break;
+        case 0x256:
+            D_80134FB0 = 3;
+            D_80134FB4 = 0x16A;
+            D_80134FB8 = &D_80118914;
+            break;
+        case 0x25C:
+            D_80134FB0 = 0;
+            D_80134FB4 = 0x268;
+            D_80134FB8 = &D_80112F30;
+            break;
+        case 0x25D:
+            D_80134FB0 = 0;
+            D_80134FB4 = 0x268;
+            D_80134FB8 = &D_80112F30;
+            break;
+        case 0x25E:
+            D_80134FB0 = 0;
+            D_80134FB4 = 0x268;
+            D_80134FB8 = &D_80112F30;
+            break;
+        case 0x25F:
+            D_80134FB0 = 3;
+            D_80134FB4 = 0x269;
+            D_80134FB8 = &D_80112FC4;
+            break;
+        case 0x260:
+            D_80134FB0 = 3;
+            D_80134FB4 = 0x269;
+            D_80134FB8 = &D_80112FC4;
+            break;
+        case 0x261:
+            D_80134FB0 = 3;
+            D_80134FB4 = 0x269;
+            D_80134FB8 = &D_80112FC4;
+            break;
+        case 0x267:
+            D_80134FB0 = 0;
+            D_80134FB4 = 0x12B;
+            D_80134FB8 = &D_8011313C;
+            break;
+        case 0x275:
+            D_80134FB0 = 0;
+            D_80134FB4 = 0x280;
+            D_80134FB8 = &D_801131A0;
+            break;
+        case 0x280:
+            D_80134FB0 = 3;
+            D_80134FB4 = 0x288;
+            D_80134FB8 = &D_801131A8;
+            break;
+        default:
+            break;
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008E788.s")
 

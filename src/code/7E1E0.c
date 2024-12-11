@@ -261,11 +261,60 @@ void func_8008C9B4(s16* arg0) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008CADC.s")
+void func_8008CADC(s16* arg0) {
+    u32 spC;
+    s32 sp8;
+    s16 i;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008CC04.s")
+    spC = D_80134D48[arg0[0]].ObjectID;
+    gObjects[spC].unk30.y = arg0[1] / 10.0f;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008CD2C.s")
+    for(i = 0; i < 0xA; i++)
+    {
+        sp8 = gObjects[spC].unkE8[i];
+
+        if(sp8 != -1)
+        {
+            gObjects[sp8].unk30.y = gObjects[spC].unk30.y;
+        }
+    }
+}
+
+void func_8008CC04(s16* arg0) {
+    u32 spC;
+    s32 sp8;
+    s16 i;
+
+    spC = D_80134D48[arg0[0]].ObjectID;
+    gObjects[spC].unk30.z = arg0[1] / 10.0f;
+
+    for(i = 0; i < 0xA; i++)
+    {
+        sp8 = gObjects[spC].unkE8[i];
+
+        if(sp8 != -1)
+        {
+            gObjects[sp8].unk30.z = gObjects[spC].unk30.z;
+        }
+    }
+}
+
+void func_8008CD2C(s16* arg0) {
+    u32 sp4;
+
+    sp4 = D_80134D48[arg0[0]].ObjectID;
+
+    gObjects[sp4].unk44 = arg0[1] / 10.0f;
+    gObjects[sp4].unk3C = arg0[2] / 10.0f;
+
+    if(arg0[1] == 0)
+    {
+        gObjects[sp4].unk60 = 0.0f;
+        gObjects[sp4].unk5C = 0.0f;
+    }
+    
+    D_80134D48[arg0[0]].unkC = (arg0[3] == 1) ? 1 : 0;
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008CE8C.s")
 

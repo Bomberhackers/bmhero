@@ -2423,7 +2423,7 @@ void func_800BEFF0(void) {
             func_800281A4(gCurrentParsedObject, 1);
             func_8002B0E4((s32) sp22);
         }
-        sp22 = sp24->unkEC;
+        sp22 = sp24->unkE8[2];
         if (sp22 != -1) {
             func_800281A4(gCurrentParsedObject, 2);
             func_8002B0E4((s32) sp22);

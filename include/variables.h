@@ -162,9 +162,27 @@ extern s16 D_8010CD80[2];
 extern s16 D_80110B78[];
 extern s16* D_80110D4C[];
 extern u32 D_801110F0[];
+extern struct UnkStruct_80027C00 D_80111474;
+extern struct UnkStruct_80027C00 D_80111480;
+extern struct UnkStruct_80027C00 D_801114B0;
+extern struct UnkStruct_80027C00 D_801114BC;
+extern struct UnkStruct_80027B34 D_80111828;
+extern struct UnkStruct_80027C00 D_80111838;
+extern struct UnkStruct_80027C00 D_80111850;
 extern UNK_TYPE D_80111880[];
 extern UNK_TYPE D_80111888;
 extern UNK_TYPE D_80111A74[];
+extern UNK_TYPE D_80112414;
+extern u32 D_80112F30;
+extern u32 D_80112FC4;
+extern u32 D_8011313C;
+extern u32 D_801131A0;
+extern u32 D_801131A8;
+extern u32 D_80115CF8;
+extern u32 D_80116058;
+extern u32 D_80116164;
+extern u32 D_80118914;
+extern struct UnkStruct_80112518 D_80112518[];
 extern UnkStruct80165100 D_80113790;
 extern UnkStruct80165100 D_801137D8;
 extern UnkStruct80165100 D_801137E4;
@@ -306,6 +324,8 @@ extern s32 D_80116674[];                       //.rodata
 extern struct UnkStruct_8011670C D_8011670C[]; //.rodata
 extern s32 D_801168CC[];                       //.rodata
 extern s32 D_801168D0[];                       //.rodata
+
+extern UNK_TYPE D_8011698C; //size of 0x1C
 
 extern s32 D_80116EC4[]; 
 
@@ -462,6 +482,9 @@ extern s16 D_801348B0;
 extern s8 D_801348B2;
 extern struct UnkStruct_56400 D_801348B8[];
 extern f32 D_80134F40;
+extern s32 D_80134FB0;
+extern s32 D_80134FB4;
+extern u32* D_80134FB8;
 extern s32 D_80134FD0;
 extern struct ObjectStruct gObjects[207];
 extern struct UnkBigStruct_8006B64C D_801541F8[];
@@ -599,6 +622,7 @@ extern s8 D_8016E414;
 extern s16 D_8016E41C;
 extern s8 gShowDebugMenu;
 extern s32 gCurrentLevel;
+extern s16 D_8016E430;
 extern s16 D_8016E432;
 extern s16 D_8016E434;
 extern f32 D_8016E438;
@@ -721,6 +745,7 @@ extern f32 D_801779C8;
 extern f32 D_80177A14;
 extern s16 D_80177A1A;
 extern s16 D_80177A1E;
+extern s8 D_80177A20;
 extern f32 D_80177A24;
 extern s32 gCurrentParsedObject;
 extern s32 D_80177A64;

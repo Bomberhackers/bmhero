@@ -413,7 +413,7 @@ segments:
     - [auto, .rodata, ../src/unk_FF0F0_rodata]
     - [0xFF2A0, rodata]
     - [0xFF2B0, .rodata, code/7B0A0]
-    - [0xFF3F0, rodata]
+    - [0xFF3F0, .rodata, code/7E1E0]
     - [0xFF500, rodata]
     - [0x1038B0, rodata]
     - [0x1038E0, rodata]

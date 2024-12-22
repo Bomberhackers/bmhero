@@ -300,7 +300,7 @@ segments:
     - [0x4C860, .rodata, boot/1FAB0]
     - [0x4C940, .rodata, boot/21E10]
     - [0x4C9B0, .rodata, boot/26CE0]
-    - [0x4CA40, rodata]
+    - [0x4CA40, .rodata, boot/2BF00]
     - [0x4CC10, rodata, libultra/os/setintmask]
     - [0x4CC90, .rodata, libultra/audio/csplayer]
     - [0x4CED0, .rodata, libultra/audio/cseq]

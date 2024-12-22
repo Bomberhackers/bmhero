@@ -287,9 +287,8 @@ struct ObjectStruct {
     /* 0x13D */ s8 unk13D;
     /* 0x13E */ s8 unk13E;
     /* 0x13F */ s8 unk13F;
-    /* 0x140 */ s16 Unk140[1];
-    /* 0x142 */ char pad142[0xE];                   /* maybe part of Unk140[8]? */
-};                                                  /* size = 0x150 */
+    /* 0x140 */ s16 Unk140[8];
+};                                                
 
 struct UnkStruct80134D48 {
     u32 ObjectID;
@@ -903,6 +902,7 @@ struct UnkStruct_80027C00 {
     /* 0xA */ char unkA;
 };
 
+
 struct UnkStruct_80026548_SP24 {
     /* 0x00 */ s16 unk0;
     /* 0x02 */ s16 unk2;
@@ -919,7 +919,6 @@ struct UnkStruct_80026548 {
     char unk5;
     char unk6;
     char unk7;
-
     s16 unk8;
     s16 unkA;
     s16 unkC;
@@ -934,7 +933,12 @@ struct UnkStruct_80026548 {
     char pad28[0x4];
     void* (*routine3)();
     u64 unk30;
-    char pad38[0x24];
+    struct UnkStruct_80027C00* unk38;
+    s32 pad3C;
+    void* unk40;
+    void* unk44;
+    u8 unk48[1];
+    char pad38[0x17];
 };
 
 struct UnkStruct_80027464 {

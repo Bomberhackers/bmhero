@@ -155,7 +155,7 @@ void func_80026548(void) {
     for (sp40 = 0; sp40 < 0x80; sp40++) {
         sp20 = func_800261BC(sp40);
         if (sp20 == 2) {
-            sp30 = (sp4C[sp40].unk2) - view_x;
+            sp30 = sp4C[sp40].unk2 - view_x;
             sp2C = sp4C[sp40].unk4 - view_y;
             sp28 = sp4C[sp40].unk6 - view_z;
             if ((SQ(sp30) + SQ(sp2C) + SQ(sp28)) > D_8017797C) {
@@ -348,13 +348,13 @@ s32 func_80027464(s32 arg0, struct UnkStruct_80027C00 *arg1, f32 arg2, f32 arg3,
             gObjects[sp.unk24[index]].unkE4  = arg1->unk2;
             gObjects[sp.unk24[index]].unk100 = arg1->unk7;
             gObjects[sp.unk24[index]].unk108 = arg1->unk8;
-            gObjects[sp.unk24[index]].unk102  = arg1->unk9;
+            gObjects[sp.unk24[index]].unk102 = arg1->unk9;
             gObjects[sp.unk24[index]].unk103 = arg1->unkA;
             if (index > 0) {
                 gObjects[sp.unk24[index]].unkE6[0] = sp.unk24[0];
                 gObjects[sp.unk24[0]].unkE6[index] = sp.unk24[index];
             }
-             arg1++;
+            arg1++;
             index++;
         }
     }

@@ -69,7 +69,7 @@ s32 func_80016DD4(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_80017EE0.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/func_80017FD8.s")
+#pragma GLOBAL_ASM("asm/nonmatchings/boot/17930/printf.s")
 
 s32 func_80017FF8(void) {
     Lights2 *sp4 = gLevelInfo[gCurrentLevel]->unk20;

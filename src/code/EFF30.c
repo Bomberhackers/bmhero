@@ -34,33 +34,33 @@ void func_800FDA10(void) {
 void func_800FDD48(void) {
     func_8005F96C(0xFFU, 0xFFU, 0xFFU);
     sprintf(&gDebugTextBuf, "%8d", D_8016E244);
-    debug_print_xy((s8* )0xD0, (s8* )0xD8);
+    debug_print_xy(0xD0, 0xD8);
     sprintf(&gDebugTextBuf, "[BOMBERMAN ACTION MENU]");
-    debug_print_xy((s8* )0x20, (s8* )0x10);
+    debug_print_xy(0x20, 0x10);
     sprintf(&gDebugTextBuf, "   GAME START = %d", gDebugSaveIndex);
-    debug_print_xy((s8* )0x20, (s8* )0x20);
+    debug_print_xy(0x20, 0x20);
     sprintf(&gDebugTextBuf, "   MAP NUMBER  = 0x%X", gCurrentLevel);
-    debug_print_xy((s8* )0x20, (s8* )0x30);
+    debug_print_xy(0x20, 0x30);
     sprintf(&gDebugTextBuf, "   MAP TEST    = 0x%X", gCurrentLevel);
-    debug_print_xy((s8* )0x20, (s8* )0x40);
+    debug_print_xy(0x20, 0x40);
     sprintf(&gDebugTextBuf, "   CAMERA TYPE = %d", gCameraType);
-    debug_print_xy((s8* )0x20, (s8* )0x50);
+    debug_print_xy(0x20, 0x50);
     sprintf(&gDebugTextBuf, "   TITLE TEST");
-    debug_print_xy((s8* )0x20, (s8* )0x60);
+    debug_print_xy(0x20, 0x60);
     sprintf(&gDebugTextBuf, "   ENTRY EDIT = 0x%X", gCurrentLevel);
-    debug_print_xy((s8* )0x20, (s8* )0x70);
+    debug_print_xy(0x20, 0x70);
     sprintf(&gDebugTextBuf, "   MUSIC NUMBER = %d", gDebugSelectedMusicIndex);
-    debug_print_xy((s8* )0x20, (s8* )0x80);
+    debug_print_xy(0x20, 0x80);
     sprintf(&gDebugTextBuf, "   SOUND NUMBER = %d", gDebugSelectedSoundIndex);
-    debug_print_xy((s8* )0x20, (s8* )0x90);
+    debug_print_xy(0x20, 0x90);
     sprintf(&gDebugTextBuf, "   DEMO = %d", gDebugSelectedDemoIndex);
-    debug_print_xy((s8* )0x20, (s8* )0xA0);
+    debug_print_xy(0x20, 0xA0);
     sprintf(&gDebugTextBuf, "   SHOCK TEST");
-    debug_print_xy((s8* )0x20, (s8* )0xB0);
+    debug_print_xy(0x20, 0xB0);
     sprintf(&gDebugTextBuf, "=");
-    debug_print_xy((s8* )0x28, (gDebugCurrentMenuItem * 0x10) + 0x20);
+    debug_print_xy(0x28, (gDebugCurrentMenuItem * 0x10) + 0x20);
     sprintf(&gDebugTextBuf, "MASTER ----- DEBUG");
-    debug_print_xy((s8* )0x98, (s8* )0xC0);
+    debug_print_xy(0x98, 0xC0);
     func_8005FA90();
 }
 
@@ -332,53 +332,53 @@ void func_800FEB6C(void) {
     f32 dist;
 
     sprintf(gDebugTextBuf, "[LIGHT EDIT]");
-    debug_print_xy((s8* )0x20, (s8* )0x10);
+    debug_print_xy(0x20, 0x10);
     sprintf(gDebugTextBuf, "   AMBIENT R = %d", gLightingSettings.a.l.col[0]);
-    debug_print_xy((s8* )0x20, (s8* )0x20);
+    debug_print_xy(0x20, 0x20);
     sprintf(gDebugTextBuf, "   AMBIENT G = %d", gLightingSettings.a.l.col[1]);
-    debug_print_xy((s8* )0x20, (s8* )0x30);
+    debug_print_xy(0x20, 0x30);
     sprintf(gDebugTextBuf, "   AMBIENT B = %d", gLightingSettings.a.l.col[2]);
-    debug_print_xy((s8* )0x20, (s8* )0x40);
+    debug_print_xy(0x20, 0x40);
     sprintf(gDebugTextBuf, "   DIFFUSE R = %d", gLightingSettings.l[0].l.col[0]);
-    debug_print_xy((s8* )0x20, (s8* )0x50);
+    debug_print_xy(0x20, 0x50);
     sprintf(gDebugTextBuf, "   DIFFUSE G = %d", gLightingSettings.l[0].l.col[1]);
-    debug_print_xy((s8* )0x20, (s8* )0x60);
+    debug_print_xy(0x20, 0x60);
     sprintf(gDebugTextBuf, "   DIFFUSE B = %d", gLightingSettings.l[0].l.col[2]);
-    debug_print_xy((s8* )0x20, (s8* )0x70);
+    debug_print_xy(0x20, 0x70);
     sprintf(gDebugTextBuf, "   DIR     X = %d", gLightingSettings.l[0].l.dir[0]);
-    debug_print_xy((s8* )0x20, (s8* )0x80);
+    debug_print_xy(0x20, 0x80);
     sprintf(gDebugTextBuf, "   DIR     Y = %d", gLightingSettings.l[0].l.dir[1]);
-    debug_print_xy((s8* )0x20, (s8* )0x90);
+    debug_print_xy(0x20, 0x90);
     sprintf(gDebugTextBuf, "   DIR     Z = %d", gLightingSettings.l[0].l.dir[2]);
-    debug_print_xy((s8* )0x20, (s8* )0xA0);
+    debug_print_xy(0x20, 0xA0);
     x = (f32) gLightingSettings.l[0].l.dir[0];
     y = (f32) gLightingSettings.l[0].l.dir[1];
     z = (f32) gLightingSettings.l[0].l.dir[2];
     dist = sqrtf((x * x) + (y * y) + (z * z));
     sprintf(gDebugTextBuf, "   DIR TOTAL = %d", (s32) dist);
-    debug_print_xy((s8* )0x20, (s8* )0xB0);
+    debug_print_xy(0x20, 0xB0);
     sprintf(gDebugTextBuf, "=");
-    debug_print_xy((s8* )0x28, (D_8016E3F4 * 0x10) + 0x20);
+    debug_print_xy(0x28, (D_8016E3F4 * 0x10) + 0x20);
 }
 
 
 void func_800FEE34(void) {
     sprintf(&gDebugTextBuf, "[FOG EDIT]");
-    debug_print_xy((s8* )0x20, (s8* )0x10);
+    debug_print_xy(0x20, 0x10);
     sprintf(&gDebugTextBuf, "   FOG R    = %d", D_8017793A);
-    debug_print_xy((s8* )0x20, (s8* )0x20);
+    debug_print_xy(0x20, 0x20);
     sprintf(&gDebugTextBuf, "   FOG G    = %d", D_8017793E);
-    debug_print_xy((s8* )0x20, (s8* )0x30);
+    debug_print_xy(0x20, 0x30);
     sprintf(&gDebugTextBuf, "   FOG B    = %d", D_80177940);
-    debug_print_xy((s8* )0x20, (s8* )0x40);
+    debug_print_xy(0x20, 0x40);
     sprintf(&gDebugTextBuf, "   DIR MINI = %d", D_80177944);
-    debug_print_xy((s8* )0x20, (s8* )0x50);
+    debug_print_xy(0x20, 0x50);
     sprintf(&gDebugTextBuf, "   DIR MAX  = %d", D_80177948);
-    debug_print_xy((s8* )0x20, (s8* )0x60);
+    debug_print_xy(0x20, 0x60);
     sprintf(&gDebugTextBuf, "   ZFAR     = %f", (f64) D_801779C8);
-    debug_print_xy((s8* )0x20, (s8* )0x70);
+    debug_print_xy(0x20, 0x70);
     sprintf(&gDebugTextBuf, "=");
-    debug_print_xy((s8* )0x28, (D_8016E3F4 * 0x10) + 0x20);
+    debug_print_xy(0x28, (D_8016E3F4 * 0x10) + 0x20);
 }
 
 //TODO: redecomp due, some struct info here feels weird
@@ -397,7 +397,7 @@ void func_800FEFA0(void) {
             gPlayerObject->unkA4, D_80165290[gObjects[0].Unk140[0]].unk14,
             gPlayerObject->unk108
         );
-    debug_print_xy((s8*)0x20, (s8*)0x10);
+    debug_print_xy(0x20, 0x10);
     sp54 = (s32)gPlayerObject->Pos.x / 60;
     sp4C = (s32)gPlayerObject->Pos.x % 60;
 
@@ -424,35 +424,35 @@ void func_800FEFA0(void) {
 
     sp50 *= 0x3C;
     sprintf(&gDebugTextBuf, "(%d %d %d) R=%d GB=%d", sp54, (s32) gPlayerObject->Pos.y, sp50, (s32) (u8) D_8016E414, (s32) (u16) D_8016E41C);
-    debug_print_xy((s8* )0x20, (s8* )0x20);
+    debug_print_xy(0x20, 0x20);
     func_80065AEC(gObjects[0].Pos.x, gObjects[0].Pos.y, gObjects[0].Pos.z, &sp40, &sp3C, &sp38);
     sp44 = (D_80177778->unk18 * sp38) + sp40;
     sprintf(&gDebugTextBuf, "[MAP INDEX=%d FLOOR=%d]", sp44, sp3C + 1);
-    debug_print_xy((s8* )0x20, (s8* )0x30);
+    debug_print_xy(0x20, 0x30);
     sprintf(&gDebugTextBuf, "STAGE=%d AREA=%d MAP=%d CLEAR=%d (%02X)", gLevelInfo[(gCurrentLevel)]->Stage, 
         gLevelInfo[(gCurrentLevel)]->Area, gLevelInfo[(gCurrentLevel)]->Map, gLevelInfo[(gCurrentLevel)]->Clear, gCurrentLevel);
-    debug_print_xy((s8* )0x20, (s8* )0x40);
+    debug_print_xy(0x20, 0x40);
     sprintf(&gDebugTextBuf, "prm=%d ny=%d y=%f", D_801651A8, D_801651BC, (f64) D_801651C0);
-    debug_print_xy((s8* )0x20, (s8* )0x50);
+    debug_print_xy(0x20, 0x50);
     sprintf(&gDebugTextBuf, "a=%d b=%d c=%d d=%d", D_801651AC, D_801651B0, D_801651B4, D_801651B8);
-    debug_print_xy((s8* )0x20, (s8* )0x60);
+    debug_print_xy(0x20, 0x60);
 }
 
 void func_800FF43C(void) {
     sprintf(&gDebugTextBuf, "PLAY.POS X=%5d Y=%5d Z=%5d", (s32) gObjects[0].Pos.x, (s32) gObjects[0].Pos.y, (s32) gObjects[0].Pos.z);
-    debug_print_xy((s8* )0x20, (s8* )0x10);
+    debug_print_xy(0x20, 0x10);
     sprintf(&gDebugTextBuf, "PLAY.ROT X=%5d Y=%5d Z=%5d", (s32) gObjects[0].Rot.x, (s32) gObjects[0].Rot.y, (s32) gObjects[0].Rot.z);
-    debug_print_xy((s8* )0x20, (s8* )0x20);
+    debug_print_xy(0x20, 0x20);
     sprintf(&gDebugTextBuf, "VIEW.AT  X=%5d Y=%5d Z=%5d", (s32) gView.at.x, (s32) gView.at.y, (s32) gView.at.z);
-    debug_print_xy((s8* )0x20, (s8* )0x30);
+    debug_print_xy(0x20, 0x30);
     sprintf(&gDebugTextBuf, "VIEW.EYE X=%5d Y=%5d Z=%5d", (s32) gView.eye.x, (s32) gView.eye.y, (s32) gView.eye.z);
-    debug_print_xy((s8* )0x20, (s8* )0x40);
+    debug_print_xy(0x20, 0x40);
     sprintf(&gDebugTextBuf, "VIEW.ROT X=%5d Y=%5d Z=%5d", (s32) gView.rot.x, (s32) gView.rot.y, (s32) gView.rot.z);
-    debug_print_xy((s8* )0x20, (s8* )0x50);
+    debug_print_xy(0x20, 0x50);
     sprintf(&gDebugTextBuf, "VIEW.DIST =%5d", (s32) gView.dist);
-    debug_print_xy((s8* )0x20, (s8* )0x60);
+    debug_print_xy(0x20, 0x60);
     sprintf(&gDebugTextBuf, "FRWAIT =%5d", D_80134C14);
-    debug_print_xy((s8* )0x20, (s8* )0x70);
+    debug_print_xy(0x20, 0x70);
 }
 
 void func_800FF7B4(void) {

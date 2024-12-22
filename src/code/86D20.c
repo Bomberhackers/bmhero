@@ -1,12 +1,129 @@
 #include "common.h"
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_80094800.s")
+void func_80094800(void) {
+    struct ObjectStruct *sp34;
+    f32 sp30;
+    f32 sp2C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_80094990.s")
+    sp34 = &gObjects[gCurrentParsedObject];
+    if (sp34->unk132 == 0) {
+        sp34->unk132 += 1;
+        sp34->unk3C = (f32) func_80014E80(0x168);
+        sp34->unk44 = 20.0f;
+    }
+    if (func_80028FA0(gCurrentParsedObject) != 0) {
+        func_80029B60(gCurrentParsedObject);
+    }
+    sp34->Vel.y = 0.0f;
+    func_80029C40(gCurrentParsedObject);
+    if (func_80029018(gCurrentParsedObject, 1U, 30.0f, 0.0f, 0.0f, 0.0f) != 0) {
+        func_80029824(gCurrentParsedObject, func_800297DC());
+    }
+    if (func_800295C0(gCurrentParsedObject, &sp30, &sp2C, 0.0f, 0.0f, 0.0f) != 0) {
+        sp34->Pos.y = sp2C;
+    } else {
+        sp34->Pos.y = sp30;
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_80094C20.s")
+void func_80094990(void) {
+    struct ObjectStruct *sp3C;
+    f32 sp38;
+    f32 sp34;
+    f32 sp30;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_80094E04.s")
+    sp3C = &gObjects[gCurrentParsedObject];
+    if (sp3C->unk132 == 0) {
+        sp3C->unk132 += 1;
+        sp3C->unkA6 = 0;
+        sp3C->unk3C = (f32) func_80014E80(0x168);
+        sp3C->unk44 = 20.0f;
+    }
+    if (func_80028FA0(gCurrentParsedObject) != 0) {
+        func_80029B60(gCurrentParsedObject);
+    }
+    if (sp3C->unkA6 == 1) {
+        sp3C->unkA6 = 2;
+        func_80029EF8(gCurrentParsedObject, 0.0f, 2.0f);
+    }
+    sp30 = sp3C->Vel.y;
+    sp3C->Vel.y = 0.0f;
+    func_80029C40(gCurrentParsedObject);
+    if (func_80029018(gCurrentParsedObject, 3U, 30.0f, 0.0f, 0.0f, 0.0f) != 0) {
+        func_80029824(gCurrentParsedObject, func_800297DC());
+    }
+    if (D_801651A0 & 0x40) {
+        sp3C->unkA6 = 1;
+    }
+    if (sp3C->unkA6 == 0) {
+        if (func_800295C0(gCurrentParsedObject, &sp38, &sp34, 0.0f, 0.0f, 0.0f) != 0) {
+            sp3C->Pos.y = sp34;
+        } else {
+            sp3C->Pos.y = sp38;
+        }
+    } else if (sp3C->unkA6 == 2) {
+        sp3C->Vel.y = sp30;
+        if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, 0.0f, 60.0f) == 1) {
+            sp3C->unkA6 = 0;
+        }
+    }
+}
+
+void func_80094C20(void) {
+    struct ObjectStruct *sp34;
+    f32 sp30;
+
+    sp34 = &gObjects[gCurrentParsedObject];
+    if (sp34->unk132 == 0) {
+        sp34->unk132 += 1;
+        sp34->unkA6 = 1;
+        sp34->unk3C = (f32) func_80014E80(0x168);
+        sp34->unk44 = 10.0f;
+    }
+    if (func_80028FA0(gCurrentParsedObject) != 0) {
+        func_80029B60(gCurrentParsedObject);
+    }
+    if (sp34->unkA6 != 0) {
+        sp34->unkA6 = 0;
+        func_80029EF8(gCurrentParsedObject, 30.0f, 2.0f);
+    }
+    sp30 = sp34->Vel.y;
+    sp34->Vel.y = 0.0f;
+    func_80029C40(gCurrentParsedObject);
+    if (func_80029018(gCurrentParsedObject, 3U, 30.0f, 0.0f, 0.0f, 0.0f) != 0) {
+        func_80029824(gCurrentParsedObject, func_800297DC());
+    }
+    sp34->Vel.y = sp30;
+    if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, 0.0f, 60.0f) == 1) {
+        sp34->unkA6 = 1;
+    }
+}
+
+void func_80094E04(void) {
+    struct ObjectStruct *sp2C;
+
+    sp2C = &gObjects[gCurrentParsedObject];
+    if (sp2C->unk132 == 0) {
+        sp2C->unk132 = 1;
+        sp2C->unk3C = 0.0f;
+        sp2C->Rot.y = sp2C->unk3C;
+        sp2C->unk44 = 5.0f;
+        sp2C->unk48 = 0.0f;
+        sp2C->unk40 = sp2C->unk48;
+    }
+    if (func_80028FA0(gCurrentParsedObject) != 0) {
+        func_80029B60(gCurrentParsedObject);
+    } else {
+        func_8002A8B4(gCurrentParsedObject, 6.0f);
+        sp2C->Rot.y = sp2C->unk3C;
+    }
+    func_80029C40(gCurrentParsedObject);
+    func_80029D04(gCurrentParsedObject);
+    if (func_80029018(gCurrentParsedObject, 0U, 30.0f, 0.0f, 0.0f, 0.0f) != 0) {
+        func_80029824(gCurrentParsedObject, func_800297DC());
+    }
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/86D20/func_80094F94.s")
 

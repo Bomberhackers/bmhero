@@ -565,8 +565,6 @@ extern s8 D_8016E115;
 extern s8 D_8016E134;
 extern struct View gView;
 extern u8 gDebugTextBuf[0xC8];
-extern struct UnkStruct8016E230 D_8016E220[1];
-extern struct UnkStruct8016E230 D_8016E230[1];
 extern s32 D_8016E23C;
 extern s32 D_8016E244;
 extern s8 D_8016E250;
@@ -795,5 +793,5 @@ extern u8* _9B5440_ROM_START;
 extern u8* _9BD180_ROM_START;
 extern s16 D_8016E0A4;
 extern u8 D_801776E4;
-extern UNK_TYPE D_80177770;
+extern UNK_TYPE D_80177770[];
 #endif // VARIABLES_H

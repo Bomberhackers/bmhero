@@ -985,13 +985,13 @@ void func_8002E524(void)
         return;
     }
     sp24 = 0;
-    if (gActiveContButton & 0x2000)
+    if (gActiveContButton & CONT_G)
     {
-        if (gActiveContPressed & 0x8000)
+        if (gActiveContPressed & CONT_A)
         {
             sp24 = 1;
         }
-        else if (gActiveContPressed & 0x4000)
+        else if (gActiveContPressed & CONT_B)
         {
             sp24 = -1;
         }

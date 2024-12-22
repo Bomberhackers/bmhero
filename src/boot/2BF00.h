@@ -1,7 +1,6 @@
 #ifndef _2BF00_H
 #define _2BF00_H
 
-
 struct UnkStruct_8004A6C8
 {
     s32 unk0;
@@ -30,17 +29,6 @@ extern struct Vec3f D_8004A660[];
 extern u8 D_8004A6C0[];
 extern struct UnkStruct_8004A6C8 D_8004A6C8[];
 extern struct UnkStruct_8004A6C8 D_8004A6CC[];
-
-extern void func_80088B80(void);
-extern void func_80000FF4(int);
-extern void func_8006707C(void);
-extern void func_800695A0(void);
-extern void func_8006E088(void);
-extern void func_8001C464(void);
-extern void func_8001C70C(void);
-extern void func_8001C5B8(void);
-extern void func_8001C96C(void);
-extern int func_8001E96C(void);
 
 /* Function prototypes of 2BF00.c */
 void func_8002B300(void);

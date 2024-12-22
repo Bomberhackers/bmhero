@@ -1,11 +1,6 @@
 #include "common.h"
 #include "2BF00.h"
 
-
-
-
-
-
 void func_8002B300(void)
 {
     f32 sp4;

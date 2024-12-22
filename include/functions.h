@@ -3,6 +3,9 @@
 
 #include <ultra64.h>
 
+//1050.c
+void func_80000FF4(u32);
+
 // 3490.c
 s32 func_80002890(struct UnkStruct80001CF0* arg0, s32* arg1, s32* arg2, s32 arg3);
 
@@ -650,6 +653,13 @@ void func_800654AC(void);
 void func_8006AD28(void);
 void func_800842C0(void);
 void func_80070AC8(void);
-
-
+void func_80088B80(void);
+void func_8006707C(void);
+void func_800695A0(void);
+void func_8006E088(void);
+void func_8001C464(void);
+void func_8001C70C(void);
+void func_8001C5B8(void);
+void func_8001C96C(void);
+int func_8001E96C(void);
 #endif // _FUNCTIONS_H_

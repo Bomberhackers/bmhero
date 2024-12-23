@@ -1,11 +1,5 @@
 #include <ultra64.h>
 
-// Macros
-#define FABS(x) ((x) < 0.0f ? -(x) : (x))
-#define IABS(x) ((x) < 0 ? -(x) : (x))
-#define CLAMP_FLOAT(x) (((x) < -48.0f ? -48.0f : (x)))
-#define MIN_CLAMP(a, b) ((a) > (b) ? (b) : CLAMP_FLOAT(a))
-
 void func_800B55B0(void) {
     s8 sp2F;
 

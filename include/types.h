@@ -4,6 +4,12 @@
 // structs and defines
 
 #define UNK_TYPE s32
+#define FABS(x) ((x) < 0.0f ? -(x) : (x))
+#define IABS(x) ((x) < 0 ? -(x) : (x))
+#define CLAMP_FLOAT(x) (((x) < -48.0f ? -48.0f : (x)))
+#define MIN_CLAMP(a, b) ((a) > (b) ? (b) : CLAMP_FLOAT(a))
+
+
 
 typedef float Matrix[4][4];
 

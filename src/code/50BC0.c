@@ -1,6 +1,14 @@
 #include <ultra64.h>
 #include "50BC0.h"
 
+extern s32 D_8016E23C;
+extern u32 D_8016E220[];
+extern u32 D_8016E230[];
+extern s32 D_8016E23C;
+extern s32 D_8016E24C;
+extern u16 D_80103928[];
+
+
 // DebugUtils_DrawProfiler
 void func_8005E6A0(s32 x, s32 y) {
     struct UnkStruct8016E10C* sys;
@@ -48,23 +56,39 @@ void func_8005E6A0(s32 x, s32 y) {
 
 void func_8005EF30(void) {
     D_8016E23C = 0;
-    D_8016E230[0].unk0 = 0;
-    D_8016E230[0].unk4 = 0;
-    D_8016E220[0].unk0 = 0;
-    D_8016E220[0].unk4 = 0;
+    D_8016E230[0] = 0;
+    D_8016E230[1] = 0;
+    D_8016E220[0] = 0;
+    D_8016E220[1] = 0;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/50BC0/func_8005EF78.s")
+void func_8005EF78(void) {
+    D_8016E23C ^= 1;
+    D_8016E230[D_8016E23C] = osGetCount();
+    D_8016E220[D_8016E23C] = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/50BC0/func_8005EFE4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/50BC0/func_8005F024.s")
+void func_8005EFE4(void) {
+    D_8016E230[D_8016E23C] = osGetCount();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/50BC0/func_8005F088.s")
+void func_8005F024(void) {
+    D_8016E220[D_8016E23C] = D_8016E220[D_8016E23C] + (osGetCount() - D_8016E230[D_8016E23C]);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/50BC0/func_8005F0B8.s")
+void func_8005F088(void) {
+    D_8016E24C = osGetCount();
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/50BC0/func_8005F0F4.s")
+void func_8005F0B8(void) {
+    D_8016E254 = osGetCount() - D_8016E24C;
+}
+
+void func_8005F0F4(void) {
+    D_8016E25C = osGetCount();
+}
+
 
 void func_8005F124(void) {
     D_8016E264 = osGetCount() - D_8016E25C;
@@ -72,10 +96,41 @@ void func_8005F124(void) {
 
 void func_address() {}
 
+void func_8005F170(void) {
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/50BC0/func_8005F170.s")
+    gDPPipeSync(gMasterDisplayList++);
+    gSPClearGeometryMode(gMasterDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/50BC0/func_8005F488.s")
+
+    gSPSetGeometryMode(gMasterDisplayList++, G_ZBUFFER | G_SHADE | G_CULL_BACK | G_LIGHTING | 0x20200);
+
+    gDPSetTexturePersp(gMasterDisplayList++, G_TP_NONE);
+    gDPSetRenderMode(gMasterDisplayList++, G_RM_AA_TEX_EDGE, G_RM_AA_TEX_EDGE2);
+
+    gDPSetCombineMode(gMasterDisplayList++, G_CC_DECALRGBA, G_CC_DECALRGBA);
+    gDPSetColorDither(gMasterDisplayList++,  0x40);
+
+    gDPSetTextureFilter(gMasterDisplayList++,  0x2000);
+
+    gDPSetTextureLUT(gMasterDisplayList++, 0x8000);
+
+    gDPSetTextureImage(gMasterDisplayList++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 1, &D_80103928);
+
+
+    gDPTileSync(gMasterDisplayList++);
+
+    gDPSetTile(gMasterDisplayList++, G_IM_FMT_RGBA, G_IM_SIZ_4b, 0, 0x0100, G_TX_LOADTILE, 0, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMASK, G_TX_NOLOD);
+    gDPLoadSync(gMasterDisplayList++);
+
+    gDPLoadTLUTCmd(gMasterDisplayList++, G_TX_LOADTILE, 15);
+
+    gDPPipeSync(gMasterDisplayList++);
+}
+
+
+void func_8005F488(s16 arg0, s16 arg1, s16 arg2) {
+    D_80103928[15] = ((arg0 << 11) + (arg1 << 6) + (arg2 * 2) + 1);
+}
 
 void debug_print_char(s16 c, s16 x, s16 y, f32 unused1, f32 unused2) {
     u32 uls;
@@ -103,7 +158,11 @@ void debug_print_char(s16 c, s16 x, s16 y, f32 unused1, f32 unused2) {
     gSPTextureRectangle(gMasterDisplayList++, (x * 4), (y * 4), ((x * 4) + 0x20), (D_8010399C[1+(i / 8 * 2)] + y) << 2, 0, 0, 0, 0x400, 0x400);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/50BC0/func_8005F96C.s")
+void func_8005F96C(u8 arg0, u8 arg1, u8 arg2) {
+    func_8005F488((s32) arg0 / 8, (s32) arg1 / 8, (s32) arg2 / 8);
+    func_8005F170();
+}
+
 
 void debug_print_xy(int x, int y) {
     s32 i;
@@ -123,9 +182,15 @@ void func_8005FA90(void) {
 
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/50BC0/func_8005FAA0.s")
+void func_8005FAA0(u8* arg0, u8* arg1) {
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/50BC0/func_8005FAB8.s")
+}
+
+
+void func_8005FAB8(int arg0, int arg1) {
+    func_8005FAA0(arg0, arg0 + arg1);
+}
+
 
 void func_8005FAF4(u8* buf, s32 x, s32 y) {
     u8 i;

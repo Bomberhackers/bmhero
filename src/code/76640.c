@@ -250,6 +250,7 @@ s32 func_80084430(f32 arg0, f32 arg1, f32 arg2)
     }
 }
 
+#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80084BD8.s")
 
 void func_80085424(void) {
     struct ObjectStruct* sp24;

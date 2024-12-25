@@ -150,7 +150,8 @@ def GetNonMatchingSize(path):
             asmLines = ReadAllLines(asmFilePath)
 
             for asmLine in asmLines:
-                if (asmLine.startswith("/*")):
+                line = asmLine.strip()
+                if (line.startswith("/*")):
                     size += 4
 
     return size

@@ -662,4 +662,8 @@ void func_8001C70C(void);
 void func_8001C5B8(void);
 void func_8001C96C(void);
 int func_8001E96C(void);
+s32 func_8001B930(s32, int);            /* extern */
+void func_8001BC84(s32, int, int);      /* extern */
+void func_800941C4(s16, f32, f32, f32); /* extern */
+
 #endif // _FUNCTIONS_H_

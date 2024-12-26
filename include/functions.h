@@ -39,7 +39,7 @@ s32 func_80016560(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f3
 void func_80016A80(s64 arg0, s64 arg2, s64 arg4, s64 arg5, f32 *argA, f32 *argB, f32 *argC,
                    f32 *argD);
 void func_80016714(s64 arg0, s64 arg1, s64 arg2, s64 arg3, s64 arg4, s64 arg5, s64 arg6, s64 arg7, f32 *, f32 *, f32 *, f32 *);
-
+void func_80016C54(f32 arg0, f32 arg1, f32 arg2, f32* arg3, f32* arg4, f32* arg5, f32* arg6);
 
 // 17930.c
 s32 func_80016DD4();
@@ -662,4 +662,8 @@ void func_8001C70C(void);
 void func_8001C5B8(void);
 void func_8001C96C(void);
 int func_8001E96C(void);
+s32 func_8001B930(s32, int);            /* extern */
+void func_8001BC84(s32, int, int);      /* extern */
+void func_800941C4(s16, f32, f32, f32); /* extern */
+
 #endif // _FUNCTIONS_H_

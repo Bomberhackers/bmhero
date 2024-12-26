@@ -1171,7 +1171,7 @@ struct UnkStruct80122B08 {
     struct UnkStruct80122B08_Unk0 *unk0;
     u32 romStart;
     u32 romEnd;
-    char padC[0x4];
+    void* unkC[1];
 };
 
 struct UnkStruct80011424_SP38 {

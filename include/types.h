@@ -201,7 +201,7 @@ struct LevelInfo {
     /* 0x02 */ s8 Map;
     /* 0x03 */ s8 Clear;
     /* 0x04 */ u8 unk4;
-    char pad5[0x1];
+    /* 0x05 */ u8 unk5;
     /* 0x06 */ u8 unk6;
     /* 0x07 */ u8 trackID;
     /* 0x08 */ u8* Unk8;
@@ -217,7 +217,8 @@ struct LevelInfo {
     /* 0x24 */ void (*unk24)();
     /* 0x28 */ void (*unk28)();
     /* 0x2C */ f32 unk2C;
-               char pad[3];
+               s16 unk30;
+               char pad;
                s8 unk33;
 };
 
@@ -1050,7 +1051,8 @@ struct UnkStruct80177778 {
     s16 unk18;
     s16 unk1A;
     s16 unk1C;
-    u8 pad1E[0x6];
+    u8 pad1E[0x4];
+    s16 unk22;
     u8 unk24;
     u8 unk25;
     u8 unk26;

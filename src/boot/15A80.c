@@ -19,12 +19,25 @@ s32 func_800162F0(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5);
 s32 func_800163AC(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9);
 s32 func_80016560(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7,
                   f32 arg8, f32 arg9);
-void func_80016A80(s64 arg0, s64 arg2, s64 arg4, s64 arg5, f32 *argA, f32 *argB, f32 *argC,
+void func_80016A80(s64 arg0, s64 arg2, s64 arg4, s64 arg5, f32* argA, f32* argB, f32 *argC,
                    f32 *argD);
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/15A80/func_80014E80.s")
+s32 func_80014E80(s16 arg0) {
 
-    f32 func_80014F50(f32 arg0, f32 arg1) {
+    D_8016E092 =  (D_8016E092 * 61 * 9-1);
+    
+    if (!arg0) {
+        return D_8016E092;
+    } else {
+        if (arg0 > 0) {
+            return arg0 * (u16)D_8016E092 / 0x10000;
+        } else {
+            return  ((arg0 * D_8016E092) / 32768);
+        }
+    }
+}
+
+f32 func_80014F50(f32 arg0, f32 arg1) {
     f32 sp4;
     f32 sp0;
 
@@ -94,10 +107,16 @@ void func_80016A80(s64 arg0, s64 arg2, s64 arg4, s64 arg5, f32 *argA, f32 *argB,
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/15A80/func_80015538.s")
-
-// Doesn't exists
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/15A80/func_80015598.s")
+f32 func_80015538(f32 arg0, f32 arg1) {
+    arg0 += arg1;
+    if (arg0 >= 360.0f) {
+        arg0 -= 360.0f;
+    } else if (arg0 < 0.0f) {
+        arg0 += 360.0f;
+    }
+    
+    return arg0;
+}
 
 f32 func_800155A8(f32 arg0, f32 arg1) {
     f32 sp1C;
@@ -184,9 +203,33 @@ f32 func_80015D2C(f32 arg0, f32 arg1, s64 arg2, s64 arg3, s64 arg4, s64 arg5) {
     return sp3C;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/15A80/func_80015E34.s")
+f32 func_80015E34(f32 arg0, f32 arg1, s64 arg2, s64 arg4, s64 arg6, s64 arg8) {
+    f32 sp3C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/15A80/func_80015F3C.s")
+    if (arg6 != 0) {
+        sp3C = ((-arg2 * arg0) - (arg4 * arg1) + arg8) / arg6;
+    } else {
+        sp3C = 0.0f;
+    }
+    
+    return sp3C;
+}
+
+
+s32 func_80015F3C(f32 arg0, f32 arg1, f32 arg2, s64 arg4, s64 arg6, s64 arg8, s64 argA) {
+    s64 sp48;
+
+    sp48 = (-arg4 * arg0) - (arg6 * arg1) - (arg8 * arg2) + argA;
+    
+    if (sp48 < 0) {
+        return -1;
+    } else if (sp48 > 0) {
+        return 1;
+    }
+    
+    return 0;
+}
+
 
 s32 func_8001608C(s64 arg0, s64 arg2, s64 arg4, s64 arg6, s64 arg8, s64 argA, s64 argC, s64 argE) {
     f32 sp34;
@@ -268,7 +311,38 @@ s32 func_80016560(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f3
     return 1;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/15A80/func_80016714.s")
+void func_80016714(s64 arg0, s64 arg1, s64 arg2, s64 arg3, s64 arg4, s64 arg5, s64 arg6, s64 arg7, f32 *arg8, f32 * arg9, f32 * argA, f32 * argB) {
+    s64 sp48;
+    s64 sp40;
+    s64 sp38;
+
+    sp48 = (arg4 * arg1) - (arg0 * arg5);
+    
+    sp40 = (arg6 * arg1) - (arg2 * arg5);
+    
+    sp38 = -((arg5 * arg3) - (arg1 * arg7));
+
+    if ((sp48 != 0)) {
+        *arg8 = func_80015C24(0.0f, 0.0f, sp48, 0, sp40, sp38);
+        *arg9 = 0.0f;
+    } else if (sp40 != 0) {
+        *arg9 = func_80015E34(0.0f, 0.0f, sp48, 0, sp40, sp38);
+        *arg8 = 0.0f;
+    } else {
+        *arg8 = 0.0f;
+        *arg9 = 0.0f;
+    }
+    if ((sp48 != 0)) {
+        *argA = func_80015C24(0.0f, 10.0f, sp48, 0, sp40, sp38);
+        *argB = 10.0f;
+    } else if ((sp40 != 0)) {
+        *argB = func_80015E34(10.0f, 0.0f, sp48, 0, sp40, sp38);
+        *argA = 10.0f;
+    } else {
+        *argA = 0.0f;
+        *argB = 0.0f;
+    }
+}
 
 void func_80016A80(s64 arg0, s64 arg2, s64 arg4, s64 arg5, f32 *argA, f32 *argB, f32 *argC,
                    f32 *argD){
@@ -299,4 +373,19 @@ void func_80016A80(s64 arg0, s64 arg2, s64 arg4, s64 arg5, f32 *argA, f32 *argB,
     *argD = sp34;
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/boot/15A80/func_80016C54.s")
+void func_80016C54(f32 arg0, f32 arg1, f32 arg2, f32* arg3, f32* arg4, f32* arg5, f32* arg6) {
+    s32 sp3C;
+
+    func_80067748(arg0, arg1, arg2);
+    sp3C = D_801776E0 & 1;
+
+    func_80016A80(
+        D_801776F0[sp3C],
+        D_80177700[sp3C], 
+        D_80177710[sp3C], 
+        0,
+        arg3, 
+        arg4,
+        arg5, 
+        arg6);
+}

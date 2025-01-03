@@ -306,20 +306,19 @@ void func_800272E8(s32 arg0) {
 }
 
 s32 func_80027464(s32 arg0, struct UnkStruct_80027C00 *arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
-    UNUSED s32 pad[2];
-    struct UnkStruct_80027464 sp;
+    s32 unk24[11];
     s32 index;
     s32 sp1C;
     s32 sp18;
     
     for (index = 0; index < 11; index++) {
-        sp.unk24[index] = -1;
+        unk24[index] = -1;
     }
     
     index = 0;
     for (sp1C = 0xE; sp1C < 0x4E; sp1C++) {
         if (gObjects[sp1C].unkA4 == 0) {
-            sp.unk24[index] = sp1C; 
+            unk24[index] = sp1C; 
             index++;
             if (index == arg0) {
                 break;
@@ -328,49 +327,49 @@ s32 func_80027464(s32 arg0, struct UnkStruct_80027C00 *arg1, f32 arg2, f32 arg3,
     }
 
     if (sp1C == 0x4E) {
-        sp.unk24[0] = -1;
+        unk24[0] = -1;
     } else {
         index = 0;
         for (; index < arg0;) {
-            if (sp.unk24[index] == -1) {
+            if (unk24[index] == -1) {
                 break;
             }
 
-            func_8001A928(sp.unk24[index]);
-            func_8001BD44(sp.unk24[index], arg1->unk0, arg1->unk6,
+            func_8001A928(unk24[index]);
+            func_8001BD44(unk24[index], arg1->unk0, arg1->unk6,
                           gFileArray[arg1->unk4].ptr);
-            gObjects[sp.unk24[index]].Pos.x = gObjects[sp.unk24[index]].unk50 = arg2;
-            gObjects[sp.unk24[index]].Pos.y = gObjects[sp.unk24[index]].unk54 = arg3;
-            gObjects[sp.unk24[index]].Pos.z = gObjects[sp.unk24[index]].unk58 = arg4;
-            gObjects[sp.unk24[index]].Rot.y = arg5;
-            gObjects[sp.unk24[index]].unk3C = arg5;
-            gObjects[sp.unk24[index]].unkA4 = 1;
-            gObjects[sp.unk24[index]].unkE4  = arg1->unk2;
-            gObjects[sp.unk24[index]].unk100 = arg1->unk7;
-            gObjects[sp.unk24[index]].unk108 = arg1->unk8;
-            gObjects[sp.unk24[index]].unk102 = arg1->unk9;
-            gObjects[sp.unk24[index]].unk103 = arg1->unkA;
+            gObjects[unk24[index]].Pos.x = gObjects[unk24[index]].unk50 = arg2;
+            gObjects[unk24[index]].Pos.y = gObjects[unk24[index]].unk54 = arg3;
+            gObjects[unk24[index]].Pos.z = gObjects[unk24[index]].unk58 = arg4;
+            gObjects[unk24[index]].Rot.y = arg5;
+            gObjects[unk24[index]].unk3C = arg5;
+            gObjects[unk24[index]].unkA4 = 1;
+            gObjects[unk24[index]].unkE4  = arg1->unk2;
+            gObjects[unk24[index]].unk100 = arg1->unk7;
+            gObjects[unk24[index]].unk108 = arg1->unk8;
+            gObjects[unk24[index]].unk102  = arg1->unk9;
+            gObjects[unk24[index]].unk103 = arg1->unkA;
             if (index > 0) {
-                gObjects[sp.unk24[index]].unkE6[0] = sp.unk24[0];
-                gObjects[sp.unk24[0]].unkE6[index] = sp.unk24[index];
+                gObjects[unk24[index]].unkE6[0] = unk24[0];
+                gObjects[unk24[0]].unkE6[index] = unk24[index];
             }
-            arg1++;
+             arg1++;
             index++;
         }
     }
 
-    for (index = 0; (sp.unk24[index] != -1) && (index < 11); index++) {
-        for (sp18 = 0, sp1C = 0; (sp.unk24[sp1C] != -1) && (sp1C < 11); sp1C++) {
-            if (sp.unk24[index] != sp.unk24[sp1C]) {
-                gObjects[sp.unk24[index]].unk10E[sp18] = sp.unk24[sp1C];
+    for (index = 0; (unk24[index] != -1) && (index < 11); index++) {
+        for (sp18 = 0, sp1C = 0; (unk24[sp1C] != -1) && (sp1C < 11); sp1C++) {
+            if (unk24[index] != unk24[sp1C]) {
+                gObjects[unk24[index]].unk10E[sp18] = unk24[sp1C];
                 sp18++;
             }
         }
     }
     if (D_80165198 == -1) {
-        D_80165198 = sp.unk24[0];
+        D_80165198 = unk24[0];
     }
-    return sp.unk24[0];
+    return unk24[0];
 }
 
 s32 func_80027B34(s32 arg0, struct UnkStruct_80027B34 *arg1) {

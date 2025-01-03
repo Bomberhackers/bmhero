@@ -15,11 +15,11 @@ void func_80003FE0(s32 devAddr, s32 arg1, s32 arg2, s32 arg3, s32 arg4);
 void func_8000ABEC(u32 arg0, s32 arg1, s32 arg2, u8* arg3);
 
 // 12AF0.c
-s32 func_80013AE0(f32*, f32, f32, f32);
-s32 func_80013B70(f32*, f32, f32, f32);
-s32 func_80013F6C(f32*, f32);
-s32 func_80014098(f32*, f32);
-s32 func_800141C4(f32*, f32);
+void func_80013AE0(f32*, f32, f32, f32);
+void func_80013B70(f32*, f32, f32, f32);
+void func_80013F6C(f32* arg0, f32);
+void func_80014098(f32* arg0, f32);
+void func_800141C4(f32* arg0, f32);
 
 // 15A80.c
 f32 func_80014F50(f32 arg0, f32 arg1);
@@ -601,8 +601,7 @@ void func_80064120(void);
 s32 func_800641E4(s16* ptr, s16 arg1, s16 arg2);
 void *func_8001191C(struct UnkStruct80010408_SP2C* arg0, s32 arg1);
 void func_80011DD0(struct UnkStruct80011DD0 *arg0);
-u32* func_800122F0(s32);
-s32 func_80013A00(u32*);
+void func_80013A00(struct UnkStruct800120FC*);
 void func_8001A300(s32);
 void func_8001A488(s32);
 s32 func_8006DE90(u8*);

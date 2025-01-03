@@ -1277,9 +1277,11 @@ struct UnkStruct80011EF0 {
 };
 
 struct UnkStruct800120FC {
-    char pad0[0x6C];
-    u32 unk6C;
-    u32 unk70;
+    char pad0[0x64];
+    void* unk64;
+    int unk68;
+    void* unk6C;
+    s32 unk70;
 };
 
 struct UnkStruct_80022454_SP24 {

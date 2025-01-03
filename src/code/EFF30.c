@@ -197,6 +197,7 @@ void func_800FE204(void)
         }
         }
     }
+    
     if (func_8001D1D4() == 1)
     {
         return;

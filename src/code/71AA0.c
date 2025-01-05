@@ -624,7 +624,7 @@ void func_800821E0(void) {
     func_80064120();
     func_800FF7B4();
     if (gDebugShowTimerBar != 0) {
-        func_8005E6A0(0x2E, 0xD0);
+        Debug_DrawProfiler(0x2E, 0xD0);
     }
 }
 

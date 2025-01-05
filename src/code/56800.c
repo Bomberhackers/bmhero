@@ -272,7 +272,7 @@ void func_80066AE8(void) {
         D_80177928 = 1;
         D_8017792C = 0;
     }
-    D_80177974 = gLevelInfo[gCurrentLevel]->unk4;
+    gDebugDispType = gLevelInfo[gCurrentLevel]->unk4;
     D_8017796C = (UnkStruct80165100* ) D_8016E450;
     D_8017797C = gLevelInfo[gCurrentLevel]->unk18;
     D_80177984 = gLevelInfo[gCurrentLevel]->unk1C;

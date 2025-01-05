@@ -8,6 +8,7 @@
 #define IABS(x) ((x) < 0 ? -(x) : (x))
 #define CLAMP_FLOAT(x) (((x) < -48.0f ? -48.0f : (x)))
 #define MIN_CLAMP(a, b) ((a) > (b) ? (b) : CLAMP_FLOAT(a))
+#define ALIGN16(val) (((val) + 0xF) & ~0xF)
 
 
 
@@ -53,7 +54,7 @@ struct UnkStruct8016E10C {
     u8 pad64[0x4];
     /* 0x00068 */ struct UnkStruct8016E104 unk68; // Gfx work?
     u8 pad8150[0x18148-0x8150];
-    /* 0x18148 */ u32 unk18148[1];
+    /* 0x18148 */ s16 unk18148[1];
     u8 pad1814C[0x1C];
     /* 0x18168 */ u32 unk18168;
 };
@@ -201,7 +202,7 @@ struct LevelInfo {
     /* 0x02 */ s8 Map;
     /* 0x03 */ s8 Clear;
     /* 0x04 */ u8 unk4;
-    char pad5[0x1];
+    /* 0x05 */ u8 unk5;
     /* 0x06 */ u8 unk6;
     /* 0x07 */ u8 trackID;
     /* 0x08 */ u8* Unk8;
@@ -217,7 +218,8 @@ struct LevelInfo {
     /* 0x24 */ void (*unk24)();
     /* 0x28 */ void (*unk28)();
     /* 0x2C */ f32 unk2C;
-               char pad[3];
+               s16 unk30;
+               char pad;
                s8 unk33;
 };
 
@@ -237,11 +239,7 @@ struct ObjectStruct {
     /* 0x058 */ f32 unk58;
     /* 0x05C */ f32 unk5C;
     /* 0x060 */ f32 unk60;
-    /* 0x064 */ char pad64[0xC];                    /* maybe part of unk60[4]? */
-    /* 0x070 */ f32 unk70;
-    /* 0x074 */ char pad74[0x18];                   /* maybe part of unk70[7]? */
-    /* 0x08C */ f32 unk8C;
-    /* 0x090 */ char pad90[0x14];                   /* maybe part of unk8C[6]? */
+    /* 0x064 */ Matrix unk64;
     /* 0x0A4 */ s16 unkA4;
     /* 0x0A6 */ s16 unkA6;
     /* 0x0A8 */ s16 unkA8;
@@ -258,7 +256,10 @@ struct ObjectStruct {
     /* 0x0BE */ s16 unkBE;
     /* 0x0C0 */ s16 unkC0;
     /* 0x0C2 */ s16 unkC2;
-    /* 0x0C4 */ char padC4[0x10];                   /* maybe part of unkC2[9]? */
+    /* 0x0C4 */ s32 unkC4;                   /* maybe part of unkC2[9]? */
+    /* 0x0C8 */ s32 unkC8;
+    /* 0x0CC*/  s32 unkCC;
+    /* 0x0D0 */ s32 unkD0;
     /* 0x0D4 */ f32 unkD4;
     /* 0x0D8 */ f32 unkD8;
     /* 0x0DC */ f32 unkDC;                          /* inferred */
@@ -278,22 +279,24 @@ struct ObjectStruct {
     /* 0x10B */ u8 unk10B;
     /* 0x10C */ u8 unk10C;
     /* 0x10D */ char pad10D[1];
-    /* 0x10E */ s16 unk10E[1];
-    /* 0x110 */ char pad110[0x14];                  /* maybe part of unk10E[0xB]? */
+    /* 0x10E */ s16 unk10E[10];
     /* 0x124 */ f32 unk124;
     /* 0x128 */ f32 unk128;
     /* 0x12C */ f32 unk12C;
-    /* 0x130 */ char pad130[1];
+    /* 0x130 */ char unk130;
     /* 0x131 */ u8 unk131;
     /* 0x132 */ u8 unk132;
-    /* 0x133 */ char pad133[7];                     /* maybe part of unk132[8]? */
+    /* 0x133 */ char unk133[3];                     /* maybe part of unk132[8]? */
+    /* 0x136 */ char unk136[3];
+    /* 0x139 */ s8 unk139;
     /* 0x13A */ s8 unk13A;
     /* 0x13B */ s8 unk13B;
-    /* 0x13C */ s8 unk13C;
-    /* 0x13D */ s8 unk13D;
+    /* 0x13C */ s16 unk13C[1];
     /* 0x13E */ s8 unk13E;
     /* 0x13F */ s8 unk13F;
-    /* 0x140 */ s16 Unk140[8];
+    /* 0x140 */ s16 Unk140[4];
+    /* 0x148 */ s16 Unk148[4];
+                
 };                                                
 
 struct UnkStruct80134D48 {
@@ -376,18 +379,18 @@ struct UnkStruct80165290 {
     /* 0x15 */ u8 unk15;
     /* 0x16 */ u8 unk16;
     char pad17[0x1];
-    /* 0x18 */ u32 unk18;
+    /* 0x18 */ void* unk18;
     /* 0x1C */ struct UnkStruct80010408_SP2C* unk1C;
     /* 0x20 */ u32 unk20;
     /* 0x24 */ f32 unk24;
-    /* 0x28 */ u32 unk28;
-    /* 0x2C */ u32 unk2C;
+    /* 0x28 */ void* unk28;
+    /* 0x2C */ void* unk2C;
     /* 0x30 */ u32 unk30;
-    /* 0x34 */ u32 unk34;
+    /* 0x34 */ void* unk34;
     /* 0x38 */ u32 unk38;
-    /* 0x4C */ u32 unk3C;
+    /* 0x4C */ void* unk3C;
     /* 0x40 */ u32 unk40;
-    /* 0x44 */ u32 unk44;
+    /* 0x44 */ void* unk44;
     /* 0x48 */ u32 unk48;
     /* 0x4C */ u32 unk4C;
     /* 0x50 */ u32 unk50;
@@ -398,22 +401,26 @@ struct UnkStruct80165290 {
     char pad64[0xC];
 }; // size:0x70
 
+struct UnkStruct_8001EFD0_1 {
+    u32 unk0;
+    u32 unk4;
+    u16 unk8;
+    u8 unkA;
+    u8 padB;
+    u8 padC;
+    u8 padD;
+    u8 unkE;
+};
+
 struct UnkStruct_8001EFD0 {
-    s32 unk0;
-    char pad[0x64];
+    OSPfs pfs;
     s32 unk68;
     s32 unk6C;
     s32 unk70;
     s32 unk74;
     s32 unk78;
     s32 unk7C;
-    s32 unk80;
-};
-
-struct UnkStruct_8004A5F0 {
-    s32 unk0;
-    char pad [0xE];
-    s8 unkE;
+    OSPfsState* unk80[1]; // TODO: This is UB
 };
 
 // could be a Vector
@@ -1050,7 +1057,8 @@ struct UnkStruct80177778 {
     s16 unk18;
     s16 unk1A;
     s16 unk1C;
-    u8 pad1E[0x6];
+    u8 pad1E[0x4];
+    s16 unk22;
     u8 unk24;
     u8 unk25;
     u8 unk26;
@@ -1215,11 +1223,11 @@ struct FileEntry {
 };
 
 struct UnkStruct80055D5C {
-    s32 unk0;
-    u32 unk4;
-    u32 unk8;
-    char padC[0x4];
-};
+    /* 0x00 */ s32 unk0;
+    /* 0x04 */ u32 unk4;
+    /* 0x08 */ u32 unk8;
+    /* 0x0C */ s32 unkC;                            /* inferred */
+};       
 
 struct UnkStruct8001191C_SP34 {
     u32 unk0;
@@ -1275,9 +1283,11 @@ struct UnkStruct80011EF0 {
 };
 
 struct UnkStruct800120FC {
-    char pad0[0x6C];
-    u32 unk6C;
-    u32 unk70;
+    char pad0[0x64];
+    void* unk64;
+    int unk68;
+    void* unk6C;
+    s32 unk70;
 };
 
 struct UnkStruct_80022454_SP24 {

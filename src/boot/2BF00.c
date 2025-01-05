@@ -1208,7 +1208,7 @@ void func_8002EF60(void)
         func_8002EF00();
         break;
     }
-    func_8005FA90();
+    stub_8005FA90();
 }
 
 void func_8002F000(void)

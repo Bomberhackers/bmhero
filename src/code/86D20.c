@@ -6033,5 +6033,3 @@ void func_800A8A58(void)
         }
     }
 }
-
-// You're done !, Congrats, now organize this file

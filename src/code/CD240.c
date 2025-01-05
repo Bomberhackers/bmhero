@@ -2999,8 +2999,8 @@ void func_800E71C0(void) {
         sp2C->Vel.x = sp2C->Vel.y = sp2C->Vel.z;
         func_8001C0EC(gCurrentParsedObject, 0, 0xC, 0xB4, &D_80119788);
         func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80119828.unk54);
-        func_8001ABF4(gCurrentParsedObject, 1, 0, &D_80119828.unk70);
-        func_8001ABF4(gCurrentParsedObject, 2, 0, &D_80119828.unk8C);
+        func_8001ABF4(gCurrentParsedObject, 1, 0, &D_80119828.unk64[0][3]);
+        func_8001ABF4(gCurrentParsedObject, 2, 0, &D_80119828.unk64[2][2]);
     }
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         func_8002B0E4(gCurrentParsedObject);
@@ -3153,8 +3153,8 @@ void func_800E7D5C(void) {
         sp2C->Vel.x = sp2C->Vel.y = sp2C->Vel.z;
         func_8001C0EC(gCurrentParsedObject, 0, 0xC, 0xB4, &D_80119788);
         func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80119828.unk54);
-        func_8001ABF4(gCurrentParsedObject, 1, 0, &D_80119828.unk70);
-        func_8001ABF4(gCurrentParsedObject, 2, 0, &D_80119828.unk8C);
+        func_8001ABF4(gCurrentParsedObject, 1, 0, &D_80119828.unk64[0][3]);
+        func_8001ABF4(gCurrentParsedObject, 2, 0, &D_80119828.unk64[2][2]);
     }
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         func_8002B0E4(gCurrentParsedObject);

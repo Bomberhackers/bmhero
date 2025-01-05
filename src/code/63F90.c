@@ -1,16 +1,19 @@
 #include "common.h"
+#include "63F90.h"
 
-void func_80076640(void);
-void func_80076F6C(s16, s16, s16, s16); /* extern */
-
-
+// .bss
+extern f32 D_80177680;
+extern f32 D_801776A8;
+extern f32 D_801776C8;
+extern f32 D_801776D0;
+extern u8 D_801776D8;
+extern u8 D_801776DC;
 extern s8 D_801775EF;
 extern u8 D_80177920;
 extern s32 D_8017763C;
 extern s32 D_80177644;
 extern s32 D_8017764C;
 extern s32 D_80177660;
-
 
 void func_80071A70(s32 arg0)
 {
@@ -47,7 +50,6 @@ f32 func_80071A88(f32 arg0, f32 arg1, s8 *arg2)
     }
     return sp4;
 }
-
 
 // RODATA
 extern f32 D_801775B0;
@@ -169,7 +171,6 @@ void func_80071E28(void)
     }
 }
 
-
 void func_80072160(void)
 {
     D_8017763C = 0;
@@ -213,11 +214,6 @@ void func_800721CC(void)
     D_801775B0 += (f32)D_80177644;
 }
 
-extern f32 D_801776C8;
-extern f32 D_801776D0;
-extern u8 D_801776D8;
-extern u8 D_801776DC;
-
 void func_800722FC(void)
 {
     if (D_801776DC != 0)
@@ -236,10 +232,6 @@ void func_80072358(void)
     D_801776D0 = gView.rot.x;
     D_801776D8 = gDebugDispType;
 }
-
-void func_80072358(); /* extern */
-extern f32 D_80177680;
-extern f32 D_801776A8;
 
 void func_800723A4(void)
 {
@@ -706,7 +698,7 @@ void func_80073784(void)
     sp54 = gPlayerObject->Pos.x;
     sp50 = gPlayerObject->Pos.y;
     sp4C = gPlayerObject->Pos.z;
-    
+
     sp48 = (f32)(D_801777E8 + 0x3C0);
     sp44 = (f32)(D_80177900 - 0x3C0);
     sp40 = (f32)(D_801778F0 + 0x3C0);
@@ -1259,7 +1251,7 @@ extern s8 D_8017790A;
 extern s8 D_8017790E;
 extern s8 D_80177912;
 extern s8 D_8017791A;
-extern s16* D_80177924;
+extern s16 *D_80177924;
 extern s16 D_8017792A;
 
 void func_80076640(void)
@@ -1288,7 +1280,7 @@ void func_800766B4(s32 arg0)
 {
     gPlayerObject->unk108 = -1;
     D_80177920 = arg0;
-    D_80177924 =  (s16*)D_80106CFC[arg0];
+    D_80177924 = (s16 *)D_80106CFC[arg0];
     D_8017790E = 0;
     D_80177912 = 0;
     D_80177916 = 0;
@@ -1370,16 +1362,16 @@ void func_80076C4C(void)
     gDPPipeSync(gMasterDisplayList++);
 }
 
-void func_80076F6C(s16 arg0, s16 arg1, s16 arg2, s16 arg3) {
+void func_80076F6C(s16 arg0, s16 arg1, s16 arg2, s16 arg3)
+{
     gDPLoadTextureTile_4b(gMasterDisplayList++, (gFileArray[0x1A].ptr + 0x30), G_IM_FMT_CI,
-        256, 0/* height - unused field */, arg2, arg3, arg2 + 8, arg3 + 16, 0,
-        G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
-        G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
+                          256, 0 /* height - unused field */, arg2, arg3, arg2 + 8, arg3 + 16, 0,
+                          G_TX_NOMIRROR | G_TX_WRAP, G_TX_NOMIRROR | G_TX_WRAP,
+                          G_TX_NOMASK, G_TX_NOMASK, G_TX_NOLOD, G_TX_NOLOD);
 
     gDPSetTileSize(gMasterDisplayList++, G_TX_RENDERTILE, 0, 0, 64, 64);
     gSPTextureRectangle(gMasterDisplayList++, arg0 << 2, arg1 << 2, (arg0 + 8) << 2, (arg1 + 16) << 2, 0, 0, 0, 1 << 10, 1 << 10);
 }
-
 
 void func_800772B8(void)
 {
@@ -1434,29 +1426,35 @@ void func_800772B8(void)
     }
 }
 
-void func_80077458(void) {
+void func_80077458(void)
+{
     UNUSED s32 pad[3];
 
-    if (D_80177924 == NULL) {
+    if (D_80177924 == NULL)
+    {
         return;
     }
-    if ((s32) D_80177920 < 0x14) {
+    if ((s32)D_80177920 < 0x14)
+    {
         return;
     }
-    if (D_8017790E != 1) {
+    if (D_8017790E != 1)
+    {
         return;
     }
     func_8006F570(0x2B, 0x1C, 0x58, 1.0f, 1.0f);
-    if ((u8) D_8017791A & 4) {
+    if ((u8)D_8017791A & 4)
+    {
         func_8006F570(0x2C, 0x2C, 0x7B, 1.0f, 1.0f);
     }
 }
 
-void func_80077528(void) {
-    if (D_8017790A == 0) {
+void func_80077528(void)
+{
+    if (D_8017790A == 0)
+    {
         return;
     }
     func_800772B8();
     func_80077458();
 }
-

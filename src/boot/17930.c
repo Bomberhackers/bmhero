@@ -1,53 +1,22 @@
 #include <ultra64.h>
 #include "malloc/malloc.h"
 #include "1050.h"
+#include "12AF0.h"
+#include "17930.h"
 #include "functions.h"
 
-struct UnkStruct8016C298_1
-{
-    s32 unk0;
-    u8 *unk4;
-    u8 *unk8;
-    s32 *unkC;
-    s32 *unk10;
-    s16 unk14;
-    u8 unk16;
-    u8 unk17;
-    s8 unk18;
-    s8 unk19;
-    char pad1A[2];
-};
-
-struct UnkStruct8016C298
-{
-    struct UnkStruct8016C298_1 *unk0;
-    s8 unk4;
-    char unk5;
-    char unk6;
-    char unk7;
-}; // Size = 0x8
-
-struct UnkStruct_8001CDF4 {
-    s32 unk4;
-    s32 pad4;
-    s8 unk8;
-};
-
-extern struct UnkStruct8016C298 D_8016C298[];
-
-s32 func_80003170(); /* extern */
-s32 func_800031CC(); /* extern */
-s32 func_800031E4(); /* extern */
-
-void func_8005F088(void);
-void func_8001D2FC(void);
-void func_8001FBAC(void);
-void func_8005F0B8(void);
-void func_8001D3CC(void);
-void func_8005F0F4(void);
-s32 func_8001A988(void);
-s32 func_800122F0(int);
-s32 func_80010408(int, int);
+// Variables *only* used in this file
+//.bss
+extern char D_8016E111;
+extern char D_8016E114;
+extern char D_8016E116;
+extern s16 D_8016E124;
+extern s8 D_8016E11C;
+extern char D_8016E12C;
+extern s16 D_801776DE;
+extern s16 D_801776E2;
+extern s16 D_801776E8[];
+extern s16 D_801776DA;
 
 void func_80016D30(void)
 {
@@ -59,9 +28,6 @@ void func_80016D30(void)
     sp20 = func_800031CC();
     sp1C = func_800031E4();
 }
-
-s32 func_80003214(s16); /* extern */
-extern s16 D_801776DA;
 
 void func_80016D74(s16 arg0)
 {
@@ -86,10 +52,6 @@ s32 func_80016DD4(void)
     func_80002E1C(0xC, 2, (void *)&D_8004D748, (void *)&D_80177A70, 0x493E0);
     func_80016D74(0);
 }
-
-extern s16 D_801776DE;
-extern s16 D_801776E2;
-extern s16 D_801776E8[];
 
 void func_80016E84(void)
 {
@@ -116,9 +78,6 @@ void func_80016EE4(void)
     }
 }
 
-void func_80004284();    /* extern */
-void func_8000435C(s16); /* extern */
-
 void PlayTrack_WithVolLoop(s16 trackID, s16 vol, s16 loop)
 {
     if (trackID == -1)
@@ -138,8 +97,6 @@ void PlayTrack_WithVolLoop(s16 trackID, s16 vol, s16 loop)
     }
 }
 
-void func_800042D8(s16); /* extern */
-
 void func_80016FC8(s16 arg0)
 {
     func_800042D8((s16)arg0);
@@ -149,11 +106,6 @@ void func_80016FF8(s32 arg0)
 {
     func_8000435C((s16)(s8)arg0);
 }
-
-s16 func_8000AC1C(s16);       /* extern */
-s16 func_8000B404(s16);       /* extern */
-void func_8000C6F8(s16, s16); /* extern */
-void func_8000C7D4(s16, u8);  /* extern */
 
 s16 func_80017028(s32 arg0, s32 arg1, s16 arg2, s16 arg3, s32 arg4, s32 arg5, u8 arg6)
 {
@@ -173,9 +125,8 @@ s16 func_80017028(s32 arg0, s32 arg1, s16 arg2, s16 arg3, s32 arg4, s32 arg5, u8
                 return sp1E;
             }
         }
-        goto block_12;
     }
-    if (arg4 == 2)
+    else if (arg4 == 2)
     {
         sp1E = func_8000B404(arg2);
         if (sp1E != -1)
@@ -183,7 +134,7 @@ s16 func_80017028(s32 arg0, s32 arg1, s16 arg2, s16 arg3, s32 arg4, s32 arg5, u8
             return sp1E;
         }
     }
-block_12:
+
     sp1E = func_8000AC1C(arg2);
     if (arg3 != -1)
     {
@@ -196,9 +147,6 @@ block_12:
     }
     return sp1E;
 }
-
-// Rodata
-extern f64 D_8004BC28;
 
 u8 func_800171E0(s32 arg0)
 {
@@ -219,7 +167,7 @@ u8 func_800171E0(s32 arg0)
     sp30 = sp3C->Pos.x - gView.at.x;
     sp2C = sp3C->Pos.z - gView.at.z;
 
-    sp28 = sqrtf(SQ(sp30) + SQ(sp2C)) * sinf(((sp38 - sp34) * D_8004BC28));
+    sp28 = sqrtf(SQ(sp30) + SQ(sp2C)) * sinf(((sp38 - sp34) * 0.0174532925199432955));
     if (sp28 >= 1000.0f)
     {
         sp28 = 1000.0f;
@@ -311,8 +259,6 @@ void func_80017934(s32 arg0, s32 arg1, s16 arg2, UNUSED s32 arg3, s32 arg4)
     return;
 }
 
-s32 func_8000B4EC(s16); /* extern */
-
 void func_800179B0(s32 arg0, s32 arg1, s16 arg2, s16 arg3, s32 arg4)
 {
     s16 sp1E;
@@ -347,8 +293,6 @@ void func_80017B04(s16 arg0)
     func_8000B404(arg0);
     return;
 }
-
-void func_8000B738(s16); /* extern */
 
 void func_80017B3C(s32 arg0, s32 arg1)
 {
@@ -437,23 +381,18 @@ void func_80017E70(s16 arg0)
     func_8000B738(func_8000B404(arg0));
 }
 
-void func_8000B5DC(); /* extern */
-
 void func_80017EB8(void)
 {
     func_8000B5DC();
 }
 
-extern char D_8004BC20; // String literal
-extern f32 D_8004BC30;
-
 void func_80017EE0(void)
 {
     u16 sp36;
-    f32 sp30;
+    UNUSED f32 sp30;
 
-    sprintf(gDebugTextBuf, &D_8004BC20); // "A " ??
-    guPerspective(D_8016E104->unk00, &sp36, 50.0f, 1.3333334f, 100.0f, D_8004BC30, 1.0f);
+    sprintf(gDebugTextBuf, "A"); //??
+    guPerspective(D_8016E104->unk00, &sp36, 50.0f, 1.3333334f, 100.0f, 20000.0f, 1.0f);
     guLookAt(&D_8016E104->unk00[2], gView.eye.x, gView.eye.y, gView.eye.z, gView.at.x, gView.at.y, gView.at.z, gView.up.x, gView.up.y, gView.up.z);
     sp30 = sqrtf(2.0f);
 }
@@ -525,6 +464,7 @@ void func_800181F0(void)
     }
 }
 
+// fake
 extern UNK_TYPE D_1000CB0;
 
 void func_8001838C(void)
@@ -751,13 +691,6 @@ void func_80019510(s32 arg0, s32 arg1, s32 arg2)
     }
 }
 
-// Needs rodata
-extern f64 D_8004BC38;
-extern f64 D_8004BC40;
-extern f64 D_8004BC48;
-extern f64 D_8004BC50;
-extern f64 D_8004BC58;
-
 void func_8001994C(void)
 {
     f32 sp2C;
@@ -771,9 +704,9 @@ void func_8001994C(void)
         {
             sp2C -= 1.0f;
         }
-        gView.eye.x = ((gView.dist * cosf((sp28 * D_8004BC38))) * cosf((sp2C * D_8004BC40))) + gView.at.x;
-        gView.eye.y = (sinf((sp2C * D_8004BC48)) * gView.dist) + gView.at.y;
-        gView.eye.z = ((gView.dist * sinf((sp28 * D_8004BC50))) * cosf((sp2C * D_8004BC58))) + gView.at.z;
+        gView.eye.x = ((gView.dist * cosf((sp28 * 0.0174532925199432955))) * cosf((sp2C * 0.0174532925199432955))) + gView.at.x;
+        gView.eye.y = (sinf((sp2C * 0.0174532925199432955)) * gView.dist) + gView.at.y;
+        gView.eye.z = ((gView.dist * sinf((sp28 * 0.0174532925199432955))) * cosf((sp2C * 0.0174532925199432955))) + gView.at.z;
         if ((sp2C >= 90.0f) && (sp2C < 270.0f))
         {
             gView.up.y = -1.0f;
@@ -1389,8 +1322,6 @@ void func_8001BBDC(s32 arg0, s32 arg1)
     }
 }
 
-extern char D_8004A5E4[];
-
 void func_8001BC84(s32 arg0, s32 arg1, s32 arg2)
 {
     if (arg2 != 0)
@@ -1625,27 +1556,36 @@ void func_8001C96C(void)
     }
 }
 
-void func_80011424(u32, f32);                          /* extern */
-
-void func_8001CAAC(s32 arg0, f32 arg1) {
+void func_8001CAAC(s32 arg0, f32 arg1)
+{
     s32 sp1C;
     s32 sp18;
 
-    if (!(gObjects[arg0].unk130 & 2)) {
-        for (sp1C = 0; sp1C < 4; sp1C++) {
-            if ((sp18 =  gObjects[arg0].Unk140[sp1C]) != -1) {
+    if (!(gObjects[arg0].unk130 & 2))
+    {
+        for (sp1C = 0; sp1C < 4; sp1C++)
+        {
+            if ((sp18 = gObjects[arg0].Unk140[sp1C]) != -1)
+            {
                 func_8001A488(sp18);
-                if (D_80165290[sp18].unk20 != 0) {
+                if (D_80165290[sp18].unk20 != 0)
+                {
                     func_80011424(D_80165290[sp18].unk20, D_80165290[sp18].unk24);
                     D_80165290[sp18].unk24 += arg1;
-                    if ( D_80165290[sp18].unk24 >= (f32) D_80055D5C[D_80165290[sp18].unk15].unkC) {
-                        if (D_80165290[sp18].unk16 & 1) {
+                    if (D_80165290[sp18].unk24 >= (f32)D_80055D5C[D_80165290[sp18].unk15].unkC)
+                    {
+                        if (D_80165290[sp18].unk16 & 1)
+                        {
                             D_80165290[sp18].unk24 -= arg1;
-                        } else {
+                        }
+                        else
+                        {
                             D_80165290[sp18].unk24 = 0.0f;
                         }
                         D_80165290[sp18].unk16 |= 2;
-                    } else {
+                    }
+                    else
+                    {
                         D_80165290[sp18].unk16 &= ~2;
                     }
                 }
@@ -1654,20 +1594,24 @@ void func_8001CAAC(s32 arg0, f32 arg1) {
     }
 }
 
-void func_8001CD20(s32 arg0) {
+void func_8001CD20(s32 arg0)
+{
     func_8001CAAC(arg0, 2.0f);
 }
 
-void func_8001CD50(s32 arg0, f32 arg1) {
+void func_8001CD50(s32 arg0, f32 arg1)
+{
     func_8001CAAC(arg0, arg1);
 }
 
-void func_8001CD88(s32 arg0, u32 arg1) {
+void func_8001CD88(s32 arg0, u32 arg1)
+{
     func_80019510(arg0, 0, 1);
     gSPDisplayList(gMasterDisplayList++, arg1);
 }
 
-void func_8001CDF4(s32 arg0, s32 arg1, s32 arg2, struct UnkStruct_8001CDF4  *arg3) {
+void func_8001CDF4(s32 arg0, s32 arg1, s32 arg2, struct UnkStruct_8001CDF4 *arg3)
+{
     void *sp24;
     s32 *sp20;
 
@@ -1675,11 +1619,12 @@ void func_8001CDF4(s32 arg0, s32 arg1, s32 arg2, struct UnkStruct_8001CDF4  *arg
     gMoveWd(gMasterDisplayList++, 6 | 2, arg3->unk8 * 4, OS_PHYSICAL_TO_K0(arg3));
 
     sp20 = &arg3[arg1].unk4 + 5;
-    sp24 = *sp20 + (char*)arg3;
+    sp24 = *sp20 + (char *)arg3;
     gSPDisplayList(gMasterDisplayList++, sp24);
 }
 
-void func_8001CEF4(s32 arg0) {
+void func_8001CEF4(s32 arg0)
+{
     struct ObjectStruct *sp1C;
 
     sp1C = &gObjects[arg0];
@@ -1691,7 +1636,8 @@ void func_8001CEF4(s32 arg0) {
     sp1C->Rot.z = func_80015538(sp1C->Rot.z, sp1C->unk30.z);
 }
 
-void func_8001D000(s32 red, s32 green, s32 blue, s32 alpha) {
+void func_8001D000(s32 red, s32 green, s32 blue, s32 alpha)
+{
     gDPPipeSync(gMasterDisplayList++);
     gDPSetCycleType(gMasterDisplayList++, G_CYC_1CYCLE);
     gSPClearGeometryMode(gMasterDisplayList++, G_SHADE | G_CULL_BOTH | G_FOG | G_LIGHTING | G_TEXTURE_GEN | G_TEXTURE_GEN_LINEAR | G_LOD | G_SHADING_SMOOTH);
@@ -1702,19 +1648,13 @@ void func_8001D000(s32 red, s32 green, s32 blue, s32 alpha) {
     gDPFillRectangle(gMasterDisplayList++, 0, 0, 319, 239);
 }
 
-extern s8 D_8016E11C;
-
-s32 func_8001D1D4(void) {
-    return (s32) D_8016E11C;
+s32 func_8001D1D4(void)
+{
+    return (s32)D_8016E11C;
 }
 
-extern char D_8016E111;
-extern char D_8016E114;
-extern char D_8016E116;
-extern s16 D_8016E124;
-extern char D_8016E12C;
-
-void func_8001D1F4(void) {
+void func_8001D1F4(void)
+{
     D_8016E11C = 0;
     D_8016E124 = 0;
     D_8016E111 = 0xFF;
@@ -1723,69 +1663,84 @@ void func_8001D1F4(void) {
     D_8016E12C = 0x10;
 }
 
-void func_8001D244(char arg0, char arg1, char arg2, char arg3) {
+void func_8001D244(char arg0, char arg1, char arg2, char arg3)
+{
     D_8016E111 = arg0;
     D_8016E114 = arg1;
     D_8016E116 = arg2;
     D_8016E12C = arg3;
 }
 
-void func_8001D284(void) {
-    if ((D_8016E11C != -1) && (D_8016E11C != -2)) {
+void func_8001D284(void)
+{
+    if ((D_8016E11C != -1) && (D_8016E11C != -2))
+    {
         D_8016E11C = -1;
     }
 }
 
-void func_8001D2C0(void) {
-    if ((D_8016E11C != 1) && (D_8016E11C != 2)) {
+void func_8001D2C0(void)
+{
+    if ((D_8016E11C != 1) && (D_8016E11C != 2))
+    {
         D_8016E11C = 1;
     }
 }
 
-void func_8001D2FC(void) {
-    if ((D_8016E11C == 1) || (D_8016E11C == -1)) {
-        D_8016E124 += (u8) D_8016E12C * D_8016E11C;
-        if (D_8016E11C < 0) {
-            if (D_8016E124 <= 0) {
+void func_8001D2FC(void)
+{
+    if ((D_8016E11C == 1) || (D_8016E11C == -1))
+    {
+        D_8016E124 += (u8)D_8016E12C * D_8016E11C;
+        if (D_8016E11C < 0)
+        {
+            if (D_8016E124 <= 0)
+            {
                 D_8016E124 = 0;
                 D_8016E11C = -2;
             }
-        } else if (D_8016E124 >= 0xFF) {
+        }
+        else if (D_8016E124 >= 0xFF)
+        {
             D_8016E124 = 0xFF;
             D_8016E11C = 2;
         }
     }
 }
 
-void func_8001D3CC(void) {
-    if ((D_8016E11C == 1) || (D_8016E11C == -1) || (D_8016E11C == 2)) {
+void func_8001D3CC(void)
+{
+    if ((D_8016E11C == 1) || (D_8016E11C == -1) || (D_8016E11C == 2))
+    {
         func_8001D000(D_8016E111, D_8016E114, D_8016E116, D_8016E124);
     }
 }
 
+// TODO: Remove this fake symbols
 extern char D_302B8[];
 extern char D_302D8[];
+
 extern UNK_TYPE D_80200000;
 extern UNK_TYPE D_80225800;
-void func_8001D440(void) {
+void func_8001D440(void)
+{
     D_80340000->unk18148[0] = 2;
     D_80340000->unk18168 = &D_80200000;
-    // ! TODO: this is fake!!!
-    *((s16*)(D_302B8 + (s32)&D_80340000)) = 2;
-    *((s32*)(D_302D8 + (s32)&D_80340000)) = &D_80225800;
+    *((s16 *)(D_302B8 + (s32)&D_80340000)) = 2;
+    *((s32 *)(D_302D8 + (s32)&D_80340000)) = &D_80225800;
     osViSetSpecialFeatures(0x42);
 }
 extern UNK_TYPE D_801DA800;
 
-void func_8001D4D0(void) {
+void func_8001D4D0(void)
+{
     gDPPipeSync(gMasterDisplayList++);
     gDPSetDepthImage(gMasterDisplayList++, osVirtualToPhysical(&D_801DA800));
     gDPSetCycleType(gMasterDisplayList++, G_CYC_FILL);
-    gDPSetColorImage(gMasterDisplayList++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 320,  osVirtualToPhysical(&D_801DA800));
+    gDPSetColorImage(gMasterDisplayList++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 320, osVirtualToPhysical(&D_801DA800));
     gDPSetFillColor(gMasterDisplayList++, 0xFFFCFFFC);
     gDPFillRectangle(gMasterDisplayList++, 0, 0, 319, 239);
 }
-
 
 void func_8001D638(s32 arg0, char red, char green, char blue)
 {
@@ -2183,29 +2138,32 @@ void func_8001E80C(void)
     D_8016E244 += 1;
 }
 
-void func_8001E954(s32 *arg0) {
-    gDecompressHeap = (u8 *) arg0;
+void func_8001E954(s32 *arg0)
+{
+    gDecompressHeap = (u8 *)arg0;
 }
 
-s32 func_8001E96C(void) {
-    return (s32) gDecompressHeap;
+s32 func_8001E96C(void)
+{
+    return (s32)gDecompressHeap;
 }
 
-void func_8001E98C(s32 arg0, s32 arg1, s32 arg2) {
-    u32 sp1C;                                       /* compiler-managed */
+void func_8001E98C(s32 arg0, s32 arg1, s32 arg2)
+{
+    u32 sp1C; /* compiler-managed */
     s32 sp18;
 
     sp1C = gDecompressHeap;
-    if ((s32) sp1C & 0xF) {
+    if ((s32)sp1C & 0xF)
+    {
         sp1C = ALIGN16((s32)sp1C + 1);
-        gDecompressHeap = (u8 *) sp1C;
+        gDecompressHeap = (u8 *)sp1C;
     }
     sp18 = arg2 - arg1;
     gFileArray[arg0].ptr = gDecompressHeap;
     load_from_rom_to_addr(arg1, gFileArray[arg0].ptr, sp18);
     gDecompressHeap = &gDecompressHeap[sp18];
 }
-
 
 /**
  * Decompress a given area and add it to the file array's ID pointer.
@@ -2236,43 +2194,52 @@ void DecompressFile(u32 id, u32 rom_start, u32 rom_end)
     gDecompressHeap += size;              // re-set the heap pointer to the new area.
 }
 
-void func_8001EB68(s32 arg0, void *arg1, void *arg2) {
-    DecompressFile((u32) arg0, (u32) arg1, (u32) arg2);
-    if (func_80017FF8() == 1) {
-        func_800180C4((u32) gFileArray[arg0].ptr, func_8001E96C());
+void func_8001EB68(s32 arg0, void *arg1, void *arg2)
+{
+    DecompressFile((u32)arg0, (u32)arg1, (u32)arg2);
+    if (func_80017FF8() == 1)
+    {
+        func_800180C4((u32)gFileArray[arg0].ptr, func_8001E96C());
     }
 }
 
-void func_8001EBE8(void) {
+void func_8001EBE8(void)
+{
     D_8016E098 = 1;
 }
 
-void func_8001EC04(void) {
+void func_8001EC04(void)
+{
     D_8016E098 = 0;
 }
 
-void func_8001EC1C(void) {
+void func_8001EC1C(void)
+{
     D_8016E0A0 = 1;
 }
 
-void func_8001EC38(void) {
+void func_8001EC38(void)
+{
     D_8016E0A0 = 0;
 }
 
-void func_8001EC50(void) {
+void func_8001EC50(void)
+{
     D_8016E0A8 = 1;
 }
 
-
-void func_8001EC6C(void) {
+void func_8001EC6C(void)
+{
     D_8016E0A8 = 0;
 }
 
-void func_8001EC84(void) {
+void func_8001EC84(void)
+{
     D_8016E0B0 = 1;
 }
 
-void func_8001ECA0(void) {
+void func_8001ECA0(void)
+{
     D_8016E0B0 = 0;
 }
 
@@ -2314,10 +2281,12 @@ void func_8001ECB8(void)
     D_8016E274 = 0x20;
 }
 
-void func_8001EE64(void) {
-    u32 sp1C;                                       /* compiler-managed */
+void func_8001EE64(void)
+{
+    u32 sp1C;
 
-    for (sp1C = 0; sp1C < 0xCF; sp1C++) {
+    for (sp1C = 0; sp1C < 0xCF; sp1C++)
+    {
         func_8001A928(sp1C);
     }
 }

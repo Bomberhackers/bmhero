@@ -93,7 +93,7 @@ void func_8001F088(struct UnkStruct_8001EFD0 *arg0)
         {
             if ((D_80177650[sp1C].type & CONT_JOYPORT) && (D_80177650[sp1C].type & CONT_ABSOLUTE))
             {
-                sp18 = osPfsInitPak(&gContMesgQueue,  &MEMBER_ACCESS(arg0, sp1C, pfs), sp1C);
+                sp18 = osPfsInitPak(&gContMesgQueue, &MEMBER_ACCESS(arg0, sp1C, pfs), sp1C);
                 arg0[sp1C].unk74 = sp18;
             }
         }
@@ -202,18 +202,18 @@ s32 func_8001F4B8(struct UnkStruct_8001EFD0 *arg0, s32 arg1)
     return sp24;
 }
 
-s32 func_8001F550(struct UnkStruct_8001EFD0* arg0, s32 arg1) {
+s32 func_8001F550(struct UnkStruct_8001EFD0 *arg0, s32 arg1)
+{
     s32 sp2C;
 
-    
-    sp2C = osPfsAllocateFile(&MEMBER_ACCESS(arg0, arg1, pfs), 
-        arg0->unk80[0x64]->company_code,
-        arg0->unk80[0x64]->game_code,
-        arg0->unk80[0x64]->game_name, 
-        arg0->unk80[0x64]->ext_name,
-        arg0->unk80[0x64]->file_size,
-        &MEMBER_ACCESS(arg0, arg1, unk68));
-    
+    sp2C = osPfsAllocateFile(&MEMBER_ACCESS(arg0, arg1, pfs),
+                             arg0->unk80[0x64]->company_code,
+                             arg0->unk80[0x64]->game_code,
+                             arg0->unk80[0x64]->game_name,
+                             arg0->unk80[0x64]->ext_name,
+                             arg0->unk80[0x64]->file_size,
+                             &MEMBER_ACCESS(arg0, arg1, unk68));
+
     arg0[arg1].unk78 = sp2C;
     return sp2C;
 }

@@ -124,7 +124,7 @@ struct UnkStruct800122F0_Arg0
     u32 unk8;
 };
 
-void func_80011EF0(struct UnkStruct800120FC *arg0);
+void func_80011EF0(struct UnkStruct800122F0 *arg0);
 void func_800120FC(struct UnkStruct800120FC *arg0);
 void *func_800122F0(struct UnkStruct800122F0_Arg0 *arg0);
 void func_8001369C(struct UnkStruct_8001369C *arg0, s32 arg1);

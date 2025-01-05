@@ -5,8 +5,7 @@
 #include "macros.h"
 #include "12AF0.h"
 
-
-void func_80011EF0(struct UnkStruct800120FC *arg0)
+void func_80011EF0(struct UnkStruct800122F0 *arg0)
 {
     s32 i;
     s32 j;
@@ -385,7 +384,9 @@ void func_80013B70(f32 *arg0, f32 arg1, f32 arg2, f32 arg3)
     }
 }
 
-// Multiply two matrices and store the result in mf1
+/*
+* Multiply two matrices and store the result in mf1
+*/
 void func_80013C0C(float mf1[3][4], float mf2[3][3])
 {
     int i;

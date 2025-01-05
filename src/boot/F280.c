@@ -3,7 +3,7 @@
 // functions
 s32 func_8000EEE8(Gfx** gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6);
 
-void func_8000E680(struct UnkInputStruct8000E680* arg0, struct UnkInputStruct8000E680* arg1) {
+void func_8000E680(Matrix arg0, Matrix arg1) {
     f32 sp3C;
     f32 sp38;
     f32 sp34;
@@ -15,15 +15,15 @@ void func_8000E680(struct UnkInputStruct8000E680* arg0, struct UnkInputStruct800
     f32 sp1C;
     f32 sp18;
 
-    sp38 = arg1->unk0;
-    sp34 = arg1->unk10;
-    sp30 = arg1->unk20;
-    sp2C = arg1->unk4;
-    sp28 = arg1->unk14;
-    sp24 = arg1->unk24;
-    sp20 = arg1->unk8;
-    sp1C = arg1->unk18;
-    sp18 = arg1->unk28;
+    sp38 = arg1[0][0];
+    sp34 = arg1[1][0];
+    sp30 = arg1[2][0];
+    sp2C = arg1[0][1];
+    sp28 = arg1[1][1];
+    sp24 = arg1[2][1];
+    sp20 = arg1[0][2];
+    sp1C = arg1[1][2];
+    sp18 = arg1[2][2];
 
     sp3C = ((sp38 * sp28 * sp18) 
           + (sp34 * sp24 * sp20) 
@@ -32,15 +32,15 @@ void func_8000E680(struct UnkInputStruct8000E680* arg0, struct UnkInputStruct800
           + (sp34 * sp2C * sp18) 
           + (sp30 * sp28 * sp20));
 
-    arg0->unk0 =  (f32) (((sp28 * sp18) - (sp24 * sp1C)) / sp3C);
-    arg0->unk10 = (f32) (((sp30 * sp1C) - (sp34 * sp18)) / sp3C);
-    arg0->unk20 = (f32) (((sp34 * sp24) - (sp30 * sp28)) / sp3C);
-    arg0->unk4 =  (f32) (((sp24 * sp20) - (sp2C * sp18)) / sp3C);
-    arg0->unk14 = (f32) (((sp38 * sp18) - (sp30 * sp20)) / sp3C);
-    arg0->unk24 = (f32) (((sp30 * sp2C) - (sp38 * sp24)) / sp3C);
-    arg0->unk8 =  (f32) (((sp2C * sp1C) - (sp28 * sp20)) / sp3C);
-    arg0->unk18 = (f32) (((sp34 * sp20) - (sp38 * sp1C)) / sp3C);
-    arg0->unk28 = (f32) (((sp38 * sp28) - (sp34 * sp2C)) / sp3C);
+    arg0[0][0] =  (f32) (((sp28 * sp18) - (sp24 * sp1C)) / sp3C);
+    arg0[1][0] = (f32) (((sp30 * sp1C) - (sp34 * sp18)) / sp3C);
+    arg0[2][0] = (f32) (((sp34 * sp24) - (sp30 * sp28)) / sp3C);
+    arg0[0][1] =  (f32) (((sp24 * sp20) - (sp2C * sp18)) / sp3C);
+    arg0[1][1] = (f32) (((sp38 * sp18) - (sp30 * sp20)) / sp3C);
+    arg0[2][1] = (f32) (((sp30 * sp2C) - (sp38 * sp24)) / sp3C);
+    arg0[0][2] =  (f32) (((sp2C * sp1C) - (sp28 * sp20)) / sp3C);
+    arg0[1][2] = (f32) (((sp34 * sp20) - (sp38 * sp1C)) / sp3C);
+    arg0[2][2] = (f32) (((sp38 * sp28) - (sp34 * sp2C)) / sp3C);
 }
 
 s32 func_8000E944(Gfx** gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7) {

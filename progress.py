@@ -204,7 +204,7 @@ code -= nonMatchingASMCode
 boot -= nonMatchingASMBoot
 ovl -= nonMatchingASMOvl
 
-bootSize = 293648
+bootSize = 289200
 codeSize = 674384
 ovlSize = 212420 # .text sections
 

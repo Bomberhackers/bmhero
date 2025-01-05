@@ -753,7 +753,7 @@ extern u32 D_801C1A50;
 extern u8 D_801D04B0[];
 extern s32 D_80321428;
 extern s32* D_80324994;
-extern struct UnkStruct80340000 D_80340000[2];
+extern struct UnkStruct8016E10C D_80340000[2];
 extern s32 D_80380000;
 extern s32 D_801651A4;
 extern s8 D_80165246;

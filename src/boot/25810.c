@@ -100,10 +100,10 @@ void func_80024E1C(s32 arg0)
 
 s32 func_80024EA8(void)
 {
-    s32 sp1C;
+    int status;
 
-    sp1C = Eeprom_Read(&gContMesgQueue, &D_80057450[0], 0, 0x200);
-    return sp1C;
+    status = Eeprom_Read(&gContMesgQueue, &D_80057450[0], 0, 0x200);
+    return status;
 }
 
 s32 func_80024EF4(s32 arg0)
@@ -536,7 +536,7 @@ void func_80025E28(void)
 {
     s32 sp1C;
 
-    func_80024EA8();
+    func_80024EA8(); // read eeprom?
     for (sp1C = 0; sp1C < 5; sp1C++)
     {
         if (func_80025A1C(sp1C) != 0)

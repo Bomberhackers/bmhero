@@ -379,7 +379,7 @@ u32 func_800FE898(void)
     gView.dist = 800.0f;
     func_80019C84();
     func_80019D2C();
-    func_8001A258();
+    func_8001A258(); // Initialize some objects
     func_8001D244(0xFF, 0xFF, 0xFF, 0x10);
     func_8001D284();
     func_80000964();

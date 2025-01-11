@@ -35,7 +35,7 @@ extern s32 D_8004A298;
 extern s32 D_8004A29C;
 extern s32* D_8004A370;
 extern s32 D_8004A380;
-extern s32 D_8004A384;
+extern s32 gDebugger; // Original name: debugger
 extern s32 D_8004A388;
 extern s32 D_8004A38C;
 extern s32 D_8004A390;

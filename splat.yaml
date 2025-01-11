@@ -34,12 +34,12 @@ segments:
     vram: 0x80000400
     subsegments:
     - [0x1000,  hasm, entry] # bootloader
-    - [0x1050,  c, boot/1050] # main
+    - [0x1050,  c, boot/main] # main
     - [0x3490,  c, boot/3490]
     - [0x38D0,  c, boot/38D0]
     - [0xDD20,  c, boot/nusys/mus/audio]
     - [0xEE20,  c, boot/EE20] # Host functions for libmalloc
-    - [0xEFE0,  c, boot/EFE0]
+    - [0xEFE0,  c, boot/parse_args]
     - [0xF280,  c, boot/F280]
     - [0x10AB0, c, boot/10AB0]
     - [0x12AF0, c, boot/12AF0]
@@ -267,6 +267,8 @@ segments:
     - [0x4A060, data]
     - [0x4AEA0, .data, boot/38D0]
     - [0x4AF70, data]
+    - [0x4AF80, .data, boot/parse_args]
+    - [0x4AF90, data]
     - [0x4B350, .data, boot/malloc/malloc]
     - [0x4B360, .data, boot/malloc/free]
     - [0x4B370, .data, libultra/io/vitbl]
@@ -291,7 +293,7 @@ segments:
     - [0x4C5A0, .data, libultra/vimodes/vimodempallan1]
     - [0x4C5F0, .data, libultra/vimodes/vimodentsclan1]
     - [0x4C640, .data, libultra/libc/xlitob]
-    - [0x4C670, .rodata, boot/1050]
+    - [0x4C670, .rodata, boot/main]
     - [0x4C6A0, .rodata, boot/3490]
     - [0x4C6C0, .rodata, boot/38D0]
     - [0x4C7B0, .rodata, boot/EE20]
@@ -328,7 +330,7 @@ segments:
     - [0x4DFF0]
 
     # bss begins here I guess
-    - {start: 0x4DFF0, vram: 0x8004D3F0, type: .bss, name: boot/1050}
+    - {start: 0x4DFF0, vram: 0x8004D3F0, type: .bss, name: boot/main}
     - {start: 0x4DFF0, vram: 0x80052D40, type: .bss, name: boot/38D0}
     - {start: 0x4DFF0, vram: 0x80053160, type: .bss, name: boot/nusys/mus/audio}
     - {start: 0x4DFF0, vram: 0x800557E0, type:  bss, name: boot_bss_pad_2}

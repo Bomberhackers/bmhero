@@ -743,7 +743,7 @@ void func_80019C84(void)
 {
     s32 sp1C;
 
-    for (sp1C = 0; sp1C < 0x100; sp1C++)
+    for (sp1C = 0; sp1C < 256; sp1C++)
     {
         func_80019BC8(sp1C);
     }
@@ -1657,18 +1657,18 @@ void func_8001D1F4(void)
 {
     D_8016E11C = 0;
     D_8016E124 = 0;
-    D_8016E111 = 0xFF;
-    D_8016E114 = 0xFF;
-    D_8016E116 = 0xFF;
-    D_8016E12C = 0x10;
+    D_8016E111 = 255;
+    D_8016E114 = 255;
+    D_8016E116 = 255;
+    D_8016E12C = 16;
 }
 
-void func_8001D244(char arg0, char arg1, char arg2, char arg3)
+void func_8001D244(char red, char green, char blue, char alpha)
 {
-    D_8016E111 = arg0;
-    D_8016E114 = arg1;
-    D_8016E116 = arg2;
-    D_8016E12C = arg3;
+    D_8016E111 = red;
+    D_8016E114 = green;
+    D_8016E116 = blue;
+    D_8016E12C = alpha;
 }
 
 void func_8001D284(void)

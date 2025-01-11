@@ -4,14 +4,22 @@
  * Seems to parse a string of arguments, possibly treating the game like an executable at one
  * point.
  */
-void HS_ParseArg(u8 *arg0)
+
+
+s32 Verbose = 0;
+s32 gDebugger = 0;
+s32 Silent  = 0;
+s32 Logging = 0;
+
+// Original name: parse_args
+void Parse_Args(u8 *arg0)
 {
     s32 argcount = 1;
     u8 *buf[0x20];
     u8 **bufptr;
     u8 *sp4;
 
-    bufptr = &buf;
+    bufptr = buf;
 
     if (arg0 == 0 || (*arg0 == 0))
     {
@@ -48,16 +56,16 @@ void HS_ParseArg(u8 *arg0)
         // the only one that has a tangible effect is -d, which does not allow the game to
         // init past the init thread.
         case ('d'): // '-d'
-            D_8004A384 = 1;
+            gDebugger = TRUE;
             break;
         case ('v'): // '-v'
-            D_8004A380 = 1;
+            Verbose = TRUE;
             break;
         case ('s'): // '-s'
-            D_8004A388 = 1;
+            Silent = TRUE;
             break;
         case ('l'): // '-l'
-            D_8004A38C = 1;
+            Logging = TRUE;
             break;
         default:
             break;

@@ -300,7 +300,7 @@ s32 func_8001F938(void)
     {
         return 1;
     }
-    if (GetSi_DMA_Status() != HAVE_RUMBLE_PAK)
+    if (GetSi_DMA_Status() != 0)
     {
         return 1;
     }

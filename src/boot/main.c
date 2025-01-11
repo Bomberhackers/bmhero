@@ -57,7 +57,7 @@ void main(void *arg)
     }
     D_8016524C = 0;
 
-    HS_ParseArg(NULL);
+    Parse_Args(NULL);
     osCreateThread(&gIdleThread, 1, &thread1_idle, arg, (u8 *)&gIdleThreadStack + 0x1000, 10);
     osStartThread(&gIdleThread);
 }
@@ -66,7 +66,7 @@ void thread1_idle(void *arg)
 {
     osCreatePiManager(150, &D_8004D710, &D_8004D3F0, 200);
     osCreateThread(&D_8004F9D8, 6, thread6_func, arg, (u8 *)&D_80050D38 + 0x1000, 0xA);
-    if (D_8004A384 == 0)
+    if (!gDebugger)
     {
         osStartThread(&D_8004F9D8);
     }
@@ -126,7 +126,7 @@ void func_800007F4(void)
     osCreateMesgQueue(&D_8016E0B8, &D_8016E0D8, 8);
     if (D_8004A280 == 0)
     {
-        if (osTvType == 1)
+        if (osTvType == OS_TV_NTSC)
         {
             func_80001CF0(&D_8004D748, (u8 *)&D_8004D9D8 + 0x2000, 0xD, 2, 1);
         }
@@ -215,7 +215,7 @@ void func_80000964(void)
         case 4:
             sp30 += 2;
             osViSetYScale(1.0f);
-            osViBlack(1U);
+            osViBlack(TRUE);
             func_8001F9DC();
             func_8001ECA0();
             break;
@@ -500,7 +500,7 @@ void thread6_func(void *arg)
         osViClock = 49656530; // PAL: Hz = 49.656530 MHz
     }
     func_80025E28();
-    func_8001FAD4();
+    func_8001FAD4(); // Init rumble pak
     func_8001F9DC();
     func_80016DD4();
     func_80016E84();
@@ -527,7 +527,7 @@ void thread6_func(void *arg)
     func_80083180(0);
 
     // thread loop
-    while (1)
+    while (TRUE)
     {
         D_8016E3DC = 0;
         D_8016E134 = 0;

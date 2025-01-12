@@ -7,17 +7,7 @@ struct UnkStruct_8004A6C8
     char pad[4];
 };
 
-// Variables in this file
-extern u8 D_80057660;
-extern s32 D_80057664;
-extern s32 D_80057668;
-extern s32 D_8005766C;
-extern s32 D_80057670;
-extern s32 D_80057674;
-extern f32 D_80057678;
-extern f32 D_8005767C;
-extern f32 D_80057680;
-extern f32 D_80057684;
+
 
 extern UnkStruct80165100 D_800576A8[];
 extern float D_8004C00C;

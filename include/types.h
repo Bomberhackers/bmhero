@@ -432,9 +432,9 @@ struct UnkStruct8004A3A0 {
 
 // could be Struct Tri. describes 3 vectors
 struct UnkInputStruct8000FEB0 {
-    struct UnkStruct8004A3A0 unk0;
-    struct UnkStruct8004A3A0 unkC;
-    struct UnkStruct8004A3A0 unk18;
+    struct Vec3f unk0;
+    struct Vec3f unkC;
+    struct Vec3f unk18;
 };
 
 struct UnkStruct80055D50 {

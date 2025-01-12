@@ -40,9 +40,9 @@ extern s32 D_8004A388;
 extern s32 D_8004A38C;
 extern s32 D_8004A390;
 extern s32 D_8004A394;
-extern struct UnkStruct8004A3A0 D_8004A3A0;
-extern struct UnkStruct8004A3A0 D_8004A3AC;
-extern struct UnkStruct8004A3A0 D_8004A3B8;
+extern struct Vec3f D_8004A3A0;
+extern struct Vec3f D_8004A3AC;
+extern struct Vec3f D_8004A3B8;
 extern s32 *D_8004A3D0;
 extern s32 *D_8004A3D4;
 extern f32 D_8004A400[]; // .rodata

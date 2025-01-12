@@ -130,7 +130,7 @@ void func_80026548(void)
     view_y = gView.at.y;
     view_z = gView.at.z;
 
-    for (sp24 = &gObjects[0xE], sp44 = 0xE; sp44 < 0x4E; sp24++, sp44++)
+    for (sp24 = &gObjects[14], sp44 = 14; sp44 < 78; sp24++, sp44++)
     {
         if (sp24->unkA4 != 0)
         {

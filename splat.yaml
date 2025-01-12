@@ -268,7 +268,8 @@ segments:
     - [0x4AEA0, .data, boot/38D0]
     - [0x4AF70, data]
     - [0x4AF80, .data, boot/parse_args]
-    - [0x4AF90, data]
+    - [0x4AF90, .data, boot/F280]
+    - [0x4AFA0, data]
     - [0x4B350, .data, boot/malloc/malloc]
     - [0x4B360, .data, boot/malloc/free]
     - [0x4B370, .data, libultra/io/vitbl]
@@ -335,7 +336,8 @@ segments:
     - {start: 0x4DFF0, vram: 0x80053160, type: .bss, name: boot/nusys/mus/audio}
     - {start: 0x4DFF0, vram: 0x800557E0, type:  bss, name: boot_bss_pad_2}
     - {start: 0x4DFF0, vram: 0x80057450, type:  bss, name: boot_bss_pad_3}
-    - {start: 0x4DFF0, vram: 0x80057660, type:  bss, name: boot_bss_pad_4}
+    - {start: 0x4DFF0, vram: 0x80057660, type:  .bss, name: boot/2BF00} #boot_bss_pad_4
+    - {start: 0x4DFF0, vram: 0x80057690, type:  bss, name: boot_bss_pad_4}
     - {start: 0x4DFF0, vram: 0x80057EC0, type: .bss, name: boot/malloc/malloc}
     - {start: 0x4DFF0, vram: 0x80057F60, type: .bss, name: boot/malloc/free}
     - {start: 0x4DFF0, vram: 0x80057F70, type: .bss, name: boot/malloc/realloc}

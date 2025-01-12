@@ -1,5 +1,52 @@
-#include "common.h"
+#include "prevent_bss_reordering2.h"
+
+#include <ultra64.h>
 #include "2BF00.h"
+
+
+#if 0
+glabel D_80057690
+    /* 80057690 */ .space 0x02
+
+glabel D_80057692
+    /* 80057692 */ .space 0x02
+
+glabel D_80057694
+    /* 80057694 */ .space 0x02
+
+glabel D_80057696
+    /* 80057696 */ .space 0x02
+
+glabel D_80057698
+    /* 80057698 */ .space 0x02
+
+glabel D_8005769A
+    /* 8005769A */ .space 0x02
+
+glabel D_8005769C
+    /* 8005769C */ .space 0x02
+
+glabel D_8005769E
+    /* 8005769E */ .space 0x02
+
+#endif
+//.bss
+u8 D_80057660;
+s32 D_80057664;
+s32 D_80057668;
+s32 D_8005766C;
+s32 D_80057670;
+s32 D_80057674;
+f32 D_80057678;
+f32 D_8005767C;
+f32 D_80057680;
+f32 D_80057684;
+s8 D_80057688;
+s8 D_80057689;
+s8 D_8005768A;
+s32 D_8005768C;
+
+
 
 void func_8002B300(void)
 {
@@ -941,7 +988,7 @@ void func_8002E23C(void)
     {
         return;
     }
-    if (gActiveContPressed & 0x1000)
+    if (gActiveContPressed & CONT_START)
     {
         sp20 = func_8002B894(sp24);
         if (sp20 != -1)

@@ -1,5 +1,7 @@
 #include <ultra64.h>
 
+
+
 // functions
 void func_8000FEB0(struct UnkInputStruct8000FEB0 *arg0);                                                                                     // in file
 void func_8000FF44(struct UnkInputStruct8000FF44 *arg0);                                                                                     // in file

@@ -90,7 +90,7 @@ f32 func_80014F50(f32 arg0, f32 arg1)
     {
         if (arg0 > 0.0f)
         {
-            return D_8004BC10;
+            return 315.0f;
         }
         else
         {

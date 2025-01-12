@@ -260,13 +260,13 @@ void func_80010A5C(f32 *arg0, f32 *arg1, f32 *arg2, f32 arg3)
 
 f32 func_80010AD0(f32 arg0, f32 arg1, f32 arg2)
 {
-    if (arg0 > D_8004BBF0)
+    if (arg0 > 180.0)
     {
-        arg0 -= D_8004BBF8;
+        arg0 -= 360.0;
     }
-    if (arg1 > D_8004BC00)
+    if (arg1 > 180.0)
     {
-        arg1 -= D_8004BC08;
+        arg1 -= 360.0;
     }
     return ((arg1 - arg0) * arg2) + arg0;
 }

@@ -5,6 +5,13 @@
 #include "macros.h"
 #include "12AF0.h"
 
+s32* D_8004A3D0 = NULL;
+s32* D_8004A3D4 = NULL;
+
+s32 D_8004A3D8[3] = {0x11, 0x13, 0x15};
+s32 D_8004A3E4[3] = {0x33, 0x34, 0x35};
+float D_8004A3F0 = 0.01745329238f;
+
 void func_80011EF0(struct UnkStruct800122F0 *arg0)
 {
     s32 i;
@@ -415,8 +422,7 @@ void func_80013C0C(float mf1[3][4], float mf2[3][3])
     }
 }
 
-// Needs rodata
-extern f32 D_8004A3F0;
+
 
 void func_80013D68(f32 arg0[3][4], f32 arg1, f32 arg2, f32 arg3)
 {
@@ -449,8 +455,7 @@ void func_80013D68(f32 arg0[3][4], f32 arg1, f32 arg2, f32 arg3)
     func_80013C0C(arg0, sp34);
 }
 
-//.data
-extern f32 D_8004A3F4;
+float D_8004A3F4 = 0.01745329238f;
 
 void func_80013F6C(f32 *arg0, f32 arg1)
 {
@@ -476,8 +481,7 @@ void func_80013F6C(f32 *arg0, f32 arg1)
     }
 }
 
-//.data
-extern f32 D_8004A3F8;
+float D_8004A3F8 = 0.01745329238f;
 
 void func_80014098(f32 *arg0, f32 arg1)
 {
@@ -503,8 +507,7 @@ void func_80014098(f32 *arg0, f32 arg1)
     }
 }
 
-//.data
-extern f32 D_8004A3FC;
+float D_8004A3FC = 0.01745329238f;
 
 void func_800141C4(f32 *arg0, f32 arg1)
 {

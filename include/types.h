@@ -432,9 +432,9 @@ struct UnkStruct8004A3A0 {
 
 // could be Struct Tri. describes 3 vectors
 struct UnkInputStruct8000FEB0 {
-    struct UnkStruct8004A3A0 unk0;
-    struct UnkStruct8004A3A0 unkC;
-    struct UnkStruct8004A3A0 unk18;
+    struct Vec3f unk0;
+    struct Vec3f unkC;
+    struct Vec3f unk18;
 };
 
 struct UnkStruct80055D50 {
@@ -1299,5 +1299,12 @@ struct UnkStruct_80112518
     char Pad[0x1C];
 };
 
+struct UnkStruct_D_004A280 {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+    s32 unk10;
+};
 
 #endif // _BMHERO_TYPES_H_

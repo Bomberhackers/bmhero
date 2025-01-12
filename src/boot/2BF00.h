@@ -4,20 +4,10 @@
 struct UnkStruct_8004A6C8
 {
     s32 unk0;
-    char pad[4];
+    s32 unk4;
 };
 
-// Variables in this file
-extern u8 D_80057660;
-extern s32 D_80057664;
-extern s32 D_80057668;
-extern s32 D_8005766C;
-extern s32 D_80057670;
-extern s32 D_80057674;
-extern f32 D_80057678;
-extern f32 D_8005767C;
-extern f32 D_80057680;
-extern f32 D_80057684;
+
 
 extern UnkStruct80165100 D_800576A8[];
 extern float D_8004C00C;
@@ -27,8 +17,8 @@ extern f64 D_8004BFC0;
 
 extern struct Vec3f D_8004A660[];
 extern u8 D_8004A6C0[];
-extern struct UnkStruct_8004A6C8 D_8004A6C8[];
-extern struct UnkStruct_8004A6C8 D_8004A6CC[];
+extern s32 D_8004A6C8[1][2];
+extern s32 D_8004A6CC[0x11][2];
 
 /* Function prototypes of 2BF00.c */
 void func_8002B300(void);

@@ -1,9 +1,13 @@
 #include <ultra64.h>
 
+//.data
+s32 D_8004A390 = FALSE;
+s32 D_8004A394 = FALSE;
+
 // functions
 s32 func_8000EEE8(Gfx **gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6);
 
-void func_8000E680(Matrix arg0, Matrix arg1)
+void func_8000E680(Matrix mf, Matrix mf1)
 {
     f32 sp3C;
     f32 sp38;
@@ -16,27 +20,27 @@ void func_8000E680(Matrix arg0, Matrix arg1)
     f32 sp1C;
     f32 sp18;
 
-    sp38 = arg1[0][0];
-    sp34 = arg1[1][0];
-    sp30 = arg1[2][0];
-    sp2C = arg1[0][1];
-    sp28 = arg1[1][1];
-    sp24 = arg1[2][1];
-    sp20 = arg1[0][2];
-    sp1C = arg1[1][2];
-    sp18 = arg1[2][2];
+    sp38 = mf1[0][0];
+    sp34 = mf1[1][0];
+    sp30 = mf1[2][0];
+    sp2C = mf1[0][1];
+    sp28 = mf1[1][1];
+    sp24 = mf1[2][1];
+    sp20 = mf1[0][2];
+    sp1C = mf1[1][2];
+    sp18 = mf1[2][2];
 
     sp3C = ((sp38 * sp28 * sp18) + (sp34 * sp24 * sp20) + (sp30 * sp2C * sp1C)) - ((sp38 * sp24 * sp1C) + (sp34 * sp2C * sp18) + (sp30 * sp28 * sp20));
 
-    arg0[0][0] = (f32)(((sp28 * sp18) - (sp24 * sp1C)) / sp3C);
-    arg0[1][0] = (f32)(((sp30 * sp1C) - (sp34 * sp18)) / sp3C);
-    arg0[2][0] = (f32)(((sp34 * sp24) - (sp30 * sp28)) / sp3C);
-    arg0[0][1] = (f32)(((sp24 * sp20) - (sp2C * sp18)) / sp3C);
-    arg0[1][1] = (f32)(((sp38 * sp18) - (sp30 * sp20)) / sp3C);
-    arg0[2][1] = (f32)(((sp30 * sp2C) - (sp38 * sp24)) / sp3C);
-    arg0[0][2] = (f32)(((sp2C * sp1C) - (sp28 * sp20)) / sp3C);
-    arg0[1][2] = (f32)(((sp34 * sp20) - (sp38 * sp1C)) / sp3C);
-    arg0[2][2] = (f32)(((sp38 * sp28) - (sp34 * sp2C)) / sp3C);
+    mf[0][0] = (f32)(((sp28 * sp18) - (sp24 * sp1C)) / sp3C);
+    mf[1][0] = (f32)(((sp30 * sp1C) - (sp34 * sp18)) / sp3C);
+    mf[2][0] = (f32)(((sp34 * sp24) - (sp30 * sp28)) / sp3C);
+    mf[0][1] = (f32)(((sp24 * sp20) - (sp2C * sp18)) / sp3C);
+    mf[1][1] = (f32)(((sp38 * sp18) - (sp30 * sp20)) / sp3C);
+    mf[2][1] = (f32)(((sp30 * sp2C) - (sp38 * sp24)) / sp3C);
+    mf[0][2] = (f32)(((sp2C * sp1C) - (sp28 * sp20)) / sp3C);
+    mf[1][2] = (f32)(((sp34 * sp20) - (sp38 * sp1C)) / sp3C);
+    mf[2][2] = (f32)(((sp38 * sp28) - (sp34 * sp2C)) / sp3C);
 }
 
 s32 func_8000E944(Gfx **gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7)
@@ -165,7 +169,7 @@ s32 func_8000EEE8(Gfx **gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s
             spA0 += 1;
             break;
         case 6:
-            D_8004A390 = 1;
+            D_8004A390 = TRUE;
             gDPSetTextureLUT(dlist++, G_TT_NONE);
             gSPSetGeometryMode(dlist++, G_TEXTURE_GEN);
             gSPTexture(dlist++, 0x07C0, 0x07C0, 0, G_TX_RENDERTILE, G_ON);
@@ -177,20 +181,20 @@ s32 func_8000EEE8(Gfx **gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s
             gDPSetHilite1Tile(dlist++, G_TX_RENDERTILE, &D_8016E104->hilites[0], 32, 32);
             break;
         case 8:
-            D_8004A394 = 1;
+            D_8004A394 = TRUE;
             gSPSetGeometryMode(dlist++, G_TEXTURE_GEN);
             break;
         default:
-            if (D_8004A390 != 0)
+            if (D_8004A390)
             {
                 gSPClearGeometryMode(dlist++, G_TEXTURE_GEN);
                 gSPTexture(dlist++, 0, 0, 0, G_TX_RENDERTILE, G_OFF);
-                D_8004A390 = 0;
+                D_8004A390 = FALSE;
             }
-            else if (D_8004A394 != 0)
+            else if (D_8004A394)
             {
                 gSPClearGeometryMode(dlist++, G_TEXTURE_GEN);
-                D_8004A394 = 0;
+                D_8004A394 = FALSE;
             }
             break;
         }

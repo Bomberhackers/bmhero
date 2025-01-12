@@ -3,6 +3,12 @@
 #include "prevent_bss_reordering2.h"
 #include "1050.h"
 
+//.data
+struct UnkStruct_D_004A280 D_8004A280 = {0, 0, 0, 0, 0};
+s32 D_8004A294 = 0;
+s32 D_8004A298 = 0;
+s32 D_8004A29C = 1;
+
 // .bss start
 OSMesg D_8004D3F0;
 u8 D_8004D3F8[0x318];
@@ -37,7 +43,7 @@ void main(void *arg)
     {
         *ptr = 0;
     }
-    if (D_8004A280 != 0)
+    if (D_8004A280.unk0 != 0)
     {
         osTvType = 0;
     }
@@ -124,7 +130,7 @@ void func_800007F4(void)
 {
     osCreateMesgQueue(&D_8004D728, &D_8004D740, 1);
     osCreateMesgQueue(&D_8016E0B8, &D_8016E0D8, 8);
-    if (D_8004A280 == 0)
+    if (D_8004A280.unk0 == 0)
     {
         if (osTvType == OS_TV_NTSC)
         {
@@ -491,7 +497,7 @@ void thread6_func(void *arg)
     InitControllers();
 
     // might be special code that runs if on PAL only.
-    if (D_8004A280 != 0)
+    if (D_8004A280.unk0 != 0)
     {
         osViSetYScale(0.8333f);
         // These 2 HSTART values are modified from their initial HSTART(95, 569) values. why?

@@ -130,7 +130,7 @@ void func_80026548(void)
     view_y = gView.at.y;
     view_z = gView.at.z;
 
-    for (sp24 = &gObjects[0xE], sp44 = 0xE; sp44 < 0x4E; sp24++, sp44++)
+    for (sp24 = &gObjects[14], sp44 = 14; sp44 < 78; sp24++, sp44++)
     {
         if (sp24->unkA4 != 0)
         {
@@ -986,7 +986,7 @@ s32 func_800297DC(void)
     s16 sp6;
 
     sp6 = (D_801651A0 | (D_801651A0 >> 3)) & 7;
-    return D_8004A650[sp6];
+    return (s8)D_8004A650[sp6];
 }
 
 void func_80029824(s32 arg0, s32 arg1)

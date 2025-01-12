@@ -26,11 +26,90 @@ typedef enum
 
 struct UnkStruct_8004A5F0
 {
-    /* 0x00 */ s32 unk0;
-    char filler4[0xA];
-    /* 0x0E */ s8 unkE[1];
+    union
+    {
+        u8 bytes[4];
+        u32 raw;
+    };
 };
-extern struct UnkStruct_8004A5F0 D_8004A5F0;
+
+struct UnkStruct_8004A5F4
+{
+    int val;
+    UNUSED char flags[0x18];
+};
+
+struct UnkStruct_8004A5F0 D_8004A5F0 = {0, 0, 1, 0}; // TODO: this doesn't make sense..
+
+struct UnkStruct_8004A5F4 D_8004A5F4 = {
+    1,
+    {
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0x90,
+        0x91,
+        0x92,
+        0x93,
+        0x94,
+        0x10,
+        0x10,
+        0x10,
+        0x10,
+        0x10,
+        0x10,
+        0x10,
+        0x10,
+        0x10,
+        0x10,
+        0x10,
+        0,
+        0,
+    },
+};
+
+u8 D_8004A610[0x20] = {
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    0xA,
+    0xB,
+    0xC,
+    0xD,
+    0xE,
+    0xF,
+    0x10,
+    0x11,
+    0x12,
+    0x13,
+    0x14,
+    0x15,
+    0x16,
+    0x17,
+    0x18,
+    0x19,
+    0x1A,
+    0x1B,
+    0x1C,
+    0x1D,
+    0x1E,
+    0x1F,
+};
+
+s32 D_8004A630 = 0x1E;
+s32 D_8004A634 = 1;
+s32 D_8004A638 = 1;
+s32 D_8004A63C = 0;
 
 #define MEMBER_ACCESS(ptr, index, member) ((struct UnkStruct_8001EFD0 *)((char *)ptr + (index * 0x84)))->member
 #define ARRAY_ACCESS(ptr, index, type) ((type *)ptr + (index * 0x84))
@@ -470,8 +549,8 @@ void func_8001FDF4(void)
         {
             for (sp20 = 0; sp20 < 16; sp20++)
             {
-                D_8004A5F4 = sp20 + 1;
-                D_8004A5F0.unkE[0] = sp20 + 0x10;
+                D_8004A5F4.val = sp20 + 1;
+                D_8004A5F0.bytes[14] = sp20 + 0x10;
                 func_8001F4B8(D_80056E28, sp24);
                 if (D_80056EA4[sp24].pfs.status == 5)
                 {
@@ -481,7 +560,7 @@ void func_8001FDF4(void)
 
                 if (D_80056EA4[sp24].pfs.status == 0)
                 {
-                    func_8001F5F0(D_80056E28, sp24, 0, 0x20, &D_8004A610);
+                    func_8001F5F0(D_80056E28, sp24, 0, 0x20, D_8004A610);
                 }
             }
             return;
@@ -493,7 +572,7 @@ void func_8001FF80(void)
 {
     s32 sp24 = 0;
 
-    D_8004A5F0.unk0 = 0x7B00;
+    D_8004A5F0.raw = 0x7B00;
     func_8001F238(D_80056E28);
     if (D_80056E98[sp24].pfs.status != 0)
     {
@@ -514,7 +593,7 @@ void func_8001FF80(void)
             }
             if (D_80056EA4[sp24].pfs.status == 0)
             {
-                func_8001F5F0(D_80056E28, sp24, 0, 0x7B00, &D_8004A610);
+                func_8001F5F0(D_80056E28, sp24, 0, 0x7B00, D_8004A610);
             }
             return;
         }
@@ -541,7 +620,7 @@ void func_800200D8(void)
                 }
                 if (D_80056EA4[sp24].pfs.status == 0)
                 {
-                    func_8001F5F0(D_80056E28, sp24, 0, 0x20, &D_8004A610);
+                    func_8001F5F0(D_80056E28, sp24, 0, 0x20, D_8004A610);
                 }
             }
         }
@@ -581,7 +660,7 @@ void func_8002021C(void)
 
 void Debug_BackMemTest_Write2Eeeprom(void)
 {
-    if ((gContButtonPressed[0] & CONT_A) && (Eeprom_Write(&gContMesgQueue, &D_8004A610, 0, 0x200) != 0))
+    if ((gContButtonPressed[0] & CONT_A) && (Eeprom_Write(&gContMesgQueue, D_8004A610, 0, 0x200) != 0))
     {
     }
 }

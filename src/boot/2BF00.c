@@ -1,5 +1,56 @@
-#include "common.h"
+#include "prevent_bss_reordering2.h"
+
+#include <ultra64.h>
 #include "2BF00.h"
+
+struct Vec3f D_8004A660[8] = {
+    { 0.0f, 0.0f, -29.0f },
+    { 29.0f, 0.0f, 0.0f },
+    { 0.0f, 0.0f, 29.0f },
+    { -29.0f, 0.0f, 0.0f },
+    { 0.0f, 59.0f, -29.0f },
+    { 29.0f, 59.0f, 0.0f },
+    { 0.0f, 59.0f, 29.0f },
+    { -29.0f, 59.0f, 0.0f },
+};
+
+u8 D_8004A6C0[] = {1, 2, 4, 8, 16, 32, 64, 128};
+
+s32 D_8004A6CC[0x11][2] = {
+    {0, 0},
+    {0, 1},
+    {-1, 0},
+    {-1, 1},
+    {0, -1},
+    {0, 0},
+    {-1, -1},
+    {-1, 0},
+    {1, 0},
+    {1, 1},
+    {0, 0},
+    {0, 1},
+    {1, -1},
+    {1, 0},
+    {0, -1},
+    {0, 0},
+    {0, 0},
+};
+
+//.bss
+u8 D_80057660;
+s32 D_80057664;
+s32 D_80057668;
+s32 D_8005766C;
+s32 D_80057670;
+s32 D_80057674;
+f32 D_80057678;
+f32 D_8005767C;
+f32 D_80057680;
+f32 D_80057684;
+s8 D_80057688;
+s8 D_80057689;
+s8 D_8005768A;
+s32 D_8005768C;
 
 void func_8002B300(void)
 {
@@ -487,8 +538,8 @@ void func_8002CA80(void)
         sp1C = sp4C;
         sp18 = sp44;
         sp2E = sp2F;
-        sp4C = sp4C + D_8004A6C8[sp2F].unk0 * sp20;
-        sp44 = sp44 + D_8004A6CC[sp2F].unk0 * sp20;
+        sp4C = sp4C + D_8004A6CC[sp2F][0] * sp20;
+        sp44 = sp44 + D_8004A6CC[sp2F][1] * sp20;
     }
 
     sp24 = func_8002C184(sp4C, sp48, sp44);
@@ -941,7 +992,7 @@ void func_8002E23C(void)
     {
         return;
     }
-    if (gActiveContPressed & 0x1000)
+    if (gActiveContPressed & CONT_START)
     {
         sp20 = func_8002B894(sp24);
         if (sp20 != -1)

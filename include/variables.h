@@ -29,7 +29,7 @@ extern u8 D_1000C50[];
 extern u8 D_1000C68[];
 
 // RAM Externs
-extern u32 D_8004A280;
+extern struct UnkStruct_D_004A280 D_8004A280;
 extern s32 D_8004A294;
 extern s32 D_8004A298;
 extern s32 D_8004A29C;
@@ -49,13 +49,10 @@ extern f32 D_8004A400[]; // .rodata
 extern Lights2 D_8004A590;
 extern Lights2 gLightingSettings;
 extern struct UnkStruct_8004A5F0 D_8004A5F0;
-extern s32 D_8004A5F4;
-extern u8 D_8004A610;
 extern s32 D_8004A630;
 extern s32 D_8004A634;
 extern s32 D_8004A638;
 extern s32 D_8004A63C;
-extern s8 D_8004A650[];                        //.data
 extern OSViMode osViModeTable[];
 extern s32 osViClock;
 extern f64 D_8004BBF0; // 180.0
@@ -794,4 +791,5 @@ extern u8* _9BD180_ROM_START;
 extern s16 D_8016E0A4;
 extern u8 D_801776E4;
 extern UNK_TYPE D_80177770[];
+extern u8 D_8004A650[];
 #endif // VARIABLES_H

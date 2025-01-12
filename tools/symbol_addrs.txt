@@ -4515,4 +4515,5 @@ gPlayerArmWindObject = 0x80177544; //size:4 defined:true
 ByteParser_SetObjectScale = 0x8008EF8C;
 gDebugDispType = 0x80177974;
 Init_Obj = 0x80019D74; //defined:true
-gDebugger = 0x8004A384;
+gDebugger = 0x8004A384; //defined:true
+__osHwIntTable = 0x8004B550;

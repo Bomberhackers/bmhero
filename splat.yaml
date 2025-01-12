@@ -264,12 +264,19 @@ segments:
 
     - [0x48B60, data] # data and rodata
     - [0x494F0, bin, gspF3DEX_fifoTextStart_2] # some RSP stuff around 0x494F0. seems to be the latter part of gspF3DEX_fifoTextStart
-    - [0x4A060, data]
+    - [0x4A060, .data, boot/nusys/mus/asp_data]
+    - [0x4A060, .data, boot/main]
     - [0x4AEA0, .data, boot/38D0]
-    - [0x4AF70, data]
+    - [0x4AF70, .data, boot/EE20]
     - [0x4AF80, .data, boot/parse_args]
     - [0x4AF90, .data, boot/F280]
-    - [0x4AFA0, data]
+    - [0x4AFA0, .data, boot/10AB0]
+    - [0x4AFD0, .data, boot/12AF0]
+    - [0x4B000, .data, boot/15A80]
+    - [0x4B190, .data, boot/17930]
+    - [0x4B1F0, .data, boot/1FAB0]
+    - [0x4B240, .data, boot/25810]
+    - [0x4B260, .data, boot/2BF00]
     - [0x4B350, .data, boot/malloc/malloc]
     - [0x4B360, .data, boot/malloc/free]
     - [0x4B370, .data, libultra/io/vitbl]
@@ -281,7 +288,7 @@ segments:
     - [0x4C120, .data, libultra/io/aisetnextbuf]
     - [0x4C130, .data, libultra/io/controller]
     - [0x4C140, .data, libultra/io/motor]
-    - [0x4C150, data] # exceptasm, but it would require declaring .data from an .s file, which is auto extracted, which means i cant move this yet.
+    - [0x4C150, data, __osHwIntTable] # exceptasm, but it would require declaring .data from an .s file, which is auto extracted, which means i cant move this yet.
     - [0x4C170, .data, libultra/os/thread]
     - [0x4C190, .data, libultra/io/piacs]
     - [0x4C1A0, .data, libultra/io/vi]

@@ -4,7 +4,7 @@
 struct UnkStruct_8004A6C8
 {
     s32 unk0;
-    char pad[4];
+    s32 unk4;
 };
 
 
@@ -17,8 +17,8 @@ extern f64 D_8004BFC0;
 
 extern struct Vec3f D_8004A660[];
 extern u8 D_8004A6C0[];
-extern struct UnkStruct_8004A6C8 D_8004A6C8[];
-extern struct UnkStruct_8004A6C8 D_8004A6CC[];
+extern s32 D_8004A6C8[1][2];
+extern s32 D_8004A6CC[0x11][2];
 
 /* Function prototypes of 2BF00.c */
 void func_8002B300(void);

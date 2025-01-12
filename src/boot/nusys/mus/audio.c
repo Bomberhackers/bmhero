@@ -59,7 +59,7 @@ s32 amCreateAudioMgr(ALSynConfig* c, amConfig* amc) {
      * Calculate the frame sample parameters from the
      * video field rate and the output rate
      */
-    if (D_8004A280 == 0) {
+    if (D_8004A280.unk0 == 0) {
         fsize = ((f32)amc->framesPerField * (s32)c->outputRate) / 60.0f;
     } else {
         fsize = ((f32)amc->framesPerField * (s32)c->outputRate) / 50.0f;

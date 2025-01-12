@@ -1299,5 +1299,12 @@ struct UnkStruct_80112518
     char Pad[0x1C];
 };
 
+struct UnkStruct_D_004A280 {
+    s32 unk0;
+    s32 unk4;
+    s32 unk8;
+    s32 unkC;
+    s32 unk10;
+};
 
 #endif // _BMHERO_TYPES_H_

@@ -5,6 +5,32 @@
 #include "17930.h"
 #include "functions.h"
 
+//.data
+Lights2 D_8004A590 = {
+    {{{0x32, 0x32, 0x32}, 0, {0x32, 0x32, 0x32}, 0}},
+    {
+        {{{0, 0, 0}, 0, {0, 0, 0}, 0, {0xA, 0x2A, 0x78}, 0}},
+        {
+            {{0xC8, 0xC8, 0xC8}, 0, {0xC8, 0xC8, 0xC8}, 0, {0xA, 0x2A, 0x78}, 0},
+        },
+    },
+};
+
+Lights2 gLightingSettings = {
+    { { { 0x32, 0x32, 0x32 }, 0, { 0x32, 0x32, 0x32 }, 0 } },
+    {
+        { { { 0, 0, 0 }, 0, { 0, 0, 0 }, 0, { 0xA, 0x2A, 0x78 }, 0 } },
+        {
+            { { 0xC8, 0xC8, 0xC8 }, 0, { 0xC8, 0xC8, 0xC8 }, 0, { 0xA, 0x2A, 0x78 }, 0 },
+        },
+    },
+};
+
+u8 D_8004A5E0[4] = {4, 8, 16, 32};
+
+char D_8004A5E4[4] = {4, 8, 16, 32};
+
+
 // Variables *only* used in this file
 //.bss
 extern char D_8016E111;
@@ -1078,7 +1104,7 @@ u8 func_8001ABC4(s32 arg0)
     return D_8016C298[arg0].unk0->unk19;
 }
 
-extern u8 D_8004A5E0[];
+//extern u8 D_8004A5E0[];
 
 void func_8001ABF4(s32 arg0, s32 arg1, s32 arg2, void *arg3)
 {

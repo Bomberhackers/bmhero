@@ -2,8 +2,7 @@
 #define _12AF0_H
 
 
-extern s32 *D_8004A3D8[];
-extern s32 *D_8004A3E4[];
+
 
 struct UnkStruct_800142F0
 {

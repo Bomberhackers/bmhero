@@ -221,6 +221,7 @@ struct LevelInfo {
                s16 unk30;
                char pad;
                s8 unk33;
+               s8 unk34;
 };
 
 struct ObjectStruct {
@@ -1135,8 +1136,8 @@ struct UnkStruct800657E8_sp40 {
 
 struct Code_Extra_Entry
 {
-    s32 Start_Addr;
-    s32 End_Addr;
+    const s32* const Start_Addr;
+    const s32* const End_Addr;
 };
 
 struct UnkStruct80108238 {

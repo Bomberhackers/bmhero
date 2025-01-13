@@ -606,7 +606,7 @@ void func_8001A488(s32);
 s32 func_8006DE90(u8*);
 void func_80016D74(s16);
 s32 func_80069700();
-s32 func_8006AB14();
+void func_8006AB14();
 s32 func_8006E160();
 s32 func_80070644();
 s32 func_80070664(s32);

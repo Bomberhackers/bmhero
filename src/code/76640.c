@@ -3,16 +3,53 @@
 
 // RODATA START unk_FF0F0_rodata
 
-extern f64 D_8010CD50;
+const u8 D_8010CBD0[0x10] = {2, 1, 1, 3, 1, 1, 4, 1, 1, 5, 1, 1, 5, 1, 7, 0}; /* const */
 
-extern f64 D_8010CD60;
-extern f64 D_8010CD68;
-extern f64 D_8010CD70;
-extern f64 D_8010CD78;
+const u8 D_8010CBE0[8] = {1, 2, 4, 8, 0x10, 0x20, 0x40, 0x80}; /* const */
 
-extern f64 D_8010CD58;
+const s32 D_8010CBE8[][2] = {
+    {0, 0},
+    {0, 1},
+    {-1, 0},
+    {-1, 1},
+    {0, -1},
+    {0, 0},
+    {-1, -1},
+    {-1, 0},
+    {1, 0},
+    {1, 1},
+    {0, 0},
+    {0, 1},
+    {1, -1},
+    {1, 0},
+    {0, -1},
+    {0, 0}};
 
-extern struct Code_Extra_Entry D_8010CC68[];
+
+#if DATA
+static const struct Code_Extra_Entry D_8010CC68[7] = {
+    { code_extra_0_ROM_START, code_extra_0_ROM_END },
+    { code_extra_1_ROM_START, code_extra_1_ROM_END },
+    { code_extra_2_ROM_START, code_extra_2_ROM_END },
+    { code_extra_3_ROM_START, code_extra_3_ROM_END },
+    { code_extra_4_ROM_START, code_extra_4_ROM_END },
+    { code_extra_5_ROM_START, code_extra_5_ROM_END },
+    { code_extra_6_ROM_START, code_extra_6_ROM_END },
+};
+#else
+const s32 D_8010CC68[7][2] = {
+    {(s32)0x128D20, (s32)0x134440},
+    {(s32)0x134440, (s32)0x138360},
+    {(s32)0x138360, (s32)0x13AC20},
+    {(s32)0x13AC20, (s32)0x13C4C0},
+    {(s32)0x13C4C0, (s32)0x13DAD0},
+    {(s32)0x13DAD0, (s32)0x144420},
+    {(s32)0x144420, (s32)0x147BB0},
+}; /* const */
+#endif
+
+// RODATA END
+
 extern u8 _603530_ROM_START[];
 extern u8 _603530_ROM_END[];
 extern u8 _610A40_ROM_START[];
@@ -54,16 +91,12 @@ extern u8 _6419D0_ROM_END[];
 extern u8 _641EC0_ROM_START[];
 extern u8 _641EC0_ROM_END[];
 
-extern u8 D_8010CBE0[];
-extern s32 D_8010CBE8;
-extern s32 D_8010CBEC[];
+//.bss
 extern f32 D_801779D0[];
 extern f32 D_801779E8[];
 extern f32 D_80177A00[];
 
-void func_80078168(f32, f32, f32);                     /* extern */
-
-// RODATA END
+void func_80078168(f32, f32, f32);
 
 s32 func_80084120(f32 arg0, f32 arg1, f32 arg2)
 {
@@ -250,53 +283,212 @@ s32 func_80084430(f32 arg0, f32 arg1, f32 arg2)
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80084BD8.s")
+void func_80084BD8(f32 *arg0, s32 arg1, f32 arg2, f32 arg3)
+{
+    f32 player_pos_x;
+    f32 player_pos_y;
+    f32 player_pos_z;
+    f32 player_vel_x;
+    f32 player_vel_y;
+    f32 player_vel_z;
+    s32 sp34;
+    s32 sp30;
+    u8 sp2F;
+    u8 sp2E;
+    u8 sp2D;
+    s32 sp28;
+    s32 sp24;
+    s32 sp20;
+    f32 sp1C;
+    f32 sp18;
 
-void func_80085424(void) {
-    struct ObjectStruct* sp24;
-    struct ObjectStruct* sp20;
+    player_pos_x = gPlayerObject->Pos.x;
+    player_pos_y = gPlayerObject->Pos.y;
+    player_pos_z = gPlayerObject->Pos.z;
+    player_vel_x = gPlayerObject->Vel.x;
+    player_vel_y = gPlayerObject->Vel.y;
+    player_vel_z = gPlayerObject->Vel.z;
+    player_pos_y += player_vel_y;
+    sp34 = 0;
+
+    if (arg1 == 0)
+    {
+        func_800843CC(arg0[0] + player_pos_x, player_pos_y + arg2, arg0[5] + player_pos_z);
+        if (D_801776E0 & 1)
+        {
+            player_pos_y = D_80177760[0] - (arg2 + 1.0f);
+        }
+        func_800843CC(arg0[0] + player_pos_x, player_pos_y + arg3, arg0[5] + player_pos_z);
+        if ((D_801776E0 & 1))
+        {
+            player_pos_y = D_80177760[1] - arg3;
+        }
+        if (D_80177760[D_801776E0 & 1] == player_pos_y)
+        {
+            sp34 = 1;
+        }
+    }
+    player_pos_x += player_vel_x;
+    player_pos_z += player_vel_z;
+    if (arg1 == 1)
+    {
+    }
+    else
+    {
+        D_8016E09C = 0;
+        D_8016E0A4 = 0;
+
+        sp20 = 8;
+        sp2D = 0;
+
+        for (sp30 = 0; sp30 < 0x1E; sp30++)
+        {
+            sp2F = 0;
+            sp2E = 0;
+            for (sp28 = 0; sp28 < 8; sp28++)
+            {
+                sp24 = func_80084430(arg0[sp28 * 3 + 0] + player_pos_x, arg0[sp28 * 3 + 1] + player_pos_y, arg0[sp28 * 3 + 2] + player_pos_z);
+                if (sp24 == 4)
+                {
+                    sp2F = sp2F | D_8010CBE0[sp28];
+                    if (D_801776E4 != 0)
+                    {
+                        sp2E = sp2E | D_8010CBE0[sp28];
+                    }
+                }
+            }
+            sp2F = (sp2F & 0xF) | ((s32)sp2F >> 4);
+            if (sp30 == 0)
+            {
+                D_8016E09C = (s16)sp2F;
+                D_8016E0A4 = (sp2E & 0xF) | ((s32)sp2E >> 4);
+            }
+            if ((sp2F == 0) && ((sp30 == 0) || (sp20 == 1)))
+            {
+                break;
+            }
+            if (sp2F == 0)
+            {
+                player_pos_x = sp1C;
+                player_pos_z = sp18;
+                sp20 = sp20 / 2;
+                sp2F = sp2D;
+            }
+            else if ((sp2D != sp2F) && (sp30 != 0) && ((sp20 / 2) != 0))
+            {
+                sp2F = sp2D;
+                sp20 = sp20 / 2;
+                player_pos_x = sp1C;
+                player_pos_z = sp18;
+            }
+            sp1C = player_pos_x;
+            sp18 = player_pos_z;
+            sp2D = sp2F;
+            player_pos_x = player_pos_x + D_8010CBE8[sp2F][0] * sp20;
+            player_pos_z = player_pos_z + D_8010CBE8[sp2F][1] * sp20;
+        }
+    }
+    if ((D_8016523E == 0) || (D_8016523E == 5) || (D_8016523E == 6))
+    {
+        D_8016E0B4 = D_8016E0AC;
+        D_8016E0AC = 0;
+        sp24 = func_80084430(player_pos_x, player_pos_y, player_pos_z);
+        if (sp24 < 3)
+        {
+            if ((D_801651A4 & 1) && (gPlayerObject->Vel.y > 0.0f))
+            {
+                func_800843CC(player_pos_x, player_pos_y, player_pos_z);
+                if (D_801776E0 & 1)
+                {
+                    player_pos_y = D_80177760[D_801776E0 & 1] + gPlayerObject->Vel.y;
+                }
+            }
+            else if (sp34 != 0)
+            {
+                func_800843CC(player_pos_x, player_pos_y, player_pos_z);
+                if (!(D_801776E0 & 1))
+                {
+                    player_pos_y = D_80177760[0];
+                }
+                D_8016E0AC = 1;
+            }
+        }
+        func_800843CC(player_pos_x, player_pos_y, player_pos_z);
+        D_80165278 = D_80165270;
+        D_80165270 = (s16)D_80177770[D_801776E0 & 1];
+        if (D_80165270 != -1)
+        {
+            if (D_80177760[D_801776E0 & 1] == player_pos_y)
+            {
+                D_80165280 = gObjects[D_80165270].unkE4;
+                D_80165288 = player_pos_x - gObjects[D_80165270].Pos.x;
+                D_8016C290 = player_pos_y - gObjects[D_80165270].Pos.y;
+                D_8016CA98 = player_pos_z - gObjects[D_80165270].Pos.z;
+            }
+            else
+            {
+                D_80165270 = -1;
+            }
+        }
+    }
+    gPlayerObject->Pos.x = player_pos_x;
+    gPlayerObject->Pos.y = player_pos_y;
+    gPlayerObject->Pos.z = player_pos_z;
+}
+
+void func_80085424(void)
+{
+    struct ObjectStruct *sp24;
+    struct ObjectStruct *sp20;
     s32 sp1C;
     s32 sp18;
 
-
-    if (D_8016E238 == 0) {
-        if (D_80165270 != -1) {
-            sp1C = (s32) D_80165270;
+    if (D_8016E238 == 0)
+    {
+        if (D_80165270 != -1)
+        {
+            sp1C = (s32)D_80165270;
             sp24 = &gObjects[sp1C];
             gPlayerObject->Pos.x = sp24->Pos.x + D_80165288;
             gPlayerObject->Pos.y = sp24->Pos.y + D_8016C290;
             gPlayerObject->Pos.z = sp24->Pos.z + D_8016CA98;
             func_800843CC(gPlayerObject->Pos.x, gPlayerObject->Pos.y, gPlayerObject->Pos.z);
-            if (D_80177770[D_801776E0 & 1] == sp1C) {
+            if (D_80177770[D_801776E0 & 1] == sp1C)
+            {
                 gPlayerObject->Pos.y = D_80177760[D_801776E0 & 1];
             }
-        } else {
-            sp1C = (s32) D_8016E2A8;
+        }
+        else
+        {
+            sp1C = (s32)D_8016E2A8;
             sp24 = &gObjects[sp1C];
             gPlayerObject->Pos.x = sp24->Pos.x + D_80165288;
             gPlayerObject->Pos.y = sp24->Pos.y + D_8016C290;
             gPlayerObject->Pos.z = sp24->Pos.z + D_8016CA98;
         }
-    } else {
+    }
+    else
+    {
         sp18 = D_8016E240 - 2;
-        if (D_801779B0[sp18] != -1) {
+        if (D_801779B0[sp18] != -1)
+        {
             sp20 = &gObjects[D_8016E240];
-            sp1C =  D_801779B0[sp18];
+            sp1C = D_801779B0[sp18];
             sp24 = &gObjects[sp1C];
-            
+
             sp20->Pos.x = D_801779D0[sp18] + sp24->Pos.x;
             sp20->Pos.y = D_801779E8[sp18] + sp24->Pos.y;
             sp20->Pos.z = D_80177A00[sp18] + sp24->Pos.z;
-            
+
             func_80078168(sp20->Pos.x, sp20->Pos.y, sp20->Pos.z);
-            
-            if (D_80177770[D_801776E0 & 1] == sp1C) {
+
+            if (D_80177770[D_801776E0 & 1] == sp1C)
+            {
                 sp20->Pos.y = D_80177760[D_801776E0 & 1];
             }
         }
     }
 }
-
 
 void func_800857B0(void)
 {
@@ -393,8 +585,339 @@ void func_80085B34(f32 arg0, f32 arg1)
                   &D_801651D8[0], &D_801651D8[1], &D_801651D8[2], &D_801651D8[3]);
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80085D54.s")
+void func_80069D04(s32, s32);
+void func_8006AA24(s32);
+void func_8007A6DC();
+void func_80282198();
+void func_802828C0();
+void func_802844D4();
+void func_802845C4();
+void func_80284758();
+void func_80284840();
 
+extern s8 D_8016E27D;
+extern s8 D_8016E288;
+extern s8 D_8016E338;
+
+s32 func_80085D54(void)
+{
+    f32 sp44;
+    f32 sp40;
+    f32 sp3C;
+    s32 sp38;
+    s32 sp34;
+    s32 sp30;
+    int pad2C;
+    int pad28;
+    int sp24;
+    int pad20;
+    u8 sp1F;
+    u8 sp1E;
+    u8 sp1D;
+
+    sp24 = 0;
+    sp44 = gObjects[sp24].Pos.x;
+    sp40 = gObjects[sp24].Pos.y;
+    sp3C = gObjects[sp24].Pos.z;
+
+    if (D_8016523E == 4)
+    {
+        sp40 = sp40 - 59.0;
+    }
+
+    if ((D_8016523E == 0) && (D_80165270 != -1) && (D_80165280 == 0x4A))
+    {
+        if ((gPlayerObject->unk108 != 0x3D) && (gPlayerObject->unk108 != 0) && gObjects[D_80165270].unkA6 == 0)
+        {
+            gObjects[D_80165270].unkA6 = 8;
+            gObjects[D_80165270].unkA8 = 1;
+            if (D_8016E100 != 0)
+            {
+                func_8007A6DC();
+            }
+            func_802828C0();
+            D_801651A4 |= 4;
+            return 1;
+        }
+    }
+
+    D_8016E338 = 0;
+    func_800843CC(sp44, sp40, sp3C);
+
+    sp38 = D_801776E0 & 1;
+    sp1F = D_80177740[sp38];
+    if ((u8)D_8016E094 != 0)
+    {
+        if (sp1F != (u8)D_8016E094)
+        {
+            D_8016E094 = 0;
+        }
+    }
+
+    D_8016E414 = (s8)sp1F;
+    D_8016E41C = (s16)D_80177750[sp38];
+
+    switch (sp1F)
+    {
+    case 0xFF:
+    {
+        return 0;
+    }
+    case 0xE6:
+    case 0xE7:
+    case 0xF6:
+    case 0xFE:
+    {
+        func_8006AA24(1);
+        if (gDebugAtrributeFlag != 0)
+        {
+            return 0;
+        }
+        sp30 = 0;
+        if ((sp1F == 0xFE) || (sp1F == 0xE7))
+        {
+            if (sp40 <= D_80177760[sp38])
+            {
+                sp30 = 1;
+            }
+        }
+        else
+        {
+            sp30 = 1;
+        }
+        if (sp30 != 0)
+        {
+            sp34 = (s32)D_80177750[sp38] % 256;
+            sp30 = (s32)D_80177750[sp38] / 256;
+            if ((sp1F == 0xFE) || (sp1F == 0xF6))
+            {
+                func_80069D88(sp34, sp30 ^ 1);
+            }
+            else
+            {
+                func_80069D04(sp34, 0);
+            }
+            return 0;
+        }
+        break;
+    }
+    case 0xEE:
+    case 0xF1:
+    {
+        if (gDebugAtrributeFlag != 0)
+        {
+            break;
+        }
+        if ((u8)D_8016E094 != 0)
+        {
+            break;
+        }
+        sp30 = 0;
+        if (D_80177740[sp38] == 0xF1)
+        {
+            if (sp40 <= D_80177760[sp38])
+            {
+                sp30 = 1;
+            }
+        }
+        else
+        {
+            sp30 = 1;
+        }
+
+        if (sp30)
+        {
+            D_8016E094 = sp1F;
+            sp34 = (s32)D_80177750[sp38] % 256;
+            sp1E = gLevelInfo[gCurrentLevel]->Unk8[sp34 << 1];
+            sp1D = gLevelInfo[gCurrentLevel]->Unk8[(sp34 << 1) + 1];
+            D_8016E438 = (s16)D_80108238[sp1E]->unk0[sp1D * 4];
+            D_8016E43C = (f32)D_80108238[sp1E]->unk0[(sp1D * 4) + 1];
+            D_8016E440 = (f32)D_80108238[sp1E]->unk0[(sp1D * 4) + 2];
+            D_8016E444 = (f32)D_80108238[sp1E]->unk0[(sp1D * 4) + 3];
+
+            if ((gPlayerObject->unk108 != 0x3D) && (gPlayerObject->unk108 != 0))
+            {
+
+                if (D_8016523E == 0)
+                {
+                    func_802845C4();
+                    return 1;
+                }
+                else if (D_8016523E == 1)
+                {
+                    func_80282198();
+                    return 1;
+                }
+            }
+        }
+    }
+    break;
+
+    case 0xDA:
+        if (gDebugAtrributeFlag != 0)
+        {
+            return 0;
+        }
+
+        if (sp40 <= D_80177760[sp38])
+        {
+
+            sp34 = (s32)D_80177750[sp38] % 256;
+
+            if ((sp34 == 0) && (gCurrentLevel == 0x44))
+            {
+
+                func_80069D04(sp34, 0);
+            }
+            else if ((sp34 == 1) && (gCurrentLevel == 0x69))
+            {
+
+                func_80069D04(sp34, 0);
+            }
+            else if ((sp34 == 2) && (gCurrentLevel == 0x6A))
+            {
+
+                func_80069D04(sp34, 0);
+            }
+            else if ((sp34 == 3) && (gCurrentLevel == 0x6B))
+            {
+
+                func_80069D88(sp34, 0);
+            }
+        }
+
+        return 0;
+        break;
+
+    case 0xF0:
+        if (sp40 <= D_80177760[sp38])
+        {
+            if ((gPlayerObject->unk108 != 0x3D) && (gPlayerObject->unk108 != 0))
+            {
+                func_802828C0();
+                D_801651A4 |= 4;
+                return 1;
+            }
+        }
+        break;
+
+    case 0xFC:
+        if (gDebugAtrributeFlag != 0)
+        {
+            return 0;
+        }
+        if (sp40 <= D_80177760[sp38])
+        {
+            D_8016E27D = D_80177750[sp38] + 1;
+        }
+        break;
+
+    case 0xEF:
+        if (gDebugAtrributeFlag != 0)
+        {
+            return 0;
+        }
+        if (sp40 <= D_80177760[sp38])
+        {
+            if ((gPlayerObject->unk108 != 0x3D) && (gPlayerObject->unk108 != 0))
+            {
+                func_802844D4();
+                gPlayerObject->unk3C = (f32)(D_80177750[sp38] * 0x5A);
+                return 1;
+            }
+        }
+        break;
+
+    case 0xD7:
+    case 0xE8:
+    case 0xEC:
+    case 0xED:
+        if (gDebugAtrributeFlag != 0)
+        {
+            return 0;
+        }
+        if (sp40 <= D_80177760[sp38])
+        {
+            if (D_80177740[sp38] == 0xED)
+            {
+                D_8016E288 = 1;
+            }
+            else if (D_80177740[sp38] == 0xEC)
+            {
+                D_8016E288 = 2;
+            }
+            else if (D_80177740[sp38] == 0xE8)
+            {
+                D_8016E288 = 3;
+            }
+            else if (D_80177740[sp38] == 0xD7)
+            {
+                D_8016E288 = 4;
+            }
+        }
+        break;
+
+    case 0xE3:
+        if (gDebugAtrributeFlag != 0)
+        {
+            return 0;
+        }
+        D_8016E338 = 1;
+        if ((gPlayerObject->unk108 != 0x3D) && (gPlayerObject->unk108 != 0))
+        {
+            func_80284840();
+            return 1;
+
+            break;
+        }
+
+    case 0xE9:
+        if (gDebugAtrributeFlag != 0)
+        {
+            return 0;
+        }
+        if ((u8)D_8016E094 != 0)
+        {
+            break;
+        }
+        if (sp40 <= D_80177760[sp38])
+        {
+            func_800843CC(sp44, sp40, sp3C + 25.0f);
+            if (D_80177740[D_801776E0 & 1] != 0xE9)
+            {
+                break;
+            }
+            func_800843CC(sp44 + 25.0f, sp40, sp3C);
+            if (D_80177740[D_801776E0 & 1] != 0xE9)
+            {
+                break;
+            }
+            func_800843CC(sp44, sp40, sp3C - 25.0f);
+            if (D_80177740[D_801776E0 & 1] != 0xE9)
+            {
+                break;
+            }
+            func_800843CC(sp44 - 25.0f, sp40, sp3C);
+            if (D_80177740[D_801776E0 & 1] != 0xE9)
+            {
+                break;
+            }
+
+            if ((gPlayerObject->unk108 != 0x3D) && (gPlayerObject->unk108 != 0))
+            {
+                func_80284758();
+                D_8016E094 = (s8)sp1F;
+                return 1;
+            }
+        }
+
+        break;
+    }
+    return 0;
+}
+// #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80085D54.s")
+// #endif
 void func_80086AD0(void)
 {
     f32 sp2C;
@@ -409,7 +932,7 @@ void func_80086AD0(void)
     sp24 = gPlayerObject->Pos.z;
     if (D_8016523E == 4)
     {
-        sp28 = (f32)((f64)sp28 - D_8010CD50);
+        sp28 = (f32)((f64)sp28 - 59.0);
     }
     func_800843CC(sp2C, sp28, sp24);
     sp20 = D_801776E0 & 1;
@@ -520,7 +1043,7 @@ void func_80086ECC(void)
             gPlayerArmWindObject->Rot.y = gPlayerObject->Rot.y;
             if (gPlayerArmWindObject->Scale.x < 1.0f)
             {
-                gPlayerArmWindObject->Scale.x = gPlayerArmWindObject->Scale.x + D_8010CD58;
+                gPlayerArmWindObject->Scale.x = gPlayerArmWindObject->Scale.x + 0.05;
                 gPlayerArmWindObject->Scale.y = gPlayerArmWindObject->Scale.z = gPlayerArmWindObject->Scale.x;
             }
             if (D_8016E21C < 0x5A)
@@ -626,10 +1149,10 @@ void func_80087694(void)
     }
     if (((gActiveContStickX >= 10.0f) || (gActiveContStickX <= -10.0f) || (gActiveContStickY >= 10.0f) || (gActiveContStickY <= -10.0f)))
     {
-        spC = (f32)((f64)gActiveContStickX / D_8010CD60);
-        sp8 = (f32)((f64)gActiveContStickY / D_8010CD68);
-        sp4 = (f32)((f64)gActiveContStickX / D_8010CD70);
-        sp0 = (f32) - ((f64)gActiveContStickY / D_8010CD78);
+        spC = (f32)((f64)gActiveContStickX / 90.0);
+        sp8 = (f32)((f64)gActiveContStickY / 90.0);
+        sp4 = (f32)((f64)gActiveContStickX / 90.0);
+        sp0 = (f32) - ((f64)gActiveContStickY / 90.0);
 
         if (((spC != 0.0)) || (sp8 != 0.0))
         {
@@ -925,9 +1448,9 @@ void func_800883A8(void)
 {
     s32 FileSize;
 
-    FileSize = D_8010CC68[D_8016523E].End_Addr - D_8010CC68[D_8016523E].Start_Addr;
+    FileSize = D_8010CC68[D_8016523E][1] - D_8010CC68[D_8016523E][0];
 
-    load_from_rom_to_addr(D_8010CC68[D_8016523E].Start_Addr, 0x80280000, FileSize);
+    load_from_rom_to_addr(D_8010CC68[D_8016523E][0], 0x80280000, FileSize);
     func_8001E954(FileSize + 0x80280000);
 
     if (D_8016523E == 0)

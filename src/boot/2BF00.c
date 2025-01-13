@@ -501,7 +501,7 @@ void func_8002CA80(void)
     sp20 = 8;
     sp2E = 0;
 
-    for (sp30 = 0; sp30 < 0x1E; sp30++)
+    for (sp30 = 0; sp30 < 30; sp30++)
     {
         sp2F = 0;
 
@@ -1322,7 +1322,8 @@ void func_8002F32C(void)
     f32 sp6C;
     Matrix sp2C;
 
-    UpdateActiveController(0U);
+    UpdateActiveController(FALSE);
+    
     if ((gCameraType == 1) || (gCameraType == 5))
     {
         guRotateF(sp2C, gView.rot.y, 0.0f, 1.0f, 0.0f);
@@ -1367,14 +1368,14 @@ void func_8002F32C(void)
 
 void func_8002F598(void)
 {
-    UNUSED u16 pad;
+    UNUSED u16 persp;
     UNUSED u16 pad1;
     UNUSED u16 sp3E;
 
     func_8001D4D0();
     func_8001D638(1, 0x3C, 0x3C, 0x3C);
-    guPerspective(D_8016E104->unk00, &pad, 50.0f, 1.3333334f, 100.0f, 20000.0f, 1.0f);
-    gSPPerspNormalize(gMasterDisplayList++, pad);
+    guPerspective(D_8016E104->unk00, &persp, 50.0f, 1.3333334f, 100.0f, 20000.0f, 1.0f);
+    gSPPerspNormalize(gMasterDisplayList++, persp);
     guLookAt(&D_8016E104->unk00[2], gView.eye.x, gView.eye.y, gView.eye.z, gView.at.x, gView.at.y, gView.at.z, gView.up.x, gView.up.y, gView.up.z);
     gSPMatrix(gMasterDisplayList++, D_8016E104, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
 

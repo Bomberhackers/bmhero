@@ -47,8 +47,7 @@ s32 func_80002890(struct UnkStruct80001CF0 *arg0, s32 *arg1, s32 *arg2, s32 arg3
                     {
                         *arg2 = (s32)sp20;
                         sp24 &= ~1;
-                        goto blah;
-                    blah:;
+                        if (FALSE) {}
                     }
                     arg0->unk268 = **(u32 **)&arg0->unk268;
                     if (arg0->unk268 == 0)

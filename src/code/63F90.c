@@ -51,7 +51,6 @@ f32 func_80071A88(f32 arg0, f32 arg1, s8 *arg2)
     return sp4;
 }
 
-// RODATA
 extern f32 D_801775B0;
 extern f32 D_80177614;
 extern f32 D_8017761C;
@@ -94,8 +93,6 @@ void func_80071B50(f32 arg0)
     }
 }
 
-// RODATA
-extern f64 D_80105600;
 extern f32 D_801775C0;
 extern f32 D_801775D8;
 
@@ -120,7 +117,7 @@ void func_80071CF4(s32 arg0)
         D_801775B0 = gView.at.y;
         if (D_801775C0 < 40.0f)
         {
-            D_801775C0 = (f32)((f64)D_801775C0 + D_80105600);
+            D_801775C0 = (f32)((f64)D_801775C0 + 0.1);
         }
         if (D_801775D8 > 400.0f)
         {
@@ -128,10 +125,6 @@ void func_80071CF4(s32 arg0)
         }
     }
 }
-
-// RODATA
-extern f64 D_80105608;
-extern f64 D_80105610;
 
 void func_80071E28(void)
 {
@@ -144,7 +137,7 @@ void func_80071E28(void)
     }
     if (*gContCurrButton & 1)
     {
-        sp4 = (f32)((f64)gView.rot.y + D_80105608);
+        sp4 = (f32)((f64)gView.rot.y + 358.0);
         gView.rot.y = sp4 - (f32)(((s32)sp4 / 360) * 0x168);
     }
     if (*gContCurrButton & 8)
@@ -154,7 +147,7 @@ void func_80071E28(void)
     }
     if (*gContCurrButton & 4)
     {
-        sp4 = (f32)((f64)gView.rot.x + D_80105610);
+        sp4 = (f32)((f64)gView.rot.x + 358.0);
         gView.rot.x = sp4 - (f32)(((s32)sp4 / 360) * 0x168);
     }
     if (*gContCurrButton & 0x400)
@@ -367,7 +360,6 @@ void func_80072948(void)
     gView.at.z = gPlayerObject->Pos.z;
 }
 
-// RODATS
 extern f32 D_80177634;
 extern f32 D_80177A58;
 extern f32 D_80177A5C;
@@ -392,11 +384,6 @@ void func_80072A08(f32 arg0, f32 arg1, f32 *arg2, f32 *arg3, f32 *arg4, f32 *arg
     *arg4 = D_80177A5C - (*arg5 * 200.0f);
 }
 
-// RODATA
-extern f32 D_80105618;
-extern f64 D_80105620;
-extern f32 D_80105628;
-extern f32 D_8010562C;
 extern f32 D_801775A8;
 extern f32 D_801775B8;
 extern f32 D_801775C8;
@@ -458,11 +445,11 @@ void func_80072B08(void)
     }
     if (sp64 == sp68)
     {
-        sp50 = D_80105618;
+        sp50 = 0.8f; // TO CHECK
     }
     else
     {
-        sp50 = (f32)((((f64)sp4C * D_80105620) / 960.0) + 1.0);
+        sp50 = (f32)((((f64)sp4C * -0.2) / 960.0) + 1.0);
     }
     sp40 = D_801651C4 - gPlayerObject->Pos.x;
     if (sp74 < sp68)
@@ -494,7 +481,7 @@ void func_80072B08(void)
                 sp38 = D_801651CC - gPlayerObject->Pos.z;
                 if ((sp38 <= 1.0f) && (sp38 >= -1.0f))
                 {
-                    if ((gPlayerObject->Rot.y <= 45.0f) || (D_80105628 <= gPlayerObject->Rot.y) || ((gPlayerObject->Rot.y >= 135.0f) && (gPlayerObject->Rot.y <= 225.0f)))
+                    if ((gPlayerObject->Rot.y <= 45.0f) || (315.0f <= gPlayerObject->Rot.y) || ((gPlayerObject->Rot.y >= 135.0f) && (gPlayerObject->Rot.y <= 225.0f)))
                     {
                         sp37 = 2;
                         sp30 = 2.0f;
@@ -524,7 +511,7 @@ void func_80072B08(void)
         }
         else
         {
-            if ((gPlayerObject->Rot.y <= 45.0f) || (D_8010562C <= gPlayerObject->Rot.y) || ((gPlayerObject->Rot.y >= 135.0f) && (gPlayerObject->Rot.y <= 225.0f)))
+            if ((gPlayerObject->Rot.y <= 45.0f) || (315.0f <= gPlayerObject->Rot.y) || ((gPlayerObject->Rot.y >= 135.0f) && (gPlayerObject->Rot.y <= 225.0f)))
             {
                 sp37 = 2;
                 sp30 = 2.0f;
@@ -655,7 +642,7 @@ void func_80073580(void)
     D_801775D8 = D_80177A5C;
     D_801775E0 = 0.0f;
     D_80177A58 = (s16)gLevelInfo[gCurrentLevel]->unk30;
-    D_80177A5C = D_80105630;
+    D_80177A5C = 950.0f;
     D_8017762C = 250.0f;
     if (D_8016523E == 4)
     {
@@ -727,11 +714,11 @@ void func_80073784(void)
     }
     if (sp44 == sp48)
     {
-        sp30 = D_80105634;
+        sp30 = 0.8f;
     }
     else
     {
-        sp30 = (f32)((((f64)sp2C * D_80105638) / 960.0) + 1.0);
+        sp30 = (f32)((((f64)sp2C * -0.2) / 960.0) + 1.0);
     }
     sp24 = D_801651C4 - gPlayerObject->Pos.x;
     if (sp54 < sp48)
@@ -768,7 +755,7 @@ void func_80073784(void)
     }
     else
     {
-        if ((gPlayerObject->Rot.y <= 45.0f) || (D_80105640 <= gPlayerObject->Rot.y) || ((gPlayerObject->Rot.y >= 135.0f) && (gPlayerObject->Rot.y <= 225.0f)))
+        if ((gPlayerObject->Rot.y <= 45.0f) || (315.0f <= gPlayerObject->Rot.y) || ((gPlayerObject->Rot.y >= 135.0f) && (gPlayerObject->Rot.y <= 225.0f)))
         {
             sp1F = 2;
             sp18 = 2.0f;
@@ -943,8 +930,8 @@ void func_80074318(void)
     sp1C = gPlayerObject->Pos.z;
     sp18 = (s32)(D_80177900 + D_801777E8) / 2;
     sp14 = (s32)(D_80177908 + D_801778F0) / 2;
-    sp10 = D_80105644;
-    spC = D_80105648;
+    sp10 = 0.8f;
+    spC = 0.9f;
     sp8 = (s32)(sp24 - (f32)sp18);
     sp4 = (s32)(sp20 - (f32)sp14);
     gView.at.x = ((f32)sp8 * sp10) + (f32)sp18;
@@ -973,9 +960,6 @@ void func_800744D8(void)
     gView.at.z = gPlayerObject->Pos.z;
 }
 
-// Needs rodata
-extern f64 D_80105650;
-
 void func_800745C0(void)
 {
     f32 sp74;
@@ -999,7 +983,7 @@ void func_800745C0(void)
 
     sp58 = gView.eye.x - D_801775A8;
     sp48 = gView.eye.z - D_801775B8;
-    sp54 = sinf((f32)((f64)D_801775C0 * D_80105650)) * D_801775D8;
+    sp54 = sinf((f32)((f64)D_801775C0 * 0.0174532925199432955)) * D_801775D8;
 
     sp44 = sqrtf((SQ(sp58) + SQ(sp54) + SQ(sp48))),
     D_801775D8 = gView.dist;
@@ -1124,12 +1108,373 @@ f32 func_80074C7C(f32 arg0, f32 arg1, f32 arg2)
     return sp2C;
 }
 
-/* RODATA */
-#pragma GLOBAL_ASM("asm/nonmatchings/code/63F90/func_80074DFC.s")
+/* .bss */
+extern f32 D_801775FC;
+extern f32 D_80177604;
+extern f32 D_8017760C;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/63F90/func_80075288.s")
+void func_80074DFC(void)
+{
+    struct ObjectStruct *sp2C;
+    UNUSED char pad[0x28];
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/63F90/func_800757C0.s")
+    switch (gCurrentLevel)
+    {
+    case 0x22:
+        D_801775FC = 480.0f;
+        D_8017760C = -480.0f;
+        break;
+    case 0x13:
+        D_801775FC = 0.0f;
+        D_80177604 = 500.0f;
+        D_8017760C = 0.0f;
+        break;
+    case 0x25:
+        sp2C = &gObjects[0xE];
+        if (sp2C->unkA4 != 0)
+        {
+            D_801775FC = sp2C->Pos.x;
+            D_80177604 = sp2C->Pos.y + 210.0f;
+            D_8017760C = sp2C->Pos.z;
+        }
+        break;
+    case 0x39:
+        sp2C = &gObjects[0xE];
+        if (sp2C->unkA4 != 0)
+        {
+            D_801775FC = sp2C->Pos.x;
+            D_8017760C = sp2C->Pos.z;
+        }
+        break;
+    case 0x5A:
+        sp2C = &gObjects[0xE];
+        if ((sp2C->unkA4 != 0) && (sp2C->unkE4 == 0x1B8))
+        {
+            D_801775FC = gObjects[0xE].Pos.x;
+            D_8017760C = gObjects[0xE].Pos.z;
+        }
+        else
+        {
+            D_801775FC = 0.0f;
+            D_8017760C = 0.0f;
+        }
+        break;
+    case 0x4C:
+        sp2C = &gObjects[0xE];
+        if (sp2C->unkA4 != 0)
+        {
+            D_801775FC = sp2C->Pos.x;
+            D_8017760C = sp2C->Pos.z;
+        }
+        break;
+    case 0x4D:
+        sp2C = &gObjects[0xE];
+        if (sp2C->unkA4 != 0)
+        {
+            D_801775FC = sp2C->Pos.x;
+            D_80177604 = sp2C->Pos.y + 210.0f;
+            D_8017760C = sp2C->Pos.z;
+        }
+        break;
+    case 0x4E:
+        D_801775FC = 0.0f;
+        D_80177604 = 320.0f;
+        D_8017760C = -1200.0f;
+        break;
+    case 0x51:
+        D_801775FC = 0.0f;
+        D_80177604 = 320.0f;
+        D_8017760C = 0.0f;
+        break;
+    case 0x52:
+        D_801775FC = 0.0f;
+        D_80177604 = 320.0f;
+        D_8017760C = 0.0f;
+        break;
+    case 0x6C:
+        D_801775FC = 0.0f;
+        D_80177604 = 320.0f;
+        D_8017760C = 0.0f;
+        break;
+    case 0x53:
+        sp2C = &gObjects[0xE];
+        if (sp2C->unkA4 != 0)
+        {
+            D_801775FC = sp2C->Pos.x;
+            D_8017760C = sp2C->Pos.z;
+        }
+        break;
+    case 0x55:
+        sp2C = &gObjects[0xE];
+        if (sp2C->unkA4 != 0)
+        {
+            D_801775FC = sp2C->Pos.x;
+            D_8017760C = sp2C->Pos.z;
+        }
+        break;
+    case 0xF:
+    case 0x4F:
+    case 0x57:
+    case 0x58:
+    case 0x59:
+        sp2C = &gObjects[0xE];
+        if (sp2C->unkA4 != 0)
+        {
+            D_801775FC = sp2C->Pos.x;
+            D_8017760C = sp2C->Pos.z;
+        }
+        break;
+    }
+}
+
+void func_80075288(void)
+{
+    f32 sp54;
+    f32 sp50;
+    f32 sp4C;
+    UNUSED s32 pad48;
+    UNUSED s32 pad44;
+    UNUSED s32 pad40;
+    f32 sp3C;
+    UNUSED s32 pad38;
+    f32 sp34;
+    f32 sp30;
+    UNUSED char pad[0x14];
+
+    sp54 = gPlayerObject->Pos.x;
+    sp50 = gPlayerObject->Pos.y;
+    sp4C = gPlayerObject->Pos.z;
+    func_80074DFC();
+    switch (gCurrentLevel)
+    {          /* switch 1 */
+    case 0x13: /* switch 1 */
+    case 0x25: /* switch 1 */
+    case 0x39: /* switch 1 */
+    case 0x4C: /* switch 1 */
+    case 0x4E: /* switch 1 */
+    case 0x53: /* switch 1 */
+        D_801775A8 = sp54;
+        D_801775B8 = sp4C;
+        func_80071B50(sp50 + 200.0f);
+        break;
+    case 0x4D: /* switch 1 */
+    case 0x55: /* switch 1 */
+        D_801775A8 = sp54;
+        D_801775B8 = sp4C;
+        func_80071B50(sp50 + 250.0f);
+        break;
+    case 0xF:  /* switch 1 */
+    case 0x4F: /* switch 1 */
+    case 0x51: /* switch 1 */
+    case 0x52: /* switch 1 */
+    case 0x57: /* switch 1 */
+    case 0x58: /* switch 1 */
+    case 0x59: /* switch 1 */
+        D_801775A8 = sp54;
+        D_801775B8 = sp4C;
+        func_80071B50(sp50 + 100.0f);
+        break;
+    case 0x6C: /* switch 1 */
+        D_801775A8 = sp54;
+        D_801775B8 = sp4C;
+        func_80071B50(sp50 + 200.0f);
+        break;
+    default: /* switch 1 */
+        D_801775A8 = sp54;
+        D_801775B8 = sp4C;
+        func_80071B50(sp50 + 100.0f);
+        break;
+    }
+    D_801775C0 = D_80177A58;
+    switch (gCurrentLevel)
+    {          /* switch 2 */
+    case 0xF:  /* switch 2 */
+    case 0x13: /* switch 2 */
+    case 0x25: /* switch 2 */
+    case 0x39: /* switch 2 */
+    case 0x4C: /* switch 2 */
+    case 0x4D: /* switch 2 */
+    case 0x4E: /* switch 2 */
+    case 0x4F: /* switch 2 */
+    case 0x53: /* switch 2 */
+    case 0x55: /* switch 2 */
+    case 0x57: /* switch 2 */
+    case 0x58: /* switch 2 */
+    case 0x59: /* switch 2 */
+    case 0x5A: /* switch 2 */
+        sp3C = D_801775A8 - D_801775FC;
+        sp34 = D_801775B8 - D_8017760C;
+        sp30 = func_80074C7C(sp3C, sp34, 2.0f);
+        D_801775C8 = sp30;
+        break;
+    case 0x51: /* switch 2 */
+        sp3C = D_801775A8 - D_801775FC;
+        sp34 = D_801775B8 - D_8017760C;
+        sp30 = func_80074C7C(sp3C, sp34, 1.0f);
+        D_801775C8 = sp30;
+        break;
+    case 0x52: /* switch 2 */
+        sp3C = D_801775A8 - D_801775FC;
+        sp34 = D_801775B8 - D_8017760C;
+        sp30 = func_80074C7C(sp3C, sp34, 2.5f);
+        D_801775C8 = sp30;
+        break;
+    case 0x6C: /* switch 2 */
+        sp3C = D_801775A8 - D_801775FC;
+        sp34 = D_801775B8 - D_8017760C;
+        sp30 = func_80074C7C(sp3C, sp34, 1.5f);
+        D_801775C8 = sp30;
+        break;
+    default: /* switch 2 */
+        sp3C = D_801775A8 - D_801775FC;
+        sp34 = D_801775B8 - D_8017760C;
+        sp30 = 360.0f - func_80015634(sp3C, sp34);
+        D_801775C8 = sp30;
+        sp30 = func_80015538(gView.rot.y, -D_801775C8);
+        if ((sp30 > 90.0f) && (sp30 < 270.0f))
+        {
+            D_801775F8 = 0x3C;
+        }
+        break;
+    }
+    if (gPlayerObject->unk108 != 0)
+    {
+    }
+    else if (gPlayerObject->unkA4 == 0x25)
+    {
+        func_80071CF4(0);
+    }
+    else
+    {
+        func_80071CF4(1);
+    }
+    gView.at.y = func_80071A88(gView.at.y, D_801775B0, &D_801775EF);
+    gView.at.x = D_801775A8;
+    gView.at.z = D_801775B8;
+    gView.dist = D_801775D8;
+    gView.rot.x = D_801775C0;
+    gView.rot.y = func_80071A88(gView.rot.y, D_801775C8, &D_801775F8);
+    gView.rot.z = D_801775D0;
+}
+
+extern f32 D_80105C3C;
+extern f32 D_80105C40;
+void func_800757C0(void)
+{
+    gView.rot.x = 26.0f;
+    gView.rot.y = 0.0f;
+    gView.rot.z = 0.0f;
+    gView.up.x = 0.0f;
+    gView.up.y = 1.0f;
+    gView.up.z = 0.0f;
+    gView.dist = 800.0f;
+    gView.at.x = gPlayerObject->Pos.x;
+    gView.at.y = gPlayerObject->Pos.y + 200.0f;
+    gView.at.z = gPlayerObject->Pos.z;
+    D_801775EF = 0;
+    D_801775F4 = 0;
+    D_801775F8 = 0;
+    D_80177A58 = (f32)gLevelInfo[gCurrentLevel]->unk30;
+    D_80177A5C = 950.0f;
+    D_801775A8 = 0.0f;
+    D_801775B0 = 0.0f;
+    D_801775B8 = 0.0f;
+    D_801775C0 = D_80177A58;
+    D_801775C8 = 0.0f;
+    D_801775D0 = 0.0f;
+    D_801775D8 = D_80177A5C;
+    D_801775FC = 0.0f;
+    D_80177604 = 0.0f;
+    D_8017760C = 0.0f;
+    D_80177614 = gView.at.y;
+    D_8017761C = gView.at.y;
+    D_80177624 = 0.0f;
+    switch (gCurrentLevel)
+    {
+    case 0x13:
+        D_80177A58 = 23.0f;
+        D_80177A5C = 800.0f;
+        D_801775C0 = D_80177A58;
+        D_801775D8 = D_80177A5C;
+        break;
+    case 0x25:
+        D_80177A58 = 45.0f;
+        D_80177A5C = 800.0f;
+        D_801775C0 = D_80177A58;
+        D_801775D8 = D_80177A5C;
+        break;
+    case 0x39:
+        D_80177A58 = 20.0f;
+        D_80177A5C = 800.0f;
+        D_801775C0 = D_80177A58;
+        D_801775D8 = D_80177A5C;
+        break;
+    case 0x5A:
+        D_80177A58 = 26.0f;
+        D_80177A5C = 800.0f;
+        D_801775C0 = D_80177A58;
+        D_801775D8 = D_80177A5C;
+        break;
+    case 0x4C:
+        D_80177A58 = 20.0f;
+        D_80177A5C = 800.0f;
+        D_801775C0 = D_80177A58;
+        D_801775D8 = D_80177A5C;
+        break;
+    case 0x4D:
+        D_80177A58 = 12.0f;
+        D_80177A5C = 800.0f;
+        D_801775C0 = D_80177A58;
+        D_801775D8 = D_80177A5C;
+        break;
+    case 0x4E:
+        D_80177A58 = 18.0f;
+        D_80177A5C = 900.0f;
+        D_801775C0 = D_80177A58;
+        D_801775D8 = D_80177A5C;
+        break;
+    case 0x51:
+        D_80177A58 = 20.0f;
+        D_80177A5C = 800.0f;
+        D_801775C0 = D_80177A58;
+        D_801775D8 = D_80177A5C;
+        break;
+    case 0x52:
+        D_80177A58 = 23.0f;
+        D_80177A5C = 850.0f;
+        D_801775C0 = D_80177A58;
+        D_801775D8 = D_80177A5C;
+        break;
+    case 0x6C:
+        D_80177A58 = 16.0f;
+        D_80177A5C = 750.0f;
+        D_801775C0 = D_80177A58;
+        D_801775D8 = D_80177A5C;
+        break;
+    case 0x53:
+        D_80177A58 = 14.0f;
+        D_80177A5C = 800.0f;
+        D_801775C0 = D_80177A58;
+        D_801775D8 = D_80177A5C;
+        break;
+    case 0x55:
+        D_80177A58 = 12.0f;
+        D_80177A5C = 800.0f;
+        D_801775C0 = D_80177A58;
+        D_801775D8 = D_80177A5C;
+        break;
+    case 0xF:
+    case 0x4F:
+    case 0x57:
+    case 0x58:
+    case 0x59:
+        D_80177A58 = 20.0f;
+        D_80177A5C = 800.0f;
+        D_801775C0 = D_80177A58;
+        D_801775D8 = D_80177A5C;
+        break;
+    }
+}
 
 void func_80075D68(void)
 {
@@ -1242,10 +1587,89 @@ void func_800761FC(void)
     D_801775D8 = 800.0f;
 }
 
-// NEEDS RODATA
-#pragma GLOBAL_ASM("asm/nonmatchings/code/63F90/func_80076374.s")
+void func_80075288(); /* extern */
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/63F90/func_80076458.s")
+void func_80076374(void)
+{
+    func_800722FC();
+    switch (gCameraType)
+    {
+    default:
+    case 0:
+        func_8008B030();
+        break;
+    case 1:
+        func_80072854();
+        break;
+    case 2:
+        func_80072B08();
+        break;
+    case 3:
+        func_80073784();
+        break;
+    case 4:
+        func_80074318();
+        break;
+    case 5:
+        func_800745C0();
+        break;
+    case 6:
+        func_80075288();
+        break;
+    case 7:
+        func_80075D68();
+        break;
+    }
+    func_800723EC();
+}
+
+void func_80076458(void)
+{
+    gView.rot.x = 26.0f;
+    gView.rot.y = 0.0f;
+    gView.rot.z = 0.0f;
+    gView.up.x = 0.0f;
+    gView.up.y = 1.0f;
+    gView.up.z = 0.0f;
+    gView.dist = 800.0f;
+    gView.at.x = gPlayerObject->Pos.x;
+    gView.at.y = gPlayerObject->Pos.y + 200.0f;
+    gView.at.z = gPlayerObject->Pos.z;
+    D_801775EF = 0;
+    D_801775F4 = 0;
+    D_801775F8 = 0;
+    D_80177A58 = (f32)gLevelInfo[gCurrentLevel]->unk30;
+    D_80177A5C = 800.0f;
+    func_80072160();
+    switch (gCameraType)
+    {
+    case 0:
+    case 1:
+        func_80072948();
+        break;
+    case 2:
+        func_80073580();
+        break;
+    case 3:
+        func_80074194();
+        break;
+    case 4:
+        func_800744D8();
+        break;
+    case 5:
+        func_80074B04();
+        break;
+    case 6:
+        func_800757C0();
+        break;
+    case 7:
+        func_800761FC();
+        break;
+    default:
+        break;
+    }
+    func_800723A4();
+}
 
 extern s8 D_8017790A;
 extern s8 D_8017790E;

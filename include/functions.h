@@ -142,11 +142,16 @@ s32 func_80077CB0(s16 arg0, s16 arg1, s16 *arg2, s16 *arg3);
 // 71AA0.c
 s32 func_80083180(s32);
 void func_80085424();
+void func_80025568(s32, s32);
+void func_8028491C(void);
+void func_80025810(s32, s32, s32);
 
 //76640.c
+void func_800766B4(s32);
 void func_80085B34(f32, f32);
 void func_80087E14();
-
+void func_8008424C(void);
+void func_80088248(s32);
 // EFF30.c
 u32 func_800FE898();
 
@@ -606,13 +611,13 @@ void func_8001A488(s32);
 s32 func_8006DE90(u8*);
 void func_80016D74(s16);
 s32 func_80069700();
-s32 func_8006AB14();
+void func_8006AB14();
 s32 func_8006E160();
 s32 func_80070644();
 s32 func_80070664(s32);
 s32 func_80070A6C();
 s32 func_800711B4();
-s32 func_80076458();
+void func_80076458();
 void func_80076640(void);
 s32 func_8007957C();
 void func_8007F580();

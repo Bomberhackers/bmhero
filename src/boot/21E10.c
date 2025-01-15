@@ -460,8 +460,6 @@ void func_80022B54(void)
     struct ObjectStruct *sp2C;
     s32 sp28;
     s32 sp24;
-    s16 temp_t1;
-    s16 temp_t3;
 
     sp28 = (s32)gPlayerObject->unk104;
     sp2C = &gObjects[sp28];
@@ -651,7 +649,7 @@ void func_80023404(void)
     else
     {
         sp1C = (s32)gPlayerObject->unk104;
-        if (*(&gObjects->unk102 + (sp1C * 0x150)) != 0)
+        if (gObjects[sp1C].unk102 != 0)
         {
             D_80177648 = 1;
             D_8016E088 = 2;
@@ -1047,16 +1045,18 @@ void func_800246F0(void)
 void func_80024744(void)
 {
     f32 sp6C;
-    Mtx_t sp2C;
-    UpdateActiveController(0);
+    Matrix sp2C;
+    UpdateActiveController(FALSE);
+
     if ((gCameraType == 1) || (gCameraType == 2) || (gCameraType == 5) || (gCameraType == 6) || (gCameraType == 7) || (gCameraType == 8))
     {
-        guRotateF((f32(*)[4]) & sp2C[0], gView.rot.y, 0.0f, 1.0f, 0.0f);
-        guMtxXFMF((f32(*)[4]) & sp2C[0], gActiveContStickX, 0.0f, gActiveContStickY, &gActiveContStickX, &sp6C, &gActiveContStickY);
+        guRotateF(sp2C, gView.rot.y, 0.0f, 1.0f, 0.0f);
+        guMtxXFMF(sp2C, gActiveContStickX, 0.0f, gActiveContStickY, &gActiveContStickX, &sp6C, &gActiveContStickY);
     }
-    if (gShowDebugMenu != 0)
+
+    if (gShowDebugMenu)
     {
-        if ((gActiveContButton & 0x3000) == 0x3000)
+        if ((gActiveContButton & (0x3000)) == 0x3000)
         {
             func_80069AA8(-1, 0);
         }
@@ -1072,6 +1072,7 @@ void func_80024744(void)
             }
         }
     }
+
     if ((D_8016E3CC == 0) && (func_800242F0() != 0))
     {
     }

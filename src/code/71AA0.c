@@ -624,7 +624,7 @@ void func_800821E0(void) {
     func_80064120();
     func_800FF7B4();
     if (gDebugShowTimerBar != 0) {
-        func_8005E6A0(0x2E, 0xD0);
+        Debug_DrawProfiler(0x2E, 0xD0);
     }
 }
 
@@ -862,27 +862,27 @@ void func_80082CC4(void) {
     s32 sp18;
 
     sp18 = gCurrentLevel;
-    sp1C = 0;
-    if (sp18 == 0xA) {
+    sp1C = MAP_BOMBER_BASE_ENTRANCE;
+    if (sp18 == MAP_HOLE_LAKE) {
         sp1C = 7;
-    } else if ((sp18 == 0x17) || (sp18 == 0x33) || (sp18 == 0xA9) || (sp18 == 0x3B)) {
+    } else if ((sp18 == MAP_ERARS_LAKE_1) || (sp18 == MAP_AQUAWAY) || (sp18 == MAP_CUTSCENE_POST_AQUA_TANK) || (sp18 == MAP_FREEZE_LAKE)) {
         sp1C = 3;
     } else {
-        if (sp18 == 0xD) {
+        if (sp18 == MAP_BIG_CANNON) {
             sp1C = 6;
-        } else if ((sp18 == 0x1F) || (sp18 == 0x43) || (sp18 == 0x66)) {
+        } else if ((sp18 == MAP_MILLIAN_ROAD) || (sp18 == MAP_HEAVEN_SKY) || (sp18 == MAP_OUTER_ROAD)) {
             sp1C = 2;
-        } else if (sp18 == 0x21) {
+        } else if (sp18 == MAP_KILLER_GATE) {
             sp1C = 8;
-        } else if ((sp18 == 0x25) || (sp18 == 0x27)) {
+        } else if ((sp18 == MAP_BARUDA) || (sp18 == MAP_HADES_CRATER)) {
             sp1C = 4;
-        } else if (sp18 == 8) {
+        } else if (sp18 == MAP_EMERALD_TUBE) {
             sp1C = 9;
-        } else if (sp18 == 0x4A) {
+        } else if (sp18 == MAP_SNOW_CIRCUIT) {
             sp1C = 5;
         }
     }
-    if (sp1C != 0) {
+    if (sp1C != MAP_BOMBER_BASE_ENTRANCE) {
         Demo_Start(sp1C);
     }
 }

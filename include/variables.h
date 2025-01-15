@@ -29,33 +29,30 @@ extern u8 D_1000C50[];
 extern u8 D_1000C68[];
 
 // RAM Externs
-extern u32 D_8004A280;
+extern struct UnkStruct_D_004A280 D_8004A280;
 extern s32 D_8004A294;
 extern s32 D_8004A298;
 extern s32 D_8004A29C;
 extern s32* D_8004A370;
 extern s32 D_8004A380;
-extern s32 D_8004A384;
+extern s32 gDebugger; // Original name: debugger
 extern s32 D_8004A388;
 extern s32 D_8004A38C;
 extern s32 D_8004A390;
 extern s32 D_8004A394;
-extern struct UnkStruct8004A3A0 D_8004A3A0;
-extern struct UnkStruct8004A3A0 D_8004A3AC;
-extern struct UnkStruct8004A3A0 D_8004A3B8;
+extern struct Vec3f D_8004A3A0;
+extern struct Vec3f D_8004A3AC;
+extern struct Vec3f D_8004A3B8;
 extern s32 *D_8004A3D0;
 extern s32 *D_8004A3D4;
 extern f32 D_8004A400[]; // .rodata
 extern Lights2 D_8004A590;
 extern Lights2 gLightingSettings;
 extern struct UnkStruct_8004A5F0 D_8004A5F0;
-extern s32 D_8004A5F4;
-extern u8 D_8004A610;
 extern s32 D_8004A630;
 extern s32 D_8004A634;
 extern s32 D_8004A638;
 extern s32 D_8004A63C;
-extern s8 D_8004A650[];                        //.data
 extern OSViMode osViModeTable[];
 extern s32 osViClock;
 extern f64 D_8004BBF0; // 180.0
@@ -571,9 +568,7 @@ extern s16 D_8016E112;
 extern s8 D_8016E115;
 extern s8 D_8016E134;
 extern struct View gView;
-extern u8 gDebugTextBuf[0xC8];
-extern struct UnkStruct8016E230 D_8016E220[1];
-extern struct UnkStruct8016E230 D_8016E230[1];
+extern char gDebugTextBuf[0xC8];
 extern s32 D_8016E23C;
 extern s32 D_8016E244;
 extern s8 D_8016E250;
@@ -736,7 +731,7 @@ extern u16 D_80177958;
 extern s32 D_8017795C;
 extern struct UnkStruct80177964* D_80177964;
 extern UnkStruct80165100 *D_8017796C;
-extern u8 D_80177974;
+extern u8 gDebugDispType;
 extern u32 D_8017797C;
 extern u32 D_80177984;
 extern s16 D_8017798C;
@@ -762,7 +757,7 @@ extern u32 D_801C1A50;
 extern u8 D_801D04B0[];
 extern s32 D_80321428;
 extern s32* D_80324994;
-extern struct UnkStruct80340000 D_80340000[2];
+extern struct UnkStruct8016E10C D_80340000[2];
 extern s32 D_80380000;
 extern s32 D_801651A4;
 extern s8 D_80165246;
@@ -802,5 +797,6 @@ extern u8* _9B5440_ROM_START;
 extern u8* _9BD180_ROM_START;
 extern s16 D_8016E0A4;
 extern u8 D_801776E4;
-extern UNK_TYPE D_80177770;
+extern UNK_TYPE D_80177770[];
+extern u8 D_8004A650[];
 #endif // VARIABLES_H

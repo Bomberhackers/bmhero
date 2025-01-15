@@ -150,7 +150,8 @@ def GetNonMatchingSize(path):
             asmLines = ReadAllLines(asmFilePath)
 
             for asmLine in asmLines:
-                if (asmLine.startswith("/*")):
+                line = asmLine.strip()
+                if (line.startswith("/*")):
                     size += 4
 
     return size
@@ -203,7 +204,7 @@ code -= nonMatchingASMCode
 boot -= nonMatchingASMBoot
 ovl -= nonMatchingASMOvl
 
-bootSize = 293648
+bootSize = 289200
 codeSize = 674384
 ovlSize = 212420 # .text sections
 

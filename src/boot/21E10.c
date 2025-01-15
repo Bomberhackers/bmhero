@@ -460,8 +460,6 @@ void func_80022B54(void)
     struct ObjectStruct *sp2C;
     s32 sp28;
     s32 sp24;
-    s16 temp_t1;
-    s16 temp_t3;
 
     sp28 = (s32)gPlayerObject->unk104;
     sp2C = &gObjects[sp28];
@@ -651,7 +649,7 @@ void func_80023404(void)
     else
     {
         sp1C = (s32)gPlayerObject->unk104;
-        if (*(&gObjects->unk102 + (sp1C * 0x150)) != 0)
+        if (gObjects[sp1C].unk102 != 0)
         {
             D_80177648 = 1;
             D_8016E088 = 2;

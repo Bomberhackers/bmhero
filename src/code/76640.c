@@ -916,8 +916,7 @@ s32 func_80085D54(void)
     }
     return 0;
 }
-// #pragma GLOBAL_ASM("asm/nonmatchings/code/76640/func_80085D54.s")
-// #endif
+
 void func_80086AD0(void)
 {
     f32 sp2C;

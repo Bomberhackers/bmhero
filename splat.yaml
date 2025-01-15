@@ -412,7 +412,7 @@ segments:
     - [auto, .rodata, ../src/unk_rom_table_F7700] # might be part of F77F0, but split it out so I can label the ROM table.
     - [0xF77F0, rodata]
     - [0xF7940, rodata]
-    - [0xF7B20, rodata]
+    - [0xF7B20, .rodata, code/63F90]
     - [0xF81B0, rodata] 
     - [0xF92C0, hasm, ../src/level_table]
     - [auto, .rodata, ../src/level_table]

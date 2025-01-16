@@ -951,8 +951,7 @@ struct UnkStruct_80026548 {
     s32 pad3C;
     void* unk40;
     void* unk44;
-    u8 unk48[1];
-    char pad38[0x17];
+    u8 unk48[0x18];
 };
 
 struct UnkStruct_80027464 {

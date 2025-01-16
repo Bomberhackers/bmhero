@@ -1,5 +1,7 @@
 #include <ultra64.h>
 
+
+
 void func_800B55B0(void)
 {
     s8 sp2F;
@@ -2362,7 +2364,7 @@ s16 func_800BD558(s16 arg0)
         sp30->unk44 = sp34->unk44;
         sp30->unk48 = sp34->unk48;
     }
-    return ~(sp2F != 0) ? 0 : 1;
+    return ~(sp2F != 0) ? 0 : 1; //lsb?
 }
 
 void func_800BD7CC(void)

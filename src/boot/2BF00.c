@@ -1107,7 +1107,7 @@ void func_8002E6E8(void)
 
                 for (sp30 = 0; sp30 < 0x14; sp30++)
                 {
-                    if (D_80124D90->unk48[(sp2C * 0x60) + sp30] == 0x20)
+                    if (D_80124D90->unk48[(sp2C * 0x60) + sp30] == ' ')
                     {
                         break;
                     }

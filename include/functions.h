@@ -75,7 +75,6 @@ void func_8001A958(s32 arg0);
 void func_8001B234(s32 arg0, s32 arg1, s32 arg2);
 
 // 1FAB0.c
-s32 func_8001F38C(struct UnkStruct_8001EFD0*, s32);
 void func_8001F9DC();
 void func_8001FAD4();
 void func_800200D8(void);

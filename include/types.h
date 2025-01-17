@@ -419,17 +419,6 @@ struct UnkStruct_8001EFD0_1 {
     u8 unkE;
 };
 
-struct UnkStruct_8001EFD0 {
-    OSPfs pfs;
-    s32 unk68;
-    s32 unk6C;
-    s32 unk70;
-    s32 unk74;
-    s32 unk78;
-    s32 unk7C;
-    OSPfsState* unk80[1]; // TODO: This is UB
-};
-
 // could be a Vector
 struct UnkStruct8004A3A0 {
     f32 unk0;

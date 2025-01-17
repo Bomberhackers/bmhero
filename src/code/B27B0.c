@@ -1,6 +1,28 @@
 #include <ultra64.h>
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/B27B0/func_800C0290.s")
+extern struct UnkStruct_80027C00 D_80113DFC;
+
+void func_800C0290(void) {
+    s16 sp26;
+
+    sp26 = func_80027464(1, &D_80113DFC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    if (sp26 != -1) {
+        gObjects[sp26].unkA4 = 3;
+        gObjects[sp26].unkA8 = 1;
+        gObjects[sp26].unkAA = 0;
+        gObjects[sp26].unkAC = 0x258;
+        gObjects[sp26].unkAE = 8;
+        if (D_80165100->unkA > 0) {
+            gObjects[sp26].unkAC = D_80165100->unkA * 0x3C;
+        }
+        if (D_80165100->unkC > 0) {
+            gObjects[sp26].unkAE  = D_80165100->unkC;
+        }
+        gObjects[sp26].unk132 = 0;
+        func_8001BB34((s32) sp26, 0);
+    }
+}
+
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/B27B0/func_800C04B4.s")
 

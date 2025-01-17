@@ -334,10 +334,10 @@ void func_80066AE8(void)
     D_80177994 = gLevelInfo[gCurrentLevel]->unkE;
     D_8017799C = gLevelInfo[gCurrentLevel]->unk10;
     D_801779A4 = gLevelInfo[gCurrentLevel]->unk12;
-    D_801779AC = gLevelInfo[gCurrentLevel]->unk14;
+    D_801779AC.raw = gLevelInfo[gCurrentLevel]->unk14;
     D_801779B8 = gLevelInfo[gCurrentLevel]->unk16;
-    D_801779C8 = gLevelInfo[gCurrentLevel]->unk2C;
-    D_801779E0 = gLevelInfo[gCurrentLevel]->unk6;
+    D_801779C8.raw = gLevelInfo[gCurrentLevel]->unk2C;
+    D_801779E0.raw = gLevelInfo[gCurrentLevel]->unk6;
 }
 
 void func_8006707C(void)
@@ -870,24 +870,24 @@ void func_8006AB14(void)
     }
     if (sp4 != 0)
     {
-        if (D_801779E0 == 3)
+        if (D_801779E0.raw == 3)
         {
             D_80177618 = 8;
             gScore = 0x3E8;
         }
-        else if (D_801779E0 == 1)
+        else if (D_801779E0.raw == 1)
         {
             D_80177618 = 8;
             gScore = 0x3E8;
         }
-        else if (D_801779E0 == 2)
+        else if (D_801779E0.raw == 2)
         {
             D_80177618 = 1;
             gScore = 0x3E8;
         }
         else
         {
-            if (D_801779E0 == 5)
+            if (D_801779E0.raw == 5)
             {
                 D_80177618 = 0x82;
                 gScore = 0;
@@ -908,7 +908,7 @@ void func_8006AD28(void)
     {
         return;
     }
-    if (D_801779E0 == 3)
+    if (D_801779E0.raw == 3)
     {
         if ((D_80177618 == 0) && (gScore != 0))
         {
@@ -923,7 +923,7 @@ void func_8006AD28(void)
             }
         }
     }
-    else if ((D_801779E0 == 2) || (D_801779E0 == 1))
+    else if ((D_801779E0.raw == 2) || (D_801779E0.raw == 1))
     {
         if (D_80177618 != 0)
         {
@@ -942,7 +942,7 @@ void func_8006AD28(void)
             }
         }
     }
-    else if (D_801779E0 == 5)
+    else if (D_801779E0.raw == 5)
     {
         if (D_80177618 != 0)
         {
@@ -960,7 +960,7 @@ void func_8006AD28(void)
  */
 void Score_Update(s16 c)
 {
-    if (D_801779E0 != 0)
+    if (D_801779E0.raw != 0)
     {
         return;
     }

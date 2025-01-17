@@ -419,7 +419,7 @@ segments:
     - [0xFAA60, rodata]
     - [0xFDC20, rodata]
     - [0xFE460, rodata]
-    - [0xFEEC0, rodata]
+    - [0xFEEC0, .rodata, code/69AA0]
     - [0xFF020, rodata]
     - [0xFF030, rodata]
     - [0xFF0F0, .rodata, code/76640]

@@ -131,6 +131,12 @@ struct UnkStruct800026F4_Arg2 {
     u64 *unk3C;
 };
 
+struct Vec2f
+{
+    f32 x;
+    f32 y;
+};
+
 struct Vec3f {
     f32 x;
     f32 y;
@@ -289,7 +295,7 @@ struct ObjectStruct {
     /* 0x132 */ u8 unk132;
     /* 0x133 */ char unk133[3];                     /* maybe part of unk132[8]? */
     /* 0x136 */ char unk136[3];
-    /* 0x139 */ s8 unk139;
+    /* 0x139 */ char unk139;
     /* 0x13A */ s8 unk13A;
     /* 0x13B */ s8 unk13B;
     /* 0x13C */ s16 unk13C[1];
@@ -942,7 +948,7 @@ struct UnkStruct_80026548 {
     void* (*routine)();
     void* (*routine2)();
     void* (*routine_1C)();
-    char pad1C[0x4];
+    struct UnkStruct_80134B54** unk20;
     struct UnkStruct_80026548_SP24 *unk24;
     char pad28[0x4];
     void* (*routine3)();
@@ -952,6 +958,22 @@ struct UnkStruct_80026548 {
     void* unk40;
     void* unk44;
     u8 unk48[0x18];
+};
+
+
+struct UnkStruct8016C298_1
+{
+    s32 unk0;
+    u8 *unk4;
+    u8 *unk8;
+    s32 *unkC;
+    s32 *unk10;
+    s16 unk14;
+    u8 unk16;
+    u8 unk17;
+    s8 unk18;
+    s8 unk19;
+    char pad1A[2];
 };
 
 struct UnkStruct_80027464 {

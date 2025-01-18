@@ -1,6 +1,18 @@
 #include <ultra64.h>
 
+void func_80069D04(s32, s32);                              /* extern */
+
+// Vars only used in this file
+
+//.rodata
+extern UNK_TYPE D_80117F7C;
+extern UNK_TYPE D_80117F98;
 extern struct UnkStruct_80027C00 D_80113DFC;
+extern struct UnkStruct_80027C00 D_80113E14;
+extern UNK_TYPE D_80117F44;
+extern UNK_TYPE D_80117F60;
+extern UNK_TYPE D_80117FB4;
+extern UNK_TYPE D_80117FD0;
 
 void func_800C0290(void)
 {
@@ -31,7 +43,6 @@ void func_800C04B4(void)
 {
 }
 
-#define UNK(x) (x >= 360.0f ? (360.0f) : (12.0f))
 
 void func_800C04C4(void)
 {
@@ -98,11 +109,6 @@ void func_800C08A8(void)
     }
 }
 
-extern struct UnkStruct_80027C00 D_80113E14;
-extern UNK_TYPE D_80117F44;
-extern UNK_TYPE D_80117F60;
-extern UNK_TYPE D_80117FB4;
-extern UNK_TYPE D_80117FD0;
 
 void func_800C0964(void) {
     s16 sp26;
@@ -177,9 +183,6 @@ void func_800C0CC0(void)
     }
 }
 
-void func_80069D04(s32, s32);                              /* extern */
-extern UNK_TYPE D_80117F7C;
-extern UNK_TYPE D_80117F98;
 
 void func_800C0D78(void) {
     struct ObjectStruct *sp24;
@@ -203,7 +206,33 @@ void func_800C0D78(void) {
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/B27B0/func_800C0F18.s")
+void func_800C0F18(void) {
+    struct ObjectStruct* sp3C;
+
+    sp3C = &gObjects[gCurrentParsedObject];
+    if (sp3C->unk132 == 0) {
+        sp3C->unk132 = 1;
+        sp3C->unk44 = 0.0f;
+            sp3C->unk3C =  ((sp3C->Rot.y + 180.0f) > 180.0f) ? 
+        ((sp3C->Rot.y +  180.0f >= 360.0f) ? (sp3C->Rot.y +  180.0f) - 360.0f : sp3C->Rot.y +  180.0f) : 
+        ((sp3C->Rot.y +  180.0f < 0.0f)) ? (sp3C->Rot.y) + 540.0f : sp3C->Rot.y +  180.0f;  
+    
+        sp3C->unkA6 = 0x3C;
+        func_80029C40(gCurrentParsedObject);
+    }
+    if (sp3C->unkA6 <= 0) {
+        func_8001C0EC(gCurrentParsedObject, 0, 0, 0x12B, (u32* ) &D_80117F08);
+        sp3C->unkA4 = 1;
+        sp3C->unk132 = 0;
+    } else {
+            sp3C->Rot.x =  ((sp3C->Rot.x + 12.0f) > 180.0f) ? 
+        ((sp3C->Rot.x + 12.0f >= 360.0f) ? (sp3C->Rot.x + 12.0f) - 360.0f : sp3C->Rot.x + 12.0f) : 
+        ((sp3C->Rot.x + 12.0f < 0.0f)) ? (sp3C->Rot.x ) + 360.0f + 12.0f : sp3C->Rot.x + 12.0f;  
+    
+        sp3C->unkA6 -= 6;
+    }
+}
+
 
 void func_800C11F4(void)
 {

@@ -200,8 +200,6 @@ void func_800250A0(s32);
 void func_80081468(s32, f32, f32, f32);
 void func_800843CC(f32, f32, f32);
 void func_80086ECC(); 
-s32 func_80017BEC(s32 arg0, s16 arg1, s16 arg2, s32 arg3);
-void func_80017CFC(s32, s16, s16, s32); 
 s32 func_80027464(s32 arg0, struct UnkStruct_80027C00 *arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5);
 void func_800178D4(s32, s32, s16, s16, s32);
 s32 func_80026E58(s32, s32);
@@ -666,7 +664,7 @@ void func_8001C96C(void);
 s32 func_8001E96C(void);
 s32 func_8001B930(s32, s32);            /* extern */
 void func_8001BC84(s32, s32, s32);      /* extern */
-void func_800941C4(s16, f32, f32, f32); /* extern */
+void func_800941C4(s32, f32, f32, f32); /* extern */
 void func_8006F570(s32 arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4);
 int Decode(u8* buf_in, u8* buf_out);
 void func_8001ABF4(s32 arg0, s32 arg1, s32 arg2, void* arg3);

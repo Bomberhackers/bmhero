@@ -155,22 +155,48 @@ extern s16 D_8010CD80[2];
 extern s16 D_80110B78[];
 extern s16* D_80110D4C[];
 extern u32 D_801110F0[];
+extern struct UnkStruct_80027C00 D_80111414;
+extern struct UnkStruct_80027C00 D_80111468;
 extern struct UnkStruct_80027C00 D_80111474;
 extern struct UnkStruct_80027C00 D_80111480;
+extern struct UnkStruct_80027C00 D_8011148C;
+extern struct UnkStruct_80027C00 D_801114A4;
 extern struct UnkStruct_80027C00 D_801114B0;
 extern struct UnkStruct_80027C00 D_801114BC;
+extern struct UnkStruct_80027C00 D_80111504;
+extern struct UnkStruct_80027C00 D_8011151C;
+extern struct UnkStruct_80027C00 D_80111534;
+extern struct UnkStruct_80027C00 D_8011154C;
+extern struct UnkStruct_80027C00 D_80111594;
+extern struct UnkStruct_80027C00 D_801115AC;
+extern struct UnkStruct_80027C00 D_801115C4;
+extern struct UnkStruct_80027C00 D_801115DC;
+extern struct UnkStruct_80027C00 D_801116A8;
+extern struct UnkStruct_80027C00 D_801116C0;
+extern struct UnkStruct_80027C00 D_801116D8;
+extern struct UnkStruct_80027C00 D_801116F0;
+extern struct UnkStruct_80027C00 D_80111714;
 extern struct UnkStruct_80027B34 D_80111828;
 extern struct UnkStruct_80027C00 D_80111838;
 extern struct UnkStruct_80027C00 D_80111850;
+extern struct UnkStruct_80027C00 D_80111868;
 extern UNK_TYPE D_80111880[];
 extern UNK_TYPE D_80111888;
 extern UNK_TYPE D_80111A74[];
+extern UNK_TYPE D_80111EB4[];
+extern UNK_TYPE D_80112298[];
 extern UNK_TYPE D_80112414;
+extern UNK_TYPE D_8011263C[];
+extern UNK_TYPE D_80112940[];
 extern u32 D_80112F30;
 extern u32 D_80112FC4;
+extern UNK_TYPE D_80113118[];
+extern u32 D_80113134[2];
 extern u32 D_8011313C;
+extern u32 D_8011319C;
 extern u32 D_801131A0;
 extern u32 D_801131A8;
+extern struct UnkStruct_80027C00* D_80113294[2];
 extern u32 D_80115CF8;
 extern u32 D_80116058;
 extern u32 D_80116164;
@@ -317,6 +343,9 @@ extern s32 D_80116674[];                       //.rodata
 extern struct UnkStruct_8011670C D_8011670C[]; //.rodata
 extern s32 D_801168CC[];                       //.rodata
 extern s32 D_801168D0[];                       //.rodata
+
+extern u32 D_8011694C;
+extern u32 D_80116950;
 
 extern UNK_TYPE D_8011698C; //size of 0x1C
 
@@ -478,6 +507,8 @@ extern f32 D_80134F40;
 extern s32 D_80134FB0;
 extern s32 D_80134FB4;
 extern u32* D_80134FB8;
+extern s32 D_80134FC0;
+extern UNK_TYPE* D_80134FC4;
 extern s32 D_80134FD0;
 extern struct ObjectStruct gObjects[207];
 extern struct UnkBigStruct_8006B64C D_801541F8[];

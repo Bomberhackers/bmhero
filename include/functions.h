@@ -146,6 +146,7 @@ void func_8028491C(void);
 void func_80025810(s32, s32, s32);
 
 //76640.c
+void func_80069D04(s32, s32);
 void func_800766B4(s32);
 void func_80085B34(f32, f32);
 void func_80087E14();

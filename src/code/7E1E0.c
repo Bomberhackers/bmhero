@@ -4,6 +4,7 @@
 //rodata
 extern f32 D_801133EC;
 extern f32 D_801133F0;
+extern f32 D_801133E8;
 
 void func_8008E4A4(u32); 
 void func_8008E788(u32, s16);                          /* extern */
@@ -1254,7 +1255,25 @@ void func_80093F30(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80094128.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_800941C4.s")
+void func_800941C4(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
+    struct UnkStruct_80027C00* sp34;
+    s32 sp30;
+
+    if (arg0 == 0xC) {
+        return;
+    }
+
+    if(gFileArray[D_80124D90[arg0+32].unk24[0].unk0].ptr != NULL)
+    {
+        sp34 = func_80093940(arg0 + 0x20);
+        sp30 = func_80027464(1, sp34, arg1, arg2, arg3, 0.0f);
+        if (sp30 != -1) {
+            gObjects[sp30].unkD4 = 0.0f;
+            gObjects[sp30].unkD8 = 0.0f;
+            gObjects[sp30].Scale.x = gObjects[sp30].Scale.y = gObjects[sp30].Scale.z = D_801133E8;
+        }
+    }
+}
 
 void func_80094370(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     struct UnkStruct_80027C00* sp34;

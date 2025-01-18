@@ -2372,37 +2372,28 @@ void func_8009C224(void)
 
 extern u32 D_80116A88;
 
-void func_8009C2E0(void)
-{
-    struct ObjectStruct *sp3C;
+void func_8009C2E0(void) {
+    struct ObjectStruct* sp3C;
     s32 sp38;
 
     sp3C = &gObjects[gCurrentParsedObject];
-    if (sp3C->unk132 == 0)
-    {
+    if (sp3C->unk132 == 0) {
         sp3C->unk132 += 1;
         sp3C->unk108 = 0;
         sp3C->unk13A = 1;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0x42, &D_80116A88);
-        if (sp3C->unkE4 == 0x42)
-        {
-            func_800941C4(sp3C->unkA6, sp3C->Pos.x, sp3C->Pos.y + 60.0f, sp3C->Pos.z);
-        }
-        else if (sp3C->unkE4 == 0x43)
-        {
-            if ((D_801775F6 != 0) && (func_80014E80(0x64) < 0x32))
-            {
+        if (sp3C->unkE4 == 0x42) {
+            func_800941C4((s32) sp3C->unkA6, sp3C->Pos.x, sp3C->Pos.y + 60.0f, sp3C->Pos.z);
+        } else if (sp3C->unkE4 == 0x43) {
+            if ((D_801775F6 != 0) && (func_80014E80(0x64) < 0x32)) {
                 sp38 = D_8011486C[0].unk0_1[func_80014E80(4)] - 0x20;
-                func_800941C4((s16)sp38, sp3C->Pos.x, sp3C->Pos.y + 60.0f, sp3C->Pos.z);
+                func_800941C4(sp38, sp3C->Pos.x, sp3C->Pos.y + 60.0f, sp3C->Pos.z);
             }
-        }
-        else if (sp3C->unkE4 == 0x44)
-        {
+        } else if (sp3C->unkE4 == 0x44) {
             func_8009BBC4(sp3C->Pos.x, sp3C->Pos.y + 60.0f, sp3C->Pos.z, func_8002A46C(gCurrentParsedObject));
         }
     }
-    if (func_8001B44C(gCurrentParsedObject, 0) != 0)
-    {
+    if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
         func_8002B0E4(gCurrentParsedObject);
     }
 }
@@ -2894,23 +2885,18 @@ void func_8009E068(void)
     }
 }
 
-void func_8009E10C(void)
-{
-    struct ObjectStruct *sp1C;
+void func_8009E10C(void) {
+    struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
-    if (sp1C->unk132 == 0)
-    {
+    if (sp1C->unk132 == 0) {
         sp1C->unk132 = 1;
         sp1C->unkA6 = 0;
     }
-    if (sp1C->unkA6 < 0xA)
-    {
+    if (sp1C->unkA6 < 0xA) {
         sp1C->unkA6 += 1;
         sp1C->Pos.y += 43.0f;
-    }
-    else
-    {
+    } else {
         sp1C->unkA4 = 3;
         sp1C->unk132 = 0;
         func_800941C4(8, 90.0f, 2230.0f, -60.0f);

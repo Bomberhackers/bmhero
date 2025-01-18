@@ -201,7 +201,7 @@ void *func_800122F0(struct UnkStruct800122F0_Arg0 *arg0)
             sp2C->unk6C[sp3C].unk0 = *unksp28.sp28_0++;
             sp2C->unk6C[sp3C].unk8 = *unksp28.sp28_0++;
             sp2C->unk6C[sp3C].unkC = *unksp28.sp28_0++;
-            sp2C->unk6C[sp3C].unk4 = malloc(sp2C->unk6C[sp3C].unk8 << 5); //???
+            sp2C->unk6C[sp3C].unk4 = malloc(sp2C->unk6C[sp3C].unk8 * 0x20); //???
 
             for (sp38 = 0; sp38 < sp2C->unk6C[sp3C].unk8; sp38++)
             {

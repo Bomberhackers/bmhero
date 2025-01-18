@@ -464,7 +464,7 @@ segments:
     - [0x106D40, rodata]
     - [0x106DF0, rodata]
     - [0x106E50, rodata]
-    - [0x106E50, rodata]
+    - [0x106F40, .rodata, code/9B110]
     - [0x1070F0, .rodata, code/A7AD0]
     - [0x107210, .rodata, code/B27B0]
     - [0x107230, rodata]

@@ -565,7 +565,7 @@ void func_803321E4_unk_bin_20() {
 
     if (obj->unkA6 == 0x1E) {
         obj->unkA6--;
-        func_8007F070(obj->Pos.x, obj->Pos.y, obj->Pos.z, 0x40A00000);
+        func_8007F070(obj->Pos.x, obj->Pos.y, obj->Pos.z, 5.0f);
     } else if (obj->unkA6 == 0) {
         func_8001BB34(gCurrentParsedObject, 1);
 

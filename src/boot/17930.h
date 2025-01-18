@@ -1,21 +1,6 @@
 #ifndef _17930_H
 #define _17930_H
 
-struct UnkStruct8016C298_1
-{
-    s32 unk0;
-    u8 *unk4;
-    u8 *unk8;
-    s32 *unkC;
-    s32 *unk10;
-    s16 unk14;
-    u8 unk16;
-    u8 unk17;
-    s8 unk18;
-    s8 unk19;
-    char pad1A[2];
-};
-
 struct UnkStruct8016C298
 {
     struct UnkStruct8016C298_1 *unk0;

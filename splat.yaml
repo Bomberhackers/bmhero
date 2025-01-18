@@ -46,7 +46,7 @@ segments:
     - [0x15700, c, boot/LZSS] # LZSS decompression routines
     - [0x15A80, c, boot/15A80]
     - [0x17930, c, boot/17930]
-    - [0x1FAB0, c, boot/1FAB0]
+    - [0x1FAB0, c, boot/cont_pak]
     - [0x21E10, c, boot/21E10]
     - [0x25810, c, boot/25810]
     - [0x26CE0, c, boot/26CE0]
@@ -274,7 +274,7 @@ segments:
     - [0x4AFD0, .data, boot/12AF0]
     - [0x4B000, .data, boot/15A80]
     - [0x4B190, .data, boot/17930]
-    - [0x4B1F0, .data, boot/1FAB0]
+    - [0x4B1F0, .data, boot/cont_pak]
     - [0x4B240, .data, boot/25810]
     - [0x4B260, .data, boot/2BF00]
     - [0x4B350, .data, boot/malloc/malloc]
@@ -308,7 +308,7 @@ segments:
     - [0x4C7F0, .rodata, boot/10AB0]
     - [0x4C810, .rodata, boot/15A80]
     - [0x4C820, .rodata, boot/17930]
-    - [0x4C860, .rodata, boot/1FAB0]
+    - [0x4C860, .rodata, boot/cont_pak]
     - [0x4C940, .rodata, boot/21E10]
     - [0x4C9B0, .rodata, boot/26CE0]
     - [0x4CA40, .rodata, boot/2BF00]
@@ -419,7 +419,7 @@ segments:
     - [0xFAA60, rodata]
     - [0xFDC20, rodata]
     - [0xFE460, rodata]
-    - [0xFEEC0, rodata]
+    - [0xFEEC0, .rodata, code/69AA0]
     - [0xFF020, rodata]
     - [0xFF030, rodata]
     - [0xFF0F0, .rodata, code/76640]
@@ -457,6 +457,7 @@ segments:
     - [0x105A40, rodata]
     - [0x105B00, rodata]
     - [0x105BC0, rodata]
+    - [0x105F20, rodata]
     - [0x106640, rodata]
     - [0x106A00, rodata]
     - [0x106D10, rodata]
@@ -472,7 +473,7 @@ segments:
     - [0x107350, rodata]
     - [0x107360, rodata]
     - [0x107380, rodata]
-    - [0x107500, rodata]
+    - [0x107500, .rodata, code/BE560]
     - [0x1075B0, .rodata, code/C4470]
     - [0x107630, .rodata, code/CAFF0]
     - [0x1076A0, rodata]
@@ -771,7 +772,7 @@ segments:
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x184EE0, c, overlays/184EE0/184EE0]
-    - [0x189810, data]
+    - [0x189810, .rodata, overlays/184EE0/184EE0]
 
   - name: unk_bin_16
     type: code

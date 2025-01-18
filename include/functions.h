@@ -75,7 +75,6 @@ void func_8001A958(s32 arg0);
 void func_8001B234(s32 arg0, s32 arg1, s32 arg2);
 
 // 1FAB0.c
-s32 func_8001F38C(struct UnkStruct_8001EFD0*, s32);
 void func_8001F9DC();
 void func_8001FAD4();
 void func_800200D8(void);
@@ -147,6 +146,7 @@ void func_8028491C(void);
 void func_80025810(s32, s32, s32);
 
 //76640.c
+void func_80069D04(s32, s32);
 void func_800766B4(s32);
 void func_80085B34(f32, f32);
 void func_80087E14();
@@ -617,7 +617,7 @@ s32 func_80070A6C();
 s32 func_800711B4();
 void func_80076458();
 void func_80076640(void);
-s32 func_8007957C();
+void func_8007957C();
 void func_8007F580();
 void Score_Update(s16 c);
 void func_80022B54(void);

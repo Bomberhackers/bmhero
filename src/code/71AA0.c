@@ -590,7 +590,7 @@ void func_800821E0(void) {
     } else {
         func_8001D638(1, 0, 0, 0);
     }
-    guPerspective(D_8016E104->unk00, &sp3E, 50.0f, 1.3333334f, 100.0f, D_801779C8, 1.0f);
+    guPerspective(D_8016E104->unk00, &sp3E, 50.0f, 1.3333334f, 100.0f, D_801779C8.raw, 1.0f);
     sp34 = gMasterDisplayList++;
     sp34->words.w0 = 0xBC00000E;
     sp34->words.w1 = (u32) sp3E;

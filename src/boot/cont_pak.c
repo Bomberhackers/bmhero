@@ -24,6 +24,20 @@ typedef enum
     EEPROM_READ
 } BACKUP_MEM_TEST_MENU_OPTS;
 
+struct UnkStruct_8001EFD0 {
+    OSPfs pfs;
+    s32 unk68;
+    s32 unk6C;
+    s32 unk70;
+    s32 unk74;
+    s32 unk78;
+    s32 unk7C;
+    union {
+        s32 raw; 
+        OSPfsState* pfs_buf[0x1]; // this is stil UB
+    };
+};
+
 struct UnkStruct_8004A5F0
 {
     union
@@ -111,6 +125,12 @@ s32 D_8004A634 = 1;
 s32 D_8004A638 = 1;
 s32 D_8004A63C = 0;
 
+//.bss
+extern struct UnkStruct_8001EFD0 D_80056E28[];
+extern struct UnkStruct_8001EFD0 D_80056E98[];
+extern struct UnkStruct_8001EFD0 D_80056E9C[];
+extern struct UnkStruct_8001EFD0 D_80056EA4[];
+
 #define MEMBER_ACCESS(ptr, index, member) ((struct UnkStruct_8001EFD0 *)((char *)ptr + (index * 0x84)))->member
 #define ARRAY_ACCESS(ptr, index, type) ((type *)ptr + (index * 0x84))
 
@@ -156,7 +176,7 @@ void func_8001EFD0(struct UnkStruct_8001EFD0 *arg0, s32 arg1)
     arg0[arg1].unk70 = -1;
     arg0[arg1].unk78 = -1;
     arg0[arg1].unk7C = -1;
-    arg0[arg1].unk80[0] = -1;
+    arg0[arg1].raw = -1;
     arg0[arg1].unk74 = -1;
 }
 
@@ -240,7 +260,7 @@ s32 func_8001F38C(struct UnkStruct_8001EFD0 *arg0, s32 arg1)
     sp2C = osPfsFreeBlocks(((u32)arg0 + (arg1 * 0x84)), &sp28);
     if (sp2C == 0)
     {
-        if (arg0->unk80[0x64]->file_size > sp28)
+        if (arg0->pfs_buf[0x64]->file_size > sp28)
         {
             sp1C = 1;
         }
@@ -270,10 +290,10 @@ s32 func_8001F4B8(struct UnkStruct_8001EFD0 *arg0, s32 arg1)
     s32 sp24;
 
     sp24 = osPfsFindFile(ARRAY_ACCESS(arg0, arg1, char),
-                         arg0->unk80[0x64]->company_code,
-                         arg0->unk80[0x64]->game_code,
-                         &arg0->unk80[0x64]->game_name,
-                         &arg0->unk80[0x64]->ext_name,
+                         arg0->pfs_buf[0x64]->company_code,
+                         arg0->pfs_buf[0x64]->game_code,
+                         &arg0->pfs_buf[0x64]->game_name,
+                         &arg0->pfs_buf[0x64]->ext_name,
                          &MEMBER_ACCESS(arg0, arg1, unk68));
 
     arg0[arg1].unk7C = sp24;
@@ -286,11 +306,11 @@ s32 func_8001F550(struct UnkStruct_8001EFD0 *arg0, s32 arg1)
     s32 sp2C;
 
     sp2C = osPfsAllocateFile(&MEMBER_ACCESS(arg0, arg1, pfs),
-                             arg0->unk80[0x64]->company_code,
-                             arg0->unk80[0x64]->game_code,
-                             arg0->unk80[0x64]->game_name,
-                             arg0->unk80[0x64]->ext_name,
-                             arg0->unk80[0x64]->file_size,
+                             arg0->pfs_buf[0x64]->company_code,
+                             arg0->pfs_buf[0x64]->game_code,
+                             arg0->pfs_buf[0x64]->game_name,
+                             arg0->pfs_buf[0x64]->ext_name,
+                             arg0->pfs_buf[0x64]->file_size,
                              &MEMBER_ACCESS(arg0, arg1, unk68));
 
     arg0[arg1].unk78 = sp2C;
@@ -302,7 +322,7 @@ s32 func_8001F5F0(struct UnkStruct_8001EFD0 *arg0, s32 arg1, s32 arg2, s32 arg3,
     s32 sp24;
 
     sp24 = osPfsReadWriteFile(&MEMBER_ACCESS(arg0, arg1, pfs), MEMBER_ACCESS(arg0, arg1, unk68), 1, arg2, arg3, arg4);
-    arg0[arg1].unk80[0] = sp24;
+    arg0[arg1].raw = sp24;
     return sp24;
 }
 
@@ -311,7 +331,7 @@ s32 func_8001F68C(struct UnkStruct_8001EFD0 *arg0, s32 arg1, s32 arg2, s32 arg3,
     s32 sp24;
 
     sp24 = osPfsReadWriteFile(&MEMBER_ACCESS(arg0, arg1, pfs), MEMBER_ACCESS(arg0, arg1, unk68), '\0', arg2, arg3, arg4);
-    arg0[arg1].unk80[0] = sp24;
+    arg0[arg1].raw = sp24;
     return sp24;
 }
 
@@ -809,7 +829,7 @@ UNUSED void Debug_BackupMemTest_Menu(void)
             sprintf((char *)gDebugTextBuf, "%dp=%2d %2d %2d %2d %2d %2d %2d", i + 1,
                     D_80056E28[i].unk70, D_80056E28[i].unk74,
                     D_80056E28[i].unk78, D_80056E28[i].unk7C,
-                    D_80056E28[i].unk80[0], D_80056E28[i].unk6C, D_80056E28[i].unk68);
+                    D_80056E28[i].raw, D_80056E28[i].unk6C, D_80056E28[i].unk68);
 
             debug_print_xy(48, (i * 16) + 64);
         }

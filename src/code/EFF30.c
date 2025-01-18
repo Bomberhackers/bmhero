@@ -459,7 +459,7 @@ void Debug_FogEdit_Menu(void)
     debug_print_xy(0x20, 0x50);
     sprintf((char *)gDebugTextBuf, "   DIR MAX  = %d", D_80177948);
     debug_print_xy(0x20, 0x60);
-    sprintf((char *)gDebugTextBuf, "   ZFAR     = %f", (f64)D_801779C8);
+    sprintf((char *)gDebugTextBuf, "   ZFAR     = %f", (f64)D_801779C8.raw);
     debug_print_xy(0x20, 0x70);
     sprintf((char *)gDebugTextBuf, "=");
     debug_print_xy(0x28, (D_8016E3F4 * 0x10) + 0x20);
@@ -802,7 +802,7 @@ void func_800FFF40(void)
             D_80177948 += sp1C;
             break;
         case 5:
-            D_801779C8 = D_801779C8 + (sp1C * 0x64);
+            D_801779C8.raw = D_801779C8.raw + (sp1C * 0x64);
             break;
         }
     }

@@ -27,14 +27,12 @@ const s32 D_8010CBE8[][2] = {
 
 
 #if DATA
-static const struct Code_Extra_Entry D_8010CC68[7] = {
-    { code_extra_0_ROM_START, code_extra_0_ROM_END },
-    { code_extra_1_ROM_START, code_extra_1_ROM_END },
-    { code_extra_2_ROM_START, code_extra_2_ROM_END },
-    { code_extra_3_ROM_START, code_extra_3_ROM_END },
-    { code_extra_4_ROM_START, code_extra_4_ROM_END },
-    { code_extra_5_ROM_START, code_extra_5_ROM_END },
-    { code_extra_6_ROM_START, code_extra_6_ROM_END },
+const struct Code_Extra_Entry const D_8010CC68[] = {
+     { code_extra_0_ROM_START, code_extra_0_ROM_END },
+     { code_extra_1_ROM_START, code_extra_1_ROM_END },
+     { code_extra_2_ROM_START, code_extra_2_ROM_END },
+     { code_extra_5_ROM_START, code_extra_5_ROM_END },
+     { code_extra_6_ROM_START, code_extra_6_ROM_END },
 };
 #else
 const s32 D_8010CC68[7][2] = {
@@ -47,6 +45,7 @@ const s32 D_8010CC68[7][2] = {
     {(s32)0x144420, (s32)0x147BB0},
 }; /* const */
 #endif
+
 
 // RODATA END
 

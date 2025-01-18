@@ -1310,6 +1310,26 @@ struct UnkStruct_80112518
     char Pad[0x1C];
 };
 
+typedef struct UnkStruct_80119E0C {
+    void* unk0;
+    u8 unk4[0x18];
+    void* unk1C;
+    u8 unk20[0x18];
+    void* unk38;
+    u8 unk3C[0x18];
+    void* unk54;
+    u8 unk58[0x18];
+    void* unk70;
+    u8 unk74[0x18];
+    void* unk8C;
+    u8 unk90[0x18];
+    void* unkA8;
+    u8 unkAC[0x50];
+    void* unkFC;
+    u8 unk100[0x18];
+    void* unk118;
+} UnkStruct_80119E0C;
+
 struct UnkStruct_D_004A280 {
     s32 unk0;
     s32 unk4;

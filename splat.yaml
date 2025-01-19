@@ -983,7 +983,7 @@ segments:
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1CCCE0, c, overlays/1CCCE0/1CCCE0]
-    - [0x1D0130, data]
+    - [0x1D0130, .rodata, overlays/1CCCE0/1CCCE0]
 
   - name: unk_bin_36
     type: code

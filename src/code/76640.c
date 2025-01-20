@@ -1,5 +1,5 @@
 #include <ultra64.h>
-#include "../boot/1050.h"
+#include "types.h"
 
 // RODATA START unk_FF0F0_rodata
 
@@ -7,7 +7,7 @@ const u8 D_8010CBD0[0x10] = {2, 1, 1, 3, 1, 1, 4, 1, 1, 5, 1, 1, 5, 1, 7, 0}; /*
 
 const u8 D_8010CBE0[8] = {1, 2, 4, 8, 0x10, 0x20, 0x40, 0x80}; /* const */
 
-const s32 D_8010CBE8[][2] = {
+const struct Vec2i D_8010CBE8[] = {
     {0, 0},
     {0, 1},
     {-1, 0},
@@ -383,8 +383,8 @@ void func_80084BD8(f32 *arg0, s32 arg1, f32 arg2, f32 arg3)
             sp1C = player_pos_x;
             sp18 = player_pos_z;
             sp2D = sp2F;
-            player_pos_x = player_pos_x + D_8010CBE8[sp2F][0] * sp20;
-            player_pos_z = player_pos_z + D_8010CBE8[sp2F][1] * sp20;
+            player_pos_x = player_pos_x + D_8010CBE8[sp2F].x * sp20;
+            player_pos_z = player_pos_z + D_8010CBE8[sp2F].y * sp20;
         }
     }
     if ((D_8016523E == 0) || (D_8016523E == 5) || (D_8016523E == 6))

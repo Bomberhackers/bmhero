@@ -225,6 +225,7 @@ extern s32 D_80113B08;
 extern UNK_TYPE D_80113B68;
 extern UNK_TYPE D_80113BB0;
 extern UNK_TYPE D_80113C1C;
+extern struct UnkStruct_80027C00 D_80113C7C;
 extern UNK_TYPE D_80113E50;
 extern struct UnkStruct_80027C00 D_80113EC8;
 extern struct UnkStruct_80027C00 D_80113EC8;
@@ -350,7 +351,7 @@ extern u32 D_80116950;
 extern UNK_TYPE D_8011698C; //size of 0x1C
 
 extern s32 D_80116EC4[]; 
-
+extern u32 D_80117490;
 extern s32 D_80117504;
 extern s32 D_80117554;
 extern s32 D_80117570[]; 

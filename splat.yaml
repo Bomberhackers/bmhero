@@ -1049,7 +1049,7 @@ segments:
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1ED860, c, overlays/1ED860/1ED860]
-    - [0x1EF7A0, data]
+    - [0x1EF7A0, .rodata, overlays/1ED860/1ED860]
 
   - name: unk_bin_42
     type: code

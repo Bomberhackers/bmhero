@@ -578,7 +578,8 @@ segments:
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x13AC20, c, overlays/13AC20/13AC20]
-    - [0x13C1B0, data]
+    - [0x13C1B0, .data, overlays/13AC20/13AC20]
+    - [0x13C490, .rodata, overlays/13AC20/13AC20]
 
   - name: code_extra_4
     type: code

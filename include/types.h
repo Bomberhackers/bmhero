@@ -131,6 +131,11 @@ struct UnkStruct800026F4_Arg2 {
     u64 *unk3C;
 };
 
+struct Vec2i {
+    s32 x;
+    s32 y;
+};
+
 struct Vec2f
 {
     f32 x;

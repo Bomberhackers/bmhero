@@ -589,7 +589,7 @@ void func_80332C94_unk_bin_15() {
 
         func_8002B0E4(gCurrentParsedObject);
     } else {
-        obj->unkC2 -= 1;
+        obj->unkC2 --;
     }
 }
 
@@ -850,7 +850,7 @@ void func_80334054_unk_bin_15() {
         } else {
             func_8002A8B4(gCurrentParsedObject, 3.0f);
             obj->Rot.y = obj->unk3C;
-            obj->unk132 -= 1;
+            obj->unk132 --;
         }
     }
 }
@@ -911,9 +911,9 @@ void func_80334540_unk_bin_15() {
         func_8002A8B4(gCurrentParsedObject, 3.0f);
 
         obj->Rot.y = obj->unk3C;
-        obj->unkA6 -= 1;
+        obj->unkA6 --;
     } else {
-        obj->unkA6 -= 1;
+        obj->unkA6 --;
     }
     if (func_80028FA0(gCurrentParsedObject) != 0) {
         func_8002B0E4(gCurrentParsedObject);
@@ -938,6 +938,6 @@ void func_80334540_unk_bin_15() {
         func_8002B0E4(gCurrentParsedObject);
         return;
     } else if (1) {
-        obj->unkA8 -= 1;
+        obj->unkA8 --;
     }
 }

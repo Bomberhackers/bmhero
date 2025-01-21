@@ -464,7 +464,7 @@ segments:
     - [0x106D40, rodata]
     - [0x106DF0, rodata]
     - [0x106E50, rodata]
-    - [0x106E50, rodata]
+    - [0x106F40, .rodata, code/9B110]
     - [0x1070F0, .rodata, code/A7AD0]
     - [0x107210, .rodata, code/B27B0]
     - [0x107230, rodata]
@@ -578,7 +578,8 @@ segments:
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x13AC20, c, overlays/13AC20/13AC20]
-    - [0x13C1B0, data]
+    - [0x13C1B0, .data, overlays/13AC20/13AC20]
+    - [0x13C490, .rodata, overlays/13AC20/13AC20]
 
   - name: code_extra_4
     type: code
@@ -827,7 +828,7 @@ segments:
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1A89C0, c, overlays/1A89C0/1A89C0]
-    - [0x1ABB70, data]
+    - [0x1ABB70, .rodata, overlays/1A89C0/1A89C0]
 
   - name: unk_bin_21
     type: code
@@ -983,7 +984,7 @@ segments:
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1CCCE0, c, overlays/1CCCE0/1CCCE0]
-    - [0x1D0130, data]
+    - [0x1D0130, .rodata, overlays/1CCCE0/1CCCE0]
 
   - name: unk_bin_36
     type: code
@@ -1049,7 +1050,7 @@ segments:
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1ED860, c, overlays/1ED860/1ED860]
-    - [0x1EF7A0, data]
+    - [0x1EF7A0, .rodata, overlays/1ED860/1ED860]
 
   - name: unk_bin_42
     type: code

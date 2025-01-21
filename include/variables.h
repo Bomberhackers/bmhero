@@ -225,6 +225,7 @@ extern s32 D_80113B08;
 extern UNK_TYPE D_80113B68;
 extern UNK_TYPE D_80113BB0;
 extern UNK_TYPE D_80113C1C;
+extern struct UnkStruct_80027C00 D_80113C7C;
 extern UNK_TYPE D_80113E50;
 extern struct UnkStruct_80027C00 D_80113EC8;
 extern struct UnkStruct_80027C00 D_80113EC8;
@@ -350,7 +351,7 @@ extern u32 D_80116950;
 extern UNK_TYPE D_8011698C; //size of 0x1C
 
 extern s32 D_80116EC4[]; 
-
+extern u32 D_80117490;
 extern s32 D_80117504;
 extern s32 D_80117554;
 extern s32 D_80117570[]; 
@@ -442,10 +443,18 @@ extern struct ObjectStruct D_801199AC;
 extern struct ObjectStruct D_801199E4;
 extern struct ObjectStruct D_80119A40;
 extern struct ObjectStruct D_80119A60;
+extern u32 D_80119C80[24];
+extern UnkStruct_80119E0C D_80119E0C;
+extern u32 D_80119FA4[7];
 extern struct ObjectStruct D_8011BA88;
 extern struct ObjectStruct D_8011BA8C;
 extern struct ObjectStruct D_8011BB50;
 extern s32 D_8011BA94;
+extern u32 D_8011BCD8;
+extern u32 D_8011BCD0;
+extern u32 D_8011BCD4;
+extern u32 D_8011BCDC;
+extern u32 D_8011BCE0;
 extern struct UnkStruct80122B08 D_80122B08[];
 extern struct UnkStruct_80026548 D_80124D90[];
 extern s32 gDebugCurrentMenuItem;

@@ -130,6 +130,7 @@ extern struct UnkStruct_8001EFD0 D_80056E28[];
 extern struct UnkStruct_8001EFD0 D_80056E98[];
 extern struct UnkStruct_8001EFD0 D_80056E9C[];
 extern struct UnkStruct_8001EFD0 D_80056EA4[];
+extern s32 gNoRumblePak; //!< boolean only used in this file
 
 #define MEMBER_ACCESS(ptr, index, member) ((struct UnkStruct_8001EFD0 *)((char *)ptr + (index * 0x84)))->member
 #define ARRAY_ACCESS(ptr, index, type) ((type *)ptr + (index * 0x84))
@@ -144,7 +145,7 @@ void func_8001FBAC(void);
 void func_80020C44(void);
 void *func_80020F18(void);
 
-int GetSi_DMA_Status(void)
+int GetSi_Status(void)
 {
     return HW_REG(SI_STATUS_REG, unsigned) & (SI_STATUS_DMA_BUSY | SI_STATUS_RD_BUSY);
 }
@@ -378,7 +379,7 @@ s32 func_8001F8A0(void)
     {
         return 1;
     }
-    if (GetSi_DMA_Status() != 0)
+    if (GetSi_Status() != 0)
     {
         return 1;
     }
@@ -391,7 +392,7 @@ s32 func_8001F8A0(void)
     }
 }
 
-s32 func_8001F938(void)
+s32 RestartPak(void)
 {
     s32 sp1C;
 
@@ -399,7 +400,7 @@ s32 func_8001F938(void)
     {
         return 1;
     }
-    if (GetSi_DMA_Status() != 0)
+    if (GetSi_Status() != 0)
     {
         return 1;
     }
@@ -413,13 +414,13 @@ s32 func_8001F938(void)
     }
 }
 
-void func_8001F9DC(void)
+void Check_PakState(void)
 {
-    if (D_80056E20 != 0)
+    if (gNoRumblePak != 0)
     {
         return;
     }
-    if (GetSi_DMA_Status() != 0)
+    if (GetSi_Status() != 0)
     {
         gRumblePakState = NO_RUMBLE_PAK;
     }
@@ -442,21 +443,21 @@ void func_8001F9DC(void)
     D_80056E1C = 0;
     if (gRumblePakState == HAVE_RUMBLE_PAK)
     {
-        func_8001F938();
+        RestartPak();
     }
 }
 
-void func_8001FAD4(void)
+void Init_Pak(void)
 {
-    D_80056E20 = 0;
-    func_8001F9DC();
+    gNoRumblePak = FALSE;
+    Check_PakState();
     if (gRumblePakState == HAVE_RUMBLE_PAK)
     {
-        D_80056E20 = 0;
+        gNoRumblePak = FALSE;
     }
     else
     {
-        D_80056E20 = 1;
+        gNoRumblePak = TRUE;
         gRumblePakState = NO_RUMBLE_PAK;
     }
 }
@@ -483,7 +484,7 @@ void func_8001FBAC(void)
         if (D_80056E1C >= 0xF)
         {
             D_80056E1C = 0;
-            func_8001F9DC();
+            Check_PakState();
         }
         else
         {
@@ -495,7 +496,7 @@ void func_8001FBAC(void)
     {
         if (D_80056E18 >= 0xF)
         {
-            func_8001F938();
+            RestartPak();
             D_80056E18 = 0;
         }
         else
@@ -506,7 +507,7 @@ void func_8001FBAC(void)
     }
     if (D_80056DFC < 4)
     {
-        func_8001F938();
+        RestartPak();
         D_80056DFC -= 1;
     }
     else
@@ -531,7 +532,7 @@ void func_8001FBAC(void)
             if (D_80056E14 == 0)
             {
                 D_80056E14 = 1;
-                func_8001F938();
+                RestartPak();
             }
             D_80056E10 -= 1;
             if (D_80056E10 == 0)
@@ -620,7 +621,7 @@ void func_8001FF80(void)
     }
 }
 
-void func_800200D8(void)
+void PakWrite(void)
 {
     s32 sp24;
 
@@ -647,7 +648,7 @@ void func_800200D8(void)
     }
 }
 
-void func_8002021C(void)
+void PakRead(void)
 {
     s32 sp24;
     s32 i;
@@ -678,14 +679,14 @@ void func_8002021C(void)
     }
 }
 
-void Debug_BackMemTest_Write2Eeeprom(void)
+void Write2Eeprom(void)
 {
     if ((gContButtonPressed[0] & CONT_A) && (Eeprom_Write(&gContMesgQueue, D_8004A610, 0, 0x200) != 0))
     {
     }
 }
 
-void Debug_BackMemTest_Read_Eeprom(void)
+void ReadEeprom(void)
 {
     if ((gContButtonPressed[0] & CONT_A) && (Eeprom_Read(&gContMesgQueue, D_80057240, 0, 0x200) != 0))
     {
@@ -774,16 +775,16 @@ UNUSED void Debug_BackupMemTest(void)
         switch (gDebugBackMemTestItem)
         { /* irregular */
         case PAK_DATA_WRITE:
-            func_800200D8();
+            PakWrite();
             break;
         case PAK_DATA_READ:
-            func_8002021C();
+            PakRead();
             break;
         case EEPROM_WRITE:
-            Debug_BackMemTest_Write2Eeeprom();
+            Write2Eeprom();
             break;
         case EEPROM_READ:
-            Debug_BackMemTest_Read_Eeprom();
+            ReadEeprom();
             break;
         }
     }
@@ -963,7 +964,7 @@ s32 func_80021158(void)
     func_8001ECB8();
     D_8016526C = &Debug_ShockTest_Menu;
     D_80165274 = &Debug_ShockTest;
-    func_8001F9DC();
+    Check_PakState();
     func_8001E954((s32 *)0x8024C000);
     func_8001E98C(0, &unk_bin_0_2_ROM_START, code_extra_0_ROM_START);
     func_80019C84();

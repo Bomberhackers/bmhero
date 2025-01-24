@@ -4524,3 +4524,4 @@ D_8016E408 = 0x8016E408; //defined:true size:0x4
 D_8016E418 = 0x8016E418; //defined:true size:0x4
 D_8016E410 = 0x8016E410; //defined:true size:0x4
 func_80280E74_code_extra_3 = 0x80280E74; //defined:true
+gNoRumblePak = 0x80056E20; //defined:true

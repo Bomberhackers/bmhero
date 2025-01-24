@@ -11,7 +11,6 @@
 #define ALIGN16(val) (((val) + 0xF) & ~0xF)
 
 
-
 typedef float Matrix[4][4];
 
 struct UnkStruct8010B3FC {

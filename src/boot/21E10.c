@@ -1,6 +1,7 @@
 #include "prevent_bss_reordering.h"
 #include "common.h"
 #include "21E10.h"
+#include "cont_pak.h"
 
 s32 func_80021210(s32 arg0)
 {
@@ -933,7 +934,7 @@ s32 func_800242F0(void)
                 if (D_80134C26 == 0)
                 {
                     func_80069E00(0, 0);
-                    func_8001F9DC();
+                    Check_PakState();
                     return 1;
                 }
             }
@@ -944,7 +945,7 @@ s32 func_800242F0(void)
                 D_80176602 = 0;
                 func_800178D4(-1, 0, 0x40, -1, 0);
                 func_80016FF8(0x40);
-                func_8001F9DC();
+                Check_PakState();
                 return 1;
             }
         }

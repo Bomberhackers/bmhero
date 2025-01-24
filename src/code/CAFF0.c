@@ -68,50 +68,50 @@ void func_800D90BC(void) {
 }
 
 void func_800D9134(void) {
-    struct ObjectStruct* sp24;
+    struct ObjectStruct* obj;
 
-    sp24 = &gObjects[gCurrentParsedObject];
-    if (sp24->unk132 == 0) {
-        sp24->unk132 = 1;
-        sp24->unkA6 = 0xA;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 = 1;
+        obj->unkA6 = 0xA;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0x184, &D_80118BDC);
         func_8001BBDC(gCurrentParsedObject, 1);
     }
 
-    if (sp24->unkA6 == 0)
+    if (obj->unkA6 == 0)
     {
         if (func_8002A1FC(gCurrentParsedObject, 960.0f) != 0)
         {
-            if(gPlayerObject->Pos.y - sp24->Pos.y > -360.0f && gPlayerObject->Pos.y - sp24->Pos.y < 360.f)
+            if(gPlayerObject->Pos.y - obj->Pos.y > -360.0f && gPlayerObject->Pos.y - obj->Pos.y < 360.f)
             {
-                sp24->unkA4 = 2;
-                sp24->unk132 = 0;
+                obj->unkA4 = 2;
+                obj->unk132 = 0;
             }
         }
     }
     else
     {
-        sp24->unkA6 -= 1;
+        obj->unkA6 -= 1;
     }
 }
 
 void func_800D9298(void) {
-    struct ObjectStruct* sp1C;
+    struct ObjectStruct* obj;
     f32 sp18;
 
-    sp1C = &gObjects[gCurrentParsedObject];
-    if (sp1C->unk132 == 0) {
-        sp1C->unk132 = 1;
-        sp1C->unkA6 = (s16) (s32) func_8002A46C(gCurrentParsedObject);
-        sp1C->unkA8 = func_8002A560(gCurrentParsedObject, 2.0f);
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 = 1;
+        obj->unkA6 = (s16) (s32) func_8002A46C(gCurrentParsedObject);
+        obj->unkA8 = func_8002A560(gCurrentParsedObject, 2.0f);
     }
-    sp18 = func_80015538((f32) sp1C->unkA6, -sp1C->unk3C);
+    sp18 = func_80015538((f32) obj->unkA6, -obj->unk3C);
     if ((sp18 <= 7.0f) || (353.0f <= sp18)) {
-        sp1C->unkA4 = 3;
-        sp1C->unk132 = 0;
+        obj->unkA4 = 3;
+        obj->unk132 = 0;
     } else {
-        sp1C->unk3C = func_80015538(sp1C->unk3C, (f32) (sp1C->unkA8 * 0xE));
-        sp1C->Rot.y = sp1C->unk3C;
+        obj->unk3C = func_80015538(obj->unk3C, (f32) (obj->unkA8 * 0xE));
+        obj->Rot.y = obj->unk3C;
     }
 }
 
@@ -505,13 +505,13 @@ void func_800DAA2C(void) {
         sp4->unkA6 = 0;
     }
     if (sp4->unkA6 < 0xC) {
-        sp4->Scale.x = (f32) ((f64) sp4->Scale.x + 0.0500000000000000028);
-        sp4->Scale.y = (f32) ((f64) sp4->Scale.y + 0.0500000000000000028);
-        sp4->Scale.z = (f32) ((f64) sp4->Scale.z + 0.0500000000000000028);
+        sp4->Scale.x = (f32) ((f64) sp4->Scale.x + 0.05);
+        sp4->Scale.y = (f32) ((f64) sp4->Scale.y + 0.05);
+        sp4->Scale.z = (f32) ((f64) sp4->Scale.z + 0.05);
     } else {
-        sp4->Scale.x = (f32) ((f64) sp4->Scale.x - 0.0500000000000000028);
-        sp4->Scale.y = (f32) ((f64) sp4->Scale.y - 0.0500000000000000028);
-        sp4->Scale.z = (f32) ((f64) sp4->Scale.z - 0.0500000000000000028);
+        sp4->Scale.x = (f32) ((f64) sp4->Scale.x - 0.05);
+        sp4->Scale.y = (f32) ((f64) sp4->Scale.y - 0.05);
+        sp4->Scale.z = (f32) ((f64) sp4->Scale.z - 0.05);
     }
     sp4->unkA6 += 1;
     if (sp4->unkA6 == 0x18) {

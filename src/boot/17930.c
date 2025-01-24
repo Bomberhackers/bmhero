@@ -1768,14 +1768,15 @@ void func_8001D4D0(void)
     gDPFillRectangle(gMasterDisplayList++, 0, 0, 319, 239);
 }
 
-void func_8001D638(s32 arg0, char red, char green, char blue)
+//Debug_SetBackgroundColor
+void func_8001D638(s32 setColor, char red, char green, char blue)
 {
 
     gDPPipeSync(gMasterDisplayList++);
     gDPSetColorImage(gMasterDisplayList++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 320,
                      osVirtualToPhysical(D_8016E10C->unk18168));
 
-    if (arg0 != 0)
+    if (setColor)
     {
         gDPSetFillColor(gMasterDisplayList++,
                         (GPACK_RGBA5551(red, green, blue, 1) << 16) | GPACK_RGBA5551(red, green, blue, 1));
@@ -2271,7 +2272,7 @@ void func_8001ECA0(void)
 
 void func_8001ECB8(void)
 {
-    func_8001F9DC();
+    Check_PakState();
     D_8016E244 = 0;
     D_8016E084 = 0;
     D_8016E08C = 0;

@@ -9,7 +9,7 @@
 #define CLAMP_FLOAT(x) (((x) < -48.0f ? -48.0f : (x)))
 #define MIN_CLAMP(a, b) ((a) > (b) ? (b) : CLAMP_FLOAT(a))
 #define ALIGN16(val) (((val) + 0xF) & ~0xF)
-
+#define BOOL s32
 
 
 typedef float Matrix[4][4];

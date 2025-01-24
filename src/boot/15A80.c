@@ -22,6 +22,7 @@ s32 func_80016560(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f3
 void func_80016A80(s64 arg0, s64 arg2, s64 arg4, s64 arg5, f32 *argA, f32 *argB, f32 *argC,
                    f32 *argD);
 
+// Temporal name
 f32 gNumTable[100] = {
     0.0f,
     0.57294f,

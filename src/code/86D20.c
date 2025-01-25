@@ -618,7 +618,7 @@ void func_800969AC(void)
 
         while (TRUE)
         {
-            sp20 = func_80026E58(0x5A, sp20);
+            sp20 = Get_ObjIdx_ByPos(0x5A, sp20);
             if (sp20 == -1)
             {
                 break;
@@ -795,7 +795,7 @@ void func_800974C0(struct ObjectStruct *arg0)
 
         while (TRUE)
         {
-            sp24 = func_80026E58(0x54, sp24);
+            sp24 = Get_ObjIdx_ByPos(0x54, sp24);
             if (sp24 == -1)
             {
                 break;
@@ -1081,7 +1081,7 @@ void func_800983F8(struct ObjectStruct *arg0)
 
         while (TRUE)
         {
-            sp24 = func_80026E58(0x194, sp24);
+            sp24 = Get_ObjIdx_ByPos(0x194, sp24);
             if (sp24 == -1)
             {
                 break;
@@ -2591,7 +2591,7 @@ void func_8009CC88(void)
             func_80026F10(sp34, gCurrentParsedObject);
             sp4C->unk132 += 1;
             gObjects[sp34].Rot.x = sp4C->Rot.x;
-            sp34 = func_80026DBC(0x190);
+            sp34 = Get_ObjIdx_ById(0x190);
             gObjects[sp34].unkB2 += 1;
             sp4C->unkA8 = 1;
         }
@@ -2767,7 +2767,7 @@ void func_8009D7B4(void)
         {
             func_8007EE40(sp1C->Pos.x, sp1C->Pos.y, sp1C->Pos.z, 2.0f);
             func_8002B0E4(gCurrentParsedObject);
-            sp18 = func_80026DBC(0xFB);
+            sp18 = Get_ObjIdx_ById(0xFB);
             gObjects[sp18].unkA4 = 5;
             gObjects[sp18].unk132 = 0;
         }
@@ -2945,7 +2945,7 @@ void func_8009E2FC(void)
     {
         sp1C->unkA4 = 1;
         sp1C->unk132 = 0;
-        sp18 = func_80026DBC(0x28);
+        sp18 = Get_ObjIdx_ById(0x28);
         if (sp18 != -1)
         {
             func_8002B0E4(sp18);
@@ -3677,7 +3677,7 @@ void func_800A0698(void)
 
         while (TRUE)
         {
-            sp20 = func_80026E58(0x5C, sp20);
+            sp20 = Get_ObjIdx_ByPos(0x5C, sp20);
             if (sp20 == -1)
             {
                 break;

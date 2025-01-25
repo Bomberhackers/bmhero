@@ -164,7 +164,7 @@ void func_8006B64C(void) {
         sp24 = 0xE;
         while(1)
         {
-            sp24 = func_80026E58(0x54, sp24);
+            sp24 = Get_ObjIdx_ByPos(0x54, sp24);
             if(sp24 == -1)
             {
                 break;
@@ -202,7 +202,7 @@ void func_8006B7BC(void) {
         sp24 = 0xE;
         while(1)
         {
-            sp24 = func_80026E58(0x164, sp24);
+            sp24 = Get_ObjIdx_ByPos(0x164, sp24);
             if(sp24 == -1)
             {
                 break;
@@ -271,7 +271,7 @@ void func_8006BAC4(void) {
     
     while(1)
     {
-        sp1C = func_80026E58(0x267, sp1C);
+        sp1C = Get_ObjIdx_ByPos(0x267, sp1C);
         
         if (sp1C == -1) 
         {
@@ -304,7 +304,7 @@ void func_8006BBF4(void) {
     sp34 = 0xE;
     while(1)
     {
-        sp34 = func_80026E58(0x26A, sp34);
+        sp34 = Get_ObjIdx_ByPos(0x26A, sp34);
         if (sp34 == -1) {
             break;
         }
@@ -370,7 +370,7 @@ void func_8006BF5C(void) {
         sp24 = 0xE;
         while(1)
         {
-            sp24 = func_80026E58(0x281, sp24);
+            sp24 = Get_ObjIdx_ByPos(0x281, sp24);
             if (sp24 == -1) 
             {
                 break;

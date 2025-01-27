@@ -189,7 +189,7 @@ f32 func_8001B62C(s32, s32);
 f32 func_8001B580(s32, s32);
 void DecompressFile(u32 id, u32 rom_start, u32 rom_end);
 s32 func_8005FE88(s8, s8);
-void func_8006389C(s32, s16, s32, s32);
+void func_8006389C(s16, s16, s16, s16);
 void func_8006357C();
 void func_80069AD8(s32, s32);
 void func_8001A928(s32);

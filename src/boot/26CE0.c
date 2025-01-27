@@ -250,7 +250,7 @@ s32 Get_ObjIdx_ById(s32 id)
 
     obj_found = FALSE;
 
-    for (obj_idx = 14, obj = &gObjects[14]; obj_idx < 74; obj_idx++, obj++)
+    for (obj_idx = 14, obj = &gObjects[14]; obj_idx < 0x4E; obj_idx++, obj++)
     {
         if (obj->unkE4 == id)
         {

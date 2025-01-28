@@ -13,8 +13,6 @@ typedef enum
     DISPTYPE
 } MAIN_MENU_OPTIONS;
 
-extern void print_debug_text(int x, int y, const char *fmt, ...);
-
 void func_800FDA10(void)
 {
     f32 sp4;

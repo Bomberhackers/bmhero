@@ -234,52 +234,71 @@ void func_80026548(void)
     }
 }
 
-s32 func_80026DBC(s32 arg0)
+/**
+ * Find an object using a given id
+ *
+ * @param id Object id
+ * @param objIdx Initial pos to start searching the object
+ * @return *-1* if the obj can't be found, otherwise the object index
+ */
+s32 Get_ObjIdx_ById(s32 id)
 {
-    s32 spC;
-    struct ObjectStruct *sp8;
-    s32 sp4;
+    s32 obj_idx;
+    struct ObjectStruct *obj;
+    s32 obj_found;
 
-    sp4 = FALSE;
+    obj_found = FALSE;
 
-    for (spC = 0xE, sp8 = &gObjects[0xE]; spC < 0x4E; spC++, sp8++)
+    for (obj_idx = 14, obj = &gObjects[14]; obj_idx < 0x4E; obj_idx++, obj++)
     {
-        if (sp8->unkE4 == arg0)
+        if (obj->unkE4 == id)
         {
-            sp4 = TRUE;
+            obj_found = TRUE;
             break;
         }
     }
 
-    if (sp4)
+    if (obj_found)
     {
-        return spC;
+        return obj_idx;
     }
 
     return -1;
 }
 
-s32 func_80026E58(s32 arg0, s32 pos)
-{
-    s32 spC;
-    struct ObjectStruct *sp8;
-    s32 sp4;
+/**
+ * Search an object by the ID starting from a given index
+ *
+ * @param id The ID of the object to search for
+ * @param objIdx Index used for the search
+ * @return The index of the object if found, otherwise -1 if the object is not found
+ */
 
-    sp4 = FALSE;
-    for (sp8 = &gObjects[pos], spC = pos; spC < 0x4E; spC++, sp8++)
+s32 Get_ObjIdx_ByPos(s32 id, s32 objPos)
+{
+    s32 obj_idx;
+    struct ObjectStruct *obj;
+    s32 obj_found;
+
+    obj_found = FALSE;
+
+    /* We do the search by using objIdx as our first clue */
+
+    for (obj = &gObjects[objPos], obj_idx = objPos; obj_idx < 78; obj_idx++, obj++)
     {
-        if (sp8->unkE4 == arg0)
+        if (obj->unkE4 == id)
         {
-            sp4 = TRUE;
+            obj_found = TRUE;
             break;
         }
     }
 
-    if (sp4)
+    if (obj_found)
     {
-        return spC;
+        return obj_idx;
     }
-    return -1; // Item not found
+
+    return -1;
 }
 
 void func_80026F10(s32 arg0, s32 arg1)

@@ -399,6 +399,7 @@ extern UNK_TYPE* D_80118978[];
 extern UNK_TYPE* D_80118978[];
 extern u32 D_80118A60; //rodata? no rodata?
 extern s32 D_80118B38;
+extern UnkStruct_80118BA4 D_80118BA4;
 extern s32 D_80118BDC;
 extern s32 D_80118BE0;
 extern s32 D_80118C10;

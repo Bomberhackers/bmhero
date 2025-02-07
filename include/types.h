@@ -1313,6 +1313,11 @@ struct UnkStruct_80112518
 {
     char Pad[0x1C];
 };
+typedef struct UnkStruct_80118BA4 {
+    void* unk0;
+    u8 unk4[0x18];
+    void* unk1C;
+} UnkStruct_80118BA4;
 
 typedef struct UnkStruct_80119E0C {
     void* unk0;

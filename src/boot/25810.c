@@ -106,7 +106,7 @@ s32 func_80024EA8(void)
 {
     int status;
 
-    status = Eeprom_Read(&gContMesgQueue, &D_80057450[0], 0, 0x200);
+    status = Eeprom_Read(&gContMesgQueue, D_80057450, 0x0, 512);
     return status;
 }
 
@@ -540,6 +540,7 @@ void func_80025E28(void)
 {
     s32 sp1C;
 
+    //Read_PlayerFile
     func_80024EA8(); // read eeprom?
     for (sp1C = 0; sp1C < 5; sp1C++)
     {

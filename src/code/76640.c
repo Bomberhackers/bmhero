@@ -3,49 +3,14 @@
 
 // RODATA START unk_FF0F0_rodata
 
-const u8 D_8010CBD0[0x10] = {2, 1, 1, 3, 1, 1, 4, 1, 1, 5, 1, 1, 5, 1, 7, 0}; /* const */
 
-const u8 D_8010CBE0[8] = {1, 2, 4, 8, 0x10, 0x20, 0x40, 0x80}; /* const */
+extern u8 D_8010CBD0[0x10];
 
-const struct Vec2i D_8010CBE8[] = {
-    {0, 0},
-    {0, 1},
-    {-1, 0},
-    {-1, 1},
-    {0, -1},
-    {0, 0},
-    {-1, -1},
-    {-1, 0},
-    {1, 0},
-    {1, 1},
-    {0, 0},
-    {0, 1},
-    {1, -1},
-    {1, 0},
-    {0, -1},
-    {0, 0}};
+extern u8 D_8010CBE0[8];
 
+extern struct Vec2i D_8010CBE8[];
 
-#if DATA
-const struct Code_Extra_Entry const D_8010CC68[] = {
-     { code_extra_0_ROM_START, code_extra_0_ROM_END },
-     { code_extra_1_ROM_START, code_extra_1_ROM_END },
-     { code_extra_2_ROM_START, code_extra_2_ROM_END },
-     { code_extra_5_ROM_START, code_extra_5_ROM_END },
-     { code_extra_6_ROM_START, code_extra_6_ROM_END },
-};
-#else
-const s32 D_8010CC68[7][2] = {
-    {(s32)0x128D20, (s32)0x134440},
-    {(s32)0x134440, (s32)0x138360},
-    {(s32)0x138360, (s32)0x13AC20},
-    {(s32)0x13AC20, (s32)0x13C4C0},
-    {(s32)0x13C4C0, (s32)0x13DAD0},
-    {(s32)0x13DAD0, (s32)0x144420},
-    {(s32)0x144420, (s32)0x147BB0},
-}; /* const */
-#endif
-
+extern s32 D_8010CC68[7][2];
 
 // RODATA END
 

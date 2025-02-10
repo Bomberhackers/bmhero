@@ -11,7 +11,6 @@
 #define ALIGN16(val) (((val) + 0xF) & ~0xF)
 
 
-
 typedef float Matrix[4][4];
 
 struct UnkStruct8010B3FC {
@@ -278,7 +277,7 @@ struct ObjectStruct {
     /* 0x0E0 */ f32 unkE0;                          /* inferred */
     /* 0x0E4 */ s16 unkE4;
     /* 0x0E6 */ s16 unkE6[1];
-    /* 0x0E8 */ s16 unkE8[0xA];
+    /* 0x0E8 */ s16 unkE8[10];
     /* 0x0FC */ s16 unkFC;
     /* 0x0FE */ s16 unkFE;
     /* 0x100 */ s16 unk100;
@@ -1314,6 +1313,11 @@ struct UnkStruct_80112518
 {
     char Pad[0x1C];
 };
+typedef struct UnkStruct_80118BA4 {
+    void* unk0;
+    u8 unk4[0x18];
+    void* unk1C;
+} UnkStruct_80118BA4;
 
 typedef struct UnkStruct_80119E0C {
     void* unk0;

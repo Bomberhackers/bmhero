@@ -22,7 +22,8 @@ s32 func_80016560(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f3
 void func_80016A80(s64 arg0, s64 arg2, s64 arg4, s64 arg5, f32 *argA, f32 *argB, f32 *argC,
                    f32 *argD);
 
-f32 D_8004A400[0x64] = {
+// Temporal name
+f32 gNumTable[100] = {
     0.0f,
     0.57294f,
     1.14576f,
@@ -189,7 +190,7 @@ f32 func_80014F50(f32 arg0, f32 arg1)
             return 180.0f;
         }
     }
-    else if ((arg0 * arg0) == (arg1 * arg1))
+    else if (SQ(arg0) == SQ(arg1))
     {
         if (arg0 > 0.0f)
         {
@@ -207,25 +208,25 @@ f32 func_80014F50(f32 arg0, f32 arg1)
             if (arg1 < arg0)
             {
                 sp4 = (arg1 / arg0) * 100.0f;
-                return D_8004A400[(s32)sp4];
+                return gNumTable[(s32)sp4];
             }
             else
             {
                 sp4 = (arg0 / arg1) * 100.0f;
-                sp0 = 90.0f - D_8004A400[(s32)sp4];
+                sp0 = 90.0f - gNumTable[(s32)sp4];
                 return sp0;
             }
         }
         else if (SQ(arg0) > SQ(arg1))
         {
             sp4 = ((-1.0f * arg1) / arg0) * 100.0f;
-            sp0 = 360.0f - D_8004A400[(s32)sp4];
+            sp0 = 360.0f - gNumTable[(s32)sp4];
             return sp0;
         }
         else
         {
             sp4 = ((-1.0f * arg0) / arg1) * 100.0f;
-            sp0 = D_8004A400[(s32)sp4] + 270.0f;
+            sp0 = gNumTable[(s32)sp4] + 270.0f;
             return sp0;
         }
     }
@@ -234,26 +235,26 @@ f32 func_80014F50(f32 arg0, f32 arg1)
         if (SQ(arg0) > SQ(arg1))
         {
             sp4 = ((-1.0f * arg1) / arg0) * 100.0f;
-            sp0 = 180.0f - D_8004A400[(s32)sp4];
+            sp0 = 180.0f - gNumTable[(s32)sp4];
             return sp0;
         }
         else
         {
             sp4 = ((-1.0f * arg0) / arg1) * 100.0f;
-            sp0 = D_8004A400[(s32)sp4] + 90.0f;
+            sp0 = gNumTable[(s32)sp4] + 90.0f;
             return sp0;
         }
     }
     else if (arg0 < arg1)
     {
         sp4 = (arg1 / arg0) * 100.0f;
-        sp0 = D_8004A400[(s32)sp4] + 180.0f;
+        sp0 = gNumTable[(s32)sp4] + 180.0f;
         return sp0;
     }
     else
     {
         sp4 = (arg0 / arg1) * 100.0f;
-        sp0 = 270.0f - D_8004A400[(s32)sp4];
+        sp0 = 270.0f - gNumTable[(s32)sp4];
         return sp0;
     }
 }

@@ -592,7 +592,7 @@ void func_800D3E54(void)
 
         while (TRUE)
         {
-            sp30 = func_80026E58(0xCC, sp30);
+            sp30 = Get_ObjIdx_ByPos(0xCC, sp30);
 
             if (sp30 == -1)
             {

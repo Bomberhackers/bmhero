@@ -422,7 +422,9 @@ segments:
     - [0xFEEC0, .rodata, code/69AA0]
     - [0xFF020, rodata]
     - [0xFF030, rodata]
-    - [0xFF0F0, .rodata, code/76640]
+    - [0xFF0F0, hasm, ../src/unk_FF0F0_rodata]
+    - [auto, .rodata, ../src/unk_FF0F0_rodata]
+    - [0xFF1C0, .rodata, code/76640]
     - [0xFF2A0, rodata]
     - [0xFF2B0, .rodata, code/7B0A0]
     - [0xFF3F0, .rodata, code/7E1E0]
@@ -995,7 +997,7 @@ segments:
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1D01D0, c, overlays/1D01D0/1D01D0]
-    - [0x1D1710, data]
+    - [0x1D1710, .rodata, overlays/1D01D0/1D01D0]
 
   - name: unk_bin_37
     type: code

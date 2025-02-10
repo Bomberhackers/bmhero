@@ -2,6 +2,7 @@
 #include "../libultra/io/viint.h"
 #include "prevent_bss_reordering2.h"
 #include "1050.h"
+#include "cont_pak.h"
 
 //.data
 struct UnkStruct_D_004A280 D_8004A280 = {0, 0, 0, 0, 0};
@@ -185,7 +186,7 @@ void func_80000964(void)
         sp30 = 2;
         osViSetYScale(1.0f);
         osViBlack(1U);
-        func_8001F9DC();
+        Check_PakState();
         func_8001ECA0();
     }
     while (sp28 != 0)
@@ -222,7 +223,7 @@ void func_80000964(void)
             sp30 += 2;
             osViSetYScale(1.0f);
             osViBlack(TRUE);
-            func_8001F9DC();
+            Check_PakState();
             func_8001ECA0();
             break;
         }
@@ -506,8 +507,8 @@ void thread6_func(void *arg)
         osViClock = 49656530; // PAL: Hz = 49.656530 MHz
     }
     func_80025E28();
-    func_8001FAD4(); // Init rumble pak
-    func_8001F9DC();
+    Init_Pak(); // Init rumble pak
+    Check_PakState();
     func_80016DD4();
     func_80016E84();
     func_8001D1F4();

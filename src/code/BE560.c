@@ -257,7 +257,7 @@ void func_800CD1E4(void)
 
         while (TRUE)
         {
-            sp18 = func_80026E58(0x10E, sp18);
+            sp18 = Get_ObjIdx_ByPos(0x10E, sp18);
             if (sp18 == -1)
             {
                 break;
@@ -282,7 +282,7 @@ void func_800CD1E4(void)
 
         while (TRUE)
         {
-            sp18 = func_80026E58(0x10E, sp18);
+            sp18 = Get_ObjIdx_ByPos(0x10E, sp18);
             if (sp18 == -1)
             {
                 break;
@@ -1540,7 +1540,7 @@ void func_800D1DE4(void)
 
     while (TRUE)
     {
-        sp18 = func_80026E58(0xC7, sp18);
+        sp18 = Get_ObjIdx_ByPos(0xC7, sp18);
         if (sp18 == -1)
         {
             break;

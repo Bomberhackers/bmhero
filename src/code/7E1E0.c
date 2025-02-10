@@ -719,8 +719,27 @@ void func_8008E4A4(u32 arg0)
     }
 }
 
-// https://decomp.me/scratch/E3YD6
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8008E788.s")
+void func_8008E788(u32 arg0, s16 arg1)
+{
+    switch (gObjects[arg0].unkE4)
+    {
+    case 0xF8:
+    {
+        if (arg1 == 0)
+        {
+            D_80134FB8 = &D_8011694C;
+        }
+        else
+            D_80134FB8 = &D_80116950;
+
+        D_80134FB4 = 0xA5;
+
+        break;
+    }
+    default:
+        break;
+    }
+}
 
 void func_8008E81C(s16 *arg0)
 {
@@ -966,7 +985,15 @@ void func_8008F6AC(s16 *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_800901EC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80090268.s")
+void func_80090268(void) {
+    s32 sp24;
+
+    sp24 = func_80027464(1, &D_801113CC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    func_8001ABF4(sp24, 0, 0, &D_801121A4);
+    func_8001ABF4(sp24, 1, 0, &D_801121A4[14]);
+    func_8001ABF4(sp24, 2, 0, &D_801121A4[28]);
+    func_8001ABF4(sp24, 3, 0, &D_801121A4[42]);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80090350.s")
 
@@ -974,7 +1001,13 @@ void func_8008F6AC(s16 *arg0)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80090448.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_800904DC.s")
+void func_800904DC(void) {
+    s32 sp24;
+
+    sp24 = func_80027464(1, &D_801113FC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    func_8001ABF4(sp24, 0, 0, D_80111EB4 + 21);
+    func_8001ABF4(sp24, 1, 0, D_80111EB4 + 56);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80090590.s")
 
@@ -1176,7 +1209,14 @@ void func_800919F0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80092294.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80092310.s")
+void func_80092310(void) {
+    s32 sp24;
+
+    sp24 = func_80027464(1, &D_8011169C, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    func_8001ABF4(sp24, 0, 3, &D_80113084);
+    func_8001ABF4(sp24, 1, 3, &D_80113084[7]);
+    func_8001ABF4(sp24, 2, 3, &D_80113084[14]);
+}
 
 void func_800923DC(void)
 {
@@ -1257,17 +1297,40 @@ void func_800928B8(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8009318C.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80093228.s")
+void func_80093228(void) {
+    s32 sp24;
+
+    sp24 = func_80027464(1, &D_801117D4, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    func_8001C0EC(sp24, 3, 0, 0x284, &D_801131B8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_800932C4.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80093374.s")
+void func_80093374(void) {
+    s32 sp24;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80093408.s")
+    sp24 = func_80027464(1, &D_801117EC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    func_8001ABF4(sp24, 0, 0, &D_80112064);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80093484.s")
+void func_80093408(void) {
+    s32 sp24;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80093520.s")
+    sp24 = func_80027464(1, &D_801117F8, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+}
+
+void func_80093484(void) {
+    s32 sp24;
+
+    sp24 = func_80027464(1, &D_80111804, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    func_8001C0EC(sp24, 3, 0, 0x288, &D_801131A8);
+}
+
+void func_80093520(void) {
+    s32 sp24;
+
+    sp24 = func_80027464(1, &D_80111810, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8009359C.s")
 
@@ -1335,13 +1398,16 @@ void func_80093968(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80093AB8.s")
 
-void func_80093B64(void) {
-    struct ObjectStruct* sp3C;
+void func_80093B64(void)
+{
+    struct ObjectStruct *sp3C;
 
     sp3C = &gObjects[gCurrentParsedObject];
-    if (sp3C->unk132 == 0) {
+    if (sp3C->unk132 == 0)
+    {
         sp3C->unk132 += 1;
-        if (sp3C->unkE4 == 0x27) {
+        if (sp3C->unkE4 == 0x27)
+        {
             func_8001C0EC(gCurrentParsedObject, 0, 0, 0x39, &D_801131F0);
         }
         sp3C->unk108 = 1;
@@ -1349,34 +1415,42 @@ void func_80093B64(void) {
         func_8001BB04(gCurrentParsedObject, 0);
     }
 
-    if (sp3C->unkD4 < 1.0f) {
+    if (sp3C->unkD4 < 1.0f)
+    {
         sp3C->unkD4 = sp3C->unkD4 + D_801133E0;
-        if (sp3C->unkD4 >= 1.0f) {
+        if (sp3C->unkD4 >= 1.0f)
+        {
             sp3C->unkD4 = 1.0f;
         }
         sp3C->Scale.x = sp3C->Scale.y = sp3C->Scale.z = sp3C->unkD4;
     }
 
-    if (sp3C->unkD8 < 56.0f) {
+    if (sp3C->unkD8 < 56.0f)
+    {
         sp3C->unkD8 = sp3C->unkD8 + 0.5;
-        if (sp3C->unkD8 >= 56.0f) {
+        if (sp3C->unkD8 >= 56.0f)
+        {
             sp3C->unkD8 = 56.0f;
         }
     }
-    
+
     sp3C->Rot.y = func_80015538(sp3C->Rot.y, 60.0f - sp3C->unkD8);
 
-    if (sp3C->unkAC != 0) {
+    if (sp3C->unkAC != 0)
+    {
         sp3C->Vel.y -= sp3C->unk4C;
-        if (sp3C->Vel.y < -24.0f) { //clamp
+        if (sp3C->Vel.y < -24.0f)
+        { // clamp
             sp3C->Vel.y = -24.0f;
         }
 
         sp3C->Pos.y += sp3C->Vel.y;
         func_80067748(sp3C->Pos.x, sp3C->Pos.y - 60.0f, sp3C->Pos.z);
 
-        if (D_801776E0 & 1) {
-            if ((D_80177740[D_801776E0 & 1] == 0xF5) || (D_80177740[D_801776E0 & 1] == 0xD9)) {
+        if (D_801776E0 & 1)
+        {
+            if ((D_80177740[D_801776E0 & 1] == 0xF5) || (D_80177740[D_801776E0 & 1] == 0xD9))
+            {
                 sp3C->unkA4 = 2;
                 sp3C->unk132 = 0;
                 return;
@@ -1386,7 +1460,7 @@ void func_80093B64(void) {
                 sp3C->unkAC = 0;
                 sp3C->Pos.y = D_80177760[D_801776E0 & 1] + 60.0f;
                 sp3C->Vel.y = 0.0f;
-                sp3C->unk4C = 0.0f;                
+                sp3C->unk4C = 0.0f;
             }
         }
     }

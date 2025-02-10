@@ -155,6 +155,8 @@ extern s16 D_8010CD80[2];
 extern s16 D_80110B78[];
 extern s16* D_80110D4C[];
 extern u32 D_801110F0[];
+extern struct UnkStruct_80027C00 D_801113CC;
+extern struct UnkStruct_80027C00 D_801113FC;
 extern struct UnkStruct_80027C00 D_80111414;
 extern struct UnkStruct_80027C00 D_80111468;
 extern struct UnkStruct_80027C00 D_80111474;
@@ -184,6 +186,7 @@ extern UNK_TYPE D_80111880[];
 extern UNK_TYPE D_80111888;
 extern UNK_TYPE D_80111A74[];
 extern UNK_TYPE D_80111EB4[];
+extern UNK_TYPE D_801121A4[]; //.data
 extern UNK_TYPE D_80112298[];
 extern UNK_TYPE D_80112414;
 extern UNK_TYPE D_8011263C[];

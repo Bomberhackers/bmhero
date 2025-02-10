@@ -1209,7 +1209,14 @@ void func_800919F0(void)
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80092294.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_80092310.s")
+void func_80092310(void) {
+    s32 sp24;
+
+    sp24 = func_80027464(1, &D_8011169C, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    func_8001ABF4(sp24, 0, 3, &D_80113084);
+    func_8001ABF4(sp24, 1, 3, &D_80113084[7]);
+    func_8001ABF4(sp24, 2, 3, &D_80113084[14]);
+}
 
 void func_800923DC(void)
 {

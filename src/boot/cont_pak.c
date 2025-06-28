@@ -587,7 +587,7 @@ UNUSED void Debug_BackupMemTest_Menu(void) {
     s32 j;
 
     func_8001D4D0();
-    Set_BgColor(1, 64, 64, 0);
+    Debug_SetBg(1, 64, 64, 0);
     guPerspective(D_8016E104, &perspNorm, 50.0f, 1.3333334f, 100.0f, 4000.0f, 1.0f);
     gSPPerspNormalize(gMasterDisplayList++, perspNorm);
     guLookAt(&D_8016E104->unk00[2], gView.eye.x, gView.eye.y, gView.eye.z, gView.at.x, gView.at.y, gView.at.z,
@@ -595,7 +595,7 @@ UNUSED void Debug_BackupMemTest_Menu(void) {
     gSPMatrix(gMasterDisplayList++, D_8016E104, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
 
     D_8016E3A4 = 0;
-    func_8005F96C(255, 255, 255);
+    Debug_SetTextColor(255, 255, 255);
     switch (gDebugBackupMemTestMenu) { /* irregular */
         case MAIN_MENU:
             sprintf((char*) gDebugTextBuf, "BACKUP MEMORY TEST");
@@ -690,7 +690,7 @@ void Debug_ShockTest_Menu(void) {
     UNUSED char pad[0x8];
 
     func_8001D4D0();
-    Set_BgColor(1, 64, 64, 0);
+    Debug_SetBg(1, 64, 64, 0);
     guPerspective(D_8016E104, &perspNorm, 50.0f, 1.3333334f, 100.0f, 4000.0f, 1.0f);
     gSPPerspNormalize(gMasterDisplayList++, perspNorm);
 
@@ -699,7 +699,7 @@ void Debug_ShockTest_Menu(void) {
     gSPMatrix(gMasterDisplayList++, D_8016E104, G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_PROJECTION);
 
     D_8016E3A4 = 0;
-    func_8005F96C(255, 255, 255);
+    Debug_SetTextColor(255, 255, 255);
     sprintf((char*) gDebugTextBuf, "SHOCK TEST");
     debug_print_xy(32, 32);
     sprintf((char*) gDebugTextBuf, "  TOTAL TIME=%d", D_8004A630);
@@ -714,8 +714,8 @@ void Debug_ShockTest_Menu(void) {
 
 s32 func_80021158(void) {
     func_8001ECB8();
-    D_8016526C = &Debug_ShockTest_Menu;
-    D_80165274 = &Debug_ShockTest;
+    gDebugRoutine1 = &Debug_ShockTest_Menu;
+    gDebugRoutine2 = &Debug_ShockTest;
     Check_PakState();
     Set_DecompressHeap((s32*) 0x8024C000);
     LoadFile(0, &unk_bin_0_2_ROM_START, code_extra_0_ROM_START);

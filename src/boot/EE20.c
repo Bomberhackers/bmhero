@@ -1,4 +1,5 @@
 #include <ultra64.h>
+#include "macros.h"
 
 s32* D_8004A370 = &D_80380000;
 
@@ -37,7 +38,7 @@ s32* sbrk(u32 arg0) {
     D_8004A370 = arg0 + (s32) D_8004A370;
 
     if (((s32) D_8004A370 - (s32) &D_80380000) >= 0x80000) {
-        printf("sbrk : can not change data segment space allocation!\n");
+        DEBUG_PRINTF("sbrk : can not change data segment space allocation!\n");
         return -1;
     }
 

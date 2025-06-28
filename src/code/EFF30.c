@@ -43,7 +43,7 @@ void func_800FDA10(void) {
 }
 
 void Debug_Action_Menu(void) {
-    func_8005F96C(0xFFU, 0xFFU, 0xFFU);
+    Debug_SetTextColor(0xFFU, 0xFFU, 0xFFU);
     sprintf((char*) gDebugTextBuf, "%8d", D_8016E244);
     debug_print_xy(0xD0, 0xD8);
     sprintf((char*) gDebugTextBuf, "[BOMBERMAN ACTION MENU]");
@@ -253,7 +253,7 @@ void func_800FE6D8(void) {
     u16 sp3E;
 
     func_8001D4D0();
-    Set_BgColor(1, 0x40, 0x40, 0);
+    Debug_SetBg(1, 0x40, 0x40, 0);
     guPerspective(D_8016E104, &sp3E, 50.0f, 1.3333334f, 100.0f, 4000.0f, 1.0f);
     gSPPerspNormalize(gMasterDisplayList++, (s32) sp3E);
     guLookAt(&D_8016E104->unk00[2], gView.eye.x, gView.eye.y, gView.eye.z, gView.at.x, gView.at.y, gView.at.z,
@@ -272,8 +272,8 @@ void func_800FE854(void) {
 u32 func_800FE898(void) {
     s32 sp20;
     func_8001ECB8();
-    D_8016526C = &func_800FE6D8;
-    D_80165274 = &func_800FE204;
+    gDebugRoutine1 = &func_800FE6D8;
+    gDebugRoutine2 = &func_800FE204;
     gDebugSaveIndex = 0;
     func_800FE854();
     gView.at.x = 0.0f;
@@ -383,7 +383,7 @@ void func_800FEFA0(void) {
     s32 sp38;
 
     sprintf((char*) gDebugTextBuf, "(%d %d %d) ST=%d CG=%d %d", (s32) gPlayerObject->Pos.x, (s32) gPlayerObject->Pos.y,
-            (s32) gPlayerObject->Pos.z, gPlayerObject->unkA4, D_80165290[PLAYER.Unk140[0]].unk14,
+            (s32) gPlayerObject->Pos.z, gPlayerObject->unkA4, D_80165290[PLAYER_OBJ.Unk140[0]].unk14,
             gPlayerObject->unk108);
     debug_print_xy(0x20, 0x10);
     sp54 = (s32) gPlayerObject->Pos.x / 60;
@@ -413,7 +413,7 @@ void func_800FEFA0(void) {
     sprintf((char*) gDebugTextBuf, "(%d %d %d) R=%d GB=%d", sp54, (s32) gPlayerObject->Pos.y, sp50,
             (s32) (u8) D_8016E414, (s32) (u16) D_8016E41C);
     debug_print_xy(0x20, 0x20);
-    func_80065AEC(PLAYER.Pos.x, PLAYER.Pos.y, PLAYER.Pos.z, &sp40, &sp3C, &sp38);
+    func_80065AEC(PLAYER_OBJ.Pos.x, PLAYER_OBJ.Pos.y, PLAYER_OBJ.Pos.z, &sp40, &sp3C, &sp38);
     sp44 = (D_80177778->unk18 * sp38) + sp40;
     sprintf((char*) gDebugTextBuf, "[MAP INDEX=%d FLOOR=%d]", sp44, sp3C + 1);
     debug_print_xy(0x20, 0x30);
@@ -428,11 +428,11 @@ void func_800FEFA0(void) {
 }
 
 void func_800FF43C(void) {
-    sprintf((char*) gDebugTextBuf, "PLAY.POS X=%5d Y=%5d Z=%5d", (s32) PLAYER.Pos.x, (s32) PLAYER.Pos.y,
-            (s32) PLAYER.Pos.z);
+    sprintf((char*) gDebugTextBuf, "PLAY.POS X=%5d Y=%5d Z=%5d", (s32) PLAYER_OBJ.Pos.x, (s32) PLAYER_OBJ.Pos.y,
+            (s32) PLAYER_OBJ.Pos.z);
     debug_print_xy(0x20, 0x10);
-    sprintf((char*) gDebugTextBuf, "PLAY.ROT X=%5d Y=%5d Z=%5d", (s32) PLAYER.Rot.x, (s32) PLAYER.Rot.y,
-            (s32) PLAYER.Rot.z);
+    sprintf((char*) gDebugTextBuf, "PLAY.ROT X=%5d Y=%5d Z=%5d", (s32) PLAYER_OBJ.Rot.x, (s32) PLAYER_OBJ.Rot.y,
+            (s32) PLAYER_OBJ.Rot.z);
     debug_print_xy(0x20, 0x20);
     sprintf((char*) gDebugTextBuf, "VIEW.AT  X=%5d Y=%5d Z=%5d", (s32) gView.at.x, (s32) gView.at.y, (s32) gView.at.z);
     debug_print_xy(0x20, 0x30);
@@ -449,7 +449,7 @@ void func_800FF43C(void) {
 }
 
 void func_800FF7B4(void) {
-    func_8005F96C(0xFF, 0xFF, 0xFF);
+    Debug_SetTextColor(0xFF, 0xFF, 0xFF);
     switch (D_8016E3EC) {
         case 0x1:
             func_800FEFA0();

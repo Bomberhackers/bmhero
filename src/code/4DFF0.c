@@ -278,7 +278,7 @@ void Demo_PrepareStr(void) {
         D_801347E8.y = 184;
         D_801347E8.renderBG = TRUE;
         D_801347E8.strInfo = NULL;
-        if (PLAYER.unkA4 != 0) {
+        if (PLAYER_OBJ.unkA4 != 0) {
             sp2C = func_8001B62C(0, 0);
         }
         switch (gDemoSceneID) {
@@ -495,7 +495,7 @@ void func_8005E040(void) {
     s32 i;
 
     func_8001D4D0();
-    Set_BgColor(1, 0, 0, 0);
+    Debug_SetBg(1, 0, 0, 0);
     guPerspective(D_8016E104, &sp3E, 50.0f, 1.3333334f, 10.0f, 8000.0f, 1.0f);
     gSPPerspNormalize(gMasterDisplayList++, sp3E);
     guLookAt(&D_8016E104->unk00[2], gView.eye.x, gView.eye.y, gView.eye.z, gView.at.x, gView.at.y, gView.at.z,
@@ -521,8 +521,8 @@ void Demo_Start(s32 demoID) {
     u32 unused;
 
     func_8001ECB8();
-    D_8016526C = &func_8005E040;
-    D_80165274 = &func_8005DD80;
+    gDebugRoutine1 = &func_8005E040;
+    gDebugRoutine2 = &func_8005DD80;
     gView.at.x = 0.0f;
     gView.at.y = 0.0f;
     gView.at.z = 0.0f;

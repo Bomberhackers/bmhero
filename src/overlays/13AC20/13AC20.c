@@ -421,7 +421,7 @@ void func_802813E4_code_extra_3(void) {
 void func_802814CC_code_extra_3(void) {
     func_8001BD44(0, 0, 0x13, (s32) gFileArray[1].ptr);
     func_8001C0EC(0, 0, 0, 1, &D_80115F34);
-    gPlayerObject->unkE4 = 3;
+    gPlayerObject->obj_id = 3;
     gPlayerObject->unkA4 = 0x12D;
     gPlayerObject->Rot.y = 180.0f;
     D_8016E408 = 0.0f;

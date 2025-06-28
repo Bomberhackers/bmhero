@@ -140,7 +140,7 @@ s16 func_80017028(s32 arg0, s32 arg1, s16 arg2, s16 arg3, s32 arg4, s32 arg5, u8
 }
 
 u8 func_800171E0(s32 arg0) {
-    struct ObjectStruct* sp3C;
+    struct ObjectStruct* obj;
     f32 sp38;
     f32 sp34;
     f32 sp30;
@@ -150,11 +150,11 @@ u8 func_800171E0(s32 arg0) {
     if (arg0 == -1) {
         return 0x40;
     }
-    sp3C = &gObjects[arg0];
-    sp38 = func_80015634(sp3C->Pos.x - gView.at.x, sp3C->Pos.z - gView.at.z);
+    obj = &gObjects[arg0];
+    sp38 = func_80015634(obj->Pos.x - gView.at.x, obj->Pos.z - gView.at.z);
     sp34 = func_80015634(gView.eye.x - gView.at.x, gView.eye.z - gView.at.z);
-    sp30 = sp3C->Pos.x - gView.at.x;
-    sp2C = sp3C->Pos.z - gView.at.z;
+    sp30 = obj->Pos.x - gView.at.x;
+    sp2C = obj->Pos.z - gView.at.z;
 
     sp28 = sqrtf(SQ(sp30) + SQ(sp2C)) * sinf(((sp38 - sp34) * DEG_TO_RAD));
     if (sp28 >= 1000.0f) {
@@ -343,7 +343,7 @@ UNUSED void Unused_DebugFunction(void) {
     sqrt = sqrtf(2.0f);
 }
 
-void printf(UNUSED char* str, ...) {
+void printf_stub(UNUSED char* str, ...) {
 }
 
 s32 Get_Level_LightsType(void) {
@@ -699,7 +699,7 @@ void Init_Obj(int index) {
     obj->unkE0 = 0.0f;
     obj->unk132 = 0;
     obj->unkFC = -1;
-    obj->unkE4 = 0;
+    obj->obj_id = 0;
     obj->unkE6[0] = -1;
 
     for (i = 0; i < 10; i++) {
@@ -1478,7 +1478,7 @@ void func_8001D4D0(void) {
 }
 
 // Debug_SetBackgroundColor
-void Set_BgColor(s32 setColor, char red, char green, char blue) {
+void Debug_SetBg(s32 setColor, char red, char green, char blue) {
 
     gDPPipeSync(gMasterDisplayList++);
     gDPSetColorImage(gMasterDisplayList++, G_IM_FMT_RGBA, G_IM_SIZ_16b, 320, osVirtualToPhysical(D_8016E10C->unk18168));
@@ -1499,12 +1499,12 @@ void stub1() {
 void stub2() {
 }
 
-void func_8001D814(void) {
-    struct UnkStruct8016E10C* sp1C;
-    struct UnkStruct8016E10C* sp18 = D_8016E10C;
-    sp1C = sp18;
+void Create_GfxTask(void) {
+    struct UnkStruct8016E10C* gfx_task;
+    struct UnkStruct8016E10C* cur_task = D_8016E10C;
+    gfx_task = cur_task;
 
-    sp1C->task.t.data_ptr = &D_8016E104->gfxWork;
+    gfx_task->task.t.data_ptr = &D_8016E104->gfxWork;
     /**
      * Here's whats happening here: the size of the GFX heap is being calculated here. At this
      * moment, gMasterDisplayList points to at least D_8016E104->gfxWork or later. gfxWork begins
@@ -1512,27 +1512,29 @@ void func_8001D814(void) {
      * after that, we account for Gfx work itself to get the size of the display list being sent, and then
      * the size is clamped to a multiple of 64-bit due to Gfx being an array of 64-bit.
      */
-    sp1C->task.t.data_size = ((s32) (((u32) gMasterDisplayList - (u32) D_8016E104 - 0x80E0)) >> 3) << 3;
-    sp1C->task.t.type = 1;
-    sp1C->task.t.flags = 0;
-    sp1C->task.t.ucode_boot = (u64*) rspbootTextStart;
-    sp1C->task.t.ucode_boot_size = (u32) rspbootTextEnd - (u32) rspbootTextStart;
-    sp1C->task.t.ucode = (u64*) rspbootTextEnd; // this is probably F3DEX Data start. TODO: Rename
-    sp1C->task.t.ucode_size = 0x1000;
-    sp1C->task.t.ucode_data = (u64*) gspF3DEX_fifoTextStart_bin;
-    sp1C->task.t.ucode_data_size = 0x800;
-    sp1C->task.t.dram_stack = D_801D04B0;
-    sp1C->task.t.dram_stack_size = 0x400;
-    sp1C->task.t.output_buff = (void*) &D_801C1A50;
-    sp1C->task.t.output_buff_size = (void*) ((u32) &D_801C1A50 + 0xEA60);
-    sp1C->task.t.yield_data_ptr = &D_801C0E50;
-    sp1C->task.t.yield_data_size = 0xC00;
-    sp1C->unk0 = 0;
-    sp1C->unk8 = 0x63;
-    sp1C->unk50 = &D_8016E0B8;
-    sp1C->unk54 = &sp18->unk18148;
-    sp1C->unkC = sp18->unk18168;
-    osSendMesg(D_8004D9D0, sp1C, 1);
+    gfx_task->task.t.data_size = ((s32) (((u32) gMasterDisplayList - (u32) D_8016E104 - 0x80E0)) >> 3) << 3;
+    gfx_task->task.t.type = 1;
+    gfx_task->task.t.flags = 0;
+    gfx_task->task.t.ucode_boot = (u64*) rspbootTextStart;
+    gfx_task->task.t.ucode_boot_size = (u32) rspbootTextEnd - (u32) rspbootTextStart;
+    gfx_task->task.t.ucode = (u64*) rspbootTextEnd; // this is probably F3DEX Data start. TODO: Rename
+    gfx_task->task.t.ucode_size = 0x1000;
+    gfx_task->task.t.ucode_data = (u64*) gspF3DEX_fifoTextStart_bin;
+    gfx_task->task.t.ucode_data_size = 0x800;
+    gfx_task->task.t.dram_stack = D_801D04B0;
+    gfx_task->task.t.dram_stack_size = 0x400;
+    gfx_task->task.t.output_buff = (void*) &D_801C1A50;
+    gfx_task->task.t.output_buff_size = (void*) ((u32) &D_801C1A50 + 0xEA60);
+    gfx_task->task.t.yield_data_ptr = &D_801C0E50;
+    gfx_task->task.t.yield_data_size = 0xC00;
+    gfx_task->unk0 = 0;
+    gfx_task->unk8 = 0x63;
+    gfx_task->unk50 = &D_8016E0B8;
+    gfx_task->unk54 = &cur_task->unk18148;
+    gfx_task->unkC = cur_task->unk18168;
+
+    // Unused mq
+    osSendMesg(gUnusedGfxMq, gfx_task, 1);
 }
 
 // init system area?
@@ -1551,20 +1553,20 @@ void func_8001D9E4(void* arg0) {
 
     gSPDisplayList(gMasterDisplayList++, D_1000C50);
     if (D_80165254 == 0) {
-        if ((D_8016E0A8 != 0) && (D_8016526C != NULL)) {
-            D_8016526C();
+        if ((D_8016E0A8 != 0) && (gDebugRoutine1 != NULL)) {
+            gDebugRoutine1();
         }
     } else if (D_80165254 == 2) {
         D_80165254 = 0;
     } else {
-        D_80165254 += 1;
+        D_80165254++;
     }
     func_8001D3CC();
     gDPFullSync(gMasterDisplayList++);
     gSPEndDisplayList(gMasterDisplayList++);
 
     osWritebackDCacheAll();
-    func_8001D814();
+    Create_GfxTask();
 }
 
 void func_8001DC78(void) {
@@ -1649,7 +1651,7 @@ void InitControllers(void) {
         // presumedly for handling if the controller had an error, but there's nothing here.
         // missing assert?
     }
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < MAXCONTROLLERS; i++) {
         gContRawPlugged[i] = 0;
         gContRawLastButton[i] = 0;
         gContRawCurrButton[i] = 0;
@@ -1702,7 +1704,7 @@ void UpdateRawControllers(void) {
             osContGetReadData(gContPads);
         }
     }
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < MAXCONTROLLERS; i++) {
         if ((gControllerBits >> i) & 1) {
             pad = &gContPads[i];
             // if any errors occurred or if no controllers are plugged in, treat the controller as if its not
@@ -1748,7 +1750,7 @@ void UpdateRawControllers(void) {
 void UpdateControllers(void) {
     u16 i;
 
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < MAXCONTROLLERS; i++) {
         // Only update if plugged in and initialized.
         if (gContRawPlugged[i] != 0) {
             gContRawButtonPressed[i] = (gContRawCurrButton[i] ^ gContRawLastButton[i]) & gContRawCurrButton[i];
@@ -1786,8 +1788,8 @@ void func_8001E80C(void) {
         func_8005F088();
         UpdateControllers();
         if (D_8016E0B0 != 0) {
-            if (D_80165274 != NULL) {
-                D_80165274();
+            if (gDebugRoutine2 != NULL) {
+                gDebugRoutine2();
             }
             func_8001D2FC();
             func_80016EE4();

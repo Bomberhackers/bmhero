@@ -94,7 +94,7 @@ void func_80330918_unk_bin_15() {
     struct ObjectStruct* obj = &gObjects[gCurrentParsedObject];
     s32 i;
 
-    if (obj->unkE4 == 0x130) {
+    if (obj->obj_id == 0x130) {
         if (D_80177A64 == 0) {
             obj->unk108 = 0;
 

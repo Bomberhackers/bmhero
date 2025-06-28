@@ -19,7 +19,13 @@
 
 #define DEG_TO_RAD 0.0174532925199432955
 
-#define PLAYER gObjects[0]
+#define PLAYER_OBJ gObjects[0]
+
+#ifdef ENABLE_ISPRINT
+#define DEBUG_PRINTF osSyncPrintf
+#else
+#define DEBUG_PRINTF printf_stub
+#endif
 
 #ifndef __GNUC__
 #define __attribute__(x)

@@ -140,9 +140,9 @@ s32 func_80077CB0(s16 arg0, s16 arg1, s16* arg2, s16* arg3) {
     struct ObjectStruct* sp2C;
     sp30 = &gObjects[arg0];
     sp2C = &gObjects[arg1];
-    D_80134B54 = D_80124D90[sp30->unkE4].unk20[sp30->unkFE];
+    D_80134B54 = D_80124D90[sp30->obj_id].unk20[sp30->unkFE];
 
-    D_80134B58 = D_80124D90[sp2C->unkE4].unk20[sp2C->unkFE];
+    D_80134B58 = D_80124D90[sp2C->obj_id].unk20[sp2C->unkFE];
 
     sp50 = (f32) D_80134B54->unk0[0] + sp30->Pos.x;
     sp4C = (f32) D_80134B54->unk0[1] + sp30->Pos.y;
@@ -371,7 +371,7 @@ s32 func_80078AEC(s32 arg0) {
     if ((func_800781D4(sp48 + sp30, sp44, sp40 + sp2C) == 4)) {
         sp28 |= 4;
 
-        if (((D_80177770[D_801776E0 & 1] == -1)) || (sp4C->unkE4 == 0xB)) {
+        if (((D_80177770[D_801776E0 & 1] == -1)) || (sp4C->obj_id == 0xB)) {
             sp48 -= sp3C;
             sp40 -= sp34;
         }
@@ -385,7 +385,7 @@ s32 func_80078AEC(s32 arg0) {
         func_80078168(sp48, sp44, sp40);
         D_801779AC.bytes[arg0] = (s16) D_80177770[D_801776E0 & 1];
         if (D_801779AC.bytes[arg0] != -1) {
-            D_801779BC[arg0] = gObjects[D_801779AC.bytes[arg0]].unkE4;
+            D_801779BC[arg0] = gObjects[D_801779AC.bytes[arg0]].obj_id;
             D_801779C8.bytes[arg0] = sp48 - gObjects[D_801779AC.bytes[arg0]].Pos.x;
             D_801779E0.bytes[arg0] = sp44 - gObjects[D_801779AC.bytes[arg0]].Pos.y;
             D_801779F8[arg0] = sp40 - gObjects[D_801779AC.bytes[arg0]].Pos.z;
@@ -463,9 +463,9 @@ void func_800795C8(s32 arg0) {
     s32 sp18;
 
     sp1C = &gObjects[arg0];
-    if (sp1C->unkE4 == 9) {
+    if (sp1C->obj_id == 9) {
         sp18 = 1;
-    } else if (sp1C->unkE4 == 0xA) {
+    } else if (sp1C->obj_id == 0xA) {
         sp18 = 2;
     } else {
         sp18 = 0;
@@ -614,16 +614,16 @@ void func_80079E9C(s32 arg0) {
     sp1C = &gObjects[arg0];
     func_8001BD44(arg0, 0, 0, (s32) gFileArray[9].ptr);
     if (D_80165250 == 0) {
-        sp1C->unkE4 = 8;
+        sp1C->obj_id = 8;
         sp18 = 0;
     } else if (D_80165250 == 1) {
-        sp1C->unkE4 = 9;
+        sp1C->obj_id = 9;
         sp18 = 1;
     } else if (D_80165250 == 2) {
-        sp1C->unkE4 = 0xA;
+        sp1C->obj_id = 0xA;
         sp18 = 2;
     } else {
-        sp1C->unkE4 = 0xB;
+        sp1C->obj_id = 0xB;
         sp18 = 3;
     }
     func_8001ABF4(arg0, 0, 0, &D_801163DC[sp18]);
@@ -981,7 +981,7 @@ s32 func_8007B4BC(s32 arg0) {
     struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[arg0];
-    if (sp1C->unkE4 == 0xB) {
+    if (sp1C->obj_id == 0xB) {
         if (gActiveContPressed & 0x2000) {
             func_800795C8(arg0);
             return 1;
@@ -1014,7 +1014,7 @@ void func_8007B5A0(s32 arg0) {
     func_800797FC(arg0);
     func_80079B60(arg0);
 
-    if (sp24->unkE4 == 0xB) {
+    if (sp24->obj_id == 0xB) {
         sp1C = sp24->Vel.y;
         sp20 = func_80078AEC(arg0);
         if (sp20 & 8) {
@@ -1070,7 +1070,7 @@ void func_8007B928(s32 arg0) {
     func_80079688(arg0);
     func_800797FC(arg0);
     func_80079B60(arg0);
-    if (sp24->unkE4 == 0xB) {
+    if (sp24->obj_id == 0xB) {
         sp1C = func_80078AEC(arg0);
         if (sp1C & 8) {
             func_800795C8(arg0);
@@ -1127,7 +1127,7 @@ void func_8007BD30(s32 arg0) {
     func_800794C4(arg0);
     sp1C = &gObjects[arg0];
     func_8001BD44(arg0, 0, 2, (s32) gFileArray[0xA].ptr);
-    sp1C->unkE4 = 0xC;
+    sp1C->obj_id = 0xC;
     sp1C->unkA6 = 0x3C;
     sp1C->unkA8 = 0x14;
     sp1C->unkAA = 0;
@@ -1337,7 +1337,7 @@ void func_8007C8A0(s32 arg0) {
 
             if ((sp3C < 0xE1000U)) {
                 if ((sp60->Pos.z < sp6C->Pos.z)) {
-                    if ((D_80124D90[sp60->unkE4].unk1 != 0)) {
+                    if ((D_80124D90[sp60->obj_id].unk1 != 0)) {
                         sp4C = sp58;
                         sp48 = sp54;
                         sp44 = sp50;
@@ -1385,7 +1385,7 @@ void func_8007CCE8(s32 arg0) {
     func_800794C4(arg0);
     sp1C = &gObjects[arg0];
     func_8001BD44(arg0, 0, 2, (s32) gFileArray[0xB].ptr);
-    sp1C->unkE4 = 0xD;
+    sp1C->obj_id = 0xD;
     sp1C->unkA6 = 0x3C;
     sp1C->unkA8 = 0x14;
     sp1C->unkAA = 0;
@@ -1582,7 +1582,7 @@ void func_8007D944(s32 arg0) {
     func_800794C4(arg0);
     sp1C = &gObjects[arg0];
     func_8001BD44(arg0, 0, 2, (s32) gFileArray[0xC].ptr);
-    sp1C->unkE4 = 0xE;
+    sp1C->obj_id = 0xE;
     sp1C->unkA6 = 0x3C;
     sp1C->unkA8 = 0x14;
     sp1C->unkAA = 0;

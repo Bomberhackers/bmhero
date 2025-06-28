@@ -5,7 +5,7 @@ f32 func_800155A8(f32, f32);
 f32 func_80015634(f32 arg0, f32 arg1);
 
 // File functions
-f32 func_80014F50(f32 arg0, f32 arg1);
+f32 Math_Atan2f(f32 arg0, f32 arg1);
 f32 func_800155A8(f32 arg0, f32 arg1);
 f32 func_80015634(f32 arg0, f32 arg1);
 f32 func_800156C4(f32 arg0, f32 arg1);
@@ -21,7 +21,7 @@ s32 func_80016560(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f3
 void func_80016A80(s64 arg0, s64 arg2, s64 arg4, s64 arg5, f32* argA, f32* argB, f32* argC, f32* argD);
 
 // Temporal name
-f32 gNumTable[100] = {
+f32 gArctanTable[100] = {
     0.0f,      0.57294f,  1.14576f,  1.71836f,  2.29061f,  2.86241f,  3.43363f,  4.00417f,  4.57392f,  5.14276f,
     5.71059f,  6.2773f,   6.84277f,  7.40691f,  7.96961f,  8.53077f,  9.09028f,  9.64805f,  10.20397f, 10.75797f,
     11.30993f, 11.85978f, 12.40742f, 12.95276f, 13.49573f, 14.03624f, 14.57422f, 15.10958f, 15.64225f, 16.17216f,
@@ -49,72 +49,72 @@ s32 func_80014E80(s16 arg0) {
     }
 }
 
-f32 func_80014F50(f32 arg0, f32 arg1) {
+f32 Math_Atan2f(f32 y, f32 x) {
     f32 sp4;
     f32 sp0;
 
-    if (arg0 == arg1) {
-        if (arg0 == 0.0f) {
+    if (y == x) {
+        if (y == 0.0f) {
             return 0.0f;
-        } else if (arg0 > 0.0f) {
+        } else if (y > 0.0f) {
             return 45.0f;
         } else {
             return 225.0f;
         }
-    } else if (arg0 == 0.0f) {
-        if (arg1 > 0.0f) {
+    } else if (y == 0.0f) {
+        if (x > 0.0f) {
             return 90.0f;
         } else {
             return 270.0f;
         }
-    } else if (arg1 == 0.0f) {
-        if (arg0 > 0.0f) {
+    } else if (x == 0.0f) {
+        if (y > 0.0f) {
             return 0.0f;
         } else {
             return 180.0f;
         }
-    } else if (SQ(arg0) == SQ(arg1)) {
-        if (arg0 > 0.0f) {
+    } else if (SQ(y) == SQ(x)) {
+        if (y > 0.0f) {
             return 315.0f;
         } else {
             return 135.0f;
         }
-    } else if (arg0 > 0.0f) {
-        if (arg1 > 0.0f) {
-            if (arg1 < arg0) {
-                sp4 = (arg1 / arg0) * 100.0f;
-                return gNumTable[(s32) sp4];
+    } else if (y > 0.0f) {
+        if (x > 0.0f) {
+            if (x < y) {
+                sp4 = (x / y) * 100.0f;
+                return gArctanTable[(s32) sp4];
             } else {
-                sp4 = (arg0 / arg1) * 100.0f;
-                sp0 = 90.0f - gNumTable[(s32) sp4];
+                sp4 = (y / x) * 100.0f;
+                sp0 = 90.0f - gArctanTable[(s32) sp4];
                 return sp0;
             }
-        } else if (SQ(arg0) > SQ(arg1)) {
-            sp4 = ((-1.0f * arg1) / arg0) * 100.0f;
-            sp0 = 360.0f - gNumTable[(s32) sp4];
+        } else if (SQ(y) > SQ(x)) {
+            sp4 = ((-1.0f * x) / y) * 100.0f;
+            sp0 = 360.0f - gArctanTable[(s32) sp4];
             return sp0;
         } else {
-            sp4 = ((-1.0f * arg0) / arg1) * 100.0f;
-            sp0 = gNumTable[(s32) sp4] + 270.0f;
+            sp4 = ((-1.0f * y) / x) * 100.0f;
+            sp0 = gArctanTable[(s32) sp4] + 270.0f;
             return sp0;
         }
-    } else if (arg1 > 0.0f) {
-        if (SQ(arg0) > SQ(arg1)) {
-            sp4 = ((-1.0f * arg1) / arg0) * 100.0f;
-            sp0 = 180.0f - gNumTable[(s32) sp4];
+    } else if (x > 0.0f) {
+        if (SQ(y) > SQ(x)) {
+            sp4 = ((-1.0f * x) / y) * 100.0f;
+            sp0 = 180.0f - gArctanTable[(s32) sp4];
             return sp0;
         } else {
-            sp4 = ((-1.0f * arg0) / arg1) * 100.0f;
-            sp0 = gNumTable[(s32) sp4] + 90.0f;
+            sp4 = ((-1.0f * y) / x) * 100.0f;
+            sp0 = gArctanTable[(s32) sp4] + 90.0f;
             return sp0;
         }
-    } else if (arg0 < arg1) {
-        sp4 = (arg1 / arg0) * 100.0f;
-        sp0 = gNumTable[(s32) sp4] + 180.0f;
+    } else if (y < x) {
+        sp4 = (x / y) * 100.0f;
+        sp0 = gArctanTable[(s32) sp4] + 180.0f;
         return sp0;
     } else {
-        sp4 = (arg0 / arg1) * 100.0f;
-        sp0 = 270.0f - gNumTable[(s32) sp4];
+        sp4 = (y / x) * 100.0f;
+        sp0 = 270.0f - gArctanTable[(s32) sp4];
         return sp0;
     }
 }
@@ -133,7 +133,7 @@ f32 func_80015538(f32 arg0, f32 arg1) {
 f32 func_800155A8(f32 arg0, f32 arg1) {
     f32 sp1C;
 
-    sp1C = func_80014F50(arg0, arg1) - 90.0f;
+    sp1C = Math_Atan2f(arg0, arg1) - 90.0f;
     if (sp1C < 0.0f) {
         sp1C += 360.0f;
     }
@@ -141,19 +141,19 @@ f32 func_800155A8(f32 arg0, f32 arg1) {
 }
 
 f32 func_80015634(f32 arg0, f32 arg1) {
-    f32 sp1C;
+    f32 angle;
 
-    sp1C = func_80014F50(arg0, -arg1) + 90.0f;
-    if (sp1C >= 360.0f) {
-        sp1C -= 360.0f;
+    angle = Math_Atan2f(arg0, -arg1) + 90.0f;
+    if (angle >= 360.0f) {
+        angle -= 360.0f;
     }
-    return sp1C;
+    return angle;
 }
 
 f32 func_800156C4(f32 arg0, f32 arg1) {
     f32 sp1C;
 
-    sp1C = func_80014F50(arg0, arg1);
+    sp1C = Math_Atan2f(arg0, arg1);
     if (sp1C >= 360.0f) {
         sp1C -= 360.0f;
     }
@@ -375,8 +375,8 @@ void func_80016A80(s64 arg0, s64 arg2, s64 arg4, UNUSED s64 arg5, f32* argA, f32
     f32 sp34;
     f32 sp30;
 
-    *argA = 90.0f - func_80014F50(arg4, arg2);
-    *argC = func_80014F50(arg0, arg2) - 90.0f;
+    *argA = 90.0f - Math_Atan2f(arg4, arg2);
+    *argC = Math_Atan2f(arg0, arg2) - 90.0f;
     *argB = 0.0f;
 
     if ((sp34 = *argA) < 0.0f) {

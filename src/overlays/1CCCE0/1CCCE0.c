@@ -760,7 +760,7 @@ void func_8033304C_unk_bin_35(void) {
         obj->unk48 = 0.0f;
         func_8001BB34(gCurrentParsedObject, 1);
         func_8001BB04(gCurrentParsedObject, 1);
-        D_80124D90[obj->unkE4].unk0 = 0;
+        D_80124D90[obj->obj_id].unk0 = 0;
     }
     func_80029C40(gCurrentParsedObject);
     func_80029D04(gCurrentParsedObject);
@@ -776,7 +776,7 @@ void func_80333140_unk_bin_35(void) {
         obj->unk48 = 0.0f;
         func_8001BB34(gCurrentParsedObject, 0);
         func_8001BB04(gCurrentParsedObject, 0);
-        D_80124D90[obj->unkE4].unk0 = 0xE;
+        D_80124D90[obj->obj_id].unk0 = 0xE;
     }
     func_80029C40(gCurrentParsedObject);
     func_80029D04(gCurrentParsedObject);

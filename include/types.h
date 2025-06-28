@@ -275,7 +275,7 @@ struct ObjectStruct {
     /* 0x0D8 */ f32 unkD8;
     /* 0x0DC */ f32 unkDC;                          /* inferred */
     /* 0x0E0 */ f32 unkE0;                          /* inferred */
-    /* 0x0E4 */ s16 unkE4;
+    /* 0x0E4 */ s16 obj_id;
     /* 0x0E6 */ s16 unkE6[1];
     /* 0x0E8 */ s16 unkE8[10];
     /* 0x0FC */ s16 unkFC;
@@ -950,7 +950,7 @@ struct UnkStruct_80026548 {
     s32 pad3C;
     void* unk40;
     void* unk44;
-    u8 unk48[0x18];
+    u8 unk48[24];
 };
 
 

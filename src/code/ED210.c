@@ -618,7 +618,7 @@ void func_800FD440(void) {
     f32 sp30;
     s16 sp2E;
 
-    PlayerObject = &PLAYER;
+    PlayerObject = &PLAYER_OBJ;
     CurrentObject = &gObjects[gCurrentParsedObject];
     if (CurrentObject->unk132 == 0) {
         CurrentObject->unk132 = 1;

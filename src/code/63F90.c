@@ -259,16 +259,16 @@ void func_80072854(void) {
     UNUSED f32 player_y;
     UNUSED f32 player_z;
 
-    player_x = PLAYER.Pos.x;
-    player_y = PLAYER.Pos.y;
-    player_z = PLAYER.Pos.z;
+    player_x = PLAYER_OBJ.Pos.x;
+    player_y = PLAYER_OBJ.Pos.y;
+    player_z = PLAYER_OBJ.Pos.z;
 
     sp2C = func_80065ACC();
     sp28 = (s32) sp2C->unk4;
     sp24 = (sp2C->unk1C * sp2C->unk22 * 0x3C) + sp28;
-    gView.at.x = PLAYER.Pos.x;
-    gView.at.y = PLAYER.Pos.y + 100.0f;
-    gView.at.z = PLAYER.Pos.z;
+    gView.at.x = PLAYER_OBJ.Pos.x;
+    gView.at.y = PLAYER_OBJ.Pos.y + 100.0f;
+    gView.at.z = PLAYER_OBJ.Pos.z;
 }
 
 void func_80072948(void) {
@@ -895,7 +895,7 @@ void func_80074DFC(void) {
             break;
         case 0x5A:
             sp2C = &gObjects[0xE];
-            if ((sp2C->unkA4 != 0) && (sp2C->unkE4 == 0x1B8)) {
+            if ((sp2C->unkA4 != 0) && (sp2C->obj_id == 0x1B8)) {
                 D_801775FC = gObjects[0xE].Pos.x;
                 D_8017760C = gObjects[0xE].Pos.z;
             } else {

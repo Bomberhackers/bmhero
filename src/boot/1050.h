@@ -7,7 +7,7 @@ extern OSMesgQueue D_8004D710;
 extern OSMesgQueue D_8004D728;
 extern OSMesg D_8004D740;
 extern struct UnkStruct80001CF0 D_8004D748;
-extern OSMesgQueue *D_8004D9D0;
+extern OSMesgQueue *gUnusedGfxMq;
 extern u8 D_8004D9D8[0x2000]; // unk thread stack
 extern OSThread D_8004F9D8;
 extern OSThread gIdleThread;

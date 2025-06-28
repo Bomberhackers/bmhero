@@ -15,7 +15,7 @@ void Debug_DrawProfiler(s32 x, s32 y) {
     u32 i;
 
     func_8005F124();
-    func_8005F96C(0xFF, 0xFF, 0xFF);
+    Debug_SetTextColor(0xFF, 0xFF, 0xFF);
     sprintf(gDebugTextBuf, "%8d", D_8016E244);
     debug_print_xy(208, 216);
     sprintf(gDebugTextBuf, "%04d %04d %04d", D_8016E254 / 1000, D_8016E264 / 1000, (D_8016E254 + D_8016E264) / 1000);
@@ -162,7 +162,7 @@ void debug_print_char(s16 c, s16 x, s16 y, f32 unused1, f32 unused2) {
                         (D_8010399C[1 + (i / 8 * 2)] + y) << 2, 0, 0, 0, 0x400, 0x400);
 }
 
-void func_8005F96C(u8 arg0, u8 arg1, u8 arg2) {
+void Debug_SetTextColor(u8 arg0, u8 arg1, u8 arg2) {
     func_8005F488((s32) arg0 / 8, (s32) arg1 / 8, (s32) arg2 / 8);
     func_8005F170();
 }
@@ -170,7 +170,7 @@ void func_8005F96C(u8 arg0, u8 arg1, u8 arg2) {
 void debug_print_xy(int x, int y) {
     s32 i;
 
-    for (i = 0; i < 0xC8; i++) {
+    for (i = 0; i < 200; i++) {
         s16 c = gDebugTextBuf[i];
 
         if (c == 0) {
@@ -191,12 +191,12 @@ void func_8005FAB8(int arg0, int arg1) {
     func_8005FAA0(arg0, arg0 + arg1);
 }
 
-void func_8005FAF4(u8* buf, s32 x, s32 y) {
+UNUSED void Unused_DebugPrint(u8* buf, s32 x, s32 y) {
     u8 i;
 
-    func_8005F96C(0xFF, 0, 0xFF);
+    Debug_SetTextColor(0xFF, 0, 0xFF);
 
-    for (i = 0; i < 0x10; i++) {
+    for (i = 0; i < 16; i++) {
         sprintf(gDebugTextBuf, "%02x ", *buf);
         debug_print_xy(x, y);
         x += 0x12;

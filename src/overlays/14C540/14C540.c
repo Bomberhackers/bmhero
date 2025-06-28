@@ -684,8 +684,8 @@ s32 func_80335DE4_unk_bin_2(void) {
     s16 sp2E;
 
     func_8001ECB8();
-    D_8016526C = func_80335B44_unk_bin_2;
-    D_80165274 = func_80335960_unk_bin_2;
+    gDebugRoutine1 = func_80335B44_unk_bin_2;
+    gDebugRoutine2 = func_80335960_unk_bin_2;
     D_8016E134 = 0;
     gView.at.x = 0.0f;
     gView.at.y = 0.0f;

@@ -17,7 +17,7 @@ OSMesgQueue D_8004D710;
 OSMesgQueue D_8004D728;
 OSMesg D_8004D740;
 struct UnkStruct80001CF0 D_8004D748;
-OSMesgQueue* D_8004D9D0;
+OSMesgQueue* gUnusedGfxMq;
 u8 D_8004D9D8[0x2000]; // unk thread stack
 OSThread D_8004F9D8;
 OSThread gIdleThread;
@@ -126,7 +126,7 @@ void func_800007F4(void) {
         func_80001CF0(&D_8004D748, (u8*) &D_8004D9D8 + 0x2000, 0xD, 0x10, 1);
     }
     func_80001E78(&D_8004D748, &D_80052D38, &D_8016E0B8);
-    D_8004D9D0 = func_80001FDC(&D_8004D748);
+    gUnusedGfxMq = func_80001FDC(&D_8004D748);
 }
 
 /**

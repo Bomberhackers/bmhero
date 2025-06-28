@@ -19,13 +19,13 @@ void func_8007E76C(f32 arg0, f32 arg1, f32 arg2, s32 arg3) {
             func_8001A928(sp34);
             sp30 = &gObjects[sp34];
             if (arg3 == 1) {
-                sp30->unkE4 = 0x10;
+                sp30->obj_id = 0x10;
                 func_8001BD44(sp34, 0, 2, (s32) gFileArray[0xF].ptr);
                 func_8001BD44(sp34, 1, 3, &gFileArray[0xF].ptr[D_80116650[0]]);
                 func_8001C0EC(sp34, 0, 0, 0xF, &D_80116654);
                 func_8001C0EC(sp34, 1, 0, 0xF, &D_80116658);
             } else if (arg3 == 2) {
-                sp30->unkE4 = 0x11;
+                sp30->obj_id = 0x11;
                 func_8001BD44(sp34, 0, 1, (s32) gFileArray[0xE].ptr);
                 func_8001BD44(sp34, 1, 3, (s32) &gFileArray[0xE].ptr[D_80116644[0]]);
                 func_8001C0EC(sp34, 0, 0, 0xE, &D_80116648);
@@ -35,7 +35,7 @@ void func_8007E76C(f32 arg0, f32 arg1, f32 arg2, s32 arg3) {
                 func_8001BD44(sp34, 1, 4, (s32) &gFileArray[0xD].ptr[D_80116638[0]]);
                 func_8001C0EC(sp34, 0, 0, 0xD, &D_8011663C);
                 func_8001C0EC(sp34, 1, 0, 0xD, &D_80116640);
-                sp30->unkE4 = 0xF;
+                sp30->obj_id = 0xF;
             }
             sp30->unkA4 = 1;
             sp30->unk108 = 1;
@@ -81,7 +81,7 @@ void func_8007EBEC(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
             func_8001BD44(sp34, 1, 4, (s32) &gFileArray[0x10].ptr[D_8011665C[0]]);
             func_8001C0EC(sp34, 0, 0, 0x10, &D_80116660);
             func_8001C0EC(sp34, 1, 0, 0x10, &D_80116664);
-            sp30->unkE4 = 0x12;
+            sp30->obj_id = 0x12;
             sp30->unkA4 = 1;
             sp30->Pos.x = arg0;
             sp30->Pos.y = arg1;
@@ -119,7 +119,7 @@ void func_8007EE88(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
             func_8001BD44(sp34, 1, 3, (s32) &gFileArray[0xE].ptr[*D_80116644]);
             func_8001C0EC(sp34, 0, 0, 0xE, &D_80116648);
             func_8001C0EC(sp34, 1, 0, 0xE, &D_8011664C);
-            sp30->unkE4 = 0x14;
+            sp30->obj_id = 0x14;
             sp30->unkA4 = 1;
             sp30->Pos.x = arg0;
             sp30->Pos.y = arg1;
@@ -145,7 +145,7 @@ void func_8007F070(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
             func_8001BD44(sp34, 1, 3, (s32) &gFileArray[0x11].ptr[D_80116668[0]]);
             func_8001C0EC(sp34, 0, 0, 0x11, &D_8011666C);
             func_8001C0EC(sp34, 1, 0, 0x11, &D_80116670);
-            sp30->unkE4 = 0x13;
+            sp30->obj_id = 0x13;
             sp30->unkA4 = 1;
             sp30->Pos.x = arg0;
             sp30->Pos.y = arg1;
@@ -165,7 +165,7 @@ void func_8007F24C(void) {
 
     for (sp20 = 6, sp24 = &gObjects[6]; sp20 < 14; sp20++, sp24++) {
         if (sp24->unkA4 != 0) {
-            if (sp24->unkE4 == 0x13) {
+            if (sp24->obj_id == 0x13) {
                 sp1C = func_8001B62C(sp20, 1);
                 if ((sp1C >= 30.0f) && (sp1C <= 80.0f)) {
                     func_80081468(0x2C8, sp24->Pos.x, sp24->Pos.y, sp24->Pos.z);

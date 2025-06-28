@@ -112,7 +112,7 @@ void func_80026548(void) {
             sp30 = sp24->Pos.x - view_x;
             sp2C = sp24->Pos.y - view_y;
             sp28 = sp24->Pos.z - view_z;
-            if ((sp24->unkE6[0] == -1) && !(D_80124D90[sp24->unkE4].unk4 & 1)) {
+            if ((sp24->unkE6[0] == -1) && !(D_80124D90[sp24->obj_id].unk4 & 1)) {
                 if ((SQ(sp30) + SQ(sp2C) + SQ(sp28)) > D_80177984) {
                     for (sp48 = 0; sp48 < 0xA; sp48++) {
                         if (sp24->unk10E[sp48] != -1) {
@@ -137,7 +137,7 @@ void func_80026548(void) {
             }
             if (sp1C != 0) {
                 sp24->unk131 = 0;
-                if (!(D_80124D90[sp24->unkE4].unk4 & 4)) {
+                if (!(D_80124D90[sp24->obj_id].unk4 & 4)) {
                     if (!(D_8017798C <= sp30) || !(D_80177994 >= sp30) || !(D_8017799C <= sp2C) ||
                         !(D_801779A4 >= sp2C) || !(D_801779AC.raw <= sp28) || !(D_801779B8 >= sp28)) {
                         sp24->unk131 |= 2;
@@ -203,7 +203,7 @@ s32 Get_ObjIdx_ById(s32 id) {
     obj_found = FALSE;
 
     for (obj_idx = 14, obj = &gObjects[14]; obj_idx < 0x4E; obj_idx++, obj++) {
-        if (obj->unkE4 == id) {
+        if (obj->obj_id == id) {
             obj_found = TRUE;
             break;
         }
@@ -234,7 +234,7 @@ s32 Get_ObjIdx_ByPos(s32 id, s32 objPos) {
     /* We do the search by using objIdx as our first clue */
 
     for (obj = &gObjects[objPos], obj_idx = objPos; obj_idx < 78; obj_idx++, obj++) {
-        if (obj->unkE4 == id) {
+        if (obj->obj_id == id) {
             obj_found = TRUE;
             break;
         }
@@ -362,7 +362,7 @@ s32 func_80027464(s32 arg0, struct UnkStruct_80027C00* arg1, f32 arg2, f32 arg3,
             gObjects[unk24[index]].Rot.y = arg5;
             gObjects[unk24[index]].unk3C = arg5;
             gObjects[unk24[index]].unkA4 = 1;
-            gObjects[unk24[index]].unkE4 = arg1->unk2;
+            gObjects[unk24[index]].obj_id = arg1->unk2;
             gObjects[unk24[index]].unk100 = arg1->unk7;
             gObjects[unk24[index]].unk108 = arg1->unk8;
             gObjects[unk24[index]].unk102 = arg1->unk9;
@@ -419,7 +419,7 @@ s32 func_80027C00(s32 arg0, s32 arg1, struct UnkStruct_80027C00* arg2, f32 arg3,
     gObjects[sp24].Rot.y = arg6;
     gObjects[sp24].unk3C = arg6;
     gObjects[sp24].unkA4 = 1;
-    gObjects[sp24].unkE4 = arg2->unk2;
+    gObjects[sp24].obj_id = arg2->unk2;
     gObjects[sp24].unk100 = (s16) arg2->unk7;
     gObjects[sp24].unk108 = (s16) arg2->unk8;
     gObjects[sp24].unk102 = arg2->unk9;
@@ -641,7 +641,7 @@ s32 func_80028E60(s32 arg0) {
     sp1C = (sp24->Pos.y + sp24->Vel.y) - sp24->unk54;
     sp18 = (sp24->Pos.z + sp24->Vel.z) - sp24->unk58;
 
-    if (((D_80124D90[gObjects[arg0].unkE4].unk30)) <= (SQ(sp20) + SQ(sp1C) + SQ(sp18))) {
+    if (((D_80124D90[gObjects[arg0].obj_id].unk30)) <= (SQ(sp20) + SQ(sp1C) + SQ(sp18))) {
         return TRUE;
     }
     return FALSE;
@@ -973,28 +973,27 @@ s32 func_8002A2EC(s32 arg0, f32 arg1) {
     return FALSE;
 }
 
-s32 func_8002A3A8(s32 arg0, f32 arg1) {
-    struct ObjectStruct* spC;
-    f32 sp8;
-    f32 sp4;
+s32 func_8002A3A8(s32 objIdx, f32 arg1) {
+    struct ObjectStruct* obj;
+    f32 dx;
+    f32 dy;
 
-    spC = &gObjects[arg0];
-    sp8 = gPlayerObject->Pos.x - spC->Pos.x;
-    sp4 = (gPlayerObject->Pos.y + 60.0f) - spC->Pos.y;
-    if ((SQ(sp8) + SQ(sp4)) < SQ(arg1)) {
+    obj = &gObjects[objIdx];
+    dx = gPlayerObject->Pos.x - obj->Pos.x;
+
+    dy = (gPlayerObject->Pos.y + 60.0f) - obj->Pos.y;
+    if ((SQ(dx) + SQ(dy)) < SQ(arg1)) {
         return 1;
     }
     return 0;
 }
 
-f32 func_8002A46C(s32 arg0) {
-    func_80015634(gPlayerObject->Pos.x - gObjects[arg0].Pos.x, gPlayerObject->Pos.z - gObjects[arg0].Pos.z);
-    return;
+f32 func_8002A46C(s32 objIdx) {
+    return func_80015634(gPlayerObject->Pos.x - gObjects[objIdx].Pos.x, gPlayerObject->Pos.z - gObjects[objIdx].Pos.z);
 }
 
-f32 func_8002A4E0(s32 arg0) {
-    func_800156C4(gPlayerObject->Pos.x - gObjects[arg0].Pos.x, (gPlayerObject->Pos.y + 60.0f) - gObjects[arg0].Pos.y);
-    return;
+f32 func_8002A4E0(s32 objIdx) {
+    return func_800156C4(gPlayerObject->Pos.x - gObjects[objIdx].Pos.x, (gPlayerObject->Pos.y + 60.0f) - gObjects[objIdx].Pos.y);
 }
 
 s32 func_8002A560(s32 arg0, f32 arg1) {
@@ -1122,7 +1121,7 @@ s32 func_8002AB40(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
         func_8001BE6C(sp2C, 3, 0, gFileArray[0x45].ptr + D_801168D0[0]);
     }
     sp28->unkA4 = 1;
-    sp28->unkE4 = 0x47;
+    sp28->obj_id = 0x47;
     sp28->Pos.x = arg0;
     sp28->Pos.y = arg1;
     sp28->Pos.z = arg2;
@@ -1170,11 +1169,11 @@ void func_8002AE84(s32 ObjectIndex, s32 arg1) {
         guRotateF(sp6C, spC4->Rot.y, 0, 1.0f, 0.0f);
         guTranslateF(sp2C, spC4->Pos.x, spC4->Pos.y, spC4->Pos.z);
         guMtxCatF(sp6C, sp2C, sp6C);
-        guMtxXFMF(sp6C, D_80124D90[spC4->unkE4].unk8, D_80124D90[spC4->unkE4].unkA, D_80124D90[spC4->unkE4].unkC, &ox,
+        guMtxXFMF(sp6C, D_80124D90[spC4->obj_id].unk8, D_80124D90[spC4->obj_id].unkA, D_80124D90[spC4->obj_id].unkC, &ox,
                   &oy, (f32*) &oz);
 
-        spB0 = D_80124D90[spC4->unkE4].unkE / 10.0f;
-        spAC = D_80124D90[spC4->unkE4].unkF;
+        spB0 = D_80124D90[spC4->obj_id].unkE / 10.0f;
+        spAC = D_80124D90[spC4->obj_id].unkF;
     }
     func_8001A928(ObjectIndex);
     if ((arg1 != 0) && (spAC != -1)) {
@@ -1199,7 +1198,7 @@ void func_8002B154(void) {
     for (sp1C = 0xE; sp1C < 0x4E; sp1C++) {
         if (gObjects[sp1C].unkA4 != 0) {
             gCurrentParsedObject = sp1C;
-            D_80124D90[gObjects[sp1C].unkE4].routine2();
+            D_80124D90[gObjects[sp1C].obj_id].routine2();
             if (gObjects[sp1C].unkA4 != 0) {
                 if (gObjects[sp1C].unk108 >= 2) {
                     gObjects[sp1C].unk108 -= 1;

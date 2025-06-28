@@ -1,5 +1,11 @@
+sDebugSetModeMenu = 0x80057688;
+sSetModeMenuOption = 0x8005769C;
+Math_Atan2f = 0x80014F50;
+gDebugRoutine1 = 0x8016526C;
+gDebugRoutine2 = 0x80165274;
+gUnusedGfxMq = 0x8004D9D0;
 Reset_LightSettings = 0x8001819C;
-Set_BgColor = 0x8001D638;
+Debug_SetBg = 0x8001D638;
 LoadFile = 0x8001E98C;
 Get_DecompressHeap = 0x8001E96C;
 Set_DecompressHeap = 0x8001E954;

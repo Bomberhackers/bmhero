@@ -2260,7 +2260,7 @@ void func_800E3EE4(void) {
     if (sp30 != -1) {
         func_8001ABF4(sp30, 0, 0, &D_8011940C);
         gObjects[sp30].Rot.y = sp4C->Rot.y;
-        switch (sp4C->unkE4) {
+        switch (sp4C->obj_id) {
             case 0xA1:
                 if (sp4C->unk106 == 0xA2) {
                     if ((gObjects[sp4C->unk104].unkA4 == 0) || (gObjects[sp4C->unk104].unkA4 == 6)) {
@@ -5380,16 +5380,16 @@ void func_800F98C4(void) {
                          (f32) D_80165100->unk8);
     if (sp20 != -1) {
         sp24 = &gObjects[sp20];
-        sp24->unkE4 = (s16) D_80165100->unk0;
+        sp24->obj_id = (s16) D_80165100->unk0;
         if (func_80026260(D_8016519C) == 1) {
-            if (sp24->unkE4 == 0x4D) {
-                sp24->unkE4 = 0x4E;
+            if (sp24->obj_id == 0x4D) {
+                sp24->obj_id = 0x4E;
             } else {
-                sp24->unkE4 = 0x4D;
+                sp24->obj_id = 0x4D;
             }
             sp24->unkA6 = 1;
         }
-        if (sp24->unkE4 == 0x4D) {
+        if (sp24->obj_id == 0x4D) {
             sp24->Pos.y = (f32) (sp24->Pos.y + 180.0f);
         }
     }
@@ -5407,12 +5407,12 @@ void func_800F9CB8(void) {
                          (f32) D_80165100->unk8);
     if (sp20 != -1) {
         sp24 = &gObjects[sp20];
-        sp24->unkE4 = (s16) D_80165100->unk0;
+        sp24->obj_id = (s16) D_80165100->unk0;
         if (func_80026260(D_8016519C) == 1) {
-            if (sp24->unkE4 == 0x4F) {
-                sp24->unkE4 = 0x50;
+            if (sp24->obj_id == 0x4F) {
+                sp24->obj_id = 0x50;
             } else {
-                sp24->unkE4 = 0x4F;
+                sp24->obj_id = 0x4F;
             }
             sp24->unkA6 = 1;
         }
@@ -5426,7 +5426,7 @@ void func_800F9DE0(void) {
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
         sp24->unk132 = 1U;
-        if (sp24->unkE4 == 0x4F) {
+        if (sp24->obj_id == 0x4F) {
             sp20 = 1;
         } else {
             sp20 = 0;
@@ -5435,7 +5435,7 @@ void func_800F9DE0(void) {
         func_8001BBDC(gCurrentParsedObject, 1);
     }
     if (sp24->unkA6 == 0) {
-        if (sp24->unkE4 == 0x4F) {
+        if (sp24->obj_id == 0x4F) {
             if (func_8002A1FC(gCurrentParsedObject, 360.0f) == 0) {
                 sp24->unkA6 = 1;
                 sp24->unkA8 = 1;
@@ -5449,7 +5449,7 @@ void func_800F9DE0(void) {
     }
     if (sp24->unkA8 == 1) {
         sp24->unkA8 = 2;
-        if (sp24->unkE4 == 0x4F) {
+        if (sp24->obj_id == 0x4F) {
             sp20 = 1;
         } else {
             sp20 = 0;
@@ -5460,12 +5460,12 @@ void func_800F9DE0(void) {
         sp24->unkA8 = 0;
         func_8001BBDC(gCurrentParsedObject, 1);
         func_800261E8(gCurrentParsedObject, 1);
-        if (sp24->unkE4 == 0x4F) {
+        if (sp24->obj_id == 0x4F) {
             func_8001C0EC(gCurrentParsedObject, 0, 0, 0xBF, &D_8011BA8C);
-            sp24->unkE4 = 0x50;
+            sp24->obj_id = 0x50;
         } else {
             func_8001C0EC(gCurrentParsedObject, 0, 1, 0xBF, &D_8011BA8C);
-            sp24->unkE4 = 0x4F;
+            sp24->obj_id = 0x4F;
         }
     }
 }

@@ -2,6 +2,7 @@
 #include "common.h"
 #include "21E10.h"
 #include "cont_pak.h"
+#include "obj.h"
 
 s32 func_80021210(s32 arg0) {
     if ((gObjects[arg0].unkA4 != 0) && ((gObjects[arg0].unk108 == 1) || (gObjects[arg0].unk108 == -1)) &&
@@ -61,11 +62,11 @@ s32 func_80021584(s32 arg0, s32 arg1) {
         gObjects[arg0].unk104 = (s16) arg1;
         gObjects[arg0].unk10B = sp3C;
         gObjects[arg0].unk10C = sp3A;
-        gObjects[arg0].unk106 = gObjects[arg1].unkE4;
+        gObjects[arg0].unk106 = gObjects[arg1].obj_id;
         gObjects[arg1].unk104 = (s16) arg0;
         gObjects[arg1].unk10B = sp3A;
         gObjects[arg1].unk10C = sp3C;
-        gObjects[arg1].unk106 = gObjects[arg0].unkE4;
+        gObjects[arg1].unk106 = gObjects[arg0].obj_id;
         for (sp24 = 0; sp24 < 2; sp24++) {
             if (sp24 == 0) {
                 sp20 = arg0;
@@ -81,7 +82,7 @@ s32 func_80021584(s32 arg0, s32 arg1) {
             } else {
                 if (sp20 < 0xE) {
                     gObjects[sp1C].unk10A = 2;
-                } else if (D_80124D90[gObjects[sp20].unkE4].unk2 == 0) {
+                } else if (D_80124D90[gObjects[sp20].obj_id].unk2 == 0) {
                     gObjects[sp1C].unk10A = 4;
                 } else {
                     gObjects[sp1C].unk10A = 5;
@@ -124,7 +125,7 @@ void func_80021BCC(void) {
 
     if ((gCurrentLevel == MAP_MOVE_STONE) && (gPlayerObject->unkA4 == 0x2A)) {
         for (sp30 = 0xE; sp30 < 0x4E; sp30++) {
-            if (gObjects[sp30].unkE4 == 0x18E) {
+            if (gObjects[sp30].obj_id == OBJ_PUSHBLK) {
                 sp26 = func_80077CB0(0, (s16) sp30, &sp24, &sp22);
                 if (sp26 != 0) {
                     gObjects[sp30].unkA6 = 0;
@@ -152,7 +153,7 @@ void func_80021BCC(void) {
     if (func_80021418(0) != 0) {
         for (sp30 = 0xE; sp30 < 0x4E; sp30++) {
             if (func_800214B8(sp30) != 0) {
-                sp2C = gObjects[sp30].unkE4;
+                sp2C = gObjects[sp30].obj_id;
                 sp28 = 1;
                 if (D_8016523E == 6) {
                 } else if (D_80124D90[sp2C].unk2 == 0) {
@@ -181,7 +182,7 @@ void func_80021BCC(void) {
         if (func_80021210(sp34) != 0) {
             for (sp30 = 0xE; sp30 < 0x4E; sp30++) {
                 if ((func_80021210(sp30) != 0)) {
-                    if (!((u8) D_80124D90[gObjects[sp30].unkE4].unk0 & 2)) {
+                    if (!((u8) D_80124D90[gObjects[sp30].obj_id].unk0 & 2)) {
                         if (func_80021584(sp34, sp30)) {
                             break;
                         }
@@ -217,7 +218,7 @@ void func_80021BCC(void) {
         if (func_80021210(sp34) != 0) {
             for (sp30 = 0xE; sp30 < 0x4E; sp30++)
                 if ((func_80021210(sp30) != 0)) {
-                    if (!((u8) D_80124D90[gObjects[sp30].unkE4].unk0 & 2)) {
+                    if (!((u8) D_80124D90[gObjects[sp30].obj_id].unk0 & 2)) {
                         if ((func_80021584(sp34, sp30) != 0)) {
                             break;
                         }
@@ -295,13 +296,13 @@ s32 func_800225D8(s32 arg0, s32 arg1) {
     }
 
     if ((gObjects[sp2C].unk100 != 0) && (gObjects[sp2C].unk108 != -1) &&
-        (gObjects[sp2C].unk10B <= D_80124D90[gObjects[sp2C].unkE4].unk3)) {
+        (gObjects[sp2C].unk10B <= D_80124D90[gObjects[sp2C].obj_id].unk3)) {
 
         sp24 = 0;
-        sp20 = (s32) gObjects[arg0].unkE4;
-        sp1F = D_80124D90[gObjects[sp2C].unkE4].unk5;
+        sp20 = (s32) gObjects[arg0].obj_id;
+        sp1F = D_80124D90[gObjects[sp2C].obj_id].unk5;
         if (sp1F & 8) {
-            if ((gObjects[arg1].unkE4 == 0x141) && (sp20 != 8)) {
+            if ((gObjects[arg1].obj_id == OBJ_FFLOWER) && (sp20 != 8)) {
                 sp24 = 1;
             }
         } else if ((sp20 == 9) || (sp20 == 0x10)) {
@@ -316,10 +317,10 @@ s32 func_800225D8(s32 arg0, s32 arg1) {
             sp24 = 1;
         }
         if (sp20 == 0x12) {
-            if (gObjects[sp2C].unkE4 == 0x20A) {
+            if (gObjects[sp2C].obj_id == OBJ_BOLB_BD2) {
                 sp24 = 0;
             }
-        } else if ((sp20 == 0x14) && (gObjects[sp2C].unkE4 == 0x1C8)) {
+        } else if ((sp20 == 0x14) && (gObjects[sp2C].obj_id == OBJ_NITR_BD)) {
             sp24 = 0;
         }
         if ((gObjects[sp2C].unk100 != -1) && (sp24 != 0)) {
@@ -327,15 +328,15 @@ s32 func_800225D8(s32 arg0, s32 arg1) {
         }
         if (sp24 != 0) {
             if (gObjects[sp2C].unk100 == 0) {
-                Score_Update(D_80124D90[gObjects[sp2C].unkE4].unk6);
+                Score_Update(D_80124D90[gObjects[sp2C].obj_id].unk6);
                 gCurrentParsedObject = sp28;
                 D_80177A64 = 0;
-                D_80124D90[gObjects[sp28].unkE4].routine_1C();
+                D_80124D90[gObjects[sp28].obj_id].routine_1C();
                 return 1;
             } else {
                 gCurrentParsedObject = sp28;
                 D_80177A64 = 1;
-                D_80124D90[gObjects[sp28].unkE4].routine_1C();
+                D_80124D90[gObjects[sp28].obj_id].routine_1C();
             }
         }
     }
@@ -350,7 +351,7 @@ void func_80022B54(void) {
 
     sp28 = (s32) gPlayerObject->unk104;
     sp2C = &gObjects[sp28];
-    switch (sp2C->unkE4) {
+    switch (sp2C->obj_id) {
         case 0x20:
             if (gBombCount < 3) {
                 gBombCount += 1;
@@ -385,7 +386,7 @@ void func_80022B54(void) {
             break;
         case 0x25:
         case 0x31:
-            if (sp2C->unkE4 == 0x25) {
+            if (sp2C->obj_id == 0x25) {
                 sp24 = 1;
             } else {
                 sp24 = 5;
@@ -502,8 +503,8 @@ void func_80022B54(void) {
     }
     gCurrentParsedObject = sp28;
     D_80177A64 = 0;
-    D_80124D90[gObjects[sp28].unkE4].routine_1C();
-    Score_Update((s16) D_80124D90[gObjects[sp28].unkE4].unk6);
+    D_80124D90[gObjects[sp28].obj_id].routine_1C();
+    Score_Update((s16) D_80124D90[gObjects[sp28].obj_id].unk6);
     D_801775FA += 1;
 }
 
@@ -521,7 +522,7 @@ void func_80023404(void) {
         }
         gCurrentParsedObject = sp1C;
         D_80177A64 = 2;
-        D_80124D90[gObjects[sp1C].unkE4].routine_1C();
+        D_80124D90[gObjects[sp1C].obj_id].routine_1C();
     }
 }
 
@@ -542,7 +543,7 @@ void func_80023534(void) {
         sp24 = (s32) gPlayerObject->unk104;
         D_8016E088 = 5;
         sp20 = func_800225D8(0, sp24);
-        if ((sp20 == 1) && (gObjects[sp24].unkE4 == 0xA0)) {
+        if ((sp20 == 1) && (gObjects[sp24].obj_id == 0xA0)) {
             D_80165242 += 1;
         }
     } else if (gPlayerObject->unk108 == 1) {
@@ -553,7 +554,7 @@ void func_80023534(void) {
         }
         gCurrentParsedObject = sp24;
         D_80177A64 = 2;
-        D_80124D90[gObjects[sp24].unkE4].routine_1C();
+        D_80124D90[gObjects[sp24].obj_id].routine_1C();
     }
 }
 
@@ -580,7 +581,7 @@ void func_80023754(void) {
         }
         gCurrentParsedObject = sp1C;
         D_80177A64 = 2;
-        D_80124D90[gObjects[sp1C].unkE4].routine_1C();
+        D_80124D90[gObjects[sp1C].obj_id].routine_1C();
     }
 }
 
@@ -594,7 +595,7 @@ void func_80023904(void) {
     }
     gCurrentParsedObject = sp1C;
     D_80177A64 = 2;
-    D_80124D90[gObjects[sp1C].unkE4].routine_1C();
+    D_80124D90[gObjects[sp1C].obj_id].routine_1C();
 }
 
 void func_800239E4(void) {
@@ -697,8 +698,8 @@ void func_80023E78(void) {
             } else if (gObjects[sp1C].unk10A == 2) {
                 gObjects[sp1C].unkA4 = 7;
             } else if (gObjects[sp1C].unk10A == 4) {
-                if (((gObjects[sp18].unkE4 == 0x1C8) && (gObjects[sp18].unkA4 == 0xC)) ||
-                    ((gObjects[sp18].unkE4 == 0x1CF) && (gObjects[0xE].unkA4 == 0xC))) {
+                if (((gObjects[sp18].obj_id == 0x1C8) && (gObjects[sp18].unkA4 == 0xC)) ||
+                    ((gObjects[sp18].obj_id == 0x1CF) && (gObjects[0xE].unkA4 == 0xC))) {
                 } else {
                     gObjects[sp1C].unkA4 = 7;
                     func_800225D8(sp1C, sp18);

@@ -902,7 +902,7 @@ void func_800983F8(struct ObjectStruct* arg0) {
             }
 
             if (gObjects[sp24].unkA6 == arg0->unkA6) {
-                gObjects[sp24].unkE4 = 0x195;
+                gObjects[sp24].obj_id = 0x195;
                 gObjects[sp24].unk132 = 0;
                 break;
             }
@@ -942,7 +942,7 @@ void func_8009868C(void) {
     if (sp24 != -1) {
         gObjects[sp24].unkA6 = D_80165100->unkA;
         if (D_80165100->unkC == 1) {
-            gObjects[sp24].unkE4 = 0x195;
+            gObjects[sp24].obj_id = 0x195;
         }
     }
 }
@@ -955,7 +955,7 @@ void func_8009878C(void) {
     sp1C = &gObjects[gCurrentParsedObject];
     if (sp1C->unk132 == 0) {
         sp1C->unk132 += 1;
-        if (sp1C->unkE4 == 0x194) {
+        if (sp1C->obj_id == 0x194) {
             func_8001ABF4(gCurrentParsedObject, 0, 3, &D_80116D78);
         } else {
             func_8001ABF4(gCurrentParsedObject, 0, 3, &D_80116D78 + 7);
@@ -1772,7 +1772,7 @@ void func_8009B9F4(void) {
             func_800175F0(gCurrentParsedObject, 0, 0x5E, -1, 0);
         }
     } else if (sp24->unkA4 == 2) {
-        if (sp24->unkE4 == 0x18B) {
+        if (sp24->obj_id == 0x18B) {
             sp24->Vel.x = 4.0f;
             if (sp24->Pos.x >= 656.0f) {
                 sp24->unkA4 = 3;
@@ -1928,14 +1928,14 @@ void func_8009C2E0(void) {
         sp3C->unk108 = 0;
         sp3C->unk13A = 1;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0x42, &D_80116A88);
-        if (sp3C->unkE4 == 0x42) {
+        if (sp3C->obj_id == 0x42) {
             func_800941C4((s32) sp3C->unkA6, sp3C->Pos.x, sp3C->Pos.y + 60.0f, sp3C->Pos.z);
-        } else if (sp3C->unkE4 == 0x43) {
+        } else if (sp3C->obj_id == 0x43) {
             if ((D_801775F6 != 0) && (func_80014E80(0x64) < 0x32)) {
                 sp38 = D_8011486C[0].unk0_1[func_80014E80(4)] - 0x20;
                 func_800941C4(sp38, sp3C->Pos.x, sp3C->Pos.y + 60.0f, sp3C->Pos.z);
             }
-        } else if (sp3C->unkE4 == 0x44) {
+        } else if (sp3C->obj_id == 0x44) {
             func_8009BBC4(sp3C->Pos.x, sp3C->Pos.y + 60.0f, sp3C->Pos.z, func_8002A46C(gCurrentParsedObject));
         }
     }
@@ -2514,7 +2514,7 @@ void func_8009EA00(struct ObjectStruct* arg0) {
     if (arg0->unk132 == 0) {
         arg0->unk132 = (u8) (arg0->unk132 + 1);
         arg0->unk108 = 1;
-        if (arg0->unkE4 == 0x5D) {
+        if (arg0->obj_id == 0x5D) {
             sp24 = &D_80116E50;
         } else {
             sp24 = &D_80116E50 + 14;
@@ -2531,7 +2531,7 @@ void func_8009EAEC(struct ObjectStruct* arg0) {
         arg0->unk132 = (u8) (arg0->unk132 + 1);
         arg0->unk108 = -1;
         arg0->unkAC = 0;
-        if (arg0->unkE4 == 0x5D) {
+        if (arg0->obj_id == 0x5D) {
             sp1C = &D_80116E50 + 7;
         } else {
             sp1C = &D_80116E50 + 21;
@@ -2603,7 +2603,7 @@ void func_8009EF20(struct ObjectStruct* arg0) {
         arg0->unk102 = 0;
         arg0->unkA6 = 0;
         arg0->unk44 = 40.0f;
-        if (arg0->unkE4 == 0x169) {
+        if (arg0->obj_id == 0x169) {
             arg0->unk3C = 0.0f;
             arg0->unk40 = 90.0f;
         } else {
@@ -2644,7 +2644,7 @@ void func_8009F13C(struct ObjectStruct* arg0) {
         arg0->unk102 = 1;
         arg0->unkA6 = 0;
         arg0->unk44 = -40.0f;
-        if (arg0->unkE4 == 0x169) {
+        if (arg0->obj_id == 0x169) {
             arg0->unk3C = 0.0f;
             arg0->unk40 = 90.0f;
         } else {

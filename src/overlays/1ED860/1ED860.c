@@ -138,7 +138,7 @@ void func_803305D4_unk_bin_41() {
 
 void func_803309CC_unk_bin_41() {
     struct ObjectStruct* obj = &gObjects[gCurrentParsedObject];
-    struct ObjectStruct* firstObj = &PLAYER;
+    struct ObjectStruct* firstObj = &PLAYER_OBJ;
     f32 sp1C;
 
     if (obj->unk132 == 0) {
@@ -184,7 +184,7 @@ void func_803309CC_unk_bin_41() {
 
 s8 func_80330C3C_unk_bin_41() {
     struct ObjectStruct* obj = &gObjects[gCurrentParsedObject];
-    struct ObjectStruct* firstObj = &PLAYER;
+    struct ObjectStruct* firstObj = &PLAYER_OBJ;
     f32 x;
     f32 xDiff;
     f32 zDiff;

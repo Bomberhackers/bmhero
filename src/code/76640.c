@@ -317,7 +317,7 @@ void func_80084BD8(f32* arg0, s32 arg1, f32 arg2, f32 arg3) {
         D_80165270 = (s16) D_80177770[D_801776E0 & 1];
         if (D_80165270 != -1) {
             if (D_80177760[D_801776E0 & 1] == player_pos_y) {
-                D_80165280 = gObjects[D_80165270].unkE4;
+                D_80165280 = gObjects[D_80165270].obj_id;
                 D_80165288 = player_pos_x - gObjects[D_80165270].Pos.x;
                 D_8016C290 = player_pos_y - gObjects[D_80165270].Pos.y;
                 D_8016CA98 = player_pos_z - gObjects[D_80165270].Pos.z;
@@ -392,25 +392,25 @@ void func_80085884(void) {
 
     if (D_8016E238 == 0) {
         if (D_80165270 != -1) {
-            if ((gObjects[D_80165270].unkA4 == 0) || (gObjects[D_80165270].unkE4 != D_80165280)) {
+            if ((gObjects[D_80165270].unkA4 == 0) || (gObjects[D_80165270].obj_id != D_80165280)) {
                 sp1C = -1;
             } else {
                 sp1C = (s32) D_80165270;
             }
         } else {
-            if ((gObjects[D_8016E2A8].unkA4 == 0) || (gObjects[D_8016E2A8].unkE4 != D_8016E2B8)) {
+            if ((gObjects[D_8016E2A8].unkA4 == 0) || (gObjects[D_8016E2A8].obj_id != D_8016E2B8)) {
                 sp1C = -1;
             } else {
                 sp1C = (s32) D_8016E2A8;
             }
         }
         if (sp1C != -1) {
-            D_80124D90[gObjects[sp1C].unkE4].routine3();
+            D_80124D90[gObjects[sp1C].obj_id].routine3();
         }
     } else {
         sp18 = D_8016E240 - 2;
         if (D_801779B0[sp18] != -1) {
-            if ((gObjects[D_801779B0[sp18]].unkA4 == 0) || gObjects[D_801779B0[sp18]].unkE4 != D_801779C0[sp18]) {
+            if ((gObjects[D_801779B0[sp18]].unkA4 == 0) || gObjects[D_801779B0[sp18]].obj_id != D_801779C0[sp18]) {
                 sp1C = -1;
             } else {
                 sp1C = D_801779B0[sp18];
@@ -419,7 +419,7 @@ void func_80085884(void) {
             sp1C = -1;
         }
         if (sp1C != -1) {
-            D_80124D90[gObjects[sp1C].unkE4].routine3();
+            D_80124D90[gObjects[sp1C].obj_id].routine3();
         }
     }
 }
@@ -778,7 +778,7 @@ void func_80086ECC(void) {
         return;
     }
 
-    if (gPlayerArmWindObject->unkE4 == 0x2A8) {
+    if (gPlayerArmWindObject->obj_id == 0x2A8) {
         if (gPlayerArmWindObject->unkA4 == 1) {
             gPlayerArmWindObject->Pos.x = gPlayerObject->Pos.x;
             gPlayerArmWindObject->Pos.y = gPlayerObject->Pos.y;
@@ -790,14 +790,14 @@ void func_80086ECC(void) {
             gPlayerArmWindObject->Pos.z = gPlayerObject->Pos.z;
             gPlayerArmWindObject->Rot.y = gPlayerObject->Rot.y;
         }
-    } else if (gPlayerArmWindObject->unkE4 == 0x2A9) {
+    } else if (gPlayerArmWindObject->obj_id == 0x2A9) {
         if (gPlayerArmWindObject->unkA4 == 1) {
             gPlayerArmWindObject->Pos.x = gPlayerObject->Pos.x;
             gPlayerArmWindObject->Pos.y = gPlayerObject->Pos.y;
             gPlayerArmWindObject->Pos.z = gPlayerObject->Pos.z;
             gPlayerArmWindObject->Rot.y = gPlayerObject->Rot.y;
         }
-    } else if (gPlayerArmWindObject->unkE4 == 0x2AE) {
+    } else if (gPlayerArmWindObject->obj_id == 0x2AE) {
         if (gPlayerArmWindObject->unkA4 == 1) {
             gPlayerArmWindObject->Pos.x = gPlayerObject->Pos.x;
             gPlayerArmWindObject->Pos.y = gPlayerObject->Pos.y - 40.0f;
@@ -813,7 +813,7 @@ void func_80086ECC(void) {
                 func_8001BB34(1, 0);
             }
         }
-    } else if (gPlayerArmWindObject->unkE4 == 0x2AA) {
+    } else if (gPlayerArmWindObject->obj_id == 0x2AA) {
         if (gPlayerArmWindObject->unkA4 == 1) {
             gPlayerArmWindObject->Pos.x = gPlayerObject->Pos.x;
             gPlayerArmWindObject->Pos.y = gPlayerObject->Pos.y;
@@ -824,7 +824,7 @@ void func_80086ECC(void) {
             }
             func_8001AD6C(1);
         }
-    } else if (gPlayerArmWindObject->unkE4 == 0x2AB) {
+    } else if (gPlayerArmWindObject->obj_id == 0x2AB) {
         if (gPlayerArmWindObject->unkA4 == 1) {
             guRotateF((f32(*)[4]) & sp78[0], gPlayerObject->Rot.y, 0.0f, 1.0f, 0.0f);
             guTranslateF((f32(*)[4]) & sp38[0], gPlayerObject->Pos.x, gPlayerObject->Pos.y, gPlayerObject->Pos.z);
@@ -833,7 +833,7 @@ void func_80086ECC(void) {
                       &gPlayerArmWindObject->Pos.y, &gPlayerArmWindObject->Pos.z);
             gPlayerArmWindObject->Rot.y = func_80015538(gPlayerArmWindObject->Rot.y, 50.0f);
         }
-    } else if (gPlayerArmWindObject->unkE4 == 0x2AC) {
+    } else if (gPlayerArmWindObject->obj_id == 0x2AC) {
         if (gPlayerArmWindObject->unkA4 == 1) {
             if (gPlayerObject->unkA4 == 0x26D) {
                 sp34 = func_8001B62C(1, 0);
@@ -850,7 +850,7 @@ void func_80086ECC(void) {
                 gPlayerArmWindObject->Rot.y = gPlayerObject->Rot.y;
             }
         }
-    } else if ((gPlayerArmWindObject->unkE4 == 0x2AD)) {
+    } else if ((gPlayerArmWindObject->obj_id == 0x2AD)) {
         if (gPlayerArmWindObject->unkA4 == 1) {
             gPlayerArmWindObject->Pos.x = gPlayerObject->Pos.x;
             gPlayerArmWindObject->Pos.y = gPlayerObject->Pos.y;
@@ -871,16 +871,16 @@ void func_80087694(void) {
     f32 sp0;
 
     if ((gActiveContStickX >= 10.0f) || (gActiveContStickX <= -10.0f)) {
-        PLAYER.Pos.x += gActiveContStickX / 1.0f;
+        PLAYER_OBJ.Pos.x += gActiveContStickX / 1.0f;
     }
     if ((gActiveContStickY >= 10.0f) || (gActiveContStickY <= -10.0f)) {
-        PLAYER.Pos.z -= gActiveContStickY / 1.0f;
+        PLAYER_OBJ.Pos.z -= gActiveContStickY / 1.0f;
     }
     if (*gContCurrButton & 0x8000) {
-        PLAYER.Pos.y += 40.0f;
+        PLAYER_OBJ.Pos.y += 40.0f;
     }
     if (*gContCurrButton & 0x4000) {
-        PLAYER.Pos.y -= 40.0f;
+        PLAYER_OBJ.Pos.y -= 40.0f;
     }
     if (((gActiveContStickX >= 10.0f) || (gActiveContStickX <= -10.0f) || (gActiveContStickY >= 10.0f) ||
          (gActiveContStickY <= -10.0f))) {
@@ -890,9 +890,9 @@ void func_80087694(void) {
         sp0 = (f32) - ((f64) gActiveContStickY / 90.0);
 
         if (((spC != 0.0)) || (sp8 != 0.0)) {
-            PLAYER.Rot.x = -sp4;
-            PLAYER.Rot.y = 0.0f;
-            PLAYER.Rot.z = -sp0;
+            PLAYER_OBJ.Rot.x = -sp4;
+            PLAYER_OBJ.Rot.y = 0.0f;
+            PLAYER_OBJ.Rot.z = -sp0;
         }
     }
 }
@@ -1190,7 +1190,7 @@ void func_8008884C(s32 arg0) {
     func_8001A928(1);
     func_8001BD44(0, 0, 0x10, gFileArray[0x223].ptr + D_80111880[arg0]);
     func_8001C0EC(0, 0, 0, 0x223, &D_80111888);
-    gPlayerObject->unkE4 = 0x266;
+    gPlayerObject->obj_id = 0x266;
     gPlayerObject->unkA4 = 1;
     func_80019448(0, 2, 0, 1);
     if (arg0 == 0) {

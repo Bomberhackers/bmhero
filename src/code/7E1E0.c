@@ -188,7 +188,7 @@ void func_8008C66C(void) {
 void func_8008C684(s16* arg0) {
     s32 sp4;
     for (sp4 = 0; sp4 < 0x4E; sp4++) {
-        if (gObjects[sp4].unkE4 == arg0[0]) {
+        if (gObjects[sp4].obj_id == arg0[0]) {
             D_80134D48[arg0[1]].ObjectID = sp4;
             D_80134D48[arg0[1]].unk4 = arg0[2] / 10.0f;
             D_80134D48[arg0[1]].unk8 = arg0[3] / 10.0f;
@@ -522,7 +522,7 @@ void func_8008E418(s16* arg0) {
 }
 
 void func_8008E4A4(u32 arg0) {
-    switch (gObjects[arg0].unkE4) {
+    switch (gObjects[arg0].obj_id) {
         case 0x266:
             D_80134FB0 = 0;
             D_80134FB4 = 0x223;
@@ -599,7 +599,7 @@ void func_8008E4A4(u32 arg0) {
 }
 
 void func_8008E788(u32 arg0, s16 arg1) {
-    switch (gObjects[arg0].unkE4) {
+    switch (gObjects[arg0].obj_id) {
         case 0xF8: {
             if (arg1 == 0) {
                 D_80134FB8 = &D_8011694C;
@@ -1246,7 +1246,7 @@ void func_80093B64(void) {
     sp3C = &gObjects[gCurrentParsedObject];
     if (sp3C->unk132 == 0) {
         sp3C->unk132 += 1;
-        if (sp3C->unkE4 == 0x27) {
+        if (sp3C->obj_id == 0x27) {
             func_8001C0EC(gCurrentParsedObject, 0, 0, 0x39, &D_801131F0);
         }
         sp3C->unk108 = 1;
@@ -1299,7 +1299,7 @@ void func_80093F30(void) {
     struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
-    if (sp24->unkE4 == 0x32) {
+    if (sp24->obj_id == 0x32) {
         if (sp24->unk132 == 0) {
             sp24->unk132 += 1;
             sp24->unkB2 = 0;

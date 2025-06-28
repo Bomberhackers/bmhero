@@ -38,7 +38,7 @@ segments:
     - [0x3490,  c, boot/3490]
     - [0x38D0,  c, boot/38D0]
     - [0xDD20,  c, boot/nusys/mus/audio]
-    - [0xEE20,  c, boot/EE20] # Host functions for libmalloc
+    - [0xEE20,  c, boot/mem] # Host functions for libmalloc
     - [0xEFE0,  c, boot/parse_args]
     - [0xF280,  c, boot/F280]
     - [0x10AB0, c, boot/10AB0]
@@ -267,7 +267,7 @@ segments:
     - [0x4A060, .data, boot/nusys/mus/asp_data]
     - [0x4A060, .data, boot/main]
     - [0x4AEA0, .data, boot/38D0]
-    - [0x4AF70, .data, boot/EE20]
+    - [0x4AF70, .data, boot/mem]
     - [0x4AF80, .data, boot/parse_args]
     - [0x4AF90, .data, boot/F280]
     - [0x4AFA0, .data, boot/10AB0]
@@ -304,7 +304,7 @@ segments:
     - [0x4C670, .rodata, boot/main]
     - [0x4C6A0, .rodata, boot/3490]
     - [0x4C6C0, .rodata, boot/38D0]
-    - [0x4C7B0, .rodata, boot/EE20]
+    - [0x4C7B0, .rodata, boot/mem]
     - [0x4C7F0, .rodata, boot/10AB0]
     - [0x4C810, .rodata, boot/15A80]
     - [0x4C820, .rodata, boot/17930]

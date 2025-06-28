@@ -15,19 +15,18 @@
 /*
  *  Return a pseudorandom 32 bit number
  *  try the RAND macro too
- *   
+ *
  */
-int guRandom(void)
-{
+int guRandom(void) {
     static unsigned int xseed = 174823885;
     unsigned int x;
 
-    x = (xseed<<2) + 2;
+    x = (xseed << 2) + 2;
 
-    x *= (x+1);
+    x *= (x + 1);
     x = x >> 2;
 
     xseed = x;
 
-    return( x );
+    return (x);
 }

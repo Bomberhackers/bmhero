@@ -20,10 +20,8 @@
 
 #include "sndp.h"
 
-s32 alSndpGetState(ALSndPlayer *sndp)
-{
-    ALSoundState  *sState = sndp->sndState;
+s32 alSndpGetState(ALSndPlayer* sndp) {
+    ALSoundState* sState = sndp->sndState;
 
     return (sState + sndp->target)->state;
 }
-

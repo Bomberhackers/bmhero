@@ -589,7 +589,7 @@ void func_80332C94_unk_bin_15() {
 
         func_8002B0E4(gCurrentParsedObject);
     } else {
-        obj->unkC2 --;
+        obj->unkC2--;
     }
 }
 
@@ -820,8 +820,8 @@ void func_80334054_unk_bin_15() {
 
                 rotBase = func_80015538(obj->Rot.y, 20.0f);
 
-                posX = sinf((f32)((f64)rotBase * 0.0174532925199432955)) * 200.0f + obj->Pos.x;
-                posZ = cosf((f32)((f64)rotBase * 0.0174532925199432955)) * 200.0f + obj->Pos.z;
+                posX = sinf((f32) ((f64) rotBase * DEG_TO_RAD)) * 200.0f + obj->Pos.x;
+                posZ = cosf((f32) ((f64) rotBase * DEG_TO_RAD)) * 200.0f + obj->Pos.z;
 
                 objIdx = func_80027464(1, &D_8033493C_unk_bin_15, posX, posY, posZ, 0.0f);
 
@@ -833,8 +833,8 @@ void func_80334054_unk_bin_15() {
 
                 rotBase = func_80015538(obj->Rot.y, -20.0f);
 
-                posX = sinf((f32)((f64)rotBase * 0.0174532925199432955)) * 200.0f + obj->Pos.x;
-                posZ = cosf((f32)((f64)rotBase * 0.0174532925199432955)) * 200.0f + obj->Pos.z;
+                posX = sinf((f32) ((f64) rotBase * DEG_TO_RAD)) * 200.0f + obj->Pos.x;
+                posZ = cosf((f32) ((f64) rotBase * DEG_TO_RAD)) * 200.0f + obj->Pos.z;
 
                 objIdx = func_80027464(1, &D_8033493C_unk_bin_15, posX, posY, posZ, 0.0f);
 
@@ -850,7 +850,7 @@ void func_80334054_unk_bin_15() {
         } else {
             func_8002A8B4(gCurrentParsedObject, 3.0f);
             obj->Rot.y = obj->unk3C;
-            obj->unk132 --;
+            obj->unk132--;
         }
     }
 }
@@ -911,9 +911,9 @@ void func_80334540_unk_bin_15() {
         func_8002A8B4(gCurrentParsedObject, 3.0f);
 
         obj->Rot.y = obj->unk3C;
-        obj->unkA6 --;
+        obj->unkA6--;
     } else {
-        obj->unkA6 --;
+        obj->unkA6--;
     }
     if (func_80028FA0(gCurrentParsedObject) != 0) {
         func_8002B0E4(gCurrentParsedObject);
@@ -938,6 +938,6 @@ void func_80334540_unk_bin_15() {
         func_8002B0E4(gCurrentParsedObject);
         return;
     } else if (1) {
-        obj->unkA8 --;
+        obj->unkA8--;
     }
 }

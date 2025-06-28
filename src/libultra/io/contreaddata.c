@@ -20,7 +20,7 @@ s32 osContStartReadData(OSMesgQueue* mq) {
 
 #if BUILD_VERSION < VERSION_I
     // in OS 2.0H
-    for(i = 0; i < 16; i++) {
+    for (i = 0; i < 16; i++) {
         __osContPifRam.ramarray[i] = 0xFF;
     }
     __osContPifRam.pifstatus = 0;
@@ -34,12 +34,12 @@ s32 osContStartReadData(OSMesgQueue* mq) {
 }
 
 void osContGetReadData(OSContPad* data) {
-    u8* ptr = (u8*)__osContPifRam.ramarray;
+    u8* ptr = (u8*) __osContPifRam.ramarray;
     __OSContReadFormat readformat;
     int i;
 
     for (i = 0; i < __osMaxControllers; i++, ptr += sizeof(__OSContReadFormat), data++) {
-        readformat = *(__OSContReadFormat*)ptr;
+        readformat = *(__OSContReadFormat*) ptr;
         data->errno = CHNL_ERR(readformat);
 
         if (data->errno != 0) {
@@ -53,12 +53,12 @@ void osContGetReadData(OSContPad* data) {
 }
 
 void __osPackReadData(void) {
-    u8* ptr = (u8*)__osContPifRam.ramarray;
+    u8* ptr = (u8*) __osContPifRam.ramarray;
     __OSContReadFormat readformat;
     int i;
 
 #if BUILD_VERSION < VERSION_I
-    for (i = 0; i < ARRLEN(__osContPifRam.ramarray)+1; i++) {
+    for (i = 0; i < ARRLEN(__osContPifRam.ramarray) + 1; i++) {
 #else
     for (i = 0; i < ARRLEN(__osContPifRam.ramarray); i++) {
 #endif
@@ -75,7 +75,7 @@ void __osPackReadData(void) {
     readformat.stick_y = -1;
 
     for (i = 0; i < __osMaxControllers; i++) {
-        *(__OSContReadFormat*)ptr = readformat;
+        *(__OSContReadFormat*) ptr = readformat;
         ptr += sizeof(__OSContReadFormat);
     }
 

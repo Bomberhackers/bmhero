@@ -22,10 +22,9 @@
 #include <os_internal.h>
 #include <ultraerror.h>
 
-void alSynSetPan(ALSynth *synth, ALVoice *v, u8 pan)
-{
-    ALParam  *update;
-    ALFilter *f;
+void alSynSetPan(ALSynth* synth, ALVoice* v, u8 pan) {
+    ALParam* update;
+    ALFilter* f;
 
     if (v->pvoice) {
 
@@ -38,13 +37,12 @@ void alSynSetPan(ALSynth *synth, ALVoice *v, u8 pan)
         /*
          * set offset and pan data
          */
-        update->delta  = synth->paramSamples + v->pvoice->offset;
-        update->type   = AL_FILTER_SET_PAN;
+        update->delta = synth->paramSamples + v->pvoice->offset;
+        update->type = AL_FILTER_SET_PAN;
         update->data.i = pan;
-        update->next   = 0;
+        update->next = 0;
 
         f = v->pvoice->channelKnob;
-        (*f->setParam)(f, AL_FILTER_ADD_UPDATE, update);        
+        (*f->setParam)(f, AL_FILTER_ADD_UPDATE, update);
     }
 }
-

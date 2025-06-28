@@ -57,13 +57,13 @@ void __osPfsRequestData(u8 cmd) {
     __osContLastCmd = cmd;
 
 #if BUILD_VERSION < VERSION_I
-    for(i = 0; i < 16; i++) {
+    for (i = 0; i < 16; i++) {
         __osPfsPifRam.ramarray[i] = 0;
     }
     __osPfsPifRam.pifstatus = CONT_CMD_EXE;
 #endif
-    
-    ptr = (u8*)&__osPfsPifRam;
+
+    ptr = (u8*) &__osPfsPifRam;
     requestformat.dummy = CONT_CMD_NOP;
     requestformat.txsize = CONT_CMD_REQUEST_STATUS_TX;
     requestformat.rxsize = CONT_CMD_REQUEST_STATUS_RX;
@@ -74,7 +74,7 @@ void __osPfsRequestData(u8 cmd) {
     requestformat.dummy1 = CONT_CMD_NOP;
 
     for (i = 0; i < __osMaxControllers; i++) {
-        *((__OSContRequesFormat*)ptr) = requestformat;
+        *((__OSContRequesFormat*) ptr) = requestformat;
         ptr += sizeof(__OSContRequesFormat);
     }
 
@@ -87,10 +87,10 @@ void __osPfsGetInitData(u8* pattern, OSContStatus* data) {
     int i;
     u8 bits = 0;
 
-    ptr = (u8*)&__osPfsPifRam;
+    ptr = (u8*) &__osPfsPifRam;
 
     for (i = 0; i < __osMaxControllers; i++, ptr += sizeof(requestformat), data++) {
-        requestformat = *((__OSContRequesFormat*)ptr);
+        requestformat = *((__OSContRequesFormat*) ptr);
         data->errno = CHNL_ERR(requestformat);
 
         if (data->errno != 0) {

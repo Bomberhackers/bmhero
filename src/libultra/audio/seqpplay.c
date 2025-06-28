@@ -23,26 +23,10 @@
 #include <libaudio.h>
 #include "seqp.h"
 
-void alSeqpPlay(ALSeqPlayer *seqp)
-{
+void alSeqpPlay(ALSeqPlayer* seqp) {
     ALEvent evt;
 
     evt.type = AL_SEQP_PLAY_EVT;
-                    
+
     alEvtqPostEvent(&seqp->evtq, &evt, 0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

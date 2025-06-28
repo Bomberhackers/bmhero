@@ -51,9 +51,9 @@ void func_8001994C(void);
 void func_8001E80C(void);
 void func_8001D244(char arg0, char arg1, char arg2, char arg3);
 void func_8001D4D0();
-//void func_8001D638(s32, s32, s32, s32);
-void func_8001E954(s32*);
-void func_8001E98C(s32 arg0, s32 arg1, s32 arg2);
+//void Set_BgColor(s32, s32, s32, s32);
+void Set_DecompressHeap(s32*);
+void LoadFile(s32 arg0, s32 arg1, s32 arg2);
 void func_8001EB68(s32, void*, void*);
 void func_8001ECB8(void);
 void func_80019C84(void);
@@ -576,12 +576,12 @@ void func_8001EC04();
 void func_8001ECB8();
 void func_800FE854();
 void func_8005F96C(u8, u8, u8);
-void func_8001E954(s32*);
+void Set_DecompressHeap(s32*);
 void func_8001994C();
 s32 func_8001D1D4();
 void func_8001D2C0();
 void func_8001D4D0();
-void func_8001D638(s32 arg0, char red, char blue, char green);
+void Set_BgColor(s32 arg0, char red, char blue, char green);
 void Debug_DrawProfiler(s32, s32);
 void func_80065AEC(f32, f32, f32, s32*, s32*, s32*);
 s32 func_800FD04C(s16, s16, s32);
@@ -664,7 +664,7 @@ void func_8001C464(void);
 void func_8001C70C(void);
 void func_8001C5B8(void);
 void func_8001C96C(void);
-s32 func_8001E96C(void);
+s32 Get_DecompressHeap(void);
 s32 func_8001B930(s32, s32);            /* extern */
 void func_8001BC84(s32, s32, s32);      /* extern */
 void func_800941C4(s32, f32, f32, f32); /* extern */

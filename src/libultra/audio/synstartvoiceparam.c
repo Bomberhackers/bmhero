@@ -29,44 +29,39 @@
 
 extern u8 D_80052DB7;
 
-void alSynStartVoiceParams(ALSynth *s, ALVoice *v, ALWaveTable *w,
-                           f32 pitch, s16 vol, ALPan pan, u8 fxmix,
-                           ALMicroTime t)
-{
-    ALStartParamAlt  *update;
-    ALFilter    *f;
+void alSynStartVoiceParams(ALSynth* s, ALVoice* v, ALWaveTable* w, f32 pitch, s16 vol, ALPan pan, u8 fxmix,
+                           ALMicroTime t) {
+    ALStartParamAlt* update;
+    ALFilter* f;
 
     if (v->pvoice) {
         /*
          * get new update struct from the free list
          */
-        update = (ALStartParamAlt *)__allocParam();
+        update = (ALStartParamAlt*) __allocParam();
         ALFailIf(update == 0, ERR_ALSYN_NO_UPDATE);
-        
+
         /*
          * set offset and fxmix data
          */
-        update->delta  = s->paramSamples + v->pvoice->offset;
-        update->next   = 0;
-        update->type   = AL_FILTER_START_VOICE_ALT;
+        update->delta = s->paramSamples + v->pvoice->offset;
+        update->next = 0;
+        update->type = AL_FILTER_START_VOICE_ALT;
 
-        update->unity  = v->unityPitch;
+        update->unity = v->unityPitch;
 
-        if(D_80052DB7 & 1) {
+        if (D_80052DB7 & 1) {
             update->pan = 64;
         } else {
             update->pan = pan;
         }
         update->volume = vol;
-        update->fxMix  = fxmix;
-        update->pitch  = pitch;
+        update->fxMix = fxmix;
+        update->pitch = pitch;
         update->samples = _timeToSamples(s, t);
-        update->wave    = w;
-        
+        update->wave = w;
+
         f = v->pvoice->channelKnob;
-        (*f->setParam)(f, AL_FILTER_ADD_UPDATE, update);        
+        (*f->setParam)(f, AL_FILTER_ADD_UPDATE, update);
     }
-    
 }
-
-

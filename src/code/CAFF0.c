@@ -6,7 +6,7 @@ void func_800D8AD0(void) {
     if (sp24 != -1) {
         gObjects[sp24].unkB6 = gObjects[sp24].Pos.x;
         gObjects[sp24].unkB8 = gObjects[sp24].Pos.y;
-        
+
         if (D_80165100->unkA == 0) {
             D_80165100->unkA = 120;
         }
@@ -20,13 +20,12 @@ void func_800D8AD0(void) {
         }
         gObjects[sp24].unkA6 = D_80165100->unkE;
 
-        gObjects[sp24].Pos.x = gObjects[sp24].unkB6 + gObjects[sp24].unkBA * sinf(gObjects[sp24].unkA6 * 0.0174532925199432955);
-        gObjects[sp24].Pos.y = gObjects[sp24].unkB8 + gObjects[sp24].unkBA * cosf(gObjects[sp24].unkA6 * 0.0174532925199432955);
+        gObjects[sp24].Pos.x = gObjects[sp24].unkB6 + gObjects[sp24].unkBA * sinf(gObjects[sp24].unkA6 * DEG_TO_RAD);
+        gObjects[sp24].Pos.y = gObjects[sp24].unkB8 + gObjects[sp24].unkBA * cosf(gObjects[sp24].unkA6 * DEG_TO_RAD);
     }
 }
 
 void func_800D8E30(void) {
-
 }
 
 void func_800D8E40(void) {
@@ -39,25 +38,24 @@ void func_800D8E40(void) {
     }
 
     sp1C->unkA6 = func_80015538(sp1C->unkA6, sp1C->unkBC);
-    sp1C->Pos.x = sinf(sp1C->unkA6 * 0.0174532925199432955) * (f32)sp1C->unkBA + (f32)sp1C->unkB6;
-    sp1C->Pos.y = cosf(sp1C->unkA6 * 0.0174532925199432955) * (f32)sp1C->unkBA + (f32)sp1C->unkB8;
+    sp1C->Pos.x = sinf(sp1C->unkA6 * DEG_TO_RAD) * (f32) sp1C->unkBA + (f32) sp1C->unkB6;
+    sp1C->Pos.y = cosf(sp1C->unkA6 * DEG_TO_RAD) * (f32) sp1C->unkBA + (f32) sp1C->unkB8;
 }
 
 void func_800D8FD0(void) {
-    switch(gObjects[gCurrentParsedObject].unkA4)
-    {
-        case 1:
-            {
-                func_800D8E40();
-                break;
-            }
+    switch (gObjects[gCurrentParsedObject].unkA4) {
+        case 1: {
+            func_800D8E40();
+            break;
+        }
         default:
             break;
     }
 }
 
 void func_800D9044(void) {
-    func_80027464(1, &D_8011427C, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    func_80027464(1, &D_8011427C, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                  (f32) D_80165100->unk8);
 }
 
 void func_800D90BC(void) {
@@ -78,19 +76,14 @@ void func_800D9134(void) {
         func_8001BBDC(gCurrentParsedObject, 1);
     }
 
-    if (obj->unkA6 == 0)
-    {
-        if (func_8002A1FC(gCurrentParsedObject, 960.0f) != 0)
-        {
-            if(gPlayerObject->Pos.y - obj->Pos.y > -360.0f && gPlayerObject->Pos.y - obj->Pos.y < 360.f)
-            {
+    if (obj->unkA6 == 0) {
+        if (func_8002A1FC(gCurrentParsedObject, 960.0f) != 0) {
+            if (gPlayerObject->Pos.y - obj->Pos.y > -360.0f && gPlayerObject->Pos.y - obj->Pos.y < 360.f) {
                 obj->unkA4 = 2;
                 obj->unk132 = 0;
             }
         }
-    }
-    else
-    {
+    } else {
         obj->unkA6 -= 1;
     }
 }
@@ -156,23 +149,23 @@ void func_800D9620(void) {
 
 void func_800D9650(void) {
     switch (gObjects[gCurrentParsedObject].unkA4) {
-    case 1:
-        func_800D9134();
-        break;
-    case 2:
-        func_800D9298();
-        break;
-    case 3:
-        func_800D9420();
-        break;
-    case 4:
-        func_800D9520();
-        break;
-    case 5:
-        func_800D9620();
-        break;
-    default:
-        break;
+        case 1:
+            func_800D9134();
+            break;
+        case 2:
+            func_800D9298();
+            break;
+        case 3:
+            func_800D9420();
+            break;
+        case 4:
+            func_800D9520();
+            break;
+        case 5:
+            func_800D9620();
+            break;
+        default:
+            break;
     }
 }
 
@@ -230,30 +223,26 @@ void func_800D9A14(void) {
 
 void func_800D9A44(void) {
 
-    if(gObjects[gCurrentParsedObject].unkE6[0] == -1)
-    {
-        switch(gObjects[gCurrentParsedObject].unkA4)
-        {
-            case 1:
-                {
-                    func_800D97A4();
-                    break;
-                }
-            case 2:
-                {
-                    func_800D9A14();
-                    break;
-                }
-            default:
-                {
-                    break;
-                }
+    if (gObjects[gCurrentParsedObject].unkE6[0] == -1) {
+        switch (gObjects[gCurrentParsedObject].unkA4) {
+            case 1: {
+                func_800D97A4();
+                break;
+            }
+            case 2: {
+                func_800D9A14();
+                break;
+            }
+            default: {
+                break;
+            }
         }
     }
 }
 
 void func_800D9B0C(void) {
-    func_80027464(1, &D_80114294, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    func_80027464(1, &D_80114294, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                  (f32) D_80165100->unk8);
 }
 
 void func_800D9B84(void) {
@@ -320,8 +309,7 @@ void func_800D9BD4(void) {
     if (func_800295C0(gCurrentParsedObject, &sp34, &sp38, 0.0f, 60.0f, 0.0f) != 0) {
         sp3C->unkAC = 2;
     }
-    if (sp3C->unkAC != 0) 
-    {
+    if (sp3C->unkAC != 0) {
         sp3C->unk48 = 0.0f;
         sp3C->unk44 = sp3C->unk48;
         sp3C->Vel.x = sp3C->Vel.y = sp3C->Vel.z = 0;
@@ -341,27 +329,24 @@ void func_800DA128(void) {
 void func_800DA158(void) {
     s16 temp_s0;
 
-    switch(gObjects[gCurrentParsedObject].unkA4)
-    {
-        case 1:
-            {
-                func_800D9BD4();
-                break;
-            }
-        case 2:
-            {
-                func_800DA128();
-                break;
-            }
-        default:
-            {
-                break;
-            }
+    switch (gObjects[gCurrentParsedObject].unkA4) {
+        case 1: {
+            func_800D9BD4();
+            break;
+        }
+        case 2: {
+            func_800DA128();
+            break;
+        }
+        default: {
+            break;
+        }
     }
 }
 
 void func_800DA1EC(void) {
-    func_80027464(1, &D_801142A0, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    func_80027464(1, &D_801142A0, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                  (f32) D_80165100->unk8);
 }
 
 void func_800DA264(void) {
@@ -402,20 +387,21 @@ void func_800DA3B0(void) {
 }
 
 void func_800DA4D8(void) {
-    switch (gObjects[gCurrentParsedObject].unkA4) {                           
-    case 1:
-        func_800DA304();
-        break;
-    case 2:
-        func_800DA3B0();
-        break;
-    default:
-        break;
+    switch (gObjects[gCurrentParsedObject].unkA4) {
+        case 1:
+            func_800DA304();
+            break;
+        case 2:
+            func_800DA3B0();
+            break;
+        default:
+            break;
     }
 }
 
 void func_800DA56C(void) {
-    func_80027464(1, &D_801142D0, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    func_80027464(1, &D_801142D0, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                  (f32) D_80165100->unk8);
 }
 
 void func_800DA5E4(void) {
@@ -428,24 +414,22 @@ void func_800DA5E4(void) {
 }
 
 void func_800DA648(void) {
-    switch(gObjects[gCurrentParsedObject].unkA4)
-    {
-        case 1:
-            {
-                func_800DA5E4();
-                break;
-            }
-        default:
-            {
-                break;
-            }
+    switch (gObjects[gCurrentParsedObject].unkA4) {
+        case 1: {
+            func_800DA5E4();
+            break;
+        }
+        default: {
+            break;
+        }
     }
 }
 
 void func_800DA6BC(void) {
     s32 sp24;
 
-    sp24 = func_80027464(1, &D_801142DC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp24 = func_80027464(1, &D_801142DC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
     if (sp24 != -1) {
         func_8001ABF4(sp24, 0, 3, &D_80118978);
     }
@@ -461,9 +445,8 @@ void func_800DA760(void) {
 }
 
 void func_800DA7C4(void) {
-    
-    switch(gObjects[gCurrentParsedObject].unkA4)
-    {
+
+    switch (gObjects[gCurrentParsedObject].unkA4) {
         case 1:
             func_800DA760();
             break;
@@ -473,7 +456,8 @@ void func_800DA7C4(void) {
 }
 
 void func_800DA838(void) {
-    func_80027464(1, &D_801142C4, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    func_80027464(1, &D_801142C4, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                  (f32) D_80165100->unk8);
 }
 
 void func_800DA8B0(void) {
@@ -531,8 +515,7 @@ void func_800DAC3C(void) {
 }
 
 void func_800DAC6C(void) {
-    switch(gObjects[gCurrentParsedObject].unkA4) 
-    {
+    switch (gObjects[gCurrentParsedObject].unkA4) {
         case 1:
             func_800DA9C8();
             break;

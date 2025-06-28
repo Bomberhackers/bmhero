@@ -18,5 +18,5 @@ int sprintf(char* dst, const char* fmt, ...) {
     return ans;
 }
 static char* proutSprintf(char* dst, const char* src, size_t count) {
-    return (char*)memcpy((u8*)dst, (u8*)src, count) + count;
+    return (char*) memcpy((u8*) dst, (u8*) src, count) + count;
 }

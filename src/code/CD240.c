@@ -1,7 +1,8 @@
 #include <ultra64.h>
 
 void func_800DAD20(void) {
-    func_80027464(1, &D_801142E8, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    func_80027464(1, &D_801142E8, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                  (f32) D_80165100->unk8);
 }
 
 void func_800DAD98(void) {
@@ -86,7 +87,7 @@ void func_800DB1EC(void) {
     if (sp24->unk132 == 0) {
         sp24->unk132 += 1;
         sp24->unk44 = 20.0f;
-        func_8001C0EC(gCurrentParsedObject, 0, 2, 0x54, (u32* ) &D_80118E9C);
+        func_8001C0EC(gCurrentParsedObject, 0, 2, 0x54, (u32*) &D_80118E9C);
     }
     if (func_80028FA0(gCurrentParsedObject) != 0) {
         func_80029B60(gCurrentParsedObject);
@@ -106,7 +107,6 @@ void func_800DB1EC(void) {
         sp24->unk132 = 0;
     }
 }
-
 
 void func_800DB3E8(void) {
     struct ObjectStruct* sp24;
@@ -151,7 +151,8 @@ void func_800DB534(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB620.s")
 
 void func_800DB710(void) {
-    func_80027464(1, &D_801142F4, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    func_80027464(1, &D_801142F4, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                  (f32) D_80165100->unk8);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800DB788.s")
@@ -306,29 +307,29 @@ void func_800DC188(void) {
 
     sp1C = &gObjects[gCurrentParsedObject];
     switch (sp1C->unkA4) {
-    case 1:
-        func_800DB840();
-        break;
-    case 2:
-        func_800DB910();
-        break;
-    case 3:
-        func_800DBA0C();
-        break;
-    case 4:
-        func_800DBB78();
-        break;
-    case 5:
-        func_800DBBA8();
-        break;
-    case 6:
-        func_800DBCFC();
-        break;
-    case 7:
-        func_800DC07C();
-        break;
-    default:
-        break;
+        case 1:
+            func_800DB840();
+            break;
+        case 2:
+            func_800DB910();
+            break;
+        case 3:
+            func_800DBA0C();
+            break;
+        case 4:
+            func_800DBB78();
+            break;
+        case 5:
+            func_800DBBA8();
+            break;
+        case 6:
+            func_800DBCFC();
+            break;
+        case 7:
+            func_800DC07C();
+            break;
+        default:
+            break;
     }
 }
 #else
@@ -336,7 +337,8 @@ void func_800DC188(void) {
 #endif
 
 void func_800DC288(void) {
-    func_80027464(1, &D_80114300, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    func_80027464(1, &D_80114300, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                  (f32) D_80165100->unk8);
 }
 
 void func_800DC300(void) {
@@ -374,7 +376,8 @@ void func_800DC3D0(void) {
 void func_800DC5CC(void) {
     s32 sp24;
 
-    sp24 = func_80027464(1, &D_8011433C, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp24 = func_80027464(1, &D_8011433C, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
     if (sp24 != -1) {
         func_80019448(sp24, 2, 0, 1);
     }
@@ -494,27 +497,28 @@ void func_800DCD50(void) {
 
     sp24 = &gObjects[gCurrentParsedObject];
     switch (sp24->unkA4) {
-    case 1:
-        func_800DC6D0();
-        break;
-    case 2:
-        func_800DC984();
-        break;
-    case 3:
-        func_800DCAFC();
-        break;
-    case 4:
-        func_800DCD20();
-        break;
-    default:
-        break;
+        case 1:
+            func_800DC6D0();
+            break;
+        case 2:
+            func_800DC984();
+            break;
+        case 3:
+            func_800DCAFC();
+            break;
+        case 4:
+            func_800DCD20();
+            break;
+        default:
+            break;
     }
 }
 
 void func_800DCE2C(void) {
     s32 sp24;
 
-    sp24 = func_80027464(1, &D_80114348, (f32) D_80165100->unk2, (f32) (D_80165100->unk4 - 5), (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp24 = func_80027464(1, &D_80114348, (f32) D_80165100->unk2, (f32) (D_80165100->unk4 - 5), (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
     if (sp24 != -1) {
         gObjects[sp24].unk13A = 1;
     }
@@ -684,10 +688,10 @@ void func_800DD8A0(void) {
 void func_800DD928(void) {
     s32 sp24;
 
-    sp24 = func_80027464(1, &D_80114354, (f32) D_80165100->unk2, (f32) (D_80165100->unk4 - 5), (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp24 = func_80027464(1, &D_80114354, (f32) D_80165100->unk2, (f32) (D_80165100->unk4 - 5), (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
 
-    if(sp24 != -1)
-    {
+    if (sp24 != -1) {
         gObjects[sp24].unk13A = 1;
     }
 }
@@ -902,7 +906,8 @@ void func_800DE754(void) {
 void func_800DE7DC(void) {
     s32 sp24;
 
-    sp24 = func_80027464(1, &D_8011436C, (f32) D_80165100->unk2, (f32) (D_80165100->unk4 + 5), (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp24 = func_80027464(1, &D_8011436C, (f32) D_80165100->unk2, (f32) (D_80165100->unk4 + 5), (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
     if (sp24 != -1) {
         gObjects[sp24].unk13A = 1;
     }
@@ -1435,9 +1440,9 @@ void func_800E09D0(void) {
         sp34->Vel.y = 0.0f;
     }
     if (sp34->Scale.x < 2.0f) {
-        sp34->Scale.x +=  D_801153F0;
-        sp34->Scale.y +=  D_801153F8;
-        sp34->Scale.z +=  D_80115400;
+        sp34->Scale.x += D_801153F0;
+        sp34->Scale.y += D_801153F8;
+        sp34->Scale.z += D_80115400;
     } else {
         sp34->unk108 = 1;
         sp34->unkA4 = 2;
@@ -2039,7 +2044,6 @@ void func_800E3214(void) {
     }
 }
 
-
 void func_800E3474(void) {
     func_8002B0E4(gCurrentParsedObject);
 }
@@ -2091,44 +2095,44 @@ void func_800E3734(void) {
 
     sp24 = &gObjects[gCurrentParsedObject];
     switch (sp24->unkB2) {
-    case 1:
-        switch (sp24->unkA4) {
         case 1:
-            func_800E302C();
+            switch (sp24->unkA4) {
+                case 1:
+                    func_800E302C();
+                    break;
+                case 2:
+                    func_800E31E4();
+                    break;
+                default:
+                    break;
+            }
             break;
         case 2:
-            func_800E31E4();
+            switch (sp24->unkA4) {
+                case 1:
+                    func_800E3214();
+                    break;
+                case 2:
+                    func_800E3474();
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case 3:
+            switch (sp24->unkA4) {
+                case 1:
+                    func_800E34A4();
+                    break;
+                case 2:
+                    func_800E3704();
+                    break;
+                default:
+                    break;
+            }
             break;
         default:
             break;
-        }
-        break;
-    case 2:
-        switch (sp24->unkA4) {
-        case 1:
-            func_800E3214();
-            break;
-        case 2:
-            func_800E3474();
-            break;
-        default:
-            break;
-        }
-        break;
-    case 3:
-        switch (sp24->unkA4) {
-        case 1:
-            func_800E34A4();
-            break;
-        case 2:
-            func_800E3704();
-            break;
-        default:
-            break;
-        }
-        break;
-    default:
-        break;
     }
 }
 
@@ -2257,51 +2261,51 @@ void func_800E3EE4(void) {
         func_8001ABF4(sp30, 0, 0, &D_8011940C);
         gObjects[sp30].Rot.y = sp4C->Rot.y;
         switch (sp4C->unkE4) {
-        case 0xA1:
-            if (sp4C->unk106 == 0xA2) {
-                if ((gObjects[sp4C->unk104].unkA4 == 0) || (gObjects[sp4C->unk104].unkA4 == 6)) {
+            case 0xA1:
+                if (sp4C->unk106 == 0xA2) {
+                    if ((gObjects[sp4C->unk104].unkA4 == 0) || (gObjects[sp4C->unk104].unkA4 == 6)) {
 
+                    } else {
+                        gObjects[sp30].unkB2 = 1;
+                    }
                 } else {
-                    gObjects[sp30].unkB2 = 1;
-                }
-            } else {
-                if ((gObjects[sp4C->unk104].unkA4 == 0) || (gObjects[sp4C->unk104].unkA4 == 7)) {
+                    if ((gObjects[sp4C->unk104].unkA4 == 0) || (gObjects[sp4C->unk104].unkA4 == 7)) {
 
-                } else {
-                    gObjects[sp30].unkB2 = 3;
+                    } else {
+                        gObjects[sp30].unkB2 = 3;
+                    }
                 }
-            }
-            break;
-        case 0xA2:
-            if (sp4C->unk106 == 0xA1) {
-                if ((gObjects[sp4C->unk104].unkA4 == 0) || (gObjects[sp4C->unk104].unkA4 == 5)) {
+                break;
+            case 0xA2:
+                if (sp4C->unk106 == 0xA1) {
+                    if ((gObjects[sp4C->unk104].unkA4 == 0) || (gObjects[sp4C->unk104].unkA4 == 5)) {
 
+                    } else {
+                        gObjects[sp30].unkB2 = 1;
+                    }
                 } else {
-                    gObjects[sp30].unkB2 = 1;
-                }
-            } else {
-                if ((gObjects[sp4C->unk104].unkA4 == 0) || (gObjects[sp4C->unk104].unkA4 == 7)) {
+                    if ((gObjects[sp4C->unk104].unkA4 == 0) || (gObjects[sp4C->unk104].unkA4 == 7)) {
 
-                } else {
-                    gObjects[sp30].unkB2 = 2;
+                    } else {
+                        gObjects[sp30].unkB2 = 2;
+                    }
                 }
-            }
-            break;
-        case 0xA3:
-            if (sp4C->unk106 == 0xA2) {
-                if ((gObjects[sp4C->unk104].unkA4 == 0) || (gObjects[sp4C->unk104].unkA4 == 6)) {
+                break;
+            case 0xA3:
+                if (sp4C->unk106 == 0xA2) {
+                    if ((gObjects[sp4C->unk104].unkA4 == 0) || (gObjects[sp4C->unk104].unkA4 == 6)) {
 
+                    } else {
+                        gObjects[sp30].unkB2 = 2;
+                    }
                 } else {
-                    gObjects[sp30].unkB2 = 2;
-                }
-            } else {
-                if ((gObjects[sp4C->unk104].unkA4 == 0) || (gObjects[sp4C->unk104].unkA4 == 5)) {
+                    if ((gObjects[sp4C->unk104].unkA4 == 0) || (gObjects[sp4C->unk104].unkA4 == 5)) {
 
-                } else {
-                    gObjects[sp30].unkB2 = 3;
+                    } else {
+                        gObjects[sp30].unkB2 = 3;
+                    }
                 }
-            }
-            break;
+                break;
         }
     }
     func_8002B114(sp4C->unk104);
@@ -2311,7 +2315,8 @@ void func_800E3EE4(void) {
 void func_800E445C(void) {
     s32 sp24;
 
-    sp24 = func_80027464(1, &D_801143C0, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp24 = func_80027464(1, &D_801143C0, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
     if (sp24 != -1) {
         gObjects[sp24].unkA6 = 0;
     }
@@ -2590,7 +2595,8 @@ void func_800E54F8(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800E56D4.s")
 
 void func_800E5824(void) {
-    func_80027464(1, &D_801143CC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    func_80027464(1, &D_801143CC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                  (f32) D_80165100->unk8);
 }
 
 void func_800E589C(void) {
@@ -2628,23 +2634,23 @@ void func_800E594C(void) {
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         if (sp34->unkA6 == 0) {
             sp30 = func_80014E80(4);
-            switch (sp30) {                         /* irregular */
-            case 0:
-                sp34->Rot.y = 0.0f;
-                sp34->unk3C = (f32) sp34->Rot.y;
-                break;
-            case 1:
-                sp34->Rot.y = 90.0f;
-                sp34->unk3C = (f32) sp34->Rot.y;
-                break;
-            case 2:
-                sp34->Rot.y = 180.0f;
-                sp34->unk3C = (f32) sp34->Rot.y;
-                break;
-            default:
-                sp34->Rot.y = 270.0f;
-                sp34->unk3C = (f32) sp34->Rot.y;
-                break;
+            switch (sp30) { /* irregular */
+                case 0:
+                    sp34->Rot.y = 0.0f;
+                    sp34->unk3C = (f32) sp34->Rot.y;
+                    break;
+                case 1:
+                    sp34->Rot.y = 90.0f;
+                    sp34->unk3C = (f32) sp34->Rot.y;
+                    break;
+                case 2:
+                    sp34->Rot.y = 180.0f;
+                    sp34->unk3C = (f32) sp34->Rot.y;
+                    break;
+                default:
+                    sp34->Rot.y = 270.0f;
+                    sp34->unk3C = (f32) sp34->Rot.y;
+                    break;
             }
             sp34->unkA6 = 3;
         } else {
@@ -2765,7 +2771,8 @@ void func_800E60D8(void) {
 void func_800E632C(void) {
     s32 sp24;
 
-    sp24 = func_80027464(1, &D_80114450, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp24 = func_80027464(1, &D_80114450, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
     if (sp24 != -1) {
         func_8001ABF4(sp24, 0, 0, &D_80119750);
         gObjects[sp24].unk108 = 0;
@@ -2775,7 +2782,8 @@ void func_800E632C(void) {
 void func_800E63F4(void) {
     s32 sp24;
 
-    sp24 = func_80027464(1, &D_8011445C, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp24 = func_80027464(1, &D_8011445C, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
     if (sp24 != -1) {
         func_8001ABF4(sp24, 0, 0, &D_80119828);
         func_8001ABF4(sp24, 1, 0, &D_80119828.Rot.y);
@@ -2965,7 +2973,7 @@ void func_800E6E80(void) {
     }
     if (func_8002A1FC(gCurrentParsedObject, 240.0f) != 0) {
         sp2C->unk44 = 0.0f;
-        sp2C->Vel.x = sp2C->Vel.z =sp2C->unk44;
+        sp2C->Vel.x = sp2C->Vel.z = sp2C->unk44;
         sp2C->unkA4 = 8;
         sp2C->unk132 = 0U;
     }
@@ -3012,7 +3020,8 @@ void func_800E71C0(void) {
 void func_800E74C0(void) {
     s32 sp24;
 
-    sp24 = func_80027464(1, &D_80114468, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp24 = func_80027464(1, &D_80114468, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
 }
 
 void func_800E753C(void) {
@@ -3166,7 +3175,8 @@ void func_800E7D5C(void) {
 void func_800E802C(void) {
     s32 sp24;
 
-    sp24 = func_80027464(1, &D_80114474, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp24 = func_80027464(1, &D_80114474, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
     if (sp24 != -1) {
         gObjects[sp24].unk13A = 1;
     }
@@ -3402,7 +3412,8 @@ void func_800E8DF0(void) {
 void func_800E904C(void) {
     s32 sp24;
 
-    sp24 = func_80027464(1, &D_80114480, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp24 = func_80027464(1, &D_80114480, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
 }
 
 void func_800E90C8(void) {
@@ -3435,9 +3446,12 @@ void func_800E91E4(void) {
         sp2C->unk132 = (u8) (sp2C->unk132 + 1);
         sp2C->unkB2 = (s16) sp2C->unkA4;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0xC3, &D_801198EC);
-        func_80027C00(gCurrentParsedObject, 0, &D_80114498, sp2C->Pos.x, sp2C->Pos.y + 172.0f, sp2C->Pos.z, sp2C->Rot.y);
-        func_80027C00(gCurrentParsedObject, 1, &D_801144A4, sp2C->Pos.x, sp2C->Pos.y + 172.0f, sp2C->Pos.z, sp2C->Rot.y);
-        func_80027C00(gCurrentParsedObject, 2, &D_8011448C, sp2C->Pos.x, sp2C->Pos.y + D_8011553C, sp2C->Pos.z, sp2C->Rot.y);
+        func_80027C00(gCurrentParsedObject, 0, &D_80114498, sp2C->Pos.x, sp2C->Pos.y + 172.0f, sp2C->Pos.z,
+                      sp2C->Rot.y);
+        func_80027C00(gCurrentParsedObject, 1, &D_801144A4, sp2C->Pos.x, sp2C->Pos.y + 172.0f, sp2C->Pos.z,
+                      sp2C->Rot.y);
+        func_80027C00(gCurrentParsedObject, 2, &D_8011448C, sp2C->Pos.x, sp2C->Pos.y + D_8011553C, sp2C->Pos.z,
+                      sp2C->Rot.y);
         func_8001ABF4((s32) sp2C->unkE8[0], 0, 0, &D_8011993C);
         func_8001C0EC((s32) sp2C->unkE8[0], 0, 0, 0xC6, &D_80119974);
         func_8001C0EC((s32) sp2C->unkE8[1], 0, 0, 0xC7, &D_80119978);
@@ -3504,13 +3518,11 @@ void func_800E9420(void) {
         sp34->unkA4 = 4;
         sp34->unk132 = 0U;
         return;
-    }
-    else if ((gObjects[sp34->unkE8[1]].Rot.z < 180.0f) && (gObjects[sp34->unkE8[1]].Rot.z > 170.0f)) {
+    } else if ((gObjects[sp34->unkE8[1]].Rot.z < 180.0f) && (gObjects[sp34->unkE8[1]].Rot.z > 170.0f)) {
         sp34->unkA4 = 4;
         sp34->unk132 = 0U;
         return;
-    }
-    else if ((gObjects[sp34->unkE8[1]].Rot.z < 90.0f) && (gObjects[sp34->unkE8[1]].Rot.z > 80.0f)) {
+    } else if ((gObjects[sp34->unkE8[1]].Rot.z < 90.0f) && (gObjects[sp34->unkE8[1]].Rot.z > 80.0f)) {
         sp34->unkA4 = 4;
         sp34->unk132 = 0U;
         return;
@@ -3527,7 +3539,6 @@ void func_800E9420(void) {
         }
     }
 }
-
 
 void func_800E9AFC(void) {
     struct ObjectStruct* sp34;
@@ -3582,13 +3593,11 @@ void func_800E9AFC(void) {
         sp34->unkA4 = 4;
         sp34->unk132 = 0U;
         return;
-    }
-    else if ((gObjects[sp34->unkE8[1]].Rot.z < 180.0f) && (gObjects[sp34->unkE8[1]].Rot.z > 170.0f)) {
+    } else if ((gObjects[sp34->unkE8[1]].Rot.z < 180.0f) && (gObjects[sp34->unkE8[1]].Rot.z > 170.0f)) {
         sp34->unkA4 = 4;
         sp34->unk132 = 0U;
         return;
-    }
-    else if ((gObjects[sp34->unkE8[1]].Rot.z < 90.0f) && (gObjects[sp34->unkE8[1]].Rot.z > 80.0f)) {
+    } else if ((gObjects[sp34->unkE8[1]].Rot.z < 90.0f) && (gObjects[sp34->unkE8[1]].Rot.z > 80.0f)) {
         sp34->unkA4 = 4;
         sp34->unk132 = 0U;
         sp34->unkAA = 0x64;
@@ -3670,11 +3679,13 @@ void func_800EA55C(void) {
     }
     if ((func_8001B62C(gCurrentParsedObject, 0) > 20.0f) && (sp34->unk132 == 1)) {
         sp34->unk132 = (u8) (sp34->unk132 + 1);
-        sp30 = func_80027464(1, &D_801144B0, sp34->Pos.x + 160.0f, sp34->Pos.y + 134.0f, sp34->Pos.z + 36.0f, sp34->Rot.y);
+        sp30 =
+            func_80027464(1, &D_801144B0, sp34->Pos.x + 160.0f, sp34->Pos.y + 134.0f, sp34->Pos.z + 36.0f, sp34->Rot.y);
         if (sp30 != -1) {
             func_80026F10(sp30, gCurrentParsedObject);
         }
-        sp30 = func_80027464(1, &D_801144B0, sp34->Pos.x - 160.0f, sp34->Pos.y + 134.0f, sp34->Pos.z + 36.0f, sp34->Rot.y);
+        sp30 =
+            func_80027464(1, &D_801144B0, sp34->Pos.x - 160.0f, sp34->Pos.y + 134.0f, sp34->Pos.z + 36.0f, sp34->Rot.y);
         if (sp30 != -1) {
             func_80026F10(sp30, gCurrentParsedObject);
         }
@@ -3728,11 +3739,13 @@ void func_800EAAB8(void) {
     }
     if ((func_8001B62C(gCurrentParsedObject, 0) > 20.0f) && (sp34->unk132 == 1)) {
         sp34->unk132 = (u8) (sp34->unk132 + 1);
-        sp30 = func_80027464(1, &D_801144B0, sp34->Pos.x + 160.0f, sp34->Pos.y + 134.0f, sp34->Pos.z + 36.0f, sp34->Rot.y);
+        sp30 =
+            func_80027464(1, &D_801144B0, sp34->Pos.x + 160.0f, sp34->Pos.y + 134.0f, sp34->Pos.z + 36.0f, sp34->Rot.y);
         if (sp30 != -1) {
             func_80026F10(sp30, gCurrentParsedObject);
         }
-        sp30 = func_80027464(1, &D_801144B0, sp34->Pos.x - 160.0f, sp34->Pos.y + 134.0f, sp34->Pos.z + 36.0f, sp34->Rot.y);
+        sp30 =
+            func_80027464(1, &D_801144B0, sp34->Pos.x - 160.0f, sp34->Pos.y + 134.0f, sp34->Pos.z + 36.0f, sp34->Rot.y);
         if (sp30 != -1) {
             func_80026F10(sp30, gCurrentParsedObject);
         }
@@ -3763,8 +3776,8 @@ void func_800EAAB8(void) {
     }
     if (sp34->unkA6 == 3) {
         if (gObjects[sp34->unkE8[1]].Rot.z < 19.0f) {
-        sp34->unkA4 = 7;
-        sp34->unk132 = 0U;
+            sp34->unkA4 = 7;
+            sp34->unk132 = 0U;
         }
     }
 }
@@ -3814,7 +3827,7 @@ void func_800EB01C(void) {
     gObjects[sp34->unkE8[0]].Pos.y = (f32) (gObjects[sp34->unkE8[0]].Pos.y + 172.0f);
     gObjects[sp34->unkE8[1]].Pos.y = (f32) (gObjects[sp34->unkE8[1]].Pos.y + 172.0f);
     gObjects[sp34->unkE8[2]].Pos.y = (f32) (gObjects[sp34->unkE8[2]].Pos.y + D_8011555C);
-    
+
     gObjects[sp34->unkE8[2]].Scale.x = D_80115180[sp34->unkAE].x;
     gObjects[sp34->unkE8[2]].Scale.y = D_80115184[sp34->unkAE].x;
     gObjects[sp34->unkE8[2]].Scale.z = D_80115188[sp34->unkAE].x;
@@ -3829,7 +3842,7 @@ void func_800EB01C(void) {
             sp30 = 0;
             do {
                 sp2C = func_800281A4(gCurrentParsedObject, sp30);
-                //sp2C = M2C_ERROR(/* Read from unset register $v0 */);
+                // sp2C = M2C_ERROR(/* Read from unset register $v0 */);
                 func_8002B114(sp2C);
             } while (++sp30 < 3);
             func_8007EDF4(sp34->Pos.x, sp34->Pos.y + 172.0f, sp34->Pos.z, 2.0f);
@@ -3955,7 +3968,8 @@ void func_800EBEA0(void) {
 void func_800EBF24(void) {
     s32 sp24;
 
-    sp24 = func_80027464(1, &D_801144BC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp24 = func_80027464(1, &D_801144BC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
 }
 
 void func_800EBFA0(void) {
@@ -3969,7 +3983,8 @@ void func_800EBFA0(void) {
             func_8001C0EC(gCurrentParsedObject, 3, 0, 0x107, &D_8011997C);
         }
     }
-    if ((sp24->unkB2 == 4) && (gPlayerObject->unk108 != 0) && (func_8002A2EC(gCurrentParsedObject, 60.0f) != 0) && (sp24->unk132 == 1)) {
+    if ((sp24->unkB2 == 4) && (gPlayerObject->unk108 != 0) && (func_8002A2EC(gCurrentParsedObject, 60.0f) != 0) &&
+        (sp24->unk132 == 1)) {
         sp24->unk132 = (u8) (sp24->unk132 + 1);
     }
     if (func_8001B62C(gCurrentParsedObject, 3) >= 88.0f) {
@@ -4033,7 +4048,8 @@ void func_800EC348(void) {
 void func_800EC408(void) {
     s32 sp24;
 
-    sp24 = func_80027464(1, &D_801144C8, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp24 = func_80027464(1, &D_801144C8, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
     if (sp24 != -1) {
         func_8001ABF4(sp24, 0, 0, &D_801199AC);
     }
@@ -4087,7 +4103,8 @@ void func_800EC534(void) {
 void func_800EC7B4(void) {
     s32 sp24;
 
-    sp24 = func_80027464(1, &D_801144E0, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp24 = func_80027464(1, &D_801144E0, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
     if (sp24 != -1) {
         gObjects[sp24].unkA8 = 0;
         gObjects[sp24].unkC0 = 0;
@@ -4271,7 +4288,8 @@ void func_800ED170(void) {
 void func_800ED9E8(void) {
     s32 sp24;
 
-    sp24 = func_80027464(1, &D_801144F8, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp24 = func_80027464(1, &D_801144F8, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
     if (sp24 != -1) {
         func_80019448(sp24, 2, 0, 1);
     }
@@ -4380,22 +4398,23 @@ void func_800EE134(void) {
 
     sp24 = &gObjects[gCurrentParsedObject];
     switch (sp24->unkA4) {
-    case 1:
-        func_800EDAE0();
-        break;
-    case 2:
-        func_800EDDE4();
-        break;
-    case 3:
-        func_800EDFA4();
-        break;
-    default:
-        break;
+        case 1:
+            func_800EDAE0();
+            break;
+        case 2:
+            func_800EDDE4();
+            break;
+        case 3:
+            func_800EDFA4();
+            break;
+        default:
+            break;
     }
 }
 
 f32 func_800EE1F4(s32 arg0) {
-    return func_80015634(gPlayerObject->Pos.x - gObjects[arg0].Pos.x, (gPlayerObject->Pos.z - 240.0f) - gObjects[arg0].Pos.z);
+    return func_80015634(gPlayerObject->Pos.x - gObjects[arg0].Pos.x,
+                         (gPlayerObject->Pos.z - 240.0f) - gObjects[arg0].Pos.z);
 }
 
 s32 func_800EE274(s32 arg0, f32 arg1) {
@@ -4434,7 +4453,8 @@ void func_800EE444(void) {
     f32 sp28;
     f32 sp24;
 
-    sp2C = func_80027464(2, &D_801143D8, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp2C = func_80027464(2, &D_801143D8, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
     if (sp2C != -1) {
         func_8001ABF4(sp2C, 0, 3, &D_801195D0.Rot.y);
         func_8001ABF4((s32) gObjects[sp2C].unkE8[0], 1, 0, &D_801196AC.unk30.z);
@@ -4684,8 +4704,7 @@ void func_800EF6AC(void) {
         sp24->unkBE = (s16) (s32) (sp24->Pos.y + 600.0f);
         sp24->Vel.y = 4.0f;
     }
-    if (sp24->Pos.y >= sp24->unkBE) 
-    {
+    if (sp24->Pos.y >= sp24->unkBE) {
         sp24->Vel.y = 0.0f;
         sp24->Pos.y = (f32) sp24->unkBE;
         sp24->unkB0 = 0;
@@ -4728,7 +4747,8 @@ void func_800EFB6C(void) {
     f32 sp28;
     f32 sp24;
 
-    sp2C = func_80027464(2, &D_801143FC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp2C = func_80027464(2, &D_801143FC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
     if (sp2C != -1) {
         func_8001ABF4(sp2C, 0, 3, &D_801195D0.Rot.y);
         func_8001ABF4((s32) gObjects[sp2C].unkE8[0], 1, 0, &D_801196AC.unk30.z);
@@ -5000,14 +5020,14 @@ void func_800F770C(void) {
 void func_800F7800(void) {
 
     switch (gObjects[gCurrentParsedObject].unkA4) {
-    case 1:
-        func_800F7544();
-        break;
-    case 2:
-        func_800F770C();
-        break;
-    default:
-        break;
+        case 1:
+            func_800F7544();
+            break;
+        case 2:
+            func_800F770C();
+            break;
+        default:
+            break;
     }
 }
 
@@ -5061,7 +5081,8 @@ void func_800F8028(void) {
     s32 sp28;
     s32 sp24;
 
-    sp2C = func_80027464(3, &D_80113790, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp2C = func_80027464(3, &D_80113790, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
     if (sp2C != -1) {
         sp24 = (s32) gObjects[sp2C].unkE8[0];
         sp28 = (s32) gObjects[sp2C].unkE8[1];
@@ -5090,7 +5111,7 @@ void func_800F82EC(void) {
             }
         }
         if (sp4 != -1) {
-            if  (gObjects[sp4].unk104 != -1) {
+            if (gObjects[sp4].unk104 != -1) {
                 spC->unkA4 = 2;
                 spC->unk132 = 0;
             }
@@ -5170,47 +5191,42 @@ void func_800F8720(void) {
 void func_800F87B4(void) {
 
     switch (gObjects[gCurrentParsedObject].unkA4) {
-    case 1:
-        func_800F8418();
-        break;
-    case 2:
-        func_800F84F8();
-        break;
-    case 3:
-        func_800F8660();
-        break;
-    case 4:
-        func_800F8720();
-        break;
+        case 1:
+            func_800F8418();
+            break;
+        case 2:
+            func_800F84F8();
+            break;
+        case 3:
+            func_800F8660();
+            break;
+        case 4:
+            func_800F8720();
+            break;
     }
 }
 
 void func_800F8878(void) {
-
 }
 
 void func_800F8888(void) {
-
 }
 
 void func_800F8898(void) {
-
 }
 
 void func_800F88A8(void) {
-
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F88B8.s")
 
 void func_800F8AB8(void) {
-
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/CD240/func_800F8AC8.s")
 
 void func_800F901C(void) {
-    switch(gObjects[gCurrentParsedObject].unkA4) {
+    switch (gObjects[gCurrentParsedObject].unkA4) {
         case 1:
             func_800F8AC8();
             break;
@@ -5218,15 +5234,14 @@ void func_800F901C(void) {
 }
 
 void func_800F9088(void) {
-
 }
 
 void func_800F9098(void) {
-
 }
 
 void func_800F90A8(void) {
-    func_80027464(1, &D_801137D8, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    func_80027464(1, &D_801137D8, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                  (f32) D_80165100->unk8);
 }
 
 void func_800F9120(void) {
@@ -5342,18 +5357,18 @@ void func_800F95F4(void) {
 void func_800F9800(void) {
 
     switch (gObjects[gCurrentParsedObject].unkA4) {
-    case 1:
-        func_800F91A4();
-        break;
-    case 2:
-        func_800F9294();
-        break;
-    case 3:
-        func_800F94A8();
-        break;
-    case 4:
-        func_800F95F4();
-        break;
+        case 1:
+            func_800F91A4();
+            break;
+        case 2:
+            func_800F9294();
+            break;
+        case 3:
+            func_800F94A8();
+            break;
+        case 4:
+            func_800F95F4();
+            break;
     }
 }
 
@@ -5361,7 +5376,8 @@ void func_800F98C4(void) {
     struct ObjectStruct* sp24;
     s32 sp20;
 
-    sp20 = func_80027464(1, &D_801137E4, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp20 = func_80027464(1, &D_801137E4, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
     if (sp20 != -1) {
         sp24 = &gObjects[sp20];
         sp24->unkE4 = (s16) D_80165100->unk0;
@@ -5387,7 +5403,8 @@ void func_800F9CB8(void) {
     struct ObjectStruct* sp24;
     s32 sp20;
 
-    sp20 = func_80027464(1, &D_801137F0, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    sp20 = func_80027464(1, &D_801137F0, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                         (f32) D_80165100->unk8);
     if (sp20 != -1) {
         sp24 = &gObjects[sp20];
         sp24->unkE4 = (s16) D_80165100->unk0;
@@ -5456,15 +5473,16 @@ void func_800F9DE0(void) {
 void func_800FA0DC(void) {
     if (gObjects[gCurrentParsedObject].unkA4 == 1) {
         goto stub;
-        stub:;
+    stub:;
         func_800F9DE0();
         goto stub2;
-        stub2:;
+    stub2:;
     }
 }
 
 void func_800FA148(void) {
-    func_80027464(2, &D_801137FC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    func_80027464(2, &D_801137FC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                  (f32) D_80165100->unk8);
 }
 
 void func_800FA1C0(void) {
@@ -5559,15 +5577,15 @@ void func_800FA54C(void) {
 void func_800FA730(void) {
 
     switch (gObjects[gCurrentParsedObject].unkA4) {
-    case 1:
-        func_800FA54C();
-        break;
-    case 2:
-        func_800FA27C();
-        break;
-    case 3:
-        func_800FA4D4();
-        break;
+        case 1:
+            func_800FA54C();
+            break;
+        case 2:
+            func_800FA27C();
+            break;
+        case 3:
+            func_800FA4D4();
+            break;
     }
 }
 
@@ -5607,11 +5625,11 @@ void func_800FAA88(void) {
 
 void func_800FAC60(void) {
     switch (gObjects[gCurrentParsedObject].unkA4) {
-    case 1:
-        func_800FA888();
-        break;
-    case 2:
-        func_800FAA88();
-        break;
+        case 1:
+            func_800FA888();
+            break;
+        case 2:
+            func_800FAA88();
+            break;
     }
 }

@@ -39,7 +39,7 @@ void func_80330090_unk_bin_36() {
     if (objIdx != -1) {
         func_80019448(objIdx, 2, 0, 1);
     }
-} 
+}
 
 void func_80330130_unk_bin_36() {
     struct ObjectStruct* obj = &gObjects[gCurrentParsedObject];
@@ -350,7 +350,7 @@ void func_80331124_unk_bin_36(void) {
     obj->unkA6 = func_80015538(obj->unkA6, 10.0f);
     func_800294F0(gCurrentParsedObject, &y1, &y2, 0, 0.0f, 0.0f);
 
-    obj->unk48 = (sinf(obj->unkA6 * 0.0174532925199432955) * 30.0f) + obj->unkB6 - obj->Pos.y;
+    obj->unk48 = (sinf(obj->unkA6 * DEG_TO_RAD) * 30.0f) + obj->unkB6 - obj->Pos.y;
 
     func_80029D04(gCurrentParsedObject);
 

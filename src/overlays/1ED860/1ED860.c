@@ -97,7 +97,7 @@ void func_803305D4_unk_bin_41() {
     obj->unkD8 = obj->unk40;
 
     obj->unkA6 = func_80015538(obj->unkA6, obj->unkA8);
-    sp18 = sinf(obj->unkA6 * 0.0174532925199432955) * 40.0f;
+    sp18 = sinf(obj->unkA6 * DEG_TO_RAD) * 40.0f;
     obj->unk40 = func_80015538(sp18, 0.0f);
 
     if (obj->unk44 > 10.0f) {
@@ -138,7 +138,7 @@ void func_803305D4_unk_bin_41() {
 
 void func_803309CC_unk_bin_41() {
     struct ObjectStruct* obj = &gObjects[gCurrentParsedObject];
-    struct ObjectStruct* firstObj = &gObjects[0];
+    struct ObjectStruct* firstObj = &PLAYER;
     f32 sp1C;
 
     if (obj->unk132 == 0) {
@@ -184,7 +184,7 @@ void func_803309CC_unk_bin_41() {
 
 s8 func_80330C3C_unk_bin_41() {
     struct ObjectStruct* obj = &gObjects[gCurrentParsedObject];
-    struct ObjectStruct* firstObj = &gObjects[0];
+    struct ObjectStruct* firstObj = &PLAYER;
     f32 x;
     f32 xDiff;
     f32 zDiff;
@@ -226,13 +226,13 @@ s8 func_80330C3C_unk_bin_41() {
         if (func_8002A560(gCurrentParsedObject, 5.0f) == 0) {
             xDiff = gObjects->Pos.x - obj->Pos.x;
             zDiff = gObjects->Pos.z - obj->Pos.z;
-            distCalc = (s16)(sqrtf((xDiff * xDiff) + (zDiff * zDiff)) / 60.0f);
+            distCalc = (s16) (sqrtf((xDiff * xDiff) + (zDiff * zDiff)) / 60.0f);
 
             if (distCalc >= 9) {
                 distCalc = 8;
             }
 
-            obj->unk44 = (f32)(distCalc + 14);
+            obj->unk44 = (f32) (distCalc + 14);
             obj->unk48 = 8.0f;
             obj->unk132 = 3;
         }

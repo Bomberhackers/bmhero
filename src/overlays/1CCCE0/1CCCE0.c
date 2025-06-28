@@ -1,6 +1,6 @@
 #include <ultra64.h>
 
-/* 
+/*
  *  These symbols seem to be used between code and the overlays..
  */
 
@@ -19,7 +19,8 @@ extern u32 D_80118AE4;
 void func_80330000_unk_bin_35(void) {
     s32 objIdx;
 
-    objIdx = func_80027464(1, &D_80114528, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    objIdx = func_80027464(1, &D_80114528, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                           (f32) D_80165100->unk8);
     if (objIdx != -1) {
         gObjects[objIdx].Scale.x = gObjects[objIdx].Scale.y = gObjects[objIdx].Scale.z = 1.5f;
     }
@@ -167,26 +168,26 @@ void func_8033095C_unk_bin_35(void) {
 
     obj = &gObjects[gCurrentParsedObject];
     switch (obj->unkA4) {
-    case 1:
-        func_803302BC_unk_bin_35(obj);
-        break;
-    case 2:
-        func_803303A4_unk_bin_35(obj);
-        break;
-    case 3:
-        func_8033050C_unk_bin_35(obj);
-        break;
-    case 4:
-        func_803305F0_unk_bin_35(obj);
-        break;
-    case 5:
-        func_8033074C_unk_bin_35(obj);
-        break;
-    case 6:
-        func_80330928_unk_bin_35(obj);
-        break;
-    default:
-        break;
+        case 1:
+            func_803302BC_unk_bin_35(obj);
+            break;
+        case 2:
+            func_803303A4_unk_bin_35(obj);
+            break;
+        case 3:
+            func_8033050C_unk_bin_35(obj);
+            break;
+        case 4:
+            func_803305F0_unk_bin_35(obj);
+            break;
+        case 5:
+            func_8033074C_unk_bin_35(obj);
+            break;
+        case 6:
+            func_80330928_unk_bin_35(obj);
+            break;
+        default:
+            break;
     }
 }
 
@@ -234,7 +235,8 @@ void func_80330C64_unk_bin_35(void) {
 void func_80330CD8_unk_bin_35(void) {
     s32 objIdx;
 
-    objIdx = func_80027464(1, &D_80114534, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    objIdx = func_80027464(1, &D_80114534, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                           (f32) D_80165100->unk8);
     if (objIdx != -1) {
         gObjects[objIdx].Scale.x = gObjects[objIdx].Scale.y = gObjects[objIdx].Scale.z = 0.5f;
     }
@@ -260,7 +262,6 @@ s32 func_80330E68_unk_bin_35(struct ObjectStruct* obj, s32 arg1) {
     Matrix sp74;
     Matrix sp34;
 
-
     guRotateF(sp74, obj->Rot.y, 0.0f, 1.0f, 0.0f);
     guTranslateF(sp34, obj->Pos.x, obj->Pos.y, obj->Pos.z);
     guMtxCatF(sp74, sp34, sp74);
@@ -268,11 +269,10 @@ s32 func_80330E68_unk_bin_35(struct ObjectStruct* obj, s32 arg1) {
     guMtxXFMF(sp74, -240.0f, 0.0f, (f32) arg1, &spCC, &spB4, &spC8);
     guMtxXFMF(sp74, 240.0f, 0.0f, (f32) arg1, &spC4, &spB4, &spC0);
     guMtxXFMF(sp74, 240.0f, 0.0f, -60.0f, &spBC, &spB4, &spB8);
-    if ((gPlayerObject->Pos.y >= (obj->Pos.y - 240.0f)) && (gPlayerObject->Pos.y <= (obj->Pos.y + 480.0f)) && (func_800163AC(gPlayerObject->Pos.x, gPlayerObject->Pos.z, 
-            spD4, spD0, spCC, spC8, spC4, spC0, spBC, spB8)) ) {    
-    
+    if ((gPlayerObject->Pos.y >= (obj->Pos.y - 240.0f)) && (gPlayerObject->Pos.y <= (obj->Pos.y + 480.0f)) &&
+        (func_800163AC(gPlayerObject->Pos.x, gPlayerObject->Pos.z, spD4, spD0, spCC, spC8, spC4, spC0, spBC, spB8))) {
+
         return 1;
-    
     }
     return 0;
 }
@@ -373,30 +373,31 @@ void func_803316B8_unk_bin_35(void) {
 
 void func_803316F0_unk_bin_35(void) {
     switch (gObjects[gCurrentParsedObject].unkA4) {
-    case 1:
-        func_80331054_unk_bin_35();
-        break;
-    case 2:
-        func_8033115C_unk_bin_35();
-        break;
-    case 3:
-        func_803312E8_unk_bin_35();
-        break;
-    case 4:
-        func_80331524_unk_bin_35();
-        break;
-    case 5:
-        func_803316B8_unk_bin_35();
-        break;
-    default:
-        break;
+        case 1:
+            func_80331054_unk_bin_35();
+            break;
+        case 2:
+            func_8033115C_unk_bin_35();
+            break;
+        case 3:
+            func_803312E8_unk_bin_35();
+            break;
+        case 4:
+            func_80331524_unk_bin_35();
+            break;
+        case 5:
+            func_803316B8_unk_bin_35();
+            break;
+        default:
+            break;
     }
 }
 
 void func_803317C0_unk_bin_35(void) {
     s32 objIdx;
-    
-    objIdx = func_80027464(1, &D_8011454C, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+
+    objIdx = func_80027464(1, &D_8011454C, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                           (f32) D_80165100->unk8);
     if (objIdx != -1) {
         gObjects[objIdx].Scale.x = gObjects[objIdx].Scale.y = gObjects[objIdx].Scale.z = 1.5f;
     }
@@ -517,23 +518,23 @@ void func_80331FF4_unk_bin_35(void) {
 
 void func_80332024_unk_bin_35(void) {
     switch (gObjects[gCurrentParsedObject].unkA4) {
-    case 1:
-        func_80331928_unk_bin_35();
-        break;
-    case 2:
-        func_80331BE0_unk_bin_35();
-        break;
-    case 3:
-        func_80331CEC_unk_bin_35();
-        break;
-    case 4:
-        func_80331F24_unk_bin_35();
-        break;
-    case 5:
-        func_80331FF4_unk_bin_35();
-        break;
-    default:
-        break;
+        case 1:
+            func_80331928_unk_bin_35();
+            break;
+        case 2:
+            func_80331BE0_unk_bin_35();
+            break;
+        case 3:
+            func_80331CEC_unk_bin_35();
+            break;
+        case 4:
+            func_80331F24_unk_bin_35();
+            break;
+        case 5:
+            func_80331FF4_unk_bin_35();
+            break;
+        default:
+            break;
     }
 }
 
@@ -541,7 +542,8 @@ void func_803320F4_unk_bin_35(void) {
     s32 objIdx;
     s32 objIdx1;
 
-    objIdx = func_80027464(2, &D_80114558, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    objIdx = func_80027464(2, &D_80114558, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                           (f32) D_80165100->unk8);
     if (objIdx != -1) {
         gObjects[objIdx].Scale.x = gObjects[objIdx].Scale.y = gObjects[objIdx].Scale.z = 2.0f;
         objIdx1 = gObjects[objIdx].unkE8[0];
@@ -681,25 +683,25 @@ void func_80332A5C_unk_bin_35(void) {
     parent = &gObjects[gCurrentParsedObject];
     objIdx = (s32) parent->unkE8[0];
     child = &gObjects[objIdx];
-    
+
     switch (gObjects[gCurrentParsedObject].unkA4) {
-    case 1:
-        func_80332308_unk_bin_35();
-        break;
-    case 2:
-        func_803323F4_unk_bin_35();
-        break;
-    case 3:
-        func_80332574_unk_bin_35();
-        break;
-    case 4:
-        func_80332860_unk_bin_35();
-        break;
-    case 5:
-        func_803329E0_unk_bin_35();
-        break;
-    default:
-        break;
+        case 1:
+            func_80332308_unk_bin_35();
+            break;
+        case 2:
+            func_803323F4_unk_bin_35();
+            break;
+        case 3:
+            func_80332574_unk_bin_35();
+            break;
+        case 4:
+            func_80332860_unk_bin_35();
+            break;
+        case 5:
+            func_803329E0_unk_bin_35();
+            break;
+        default:
+            break;
     }
     child->Pos.y = parent->Pos.y + parent->Vel.y + (75.0f * parent->Scale.x);
     child->Pos.z = parent->Pos.z + parent->Vel.z + (30.0f * parent->Scale.x);
@@ -708,7 +710,8 @@ void func_80332A5C_unk_bin_35(void) {
 void func_80332BEC_unk_bin_35(void) {
     s16 objIdx;
 
-    objIdx = func_80027464(1, &D_80114570, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    objIdx = func_80027464(1, &D_80114570, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                           (f32) D_80165100->unk8);
     if (objIdx != -1) {
         gObjects[objIdx].unkA4 = 1;
         gObjects[objIdx].unkA6 = 0;
@@ -799,16 +802,16 @@ void func_80333318_unk_bin_35(void) {
 }
 
 void func_8033339C_unk_bin_35(void) {
-    switch (gObjects[gCurrentParsedObject].unkA4) {                              /* irregular */
-    case 1:
-        func_8033304C_unk_bin_35();
-        break;
-    case 2:
-        func_80333140_unk_bin_35();
-        break;
-    case 3:
-        func_80333318_unk_bin_35();
-        break;
+    switch (gObjects[gCurrentParsedObject].unkA4) { /* irregular */
+        case 1:
+            func_8033304C_unk_bin_35();
+            break;
+        case 2:
+            func_80333140_unk_bin_35();
+            break;
+        case 3:
+            func_80333318_unk_bin_35();
+            break;
     }
 }
 /* Warning: struct UnkStruct_80134B54 is not defined (only forward-declared) */

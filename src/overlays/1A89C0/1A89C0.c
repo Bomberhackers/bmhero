@@ -291,8 +291,8 @@ void func_80330D10_unk_bin_20() {
 
         rotBase = func_80015538(obj->Rot.y, 16.5f);
         addend = sqrtf(58624.0f);
-        posX = (sinf((f32)((f64)rotBase * 0.0174532925199432955)) * addend) + obj->Pos.x;
-        posZ = (cosf((f32)((f64)rotBase * 0.0174532925199432955)) * addend) + obj->Pos.z;
+        posX = (sinf((f32) ((f64) rotBase * DEG_TO_RAD)) * addend) + obj->Pos.x;
+        posZ = (cosf((f32) ((f64) rotBase * DEG_TO_RAD)) * addend) + obj->Pos.z;
         objIdx =
             func_80027464(1, &D_803331B0_unk_bin_20, posX, obj->Pos.y + 240.0f, posZ, func_80015538(obj->Rot.y, 20.0f));
         func_8001ABF4(objIdx, 0, 0, &D_80119FA4);
@@ -300,15 +300,15 @@ void func_80330D10_unk_bin_20() {
 
         rotBase = func_80015538(obj->Rot.y, -16.5f);
         addend = sqrtf(58624.0f);
-        posX = (sinf((f32)((f64)rotBase * 0.0174532925199432955)) * addend) + obj->Pos.x;
-        posZ = (cosf((f32)((f64)rotBase * 0.0174532925199432955)) * addend) + obj->Pos.z;
+        posX = (sinf((f32) ((f64) rotBase * DEG_TO_RAD)) * addend) + obj->Pos.x;
+        posZ = (cosf((f32) ((f64) rotBase * DEG_TO_RAD)) * addend) + obj->Pos.z;
         objIdx = func_80027464(1, &D_803331B0_unk_bin_20, posX, obj->Pos.y + 240.0f, posZ,
                                func_80015538(obj->Rot.y, -20.0f));
         func_8001ABF4(objIdx, 0, 0, &D_80119FA4);
         gObjects[objIdx].unkC2 = gCurrentParsedObject;
 
-        posX = (sinf((f32)((f64)obj->Rot.y * 0.0174532925199432955)) * 60.0f) + obj->Pos.x;
-        posZ = (cosf((f32)((f64)obj->Rot.y * 0.0174532925199432955)) * 60.0f) + obj->Pos.z;
+        posX = (sinf((f32) ((f64) obj->Rot.y * DEG_TO_RAD)) * 60.0f) + obj->Pos.x;
+        posZ = (cosf((f32) ((f64) obj->Rot.y * DEG_TO_RAD)) * 60.0f) + obj->Pos.z;
         objIdx = func_80027464(1, &D_803331B0_unk_bin_20, posX, obj->Pos.y + 240.0f, posZ, obj->Rot.y);
         func_8001ABF4(objIdx, 0, 0, &D_80119FA4);
         gObjects[objIdx].unkC2 = gCurrentParsedObject;

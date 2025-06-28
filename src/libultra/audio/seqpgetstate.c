@@ -22,8 +22,6 @@
 
 #include <libaudio.h>
 
-s32 alSeqpGetState(ALSeqPlayer *seqp)
-{
+s32 alSeqpGetState(ALSeqPlayer* seqp) {
     return seqp->state;
 }
-

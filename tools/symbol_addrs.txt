@@ -1,3 +1,8 @@
+Reset_LightSettings = 0x8001819C;
+Set_BgColor = 0x8001D638;
+LoadFile = 0x8001E98C;
+Get_DecompressHeap = 0x8001E96C;
+Set_DecompressHeap = 0x8001E954;
 printf = 0x80017FD8; //defined:true
 GetSi_DMA_Status = 0x8001EEB0; //defined:true
 Eeprom_Read  = 0x8001F814; //defined:true

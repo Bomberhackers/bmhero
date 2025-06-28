@@ -547,12 +547,12 @@ void func_80332C94_unk_bin_15() {
         obj->unk40 = 0.0f;
 
         for (i = 0; i < 9; i++) {
-            gObjects[obj->unkE8[i]].unk30.x = func_80014E80(0x12);
-            gObjects[obj->unkE8[i]].unk30.y = func_80014E80(0x12);
+            gObjects[obj->unkE8[i]].unk30.x = Math_Random(0x12);
+            gObjects[obj->unkE8[i]].unk30.y = Math_Random(0x12);
 
-            gObjects[obj->unkE8[i]].unk3C = func_80014E80(0x167);
-            gObjects[obj->unkE8[i]].unk44 = func_80014E80(0x1E);
-            gObjects[obj->unkE8[i]].unk40 = func_80014E80(0x167);
+            gObjects[obj->unkE8[i]].unk3C = Math_Random(0x167);
+            gObjects[obj->unkE8[i]].unk44 = Math_Random(0x1E);
+            gObjects[obj->unkE8[i]].unk40 = Math_Random(0x167);
         }
 
         func_80029D8C(gCurrentParsedObject);
@@ -775,7 +775,7 @@ s32 func_80333D54_unk_bin_15(s32 idx, s32 arg1, f32 arg2) {
 }
 
 f32 func_80333E3C_unk_bin_15(s32 idx1, s32 idx2) {
-    return func_800156C4(gObjects[idx2].Pos.x - gObjects[idx1].Pos.x,
+    return Math_CalcAngleSimple(gObjects[idx2].Pos.x - gObjects[idx1].Pos.x,
                          gObjects[idx2].Pos.y + 60.0f - gObjects[idx1].Pos.y);
 }
 
@@ -893,8 +893,8 @@ void func_80334540_unk_bin_15() {
         obj->unkA8 = 0x3C;
     }
     if (obj->unkA6 >= 0xB) {
-        sp30 = func_800156C4(gPlayerObject->Pos.x - obj->Pos.x, gPlayerObject->Pos.y - obj->Pos.y);
-        sp30 = func_80015744(sp30);
+        sp30 = Math_CalcAngleSimple(gPlayerObject->Pos.x - obj->Pos.x, gPlayerObject->Pos.y - obj->Pos.y);
+        sp30 = Math_NormalizeAngle(sp30);
 
         sp2C = func_8002A800(obj->unk40, sp30, 2.0f);
         if (sp2C != 0.0f) {

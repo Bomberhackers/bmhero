@@ -594,7 +594,7 @@ extern struct DecompressedFileEntry gFileArray[700];
 extern s8  D_8016E080;
 extern s32 D_8016E084;
 extern s32 D_8016E08C;
-extern s16 D_8016E092;
+extern s16 gRandSeed;
 extern s32 D_8016E098;
 extern s32 D_8016E0A0;
 extern s32 D_8016E0A8;

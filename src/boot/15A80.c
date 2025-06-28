@@ -1,19 +1,19 @@
 #include <ultra64.h>
 
 // External functions
-f32 func_800155A8(f32, f32);
+f32 Math_CalcAngle2D(f32, f32);
 f32 func_80015634(f32 arg0, f32 arg1);
 
 // File functions
 f32 Math_Atan2f(f32 arg0, f32 arg1);
-f32 func_800155A8(f32 arg0, f32 arg1);
+f32 Math_CalcAngle2D(f32 arg0, f32 arg1);
 f32 func_80015634(f32 arg0, f32 arg1);
-f32 func_800156C4(f32 arg0, f32 arg1);
-f32 func_80015744(f32 arg0);
+f32 Math_CalcAngleSimple(f32 arg0, f32 arg1);
+f32 Math_NormalizeAngle(f32 arg0);
 s32 func_800157EC(f32 arg0, f32 arg1, f32 arg2);
 void func_800158B4(f32 arg0, f32 arg1, f32 arg2, f32* arg3, f32* arg4);
-f32 func_80015C24(f32 arg0, f32 arg1, s64 arg2, s64 arg4, s64 arg6, s64 arg8);
-f32 func_80015D2C(f32 arg0, f32 arg1, s64 arg2, s64 arg3, s64 arg4, s64 arg5);
+f32 Math_SolvePlaneX(f32 arg0, f32 arg1, s64 arg2, s64 arg4, s64 arg6, s64 arg8);
+f32 Math_SolvePlaneY(f32 arg0, f32 arg1, s64 arg2, s64 arg3, s64 arg4, s64 arg5);
 s32 func_8001608C(s64 arg0, s64 arg2, s64 arg4, s64 arg6, s64 arg8, s64 argA, s64 argC, s64 argE);
 s32 func_800162F0(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5);
 s32 func_800163AC(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9);
@@ -34,17 +34,16 @@ f32 gArctanTable[100] = {
     41.98721f, 42.30219f, 42.61406f, 42.92283f, 43.22853f, 43.5312f,  43.83086f, 44.12754f, 44.42127f, 44.71208f,
 };
 
-s32 func_80014E80(s16 arg0) {
+s32 Math_Random(s16 range) {
+    gRandSeed = (gRandSeed * 61 * 9 - 1);
 
-    D_8016E092 = (D_8016E092 * 61 * 9 - 1);
-
-    if (!arg0) {
-        return D_8016E092;
+    if (range == 0) {
+        return gRandSeed;
     } else {
-        if (arg0 > 0) {
-            return arg0 * (u16) D_8016E092 / 0x10000;
+        if (range > 0) {
+            return range * (u16) gRandSeed / 0x10000;
         } else {
-            return ((arg0 * D_8016E092) / 32768);
+            return ((range * gRandSeed) / 32768);
         }
     }
 }
@@ -130,14 +129,19 @@ f32 func_80015538(f32 arg0, f32 arg1) {
     return arg0;
 }
 
-f32 func_800155A8(f32 arg0, f32 arg1) {
-    f32 sp1C;
+/*
+*  
+*  @brief: Calculates a 2D angle using Math_Atan2f and adjusts by -90°
+*  @return: normalized result to a positive range
+*/
+f32 Math_CalcAngle2D(f32 y, f32 x) {
+    f32 angle;
 
-    sp1C = Math_Atan2f(arg0, arg1) - 90.0f;
-    if (sp1C < 0.0f) {
-        sp1C += 360.0f;
+    angle = Math_Atan2f(y, x) - 90.0f;
+    if (angle < 0.0f) {
+        angle += 360.0f;
     }
-    return sp1C;
+    return angle;
 }
 
 f32 func_80015634(f32 arg0, f32 arg1) {
@@ -150,23 +154,23 @@ f32 func_80015634(f32 arg0, f32 arg1) {
     return angle;
 }
 
-f32 func_800156C4(f32 arg0, f32 arg1) {
-    f32 sp1C;
+f32 Math_CalcAngleSimple(f32 y, f32 x) {
+    f32 angle;
 
-    sp1C = Math_Atan2f(arg0, arg1);
-    if (sp1C >= 360.0f) {
-        sp1C -= 360.0f;
+    angle = Math_Atan2f(y, x);
+    if (angle >= 360.0f) {
+        angle -= 360.0f;
     }
-    return sp1C;
+    return angle;
 }
 
-f32 func_80015744(f32 arg0) {
-    if ((arg0 > 90.0f) && (arg0 <= 180.0f)) {
-        arg0 = 180.0f - arg0;
-    } else if ((arg0 > 180.0f) && (arg0 < 270.0f)) {
-        arg0 = 540.0f - arg0;
+f32 Math_NormalizeAngle(f32 angle) {
+    if ((angle > 90.0f) && (angle <= 180.0f)) {
+        angle = 180.0f - angle;
+    } else if ((angle > 180.0f) && (angle < 270.0f)) {
+        angle = 540.0f - angle;
     }
-    return arg0;
+    return angle;
 }
 
 s32 func_800157EC(f32 arg0, f32 arg1, f32 arg2) {
@@ -187,7 +191,7 @@ s32 func_800157EC(f32 arg0, f32 arg1, f32 arg2) {
 
 void func_800158B4(f32 arg0, f32 arg1, f32 arg2, f32* arg3, f32* arg4) {
     *arg4 = func_80015634(arg0, arg2);
-    *arg3 = func_800155A8(arg1, sqrtf(SQ(arg0) + SQ(arg2)));
+    *arg3 = Math_CalcAngle2D(arg1, sqrtf(SQ(arg0) + SQ(arg2)));
 }
 
 void func_80015944(f64 arg0, f64 arg1, f64 arg4, f64 arg5, f64 arg6, f64 arg7, f64 arg8, f64 arg9, f64 argA, s32* arg12,
@@ -211,38 +215,42 @@ void func_80015944(f64 arg0, f64 arg1, f64 arg4, f64 arg5, f64 arg6, f64 arg7, f
     *arg15 = (sp10 + sp8 + sp0);
 }
 
-f32 func_80015C24(f32 arg0, f32 arg1, s64 arg2, s64 arg4, s64 arg6, s64 arg8) {
+f32 Math_SolvePlaneX(f32 x, f32 y, s64 arg2, s64 arg4, s64 arg6, s64 arg8) {
     f32 sp3C;
 
     if (arg2 != 0) {
-        sp3C = (((-(arg4) *arg0) - (arg6 * arg1)) + arg8) / arg2;
+        sp3C = (((-(arg4) *x) - (arg6 * y)) + arg8) / arg2;
     } else {
         sp3C = 0.0f;
     }
     return sp3C;
 }
 
-f32 func_80015D2C(f32 arg0, f32 arg1, s64 arg2, s64 arg3, s64 arg4, s64 arg5) {
+f32 Math_SolvePlaneY(f32 x, f32 y, s64 arg2, s64 arg3, s64 arg4, s64 arg5) {
     f32 sp3C;
 
     if ((arg3 != 0)) {
-        sp3C = (((-(arg2) *arg0) - (arg4 * arg1)) + arg5) / arg3;
+        sp3C = (((-(arg2) *x) - (arg4 * y)) + arg5) / arg3;
     } else {
         sp3C = 0.0f;
     }
     return sp3C;
 }
 
-f32 func_80015E34(f32 arg0, f32 arg1, s64 arg2, s64 arg4, s64 arg6, s64 arg8) {
-    f32 sp3C;
+/* 
+ * Solves for z in a plane equation in the form Ax + By + Cz + D = 0
+ * @return Given x and y, returns z = -(Ax + By + D) / C
+*/
+f32 Math_SolvePlaneZ(f32 x, f32 y, s64 A, s64 B, s64 C, s64 D) {
+    f32 z;
 
-    if (arg6 != 0) {
-        sp3C = ((-arg2 * arg0) - (arg4 * arg1) + arg8) / arg6;
+    if (C != 0) {
+        z = ((-A * x) - (B * y) + D) / C;
     } else {
-        sp3C = 0.0f;
+        z = 0.0f;
     }
 
-    return sp3C;
+    return z;
 }
 
 s32 func_80015F3C(f32 arg0, f32 arg1, f32 arg2, s64 arg4, s64 arg6, s64 arg8, s64 argA) {
@@ -263,18 +271,18 @@ s32 func_8001608C(s64 arg0, s64 arg2, s64 arg4, s64 arg6, s64 arg8, s64 argA, s6
     f32 sp34;
     f32 sp30;
 
-    sp34 = func_80015D2C(0.0f, 0.0f, arg0, arg2, arg4, arg6);
-    sp30 = func_80015D2C(0.0f, 0.0f, arg8, argA, argC, argE);
+    sp34 = Math_SolvePlaneY(0.0f, 0.0f, arg0, arg2, arg4, arg6);
+    sp30 = Math_SolvePlaneY(0.0f, 0.0f, arg8, argA, argC, argE);
     if (sp34 != sp30) {
         return 0;
     }
-    sp34 = func_80015D2C(100.0f, 100.0f, arg0, arg2, arg4, arg6);
-    sp30 = func_80015D2C(100.0f, 100.0f, arg8, argA, argC, argE);
+    sp34 = Math_SolvePlaneY(100.0f, 100.0f, arg0, arg2, arg4, arg6);
+    sp30 = Math_SolvePlaneY(100.0f, 100.0f, arg8, argA, argC, argE);
     if (sp34 != sp30) {
         return 0;
     }
-    sp34 = func_80015D2C(100.0f, 0.0f, arg0, arg2, arg4, arg6);
-    sp30 = func_80015D2C(100.0f, 0.0f, arg8, argA, argC, argE);
+    sp34 = Math_SolvePlaneY(100.0f, 0.0f, arg0, arg2, arg4, arg6);
+    sp30 = Math_SolvePlaneY(100.0f, 0.0f, arg8, argA, argC, argE);
     if (sp34 != sp30) {
         return 0;
     }
@@ -350,20 +358,20 @@ void func_80016714(s64 arg0, s64 arg1, s64 arg2, s64 arg3, s64 arg4, s64 arg5, s
     sp38 = -((arg5 * arg3) - (arg1 * arg7));
 
     if ((sp48 != 0)) {
-        *arg8 = func_80015C24(0.0f, 0.0f, sp48, 0, sp40, sp38);
+        *arg8 = Math_SolvePlaneX(0.0f, 0.0f, sp48, 0, sp40, sp38);
         *arg9 = 0.0f;
     } else if (sp40 != 0) {
-        *arg9 = func_80015E34(0.0f, 0.0f, sp48, 0, sp40, sp38);
+        *arg9 = Math_SolvePlaneZ(0.0f, 0.0f, sp48, 0, sp40, sp38);
         *arg8 = 0.0f;
     } else {
         *arg8 = 0.0f;
         *arg9 = 0.0f;
     }
     if ((sp48 != 0)) {
-        *argA = func_80015C24(0.0f, 10.0f, sp48, 0, sp40, sp38);
+        *argA = Math_SolvePlaneX(0.0f, 10.0f, sp48, 0, sp40, sp38);
         *argB = 10.0f;
     } else if ((sp40 != 0)) {
-        *argB = func_80015E34(10.0f, 0.0f, sp48, 0, sp40, sp38);
+        *argB = Math_SolvePlaneZ(10.0f, 0.0f, sp48, 0, sp40, sp38);
         *argA = 10.0f;
     } else {
         *argA = 0.0f;

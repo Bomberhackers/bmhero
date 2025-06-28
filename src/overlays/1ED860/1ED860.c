@@ -85,7 +85,7 @@ void func_803305D4_unk_bin_41() {
         obj->unkA6 = obj->unk40;
         obj->unkA6 = 0;
         obj->unkA8 = 0;
-        obj->unkE0 = func_80014E80(0x168);
+        obj->unkE0 = Math_Random(0x168);
 
         if (obj->unkAA == 1) {
             obj->unk44 = 10.0f;
@@ -113,11 +113,11 @@ void func_803305D4_unk_bin_41() {
         obj->unk132 = 2;
     }
     if (func_800BFFCC(obj, 0, obj->unkE0, 2.0f) == 0) {
-        obj->unkE0 = func_80014E80(0x168);
+        obj->unkE0 = Math_Random(0x168);
         obj->unk132 = 2;
     }
 
-    sp18 = func_80015744(obj->unk40);
+    sp18 = Math_NormalizeAngle(obj->unk40);
     obj->Rot.x = func_80015538(360.0f, -sp18);
     obj->Rot.y = obj->unk3C;
 
@@ -159,7 +159,7 @@ void func_803309CC_unk_bin_41() {
 
     obj->unk3C = func_80015538(obj->unk3C, 12.0f);
 
-    sp1C = func_80015744(obj->unk40);
+    sp1C = Math_NormalizeAngle(obj->unk40);
     obj->Rot.x = func_80015538(360.0f, -sp1C);
     obj->Rot.y = obj->unk3C;
 
@@ -244,7 +244,7 @@ s8 func_80330C3C_unk_bin_41() {
 
         obj->Rot.y = func_80015538(obj->Rot.y, 12.0f);
     }
-    x = func_80015744(obj->unk40);
+    x = Math_NormalizeAngle(obj->unk40);
 
     obj->Rot.x = func_80015538(360.0f, -x);
 
@@ -282,7 +282,7 @@ void func_803310A0_unk_bin_41() {
     func_8002A8B4(gCurrentParsedObject, 12.0f);
     func_8002A9A4(gCurrentParsedObject, 2.0f);
 
-    x = func_80015744(obj->unk40);
+    x = Math_NormalizeAngle(obj->unk40);
     obj->Rot.x = func_80015538(360.0f, -x);
     obj->Rot.y = obj->unk3C;
 
@@ -305,7 +305,7 @@ void func_80331248_unk_bin_41() {
         obj->unk44 = 0.0f;
         obj->unk48 = 0.0f;
         obj->unkDC = func_80015538(obj->unk3C, 180.0f);
-        obj->unkDC = func_80015538(obj->unkDC, func_80014E80(0x5A));
+        obj->unkDC = func_80015538(obj->unkDC, Math_Random(0x5A));
         obj->unkE0 = 90.0f;
     }
     if (obj->unk132 == 1) {
@@ -317,7 +317,7 @@ void func_80331248_unk_bin_41() {
     obj->unkD4 = obj->unk3C;
     obj->unkD8 = obj->unk40;
 
-    x = func_80015744(obj->unk40);
+    x = Math_NormalizeAngle(obj->unk40);
     obj->Rot.x = func_80015538(360.0f, -x);
     obj->Rot.y = obj->unk3C;
 
@@ -446,7 +446,7 @@ s16 func_803319F4_unk_bin_41(s16 idx) {
         obj = &gObjects[objIdx];
         sp40 = &gObjects[obj->unkA8];
 
-        factor = func_80015744(sp40->unk40);
+        factor = Math_NormalizeAngle(sp40->unk40);
 
         addend = cosf(factor * 0.017453292519943295) * 48.0f;
         obj->Vel.y = sinf(factor * 0.017453292519943295) * 48.0f;

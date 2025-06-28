@@ -1352,8 +1352,8 @@ void func_8007C8A0(s32 arg0) {
         sp68 = func_80015634(sp4C, sp44);
         sp64 = func_800157EC(sp6C->unk3C, sp68, 2.0f);
         sp6C->unk3C = func_80015538(sp6C->unk3C, (f32) sp64);
-        sp68 = func_800156C4(sp4C, sp48);
-        sp68 = func_80015744(sp68);
+        sp68 = Math_CalcAngleSimple(sp4C, sp48);
+        sp68 = Math_NormalizeAngle(sp68);
         sp64 = func_800157EC(sp6C->unk40, sp68, 2.0f);
         sp6C->unk40 = func_80015538(sp6C->unk40, (f32) sp64);
     }

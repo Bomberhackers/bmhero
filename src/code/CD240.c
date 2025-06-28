@@ -31,7 +31,7 @@ void func_800DAE20(void) {
     if (func_80028FA0(gCurrentParsedObject) != 0) {
         func_80029B60(gCurrentParsedObject);
     }
-    sp30 = func_80014E80(-6);
+    sp30 = Math_Random(-6);
     sp34->unk3C = func_80015538(sp34->unk3C, (f32) sp30);
     sp34->Rot.y = (f32) sp34->unk3C;
     if (sp34->unkA8 == 0) {
@@ -259,7 +259,7 @@ void func_800DBCFC(void) {
             sp44->unkA6 = 0;
         }
     }
-    func_8002A8B4(gCurrentParsedObject, (f32) (func_80014E80(4) + 2));
+    func_8002A8B4(gCurrentParsedObject, (f32) (Math_Random(4) + 2));
     sp44->Rot.y = (f32) sp44->unk3C;
     func_80029C40(gCurrentParsedObject);
     if (func_80029018(gCurrentParsedObject, 1, 30.0f, 0, 0.0f, 0.0f) != 0) {
@@ -406,7 +406,7 @@ void func_800DC6D0(void) {
     if (func_80028FA0(gCurrentParsedObject) != 0) {
         func_80029B60(gCurrentParsedObject);
     }
-    sp30 = func_80014E80(-6);
+    sp30 = Math_Random(-6);
     func_8002A8B4(gCurrentParsedObject, (f32) sp30);
     sp34->Rot.y = (f32) sp34->unk3C;
     if (sp34->unkA8 == 0) {
@@ -2633,7 +2633,7 @@ void func_800E594C(void) {
     }
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         if (sp34->unkA6 == 0) {
-            sp30 = func_80014E80(4);
+            sp30 = Math_Random(4);
             switch (sp30) { /* irregular */
                 case 0:
                     sp34->Rot.y = 0.0f;
@@ -3932,7 +3932,7 @@ void func_800EBC88(void) {
         func_8002B0E4(gCurrentParsedObject);
     }
     if (sp34->unkA6 >= 0x10) {
-        sp30 = func_80014E80(6);
+        sp30 = Math_Random(6);
         func_8002A8B4(gCurrentParsedObject, (f32) sp30);
         sp34->Rot.y = (f32) sp34->unk3C;
     } else {
@@ -4314,7 +4314,7 @@ void func_800EDAE0(void) {
     if (func_80028FA0(gCurrentParsedObject) != 0) {
         func_80029B60(gCurrentParsedObject);
     }
-    sp38 = func_80014E80(-6);
+    sp38 = Math_Random(-6);
     func_8002A8B4(gCurrentParsedObject, (f32) sp38);
     sp3C->Rot.y = (f32) sp3C->unk3C;
     if (sp3C->unkA8 == 0) {
@@ -4357,8 +4357,8 @@ void func_800EDDE4(void) {
     }
     func_800EE354(gCurrentParsedObject, 6.0f);
     sp2C->Rot.y = (f32) sp2C->unk3C;
-    sp28 = func_800156C4(gPlayerObject->Pos.x - sp2C->Pos.x, gPlayerObject->Pos.y - sp2C->Pos.y);
-    sp28 = func_80015744(sp28);
+    sp28 = Math_CalcAngleSimple(gPlayerObject->Pos.x - sp2C->Pos.x, gPlayerObject->Pos.y - sp2C->Pos.y);
+    sp28 = Math_NormalizeAngle(sp28);
     sp24 = (f32) func_8002A800(sp2C->unk40, sp28, 3.0f);
     if (sp24 != 0.0f) {
         sp2C->unk40 = func_80015538(sp2C->unk40, 1.0f * sp24);

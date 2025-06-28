@@ -1052,7 +1052,7 @@ void func_800D0F98(void) {
         sp3C->unkA6 = 0;
         func_80029EF8(gCurrentParsedObject, 6.0f, 0.545455f);
         if (sp3C->unkA8 == 0) {
-            sp3C->unk3C = (f32) func_80014E80(0x168);
+            sp3C->unk3C = (f32) Math_Random(0x168);
             sp3C->Rot.y = sp3C->unk3C;
             sp3C->unkA8 = 2;
         }
@@ -1195,7 +1195,7 @@ void func_800D1870(void) {
         sp3C->unkA6 = 0;
         func_80029EF8(gCurrentParsedObject, 6.0f, 0.545455f);
         if (sp3C->unkA8 == 0) {
-            sp3C->unk3C = (f32) func_80014E80(0x168);
+            sp3C->unk3C = (f32) Math_Random(0x168);
             sp3C->Rot.y = sp3C->unk3C;
             sp3C->unkA8 = 2;
         }

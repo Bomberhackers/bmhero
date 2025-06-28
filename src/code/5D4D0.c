@@ -6,9 +6,9 @@ void func_8006AFB0(void) {
     f32 sp20;
     f32 sp1C;
 
-    sp24 = (f32) func_80014E80(-0x3C0) + gView.at.x;
-    sp20 = (f32) func_80014E80(0xF0) + (gView.at.y + 540.0f);
-    sp1C = (f32) func_80014E80(-0x3C0) + gView.at.z;
+    sp24 = (f32) Math_Random(-0x3C0) + gView.at.x;
+    sp20 = (f32) Math_Random(0xF0) + (gView.at.y + 540.0f);
+    sp1C = (f32) Math_Random(-0x3C0) + gView.at.z;
     func_80067748(sp24, sp20, sp1C);
     if (!(D_801776E0 & 1)) {
         func_80081468(0x2C1, sp24, sp20, sp1C);
@@ -26,9 +26,9 @@ void func_8006B084(void) {
     }
     if (D_80177933 == 0) {
         D_80177933 = 5;
-        sp24 = (f32) func_80014E80(-960) + gView.at.x;
-        sp20 = (f32) func_80014E80(240) + (gView.at.y + 540.0f);
-        sp1C = (f32) func_80014E80(-960) + gView.at.z;
+        sp24 = (f32) Math_Random(-960) + gView.at.x;
+        sp20 = (f32) Math_Random(240) + (gView.at.y + 540.0f);
+        sp1C = (f32) Math_Random(-960) + gView.at.z;
         func_80067748(sp24, sp20, sp1C);
         if (!(D_801776E0 & 1)) {
             func_80081468(706, sp24, sp20, sp1C);
@@ -98,15 +98,15 @@ void func_8006B3BC(void) {
 
     if (gPlayerObject->Pos.y < 480.0f) {
         if (D_8017793C == 0) {
-            D_8017793C = func_80014E80(0xA) + 15;
+            D_8017793C = Math_Random(0xA) + 15;
             if (gPlayerObject->Vel.x == 0.0f && gPlayerObject->Vel.z == 0.0f) {
-                sp30 = (f32) func_80014E80(-480) + gPlayerObject->Pos.x;
+                sp30 = (f32) Math_Random(-480) + gPlayerObject->Pos.x;
             } else {
-                sp30 = (f32) func_80014E80(-960) + gPlayerObject->Pos.x;
+                sp30 = (f32) Math_Random(-960) + gPlayerObject->Pos.x;
             }
 
             sp2C = gPlayerObject->Pos.y + 540.0f;
-            sp28 = (f32) func_80014E80(-240) + gPlayerObject->Pos.z;
+            sp28 = (f32) Math_Random(-240) + gPlayerObject->Pos.z;
             func_80067748(sp30, sp2C, sp28);
             if (D_801776E0 % 2 == 0) {
                 sp24 = func_80027464(1, &D_8011472C, sp30, sp2C, sp28, 0.0f);
@@ -261,7 +261,7 @@ void func_8006BAC4(void) {
 void func_8006BBF4(void) {
     s32 sp34;
 
-    if (func_80014E80(0x1E) == 0) {
+    if (Math_Random(0x1E) == 0) {
         func_80017BEC(0, 0x36, -1, 2);
     }
 
@@ -271,22 +271,22 @@ void func_8006BBF4(void) {
         if (sp34 == -1) {
             break;
         } else {
-            if (func_80014E80(3) == 0) {
-                func_80081468(0x2BC, gObjects[sp34].Pos.x + (f32) func_80014E80(-0x14),
-                              gObjects[sp34].Pos.y + (f32) func_80014E80(-0xA),
-                              gObjects[sp34].Pos.z + (f32) func_80014E80(-0x14));
+            if (Math_Random(3) == 0) {
+                func_80081468(0x2BC, gObjects[sp34].Pos.x + (f32) Math_Random(-0x14),
+                              gObjects[sp34].Pos.y + (f32) Math_Random(-0xA),
+                              gObjects[sp34].Pos.z + (f32) Math_Random(-0x14));
             }
             if (D_80134C22 != 0) {
-                if (func_80014E80(0xF) == 0) {
-                    func_80081468(0x2CD, gObjects[sp34].Pos.x + (f32) func_80014E80(-0x190),
-                                  gObjects[sp34].Pos.y + (f32) func_80014E80(-0x12C),
-                                  gObjects[sp34].Pos.z + (f32) func_80014E80(-0x12C));
+                if (Math_Random(0xF) == 0) {
+                    func_80081468(0x2CD, gObjects[sp34].Pos.x + (f32) Math_Random(-0x190),
+                                  gObjects[sp34].Pos.y + (f32) Math_Random(-0x12C),
+                                  gObjects[sp34].Pos.z + (f32) Math_Random(-0x12C));
                     break;
                 }
-            } else if (func_80014E80(0x23) == 0) {
-                func_80081468(0x2CD, gObjects[sp34].Pos.x + (f32) func_80014E80(-0x320),
-                              gObjects[sp34].Pos.y + (f32) (func_80014E80(-0x12C) + 0xC8),
-                              gObjects[sp34].Pos.z + (f32) (func_80014E80(-0x12C)));
+            } else if (Math_Random(0x23) == 0) {
+                func_80081468(0x2CD, gObjects[sp34].Pos.x + (f32) Math_Random(-0x320),
+                              gObjects[sp34].Pos.y + (f32) (Math_Random(-0x12C) + 0xC8),
+                              gObjects[sp34].Pos.z + (f32) (Math_Random(-0x12C)));
                 break;
             }
         }

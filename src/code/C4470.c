@@ -435,7 +435,7 @@ void func_800D3974(void) {
         CurrentObject->unkA8 = 0xA;
         CurrentObject->unkAC = (s16) (s32) CurrentObject->Pos.x;
         CurrentObject->unkAE = (s16) (s32) CurrentObject->Pos.z;
-        CurrentObject->unk3C = (f32) func_80014E80(0x168);
+        CurrentObject->unk3C = (f32) Math_Random(0x168);
         CurrentObject->unk44 = 4.0f;
         CurrentObject->unkB6 = (s16) (s32) CurrentObject->Pos.y;
         CurrentObject->unkB8 = 0;
@@ -988,7 +988,7 @@ void func_800D613C(void) {
     CurrentObject = &gObjects[gCurrentParsedObject];
     if (CurrentObject->unk132 == 0) {
         CurrentObject->unk132 += 1;
-        CurrentObject->unkA6 = func_80014E80(0xA) & 1;
+        CurrentObject->unkA6 = Math_Random(0xA) & 1;
         CurrentObject->unk3C = (f32) ((CurrentObject->unkA6 * 0xB4) + 0x5A);
         CurrentObject->unk44 = 5.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0xA8, &D_80118868);
@@ -1085,16 +1085,16 @@ void func_800D6684(void) {
                       gPlayerObject->Pos.z - CurrentObject->Pos.z, &sp40, &sp3C);
         CurrentObject->unkA8 = sp3C;
         if ((CurrentObject->unkA8 >= 0x2E) && (CurrentObject->unkA8 < 0xB5)) {
-            CurrentObject->unkA8 = func_80015538(45.0f, func_80014E80(-0xA));
+            CurrentObject->unkA8 = func_80015538(45.0f, Math_Random(-0xA));
         } else {
             if ((CurrentObject->unkA8 >= 0xB5) && (CurrentObject->unkA8 < 0x13C)) {
-                CurrentObject->unkA8 = func_80015538(315.0f, func_80014E80(-0xA));
+                CurrentObject->unkA8 = func_80015538(315.0f, Math_Random(-0xA));
             } else {
-                CurrentObject->unkA8 = func_80015538(CurrentObject->unkA8, func_80014E80(-0xF));
+                CurrentObject->unkA8 = func_80015538(CurrentObject->unkA8, Math_Random(-0xF));
             }
         }
         sp40 = 360.0f - sp40;
-        CurrentObject->unk40 = func_80015538(sp40, func_80014E80(-5) + 0x14);
+        CurrentObject->unk40 = func_80015538(sp40, Math_Random(-5) + 0x14);
         if (CurrentObject->unkA8 >= 0xB4) {
             CurrentObject->unkAC = -5;
         } else {
@@ -1296,7 +1296,7 @@ void func_800D7704(void) {
         CurrentObject->unk132 = 1;
         CurrentObject->unkA6 = CurrentObject->unkA8 = CurrentObject->unkB6 = 0;
         CurrentObject->unk44 = 0.0f;
-        CurrentObject->unk3C = func_80014E80(0x168);
+        CurrentObject->unk3C = Math_Random(0x168);
         CurrentObject->Rot.y = CurrentObject->unk3C;
         func_80017664(gCurrentParsedObject, 0, 0x59, -1, 0);
     }
@@ -1313,7 +1313,7 @@ void func_800D7704(void) {
             CurrentObject->unk3C = CurrentObject->unkB8;
             CurrentObject->unkA6 = 1;
             CurrentObject->unkA8 = func_8002A46C(gCurrentParsedObject);
-            CurrentObject->unkA8 = func_80015538(CurrentObject->unkA8, func_80014E80(-0xF));
+            CurrentObject->unkA8 = func_80015538(CurrentObject->unkA8, Math_Random(-0xF));
             CurrentObject->unkAA = func_8002A640(gCurrentParsedObject, 10.0f);
         }
     }
@@ -1422,7 +1422,7 @@ void func_800D808C(void) {
         CurrentObject->unk132 = 1;
         CurrentObject->unkA6 = CurrentObject->unkA8 = CurrentObject->unkB6 = 0;
         CurrentObject->unk44 = 0.0f;
-        CurrentObject->unk3C = (f32) func_80014E80(0x168);
+        CurrentObject->unk3C = (f32) Math_Random(0x168);
         CurrentObject->Rot.y = CurrentObject->unk3C;
         func_8001ABF4(gCurrentParsedObject, 0, 0, &D_801188DC + 0x1C / 4);
     }
@@ -1439,7 +1439,7 @@ void func_800D808C(void) {
             CurrentObject->unk3C = (f32) CurrentObject->unkB8;
             CurrentObject->unkA6 = 1;
             CurrentObject->unkA8 = (s16) (s32) func_8002A46C(gCurrentParsedObject);
-            CurrentObject->unkA8 = (s16) (s32) func_80015538((f32) CurrentObject->unkA8, (f32) func_80014E80(-0xF));
+            CurrentObject->unkA8 = (s16) (s32) func_80015538((f32) CurrentObject->unkA8, (f32) Math_Random(-0xF));
             CurrentObject->unkAA = func_8002A640(gCurrentParsedObject, 10.0f);
             func_8001ABF4(gCurrentParsedObject, 0, 0, &D_801188DC);
         }

@@ -567,7 +567,7 @@ s32 func_800FD04C(s16 arg0, s16 arg1, s32 arg2) {
 
         sp38->unk3C = func_80015538(sp3C->unk3C, (f32) (sp30 * 0x23));
         sp38->unk40 = func_80015538(sp3C->unk40, (f32) (sp30 * 8));
-        sp38->unk40 = func_80015744(sp38->unk40);
+        sp38->unk40 = Math_NormalizeAngle(sp38->unk40);
         sp38->unk44 = (f32) (((s16) arg1 * 3) + 0xF);
         sp38->unk48 = sp3C->unk48;
         sp38->unkA6 = 0;
@@ -643,8 +643,8 @@ void func_800FD440(void) {
             CurrentObject->Scale.y = CurrentObject->Scale.z = CurrentObject->Scale.x;
         }
         CurrentObject->unk3C = func_80015538(CurrentObject->unk3C, (f32) sp34);
-        sp30 = func_800156C4(PlayerObject->Pos.x - CurrentObject->Pos.x, PlayerObject->Pos.y - CurrentObject->Pos.y);
-        sp30 = func_80015744(sp30);
+        sp30 = Math_CalcAngleSimple(PlayerObject->Pos.x - CurrentObject->Pos.x, PlayerObject->Pos.y - CurrentObject->Pos.y);
+        sp30 = Math_NormalizeAngle(sp30);
         sp34 = func_800157EC(CurrentObject->unk40, sp30, (f32) (sp2E + 0xC));
         if (CurrentObject->unkAA == 0) {
             sp34 *= 3;

@@ -840,7 +840,7 @@ void func_80029824(s32 arg0, s32 arg1) {
             sp28 = 360.0f - sp28;
         }
     }
-    sp2C->unk3C = func_80015538(sp28, (f32) (func_80014E80(-2) * 0xA));
+    sp2C->unk3C = func_80015538(sp28, (f32) (Math_Random(-2) * 0xA));
 }
 
 void func_80029A9C(s32 arg0, s32 arg1) {
@@ -852,7 +852,7 @@ void func_80029A9C(s32 arg0, s32 arg1) {
     if (arg1 == 0) {
         sp28 = func_80015538(sp28, 180.0f);
     }
-    sp2C->unk40 = func_80015538(sp28, (f32) (func_80014E80(-2) * 0xA));
+    sp2C->unk40 = func_80015538(sp28, (f32) (Math_Random(-2) * 0xA));
 }
 
 void func_80029B60(s32 arg0) {
@@ -993,7 +993,7 @@ f32 func_8002A46C(s32 objIdx) {
 }
 
 f32 func_8002A4E0(s32 objIdx) {
-    return func_800156C4(gPlayerObject->Pos.x - gObjects[objIdx].Pos.x, (gPlayerObject->Pos.y + 60.0f) - gObjects[objIdx].Pos.y);
+    return Math_CalcAngleSimple(gPlayerObject->Pos.x - gObjects[objIdx].Pos.x, (gPlayerObject->Pos.y + 60.0f) - gObjects[objIdx].Pos.y);
 }
 
 s32 func_8002A560(s32 arg0, f32 arg1) {

@@ -715,7 +715,7 @@ void func_800B846C(void) {
     func_80029D04(gCurrentParsedObject);
     sp24->Rot.y = func_8002A46C(gCurrentParsedObject);
     if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
-        sp22 = func_80014E80(0xA);
+        sp22 = Math_Random(0xA);
         if (sp22 < 6) {
             func_8001C0EC(gCurrentParsedObject, 0, 0, 0xEC, &D_80117BC0);
         } else {
@@ -1641,7 +1641,7 @@ void func_800BBCA4(void) {
         gObjects[sp27].Scale.x = 1.2f;
         gObjects[sp27].unkA4 = 1;
         gObjects[sp27].unk132 = 0;
-        gObjects[sp27].unkB2 = func_80014E80(0x10) + 0x20;
+        gObjects[sp27].unkB2 = Math_Random(0x10) + 0x20;
         func_8001ABF4((s32) sp27, 0, 0, &D_80117E48);
         func_800BBF30(sp27);
     }
@@ -2150,7 +2150,7 @@ void func_800BDEE0(void) {
         sp34->unk132 = 1;
         sp34->unk44 = 0.0f;
         sp34->unk48 = 0.0f;
-        sp34->unkD4 = func_80015538(sp34->unk3C, func_80014E80(-0x5A) + 3);
+        sp34->unkD4 = func_80015538(sp34->unk3C, Math_Random(-0x5A) + 3);
         sp34->unkB4 = func_8002A800(sp34->unkD4, sp34->unk3C, 4.0f);
     }
     sp34->Rot.y = sp34->unk3C;
@@ -2171,7 +2171,7 @@ void func_800BDEE0(void) {
     sp30 = (f32) sp34->unkB4 * 1.5f;
     sp34->unk3C = func_80015538(sp34->unk3C, sp30);
     if (func_80029018(gCurrentParsedObject, 1U, 240.0f, 0.0f, 0.0f, 0.0f) != 0) {
-        sp34->unkD4 = func_80015538(sp34->unkD4, (f32) (func_80014E80(8) * sp34->unkB4));
+        sp34->unkD4 = func_80015538(sp34->unkD4, (f32) (Math_Random(8) * sp34->unkB4));
     }
 }
 

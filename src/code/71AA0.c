@@ -100,8 +100,8 @@ void func_8007FBA4(void) {
 
 void func_8007FC98(struct ObjectStruct* arg0) {
 
-    arg0->Vel.y = (f32) func_80014E80(-7);
-    arg0->Vel.z = (f32) func_80014E80(-7);
+    arg0->Vel.y = (f32) Math_Random(-7);
+    arg0->Vel.z = (f32) Math_Random(-7);
     arg0->Scale.z = 1.0f;
     arg0->Scale.x = arg0->Scale.y = arg0->Scale.z;
     arg0->unkA6 = 0x32;
@@ -115,7 +115,7 @@ void func_8007FD5C(void) {
 
     sp1C = &gObjects[gCurrentParsedObject];
     sp1C->obj_id = 0x2BF;
-    sp1C->Vel.x = (f32) (func_80014E80(3) + 0xF);
+    sp1C->Vel.x = (f32) (Math_Random(3) + 0xF);
     func_8007FC98(sp1C);
 }
 
@@ -124,7 +124,7 @@ void func_8007FDDC(void) {
 
     sp1C = &gObjects[gCurrentParsedObject];
     sp1C->obj_id = 0x2C0;
-    sp1C->Vel.x = (f32) (func_80014E80(-3) - 0xF);
+    sp1C->Vel.x = (f32) (Math_Random(-3) - 0xF);
     func_8007FC98(sp1C);
 }
 
@@ -149,7 +149,7 @@ void func_8007FF44(void) {
     sp24->obj_id = 0x2C1;
     sp24->Scale.z = D_8010CB10;
     sp24->Scale.x = sp24->Scale.y = sp24->Scale.z;
-    sp24->unkA6 = func_80014E80(5) + 8;
+    sp24->unkA6 = Math_Random(5) + 8;
     sp24->unkBE = 2;
     sp24->unkC0 = 0;
     sp24->unkC2 = 0x21;
@@ -160,7 +160,7 @@ void func_80080014(void) {
 
     sp1C = &gObjects[gCurrentParsedObject];
     sp1C->Pos.y -= (f32) sp1C->unkA6;
-    sp1C->Pos.x = (f32) func_80014E80(-3) + sp1C->Pos.x;
+    sp1C->Pos.x = (f32) Math_Random(-3) + sp1C->Pos.x;
     if ((sp1C->Pos.y < (gView.at.y - 320.0f)) || (sp1C->Pos.y > (gView.at.y + 960.0f)) ||
         (sp1C->Pos.x < (gView.at.x - 960.0f)) || (sp1C->Pos.x > (gView.at.x + 960.0f)) ||
         (sp1C->Pos.z < (gView.at.z - 960.0f)) || (sp1C->Pos.z) > (gView.at.z + 960.0f)) {
@@ -173,7 +173,7 @@ void func_80080198(void) {
 
     sp1C = &gObjects[gCurrentParsedObject];
     sp1C->obj_id = 0x2C2;
-    sp1C->unkA6 = func_80014E80(5) + 8;
+    sp1C->unkA6 = Math_Random(5) + 8;
     sp1C->unkBE = 3;
     sp1C->unkC0 = 0;
     sp1C->unkC2 = 0x22;
@@ -261,10 +261,10 @@ void func_80080834(void) {
     sp24->Scale.z = D_8010CB14;
     sp24->Scale.x = sp24->Scale.y = sp24->Scale.z;
     sp24->Pos.y += 300.0f;
-    sp24->unkA6 = func_80014E80(5) + 8;
-    sp24->Vel.x = (f32) func_80014E80(-0xC);
-    sp24->Vel.y = (f32) (func_80014E80(5) + 0x14);
-    sp24->Vel.z = (f32) func_80014E80(-0xC);
+    sp24->unkA6 = Math_Random(5) + 8;
+    sp24->Vel.x = (f32) Math_Random(-0xC);
+    sp24->Vel.y = (f32) (Math_Random(5) + 0x14);
+    sp24->Vel.z = (f32) Math_Random(-0xC);
     sp24->unkBE = 2;
     sp24->unkC0 = 0;
     sp24->unkC2 = 0x21;
@@ -295,11 +295,11 @@ void func_80080AFC(void) {
     sp24 = &gObjects[gCurrentParsedObject];
     sp24->obj_id = 0x2C8;
     sp24->unkBE = 2;
-    sp24->unkC0 = func_80014E80(8);
+    sp24->unkC0 = Math_Random(8);
     sp24->unkC2 = 0x27;
-    sp24->Vel.x = (f32) func_80014E80(-0xC);
-    sp24->Vel.y = (f32) (func_80014E80(8) + 8);
-    sp24->Vel.z = (f32) func_80014E80(-0xC);
+    sp24->Vel.x = (f32) Math_Random(-0xC);
+    sp24->Vel.y = (f32) (Math_Random(8) + 8);
+    sp24->Vel.z = (f32) Math_Random(-0xC);
     sp24->Scale.z = 3.0f;
     sp24->Scale.x = sp24->Scale.y = sp24->Scale.z;
 }
@@ -405,7 +405,7 @@ void func_800812D4(void) {
     sp24->obj_id = 0x2CD;
     sp24->Scale.x = sp24->Scale.y = sp24->Scale.z = 3.0f;
     sp24->unkA6 = 0xC8;
-    sp24->Vel.y = (f32) (func_80014E80(5) + 2);
+    sp24->Vel.y = (f32) (Math_Random(5) + 2);
     sp24->unkBE = 2;
     sp24->unkC0 = 0;
     sp24->unkC2 = 0x1E;

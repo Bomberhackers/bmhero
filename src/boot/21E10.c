@@ -92,12 +92,12 @@ s32 func_80021584(s32 arg0, s32 arg1) {
         sp34 = gObjects[arg1].Pos.x - gObjects[arg0].Pos.x;
         sp30 = gObjects[arg1].Pos.y - gObjects[arg0].Pos.y;
         sp2C = gObjects[arg1].Pos.z - gObjects[arg0].Pos.z;
-        gObjects[arg0].unk124 = sp28 = func_800155A8(sp30, sp2C);
+        gObjects[arg0].unk124 = sp28 = Math_CalcAngle2D(sp30, sp2C);
         gObjects[arg1].unk124 = func_80015538(sp28, 180.0f);
 
         gObjects[arg0].unk128 = sp28 = func_80015634(sp34, sp2C);
         gObjects[arg1].unk128 = func_80015538(sp28, 180.0f);
-        gObjects[arg0].unk12C = sp28 = func_800156C4(sp34, sp30);
+        gObjects[arg0].unk12C = sp28 = Math_CalcAngleSimple(sp34, sp30);
         gObjects[arg1].unk12C = func_80015538(sp28, 180.0f);
         return TRUE;
     } else {

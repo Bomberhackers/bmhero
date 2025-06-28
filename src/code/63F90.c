@@ -1245,7 +1245,7 @@ void func_80075D68(void) {
     if ((sp18 > 90.0f) && (sp18 < 270.0f)) {
         D_801775F8 = 0x3C;
     }
-    sp18 = 360.0f - func_800155A8(sp20, sp1C);
+    sp18 = 360.0f - Math_CalcAngle2D(sp20, sp1C);
     if ((sp18 > 90.0f) && (sp18 <= 180.0f)) {
         sp18 = 180.0f - sp18;
     } else if ((sp18 > 180.0f) && (sp18 <= 270.0f)) {

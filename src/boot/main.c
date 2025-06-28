@@ -498,7 +498,7 @@ void thread6_func(void* arg) {
     func_80016DD4();
     func_80016E84();
     func_8001D1F4();
-    D_8016E092 = 0x1234;
+    gRandSeed = 0x1234;
     D_8016527C = 2;
     D_8016E134 = 0;
     gCurrentLevel = MAP_BOMBER_BASE_ENTRANCE;

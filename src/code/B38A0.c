@@ -223,7 +223,7 @@ void func_800C2004(void) {
         sp34->unk132 += 1;
         sp34->unk44 = 8.0f;
         sp34->unkA6 = (s16) (s32) func_8002A46C(gCurrentParsedObject);
-        sp34->unkA6 += func_80014E80(0x2D);
+        sp34->unkA6 += Math_Random(0x2D);
         if (sp34->unkA6 >= 0x168) {
             sp34->unkA6 -= 0x168;
         }
@@ -1095,7 +1095,7 @@ void func_800C5F80(void) {
     } else {
         sp2C->unkA6 -= 1;
         if (sp2C->unkA6 == 0) {
-            sp2C->unkA4 = (func_80014E80(0xA) & 1) + 2;
+            sp2C->unkA4 = (Math_Random(0xA) & 1) + 2;
             sp2C->unk132 = 0;
         }
     }
@@ -1939,7 +1939,7 @@ void func_800C9B14(void) {
         sp34->unk132 += 1;
         sp34->unk44 = 8.0f;
         sp34->unkA6 = (s16) (s32) func_8002A46C(gCurrentParsedObject);
-        sp34->unkA6 += func_80014E80(0x2D);
+        sp34->unkA6 += Math_Random(0x2D);
         if (sp34->unkA6 >= 0x168) {
             sp34->unkA6 -= 0x168;
         }
@@ -2295,8 +2295,8 @@ void func_800CB3D8(void) {
         sp30 = func_80015634(gPlayerObject->Pos.x - sp44->Pos.x, gPlayerObject->Pos.z - sp44->Pos.z);
         sp34 = func_800157EC(sp44->unk3C, sp30, 2.0f);
         sp44->unk3C = func_80015538(sp44->unk3C, (f32) sp34);
-        sp30 = func_800156C4(gPlayerObject->Pos.x - sp44->Pos.x, gPlayerObject->Pos.y - sp44->Pos.y);
-        sp30 = func_80015744(sp30);
+        sp30 = Math_CalcAngleSimple(gPlayerObject->Pos.x - sp44->Pos.x, gPlayerObject->Pos.y - sp44->Pos.y);
+        sp30 = Math_NormalizeAngle(sp30);
         sp34 = func_800157EC(sp44->unk40, sp30, 2.0f);
         sp44->unk40 = func_80015538(sp44->unk40, (f32) sp34);
     }
@@ -2400,7 +2400,7 @@ void func_800CBB58(void) {
     if (sp34->unk132 == 0) {
         sp34->unk132 += 1;
         sp34->unk44 = 8.0f;
-        sp34->unkA6 = func_80014E80(4);
+        sp34->unkA6 = Math_Random(4);
         sp34->unk3C = (f32) D_80114E40[sp34->unkA6];
         sp34->Rot.x = (f32) D_80114E48[sp34->unkA6];
         sp34->Rot.z = (f32) D_80114E50[sp34->unkA6];

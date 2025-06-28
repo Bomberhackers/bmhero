@@ -1328,7 +1328,7 @@ s32 func_80094128(void) {
     s32 sp18;
 
     for (sp18 = 0; sp18 < 4; sp18++) {
-        sp1C = func_80014E80(5);
+        sp1C = Math_Random(5);
         if (gFileArray[D_80124D90[sp1C + 32].unk24[0].unk0].ptr != NULL) {
             return sp1C;
         }

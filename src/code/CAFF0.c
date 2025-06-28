@@ -293,8 +293,8 @@ void func_800D9BD4(void) {
         sp30 = func_80015634(gPlayerObject->Pos.x - sp3C->Pos.x, gPlayerObject->Pos.z - sp3C->Pos.z);
         sp3C->unkB6 = func_800157EC(sp3C->unk3C, sp30, 2.0f);
         sp3C->unk3C = func_80015538(sp3C->unk3C, (f32) (sp3C->unkB6 * 2));
-        sp30 = func_800156C4(gPlayerObject->Pos.x - sp3C->Pos.x, gPlayerObject->Pos.y - (sp3C->Pos.y - 100.0f));
-        sp30 = func_80015744(sp30);
+        sp30 = Math_CalcAngleSimple(gPlayerObject->Pos.x - sp3C->Pos.x, gPlayerObject->Pos.y - (sp3C->Pos.y - 100.0f));
+        sp30 = Math_NormalizeAngle(sp30);
         sp3C->unkB8 = func_800157EC(sp3C->unk40, sp30, 2.0f);
         sp3C->unk40 = func_80015538(sp3C->unk40, (f32) sp3C->unkB8);
         sp3C->Rot.y = sp3C->unk3C;
@@ -318,7 +318,7 @@ void func_800D9BD4(void) {
         sp3C->unkA8 = 0x12;
         sp3C->unk3C = func_80015538(sp3C->unk3C, 180.0f);
         sp3C->unk40 = func_80015538(sp3C->unk40, 180.0f);
-        sp3C->unk40 = func_80015744(sp3C->unk40);
+        sp3C->unk40 = Math_NormalizeAngle(sp3C->unk40);
     }
 }
 

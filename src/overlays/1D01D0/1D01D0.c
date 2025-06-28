@@ -338,7 +338,7 @@ void func_80331124_unk_bin_36(void) {
         obj->unkA6 = 0;
         obj->unkA8 *= 0x64;
         obj->unkB6 = obj->Pos.y;
-        obj->unk3C = (func_80014E80(0xA) & 1) * 0xB4 + 0x5A;
+        obj->unk3C = (Math_Random(0xA) & 1) * 0xB4 + 0x5A;
         obj->unk44 = 4.0f;
         obj->unk40 = 90.0f;
         obj->unk48 = 30.0f;
@@ -364,7 +364,7 @@ void func_80331124_unk_bin_36(void) {
             obj->unk3C = 90.0f;
         }
 
-        obj->unkA8 = (func_80014E80(0xA) & 1) + 1;
+        obj->unkA8 = (Math_Random(0xA) & 1) + 1;
         obj->unkA8 = obj->unkA8 * 0x64;
     }
 }

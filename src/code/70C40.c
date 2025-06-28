@@ -15,7 +15,7 @@ void func_8007E76C(f32 arg0, f32 arg1, f32 arg2, s32 arg3) {
     f32 sp2C;
 
     for (sp34 = 6; sp34 <= 13; sp34++) {
-        if (gObjects[sp34].unkA4 == 0) {
+        if (gObjects[sp34].action_state == 0) {
             func_8001A928(sp34);
             sp30 = &gObjects[sp34];
             if (arg3 == 1) {
@@ -37,7 +37,7 @@ void func_8007E76C(f32 arg0, f32 arg1, f32 arg2, s32 arg3) {
                 func_8001C0EC(sp34, 1, 0, 0xD, &D_80116640);
                 sp30->obj_id = 0xF;
             }
-            sp30->unkA4 = 1;
+            sp30->action_state = 1;
             sp30->unk108 = 1;
             sp30->Pos.x = arg0;
             sp30->Pos.y = arg1;
@@ -74,7 +74,7 @@ void func_8007EBEC(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
     struct ObjectStruct* sp30;
 
     for (sp34 = 6; sp34 < 0xE; sp34++) {
-        if (gObjects[sp34].unkA4 == 0) {
+        if (gObjects[sp34].action_state == 0) {
             sp30 = &gObjects[sp34];
             func_8001A928(sp34);
             func_8001BD44(sp34, 0, 3, (s32) gFileArray[0x10].ptr);
@@ -82,7 +82,7 @@ void func_8007EBEC(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
             func_8001C0EC(sp34, 0, 0, 0x10, &D_80116660);
             func_8001C0EC(sp34, 1, 0, 0x10, &D_80116664);
             sp30->obj_id = 0x12;
-            sp30->unkA4 = 1;
+            sp30->action_state = 1;
             sp30->Pos.x = arg0;
             sp30->Pos.y = arg1;
             sp30->Pos.z = arg2;
@@ -112,7 +112,7 @@ void func_8007EE88(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     struct ObjectStruct* sp30;
 
     for (sp34 = 6; sp34 < 14; sp34++) {
-        if (gObjects[sp34].unkA4 == 0) {
+        if (gObjects[sp34].action_state == 0) {
             sp30 = &gObjects[sp34];
             func_8001A928(sp34);
             func_8001BD44(sp34, 0, 1, (s32) gFileArray[0xE].ptr);
@@ -120,7 +120,7 @@ void func_8007EE88(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
             func_8001C0EC(sp34, 0, 0, 0xE, &D_80116648);
             func_8001C0EC(sp34, 1, 0, 0xE, &D_8011664C);
             sp30->obj_id = 0x14;
-            sp30->unkA4 = 1;
+            sp30->action_state = 1;
             sp30->Pos.x = arg0;
             sp30->Pos.y = arg1;
             sp30->Pos.z = arg2;
@@ -138,7 +138,7 @@ void func_8007F070(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     struct ObjectStruct* sp30;
 
     for (sp34 = 6; sp34 < 14; sp34++) {
-        if (gObjects[sp34].unkA4 == 0) {
+        if (gObjects[sp34].action_state == 0) {
             sp30 = &gObjects[sp34];
             func_8001A928(sp34);
             func_8001BD44(sp34, 0, 4, (s32) gFileArray[0x11].ptr);
@@ -146,7 +146,7 @@ void func_8007F070(f32 arg0, f32 arg1, f32 arg2, f32 arg3) {
             func_8001C0EC(sp34, 0, 0, 0x11, &D_8011666C);
             func_8001C0EC(sp34, 1, 0, 0x11, &D_80116670);
             sp30->obj_id = 0x13;
-            sp30->unkA4 = 1;
+            sp30->action_state = 1;
             sp30->Pos.x = arg0;
             sp30->Pos.y = arg1;
             sp30->Pos.z = arg2;
@@ -164,7 +164,7 @@ void func_8007F24C(void) {
     f32 sp1C;
 
     for (sp20 = 6, sp24 = &gObjects[6]; sp20 < 14; sp20++, sp24++) {
-        if (sp24->unkA4 != 0) {
+        if (sp24->action_state != 0) {
             if (sp24->obj_id == 0x13) {
                 sp1C = func_8001B62C(sp20, 1);
                 if ((sp1C >= 30.0f) && (sp1C <= 80.0f)) {
@@ -195,7 +195,7 @@ void func_8007F3F0(void) {
 
     func_8001838C();
     for (sp30 = 6, sp34 = gObjects + 6; sp30 < 0xE; sp30++, sp34++) {
-        if (sp34->unkA4 != 0) {
+        if (sp34->action_state != 0) {
             if (func_8001C300(sp30, 0) != 0) {
                 sp24.z = gView.eye.x - sp34->Pos.x;
                 sp24.y = gView.eye.y - sp34->Pos.y;

@@ -10,6 +10,19 @@ typedef enum {
     SAVE_MODE_MENU 
 } SET_MODE_MENUS;
 
+typedef enum {
+    SET_MODE_OPTION_CHR, // Unused
+    SET_MODE_OPTION_1,
+    SET_MODE_OPTION_2,
+    SET_MODE_OPTION_3,
+    SET_MODE_OPTION_ADJUST,
+    SET_MODE_OPTION_ANGLE,
+    SET_MODE_OPTION_PRM1,
+    SET_MODE_OPTION_PRM2,
+    SET_MODE_OPTION_PRM3,
+    SET_MODE_OPTION_MOVE
+} SET_MODE_MENU_OPTIONS;
+
 struct Vec3f D_8004A660[8] = {
     { 0.0f, 0.0f, -29.0f },  { 29.0f, 0.0f, 0.0f },  { 0.0f, 0.0f, 29.0f },  { -29.0f, 0.0f, 0.0f },
     { 0.0f, 59.0f, -29.0f }, { 29.0f, 59.0f, 0.0f }, { 0.0f, 59.0f, 29.0f }, { -29.0f, 59.0f, 0.0f },
@@ -116,7 +129,7 @@ s32 func_8002B894(s32 arg0) {
     s32 sp4;
 
     for (sp4 = 0xE; sp4 < 0x4E; sp4++) {
-        if ((gObjects[sp4].unkA4) && (gObjects[sp4].obj_id == D_800576A8[arg0].unk0) &&
+        if ((gObjects[sp4].action_state) && (gObjects[sp4].obj_id == D_800576A8[arg0].unk0) &&
             (gObjects[sp4].Pos.x == D_800576A8[arg0].unk2) && (gObjects[sp4].Pos.y == D_800576A8[arg0].unk4) &&
             (gObjects[sp4].Pos.z == D_800576A8[arg0].unk6)) {
 
@@ -131,7 +144,7 @@ void func_8002B9B8(void) {
     s32 sp1C;
 
     for (sp1C = 0xE; sp1C < 0x4E; sp1C++) {
-        if (gObjects[sp1C].unkA4 != 0) {
+        if (gObjects[sp1C].action_state != 0) {
             func_8001BB34(sp1C, 0);
         }
     }
@@ -209,7 +222,7 @@ void func_8002BAC8(void) {
     } else {
         D_800576A2 = 0;
     }
-    D_800576A0 = pressed_button;
+    sContActiveButton = pressed_button;
 }
 
 void func_8002BE04(void) {
@@ -222,7 +235,7 @@ void func_8002BE04(void) {
     s32 sp24;
 
     for (sp3C = 14; sp3C < 0x4E; sp3C++) {
-        if (gObjects[sp3C].unkA4 != 0) {
+        if (gObjects[sp3C].action_state != 0) {
             if (gObjects[sp3C].unkE6[0] == -1) {
                 sp38 = D_80124D90[gObjects[sp3C].obj_id].unk40;
                 sp34 = D_80124D90[gObjects[sp3C].obj_id].unk38->unk0;
@@ -290,7 +303,7 @@ s32 func_8002C184(f32 x, f32 y, f32 z) {
     sp94 = D_80177760[spAC];
     func_80016A80(D_80057664, D_80057668, D_8005766C, D_80057670, &sp8C, &sp88, &sp84, &sp80);
     func_80016A80(spA8, spA4, spA0, sp9C, &sp7C, &sp78, &sp74, &sp70);
-    if ((func_8001608C(D_80057664, D_80057668, D_8005766C, D_80057670, D_801776F0[spAC], D_80177700[spAC],
+    if ((Math_ComparePlanes(D_80057664, D_80057668, D_8005766C, D_80057670, D_801776F0[spAC], D_80177700[spAC],
                        D_80177710[spAC], D_80177720[spAC]) != 0) &&
         (sp80 < 60.0f)) {
         return 0;
@@ -356,12 +369,12 @@ void func_8002C92C(void) {
 }
 
 void func_8002CA80(void) {
-    f32 sp4C;
-    f32 sp48;
-    f32 sp44;
-    f32 sp40;
-    f32 sp3C;
-    f32 sp38;
+    f32 player_pos_x;
+    f32 player_pos_y;
+    f32 player_pos_z;
+    f32 player_vel_x;
+    f32 player_vel_y;
+    f32 player_vel_z;
     s32 sp34;
     s32 sp30;
     u8 sp2F;
@@ -372,28 +385,29 @@ void func_8002CA80(void) {
     f32 sp1C;
     f32 sp18;
 
-    sp4C = gPlayerObject->Pos.x;
-    sp48 = gPlayerObject->Pos.y;
-    sp44 = gPlayerObject->Pos.z;
-    sp40 = gPlayerObject->Vel.x;
-    sp3C = gPlayerObject->Vel.y;
-    sp38 = gPlayerObject->Vel.z;
-    sp48 += sp3C;
-    func_8002C144(sp4C, sp48 + 59.0f, sp44);
+    player_pos_x = gPlayerObject->Pos.x;
+    player_pos_y = gPlayerObject->Pos.y;
+    player_pos_z = gPlayerObject->Pos.z;
+    player_vel_x = gPlayerObject->Vel.x;
+    player_vel_y = gPlayerObject->Vel.y;
+    player_vel_z = gPlayerObject->Vel.z;
+    
+    player_pos_y += player_vel_y;
+    func_8002C144(player_pos_x, player_pos_y + 59.0f, player_pos_z);
     if (D_801776E0 & 1) {
-        sp48 = D_80177760[0] - 60.0f;
+        player_pos_y = D_80177760[0] - 60.0f;
     }
-    func_8002C144(sp4C, sp48, sp44);
+    func_8002C144(player_pos_x, player_pos_y, player_pos_z);
     if (D_801776E0 & 1) {
-        sp48 = D_80177760[1];
+        player_pos_y = D_80177760[1];
     }
-    if (D_80177760[D_801776E0 & 1] == sp48) {
+    if (D_80177760[D_801776E0 & 1] == player_pos_y) {
         sp34 = 1;
     } else {
         sp34 = 0;
     }
-    sp4C += sp40;
-    sp44 += sp38;
+    player_pos_x += player_vel_x;
+    player_pos_z += player_vel_z;
     sp20 = 8;
     sp2E = 0;
 
@@ -401,7 +415,7 @@ void func_8002CA80(void) {
         sp2F = 0;
 
         for (sp28 = 0; sp28 < 8; sp28++) {
-            sp24 = func_8002C184(D_8004A660[sp28].x + sp4C, D_8004A660[sp28].y + sp48, D_8004A660[sp28].z + sp44);
+            sp24 = func_8002C184(D_8004A660[sp28].x + player_pos_x, D_8004A660[sp28].y + player_pos_y, D_8004A660[sp28].z + player_pos_z);
             if (sp24 == 4) {
                 sp2F = sp2F | D_8004A6C0[sp28];
             }
@@ -414,33 +428,33 @@ void func_8002CA80(void) {
         }
 
         if (sp2F == 0) {
-            sp4C = sp1C;
-            sp44 = sp18;
+            player_pos_x = sp1C;
+            player_pos_z = sp18;
             sp20 = sp20 / 2;
             sp2F = sp2E;
         } else if ((sp2E != sp2F) && (sp30 != 0) && ((sp20 / 2) != 0)) {
             sp2F = sp2E;
             sp20 = sp20 / 2;
-            sp4C = sp1C;
-            sp44 = sp18;
+            player_pos_x = sp1C;
+            player_pos_z = sp18;
         }
-        sp1C = sp4C;
-        sp18 = sp44;
+        sp1C = player_pos_x;
+        sp18 = player_pos_z;
         sp2E = sp2F;
-        sp4C = sp4C + D_8004A6CC[sp2F][0] * sp20;
-        sp44 = sp44 + D_8004A6CC[sp2F][1] * sp20;
+        player_pos_x = player_pos_x + D_8004A6CC[sp2F][0] * sp20;
+        player_pos_z = player_pos_z + D_8004A6CC[sp2F][1] * sp20;
     }
 
-    sp24 = func_8002C184(sp4C, sp48, sp44);
+    sp24 = func_8002C184(player_pos_x, player_pos_y, player_pos_z);
     if ((sp24 < 3) && (sp34 != 0)) {
-        func_8002C144(sp4C, sp48, sp44);
+        func_8002C144(player_pos_x, player_pos_y, player_pos_z);
         if (!(D_801776E0 & 1)) {
-            sp48 = D_80177760[0];
+            player_pos_y = D_80177760[0];
         }
     }
-    gPlayerObject->Pos.x = sp4C;
-    gPlayerObject->Pos.y = sp48;
-    gPlayerObject->Pos.z = sp44;
+    gPlayerObject->Pos.x = player_pos_x;
+    gPlayerObject->Pos.y = player_pos_y;
+    gPlayerObject->Pos.z = player_pos_z;
 }
 
 s32 func_8002CF78(void) {
@@ -509,9 +523,9 @@ void func_8002D128(void) {
         D_80057689 = 0;
         gPlayerObject->Vel.y = 0.0f;
         if (!(gActiveContButton & 0x2000)) {
-            if (D_800576A0 & 0x8000) {
+            if (sContActiveButton & 0x8000) {
                 gPlayerObject->Vel.y = 10.0f;
-            } else if (D_800576A0 & 0x4000) {
+            } else if (sContActiveButton & 0x4000) {
                 gPlayerObject->Vel.y = -10.0f;
             }
         }
@@ -573,7 +587,7 @@ void func_8002D538(void) {
     sp38 = (s32) sp44->unk6;
     func_8001BD44(sp40, sp3C, sp38, (s32) gFileArray[1].ptr);
     gPlayerObject->obj_id = sp44->unk2;
-    gPlayerObject->unkA4 = 1;
+    gPlayerObject->action_state = 1;
     if (sp24 != NULL) {
         func_8001C0EC(sp40, sp3C, 0, 1, sp24);
     }
@@ -684,81 +698,81 @@ void func_8002D9D4(void) {
     }
 }
 
-void func_8002DCA8(void) {
-    if (D_800576A0 & CONT_UP) {
+void Debug_Parse_SetModeMenuOptions(void) {
+    if (sContActiveButton & CONT_UP) {
         if ((--sSetModeMenuOption) < 0) {
             sSetModeMenuOption = 9;
         }
-    } else if (D_800576A0 & CONT_DOWN) {
+    } else if (sContActiveButton & CONT_DOWN) {
         if ((++sSetModeMenuOption) >= 0xA) {
             sSetModeMenuOption = 0;
         }
     }
 
     switch (sSetModeMenuOption) {
-        case 1:
-            if (D_800576A0 & CONT_RIGHT) {
+        case SET_MODE_OPTION_1:
+            if (sContActiveButton & CONT_RIGHT) {
                 gPlayerObject->Pos.x += 1.0f;
-            } else if (D_800576A0 & CONT_LEFT) {
+            } else if (sContActiveButton & CONT_LEFT) {
                 gPlayerObject->Pos.x -= 1.0f;
             }
             break;
-        case 2:
-            if (D_800576A0 & CONT_RIGHT) {
+        case SET_MODE_OPTION_2:
+            if (sContActiveButton & CONT_RIGHT) {
                 gPlayerObject->Pos.y += 1.0f;
-            } else if (D_800576A0 & CONT_LEFT) {
+            } else if (sContActiveButton & CONT_LEFT) {
                 gPlayerObject->Pos.y -= 1.0f;
             }
             break;
-        case 3:
-            if (D_800576A0 & CONT_RIGHT) {
+        case SET_MODE_OPTION_3:
+            if (sContActiveButton & CONT_RIGHT) {
                 gPlayerObject->Pos.z += 1.0f;
-            } else if (D_800576A0 & CONT_LEFT) {
+            } else if (sContActiveButton & CONT_LEFT) {
                 gPlayerObject->Pos.z -= 1.0f;
             }
             break;
-        case 4:
+        case SET_MODE_OPTION_ADJUST:
             if ((gActiveContPressed & CONT_RIGHT) || (gActiveContPressed & CONT_LEFT)) {
                 gPlayerObject->Pos.x = (f32) (((s32) gPlayerObject->Pos.x / 30) * 0x1E);
                 gPlayerObject->Pos.z = (f32) (((s32) gPlayerObject->Pos.z / 30) * 0x1E);
             }
             break;
-        case 5:
-            if (D_800576A0 & 0x100) {
+        case SET_MODE_OPTION_ANGLE:
+            if (sContActiveButton & 0x100) {
                 D_80057694 += 1;
-            } else if (D_800576A0 & 0x200) {
+            } else if (sContActiveButton & 0x200) {
                 D_80057694 -= 1;
             }
             break;
-        case 6:
-            if (D_800576A0 & 0x100) {
+        case SET_MODE_OPTION_PRM1:
+            if (sContActiveButton & 0x100) {
                 D_80057696 += 1;
-            } else if (D_800576A0 & 0x200) {
+            } else if (sContActiveButton & 0x200) {
                 D_80057696 -= 1;
             }
             break;
-        case 7:
-            if (D_800576A0 & 0x100) {
+        case SET_MODE_OPTION_PRM2:
+            if (sContActiveButton & 0x100) {
                 D_80057698 += 1;
-            } else if (D_800576A0 & 0x200) {
+            } else if (sContActiveButton & 0x200) {
                 D_80057698 -= 1;
             }
             break;
-        case 8:
-            if (D_800576A0 & CONT_RIGHT) {
+        case SET_MODE_OPTION_PRM3:
+            if (sContActiveButton & CONT_RIGHT) {
                 D_8005769A += 1;
-            } else if (D_800576A0 & CONT_LEFT) {
+            } else if (sContActiveButton & CONT_LEFT) {
                 D_8005769A -= 1;
             }
             break;
-        case 9:
+        case SET_MODE_OPTION_MOVE:
             func_8002C144(gPlayerObject->Pos.x, gPlayerObject->Pos.y + 60.0f, gPlayerObject->Pos.z);
             if (!(D_801776E0 & 1)) {
-                if (D_800576A0 & 0x200) {
+                if (sContActiveButton & 0x200) {
                     if ((--D_8005768A) < 0) {
                         D_8005768A = 2;
                     }
-                } else if (D_800576A0 & 0x100) {
+                } else if (sContActiveButton & 0x100) {
                     if ((++D_8005768A) >= 3) {
                         D_8005768A = 0;
                     }
@@ -856,7 +870,7 @@ void func_8002E524(void) {
     }
 }
 
-void func_8002E6E8(void) {
+void Debug_SaveMode(void) {
     s32 sp34;
     s32 sp30;
     s32 sp2C;
@@ -986,12 +1000,12 @@ void Debug_ResetMode_Menu(void) {
 
 void Debug_SaveMode_Menu(void) {
     sprintf((char*) &gDebugTextBuf, "SAVE MODE");
-    debug_print_xy(0x20, 0x10);
+    debug_print_xy(32, 16);
     sprintf((char*) &gDebugTextBuf, "PRESS START BUTTON");
-    debug_print_xy(0x58, 0x64);
+    debug_print_xy(88, 100);
 }
 
-void func_8002EF60(void) {
+void Debug_ParseSetModeMenu(void) {
     Debug_SetTextColor(255, 255, 255);
     switch (sDebugSetModeMenu) {
         case MAIN_MENU: 
@@ -1007,7 +1021,7 @@ void func_8002EF60(void) {
     stub_8005FA90();
 }
 
-void func_8002F000(void) {
+void Debug_SetupSetMode(void) {
     struct UnkStruct80108238* sp1C;
     s32 i;
 
@@ -1056,7 +1070,7 @@ void func_8002F000(void) {
     gPlayerObject->Rot.z = 0.0f;
     gCameraType = 1;
     func_80076458();
-    func_8001D244(-1, -1, -1, 0x10);
+    Set_BgColor(-1, -1, -1, 0x10);
     func_8001D284();
 }
 
@@ -1072,23 +1086,23 @@ void func_8002F32C(void) {
     }
     func_8002BAC8(); // Update active cont button?
     func_8002EA68();
-    if (sDebugSetModeMenu == 0) {
+    if (sDebugSetModeMenu == MAIN_MENU) {
         func_8002D768();
         func_8002D128();
-        func_8002DCA8();
+        Debug_Parse_SetModeMenuOptions();
         func_8002D9D4();
-    } else if (sDebugSetModeMenu == 1) {
+    } else if (sDebugSetModeMenu == RESET_MODE_MENU) {
         func_8002E524();
         func_8002E23C();
-    } else if (sDebugSetModeMenu == 2) {
-        func_8002E6E8();
+    } else if (sDebugSetModeMenu == SAVE_MODE_MENU) {
+        Debug_SaveMode();
     }
     func_80026548();
     func_8002BE04();
     func_800663EC();
     func_800654AC();
     Handle_ObjView();
-    if (sDebugSetModeMenu == 0) {
+    if (sDebugSetModeMenu == MAIN_MENU) {
         Set_ObjView(gPlayerObject->Pos.x, gPlayerObject->Pos.y + 100.0f, gPlayerObject->Pos.z);
     } else if ((sDebugSetModeMenu == 1) && (D_800576A8[D_80057692].unk0 != -1)) {
         if ((D_800576A8[D_80057692].unk2 != 0x7530) && (D_800576A8[D_80057692].unk4 != 0x7530) &&
@@ -1101,7 +1115,7 @@ void func_8002F32C(void) {
 }
 
 void func_8002F598(void) {
-    UNUSED u16 persp;
+    u16 persp;
     UNUSED u16 pad1;
     UNUSED u16 sp3E;
 
@@ -1120,13 +1134,13 @@ void func_8002F598(void) {
     func_8002D968();
     func_8001C5B8();
     func_8001C96C();
-    func_8002EF60();
+    Debug_ParseSetModeMenu();
 }
 
 void func_8002F738(void) {
     func_8001ECB8();
     gDebugRoutine1 = &func_8002F598;
     gDebugRoutine2 = &func_8002F32C;
-    func_8002F000();
+    Debug_SetupSetMode();
     func_80000964();
 }

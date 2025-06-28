@@ -1,6 +1,11 @@
 #include "common.h"
 #include "69AA0.h"
 
+
+#define PLAYER_ACTION_DROP_BOMB_2 16
+#define PLAYER_ACTION_DROP_BOMB_1 15
+#define PLAYER_ACTION_DROP_BOMB_0 14 // Drop bomb in the ground
+
 void func_80077580(s32 arg0, s32 arg1) {
     s32 i;
     s32 j;
@@ -242,7 +247,7 @@ s32 func_800781D4(f32 arg0, f32 arg1, f32 arg2) {
     func_80016A80(D_80177968, D_80177970, D_80177978, D_80177980, &sp8C, &sp88, &sp84, &sp80);
     func_80016A80(spA8, spA4, spA0, sp9C, &sp7C, &sp78, &sp74, &sp70);
 
-    if ((func_8001608C(D_80177968, D_80177970, D_80177978, D_80177980, D_801776F0[spAC], D_80177700[spAC],
+    if ((Math_ComparePlanes(D_80177968, D_80177970, D_80177978, D_80177980, D_801776F0[spAC], D_80177700[spAC],
                        D_80177710[spAC], D_80177720[spAC]) != 0) &&
         (sp80 < 60.0f)) {
 
@@ -338,7 +343,7 @@ s32 func_80078AEC(s32 arg0) {
     sp18 = 0;
     if (!(D_801776E0 & 1) && (D_80177760[0] == -30000.0f) && (D_801776E4 != 0)) {
         sp18 = (s32) D_8017791B[D_801776E4];
-        if ((sp18 == 2) && (sp4C->unkA4 == 0x2A)) {
+        if ((sp18 == 2) && (sp4C->action_state == 0x2A)) {
             sp18 = 3;
         }
     }
@@ -431,7 +436,7 @@ s32 func_8007944C(void) {
     s32 sp4;
 
     for (sp4 = 2; sp4 <= 5; sp4++) {
-        if (gObjects[sp4].unkA4 == 0) {
+        if (gObjects[sp4].action_state == 0) {
             return sp4;
         }
     }
@@ -587,20 +592,20 @@ s32 func_80079D48(s32 arg0) {
 
 // Update bomb count?
 s32 func_80079DFC(void) {
-    struct ObjectStruct* spC;
-    s32 sp8;
-    s32 sp4;
+    struct ObjectStruct* obj;
+    s32 i;
+    s32 count;
 
-    sp4 = 0;
-    spC = &gObjects[2];
+    count = 0;
+    obj = &gObjects[2];
 
-    for (sp8 = 0; sp8 < 4; sp8++, spC++) {
-        if (spC->unkA4 != 0) {
-            sp4 += 1;
+    for (i = 0; i < 4; i++, obj++) {
+        if (obj->action_state != 0) {
+            count++;
         }
     }
 
-    if (sp4 > gBombCount) {
+    if (count > gBombCount) {
         return 1;
     }
     return 0;
@@ -644,7 +649,7 @@ void func_8007A024(void) {
         func_80079E9C(sp1C);
         sp18 = &gObjects[sp1C];
         ;
-        sp18->unkA4 = 0x20;
+        sp18->action_state = 0x20;
         sp18->Pos.x = gPlayerObject->Pos.x;
         sp18->Pos.y = gPlayerObject->Pos.y + 50.0f;
         sp18->Pos.z = gPlayerObject->Pos.z;
@@ -659,7 +664,7 @@ void func_8007A120(void) {
     struct ObjectStruct* sp4;
 
     sp4 = &gObjects[D_8016E100];
-    sp4->unkA4 = 0x24;
+    sp4->action_state = 0x24;
     sp4->unkB4 = (s16) (s32) gPlayerObject->unk44;
     D_8016E100 = 0;
 }
@@ -683,7 +688,7 @@ void func_8007A1E0(void) {
     }
     if (sp18 != -1) {
         sp1C = &gObjects[sp18];
-        sp1C->unkA4 = 0x21;
+        sp1C->action_state = 0x21;
         D_8016E100 = D_8016E108 = (s16) sp18;
     } else {
         D_8016E100 = 0;
@@ -704,7 +709,7 @@ void func_8007A2C0(void) {
     }
     if (sp18 != -1) {
         sp1C = &gObjects[sp18];
-        sp1C->unkA4 = 0x22;
+        sp1C->action_state = 0x22;
         D_8016E100 = D_8016E108 = sp18;
     } else {
         D_8016E100 = 0;
@@ -715,8 +720,8 @@ void func_8007A3A0(s32 arg0) {
     struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[arg0];
-    if (sp1C->unkA4 != 0) {
-        sp1C->unkA4 = 0x2A;
+    if (sp1C->action_state != 0) {
+        sp1C->action_state = 0x2A;
         sp1C->unkD4 = gPlayerObject->Pos.y;
         sp1C->unkB6 = 0;
         sp1C->unk44 = 30.0f;
@@ -738,7 +743,7 @@ void func_8007A488(s32 arg0) {
     if (sp1C != -1) {
         func_80079E9C(sp1C);
         sp18 = &gObjects[sp1C];
-        sp18->unkA4 = 0x25;
+        sp18->action_state = 0x25;
         sp18->Pos.x = gPlayerObject->Pos.x;
         sp18->Pos.y = gPlayerObject->Pos.y + 50.0f;
         sp18->Pos.z = gPlayerObject->Pos.z;
@@ -774,7 +779,7 @@ void func_8007A6DC(void) {
     struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[D_8016E100];
-    sp1C->unkA4 = 0x26;
+    sp1C->action_state = 0x26;
     sp1C->unkD4 = gPlayerObject->Pos.y;
     sp1C->unk40 = 80.0f;
     sp1C->unk3C = gPlayerObject->Rot.y;
@@ -788,7 +793,7 @@ void func_8007A7B4(f32 arg0, f32 arg1, f32 arg2) {
     struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[D_8016E100];
-    sp1C->unkA4 = 0x26;
+    sp1C->action_state = 0x26;
     sp1C->unkD4 = gPlayerObject->Pos.y;
     sp1C->unk40 = 80.0f;
     sp1C->unk3C = gPlayerObject->Rot.y;
@@ -814,7 +819,7 @@ void func_8007A938(s32 arg0) {
     func_80079778(arg0);
     func_800797FC(arg0);
     if (sp1C->unkA8 == 0x64) {
-        sp1C->unkA4 = 0x23;
+        sp1C->action_state = 0x23;
     }
 }
 
@@ -875,7 +880,7 @@ void func_8007AD60(s32 arg0) {
     s32 sp18;
 
     sp1C = &gObjects[arg0];
-    if ((gPlayerObject->unkA4 == 0xE) || (gPlayerObject->unkA4 == 0xF) || (gPlayerObject->unkA4 == 0x10)) {
+    if ((gPlayerObject->action_state == PLAYER_ACTION_DROP_BOMB_0) || (gPlayerObject->action_state == PLAYER_ACTION_DROP_BOMB_1) || (gPlayerObject->action_state == PLAYER_ACTION_DROP_BOMB_2)) {
         sp18 = (s32) ((func_8001B62C(0, 0) - 2.0f) / 2.0f);
         if (sp18 < 0) {
             sp18 = 0;
@@ -887,8 +892,8 @@ void func_8007AD60(s32 arg0) {
     func_80079688(arg0);
     func_800797FC(arg0);
     if (sp18 == 4) {
-        if (sp1C->unkA4 == 0x24) {
-            sp1C->unkA4 = 0x27;
+        if (sp1C->action_state == 0x24) {
+            sp1C->action_state = 0x27;
             sp1C->unkD4 = gPlayerObject->Pos.y;
             if (D_801651A4 & 1) {
                 sp1C->unk40 = 30.0f;
@@ -904,7 +909,7 @@ void func_8007AD60(s32 arg0) {
             func_800799A8(arg0);
             func_80079AD8(arg0);
         } else {
-            sp1C->unkA4 = 0x26;
+            sp1C->action_state = 0x26;
             sp1C->unkD4 = gPlayerObject->Pos.y;
         }
     }
@@ -916,7 +921,7 @@ void func_8007B004(s32 arg0) {
     UNUSED char pad[0x80]; // what?
 
     sp9C = &gObjects[arg0];
-    if (gPlayerObject->unkA4 == 0x11) {
+    if (gPlayerObject->action_state == 0x11) {
         sp98 = (s32) ((func_8001B62C(0, 0) - 2.0f) / 2.0f);
         if (sp98 < 0) {
             sp98 = (s32) (func_8001B580(0, 0) / 2.0f);
@@ -934,7 +939,7 @@ void func_8007B004(s32 arg0) {
     func_80079778(arg0);
     func_800797FC(arg0);
     if (sp98 == 6) {
-        sp9C->unkA4 = 0x28;
+        sp9C->action_state = 0x28;
         sp9C->unkD4 = gPlayerObject->Pos.y;
         sp9C->unk44 = 0.0f;
         sp9C->unk3C = gPlayerObject->Rot.y;
@@ -951,7 +956,7 @@ void func_8007B268(s32 arg0) {
     UNUSED char pad[0x80];
 
     sp9C = &gObjects[arg0];
-    if ((gPlayerObject->unkA4 == 0x12) || (gPlayerObject->unkA4 == 0x13)) {
+    if ((gPlayerObject->action_state == 0x12) || (gPlayerObject->action_state == 0x13)) {
         sp9C->Pos.x = (sinf((f32) ((f64) gPlayerObject->Rot.y * DEG_TO_RAD)) * 32.0f) + gPlayerObject->Pos.x;
         sp9C->Pos.z = (cosf((f32) ((f64) gPlayerObject->Rot.y * DEG_TO_RAD)) * 32.0f) + gPlayerObject->Pos.z;
         sp9C->Pos.y = gPlayerObject->Pos.y + 50.0f;
@@ -959,7 +964,7 @@ void func_8007B268(s32 arg0) {
     func_80079778(arg0);
     func_800797FC(arg0);
     if (sp9C->unkA8 == 0x64) {
-        sp9C->unkA4 = 0x29;
+        sp9C->action_state = 0x29;
         sp9C->unkD4 = gPlayerObject->Pos.y;
         sp9C->unk44 = 0.0f;
         sp9C->unk3C = gPlayerObject->Rot.y;
@@ -1038,9 +1043,9 @@ void func_8007B5A0(s32 arg0) {
                 sp24->Vel.z = 0.0f;
             }
         }
-        if ((sp24->unkA4 == 0x26)) {
+        if ((sp24->action_state == 0x26)) {
             if ((sp24->Vel.x == 0.0f) && (sp24->Vel.z == 0.0f)) {
-                sp24->unkA4 = 0x27;
+                sp24->action_state = 0x27;
             }
         }
     } else if (func_80078AEC(arg0) != 0) {
@@ -1106,11 +1111,11 @@ void func_8007BBD8(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[arg0];
-    if ((sp1C->unkA4 == 0x26) || (sp1C->unkA4 == 0x27) || (sp1C->unkA4 == 0x2A)) {
-    } else if (sp1C->unkA4 == 0x28) {
+    if ((sp1C->action_state == 0x26) || (sp1C->action_state == 0x27) || (sp1C->action_state == 0x2A)) {
+    } else if (sp1C->action_state == 0x28) {
         func_8007A3A0(arg0);
         sp1C->unk3C = arg3;
-    } else if (sp1C->unkA4 == 0x29) {
+    } else if (sp1C->action_state == 0x29) {
         func_8007A3A0(arg0);
         sp1C->unk3C = arg3;
     }
@@ -1146,7 +1151,7 @@ void func_8007BE30(void) {
     if (sp1C != -1) {
         func_8007BD30(sp1C);
         sp18 = &gObjects[sp1C];
-        sp18->unkA4 = 0x10;
+        sp18->action_state = 0x10;
         sp18->Pos.x = gPlayerObject->Pos.x;
         sp18->Pos.y = gPlayerObject->Pos.y;
         sp18->Pos.z = gPlayerObject->Pos.z;
@@ -1159,7 +1164,7 @@ void func_8007BF18(void) {
     struct ObjectStruct* sp24;
 
     sp24 = &gObjects[D_8016E100];
-    sp24->unkA4 = 0x12;
+    sp24->action_state = 0x12;
     sp24->unkD4 = gPlayerObject->Pos.y;
     sp24->unk3C = gPlayerObject->Rot.y;
     if (gPlayerObject->Pos.y < (D_801651C0 + 120.0f)) {
@@ -1182,7 +1187,7 @@ void func_8007C06C(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     if (sp1C != -1) {
         func_8007BD30(sp1C);
         sp18 = &gObjects[sp1C];
-        sp18->unkA4 = 0x13;
+        sp18->action_state = 0x13;
         sp18->unkD4 = gPlayerObject->Pos.y;
         sp18->Pos.x = arg1;
         sp18->Pos.y = arg2;
@@ -1280,7 +1285,7 @@ void func_8007C640(s32 arg0) {
     func_80079778(arg0);
     func_800797FC(arg0);
     if (sp1C->unkA8 == 0x64) {
-        sp1C->unkA4 = 0x11;
+        sp1C->action_state = 0x11;
     }
 }
 
@@ -1329,7 +1334,7 @@ void func_8007C8A0(s32 arg0) {
     sp60 = &gObjects[0xE];
 
     for (sp34 = 0; sp34 < 64; sp34++, sp60++) {
-        if ((sp60->unkA4 != 0)) {
+        if ((sp60->action_state != 0)) {
             sp58 = sp60->Pos.x - sp6C->Pos.x;
             sp54 = sp60->Pos.y - sp6C->Pos.y;
             sp50 = sp60->Pos.z - sp6C->Pos.z;
@@ -1404,7 +1409,7 @@ void func_8007CDE8(void) {
     if (sp1C != -1) {
         func_8007CCE8(sp1C);
         sp18 = &gObjects[sp1C];
-        sp18->unkA4 = 0x18;
+        sp18->action_state = 0x18;
         sp18->Pos.x = gPlayerObject->Pos.x;
         sp18->Pos.y = gPlayerObject->Pos.y;
         sp18->Pos.z = gPlayerObject->Pos.z;
@@ -1416,7 +1421,7 @@ void func_8007CEB8(void) {
     struct ObjectStruct* sp4;
 
     sp4 = &gObjects[D_8016E100];
-    sp4->unkA4 = 0x1A;
+    sp4->action_state = 0x1A;
     sp4->unkD4 = gPlayerObject->Pos.y;
     sp4->unk3C = 180.0f;
     sp4->unk40 = 0.0f;
@@ -1434,7 +1439,7 @@ void func_8007CF98(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     if (sp1C != -1) {
         func_8007CCE8(sp1C);
         sp18 = &gObjects[sp1C];
-        sp18->unkA4 = 0x1B;
+        sp18->action_state = 0x1B;
         sp18->unkD4 = gPlayerObject->Pos.y;
         sp18->Pos.x = arg1;
         sp18->Pos.y = arg2;
@@ -1523,7 +1528,7 @@ void func_8007D508(s32 arg0) {
     func_80079778(arg0);
     func_800797FC(arg0);
     if (sp1C->unkA8 == 0x64) {
-        sp1C->unkA4 = 0x19;
+        sp1C->action_state = 0x19;
     }
 }
 
@@ -1601,7 +1606,7 @@ void func_8007DA44(void) {
     if (sp1C != -1) {
         func_8007D944(sp1C);
         sp18 = &gObjects[sp1C];
-        sp18->unkA4 = 0x30;
+        sp18->action_state = 0x30;
         sp18->Pos.x = gPlayerObject->Pos.x;
         sp18->Pos.y = gPlayerObject->Pos.y;
         sp18->Pos.z = gPlayerObject->Pos.z;
@@ -1614,7 +1619,7 @@ void func_8007DB2C(void) {
     struct ObjectStruct* sp4;
 
     sp4 = &gObjects[D_8016E100];
-    sp4->unkA4 = 0x32;
+    sp4->action_state = 0x32;
     sp4->unkD4 = gPlayerObject->Pos.y;
     sp4->unk44 = 14.0f;
     sp4->unk3C = 0.0f;
@@ -1632,7 +1637,7 @@ void func_8007DC0C(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     if (sp1C != -1) {
         func_8007D944(sp1C);
         sp18 = &gObjects[sp1C];
-        sp18->unkA4 = 0x32;
+        sp18->action_state = 0x32;
         sp18->unkD4 = gPlayerObject->Pos.y;
         sp18->Pos.x = arg1;
         sp18->Pos.y = arg2;
@@ -1697,7 +1702,7 @@ void func_8007E058(s32 arg0) {
     func_80079778(arg0);
     func_800797FC(arg0);
     if (sp1C->unkA8 == 0x64) {
-        sp1C->unkA4 = 0x31;
+        sp1C->action_state = 0x31;
     }
 }
 
@@ -1760,8 +1765,8 @@ void func_8007E454(void) {
     s32 sp1C;
 
     for (sp1C = 2; sp1C < 6; sp1C++) {
-        if (gObjects[sp1C].unkA4) {
-            switch (gObjects[sp1C].unkA4) {
+        if (gObjects[sp1C].action_state) {
+            switch (gObjects[sp1C].action_state) {
                 case 7:
                     func_80079D18(sp1C);
                     break;
@@ -1830,7 +1835,7 @@ void func_8007E678(void) {
 
     func_8001838C();
     for (sp1C = 2; sp1C < 6; sp1C++) {
-        if ((gObjects[sp1C].unkA4 != 0)) {
+        if ((gObjects[sp1C].action_state != 0)) {
             if (func_8001C1A8(sp1C, 0)) {
                 func_8001B014(sp1C, 0);
                 func_8001C384(sp1C, 0);

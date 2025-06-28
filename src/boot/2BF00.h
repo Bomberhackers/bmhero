@@ -11,7 +11,7 @@ struct UnkStruct_8004A6C8
 
 extern UnkStruct80165100 D_800576A8[];
 extern float D_8004C00C;
-extern u16 D_800576A0;
+extern u16 sContActiveButton;
 extern f64 D_8004BFB8;
 extern f64 D_8004BFC0;
 
@@ -51,7 +51,7 @@ void func_8002EA68(void);
 void Debug_SetMode_Menu(void);  
 void Debug_ResetMode_Menu(void);  
 void Debug_SaveMode_Menu(void);  
-void func_8002EF60(void);  
+void Debug_ParseSetModeMenu(void);  
 void func_8002F000(void);  
 void func_8002F32C(void);  
 void func_8002F598(void);  

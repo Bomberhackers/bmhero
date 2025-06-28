@@ -368,7 +368,7 @@ void func_80072B08(void) {
         sp37 = 1;
         sp30 = 5.0f;
     } else {
-        if ((gPlayerObject->unkA4 == 0x2D) || (gPlayerObject->unkA4 == 0x2E)) {
+        if ((gPlayerObject->action_state == 0x2D) || (gPlayerObject->action_state == 0x2E)) {
             sp37 = 2;
             sp30 = 2.0f;
         } else if (gPlayerObject->unk108 == 0) {
@@ -457,7 +457,7 @@ void func_80072B08(void) {
         func_80072A08(sp70, sp6C, &sp2C, &D_801775C0, &D_801775D8, &sp44);
         func_80071B50(sp2C);
     } else {
-        if ((gPlayerObject->unkA4 == 0x25) || (gPlayerObject->unkA4 == 0x26D) || (gPlayerObject->unkA4 == 0x217)) {
+        if ((gPlayerObject->action_state == 0x25) || (gPlayerObject->action_state == 0x26D) || (gPlayerObject->action_state == 0x217)) {
             func_80071CF4(0);
         } else {
             func_80071CF4(1);
@@ -655,7 +655,7 @@ void func_80073784(void) {
             D_801775D8 = D_80177A5C;
         }
     } else {
-        if ((gPlayerObject->unkA4 == 0x25) || (gPlayerObject->unkA4 == 0x26D)) {
+        if ((gPlayerObject->action_state == 0x25) || (gPlayerObject->action_state == 0x26D)) {
             func_80071CF4(0);
         } else {
             func_80071CF4(1);
@@ -880,7 +880,7 @@ void func_80074DFC(void) {
             break;
         case 0x25:
             sp2C = &gObjects[0xE];
-            if (sp2C->unkA4 != 0) {
+            if (sp2C->action_state != 0) {
                 D_801775FC = sp2C->Pos.x;
                 D_80177604 = sp2C->Pos.y + 210.0f;
                 D_8017760C = sp2C->Pos.z;
@@ -888,14 +888,14 @@ void func_80074DFC(void) {
             break;
         case 0x39:
             sp2C = &gObjects[0xE];
-            if (sp2C->unkA4 != 0) {
+            if (sp2C->action_state != 0) {
                 D_801775FC = sp2C->Pos.x;
                 D_8017760C = sp2C->Pos.z;
             }
             break;
         case 0x5A:
             sp2C = &gObjects[0xE];
-            if ((sp2C->unkA4 != 0) && (sp2C->obj_id == 0x1B8)) {
+            if ((sp2C->action_state != 0) && (sp2C->obj_id == 0x1B8)) {
                 D_801775FC = gObjects[0xE].Pos.x;
                 D_8017760C = gObjects[0xE].Pos.z;
             } else {
@@ -905,14 +905,14 @@ void func_80074DFC(void) {
             break;
         case 0x4C:
             sp2C = &gObjects[0xE];
-            if (sp2C->unkA4 != 0) {
+            if (sp2C->action_state != 0) {
                 D_801775FC = sp2C->Pos.x;
                 D_8017760C = sp2C->Pos.z;
             }
             break;
         case 0x4D:
             sp2C = &gObjects[0xE];
-            if (sp2C->unkA4 != 0) {
+            if (sp2C->action_state != 0) {
                 D_801775FC = sp2C->Pos.x;
                 D_80177604 = sp2C->Pos.y + 210.0f;
                 D_8017760C = sp2C->Pos.z;
@@ -940,14 +940,14 @@ void func_80074DFC(void) {
             break;
         case 0x53:
             sp2C = &gObjects[0xE];
-            if (sp2C->unkA4 != 0) {
+            if (sp2C->action_state != 0) {
                 D_801775FC = sp2C->Pos.x;
                 D_8017760C = sp2C->Pos.z;
             }
             break;
         case 0x55:
             sp2C = &gObjects[0xE];
-            if (sp2C->unkA4 != 0) {
+            if (sp2C->action_state != 0) {
                 D_801775FC = sp2C->Pos.x;
                 D_8017760C = sp2C->Pos.z;
             }
@@ -958,7 +958,7 @@ void func_80074DFC(void) {
         case 0x58:
         case 0x59:
             sp2C = &gObjects[0xE];
-            if (sp2C->unkA4 != 0) {
+            if (sp2C->action_state != 0) {
                 D_801775FC = sp2C->Pos.x;
                 D_8017760C = sp2C->Pos.z;
             }
@@ -1073,7 +1073,7 @@ void func_80075288(void) {
             break;
     }
     if (gPlayerObject->unk108 != 0) {
-    } else if (gPlayerObject->unkA4 == 0x25) {
+    } else if (gPlayerObject->action_state == 0x25) {
         func_80071CF4(0);
     } else {
         func_80071CF4(1);
@@ -1223,7 +1223,7 @@ void func_80075D68(void) {
     sp2C = 0.0f;
     sp28 = 0.0f;
     if (gCurrentLevel == 0x25) {
-        if (gObjects[0xE].unkA4 != 0) {
+        if (gObjects[0xE].action_state != 0) {
             sp30 = gObjects[0xE].Pos.x;
             sp2C = gObjects[0xE].Pos.y + 210.0f;
             sp28 = gObjects[0xE].Pos.z;
@@ -1258,7 +1258,7 @@ void func_80075D68(void) {
     }
     D_801775C0 = sp18;
     if (gPlayerObject->unk108 != 0) {
-    } else if (gPlayerObject->unkA4 == 0x25) {
+    } else if (gPlayerObject->action_state == 0x25) {
         func_80071CF4(0);
     } else {
         func_80071CF4(1);

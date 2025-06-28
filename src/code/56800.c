@@ -15,7 +15,7 @@ s32 func_800642E0(void) {
     s32 i;
 
     for (i = 14; i < 78; i++) {
-        if (gObjects[i].unkA4 == 0) {
+        if (gObjects[i].action_state == 0) {
             return i;
         }
     }
@@ -25,7 +25,7 @@ s32 func_800642E0(void) {
 // find free slot
 s32 func_80064358(s32 arg0) {
     while (arg0 < 78) {
-        if (gObjects[arg0].unkA4 == 0) {
+        if (gObjects[arg0].action_state == 0) {
             return arg0;
         }
         arg0++;

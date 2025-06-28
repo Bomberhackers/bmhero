@@ -278,7 +278,7 @@ void Demo_PrepareStr(void) {
         D_801347E8.y = 184;
         D_801347E8.renderBG = TRUE;
         D_801347E8.strInfo = NULL;
-        if (PLAYER_OBJ.unkA4 != 0) {
+        if (PLAYER_OBJ.action_state != 0) {
             sp2C = func_8001B62C(0, 0);
         }
         switch (gDemoSceneID) {
@@ -396,7 +396,7 @@ void func_8005DA00(void) {
     if (D_80134794->unk0 == 0) {
         D_801347E5 = 1;
         D_801347E6 = 1;
-        func_8001D244(0xFF, 0xFF, 0xFF, 0x10);
+        Set_BgColor(0xFF, 0xFF, 0xFF, 0x10);
         func_8001D2C0();
         func_8001EBE8();
         return;
@@ -426,7 +426,7 @@ void func_8005DA00(void) {
             func_8001BD44(i, 0, D_80134794->unk34[i], gFileArray[1].ptr + D_80134794->unk14[i]);
             func_8001BE6C(i, 0, 0, 0);
             func_8001B754(0, 0);
-            gObjects[i].unkA4 = 1;
+            gObjects[i].action_state = 1;
         }
     }
     Demo_HandleSetAnimTextures();
@@ -444,7 +444,7 @@ void func_8005DD80(void) {
 
     if ((gContButtonPressed[0] & 0x1000) && (func_8001D1D4() != -1) && (func_8001D1D4() != 1)) {
         D_801347E5 = 1;
-        func_8001D244(0xFF, 0xFF, 0xFF, 0x10);
+        Set_BgColor(0xFF, 0xFF, 0xFF, 0x10);
         func_8001D2C0();
         func_80016FC8(0x20);
     }
@@ -457,13 +457,13 @@ void func_8005DD80(void) {
         if (D_80134790 == 0) {
             Demo_SetView();
             for (sp24 = 0; sp24 < 8; sp24++) {
-                if (gObjects[sp24].unkA4 != 0) {
+                if (gObjects[sp24].action_state != 0) {
                     func_8001CD20(sp24);
                     func_8001AD6C(sp24);
                 }
             }
             for (sp24 = 0; sp24 < 8; sp24++) {
-                if (gObjects[sp24].unkA4 != 0) {
+                if (gObjects[sp24].action_state != 0) {
                     if ((func_8001B44C(sp24, 0) != 0)) {
                         D_80134790 = 1;
                         if (gDemoID == 1) {
@@ -480,9 +480,9 @@ void func_8005DD80(void) {
     if (D_801347E4 != 0) {
         if (func_8001B62C(0, 0) == func_8001B580(0, 0) - 48.0f) {
             if (D_801347E4 == 1) {
-                func_8001D244(0, 0, 0, 0x10);
+                Set_BgColor(0, 0, 0, 0x10);
             } else {
-                func_8001D244(0xFF, 0xFF, 0xFF, 0x10);
+                Set_BgColor(0xFF, 0xFF, 0xFF, 0x10);
             }
             func_8001D2C0();
         }
@@ -504,7 +504,7 @@ void func_8005E040(void) {
     D_8016E3A4 = 0;
     func_8001838C();
     for (i = 0; i < 8; i++) {
-        if ((gObjects[i].unkA4 != 0)) {
+        if ((gObjects[i].action_state != 0)) {
             if (func_8001C1A8(i, 0) != 0) {
                 func_8001B014(i, 0);
                 func_8001C384(i, 0);
@@ -591,7 +591,7 @@ void Demo_Start(s32 demoID) {
     D_801347E8.x = 0x20;
     D_801347E8.y = 0xB8;
     D_801347E8.renderBG = 1;
-    func_8001D244(0xFF, 0xFF, 0xFF, 0x10);
+    Set_BgColor(0xFF, 0xFF, 0xFF, 0x10);
     func_8001D284();
     func_80000964();
 }

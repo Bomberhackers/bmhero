@@ -55,7 +55,7 @@ void func_803301C4_unk_bin_36() {
 
     if (obj->unk132 == 0) {
         obj->unk132++;
-        obj->unkB2 = obj->unkA4;
+        obj->unkB2 = obj->action_state;
     }
 
     if (func_800295C0(gCurrentParsedObject, &y1, &y2, 0, 0.0f, 0.0f)) {
@@ -64,7 +64,7 @@ void func_803301C4_unk_bin_36() {
         obj->Pos.y = y1;
     }
     if (gPlayerObject->Pos.z < obj->Pos.z) {
-        obj->unkA4 = 2;
+        obj->action_state = 2;
         obj->unk132 = 0;
     }
 }
@@ -76,7 +76,7 @@ void func_803302E4_unk_bin_36() {
 
     if (obj->unk132 == 0) {
         obj->unk132++;
-        obj->unkB2 = obj->unkA4;
+        obj->unkB2 = obj->action_state;
         func_80029EF8(gCurrentParsedObject, 0, 1.0f);
         obj->unk44 = 8.0f;
         obj->unkA6 = 0x96;
@@ -111,7 +111,7 @@ void func_803302E4_unk_bin_36() {
     if (func_8002A0D0(gCurrentParsedObject, 0, 0, 0) == 1) {
         if (D_80177740[D_801776E0 & 1] == 0xF5) {
             obj->Vel.y = ySave;
-            obj->unkA4 = 3;
+            obj->action_state = 3;
             obj->unk132 = 0;
             return;
         } else {
@@ -141,7 +141,7 @@ void func_8033069C_unk_bin_36() {
 
     if (obj->unk132 == 0) {
         obj->unk132++;
-        obj->unkB2 = obj->unkA4;
+        obj->unkB2 = obj->action_state;
         obj->unkB0 = 0x3C;
     }
 
@@ -165,7 +165,7 @@ void func_80330800_unk_bin_36() {
     struct ObjectStruct* obj = &gObjects[gCurrentParsedObject];
     UNUSED s32 pad;
 
-    switch (obj->unkA4) {
+    switch (obj->action_state) {
         case 1:
             func_803301C4_unk_bin_36();
             break;
@@ -204,7 +204,7 @@ void func_803309D0_unk_bin_36() {
 
     if (obj->unk132 == 0) {
         obj->unk132++;
-        obj->unkB2 = obj->unkA4;
+        obj->unkB2 = obj->action_state;
     }
 
     if (func_800295C0(gCurrentParsedObject, &y1, &y2, 0, 0.0f, 0.0f)) {
@@ -213,7 +213,7 @@ void func_803309D0_unk_bin_36() {
         obj->Pos.y = y1;
     }
     if (gPlayerObject->Pos.z < obj->Pos.z) {
-        obj->unkA4 = 2;
+        obj->action_state = 2;
         obj->unk132 = 0;
     }
 }
@@ -225,7 +225,7 @@ void func_80330AF0_unk_bin_36() {
 
     if (obj->unk132 == 0) {
         obj->unk132++;
-        obj->unkB2 = obj->unkA4;
+        obj->unkB2 = obj->action_state;
         func_80029EF8(gCurrentParsedObject, 0, 1.0f);
         obj->unk44 = 8.0f;
     }
@@ -259,7 +259,7 @@ void func_80330AF0_unk_bin_36() {
     if (func_8002A0D0(gCurrentParsedObject, 0, 0, 0) == 1) {
         if (D_80177740[D_801776E0 & 1] == 0xF5) {
             obj->Vel.y = ySave;
-            obj->unkA4 = 3;
+            obj->action_state = 3;
             obj->unk132 = 0;
 
             return;
@@ -280,7 +280,7 @@ void func_80330E10_unk_bin_36() {
 
     if (obj->unk132 == 0) {
         obj->unk132++;
-        obj->unkB2 = obj->unkA4;
+        obj->unkB2 = obj->action_state;
         obj->unkB0 = 0x3C;
     }
 
@@ -303,7 +303,7 @@ void func_80330E10_unk_bin_36() {
 void func_80330F74_unk_bin_36() {
     struct ObjectStruct* obj = &gObjects[gCurrentParsedObject];
 
-    switch (obj->unkA4) {
+    switch (obj->action_state) {
         case 1:
             func_803309D0_unk_bin_36();
             break;
@@ -324,7 +324,7 @@ void func_80331034_unk_bin_36() {
 
 void func_803310AC_unk_bin_36() {
     if (D_80177A64 == 0) {
-        gObjects[gCurrentParsedObject].unkA4 = 2;
+        gObjects[gCurrentParsedObject].action_state = 2;
         gObjects[gCurrentParsedObject].unk132 = 0;
     }
 }
@@ -374,7 +374,7 @@ void func_80331470_unk_bin_36() {
 }
 
 void func_803314A0_unk_bin_36() {
-    switch (gObjects[gCurrentParsedObject].unkA4) {
+    switch (gObjects[gCurrentParsedObject].action_state) {
         case 1:
             func_80331124_unk_bin_36();
             break;

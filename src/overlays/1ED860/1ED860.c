@@ -24,7 +24,7 @@ void func_80330000_unk_bin_41() {
     objIdx = func_80027464(9, &D_80113C7C, D_80165100->unk2, D_80165100->unk4, D_80165100->unk6, D_80165100->unk8);
 
     if (objIdx != -1) {
-        gObjects[objIdx].unkA4 = 8;
+        gObjects[objIdx].action_state = 8;
         gObjects[objIdx].unkB0 = 8;
         gObjects[objIdx].unk132 = 0;
         gObjects[objIdx].Scale.x = 0.5f;
@@ -46,7 +46,7 @@ s8 func_80330244_unk_bin_41(s8 idx) {
     for (i = 0; i < gObjects[idx].unkB0; i++) {
         objIdx = gObjects[idx].unkE8[i];
 
-        gObjects[objIdx].unkA4 = 1;
+        gObjects[objIdx].action_state = 1;
         gObjects[objIdx].unk132 = 0;
         gObjects[objIdx].unkA8 = gObjects[idx].unkE6[i];
         gObjects[objIdx].unkAA = 1;
@@ -66,9 +66,9 @@ s8 func_80330244_unk_bin_41(s8 idx) {
 
 void func_8033050C_unk_bin_41() {
     if (D_80177A64 == 0) {
-        gObjects[gCurrentParsedObject].unkA4 = 3;
+        gObjects[gCurrentParsedObject].action_state = 3;
     } else if (D_80177A64 == 1) {
-        gObjects[gCurrentParsedObject].unkA4 = 4;
+        gObjects[gCurrentParsedObject].action_state = 4;
     } else {
         return;
     }
@@ -127,11 +127,11 @@ void func_803305D4_unk_bin_41() {
     func_8033193C_unk_bin_41();
 
     if (obj->unk132 == 2 && !func_8002A1FC(gCurrentParsedObject, 1200.0f)) {
-        obj->unkA4 = 6;
+        obj->action_state = 6;
         obj->unk132 = 0;
     }
     if (func_8002A1FC(gCurrentParsedObject, 720.0f)) {
-        obj->unkA4 = 7;
+        obj->action_state = 7;
         obj->unk132 = 0;
     }
 }
@@ -172,10 +172,10 @@ void func_803309CC_unk_bin_41() {
 
     if (obj->unkA6 >= 0xA) {
         if (firstObj->Pos.y + 480.0f <= obj->Pos.y) {
-            obj->unkA4 = 6;
+            obj->action_state = 6;
             obj->unk132 = 0;
             if (func_8002A1FC(gCurrentParsedObject, 720.0f) == 0) {
-                obj->unkA4 = 8;
+                obj->action_state = 8;
                 obj->unk132 = 0;
             }
         }
@@ -256,8 +256,8 @@ s8 func_80330C3C_unk_bin_41() {
     obj->unkB2++;
 
     if (firstObj->Pos.y - 480.0f >= obj->Pos.y) {
-        obj->unkA4 = 7;
-        obj->unkA4 = 5;
+        obj->action_state = 7;
+        obj->action_state = 5;
         obj->unk132 = 0;
     }
 }
@@ -291,7 +291,7 @@ void func_803310A0_unk_bin_41() {
     obj->unkA6++;
 
     if (!func_8002A1FC(gCurrentParsedObject, 720.0f)) {
-        obj->unkA4 = 8;
+        obj->action_state = 8;
         obj->unk132 = 0;
     }
 }
@@ -327,8 +327,8 @@ void func_80331248_unk_bin_41() {
     func_8033193C_unk_bin_41();
 
     if (!func_800BFF20(obj, obj->unkDC, 12.0f)) {
-        obj->unkA4 = 2;
-        obj->unkA4 = 7;
+        obj->action_state = 2;
+        obj->action_state = 7;
         obj->unk132 = 0;
     }
 }
@@ -406,7 +406,7 @@ void func_8033168C_unk_bin_41() {
 
     if (obj->unk108 == 1) {
         obj->unk108 = 1;
-        obj->unkA4 = 7;
+        obj->action_state = 7;
         obj->unk132 = 0;
 
         for (i = 0; i < obj->unkB0; i++) {
@@ -448,19 +448,19 @@ s16 func_803319F4_unk_bin_41(s16 idx) {
 
         factor = Math_NormalizeAngle(sp40->unk40);
 
-        addend = cosf(factor * 0.017453292519943295) * 48.0f;
-        obj->Vel.y = sinf(factor * 0.017453292519943295) * 48.0f;
+        addend = cosf(factor * DEG_TO_RAD) * 48.0f;
+        obj->Vel.y = sinf(factor * DEG_TO_RAD) * 48.0f;
         addend = 48.0f;
 
-        if (parsedObj->unkA4 == 5) {
+        if (parsedObj->action_state == 5) {
             addend = 14.0f;
             obj->Vel.y = 0.0f;
         }
 
         factor = func_80015538(sp40->unkD4, 180.0f);
 
-        obj->Vel.x = sinf(factor * 0.017453292519943295) * addend;
-        obj->Vel.z = cosf(factor * 0.017453292519943295) * addend;
+        obj->Vel.x = sinf(factor * DEG_TO_RAD) * addend;
+        obj->Vel.z = cosf(factor * DEG_TO_RAD) * addend;
         obj->Vel.y *= -1.0f;
 
         obj->Pos.x = sp40->Pos.x + obj->Vel.x;
@@ -485,7 +485,7 @@ s16 func_803319F4_unk_bin_41(s16 idx) {
 void func_80331D50_unk_bin_41() {
     s32 sp1C;
 
-    sp1C = gObjects[gCurrentParsedObject].unkA4;
+    sp1C = gObjects[gCurrentParsedObject].action_state;
 
     switch (sp1C) {
         case 8:

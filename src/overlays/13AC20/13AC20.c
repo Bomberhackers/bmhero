@@ -233,8 +233,8 @@ void func_80280A7C_code_extra_3(void) {
 }
 
 void func_80280B30_code_extra_3(void) {
-    gPlayerObject->Vel.x = sinf((f32) ((f64) gPlayerObject->unk3C * 0.017453292519943295)) * gPlayerObject->unk44;
-    gPlayerObject->Vel.z = cosf((f32) ((f64) gPlayerObject->unk3C * 0.017453292519943295)) * gPlayerObject->unk44;
+    gPlayerObject->Vel.x = sinf((f32) ((f64) gPlayerObject->unk3C * DEG_TO_RAD)) * gPlayerObject->unk44;
+    gPlayerObject->Vel.z = cosf((f32) ((f64) gPlayerObject->unk3C * DEG_TO_RAD)) * gPlayerObject->unk44;
 }
 
 void func_80280BD8_code_extra_3(void) {
@@ -252,7 +252,7 @@ void func_80280C84_code_extra_3(void) {
     s16 sp26;
     s32 sp20;
 
-    gPlayerObject->unkA4 = 0x12D;
+    gPlayerObject->action_state = 0x12D;
     if (gPlayerObject->unk44 == 0.0f) {
         sp26 = 0;
     } else if (gPlayerObject->unk44 < -4.0f) {
@@ -276,7 +276,7 @@ void func_80280DF8_code_extra_3(void) {
     s16 sp26;
 
     sp26 = 7;
-    gPlayerObject->unkA4 = 0x12E;
+    gPlayerObject->action_state = 0x12E;
     func_8001C0EC(0, 0, (s32) sp26, 1, &D_80115F34);
     func_8001B754(0, 0);
     D_801651A4 &= ~1;
@@ -286,7 +286,7 @@ void func_80280E74_code_extra_3(void) {
     s16 sp26;
 
     sp26 = 8;
-    gPlayerObject->unkA4 = 0x12F;
+    gPlayerObject->action_state = 0x12F;
     func_8001C0EC(0, 0, (s32) sp26, 1, &D_80115F34);
     func_8001B754(0, 0);
     D_801651A4 |= 1;
@@ -297,7 +297,7 @@ void func_80280F00_code_extra_3(void) {
     s16 sp26;
 
     sp26 = 9;
-    gPlayerObject->unkA4 = 0x130;
+    gPlayerObject->action_state = 0x130;
     func_8001C0EC(0, 0, (s32) sp26, 1, &D_80115F34);
     D_801651A4 &= ~1;
 }
@@ -394,8 +394,8 @@ void func_80281314_code_extra_3(void) {
     func_80280604_code_extra_3();
     func_80085B34(0.0f, 0.0f);
     func_802804F8_code_extra_3();
-    func_80280E74_code_extra_3_1[gPlayerObject->unkA4 + 14][0]();
-    func_80280E74_code_extra_3_1[gPlayerObject->unkA4 + 13][1]();
+    func_80280E74_code_extra_3_1[gPlayerObject->action_state + 14][0]();
+    func_80280E74_code_extra_3_1[gPlayerObject->action_state + 13][1]();
     func_80280BD8_code_extra_3();
     func_80280000_code_extra_3();
     gPlayerObject->Rot.y = 180.0f;
@@ -422,7 +422,7 @@ void func_802814CC_code_extra_3(void) {
     func_8001BD44(0, 0, 0x13, (s32) gFileArray[1].ptr);
     func_8001C0EC(0, 0, 0, 1, &D_80115F34);
     gPlayerObject->obj_id = 3;
-    gPlayerObject->unkA4 = 0x12D;
+    gPlayerObject->action_state = 0x12D;
     gPlayerObject->Rot.y = 180.0f;
     D_8016E408 = 0.0f;
     D_8016E3F6 = 0;

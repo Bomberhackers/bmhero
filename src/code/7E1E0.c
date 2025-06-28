@@ -82,7 +82,7 @@ void func_8008BCC0(void) {
         func_8008D3F8(0);
     }
 
-    if (gObjects[sp24].unkA4 != 0) {
+    if (gObjects[sp24].action_state != 0) {
         func_8001CEF4((s32) sp24);
         func_8001CD20((s32) sp24);
         func_8001AD6C((s32) sp24);
@@ -330,8 +330,8 @@ void func_8008D188(s16 arg0) {
     s16 sp1E;
 
     sp24 = D_80134D48[(s16) arg0].ObjectID;
-    gObjects[sp24].Vel.x = gObjects[sp24].unk44 * sinf(gObjects[sp24].unk3C * 0.017453292519943295); // 1°
-    gObjects[sp24].Vel.z = gObjects[sp24].unk44 * cosf(gObjects[sp24].unk3C * 0.017453292519943295);
+    gObjects[sp24].Vel.x = gObjects[sp24].unk44 * sinf(gObjects[sp24].unk3C * DEG_TO_RAD); // 1°
+    gObjects[sp24].Vel.z = gObjects[sp24].unk44 * cosf(gObjects[sp24].unk3C * DEG_TO_RAD);
 
     if (D_80134D48[arg0].unkE == 0) {
         func_8008DA20(arg0);
@@ -1282,7 +1282,7 @@ void func_80093B64(void) {
 
         if (D_801776E0 & 1) {
             if ((D_80177740[D_801776E0 & 1] == 0xF5) || (D_80177740[D_801776E0 & 1] == 0xD9)) {
-                sp3C->unkA4 = 2;
+                sp3C->action_state = 2;
                 sp3C->unk132 = 0;
                 return;
             } else {
@@ -1309,7 +1309,7 @@ void func_80093F30(void) {
             func_8002AE38(sp24->Pos.x, sp24->Pos.y, sp24->Pos.z, 1.0f, 0x11);
         }
         if (sp24->unkB2 == 0x78) {
-            sp24->unkA4 = 1;
+            sp24->action_state = 1;
             sp24->unk132 = 0;
             sp24->unkD4 = 0.0f;
             sp24->unkD8 = 0.0f;
@@ -1385,7 +1385,7 @@ void func_80094570(void) {
 
 void func_800945E8(void) {
     if (D_80177A64 == 0) {
-        gObjects[gCurrentParsedObject].unkA4 = 2;
+        gObjects[gCurrentParsedObject].action_state = 2;
     } else if (D_80177A64 == 1) {
     } else {
     }
@@ -1406,7 +1406,7 @@ void func_80094680(void) {
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8009473C.s")
 
 void func_8009476C(void) {
-    switch (gObjects[gCurrentParsedObject].unkA4) {
+    switch (gObjects[gCurrentParsedObject].action_state) {
         case 1:
             func_80094680();
             break;

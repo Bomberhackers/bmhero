@@ -1,3 +1,6 @@
+sContActiveButton = 0x800576A0;
+Set_BgColor = 0x8001D244;
+Math_SolvePlaneY = 0x80015D2C;
 Math_CalcAngleSimple = 0x800156C4;
 Math_NormalizeAngle = 0x80015744;
 Math_CalcAngle2D = 0x800155A8;

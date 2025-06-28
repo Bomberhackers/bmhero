@@ -289,7 +289,7 @@ u32 func_800FE898(void) {
     func_80019C84();
     func_80019D2C();
     func_8001A258(); // Initialize some objects
-    func_8001D244(0xFF, 0xFF, 0xFF, 0x10);
+    Set_BgColor(255, 255, 255, 16);
     func_8001D284();
     func_80000964();
     return (u32) D_80134FD0;
@@ -345,7 +345,7 @@ void func_800FEB6C(void) {
     x = (f32) gLightingSettings.l[0].l.dir[0];
     y = (f32) gLightingSettings.l[0].l.dir[1];
     z = (f32) gLightingSettings.l[0].l.dir[2];
-    dist = sqrtf((x * x) + (y * y) + (z * z));
+    dist = sqrtf(SQ(x) + SQ(y) + SQ(z));
     sprintf(gDebugTextBuf, "   DIR TOTAL = %d", (s32) dist);
     debug_print_xy(0x20, 0xB0);
     sprintf(gDebugTextBuf, "=");
@@ -383,7 +383,7 @@ void func_800FEFA0(void) {
     s32 sp38;
 
     sprintf((char*) gDebugTextBuf, "(%d %d %d) ST=%d CG=%d %d", (s32) gPlayerObject->Pos.x, (s32) gPlayerObject->Pos.y,
-            (s32) gPlayerObject->Pos.z, gPlayerObject->unkA4, D_80165290[PLAYER_OBJ.Unk140[0]].unk14,
+            (s32) gPlayerObject->Pos.z, gPlayerObject->action_state, D_80165290[PLAYER_OBJ.Unk140[0]].unk14,
             gPlayerObject->unk108);
     debug_print_xy(0x20, 0x10);
     sp54 = (s32) gPlayerObject->Pos.x / 60;

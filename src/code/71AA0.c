@@ -423,6 +423,7 @@ void func_800813B8(void) {
     }
 }
 
+
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80081468.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_800816FC.s")
@@ -566,7 +567,7 @@ void func_80081D78(void) {
     } else {
         PlayTrack_WithVolLoop(-1, -1, 0);
     }
-    func_8001D244(-1, -1, -1, 0x10);
+    Set_BgColor(-1, -1, -1, 0x10);
     func_8001D284();
 }
 

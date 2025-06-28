@@ -125,7 +125,7 @@ void func_8001CEF4(s32 arg0);
 void func_8001D000(s32 red, s32 green, s32 blue, s32 alpha);
 s32 func_8001D1D4(void);	
 void func_8001D1F4(void);
-void func_8001D244(char arg0, char arg1, char arg2, char arg3);
+void Set_BgColor(char arg0, char arg1, char arg2, char arg3);
 void func_8001D284(void);
 void func_8001D2C0(void);
 void func_8001D2FC(void);

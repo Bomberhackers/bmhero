@@ -179,7 +179,7 @@ void func_8006B7BC(void) {
             if (sp24 == -1) {
                 break;
             } else {
-                gObjects[sp24].unkA4 = 2;
+                gObjects[sp24].action_state = 2;
                 D_8017792D = 1;
                 sp24 += 1;
             }
@@ -327,8 +327,8 @@ void func_8006BF5C(void) {
                 break;
             } else {
                 if (D_8017794A == 0) {
-                    sp1C = sinf((f32) (((f64) gObjects[sp24].unk3C) * 0.017453292519943295)) * -90.0f;
-                    sp18 = cosf((f32) (((f64) gObjects[sp24].unk3C) * 0.017453292519943295)) * -90.0f;
+                    sp1C = sinf((f32) (((f64) gObjects[sp24].unk3C) * DEG_TO_RAD)) * -90.0f;
+                    sp18 = cosf((f32) (((f64) gObjects[sp24].unk3C) * DEG_TO_RAD)) * -90.0f;
 
                     func_80067748(gObjects[sp24].Pos.x + sp1C, gObjects[sp24].Pos.y, gObjects[sp24].Pos.z + sp18);
                     sp20 = D_80177760[D_801776E0 & 1];

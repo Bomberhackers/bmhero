@@ -251,7 +251,7 @@ struct ObjectStruct {
     /* 0x05C */ f32 unk5C;
     /* 0x060 */ f32 unk60;
     /* 0x064 */ Matrix unk64;
-    /* 0x0A4 */ s16 unkA4;
+    /* 0x0A4 */ s16 action_state;
     /* 0x0A6 */ s16 unkA6;
     /* 0x0A8 */ s16 unkA8;
     /* 0x0AA */ s16 unkAA;
@@ -329,7 +329,7 @@ struct UnkStructSTCG
     f32 Unk28;
     f32 Unk2C;
     char padding_1[0xA4 - 0x24 - (sizeof(s32) * 3)];
-    s16 UnkA4;
+    s16 action_state;
     char padding_2[0x108 - 0xA4 - sizeof(s16)];
     s16 Unk108;
 };

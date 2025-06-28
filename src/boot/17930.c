@@ -673,7 +673,7 @@ void Init_Obj(int index) {
     s32 i;
 
     obj = &gObjects[index];
-    obj->unkA4 = 0;
+    obj->action_state = 0;
     obj->unkA6 = 0;
     obj->unkA8 = 0;
     obj->unkAA = 0;
@@ -1232,7 +1232,7 @@ void func_8001C464(void) {
     s32 sp28;
 
     for (sp34 = &gObjects[0xE], sp30 = 14; sp30 < 0x4E; sp34++, sp30++) {
-        if (sp34->unkA4 != 0) {
+        if (sp34->action_state != 0) {
             func_80019510(sp30, 1, 1);
             if (!((u8) sp34->unk130 & 1) && !(sp34->unk131 & 2) && (((sp2C = sp34->Unk140[0]) != -1))) {
                 func_8001838C();
@@ -1253,7 +1253,7 @@ void func_8001C5B8(void) {
     s32 sp28;
 
     for (sp34 = &gObjects[0xE], sp30 = 14; sp30 < 0x4E; sp34++, sp30++) {
-        if (sp34->unkA4 != 0) {
+        if (sp34->action_state != 0) {
             if (!((u8) sp34->unk130 & 1) && !(sp34->unk131 & 2) && (((sp2C = sp34->Unk140[3]) != -1))) {
                 func_80019510(sp30, 1, 0);
                 func_8001838C();
@@ -1275,7 +1275,7 @@ void func_8001C70C(void) {
     s32 sp2C;
 
     for (sp3C = &gObjects[0x4E], sp38 = 0x4E; sp38 < 0x8E; sp3C++, sp38++) {
-        if (sp3C->unkA4 != 0) {
+        if (sp3C->action_state != 0) {
             if ((char) gObjects[sp38].unk139 != 0) {
                 func_80019510(sp38, 1, 0);
             } else {
@@ -1311,7 +1311,7 @@ void func_8001C96C(void) {
 
     func_8001838C();
     for (sp34 = &gObjects[0x4E], sp30 = 0x4E; sp30 < 0x8E; sp34++, sp30++) {
-        if ((sp34->unkA4 != 0)) {
+        if ((sp34->action_state != 0)) {
             if (!((u8) sp34->unk130 & 1) && ((sp2C = (s32) sp34->Unk140[3]) != -1)) {
                 func_80019510(sp30, 1, 0);
                 func_8001B014(sp30, 3);
@@ -1413,7 +1413,7 @@ void func_8001D1F4(void) {
     D_8016E12C = 16;
 }
 
-void func_8001D244(char red, char green, char blue, char alpha) {
+void Set_BgColor(char red, char green, char blue, char alpha) {
     D_8016E111 = red;
     D_8016E114 = green;
     D_8016E116 = blue;

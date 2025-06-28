@@ -20,7 +20,7 @@ void func_800C0290(void) {
     sp26 = func_80027464(1, &D_80113DFC, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
                          (f32) D_80165100->unk8);
     if (sp26 != -1) {
-        gObjects[sp26].unkA4 = 3;
+        gObjects[sp26].action_state = 3;
         gObjects[sp26].unkA8 = 1;
         gObjects[sp26].unkAA = 0;
         gObjects[sp26].unkAC = 0x258;
@@ -65,7 +65,7 @@ void func_800C04C4(void) {
 
     sp44->unkA6 -= sp44->unk48;
     if (sp44->unkA6 <= 0) {
-        sp44->unkA4 = 3;
+        sp44->action_state = 3;
         sp44->unk132 = 0;
         sp44->unkA8 = -sp44->unkA8;
     }
@@ -84,7 +84,7 @@ void func_800C0898(void) {
 void func_800C08A8(void) {
     s32 sp24;
 
-    sp24 = (s32) gObjects[gCurrentParsedObject].unkA4;
+    sp24 = (s32) gObjects[gCurrentParsedObject].action_state;
     switch (sp24) {
         case 3:
             func_800C04C4();
@@ -106,7 +106,7 @@ void func_800C0964(void) {
     sp26 = func_80027464(1, &D_80113E14, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
                          (f32) D_80165100->unk8);
     if (sp26 != -1) {
-        gObjects[sp26].unkA4 = 1;
+        gObjects[sp26].action_state = 1;
         gObjects[sp26].unkA8 = 0;
         gObjects[sp26].unkAA = -1;
         gObjects[sp26].unk132 = 0;
@@ -133,7 +133,7 @@ void func_800C0B78(void) {
         if (sp4->unk10B == 0) {
             if (sp4->unkAA == 1) {
                 sp4->unkAA = -1;
-                sp4->unkA4 = 2;
+                sp4->action_state = 2;
                 sp4->unk108 = -1;
                 sp4->unk132 = 0;
                 return;
@@ -142,7 +142,7 @@ void func_800C0B78(void) {
         } else {
             if (sp4->unkAA == 0) {
                 sp4->unkAA = -1;
-                sp4->unkA4 = 2;
+                sp4->action_state = 2;
                 sp4->unk108 = -1;
                 sp4->unk132 = 0;
                 return;
@@ -203,7 +203,7 @@ void func_800C0F18(void) {
     }
     if (sp3C->unkA6 <= 0) {
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0x12B, (u32*) &D_80117F08);
-        sp3C->unkA4 = 1;
+        sp3C->action_state = 1;
         sp3C->unk132 = 0;
     } else {
         sp3C->Rot.x = ((sp3C->Rot.x + 12.0f) > 180.0f)
@@ -228,7 +228,7 @@ void func_800C1224(void) {
     struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
-    switch (sp1C->unkA4) {
+    switch (sp1C->action_state) {
         case 1:
             func_800C0CC0();
             break;

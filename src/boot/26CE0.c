@@ -107,7 +107,7 @@ void func_80026548(void) {
     view_z = gView.at.z;
 
     for (sp24 = &gObjects[14], sp44 = 14; sp44 < 78; sp24++, sp44++) {
-        if (sp24->unkA4 != 0) {
+        if (sp24->action_state != 0) {
             sp1C = 0;
             sp30 = sp24->Pos.x - view_x;
             sp2C = sp24->Pos.y - view_y;
@@ -336,7 +336,7 @@ s32 func_80027464(s32 arg0, struct UnkStruct_80027C00* arg1, f32 arg2, f32 arg3,
 
     index = 0;
     for (sp1C = 0xE; sp1C < 0x4E; sp1C++) {
-        if (gObjects[sp1C].unkA4 == 0) {
+        if (gObjects[sp1C].action_state == 0) {
             unk24[index] = sp1C;
             index++;
             if (index == arg0) {
@@ -361,7 +361,7 @@ s32 func_80027464(s32 arg0, struct UnkStruct_80027C00* arg1, f32 arg2, f32 arg3,
             gObjects[unk24[index]].Pos.z = gObjects[unk24[index]].unk58 = arg4;
             gObjects[unk24[index]].Rot.y = arg5;
             gObjects[unk24[index]].unk3C = arg5;
-            gObjects[unk24[index]].unkA4 = 1;
+            gObjects[unk24[index]].action_state = 1;
             gObjects[unk24[index]].obj_id = arg1->unk2;
             gObjects[unk24[index]].unk100 = arg1->unk7;
             gObjects[unk24[index]].unk108 = arg1->unk8;
@@ -418,7 +418,7 @@ s32 func_80027C00(s32 arg0, s32 arg1, struct UnkStruct_80027C00* arg2, f32 arg3,
     gObjects[sp24].Pos.z = gObjects[sp24].unk58 = arg5;
     gObjects[sp24].Rot.y = arg6;
     gObjects[sp24].unk3C = arg6;
-    gObjects[sp24].unkA4 = 1;
+    gObjects[sp24].action_state = 1;
     gObjects[sp24].obj_id = arg2->unk2;
     gObjects[sp24].unk100 = (s16) arg2->unk7;
     gObjects[sp24].unk108 = (s16) arg2->unk8;
@@ -523,9 +523,9 @@ s32 func_80028260(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5) {
         if (sp78 >= 360.0f) {
             sp78 -= 360.0f;
         }
-        sp88 = sinf(sp78 * 0.017453292519943295) * arg1 + (spA0 + sp94);
+        sp88 = sinf(sp78 * DEG_TO_RAD) * arg1 + (spA0 + sp94);
         sp84 = sp9C + sp90;
-        sp80 = (cosf((f32) ((f64) sp78 * 0.017453292519943295)) * arg1) + (sp98 + sp8C);
+        sp80 = (cosf((f32) ((f64) sp78 * DEG_TO_RAD)) * arg1) + (sp98 + sp8C);
         func_80067748(sp88, sp84, sp80);
         if (arg5 == 0) {
             if (!(D_801776E0 & 1)) {
@@ -539,12 +539,12 @@ s32 func_80028260(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5) {
                 sp70 = sp70 | 1 << sp4C;
             }
         } else if (!(D_801776E0 & 1)) {
-            if (!func_8001608C(sp64, sp60, sp5C, sp58, (s32) D_801776F0[0], (s32) D_80177700[0], (s32) D_80177710[0],
+            if (!Math_ComparePlanes(sp64, sp60, sp5C, sp58, (s32) D_801776F0[0], (s32) D_80177700[0], (s32) D_80177710[0],
                                D_80177720[0])) {
 
                 sp70 = sp70 | 1 << (sp4C + 3);
             }
-        } else if (func_8001608C(sp64, sp60, sp5C, sp58, (s32) D_801776F0[1], D_80177700[1], D_80177710[1],
+        } else if (Math_ComparePlanes(sp64, sp60, sp5C, sp58, (s32) D_801776F0[1], D_80177700[1], D_80177710[1],
                                  D_80177720[1]) == 0) {
             sp70 = sp70 | 1 << sp4C;
         }
@@ -613,16 +613,16 @@ s32 func_8002894C(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
         if (sp78 >= 360.0f) {
             sp78 -= 360.0f;
         }
-        sp88 = (sinf((f32) ((f64) sp78 * 0.017453292519943295)) * arg1) + (spA0 + sp94);
+        sp88 = (sinf((f32) ((f64) sp78 * DEG_TO_RAD)) * arg1) + (spA0 + sp94);
         sp84 = sp9C + sp90;
-        sp80 = (cosf((f32) ((f64) sp78 * 0.017453292519943295)) * arg1) + (sp98 + sp8C);
+        sp80 = (cosf((f32) ((f64) sp78 * DEG_TO_RAD)) * arg1) + (sp98 + sp8C);
         func_80067748(sp88, sp84, sp80);
         if (!(D_801776E0 & 1)) {
-            if (func_8001608C(sp64, sp60, sp5C, sp58, D_801776F0[1], D_80177700[1], D_80177710[1], D_80177720[1]) ==
+            if (Math_ComparePlanes(sp64, sp60, sp5C, sp58, D_801776F0[1], D_80177700[1], D_80177710[1], D_80177720[1]) ==
                 0) {
                 sp70 = sp70 | 1 << (sp4C + 3);
             }
-        } else if (func_8001608C(sp64, sp60, sp5C, sp58, D_801776F0[0], D_80177700[0], D_80177710[0], D_80177720[0]) ==
+        } else if (Math_ComparePlanes(sp64, sp60, sp5C, sp58, D_801776F0[0], D_80177700[0], D_80177710[0], D_80177720[0]) ==
                    0) {
             sp70 = sp70 | 1 << sp4C;
         }
@@ -889,7 +889,7 @@ void func_80029D8C(s32 arg0) {
     sp24 = &gObjects[arg0];
     sp24->Vel.x = (sp24->unk44 * cosf(sp24->unk40 * DEG_TO_RAD)) * sinf(sp24->unk3C * DEG_TO_RAD);
     sp24->Vel.z = (sp24->unk44 * cosf(sp24->unk40 * DEG_TO_RAD)) * cosf(sp24->unk3C * DEG_TO_RAD);
-    sp24->Vel.y = sinf(sp24->unk40 * 0.017453292519943295) * sp24->unk44;
+    sp24->Vel.y = sinf(sp24->unk40 * DEG_TO_RAD) * sp24->unk44;
 }
 
 void func_80029EF8(s32 arg0, f32 arg1, f32 arg2) {
@@ -1120,7 +1120,7 @@ s32 func_8002AB40(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
         func_8001BD44(sp2C, 3, 1, gFileArray[0x45].ptr);
         func_8001BE6C(sp2C, 3, 0, gFileArray[0x45].ptr + D_801168D0[0]);
     }
-    sp28->unkA4 = 1;
+    sp28->action_state = 1;
     sp28->obj_id = 0x47;
     sp28->Pos.x = arg0;
     sp28->Pos.y = arg1;
@@ -1193,19 +1193,19 @@ void func_8002B144(void) {
 }
 
 void func_8002B154(void) {
-    s32 sp1C;
+    s32 i;
 
-    for (sp1C = 0xE; sp1C < 0x4E; sp1C++) {
-        if (gObjects[sp1C].unkA4 != 0) {
-            gCurrentParsedObject = sp1C;
-            D_80124D90[gObjects[sp1C].obj_id].routine2();
-            if (gObjects[sp1C].unkA4 != 0) {
-                if (gObjects[sp1C].unk108 >= 2) {
-                    gObjects[sp1C].unk108 -= 1;
+    for (i = 14; i < 78; i++) {
+        if (gObjects[i].action_state != 0) {
+            gCurrentParsedObject = i;
+            D_80124D90[gObjects[i].obj_id].routine2();
+            if (gObjects[i].action_state != 0) {
+                if (gObjects[i].unk108 >= 2) {
+                    gObjects[i].unk108 -= 1;
                 }
-                func_8001CEF4(sp1C);
-                func_8001CD20(sp1C);
-                func_8001AD6C(sp1C);
+                func_8001CEF4(i);
+                func_8001CD20(i);
+                func_8001AD6C(i);
             }
         }
     }

@@ -14,13 +14,12 @@ s32 func_800157EC(f32 arg0, f32 arg1, f32 arg2);
 void func_800158B4(f32 arg0, f32 arg1, f32 arg2, f32* arg3, f32* arg4);
 f32 Math_SolvePlaneX(f32 arg0, f32 arg1, s64 arg2, s64 arg4, s64 arg6, s64 arg8);
 f32 Math_SolvePlaneY(f32 arg0, f32 arg1, s64 arg2, s64 arg3, s64 arg4, s64 arg5);
-s32 func_8001608C(s64 arg0, s64 arg2, s64 arg4, s64 arg6, s64 arg8, s64 argA, s64 argC, s64 argE);
+s32 Math_ComparePlanes(s64 arg0, s64 arg2, s64 arg4, s64 arg6, s64 arg8, s64 argA, s64 argC, s64 argE);
 s32 func_800162F0(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5);
 s32 func_800163AC(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9);
 s32 func_80016560(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6, f32 arg7, f32 arg8, f32 arg9);
 void func_80016A80(s64 arg0, s64 arg2, s64 arg4, s64 arg5, f32* argA, f32* argB, f32* argC, f32* argD);
 
-// Temporal name
 f32 gArctanTable[100] = {
     0.0f,      0.57294f,  1.14576f,  1.71836f,  2.29061f,  2.86241f,  3.43363f,  4.00417f,  4.57392f,  5.14276f,
     5.71059f,  6.2773f,   6.84277f,  7.40691f,  7.96961f,  8.53077f,  9.09028f,  9.64805f,  10.20397f, 10.75797f,
@@ -189,9 +188,9 @@ s32 func_800157EC(f32 arg0, f32 arg1, f32 arg2) {
     return 1;
 }
 
-void func_800158B4(f32 arg0, f32 arg1, f32 arg2, f32* arg3, f32* arg4) {
-    *arg4 = func_80015634(arg0, arg2);
-    *arg3 = Math_CalcAngle2D(arg1, sqrtf(SQ(arg0) + SQ(arg2)));
+void func_800158B4(f32 x, f32 y, f32 z, f32* arg3, f32* arg4) {
+    *arg4 = func_80015634(x, z);
+    *arg3 = Math_CalcAngle2D(y, sqrtf(SQ(x) + SQ(z)));
 }
 
 void func_80015944(f64 arg0, f64 arg1, f64 arg4, f64 arg5, f64 arg6, f64 arg7, f64 arg8, f64 arg9, f64 argA, s32* arg12,
@@ -215,26 +214,26 @@ void func_80015944(f64 arg0, f64 arg1, f64 arg4, f64 arg5, f64 arg6, f64 arg7, f
     *arg15 = (sp10 + sp8 + sp0);
 }
 
-f32 Math_SolvePlaneX(f32 x, f32 y, s64 arg2, s64 arg4, s64 arg6, s64 arg8) {
-    f32 sp3C;
+f32 Math_SolvePlaneX(f32 x, f32 y, s64 A, s64 B, s64 C, s64 D) {
+    f32 result_x;
 
-    if (arg2 != 0) {
-        sp3C = (((-(arg4) *x) - (arg6 * y)) + arg8) / arg2;
+    if (A != 0) {
+        result_x = (((-(B) *x) - (C * y)) + D) / A;
     } else {
-        sp3C = 0.0f;
+        result_x = 0.0f;
     }
-    return sp3C;
+    return result_x;
 }
 
-f32 Math_SolvePlaneY(f32 x, f32 y, s64 arg2, s64 arg3, s64 arg4, s64 arg5) {
-    f32 sp3C;
+f32 Math_SolvePlaneY(f32 x, f32 y, s64 A, s64 B, s64 C, s64 D) {
+    f32 result_y;
 
-    if ((arg3 != 0)) {
-        sp3C = (((-(arg2) *x) - (arg4 * y)) + arg5) / arg3;
+    if ((B != 0)) {
+        result_y = (((-(A) *x) - (C * y)) + D) / B;
     } else {
-        sp3C = 0.0f;
+        result_y = 0.0f;
     }
-    return sp3C;
+    return result_y;
 }
 
 /* 
@@ -267,26 +266,31 @@ s32 func_80015F3C(f32 arg0, f32 arg1, f32 arg2, s64 arg4, s64 arg6, s64 arg8, s6
     return 0;
 }
 
-s32 func_8001608C(s64 arg0, s64 arg2, s64 arg4, s64 arg6, s64 arg8, s64 argA, s64 argC, s64 argE) {
-    f32 sp34;
-    f32 sp30;
+/*
+* @brief Compares two planes Y axis
+*
+* @return true if both Y are equal otherwise false
+*/
+s32 Math_ComparePlanes(s64 A, s64 B, s64 C, s64 D, s64 A2, s64 B2, s64 B3, s64 B4) {
+    f32 y1;
+    f32 y2;
 
-    sp34 = Math_SolvePlaneY(0.0f, 0.0f, arg0, arg2, arg4, arg6);
-    sp30 = Math_SolvePlaneY(0.0f, 0.0f, arg8, argA, argC, argE);
-    if (sp34 != sp30) {
-        return 0;
+    y1 = Math_SolvePlaneY(0.0f, 0.0f, A, B, C, D);
+    y2 = Math_SolvePlaneY(0.0f, 0.0f, A2, B2, B3, B4);
+    if (y1 != y2) {
+        return FALSE;
     }
-    sp34 = Math_SolvePlaneY(100.0f, 100.0f, arg0, arg2, arg4, arg6);
-    sp30 = Math_SolvePlaneY(100.0f, 100.0f, arg8, argA, argC, argE);
-    if (sp34 != sp30) {
-        return 0;
+    y1 = Math_SolvePlaneY(100.0f, 100.0f, A, B, C, D);
+    y2 = Math_SolvePlaneY(100.0f, 100.0f, A2, B2, B3, B4);
+    if (y1 != y2) {
+        return FALSE;
     }
-    sp34 = Math_SolvePlaneY(100.0f, 0.0f, arg0, arg2, arg4, arg6);
-    sp30 = Math_SolvePlaneY(100.0f, 0.0f, arg8, argA, argC, argE);
-    if (sp34 != sp30) {
-        return 0;
+    y1 = Math_SolvePlaneY(100.0f, 0.0f, A, B, C, D);
+    y2 = Math_SolvePlaneY(100.0f, 0.0f, A2, B2, B3, B4);
+    if (y1 != y2) {
+        return FALSE;
     }
-    return 1;
+    return TRUE;
 }
 
 s32 func_800162F0(f32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {

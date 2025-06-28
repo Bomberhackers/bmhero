@@ -724,7 +724,7 @@ s32 func_80335DE4_unk_bin_2(void) {
                 break;
         }
     }
-    func_8001D244(-1, -1, -1, 0x10);
+    Set_BgColor(-1, -1, -1, 0x10);
     func_8001D284();
     func_80000964();
     return D_803363BC;

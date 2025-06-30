@@ -2263,13 +2263,15 @@ void func_800E3EE4(void) {
         switch (sp4C->objID) {
             case 0xA1:
                 if (sp4C->unk106 == 0xA2) {
-                    if ((gObjects[sp4C->interactingObjIdx].actionState == 0) || (gObjects[sp4C->interactingObjIdx].actionState == 6)) {
+                    if ((gObjects[sp4C->interactingObjIdx].actionState == 0) ||
+                        (gObjects[sp4C->interactingObjIdx].actionState == 6)) {
 
                     } else {
                         gObjects[sp30].unkB2 = 1;
                     }
                 } else {
-                    if ((gObjects[sp4C->interactingObjIdx].actionState == 0) || (gObjects[sp4C->interactingObjIdx].actionState == 7)) {
+                    if ((gObjects[sp4C->interactingObjIdx].actionState == 0) ||
+                        (gObjects[sp4C->interactingObjIdx].actionState == 7)) {
 
                     } else {
                         gObjects[sp30].unkB2 = 3;
@@ -2278,13 +2280,15 @@ void func_800E3EE4(void) {
                 break;
             case 0xA2:
                 if (sp4C->unk106 == 0xA1) {
-                    if ((gObjects[sp4C->interactingObjIdx].actionState == 0) || (gObjects[sp4C->interactingObjIdx].actionState == 5)) {
+                    if ((gObjects[sp4C->interactingObjIdx].actionState == 0) ||
+                        (gObjects[sp4C->interactingObjIdx].actionState == 5)) {
 
                     } else {
                         gObjects[sp30].unkB2 = 1;
                     }
                 } else {
-                    if ((gObjects[sp4C->interactingObjIdx].actionState == 0) || (gObjects[sp4C->interactingObjIdx].actionState == 7)) {
+                    if ((gObjects[sp4C->interactingObjIdx].actionState == 0) ||
+                        (gObjects[sp4C->interactingObjIdx].actionState == 7)) {
 
                     } else {
                         gObjects[sp30].unkB2 = 2;
@@ -2293,13 +2297,15 @@ void func_800E3EE4(void) {
                 break;
             case 0xA3:
                 if (sp4C->unk106 == 0xA2) {
-                    if ((gObjects[sp4C->interactingObjIdx].actionState == 0) || (gObjects[sp4C->interactingObjIdx].actionState == 6)) {
+                    if ((gObjects[sp4C->interactingObjIdx].actionState == 0) ||
+                        (gObjects[sp4C->interactingObjIdx].actionState == 6)) {
 
                     } else {
                         gObjects[sp30].unkB2 = 2;
                     }
                 } else {
-                    if ((gObjects[sp4C->interactingObjIdx].actionState == 0) || (gObjects[sp4C->interactingObjIdx].actionState == 5)) {
+                    if ((gObjects[sp4C->interactingObjIdx].actionState == 0) ||
+                        (gObjects[sp4C->interactingObjIdx].actionState == 5)) {
 
                     } else {
                         gObjects[sp30].unkB2 = 3;

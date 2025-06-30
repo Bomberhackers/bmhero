@@ -3188,7 +3188,8 @@ s16 func_800A169C(int arg0) {
         sp20 = &gObjects[sp1E];
 
         if ((D_80177A64 == 0)) {
-            if ((((!(sp20->interactingObjIdx < 2)) && ((sp20->interactingObjIdx < 6)))) || (!(sp20->interactingObjIdx < 6) && (sp20->interactingObjIdx < 0xE))) {
+            if ((((!(sp20->interactingObjIdx < 2)) && ((sp20->interactingObjIdx < 6)))) ||
+                (!(sp20->interactingObjIdx < 6) && (sp20->interactingObjIdx < 0xE))) {
 
                 func_800281A4(gCurrentParsedObject, (s16) arg0);
 

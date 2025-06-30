@@ -423,7 +423,6 @@ void func_800813B8(void) {
     }
 }
 
-
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_80081468.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_800816FC.s")

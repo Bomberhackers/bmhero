@@ -213,7 +213,7 @@ static s32 __amHandleFrameMsg(AudioInfo* info, AudioInfo* lastInfo) {
     Acmd* cmdp;
     s32 cmdLen;
     int samplesLeft = 0;
-    OSScTask* t;
+    OSTask* t;
 
     __clearAudioDMA(); /* call once a frame, before doing alAudioFrame */
     audioPtr = (s16*) osVirtualToPhysical(info->data);

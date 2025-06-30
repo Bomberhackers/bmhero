@@ -129,10 +129,10 @@ f32 func_80015538(f32 arg0, f32 arg1) {
 }
 
 /*
-*  
-*  @brief: Calculates a 2D angle using Math_Atan2f and adjusts by -90°
-*  @return: normalized result to a positive range
-*/
+ *
+ *  @brief: Calculates a 2D angle using Math_Atan2f and adjusts by -90°
+ *  @return: normalized result to a positive range
+ */
 f32 Math_CalcAngle2D(f32 y, f32 x) {
     f32 angle;
 
@@ -236,10 +236,10 @@ f32 Math_SolvePlaneY(f32 x, f32 y, s64 A, s64 B, s64 C, s64 D) {
     return result_y;
 }
 
-/* 
+/*
  * Solves for z in a plane equation in the form Ax + By + Cz + D = 0
  * @return Given x and y, returns z = -(Ax + By + D) / C
-*/
+ */
 f32 Math_SolvePlaneZ(f32 x, f32 y, s64 A, s64 B, s64 C, s64 D) {
     f32 z;
 
@@ -267,10 +267,10 @@ s32 func_80015F3C(f32 arg0, f32 arg1, f32 arg2, s64 arg4, s64 arg6, s64 arg8, s6
 }
 
 /*
-* @brief Compares two planes Y axis
-*
-* @return true if both Y are equal otherwise false
-*/
+ * @brief Compares two planes Y axis
+ *
+ * @return true if both Y are equal otherwise false
+ */
 s32 Math_ComparePlanes(s64 A, s64 B, s64 C, s64 D, s64 A2, s64 B2, s64 B3, s64 B4) {
     f32 y1;
     f32 y2;

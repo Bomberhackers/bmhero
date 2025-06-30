@@ -5,7 +5,8 @@
 #include "obj.h"
 
 s32 func_80021210(s32 arg0) {
-    if ((gObjects[arg0].actionState != 0) && ((gObjects[arg0].damageState == OBJ_DAMAGE_STATE_NORMAL) || (gObjects[arg0].damageState == OBJ_INVENCIBLE)) &&
+    if ((gObjects[arg0].actionState != 0) &&
+        ((gObjects[arg0].damageState == OBJ_DAMAGE_STATE_NORMAL) || (gObjects[arg0].damageState == OBJ_INVENCIBLE)) &&
         (gObjects[arg0].interactingObjIdx == -1)) {
         return TRUE;
     }
@@ -15,7 +16,8 @@ s32 func_80021210(s32 arg0) {
 s32 func_800212DC(s32 arg0, s32 arg1) {
     s32 sp4;
 
-    if ((gObjects[arg1].actionState != 0) && ((gObjects[arg1].damageState > 0) || (gObjects[arg1].damageState == OBJ_INVENCIBLE)) &&
+    if ((gObjects[arg1].actionState != 0) &&
+        ((gObjects[arg1].damageState > 0) || (gObjects[arg1].damageState == OBJ_INVENCIBLE)) &&
         (gObjects[arg1].interactingObjIdx) == -1) {
         for (sp4 = 0; sp4 < 10; sp4++) {
             if (gObjects[arg0].unk10E[sp4] == arg1) {
@@ -31,14 +33,16 @@ s32 func_800212DC(s32 arg0, s32 arg1) {
 }
 
 s32 Game_IsObjectPaused(s32 objIdx) {
-    if ((gObjects[objIdx].actionState != 0) && (gObjects[objIdx].damageState != OBJ_DEATH) && (gObjects[objIdx].interactingObjIdx == -1)) {
+    if ((gObjects[objIdx].actionState != 0) && (gObjects[objIdx].damageState != OBJ_DEATH) &&
+        (gObjects[objIdx].interactingObjIdx == -1)) {
         return TRUE;
     }
     return FALSE;
 }
 
 s32 func_800214B8(s32 arg0) {
-    if ((gObjects[arg0].actionState != 0) && ((gObjects[arg0].damageState > OBJ_DEATH) || (gObjects[arg0].damageState == OBJ_INVENCIBLE)) &&
+    if ((gObjects[arg0].actionState != 0) &&
+        ((gObjects[arg0].damageState > OBJ_DEATH) || (gObjects[arg0].damageState == OBJ_INVENCIBLE)) &&
         (gObjects[arg0].interactingObjIdx == -1)) {
         return TRUE;
     }
@@ -250,8 +254,8 @@ s32 func_80022454(void) {
     }
 
     for (sp1C = 2, sp18 = &gObjects[2]; sp1C < 6; sp1C++, sp18++) {
-        if (((sp18->actionState == 0x28) || (sp18->actionState == 0x29) || (sp18->actionState == 0x2A) || (sp18->actionState == 0x26) ||
-             (sp18->actionState == 0x27))) {
+        if (((sp18->actionState == 0x28) || (sp18->actionState == 0x29) || (sp18->actionState == 0x2A) ||
+             (sp18->actionState == 0x26) || (sp18->actionState == 0x27))) {
 
             if ((func_80077CB0(0, (s16) sp1C, &sp24.unk0, &sp22) != 0)) {
                 if (sp24.unk0 == 0) {
@@ -436,7 +440,8 @@ void func_80022B54(void) {
             func_800178D4(0, 0, 0x26, -1, 0);
             break;
         case OBJ_ITMBUBLE:
-            if ((gPlayerObject->actionState != 0x31) && (gPlayerObject->damageState != 0x3D) && (gPlayerObject->damageState != 0)) {
+            if ((gPlayerObject->actionState != 0x31) && (gPlayerObject->damageState != 0x3D) &&
+                (gPlayerObject->damageState != 0)) {
                 func_8028491C();
                 func_800178D4(0, 0, 0x26, -1, 0);
             }
@@ -568,8 +573,9 @@ void func_80023754(void) {
     sp1C = (s32) gPlayerObject->interactingObjIdx;
     sp18 = 0;
 
-    if (((gPlayerObject->actionState == 0x20D) || (gPlayerObject->actionState == 0x20E) || (gPlayerObject->actionState == 0x20F) ||
-         (gPlayerObject->actionState == 0x210) || (gPlayerObject->actionState == 0x211) || (gPlayerObject->actionState == 0x212) ||
+    if (((gPlayerObject->actionState == 0x20D) || (gPlayerObject->actionState == 0x20E) ||
+         (gPlayerObject->actionState == 0x20F) || (gPlayerObject->actionState == 0x210) ||
+         (gPlayerObject->actionState == 0x211) || (gPlayerObject->actionState == 0x212) ||
          (gPlayerObject->actionState == 0x216)) &&
         (gObjects[sp1C].unk100 == 1)) {
         sp18 = 1;
@@ -757,7 +763,7 @@ s32 func_800242F0(void) {
     } else if ((gActiveContPressed & CONT_L) && (gShowDebugMenu != 0)) {
         D_8016E3EE = 1;
         gDebugDisplayMode = D_8016E3EC;
-        D_8016E3EC = 0x64; // Main menu 
+        D_8016E3EC = 0x64; // Main menu
         gDebugActionMenuItem = 0;
         return 1;
     } else if ((gActiveContPressed & CONT_START) || (gActiveContPressed & CONT_A)) {
@@ -828,7 +834,7 @@ void func_80024744(void) {
         if ((gActiveContButton & (0x3000)) == 0x3000) {
             func_80069AA8(-1, 0);
         }
-        // Clear level 
+        // Clear level
         if ((gGoldBomber != 0) && ((gActiveContButton & (CONT_G | CONT_L)) == (CONT_G | CONT_L))) {
             if (gCurrentLevel < 0x80) {
                 func_80069D88(0, 1);

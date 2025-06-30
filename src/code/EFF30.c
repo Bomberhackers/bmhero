@@ -292,7 +292,7 @@ u32 func_800FE898(void) {
     Set_BgColor(255, 255, 255, 16);
     func_8001D284();
     func_80000964();
-    return (u32)D_80134FD0;
+    return (u32) D_80134FD0;
 }
 
 void func_800FE9BC(void) {
@@ -385,7 +385,7 @@ void func_800FEFA0(void) {
     sprintf((char*) gDebugTextBuf, "(%d %d %d) ST=%d CG=%d %d", (s32) gPlayerObject->Pos.x, (s32) gPlayerObject->Pos.y,
             (s32) gPlayerObject->Pos.z, gPlayerObject->actionState, D_80165290[PLAYER_OBJ.Unk140[0]].unk14,
             gPlayerObject->damageState);
-            // damageState seems to be something like damageState
+    // damageState seems to be something like damageState
     debug_print_xy(0x20, 0x10);
     sp54 = (s32) gPlayerObject->Pos.x / 60;
     sp4C = (s32) gPlayerObject->Pos.x % 60;

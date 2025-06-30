@@ -346,8 +346,8 @@ void MultiplyMatrix(float mf1[3][4], float mf2[3][3]) {
 }
 
 /*
-* Rotates a 3x3 matrix 
-*/
+ * Rotates a 3x3 matrix
+ */
 UNUSED void Math_Mtx3_Rotate(f32 arg0[3][3], f32 x, f32 y, f32 z) {
     f32 sp34[3][3];
     f32 sp30;
@@ -453,7 +453,8 @@ UNUSED void func_800142F0(Gfx* arg0, struct UnkStruct_800142F0* arg1) {
     u32 sp4;
 
     sp4 = 0xFC000000;
-    sp4 |= (((s32) arg1->unk0 & 0xF) << 0x14) | ((arg1->unk8 & 0x1F) << 0xF) | (arg1->unk10 << 0xC) | (arg1->unk18 << 9);
+    sp4 |=
+        (((s32) arg1->unk0 & 0xF) << 0x14) | ((arg1->unk8 & 0x1F) << 0xF) | (arg1->unk10 << 0xC) | (arg1->unk18 << 9);
     sp4 |= ((arg1->unk20 & 0xF) << 5) | (arg1->unk28 & 0x1F);
     arg0->words.w0 = sp4;
     sp4 = (arg1->unk1C << 9) | (((arg1->unk4 & 0xF) << 0x1C) | ((arg1->unkC & 7) << 0xF) | (arg1->unk14 << 0xC));

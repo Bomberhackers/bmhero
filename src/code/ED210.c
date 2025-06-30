@@ -643,7 +643,8 @@ void func_800FD440(void) {
             CurrentObject->Scale.y = CurrentObject->Scale.z = CurrentObject->Scale.x;
         }
         CurrentObject->unk3C = func_80015538(CurrentObject->unk3C, (f32) sp34);
-        sp30 = Math_CalcAngleSimple(PlayerObject->Pos.x - CurrentObject->Pos.x, PlayerObject->Pos.y - CurrentObject->Pos.y);
+        sp30 = Math_CalcAngleSimple(PlayerObject->Pos.x - CurrentObject->Pos.x,
+                                    PlayerObject->Pos.y - CurrentObject->Pos.y);
         sp30 = Math_NormalizeAngle(sp30);
         sp34 = func_800157EC(CurrentObject->unk40, sp30, (f32) (sp2E + 0xC));
         if (CurrentObject->unkAA == 0) {

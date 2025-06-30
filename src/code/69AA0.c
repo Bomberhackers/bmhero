@@ -247,7 +247,7 @@ s32 func_800781D4(f32 arg0, f32 arg1, f32 arg2) {
     func_80016A80(spA8, spA4, spA0, sp9C, &sp7C, &sp78, &sp74, &sp70);
 
     if ((Math_ComparePlanes(D_80177968, D_80177970, D_80177978, D_80177980, D_801776F0[spAC], D_80177700[spAC],
-                       D_80177710[spAC], D_80177720[spAC]) != 0) &&
+                            D_80177710[spAC], D_80177720[spAC]) != 0) &&
         (sp80 < 60.0f)) {
 
         return 0;
@@ -879,7 +879,9 @@ void func_8007AD60(s32 arg0) {
     s32 sp18;
 
     sp1C = &gObjects[arg0];
-    if ((gPlayerObject->actionState == PLAYER_ACTION_DROP_BOMB_0) || (gPlayerObject->actionState == PLAYER_ACTION_DROP_BOMB_1) || (gPlayerObject->actionState == PLAYER_ACTION_DROP_BOMB_2)) {
+    if ((gPlayerObject->actionState == PLAYER_ACTION_DROP_BOMB_0) ||
+        (gPlayerObject->actionState == PLAYER_ACTION_DROP_BOMB_1) ||
+        (gPlayerObject->actionState == PLAYER_ACTION_DROP_BOMB_2)) {
         sp18 = (s32) ((func_8001B62C(0, 0) - 2.0f) / 2.0f);
         if (sp18 < 0) {
             sp18 = 0;

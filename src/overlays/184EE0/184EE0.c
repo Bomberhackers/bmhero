@@ -776,7 +776,7 @@ s32 func_80333D54_unk_bin_15(s32 idx, s32 arg1, f32 arg2) {
 
 f32 func_80333E3C_unk_bin_15(s32 idx1, s32 idx2) {
     return Math_CalcAngleSimple(gObjects[idx2].Pos.x - gObjects[idx1].Pos.x,
-                         gObjects[idx2].Pos.y + 60.0f - gObjects[idx1].Pos.y);
+                                gObjects[idx2].Pos.y + 60.0f - gObjects[idx1].Pos.y);
 }
 
 void func_80333ED4_unk_bin_15() {

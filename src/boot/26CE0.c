@@ -539,13 +539,13 @@ s32 func_80028260(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5) {
                 sp70 = sp70 | 1 << sp4C;
             }
         } else if (!(D_801776E0 & 1)) {
-            if (!Math_ComparePlanes(sp64, sp60, sp5C, sp58, (s32) D_801776F0[0], (s32) D_80177700[0], (s32) D_80177710[0],
-                               D_80177720[0])) {
+            if (!Math_ComparePlanes(sp64, sp60, sp5C, sp58, (s32) D_801776F0[0], (s32) D_80177700[0],
+                                    (s32) D_80177710[0], D_80177720[0])) {
 
                 sp70 = sp70 | 1 << (sp4C + 3);
             }
         } else if (Math_ComparePlanes(sp64, sp60, sp5C, sp58, (s32) D_801776F0[1], D_80177700[1], D_80177710[1],
-                                 D_80177720[1]) == 0) {
+                                      D_80177720[1]) == 0) {
             sp70 = sp70 | 1 << sp4C;
         }
     }
@@ -618,12 +618,12 @@ s32 func_8002894C(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
         sp80 = (cosf((f32) ((f64) sp78 * DEG_TO_RAD)) * arg1) + (sp98 + sp8C);
         func_80067748(sp88, sp84, sp80);
         if (!(D_801776E0 & 1)) {
-            if (Math_ComparePlanes(sp64, sp60, sp5C, sp58, D_801776F0[1], D_80177700[1], D_80177710[1], D_80177720[1]) ==
-                0) {
+            if (Math_ComparePlanes(sp64, sp60, sp5C, sp58, D_801776F0[1], D_80177700[1], D_80177710[1],
+                                   D_80177720[1]) == 0) {
                 sp70 = sp70 | 1 << (sp4C + 3);
             }
-        } else if (Math_ComparePlanes(sp64, sp60, sp5C, sp58, D_801776F0[0], D_80177700[0], D_80177710[0], D_80177720[0]) ==
-                   0) {
+        } else if (Math_ComparePlanes(sp64, sp60, sp5C, sp58, D_801776F0[0], D_80177700[0], D_80177710[0],
+                                      D_80177720[0]) == 0) {
             sp70 = sp70 | 1 << sp4C;
         }
     }
@@ -993,7 +993,8 @@ f32 func_8002A46C(s32 objIdx) {
 }
 
 f32 func_8002A4E0(s32 objIdx) {
-    return Math_CalcAngleSimple(gPlayerObject->Pos.x - gObjects[objIdx].Pos.x, (gPlayerObject->Pos.y + 60.0f) - gObjects[objIdx].Pos.y);
+    return Math_CalcAngleSimple(gPlayerObject->Pos.x - gObjects[objIdx].Pos.x,
+                                (gPlayerObject->Pos.y + 60.0f) - gObjects[objIdx].Pos.y);
 }
 
 s32 func_8002A560(s32 arg0, f32 arg1) {

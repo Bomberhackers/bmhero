@@ -252,7 +252,7 @@ s32 Eeprom_Read(OSMesgQueue* mq, u8* buf, u8 addr, u16 size) {
     if (osEepromProbe(mq) != 1) {
         return CONT_RANGE_ERROR;
     }
-    
+
     status |= osEepromLongRead(mq, addr, buf, (int) size);
     return status;
 }

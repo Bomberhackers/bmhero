@@ -6,11 +6,7 @@
 
 extern s16 sSetModeMenuOption; // Current Set mode menu item
 
-typedef enum { 
-    MAIN_MENU, 
-    RESET_MODE_MENU,
-    SAVE_MODE_MENU 
-} SET_MODE_MENUS;
+typedef enum { MAIN_MENU, RESET_MODE_MENU, SAVE_MODE_MENU } SET_MODE_MENUS;
 
 typedef enum {
     SET_MODE_OPTION_CHR, // Unused
@@ -53,7 +49,7 @@ s8 D_80057689;
 s8 D_8005768A;
 s32 D_8005768C;
 
-// Handles 
+// Handles
 void Handle_ObjView(void) {
     f32 sp4;
 
@@ -306,7 +302,7 @@ s32 func_8002C184(f32 x, f32 y, f32 z) {
     func_80016A80(D_80057664, D_80057668, D_8005766C, D_80057670, &sp8C, &sp88, &sp84, &sp80);
     func_80016A80(spA8, spA4, spA0, sp9C, &sp7C, &sp78, &sp74, &sp70);
     if ((Math_ComparePlanes(D_80057664, D_80057668, D_8005766C, D_80057670, D_801776F0[spAC], D_80177700[spAC],
-                       D_80177710[spAC], D_80177720[spAC]) != 0) &&
+                            D_80177710[spAC], D_80177720[spAC]) != 0) &&
         (sp80 < 60.0f)) {
         return 0;
     }
@@ -393,7 +389,7 @@ void func_8002CA80(void) {
     player_vel_x = gPlayerObject->Vel.x;
     player_vel_y = gPlayerObject->Vel.y;
     player_vel_z = gPlayerObject->Vel.z;
-    
+
     player_pos_y += player_vel_y;
     func_8002C144(player_pos_x, player_pos_y + 59.0f, player_pos_z);
     if (D_801776E0 & 1) {
@@ -417,7 +413,8 @@ void func_8002CA80(void) {
         sp2F = 0;
 
         for (i = 0; i < 8; i++) {
-            sp24 = func_8002C184(D_8004A660[i].x + player_pos_x, D_8004A660[i].y + player_pos_y, D_8004A660[i].z + player_pos_z);
+            sp24 = func_8002C184(D_8004A660[i].x + player_pos_x, D_8004A660[i].y + player_pos_y,
+                                 D_8004A660[i].z + player_pos_z);
             if (sp24 == 4) {
                 sp2F = sp2F | D_8004A6C0[i];
             }
@@ -902,8 +899,8 @@ void Debug_SaveMode(void) {
                 }
 
                 DEBUG_PRINTF("%6d,%6d,%6d,0x%04x,0x%04x,0x%04x,0x%04x,\n", D_800576A8[sp34].unk2, D_800576A8[sp34].unk4,
-                       D_800576A8[sp34].unk6, (s32) D_800576A8[sp34].unk8, (s32) D_800576A8[sp34].unkA,
-                       (s32) D_800576A8[sp34].unkC, (s32) D_800576A8[sp34].unkE);
+                             D_800576A8[sp34].unk6, (s32) D_800576A8[sp34].unk8, (s32) D_800576A8[sp34].unkA,
+                             (s32) D_800576A8[sp34].unkC, (s32) D_800576A8[sp34].unkE);
             }
         }
     }
@@ -930,8 +927,8 @@ void func_8002E8B4(void) {
                 DEBUG_PRINTF(" ");
             }
             DEBUG_PRINTF("%6d,%6d,%6d,0x%04x,0x%04x,0x%04x,0x%04x,\n", D_800576A8[sp34].unk2, D_800576A8[sp34].unk4,
-                   D_800576A8[sp34].unk6, (s32) D_800576A8[sp34].unk8, (s32) D_800576A8[sp34].unkA,
-                   (s32) D_800576A8[sp34].unkC, (s32) D_800576A8[sp34].unkE);
+                         D_800576A8[sp34].unk6, (s32) D_800576A8[sp34].unk8, (s32) D_800576A8[sp34].unkA,
+                         (s32) D_800576A8[sp34].unkC, (s32) D_800576A8[sp34].unkE);
         }
     }
 }
@@ -1010,7 +1007,7 @@ void Debug_SaveMode_Menu(void) {
 void Debug_ParseSetModeMenu(void) {
     Debug_SetTextColor(255, 255, 255);
     switch (sDebugSetModeMenu) {
-        case MAIN_MENU: 
+        case MAIN_MENU:
             Debug_SetMode_Menu();
             break;
         case RESET_MODE_MENU:
@@ -1110,7 +1107,7 @@ void func_8002F32C(void) {
         if ((D_800576A8[D_80057692].unk2 != 0x7530) && (D_800576A8[D_80057692].unk4 != 0x7530) &&
             (D_800576A8[D_80057692].unk6 != 0x7530)) {
             Set_ObjView((f32) D_800576A8[D_80057692].unk2, (f32) D_800576A8[D_80057692].unk4,
-                          (f32) D_800576A8[D_80057692].unk6);
+                        (f32) D_800576A8[D_80057692].unk6);
         }
     }
     func_8001994C();

@@ -160,7 +160,7 @@ s32 func_80084430(f32 arg0, f32 arg1, f32 arg2) {
     func_80016A80(spA8, spA4, spA0, sp9C, &sp7C, &sp78, &sp74, &sp70);
 
     if ((Math_ComparePlanes(D_801651AC, D_801651B0, D_801651B4, D_801651B8, D_801776F0[spAC], D_80177700[spAC],
-                       D_80177710[spAC], D_80177720[spAC]) != 0) &&
+                            D_80177710[spAC], D_80177720[spAC]) != 0) &&
         (sp80 < 60.0f)) {
         return 0;
     }
@@ -484,7 +484,8 @@ s32 func_80085D54(void) {
     }
 
     if ((D_8016523E == 0) && (D_80165270 != -1) && (D_80165280 == 0x4A)) {
-        if ((gPlayerObject->damageState != 0x3D) && (gPlayerObject->damageState != 0) && gObjects[D_80165270].unkA6 == 0) {
+        if ((gPlayerObject->damageState != 0x3D) && (gPlayerObject->damageState != 0) &&
+            gObjects[D_80165270].unkA6 == 0) {
             gObjects[D_80165270].unkA6 = 8;
             gObjects[D_80165270].unkA8 = 1;
             if (D_8016E100 != 0) {

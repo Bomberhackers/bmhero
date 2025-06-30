@@ -1808,7 +1808,7 @@ void func_8001E80C(void) {
     if (D_80165284 >= D_8016527C) {
         D_80165284 = 0;
     }
-    //DEBUG_PRINTF("Counter: %d\n", D_80165284);
+    // DEBUG_PRINTF("Counter: %d\n", D_80165284);
     D_8016E244++;
 }
 

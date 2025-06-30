@@ -457,7 +457,8 @@ void func_80072B08(void) {
         func_80072A08(sp70, sp6C, &sp2C, &D_801775C0, &D_801775D8, &sp44);
         func_80071B50(sp2C);
     } else {
-        if ((gPlayerObject->actionState == 0x25) || (gPlayerObject->actionState == 0x26D) || (gPlayerObject->actionState == 0x217)) {
+        if ((gPlayerObject->actionState == 0x25) || (gPlayerObject->actionState == 0x26D) ||
+            (gPlayerObject->actionState == 0x217)) {
             func_80071CF4(0);
         } else {
             func_80071CF4(1);

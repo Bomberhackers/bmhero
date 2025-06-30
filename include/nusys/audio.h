@@ -64,7 +64,7 @@ typedef union {
 typedef struct AudioInfo_s {
     short         *data;          /* Output data pointer */
     short         frameSamples;   /* # of samples synthesized in this frame */
-    OSTask      task;           /* scheduler structure */
+    OSScTask      task;           /* scheduler structure */
     AudioMsg      msg;            /* completion message */
 } AudioInfo;
 

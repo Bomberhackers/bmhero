@@ -1,10 +1,10 @@
 #ifndef OBJ_H
 #define OBJ_H
 
-#define OBJ_DEATH 0 /* Used when the player or other object has reached its life counter */
+#define OBJ_DEATH 0 
 #define OBJ_INVENCIBLE -1 
 #define OBJ_DAMAGE_STATE_TAKE_DAMAGE 61 
-#define OBJ_DAMAGE_STATE_NORMAL 1 /* */
+#define OBJ_DAMAGE_STATE_NORMAL 1 /* The player or object *can* receive damage */
 
 #define OBJ_NAME_LEN 20
 

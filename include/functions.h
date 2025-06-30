@@ -87,7 +87,7 @@ s32 Eeprom_Write(OSMesgQueue*, u8*, u8, u16);
 // 21E10.c
 s32 func_80021210(s32 arg0);
 s32 func_800212DC(s32 arg0, s32 arg1);
-s32 func_80021418(s32 arg0);
+s32 Game_IsObjectPaused(s32 arg0);
 s32 func_800214B8(s32 arg0);
 s32 func_80021584(s32 arg0, s32 arg1);
 void func_80021B74(void);

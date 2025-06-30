@@ -17,9 +17,9 @@ void func_800C1380(void) {
 
 void func_800C1490(void) {
     if (D_80177A64 == 0) {
-        gObjects[gCurrentParsedObject].action_state = 6;
+        gObjects[gCurrentParsedObject].actionState = 6;
     } else if (D_80177A64 == 2) {
-        if ((gObjects[gCurrentParsedObject].unkB2 == 0) && (gObjects[gCurrentParsedObject].action_state == 3)) {
+        if ((gObjects[gCurrentParsedObject].unkB2 == 0) && (gObjects[gCurrentParsedObject].actionState == 3)) {
             gObjects[gCurrentParsedObject].unkB2 = 0x1E;
         }
     }
@@ -45,7 +45,7 @@ void func_800C156C(void) {
         }
     }
     if (func_8002A1FC(gCurrentParsedObject, 420.0f) != 0) {
-        sp24->action_state = 2;
+        sp24->actionState = 2;
         sp24->unk132 = 0;
     }
 }
@@ -71,9 +71,9 @@ void func_800C16BC(void) {
     sp24->Vel.y = sp20;
     if ((func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, 0.0f, 60.0f) == 1) &&
         (func_8001B44C(gCurrentParsedObject, 0) != 0)) {
-        sp24->unk108 = 1;
+        sp24->damageState = 1;
         func_8001BBDC(gCurrentParsedObject, 1);
-        sp24->action_state = 3;
+        sp24->actionState = 3;
         sp24->unk132 = 0;
     }
 }
@@ -121,7 +121,7 @@ void func_800C187C(void) {
     }
     sp3C->unkA6 -= 1;
     if (sp3C->unkA6 == 0) {
-        sp3C->action_state = 4;
+        sp3C->actionState = 4;
         sp3C->unk132 = 0;
     }
 }
@@ -151,7 +151,7 @@ void func_800C1B5C(void) {
         sp34->unkA6 -= 1;
     }
     if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
-        sp34->action_state = 5;
+        sp34->actionState = 5;
         sp34->unk132 = 0;
     }
 }
@@ -168,9 +168,9 @@ void func_800C1D38(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 5, 0x48, &D_80117FF0);
     }
     if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
-        sp24->unk108 = -1;
+        sp24->damageState = -1;
         func_8001BBDC(gCurrentParsedObject, 1);
-        sp24->action_state = 1;
+        sp24->actionState = 1;
         sp24->unk132 = 0;
     }
 }
@@ -181,7 +181,7 @@ void func_800C1E54(void) {
 
 // NEEDS RODATA
 void func_800C1E84(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) {
+    switch (gObjects[gCurrentParsedObject].actionState) {
         case 1:
             func_800C156C();
             break;
@@ -209,7 +209,7 @@ void func_800C1F64(void) {
 
     if (D_80177A64 == 2) {
         gObjects[gCurrentParsedObject].unkA6 = 0;
-        gObjects[gCurrentParsedObject].action_state = 2;
+        gObjects[gCurrentParsedObject].actionState = 2;
         gObjects[gCurrentParsedObject].unk132 = 0;
     }
 }
@@ -234,12 +234,12 @@ void func_800C2004(void) {
     sp34->Vel.y = 0.0f;
     func_80029C40(gCurrentParsedObject);
     if (func_80029018(gCurrentParsedObject, 3U, 30.0f, 0.0f, 0.0f, 0.0f) != 0) {
-        sp34->action_state = 2;
+        sp34->actionState = 2;
         sp34->unk132 = 0;
     }
     sp34->Vel.y = sp30;
     if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, -15.0f, 15.0f) == 1) {
-        sp34->action_state = 2;
+        sp34->actionState = 2;
         sp34->unk132 = 0;
     }
 }
@@ -257,7 +257,7 @@ void func_800C22C4(void) {
     s16 temp_s0;
 
     if (gObjects[gCurrentParsedObject].unkE6[0] == -1) {
-        switch (gObjects[gCurrentParsedObject].action_state) { /* irregular */
+        switch (gObjects[gCurrentParsedObject].actionState) { /* irregular */
             case 1:
                 func_800C2004();
                 break;
@@ -285,7 +285,7 @@ void func_800C238C(void) {
 
 void func_800C249C(void) {
     if (D_80177A64 == 0) {
-        gObjects[gCurrentParsedObject].action_state = 6;
+        gObjects[gCurrentParsedObject].actionState = 6;
     }
 }
 
@@ -304,7 +304,7 @@ void func_800C24EC(void) {
         func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118044);
     }
     if (func_8002A1FC(gCurrentParsedObject, 420.0f) != 0) {
-        sp24->action_state = 2;
+        sp24->actionState = 2;
         sp24->unk132 = 0;
     }
 }
@@ -325,9 +325,9 @@ void func_800C2624(void) {
     sp24->unk3C = sp24->Rot.y;
     if ((func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, 0.0f, 60.0f) == 1) &&
         (func_8001B44C(gCurrentParsedObject, 0) != 0)) {
-        sp24->unk108 = 1;
+        sp24->damageState = 1;
         func_8001BBDC(gCurrentParsedObject, 1);
-        sp24->action_state = 3;
+        sp24->actionState = 3;
         sp24->unk132 = 0;
     }
 }
@@ -363,7 +363,7 @@ void func_800C27B0(void) {
     }
     sp34->unkA6 -= 1;
     if (sp34->unkA6 == 0) {
-        sp34->action_state = 4;
+        sp34->actionState = 4;
         sp34->unk132 = 0;
     }
 }
@@ -381,7 +381,7 @@ void func_800C29F4(void) {
     }
     if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
         func_8001BBDC(gCurrentParsedObject, 1);
-        sp24->action_state = 5;
+        sp24->actionState = 5;
         sp24->unk132 = 0;
     }
 }
@@ -399,9 +399,9 @@ void func_800C2B04(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 5, 0x48, &D_80117FF0);
     }
     if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
-        sp24->unk108 = -1;
+        sp24->damageState = -1;
         func_8001BBDC(gCurrentParsedObject, 1);
-        sp24->action_state = 1;
+        sp24->actionState = 1;
         sp24->unk132 = 0;
     }
 }
@@ -412,7 +412,7 @@ void func_800C2C30(void) {
 
 // RODATA
 void func_800C2C60(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) {
+    switch (gObjects[gCurrentParsedObject].actionState) {
         case 1:
             func_800C24EC();
             break;
@@ -451,7 +451,7 @@ void func_800C2D40(void) {
 
 void func_800C2E50(void) {
     if (D_80177A64 == 0) {
-        gObjects[gCurrentParsedObject].action_state = 5;
+        gObjects[gCurrentParsedObject].actionState = 5;
         gObjects[gCurrentParsedObject].unk132 = 0;
     }
 }
@@ -475,7 +475,7 @@ void func_800C2EC8(void) {
     }
     if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, 0.0f, 60.0f) == 1) {
         if (func_8002A1FC(gCurrentParsedObject, 240.0f) != 0) {
-            sp24->action_state = 2;
+            sp24->actionState = 2;
             sp24->unk132 = 0;
         } else {
             sp24->unkA6 = 1;
@@ -499,7 +499,7 @@ void func_800C304C(void) {
     sp24->Rot.y = func_80015538(sp24->Rot.y, (sp20 * 0xA));
     sp24->unk3C = sp24->Rot.y;
     if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, 0.0f, 60.0f) == 1) {
-        sp24->action_state = 3;
+        sp24->actionState = 3;
         sp24->unk132 = 0;
     }
 }
@@ -536,7 +536,7 @@ void func_800C31D4(void) {
         sp24->unk3C = sp24->Rot.y;
         sp24->unkA8 += 1;
         if (sp24->unkA8 == 2) {
-            sp24->action_state = 4;
+            sp24->actionState = 4;
             sp24->unk132 = 0;
         } else {
             sp24->unkA6 = 1;
@@ -570,7 +570,7 @@ void func_800C3454(void) {
     if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, 0.0f, 60.0f) == 1) {
         sp24->unk44 = 0.0f;
         if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
-            sp24->action_state = 1;
+            sp24->actionState = 1;
             sp24->unk132 = 0;
         }
     }
@@ -588,7 +588,7 @@ void func_800C3670(void) {
         sp24->unk3C = func_80015538(sp24->unk128, 180.0f);
         func_80029EF8(gCurrentParsedObject, 17.647058f, 0.980392f);
         func_8001BBDC(gCurrentParsedObject, 1);
-        sp24->unk108 = 0;
+        sp24->damageState = 0;
     }
     sp24->Rot.y = func_80015538(sp24->Rot.y, 25.0f);
     sp20 = sp24->Vel.y;
@@ -610,7 +610,7 @@ void func_800C3670(void) {
 }
 
 void func_800C38A8(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) {
+    switch (gObjects[gCurrentParsedObject].actionState) {
         case 1:
             func_800C2EC8();
             break;
@@ -657,7 +657,7 @@ void func_800C3A00(void) {
         func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118138);
     }
     if (func_8002A2EC(gCurrentParsedObject, 720.0f) != 0) {
-        sp34->action_state = 2;
+        sp34->actionState = 2;
         sp34->unk132 = 0;
         sp30 = (s32) func_8002A46C(gCurrentParsedObject);
         if (sp30 < 0x2D) {
@@ -698,7 +698,7 @@ void func_800C3C10(void) {
         func_800175F0(gCurrentParsedObject, 0, 0x3E, -1, 0);
         sp24->Vel.z = 0.0f;
         sp24->Vel.x = sp24->Vel.z;
-        sp24->action_state = 3;
+        sp24->actionState = 3;
         sp24->unk132 = 0;
     }
 }
@@ -713,7 +713,7 @@ void func_800C3E18(void) {
         func_80029EF8(gCurrentParsedObject, 10.0f, 3.0f);
     }
     if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, -107.0f, 60.0f) == 1) {
-        sp24->action_state = 4;
+        sp24->actionState = 4;
         sp24->unk132 = 0;
     }
 }
@@ -732,14 +732,14 @@ void func_800C3F00(void) {
         func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118138);
     }
     if (sp24->unkA6 == 0) {
-        sp24->action_state = 1;
+        sp24->actionState = 1;
         sp24->unk132 = 0;
     }
     sp24->unkA6 -= 1;
 }
 
 void func_800C4040(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) { /* irregular */
+    switch (gObjects[gCurrentParsedObject].actionState) { /* irregular */
         case 1:
             func_800C3A00();
             break;
@@ -805,7 +805,7 @@ void func_800C4358(void) {
         func_8001ABF4(sp24, 0, 0, &D_80118138);
     }
     sp2C->unk132 = 0;
-    sp2C->action_state = 2;
+    sp2C->actionState = 2;
 }
 
 extern s16 D_80114D20[];
@@ -842,7 +842,7 @@ void func_800C4584(void) {
     if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, -107.0f, 60.0f) == 1) {
         func_800175F0(gCurrentParsedObject, 0, 0x3E, -1, 0);
         sp34->unk132 = 0;
-        sp34->action_state = 3;
+        sp34->actionState = 3;
         sp34->Rot.y = sp34->unk3C = D_80114D20[sp34->unkB6];
         sp34->Vel.z = 0.0f;
         sp34->Vel.x = sp34->Vel.y = sp34->Vel.z;
@@ -878,7 +878,7 @@ void func_800C4C08(void) {
     func_80029F58(sp30, 0.0f, 0.0f, -107.0f, 60.0f);
     func_80029F58(sp2C, 0.0f, 0.0f, -107.0f, 60.0f);
     if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, -107.0f, 60.0f) == 1) {
-        sp34->action_state = 4;
+        sp34->actionState = 4;
         sp34->unk132 = 0;
 
         sp34->Vel.x = sp34->Vel.y = sp34->Vel.z = 0.0f;
@@ -911,7 +911,7 @@ void func_800C4F64(void) {
     }
     if (sp2C->unkA6 == 0) {
         sp2C->unk132 = 0;
-        sp2C->action_state = 5;
+        sp2C->actionState = 5;
     } else {
         sp2C->unkA6 -= 1;
     }
@@ -947,7 +947,7 @@ void func_800C5148(void) {
     if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, -107.0f, 60.0f) == 1) {
         func_800175F0(gCurrentParsedObject, 0, 0x3E, -1, 0);
         sp34->unk132 = 0;
-        sp34->action_state = 6;
+        sp34->actionState = 6;
         sp34->Pos.x = D_80114D10[sp34->unkB6];
         sp34->Pos.z = D_80114D18[sp34->unkB6];
         sp34->Vel.x = sp34->Vel.y = sp34->Vel.z = 0.0f;
@@ -993,7 +993,7 @@ void func_800C5888(void) {
     func_80029F58(sp30, 0.0f, 0.0f, -107.0f, 60.0f);
     func_80029F58(sp2C, 0.0f, 0.0f, -107.0f, 60.0f);
     if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, -107.0f, 60.0f) == 1) {
-        sp34->action_state = 7;
+        sp34->actionState = 7;
         sp34->unk132 = 0;
 
         sp34->Pos.y = gObjects[sp30].Pos.y = gObjects[sp2C].Pos.y = 467.0f;
@@ -1028,7 +1028,7 @@ void func_800C5BE4(void) {
     }
     if (sp2C->unkA6 == 0) {
         sp2C->unk132 = 0;
-        sp2C->action_state = 2;
+        sp2C->actionState = 2;
     } else {
         sp2C->unkA6 -= 1;
     }
@@ -1036,7 +1036,7 @@ void func_800C5BE4(void) {
 
 // RODATA
 void func_800C5DC8(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) {
+    switch (gObjects[gCurrentParsedObject].actionState) {
         case 1:
             func_800C4358();
             break;
@@ -1071,7 +1071,7 @@ void func_800C5EB8(void) {
 
 void func_800C5F30(void) {
     if (D_80177A64 == 0) {
-        gObjects[gCurrentParsedObject].action_state = 8;
+        gObjects[gCurrentParsedObject].actionState = 8;
     }
 }
 
@@ -1090,12 +1090,12 @@ void func_800C5F80(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0x58, &D_80118170);
     }
     if (func_8002A1FC(gCurrentParsedObject, 200.0f) != 0) {
-        sp2C->action_state = 4;
+        sp2C->actionState = 4;
         sp2C->unk132 = 0;
     } else {
         sp2C->unkA6 -= 1;
         if (sp2C->unkA6 == 0) {
-            sp2C->action_state = (Math_Random(0xA) & 1) + 2;
+            sp2C->actionState = (Math_Random(0xA) & 1) + 2;
             sp2C->unk132 = 0;
         }
     }
@@ -1133,7 +1133,7 @@ void func_800C60F0(void) {
             sp2C->Scale.z = (sp2C->Scale.z + 0.05);
         }
     } else if (sp2C->unkA6 == 0) {
-        sp2C->action_state = 1;
+        sp2C->actionState = 1;
         sp2C->unk132 = 0;
         func_8001BBDC(gCurrentParsedObject, 1);
     } else {
@@ -1182,10 +1182,10 @@ void func_800C639C(void) {
     sp34->Vel.y = sp30;
     if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, 0.0f, 60.0f) == 1) {
         if (func_8002A1FC(gCurrentParsedObject, 200.0f) != 0) {
-            sp34->action_state = 4;
+            sp34->actionState = 4;
             sp34->unk132 = 0;
         } else if (sp34->unkA8 == 2) {
-            sp34->action_state = 1;
+            sp34->actionState = 1;
             sp34->unk132 = 0;
         } else {
             sp34->unkA8 += 1;
@@ -1210,7 +1210,7 @@ void func_800C66B4(void) {
     }
     sp2C = sp34->unkA6 - sp34->Rot.y;
     if ((sp2C <= 10.0f) && (sp2C >= -10.0f)) {
-        sp34->action_state = 5;
+        sp34->actionState = 5;
         sp34->unk132 = 0;
     } else {
         sp34->Rot.y = func_80015538(sp34->Rot.y, (sp34->unkA8 * 0xA));
@@ -1254,7 +1254,7 @@ void func_800C689C(void) {
             func_8001BBDC(gCurrentParsedObject, 1);
         }
     } else if (sp24->unkA6 == 0) {
-        sp24->action_state = 6;
+        sp24->actionState = 6;
         sp24->unk132 = 0;
         func_8001BBDC(gCurrentParsedObject, 1);
     } else {
@@ -1290,7 +1290,7 @@ void func_800C6B8C(void) {
     }
     sp2C = func_80015538(sp34->unkA6, -sp34->Rot.y);
     if ((sp2C <= 10.0f) || (sp2C >= 350.0f)) {
-        sp34->action_state = 7;
+        sp34->actionState = 7;
         sp34->unk132 = 0;
     } else {
         sp34->Rot.y = func_80015538(sp34->Rot.y, (sp34->unkA8 * 0xA));
@@ -1341,7 +1341,7 @@ void func_800C6DF0(void) {
     sp34->Vel.y = sp30;
     if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, 0.0f, 60.0f) == 1) {
         if (sp34->unkA8 == 2) {
-            sp34->action_state = 1;
+            sp34->actionState = 1;
             sp34->unk132 = 0;
         } else {
             sp34->unkA8 += 1;
@@ -1356,7 +1356,7 @@ void func_800C7130(void) {
 
 // RODATA
 void func_800C7160(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) {
+    switch (gObjects[gCurrentParsedObject].actionState) {
         case 1:
             func_800C5F80();
             break;
@@ -1430,7 +1430,7 @@ void func_800C77D8(void) {
     sp4 = &gObjects[gCurrentParsedObject];
     if ((D_80177A64 == 0) && (sp4->unkE6[0] == -1)) {
         sp4->unk132 = 0;
-        sp4->action_state = 4;
+        sp4->actionState = 4;
     }
 }
 
@@ -1480,7 +1480,7 @@ void func_800C785C(void) {
         func_8001BB04(sp34, 1);
     }
     if (func_8002A1FC(gCurrentParsedObject, 540.0f) != 0) {
-        sp3C->action_state = 2;
+        sp3C->actionState = 2;
         sp3C->unk132 = 0;
     }
 }
@@ -1528,11 +1528,11 @@ void func_800C7BD8(void) {
     gObjects[sp1C].Scale.z += D_80114EC8;
 
     if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
-        sp24->action_state = 3;
+        sp24->actionState = 3;
         sp24->unk132 = 0;
-        sp24->unk108 = 1;
-        gObjects[sp20].unk108 = 1;
-        gObjects[sp1C].unk108 = 1;
+        sp24->damageState = 1;
+        gObjects[sp20].damageState = 1;
+        gObjects[sp1C].damageState = 1;
         func_8001BBDC(gCurrentParsedObject, 1);
         func_8001BBDC(sp20, 1);
         func_8001BBDC(sp1C, 1);
@@ -1614,7 +1614,7 @@ void func_800C8764(void) {
 }
 
 void func_800C8858(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) { /* irregular */
+    switch (gObjects[gCurrentParsedObject].actionState) { /* irregular */
         case 1:
             func_800C785C();
             break;
@@ -1645,7 +1645,7 @@ void func_800C899C(void) {
     sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 0) {
         sp4->unk132 = 0;
-        sp4->action_state = 4;
+        sp4->actionState = 4;
     }
 }
 
@@ -1668,7 +1668,7 @@ void func_800C8A08(void) {
         func_8001BB04(gCurrentParsedObject, 1);
     }
     if (func_8002A1FC(gCurrentParsedObject, 480.0f) != 0) {
-        sp34->action_state = 2;
+        sp34->actionState = 2;
         sp34->unk132 = 0;
     }
 }
@@ -1692,9 +1692,9 @@ void func_800C8B64(void) {
     sp1C->Scale.y = (f32) ((f64) sp1C->Scale.y + D_80114F10);
     sp1C->Scale.z = (f32) ((f64) sp1C->Scale.z + D_80114F18);
     if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
-        sp1C->action_state = 3;
+        sp1C->actionState = 3;
         sp1C->unk132 = 0;
-        sp1C->unk108 = 1;
+        sp1C->damageState = 1;
         func_8001BBDC(gCurrentParsedObject, 1);
     }
 }
@@ -1749,7 +1749,7 @@ void func_800C8F54(void) {
 }
 
 void func_800C8FB0(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) { /* irregular */
+    switch (gObjects[gCurrentParsedObject].actionState) { /* irregular */
         case 1:
             func_800C8A08();
             break;
@@ -1780,7 +1780,7 @@ void func_800C90F4(void) {
     sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 0) {
         sp4->unk132 = 0;
-        sp4->action_state = 5;
+        sp4->actionState = 5;
     }
 }
 
@@ -1802,7 +1802,7 @@ void func_800C9160(void) {
         func_8001BB04(gCurrentParsedObject, 1);
     }
     if (func_8002A1FC(gCurrentParsedObject, 480.0f) != 0) {
-        sp34->action_state = 2;
+        sp34->actionState = 2;
         sp34->unk132 = 0;
     }
 }
@@ -1826,9 +1826,9 @@ void func_800C92BC(void) {
     sp1C->Scale.y = (f32) ((f64) sp1C->Scale.y + D_80114F30);
     sp1C->Scale.z = (f32) ((f64) sp1C->Scale.z + D_80114F38);
     if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
-        sp1C->action_state = 3;
+        sp1C->actionState = 3;
         sp1C->unk132 = 0;
-        sp1C->unk108 = 1;
+        sp1C->damageState = 1;
         func_8001BBDC(gCurrentParsedObject, 1);
     }
 }
@@ -1875,7 +1875,7 @@ void func_800C9420(void) {
         sp44->unkA6 -= 1;
     }
     if (func_8002A1FC(gCurrentParsedObject, 480.0f) == 0) {
-        sp44->action_state = 4;
+        sp44->actionState = 4;
         sp44->unk132 = 0;
     }
 }
@@ -1902,7 +1902,7 @@ void func_800C980C(void) {
         sp24->unkA6 -= 1;
         if (sp24->unkA6 == 0) {
             sp24->unk132 = 0;
-            sp24->action_state = 1;
+            sp24->actionState = 1;
         }
     }
 }
@@ -1919,7 +1919,7 @@ void func_800C9970(void) {
 
 void func_800C9A9C(void) {
     if (D_80177A64 == 2) {
-        gObjects[gCurrentParsedObject].action_state = 2;
+        gObjects[gCurrentParsedObject].actionState = 2;
         gObjects[gCurrentParsedObject].unk132 = 0;
     }
 }
@@ -1962,7 +1962,7 @@ void func_800C9B14(void) {
     sp34->Vel.y = sp30;
     if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, 0.0f, 0.0f) == 1) {
         sp34->unkA6 = 0xA;
-        sp34->action_state = 2;
+        sp34->actionState = 2;
         sp34->unk132 = 0;
     }
 }
@@ -1973,7 +1973,7 @@ void func_800C9DF8(void) {
 
 void func_800C9E28(void) {
     if (gObjects[gCurrentParsedObject].unkE6[0] == -1) {
-        switch (gObjects[gCurrentParsedObject].action_state) { /* irregular */
+        switch (gObjects[gCurrentParsedObject].actionState) { /* irregular */
             case 1:
                 func_800C9B14();
                 break;
@@ -2004,7 +2004,7 @@ void func_800C9F8C(void) {
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 0) {
-        sp4->action_state = 6;
+        sp4->actionState = 6;
         sp4->unk132 = 0;
     }
 }
@@ -2028,7 +2028,7 @@ void func_800C9FF8(void) {
         func_8001ABF4(gCurrentParsedObject, 0, 3, &D_80118234);
     }
     if (func_8002A1FC(gCurrentParsedObject, 2000.0f) != 0) {
-        sp24->action_state = 2;
+        sp24->actionState = 2;
         sp24->unk132 = 0;
     }
 }
@@ -2048,11 +2048,11 @@ void func_800CA140(void) {
     sp2C->Vel.y = 0.0f;
     func_80029C40(gCurrentParsedObject);
     if (func_80029018(gCurrentParsedObject, 3U, 30.0f, 0.0f, 0.0f, 0.0f) != 0) {
-        sp2C->action_state = 5;
+        sp2C->actionState = 5;
         sp2C->unk132 = 0;
     }
     if (sp2C->unkA6 == 0) {
-        sp2C->action_state = 3;
+        sp2C->actionState = 3;
         sp2C->unk132 = 0;
     } else {
         sp2C->unkA6 -= 1;
@@ -2077,7 +2077,7 @@ void func_800CA2D4(void) {
     sp2C->Vel.y = 0.0f;
     func_80029C40(gCurrentParsedObject);
     if (func_80029018(gCurrentParsedObject, 3U, 30.0f, 0.0f, 0.0f, 0.0f) != 0) {
-        sp2C->action_state = 5;
+        sp2C->actionState = 5;
         sp2C->unk132 = 0;
     }
     if (func_8001B62C(gCurrentParsedObject, 0) == 6.0f) {
@@ -2085,7 +2085,7 @@ void func_800CA2D4(void) {
     }
     if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
         if (sp2C->unkA6 == 0) {
-            sp2C->action_state = 2;
+            sp2C->actionState = 2;
             sp2C->unk132 = 0;
         } else {
             sp2C->unkA6 -= 1;
@@ -2110,7 +2110,7 @@ void func_800CA52C(void) {
 void func_800CA63C(void) {
     if (D_80177A64 == 2) {
         gObjects[gCurrentParsedObject].unkA6 = 0;
-        gObjects[gCurrentParsedObject].action_state = 2;
+        gObjects[gCurrentParsedObject].actionState = 2;
         gObjects[gCurrentParsedObject].unk132 = 0;
     }
 }
@@ -2135,7 +2135,7 @@ void func_800CA6DC(void) {
     sp34->Vel.y = sp30;
     if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, 0.0f, 0.0f) == 1) {
         gObjects[gCurrentParsedObject].unkA6 = 0xA;
-        sp34->action_state = 2;
+        sp34->actionState = 2;
         sp34->unk132 = 0;
     }
 }
@@ -2168,7 +2168,7 @@ void func_800CAC6C(void) {
         sp24->unk44 = 0.0f;
         sp24->unk40 = 90.0f;
         sp24->unk48 = 10.0f;
-        sp24->unk108 = 1;
+        sp24->damageState = 1;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0x68, &D_801181F0);
         func_8001C0EC(gCurrentParsedObject, 3, 0, 0x68, &D_80118200);
     }
@@ -2178,7 +2178,7 @@ void func_800CAC6C(void) {
     func_80029C40(gCurrentParsedObject);
     func_80029D04(gCurrentParsedObject);
     if (sp24->unkA6 == 0) {
-        sp24->action_state = 3;
+        sp24->actionState = 3;
         sp24->unk132 = 0;
     } else {
         sp24->unkA6 -= 1;
@@ -2217,7 +2217,7 @@ void func_800CAE40(void) {
         }
     }
     if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
-        sp5C->action_state = 4;
+        sp5C->actionState = 4;
         sp5C->unk132 = 0;
     }
 }
@@ -2238,7 +2238,7 @@ void func_800CB0DC(void) {
     func_80029C40(gCurrentParsedObject);
     func_80029D04(gCurrentParsedObject);
     if (sp24->unkA6 == 0) {
-        sp24->action_state = 1;
+        sp24->actionState = 1;
         sp24->unk132 = 0;
     } else {
         sp24->unkA6 -= 1;
@@ -2260,7 +2260,7 @@ void func_800CB36C(void) {
 
     sp4 = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 2) {
-        sp4->action_state = 2;
+        sp4->actionState = 2;
         sp4->unk132 = 0;
     }
 }
@@ -2316,7 +2316,7 @@ void func_800CB3D8(void) {
         sp40 = 1;
     }
     if (sp40 != 0) {
-        sp44->action_state = 2;
+        sp44->actionState = 2;
         sp44->unk132 = 0;
     }
 }
@@ -2326,7 +2326,7 @@ void func_800CB770(void) {
 }
 
 void func_800CB7A0(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) { /* irregular */
+    switch (gObjects[gCurrentParsedObject].actionState) { /* irregular */
         case 1:
             func_800CB3D8();
             break;
@@ -2363,7 +2363,7 @@ void func_800CB950(void) {
 
 void func_800CB9C8(void) {
     if (D_80177A64 == 0) {
-        gObjects[gCurrentParsedObject].action_state = 3;
+        gObjects[gCurrentParsedObject].actionState = 3;
         gObjects[gCurrentParsedObject].unk132 = 0;
     }
 }
@@ -2383,7 +2383,7 @@ void func_800CBA40(void) {
         func_8001BBDC(gCurrentParsedObject, 0);
     }
     if (func_8001B62C(gCurrentParsedObject, 0) == 2.0f) {
-        sp24->action_state = 2;
+        sp24->actionState = 2;
         sp24->unk132 = 0;
     }
 }
@@ -2445,7 +2445,7 @@ void func_800CBB58(void) {
         sp34->Rot.z = 0.0f;
         sp34->Rot.x = sp34->Rot.z;
         sp34->unk44 = 0.0f;
-        sp34->action_state = 1;
+        sp34->actionState = 1;
         sp34->unk132 = 0;
     }
 }
@@ -2455,7 +2455,7 @@ void func_800CBF5C(void) {
 }
 
 void func_800CBF8C(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) { /* irregular */
+    switch (gObjects[gCurrentParsedObject].actionState) { /* irregular */
         case 1:
             func_800CBA40();
             break;

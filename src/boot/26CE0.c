@@ -107,12 +107,12 @@ void func_80026548(void) {
     view_z = gView.at.z;
 
     for (sp24 = &gObjects[14], sp44 = 14; sp44 < 78; sp24++, sp44++) {
-        if (sp24->action_state != 0) {
+        if (sp24->actionState != 0) {
             sp1C = 0;
             sp30 = sp24->Pos.x - view_x;
             sp2C = sp24->Pos.y - view_y;
             sp28 = sp24->Pos.z - view_z;
-            if ((sp24->unkE6[0] == -1) && !(D_80124D90[sp24->obj_id].unk4 & 1)) {
+            if ((sp24->unkE6[0] == -1) && !(D_80124D90[sp24->objID].unk4 & 1)) {
                 if ((SQ(sp30) + SQ(sp2C) + SQ(sp28)) > D_80177984) {
                     for (sp48 = 0; sp48 < 0xA; sp48++) {
                         if (sp24->unk10E[sp48] != -1) {
@@ -137,7 +137,7 @@ void func_80026548(void) {
             }
             if (sp1C != 0) {
                 sp24->unk131 = 0;
-                if (!(D_80124D90[sp24->obj_id].unk4 & 4)) {
+                if (!(D_80124D90[sp24->objID].unk4 & 4)) {
                     if (!(D_8017798C <= sp30) || !(D_80177994 >= sp30) || !(D_8017799C <= sp2C) ||
                         !(D_801779A4 >= sp2C) || !(D_801779AC.raw <= sp28) || !(D_801779B8 >= sp28)) {
                         sp24->unk131 |= 2;
@@ -203,7 +203,7 @@ s32 Get_ObjIdx_ById(s32 id) {
     obj_found = FALSE;
 
     for (obj_idx = 14, obj = &gObjects[14]; obj_idx < 0x4E; obj_idx++, obj++) {
-        if (obj->obj_id == id) {
+        if (obj->objID == id) {
             obj_found = TRUE;
             break;
         }
@@ -234,7 +234,7 @@ s32 Get_ObjIdx_ByPos(s32 id, s32 objPos) {
     /* We do the search by using objIdx as our first clue */
 
     for (obj = &gObjects[objPos], obj_idx = objPos; obj_idx < 78; obj_idx++, obj++) {
-        if (obj->obj_id == id) {
+        if (obj->objID == id) {
             obj_found = TRUE;
             break;
         }
@@ -336,7 +336,7 @@ s32 func_80027464(s32 arg0, struct UnkStruct_80027C00* arg1, f32 arg2, f32 arg3,
 
     index = 0;
     for (sp1C = 0xE; sp1C < 0x4E; sp1C++) {
-        if (gObjects[sp1C].action_state == 0) {
+        if (gObjects[sp1C].actionState == 0) {
             unk24[index] = sp1C;
             index++;
             if (index == arg0) {
@@ -361,10 +361,10 @@ s32 func_80027464(s32 arg0, struct UnkStruct_80027C00* arg1, f32 arg2, f32 arg3,
             gObjects[unk24[index]].Pos.z = gObjects[unk24[index]].unk58 = arg4;
             gObjects[unk24[index]].Rot.y = arg5;
             gObjects[unk24[index]].unk3C = arg5;
-            gObjects[unk24[index]].action_state = 1;
-            gObjects[unk24[index]].obj_id = arg1->unk2;
+            gObjects[unk24[index]].actionState = 1;
+            gObjects[unk24[index]].objID = arg1->unk2;
             gObjects[unk24[index]].unk100 = arg1->unk7;
-            gObjects[unk24[index]].unk108 = arg1->unk8;
+            gObjects[unk24[index]].damageState = arg1->unk8;
             gObjects[unk24[index]].unk102 = arg1->unk9;
             gObjects[unk24[index]].unk103 = arg1->unkA;
             if (index > 0) {
@@ -418,10 +418,10 @@ s32 func_80027C00(s32 arg0, s32 arg1, struct UnkStruct_80027C00* arg2, f32 arg3,
     gObjects[sp24].Pos.z = gObjects[sp24].unk58 = arg5;
     gObjects[sp24].Rot.y = arg6;
     gObjects[sp24].unk3C = arg6;
-    gObjects[sp24].action_state = 1;
-    gObjects[sp24].obj_id = arg2->unk2;
+    gObjects[sp24].actionState = 1;
+    gObjects[sp24].objID = arg2->unk2;
     gObjects[sp24].unk100 = (s16) arg2->unk7;
-    gObjects[sp24].unk108 = (s16) arg2->unk8;
+    gObjects[sp24].damageState = (s16) arg2->unk8;
     gObjects[sp24].unk102 = arg2->unk9;
     gObjects[sp24].unk103 = arg2->unkA;
     gObjects[sp24].unkE6[0] = arg0;
@@ -641,7 +641,7 @@ s32 func_80028E60(s32 arg0) {
     sp1C = (sp24->Pos.y + sp24->Vel.y) - sp24->unk54;
     sp18 = (sp24->Pos.z + sp24->Vel.z) - sp24->unk58;
 
-    if (((D_80124D90[gObjects[arg0].obj_id].unk30)) <= (SQ(sp20) + SQ(sp1C) + SQ(sp18))) {
+    if (((D_80124D90[gObjects[arg0].objID].unk30)) <= (SQ(sp20) + SQ(sp1C) + SQ(sp18))) {
         return TRUE;
     }
     return FALSE;
@@ -651,7 +651,7 @@ s32 func_80028FA0(s32 arg0) {
     struct ObjectStruct* sp4;
 
     sp4 = &gObjects[arg0];
-    if ((sp4->unk104 != -1)) {
+    if ((sp4->interactingObjIdx != -1)) {
         if ((sp4->unk10A == 4)) {
             return TRUE;
         }
@@ -1091,10 +1091,10 @@ void func_8002A9A4(s32 arg0, f32 arg1) {
 void func_8002AA94(s32 arg0) {
     s32 sp24;
 
-    if (gObjects[arg0].unk108 == 0) {
+    if (gObjects[arg0].damageState == 0) {
         sp24 = 0;
     } else {
-        sp24 = !(gObjects[arg0].unk108 & 1);
+        sp24 = !(gObjects[arg0].damageState & 1);
     }
     func_8001BB34(arg0, sp24);
 }
@@ -1120,8 +1120,8 @@ s32 func_8002AB40(f32 arg0, f32 arg1, f32 arg2, f32 arg3, s32 arg4) {
         func_8001BD44(sp2C, 3, 1, gFileArray[0x45].ptr);
         func_8001BE6C(sp2C, 3, 0, gFileArray[0x45].ptr + D_801168D0[0]);
     }
-    sp28->action_state = 1;
-    sp28->obj_id = 0x47;
+    sp28->actionState = 1;
+    sp28->objID = 0x47;
     sp28->Pos.x = arg0;
     sp28->Pos.y = arg1;
     sp28->Pos.z = arg2;
@@ -1169,11 +1169,11 @@ void func_8002AE84(s32 ObjectIndex, s32 arg1) {
         guRotateF(sp6C, spC4->Rot.y, 0, 1.0f, 0.0f);
         guTranslateF(sp2C, spC4->Pos.x, spC4->Pos.y, spC4->Pos.z);
         guMtxCatF(sp6C, sp2C, sp6C);
-        guMtxXFMF(sp6C, D_80124D90[spC4->obj_id].unk8, D_80124D90[spC4->obj_id].unkA, D_80124D90[spC4->obj_id].unkC, &ox,
+        guMtxXFMF(sp6C, D_80124D90[spC4->objID].unk8, D_80124D90[spC4->objID].unkA, D_80124D90[spC4->objID].unkC, &ox,
                   &oy, (f32*) &oz);
 
-        spB0 = D_80124D90[spC4->obj_id].unkE / 10.0f;
-        spAC = D_80124D90[spC4->obj_id].unkF;
+        spB0 = D_80124D90[spC4->objID].unkE / 10.0f;
+        spAC = D_80124D90[spC4->objID].unkF;
     }
     func_8001A928(ObjectIndex);
     if ((arg1 != 0) && (spAC != -1)) {
@@ -1196,12 +1196,12 @@ void func_8002B154(void) {
     s32 i;
 
     for (i = 14; i < 78; i++) {
-        if (gObjects[i].action_state != 0) {
+        if (gObjects[i].actionState != 0) {
             gCurrentParsedObject = i;
-            D_80124D90[gObjects[i].obj_id].routine2();
-            if (gObjects[i].action_state != 0) {
-                if (gObjects[i].unk108 >= 2) {
-                    gObjects[i].unk108 -= 1;
+            D_80124D90[gObjects[i].objID].routine2();
+            if (gObjects[i].actionState != 0) {
+                if (gObjects[i].damageState >= 2) {
+                    gObjects[i].damageState -= 1;
                 }
                 func_8001CEF4(i);
                 func_8001CD20(i);

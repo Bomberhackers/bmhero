@@ -292,7 +292,7 @@ u32 func_800FE898(void) {
     Set_BgColor(255, 255, 255, 16);
     func_8001D284();
     func_80000964();
-    return (u32) D_80134FD0;
+    return (u32)D_80134FD0;
 }
 
 void func_800FE9BC(void) {
@@ -315,7 +315,7 @@ void func_800FE9BC(void) {
     sprintf((char*) gDebugTextBuf, "   DISPTYPE = %d", gDebugDispType);
     debug_print_xy(32, 144);
     sprintf((char*) gDebugTextBuf, "=");
-    debug_print_xy(40, (D_8016E3F4 * 16) + 32);
+    debug_print_xy(40, (gDebugActionMenuItem * 16) + 32);
 }
 
 void func_800FEB6C(void) {
@@ -349,7 +349,7 @@ void func_800FEB6C(void) {
     sprintf(gDebugTextBuf, "   DIR TOTAL = %d", (s32) dist);
     debug_print_xy(0x20, 0xB0);
     sprintf(gDebugTextBuf, "=");
-    debug_print_xy(0x28, (D_8016E3F4 * 0x10) + 0x20);
+    debug_print_xy(0x28, (gDebugActionMenuItem * 0x10) + 0x20);
 }
 
 void Debug_FogEdit_Menu(void) {
@@ -368,7 +368,7 @@ void Debug_FogEdit_Menu(void) {
     sprintf((char*) gDebugTextBuf, "   ZFAR     = %f", (f64) D_801779C8.raw);
     debug_print_xy(0x20, 0x70);
     sprintf((char*) gDebugTextBuf, "=");
-    debug_print_xy(0x28, (D_8016E3F4 * 0x10) + 0x20);
+    debug_print_xy(0x28, (gDebugActionMenuItem * 0x10) + 0x20);
 }
 
 // TODO: redecomp due, some struct info here feels weird
@@ -383,8 +383,9 @@ void func_800FEFA0(void) {
     s32 sp38;
 
     sprintf((char*) gDebugTextBuf, "(%d %d %d) ST=%d CG=%d %d", (s32) gPlayerObject->Pos.x, (s32) gPlayerObject->Pos.y,
-            (s32) gPlayerObject->Pos.z, gPlayerObject->action_state, D_80165290[PLAYER_OBJ.Unk140[0]].unk14,
-            gPlayerObject->unk108);
+            (s32) gPlayerObject->Pos.z, gPlayerObject->actionState, D_80165290[PLAYER_OBJ.Unk140[0]].unk14,
+            gPlayerObject->damageState);
+            // damageState seems to be something like damageState
     debug_print_xy(0x20, 0x10);
     sp54 = (s32) gPlayerObject->Pos.x / 60;
     sp4C = (s32) gPlayerObject->Pos.x % 60;
@@ -471,21 +472,21 @@ void func_800FF7B4(void) {
 }
 
 // Main menu function
-// D_8016E3F4 = gDebugMainMenu
+// gDebugActionMenuItem = gDebugMainMenu
 void func_800FF88C(void) {
 
     if (gContDirPressed[0] & 0x800) {
-        if (--D_8016E3F4 < 0) {
-            D_8016E3F4 = 7;
+        if (--gDebugActionMenuItem < 0) {
+            gDebugActionMenuItem = 7;
         }
     }
     if (gContDirPressed[0] & 0x400) {
-        if (++D_8016E3F4 >= 8) {
-            D_8016E3F4 = 0;
+        if (++gDebugActionMenuItem >= 8) {
+            gDebugActionMenuItem = 0;
         }
     }
 
-    switch (D_8016E3F4) {
+    switch (gDebugActionMenuItem) {
         case TIMER_BAR: {
             if (gContDirPressed[0] & CONT_LEFT) {
                 if (--gDebugShowTimerBar < 0) {
@@ -577,34 +578,34 @@ void func_800FFD30(void) {
 
     sp1C = func_800FDF98();
     if (sp1C == 2) {
-        if (--D_8016E3F4 < 0) {
-            D_8016E3F4 = 8;
+        if (--gDebugActionMenuItem < 0) {
+            gDebugActionMenuItem = 8;
         }
     } else if (sp1C == -2) {
-        if (++D_8016E3F4 >= 9) {
-            D_8016E3F4 = 0;
+        if (++gDebugActionMenuItem >= 9) {
+            gDebugActionMenuItem = 0;
         }
     }
     if ((sp1C == 1) || (sp1C == -1)) {
-        switch (D_8016E3F4) {
+        switch (gDebugActionMenuItem) {
             case 0:
             case 1:
             case 2:
-                sp18 = (s32) D_8016E3F4;
+                sp18 = (s32) gDebugActionMenuItem;
                 gLightingSettings.a.l.col[sp18] += sp1C;
                 gLightingSettings.a.l.col[sp18 + 4] = gLightingSettings.a.l.col[sp18];
                 break;
             case 3:
             case 4:
             case 5:
-                sp18 = D_8016E3F4 - 3; // - 3 so we index back to 0-2
+                sp18 = gDebugActionMenuItem - 3; // - 3 so we index back to 0-2
                 gLightingSettings.l[0].l.col[sp18] += sp1C;
                 gLightingSettings.l[0].l.col[sp18 + 4] = gLightingSettings.l[0].l.col[sp18];
                 break;
             case 6:
             case 7:
             case 8:
-                sp18 = D_8016E3F4 - 6; // - 6 so we index back to 0-2
+                sp18 = gDebugActionMenuItem - 6; // - 6 so we index back to 0-2
                 gLightingSettings.l[0].l.dir[sp18] += sp1C;
                 gLightingSettings.l[0].l.dir[sp18 + 0x10] = gLightingSettings.l[0].l.dir[sp18];
                 break;
@@ -617,16 +618,16 @@ void func_800FFF40(void) {
 
     sp1C = func_800FDF98();
     if (sp1C == 2) {
-        if (--D_8016E3F4 < 0) {
-            D_8016E3F4 = 5;
+        if (--gDebugActionMenuItem < 0) {
+            gDebugActionMenuItem = 5;
         }
     } else if (sp1C == -2) {
-        if (++D_8016E3F4 >= 6) {
-            D_8016E3F4 = 0;
+        if (++gDebugActionMenuItem >= 6) {
+            gDebugActionMenuItem = 0;
         }
     }
     if ((sp1C == 1) || (sp1C == -1)) {
-        switch (D_8016E3F4) {
+        switch (gDebugActionMenuItem) {
             case 0:
                 D_8017793A += sp1C;
                 D_80177932 = D_8017793A;
@@ -657,12 +658,12 @@ void func_80100148(void) {
     if (gActiveContPressed & CONT_START) {
         D_8016E3EE = 0;
         D_8016E3EC = gDebugDisplayMode;
-        D_801765F4 = 0;
+        gGamePaused = 0;
         return;
     }
     if (gActiveContPressed & CONT_L) {
         D_8016E3EC += 1;
-        D_8016E3F4 = 0;
+        gDebugActionMenuItem = 0;
         if (D_8016E3EC == 0x67) {
             D_8016E3EC = 0x64;
         }

@@ -160,7 +160,7 @@ void func_80000964(void) {
     if (D_8016524C == 1) {
         sp30 = 2;
         osViSetYScale(1.0f);
-        osViBlack(1U);
+        osViBlack(TRUE);
         Check_PakState();
         func_8001ECA0();
     }
@@ -510,7 +510,7 @@ void thread6_func(void* arg) {
     D_8016E41C = 0;
     D_8016E3EC = 0;
     D_8016E3EE = 0;
-    D_8016E3F4 = 0;
+    gDebugActionMenuItem = 0;
     gShowDebugMenu = FALSE;
     gDebugInvincibileFlag = 0;
     gGoldBomber = 0;

@@ -317,7 +317,7 @@ void func_80084BD8(f32* arg0, s32 arg1, f32 arg2, f32 arg3) {
         D_80165270 = (s16) D_80177770[D_801776E0 & 1];
         if (D_80165270 != -1) {
             if (D_80177760[D_801776E0 & 1] == player_pos_y) {
-                D_80165280 = gObjects[D_80165270].obj_id;
+                D_80165280 = gObjects[D_80165270].objID;
                 D_80165288 = player_pos_x - gObjects[D_80165270].Pos.x;
                 D_8016C290 = player_pos_y - gObjects[D_80165270].Pos.y;
                 D_8016CA98 = player_pos_z - gObjects[D_80165270].Pos.z;
@@ -392,25 +392,25 @@ void func_80085884(void) {
 
     if (D_8016E238 == 0) {
         if (D_80165270 != -1) {
-            if ((gObjects[D_80165270].action_state == 0) || (gObjects[D_80165270].obj_id != D_80165280)) {
+            if ((gObjects[D_80165270].actionState == 0) || (gObjects[D_80165270].objID != D_80165280)) {
                 sp1C = -1;
             } else {
                 sp1C = (s32) D_80165270;
             }
         } else {
-            if ((gObjects[D_8016E2A8].action_state == 0) || (gObjects[D_8016E2A8].obj_id != D_8016E2B8)) {
+            if ((gObjects[D_8016E2A8].actionState == 0) || (gObjects[D_8016E2A8].objID != D_8016E2B8)) {
                 sp1C = -1;
             } else {
                 sp1C = (s32) D_8016E2A8;
             }
         }
         if (sp1C != -1) {
-            D_80124D90[gObjects[sp1C].obj_id].routine3();
+            D_80124D90[gObjects[sp1C].objID].routine3();
         }
     } else {
         sp18 = D_8016E240 - 2;
         if (D_801779B0[sp18] != -1) {
-            if ((gObjects[D_801779B0[sp18]].action_state == 0) || gObjects[D_801779B0[sp18]].obj_id != D_801779C0[sp18]) {
+            if ((gObjects[D_801779B0[sp18]].actionState == 0) || gObjects[D_801779B0[sp18]].objID != D_801779C0[sp18]) {
                 sp1C = -1;
             } else {
                 sp1C = D_801779B0[sp18];
@@ -419,7 +419,7 @@ void func_80085884(void) {
             sp1C = -1;
         }
         if (sp1C != -1) {
-            D_80124D90[gObjects[sp1C].obj_id].routine3();
+            D_80124D90[gObjects[sp1C].objID].routine3();
         }
     }
 }
@@ -484,7 +484,7 @@ s32 func_80085D54(void) {
     }
 
     if ((D_8016523E == 0) && (D_80165270 != -1) && (D_80165280 == 0x4A)) {
-        if ((gPlayerObject->unk108 != 0x3D) && (gPlayerObject->unk108 != 0) && gObjects[D_80165270].unkA6 == 0) {
+        if ((gPlayerObject->damageState != 0x3D) && (gPlayerObject->damageState != 0) && gObjects[D_80165270].unkA6 == 0) {
             gObjects[D_80165270].unkA6 = 8;
             gObjects[D_80165270].unkA8 = 1;
             if (D_8016E100 != 0) {
@@ -569,7 +569,7 @@ s32 func_80085D54(void) {
                 D_8016E440 = (f32) D_80108238[sp1E]->unk0[(sp1D * 4) + 2];
                 D_8016E444 = (f32) D_80108238[sp1E]->unk0[(sp1D * 4) + 3];
 
-                if ((gPlayerObject->unk108 != 0x3D) && (gPlayerObject->unk108 != 0)) {
+                if ((gPlayerObject->damageState != 0x3D) && (gPlayerObject->damageState != 0)) {
 
                     if (D_8016523E == 0) {
                         func_802845C4();
@@ -611,7 +611,7 @@ s32 func_80085D54(void) {
 
         case 0xF0:
             if (sp40 <= D_80177760[sp38]) {
-                if ((gPlayerObject->unk108 != 0x3D) && (gPlayerObject->unk108 != 0)) {
+                if ((gPlayerObject->damageState != 0x3D) && (gPlayerObject->damageState != 0)) {
                     func_802828C0();
                     D_801651A4 |= 4;
                     return 1;
@@ -633,7 +633,7 @@ s32 func_80085D54(void) {
                 return 0;
             }
             if (sp40 <= D_80177760[sp38]) {
-                if ((gPlayerObject->unk108 != 0x3D) && (gPlayerObject->unk108 != 0)) {
+                if ((gPlayerObject->damageState != 0x3D) && (gPlayerObject->damageState != 0)) {
                     func_802844D4();
                     gPlayerObject->unk3C = (f32) (D_80177750[sp38] * 0x5A);
                     return 1;
@@ -666,7 +666,7 @@ s32 func_80085D54(void) {
                 return 0;
             }
             D_8016E338 = 1;
-            if ((gPlayerObject->unk108 != 0x3D) && (gPlayerObject->unk108 != 0)) {
+            if ((gPlayerObject->damageState != 0x3D) && (gPlayerObject->damageState != 0)) {
                 func_80284840();
                 return 1;
 
@@ -698,7 +698,7 @@ s32 func_80085D54(void) {
                     break;
                 }
 
-                if ((gPlayerObject->unk108 != 0x3D) && (gPlayerObject->unk108 != 0)) {
+                if ((gPlayerObject->damageState != 0x3D) && (gPlayerObject->damageState != 0)) {
                     func_80284758();
                     D_8016E094 = (s8) sp1F;
                     return 1;
@@ -774,31 +774,31 @@ void func_80086ECC(void) {
     Mtx_t sp38;
     f32 sp34;
 
-    if (gPlayerArmWindObject->action_state == 0) {
+    if (gPlayerArmWindObject->actionState == 0) {
         return;
     }
 
-    if (gPlayerArmWindObject->obj_id == 0x2A8) {
-        if (gPlayerArmWindObject->action_state == 1) {
+    if (gPlayerArmWindObject->objID == 0x2A8) {
+        if (gPlayerArmWindObject->actionState == 1) {
             gPlayerArmWindObject->Pos.x = gPlayerObject->Pos.x;
             gPlayerArmWindObject->Pos.y = gPlayerObject->Pos.y;
             gPlayerArmWindObject->Pos.z = gPlayerObject->Pos.z;
             gPlayerArmWindObject->Rot.y = gPlayerObject->Rot.y;
-        } else if (gPlayerArmWindObject->action_state == 2) {
-            gPlayerArmWindObject->Pos.x = gPlayerObject->Pos.x;
-            gPlayerArmWindObject->Pos.y = gPlayerObject->Pos.y;
-            gPlayerArmWindObject->Pos.z = gPlayerObject->Pos.z;
-            gPlayerArmWindObject->Rot.y = gPlayerObject->Rot.y;
-        }
-    } else if (gPlayerArmWindObject->obj_id == 0x2A9) {
-        if (gPlayerArmWindObject->action_state == 1) {
+        } else if (gPlayerArmWindObject->actionState == 2) {
             gPlayerArmWindObject->Pos.x = gPlayerObject->Pos.x;
             gPlayerArmWindObject->Pos.y = gPlayerObject->Pos.y;
             gPlayerArmWindObject->Pos.z = gPlayerObject->Pos.z;
             gPlayerArmWindObject->Rot.y = gPlayerObject->Rot.y;
         }
-    } else if (gPlayerArmWindObject->obj_id == 0x2AE) {
-        if (gPlayerArmWindObject->action_state == 1) {
+    } else if (gPlayerArmWindObject->objID == 0x2A9) {
+        if (gPlayerArmWindObject->actionState == 1) {
+            gPlayerArmWindObject->Pos.x = gPlayerObject->Pos.x;
+            gPlayerArmWindObject->Pos.y = gPlayerObject->Pos.y;
+            gPlayerArmWindObject->Pos.z = gPlayerObject->Pos.z;
+            gPlayerArmWindObject->Rot.y = gPlayerObject->Rot.y;
+        }
+    } else if (gPlayerArmWindObject->objID == 0x2AE) {
+        if (gPlayerArmWindObject->actionState == 1) {
             gPlayerArmWindObject->Pos.x = gPlayerObject->Pos.x;
             gPlayerArmWindObject->Pos.y = gPlayerObject->Pos.y - 40.0f;
             gPlayerArmWindObject->Pos.z = gPlayerObject->Pos.z;
@@ -813,8 +813,8 @@ void func_80086ECC(void) {
                 func_8001BB34(1, 0);
             }
         }
-    } else if (gPlayerArmWindObject->obj_id == 0x2AA) {
-        if (gPlayerArmWindObject->action_state == 1) {
+    } else if (gPlayerArmWindObject->objID == 0x2AA) {
+        if (gPlayerArmWindObject->actionState == 1) {
             gPlayerArmWindObject->Pos.x = gPlayerObject->Pos.x;
             gPlayerArmWindObject->Pos.y = gPlayerObject->Pos.y;
             gPlayerArmWindObject->Pos.z = gPlayerObject->Pos.z;
@@ -824,8 +824,8 @@ void func_80086ECC(void) {
             }
             func_8001AD6C(1);
         }
-    } else if (gPlayerArmWindObject->obj_id == 0x2AB) {
-        if (gPlayerArmWindObject->action_state == 1) {
+    } else if (gPlayerArmWindObject->objID == 0x2AB) {
+        if (gPlayerArmWindObject->actionState == 1) {
             guRotateF((f32(*)[4]) & sp78[0], gPlayerObject->Rot.y, 0.0f, 1.0f, 0.0f);
             guTranslateF((f32(*)[4]) & sp38[0], gPlayerObject->Pos.x, gPlayerObject->Pos.y, gPlayerObject->Pos.z);
             guMtxCatF((f32(*)[4]) & sp78[0], (f32(*)[4]) & sp38[0], (f32(*)[4]) & sp78[0]);
@@ -833,9 +833,9 @@ void func_80086ECC(void) {
                       &gPlayerArmWindObject->Pos.y, &gPlayerArmWindObject->Pos.z);
             gPlayerArmWindObject->Rot.y = func_80015538(gPlayerArmWindObject->Rot.y, 50.0f);
         }
-    } else if (gPlayerArmWindObject->obj_id == 0x2AC) {
-        if (gPlayerArmWindObject->action_state == 1) {
-            if (gPlayerObject->action_state == 0x26D) {
+    } else if (gPlayerArmWindObject->objID == 0x2AC) {
+        if (gPlayerArmWindObject->actionState == 1) {
+            if (gPlayerObject->actionState == 0x26D) {
                 sp34 = func_8001B62C(1, 0);
                 if (sp34 < 50.0f) {
                     gPlayerArmWindObject->Vel.y = 0.0f;
@@ -850,8 +850,8 @@ void func_80086ECC(void) {
                 gPlayerArmWindObject->Rot.y = gPlayerObject->Rot.y;
             }
         }
-    } else if ((gPlayerArmWindObject->obj_id == 0x2AD)) {
-        if (gPlayerArmWindObject->action_state == 1) {
+    } else if ((gPlayerArmWindObject->objID == 0x2AD)) {
+        if (gPlayerArmWindObject->actionState == 1) {
             gPlayerArmWindObject->Pos.x = gPlayerObject->Pos.x;
             gPlayerArmWindObject->Pos.y = gPlayerObject->Pos.y;
             gPlayerArmWindObject->Pos.z = gPlayerObject->Pos.z;
@@ -900,8 +900,8 @@ void func_80087694(void) {
 void func_80087994(void) {
     UNUSED s16 sp20;
 
-    if ((gPlayerObject->unk108 >= 2) && (gPlayerObject->unk108 < 0x3D)) {
-        gPlayerObject->unk108 -= 1;
+    if ((gPlayerObject->damageState >= 2) && (gPlayerObject->damageState < 0x3D)) {
+        gPlayerObject->damageState -= 1;
     }
     if (D_8016E0D0 != 0) {
         return;
@@ -949,7 +949,7 @@ void func_80087B1C(void) {
 
 void func_80087C58(void) {
     if (D_8016E0D0 == 0) {
-        if ((gPlayerObject->unk108 >= 2) && (gPlayerObject->unk108 < 0x3D)) {
+        if ((gPlayerObject->damageState >= 2) && (gPlayerObject->damageState < 0x3D)) {
             D_8016E250 += 1;
             if (D_8016E250 & 1) {
                 return;
@@ -961,7 +961,7 @@ void func_80087C58(void) {
         func_8001B014(0, 0);
         func_8001C384(0, 0);
     }
-    if ((gPlayerArmWindObject->action_state != 0) && (func_8001C1A8(1, 0) != 0)) {
+    if ((gPlayerArmWindObject->actionState != 0) && (func_8001C1A8(1, 0) != 0)) {
         func_8001838C();
         func_8001B014(1, 0);
         func_8001C384(1, 0);
@@ -974,7 +974,7 @@ void func_80087D70(void) {
         func_8001B014(0, 3);
         func_8001C384(0, 3);
     }
-    if ((gPlayerArmWindObject->action_state != 0) && (func_8001C248(1, 3) != 0)) {
+    if ((gPlayerArmWindObject->actionState != 0) && (func_8001C248(1, 3) != 0)) {
         func_8001838C();
         func_8001B014(1, 3);
         func_8001C384(1, 3);
@@ -1164,7 +1164,7 @@ void func_80088694(void) {
     gPlayerObject->Pos.z = D_8016E440;
     gPlayerObject->Rot.y = D_8016E444;
     gPlayerObject->unk3C = gPlayerObject->Rot.y;
-    gPlayerObject->unk108 = 1;
+    gPlayerObject->damageState = 1;
     func_80087E14();
     func_8006828C();
     func_80085B34(0, 0);
@@ -1190,8 +1190,8 @@ void func_8008884C(s32 arg0) {
     func_8001A928(1);
     func_8001BD44(0, 0, 0x10, gFileArray[0x223].ptr + D_80111880[arg0]);
     func_8001C0EC(0, 0, 0, 0x223, &D_80111888);
-    gPlayerObject->obj_id = 0x266;
-    gPlayerObject->action_state = 1;
+    gPlayerObject->objID = 0x266;
+    gPlayerObject->actionState = 1;
     func_80019448(0, 2, 0, 1);
     if (arg0 == 0) {
         func_8001ABF4(0, 0, 0, &D_80111A74);

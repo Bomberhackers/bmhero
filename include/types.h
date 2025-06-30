@@ -233,83 +233,7 @@ struct LevelInfo {
                s8 unk33;
                s8 unk34;
 };
-
-struct ObjectStruct {
-    /* 0x000 */ struct Vec3f Pos;
-    /* 0x00C */ struct Vec3f Scale;
-    /* 0x018 */ struct Vec3f Rot;
-    /* 0x024 */ struct Vec3f Vel;
-    /* 0x030 */ struct Vec3f unk30;
-    /* 0x03C */ f32 unk3C;
-    /* 0x040 */ f32 unk40;
-    /* 0x044 */ f32 unk44;
-    /* 0x048 */ f32 unk48;
-    /* 0x04C */ f32 unk4C;
-    /* 0x050 */ f32 unk50;
-    /* 0x054 */ f32 unk54;
-    /* 0x058 */ f32 unk58;
-    /* 0x05C */ f32 unk5C;
-    /* 0x060 */ f32 unk60;
-    /* 0x064 */ Matrix unk64;
-    /* 0x0A4 */ s16 action_state;
-    /* 0x0A6 */ s16 unkA6;
-    /* 0x0A8 */ s16 unkA8;
-    /* 0x0AA */ s16 unkAA;
-    /* 0x0AC */ s16 unkAC;
-    /* 0x0AE */ s16 unkAE;
-    /* 0x0B0 */ s16 unkB0;
-    /* 0x0B2 */ s16 unkB2;
-    /* 0x0B4 */ s16 unkB4;
-    /* 0x0B6 */ s16 unkB6;
-    /* 0x0B8 */ s16 unkB8;
-    /* 0x0BA */ s16 unkBA;
-    /* 0x0BC */ s16 unkBC;
-    /* 0x0BE */ s16 unkBE;
-    /* 0x0C0 */ s16 unkC0;
-    /* 0x0C2 */ s16 unkC2;
-    /* 0x0C4 */ s32 unkC4;                   /* maybe part of unkC2[9]? */
-    /* 0x0C8 */ s32 unkC8;
-    /* 0x0CC*/  s32 unkCC;
-    /* 0x0D0 */ s32 unkD0;
-    /* 0x0D4 */ f32 unkD4;
-    /* 0x0D8 */ f32 unkD8;
-    /* 0x0DC */ f32 unkDC;                          /* inferred */
-    /* 0x0E0 */ f32 unkE0;                          /* inferred */
-    /* 0x0E4 */ s16 obj_id;
-    /* 0x0E6 */ s16 unkE6[1];
-    /* 0x0E8 */ s16 unkE8[10];
-    /* 0x0FC */ s16 unkFC;
-    /* 0x0FE */ s16 unkFE;
-    /* 0x100 */ s16 unk100;
-    /* 0x102 */ s8 unk102;
-    /* 0x103 */ s8 unk103;
-    /* 0x104 */ s16 unk104;
-    /* 0x106 */ s16 unk106;
-    /* 0x108 */ s16 unk108;
-    /* 0x10A */ u8 unk10A;
-    /* 0x10B */ u8 unk10B;
-    /* 0x10C */ u8 unk10C;
-    /* 0x10D */ char pad10D[1];
-    /* 0x10E */ s16 unk10E[10];
-    /* 0x124 */ f32 unk124;
-    /* 0x128 */ f32 unk128;
-    /* 0x12C */ f32 unk12C;
-    /* 0x130 */ char unk130;
-    /* 0x131 */ u8 unk131;
-    /* 0x132 */ u8 unk132;
-    /* 0x133 */ char unk133[3];                     /* maybe part of unk132[8]? */
-    /* 0x136 */ char unk136[3];
-    /* 0x139 */ char unk139;
-    /* 0x13A */ s8 unk13A;
-    /* 0x13B */ s8 unk13B;
-    /* 0x13C */ s16 unk13C[1];
-    /* 0x13E */ s8 unk13E;
-    /* 0x13F */ s8 unk13F;
-    /* 0x140 */ s16 Unk140[4];
-    /* 0x148 */ s16 Unk148[4];
-                
-};                                                
-
+                         
 struct UnkStruct80134D48 {
     u32 ObjectID;
     f32 unk4;
@@ -329,7 +253,7 @@ struct UnkStructSTCG
     f32 Unk28;
     f32 Unk2C;
     char padding_1[0xA4 - 0x24 - (sizeof(s32) * 3)];
-    s16 action_state;
+    s16 actionState;
     char padding_2[0x108 - 0xA4 - sizeof(s16)];
     s16 Unk108;
 };

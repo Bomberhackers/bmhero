@@ -5,8 +5,8 @@
 #include "obj.h"
 
 s32 func_80021210(s32 arg0) {
-    if ((gObjects[arg0].action_state != 0) && ((gObjects[arg0].unk108 == 1) || (gObjects[arg0].unk108 == -1)) &&
-        (gObjects[arg0].unk104 == -1)) {
+    if ((gObjects[arg0].actionState != 0) && ((gObjects[arg0].damageState == OBJ_DAMAGE_STATE_NORMAL) || (gObjects[arg0].damageState == OBJ_INVENCIBLE)) &&
+        (gObjects[arg0].interactingObjIdx == -1)) {
         return TRUE;
     }
     return FALSE;
@@ -15,8 +15,8 @@ s32 func_80021210(s32 arg0) {
 s32 func_800212DC(s32 arg0, s32 arg1) {
     s32 sp4;
 
-    if ((gObjects[arg1].action_state != 0) && ((gObjects[arg1].unk108 > 0) || (gObjects[arg1].unk108 == -1)) &&
-        (gObjects[arg1].unk104) == -1) {
+    if ((gObjects[arg1].actionState != 0) && ((gObjects[arg1].damageState > 0) || (gObjects[arg1].damageState == OBJ_INVENCIBLE)) &&
+        (gObjects[arg1].interactingObjIdx) == -1) {
         for (sp4 = 0; sp4 < 10; sp4++) {
             if (gObjects[arg0].unk10E[sp4] == arg1) {
                 break;
@@ -30,16 +30,16 @@ s32 func_800212DC(s32 arg0, s32 arg1) {
     return FALSE;
 }
 
-s32 func_80021418(s32 arg0) {
-    if ((gObjects[arg0].action_state != 0) && (gObjects[arg0].unk108 != 0) && (gObjects[arg0].unk104 == -1)) {
+s32 Game_IsObjectPaused(s32 objIdx) {
+    if ((gObjects[objIdx].actionState != 0) && (gObjects[objIdx].damageState != OBJ_DEATH) && (gObjects[objIdx].interactingObjIdx == -1)) {
         return TRUE;
     }
     return FALSE;
 }
 
 s32 func_800214B8(s32 arg0) {
-    if ((gObjects[arg0].action_state != 0) && ((gObjects[arg0].unk108 > 0) || (gObjects[arg0].unk108 == -1)) &&
-        (gObjects[arg0].unk104 == -1)) {
+    if ((gObjects[arg0].actionState != 0) && ((gObjects[arg0].damageState > OBJ_DEATH) || (gObjects[arg0].damageState == OBJ_INVENCIBLE)) &&
+        (gObjects[arg0].interactingObjIdx == -1)) {
         return TRUE;
     }
     return FALSE;
@@ -59,14 +59,14 @@ s32 func_80021584(s32 arg0, s32 arg1) {
 
     sp3E = func_80077CB0(arg0, arg1, &sp3C, &sp3A);
     if (sp3E != 0) {
-        gObjects[arg0].unk104 = (s16) arg1;
+        gObjects[arg0].interactingObjIdx = (s16) arg1;
         gObjects[arg0].unk10B = sp3C;
         gObjects[arg0].unk10C = sp3A;
-        gObjects[arg0].unk106 = gObjects[arg1].obj_id;
-        gObjects[arg1].unk104 = (s16) arg0;
+        gObjects[arg0].unk106 = gObjects[arg1].objID;
+        gObjects[arg1].interactingObjIdx = (s16) arg0;
         gObjects[arg1].unk10B = sp3A;
         gObjects[arg1].unk10C = sp3C;
-        gObjects[arg1].unk106 = gObjects[arg0].obj_id;
+        gObjects[arg1].unk106 = gObjects[arg0].objID;
         for (sp24 = 0; sp24 < 2; sp24++) {
             if (sp24 == 0) {
                 sp20 = arg0;
@@ -82,7 +82,7 @@ s32 func_80021584(s32 arg0, s32 arg1) {
             } else {
                 if (sp20 < 0xE) {
                     gObjects[sp1C].unk10A = 2;
-                } else if (D_80124D90[gObjects[sp20].obj_id].unk2 == 0) {
+                } else if (D_80124D90[gObjects[sp20].objID].unk2 == 0) {
                     gObjects[sp1C].unk10A = 4;
                 } else {
                     gObjects[sp1C].unk10A = 5;
@@ -106,10 +106,10 @@ s32 func_80021584(s32 arg0, s32 arg1) {
 }
 
 void func_80021B74(void) {
-    s32 sp4;
+    s32 i;
 
-    for (sp4 = 0; sp4 < 0x4E; sp4++) {
-        gObjects[sp4].unk104 = -1;
+    for (i = 0; i < 78; i++) {
+        gObjects[i].interactingObjIdx = -1;
     }
 }
 
@@ -123,9 +123,9 @@ void func_80021BCC(void) {
     s16 sp22;
     f32 sp1C;
 
-    if ((gCurrentLevel == MAP_MOVE_STONE) && (gPlayerObject->action_state == 0x2A)) {
+    if ((gCurrentLevel == MAP_MOVE_STONE) && (gPlayerObject->actionState == 42)) {
         for (sp30 = 0xE; sp30 < 0x4E; sp30++) {
-            if (gObjects[sp30].obj_id == OBJ_PUSHBLK) {
+            if (gObjects[sp30].objID == OBJ_PUSHBLK) {
                 sp26 = func_80077CB0(0, (s16) sp30, &sp24, &sp22);
                 if (sp26 != 0) {
                     gObjects[sp30].unkA6 = 0;
@@ -150,14 +150,14 @@ void func_80021BCC(void) {
             }
         }
     }
-    if (func_80021418(0) != 0) {
+    if (Game_IsObjectPaused(OBJ_PLAYER)) {
         for (sp30 = 0xE; sp30 < 0x4E; sp30++) {
             if (func_800214B8(sp30) != 0) {
-                sp2C = gObjects[sp30].obj_id;
+                sp2C = gObjects[sp30].objID;
                 sp28 = 1;
                 if (D_8016523E == 6) {
                 } else if (D_80124D90[sp2C].unk2 == 0) {
-                    if ((gPlayerObject->unk108 != 1) && (gPlayerObject->unk108 != -1)) {
+                    if ((gPlayerObject->damageState != 1) && (gPlayerObject->damageState != -1)) {
                         sp28 = 0;
                     }
                 }
@@ -182,7 +182,7 @@ void func_80021BCC(void) {
         if (func_80021210(sp34) != 0) {
             for (sp30 = 0xE; sp30 < 0x4E; sp30++) {
                 if ((func_80021210(sp30) != 0)) {
-                    if (!((u8) D_80124D90[gObjects[sp30].obj_id].unk0 & 2)) {
+                    if (!((u8) D_80124D90[gObjects[sp30].objID].unk0 & 2)) {
                         if (func_80021584(sp34, sp30)) {
                             break;
                         }
@@ -218,7 +218,7 @@ void func_80021BCC(void) {
         if (func_80021210(sp34) != 0) {
             for (sp30 = 0xE; sp30 < 0x4E; sp30++)
                 if ((func_80021210(sp30) != 0)) {
-                    if (!((u8) D_80124D90[gObjects[sp30].obj_id].unk0 & 2)) {
+                    if (!((u8) D_80124D90[gObjects[sp30].objID].unk0 & 2)) {
                         if ((func_80021584(sp34, sp30) != 0)) {
                             break;
                         }
@@ -245,13 +245,13 @@ s32 func_80022454(void) {
     s32 sp1C;
     struct ObjectStruct* sp18;
 
-    if (gPlayerObject->action_state == 0) {
+    if (gPlayerObject->actionState == 0) {
         return 0;
     }
 
     for (sp1C = 2, sp18 = &gObjects[2]; sp1C < 6; sp1C++, sp18++) {
-        if (((sp18->action_state == 0x28) || (sp18->action_state == 0x29) || (sp18->action_state == 0x2A) || (sp18->action_state == 0x26) ||
-             (sp18->action_state == 0x27))) {
+        if (((sp18->actionState == 0x28) || (sp18->actionState == 0x29) || (sp18->actionState == 0x2A) || (sp18->actionState == 0x26) ||
+             (sp18->actionState == 0x27))) {
 
             if ((func_80077CB0(0, (s16) sp1C, &sp24.unk0, &sp22) != 0)) {
                 if (sp24.unk0 == 0) {
@@ -267,7 +267,7 @@ s32 func_80022558(s32 arg0) {
     struct UnkStruct_80022454_SP24 sp1C;
     s16 sp1A;
 
-    if ((gObjects[arg0].action_state != 0)) {
+    if ((gObjects[arg0].actionState != 0)) {
         if ((func_80077CB0(0, (s16) arg0, &sp1C.unk0, &sp1A) != 0)) {
             return TRUE;
         }
@@ -295,14 +295,14 @@ s32 func_800225D8(s32 arg0, s32 arg1) {
         sp28 = arg1;
     }
 
-    if ((gObjects[sp2C].unk100 != 0) && (gObjects[sp2C].unk108 != -1) &&
-        (gObjects[sp2C].unk10B <= D_80124D90[gObjects[sp2C].obj_id].unk3)) {
+    if ((gObjects[sp2C].unk100 != 0) && (gObjects[sp2C].damageState != -1) &&
+        (gObjects[sp2C].unk10B <= D_80124D90[gObjects[sp2C].objID].unk3)) {
 
         sp24 = 0;
-        sp20 = (s32) gObjects[arg0].obj_id;
-        sp1F = D_80124D90[gObjects[sp2C].obj_id].unk5;
+        sp20 = (s32) gObjects[arg0].objID;
+        sp1F = D_80124D90[gObjects[sp2C].objID].unk5;
         if (sp1F & 8) {
-            if ((gObjects[arg1].obj_id == OBJ_FFLOWER) && (sp20 != 8)) {
+            if ((gObjects[arg1].objID == OBJ_FFLOWER) && (sp20 != 8)) {
                 sp24 = 1;
             }
         } else if ((sp20 == 9) || (sp20 == 0x10)) {
@@ -317,10 +317,10 @@ s32 func_800225D8(s32 arg0, s32 arg1) {
             sp24 = 1;
         }
         if (sp20 == 0x12) {
-            if (gObjects[sp2C].obj_id == OBJ_BOLB_BD2) {
+            if (gObjects[sp2C].objID == OBJ_BOLB_BD2) {
                 sp24 = 0;
             }
-        } else if ((sp20 == 0x14) && (gObjects[sp2C].obj_id == OBJ_NITR_BD)) {
+        } else if ((sp20 == 0x14) && (gObjects[sp2C].objID == OBJ_NITR_BD)) {
             sp24 = 0;
         }
         if ((gObjects[sp2C].unk100 != -1) && (sp24 != 0)) {
@@ -328,15 +328,15 @@ s32 func_800225D8(s32 arg0, s32 arg1) {
         }
         if (sp24 != 0) {
             if (gObjects[sp2C].unk100 == 0) {
-                Score_Update(D_80124D90[gObjects[sp2C].obj_id].unk6);
+                Score_Update(D_80124D90[gObjects[sp2C].objID].unk6);
                 gCurrentParsedObject = sp28;
                 D_80177A64 = 0;
-                D_80124D90[gObjects[sp28].obj_id].routine_1C();
+                D_80124D90[gObjects[sp28].objID].routine_1C();
                 return 1;
             } else {
                 gCurrentParsedObject = sp28;
                 D_80177A64 = 1;
-                D_80124D90[gObjects[sp28].obj_id].routine_1C();
+                D_80124D90[gObjects[sp28].objID].routine_1C();
             }
         }
     }
@@ -344,15 +344,17 @@ s32 func_800225D8(s32 arg0, s32 arg1) {
     return 0;
 }
 
+// Handle_PlayerItems?
 void func_80022B54(void) {
-    struct ObjectStruct* sp2C;
-    s32 sp28;
-    s32 sp24;
+    struct ObjectStruct* obj;
+    s32 objIdx;
+    s32 gem_count;
 
-    sp28 = (s32) gPlayerObject->unk104;
-    sp2C = &gObjects[sp28];
-    switch (sp2C->obj_id) {
-        case 0x20:
+    objIdx = (s32) gPlayerObject->interactingObjIdx;
+    obj = &gObjects[objIdx];
+
+    switch (obj->objID) {
+        case OBJ_ITMBOM:
             if (gBombCount < 3) {
                 gBombCount += 1;
             }
@@ -360,140 +362,141 @@ void func_80022B54(void) {
             D_80165268 = 0;
             func_800178D4(0, 0, 0x26, -1, 0);
             break;
-        case 0x21:
+        case OBJ_ITMFIRE:
             if (gFireCount < 3) {
                 gFireCount += 1;
             }
             func_800178D4(0, 0, 0x26, -1, 0);
             break;
-        case 0x22:
+        case OBJ_ITMRAINB:
             func_800178D4(0, 0, 0x26, -1, 0);
             break;
-        case 0x30:
+        case OBJ_ITMGOLD:
             func_800178D4(0, 0, 0x26, -1, 0);
             break;
-        case 0x23:
+        case OBJ_ITMLIFE:
             if (gHealthCount < gMaxHealth) {
-                gHealthCount += 1;
+                gHealthCount++;
             }
             func_8008424C();
             func_800178D4(0, 0, 0x27, -1, 0);
             break;
-        case 0x24:
+        case OBJ_ITMFULL:
             gHealthCount = gMaxHealth;
             func_8008424C();
             func_800178D4(0, 0, 0x27, -1, 0);
             break;
-        case 0x25:
-        case 0x31:
-            if (sp2C->obj_id == 0x25) {
-                sp24 = 1;
+        case OBJ_ITMCRSTL:
+        case OBJ_ITMCRSTL2:
+
+            if (obj->objID == OBJ_ITMCRSTL) {
+                gem_count = 1;
             } else {
-                sp24 = 5;
+                gem_count = 5;
             }
-            gGemCount += sp24;
-            if ((s32) gGemCount < 0xC8) {
-                func_800178D4(0, 0, 0x25, -1, 0);
+            gGemCount += gem_count;
+            if ((s32) gGemCount < 200) {
+                func_800178D4(0, 0, OBJ_ITMCRSTL, -1, 0);
             } else {
                 if (gMaxHealth != 8) {
                     gMaxHealth += 1;
                     D_80177A54 = 0x1E;
                     func_800178D4(0, 0, 0x27, -1, 0);
-                } else if ((s32) gLifeCount < 0x63) {
+                } else if ((s32) gLifeCount < 99) {
                     func_80088248(1);
                     func_800178D4(0, 0, 0x24, -1, 0);
                 }
-                gGemCount -= 0xC8;
+                gGemCount -= 200;
             }
             break;
-        case 0x26:
-            if ((s32) gLifeCount < 0x63) {
+        case OBJ_ITM1UP:
+            if ((s32) gLifeCount < 99) {
                 func_80088248(1);
             }
             func_800178D4(0, 0, 0x24, -1, 0);
             break;
-        case 0x27:
-            func_80025568(D_8013488C, gObjects[sp28].unkA6);
+        case OBJ_ITMBALL:
+            func_80025568(D_8013488C, gObjects[objIdx].unkA6);
             func_800178D4(0, 0, 0x26, -1, 0);
             break;
-        case 0x28:
+        case OBJ_ITMMUSEN:
             D_80165246 = 1;
             func_800178D4(0, 0, 0x26, -1, 0);
             break;
-        case 0x2C:
-            D_80165242 += 1;
+        case OBJ_ITMKEYCR:
+            D_80165242++;
             if (D_80165242 == 4) {
                 func_800178D4(0, 0, 0x61, -1, 0);
             } else {
                 func_800178D4(0, 0, 0x25, -1, 0);
             }
             break;
-        case 0x2F:
+        case OBJ_ITMFLOPY:
             D_80165247 = 1;
             func_800178D4(0, 0, 0x26, -1, 0);
             break;
-        case 0x32:
-            if ((gPlayerObject->action_state != 0x31) && (gPlayerObject->unk108 != 0x3D) && (gPlayerObject->unk108 != 0)) {
+        case OBJ_ITMBUBLE:
+            if ((gPlayerObject->actionState != 0x31) && (gPlayerObject->damageState != 0x3D) && (gPlayerObject->damageState != 0)) {
                 func_8028491C();
                 func_800178D4(0, 0, 0x26, -1, 0);
             }
             break;
-        case 0x33:
-            func_800766B4(gObjects[sp28].unkA6);
+        case OBJ_ITMPHS:
+            func_800766B4(gObjects[objIdx].unkA6);
             func_800178D4(0, 0, 0x26, -1, 0);
             break;
-        case 0x35:
+        case OBJ_ITMIDC:
             D_80165248 = 1;
             func_800178D4(0, 0, 0x26, -1, 0);
             break;
-        case 0x36:
-            func_80025810(D_8013488C, 0, gObjects[sp28].unkA6);
+        case OBJ_ITMTATE:
+            func_80025810(D_8013488C, 0, gObjects[objIdx].unkA6);
             func_800178D4(0, 0, 0x26, -1, 0);
             break;
-        case 0x37:
-            func_80025810(D_8013488C, 1, gObjects[sp28].unkA6);
+        case OBJ_ITMROD:
+            func_80025810(D_8013488C, 1, gObjects[objIdx].unkA6);
             func_800178D4(0, 0, 0x26, -1, 0);
             break;
-        case 0x38:
-            func_80025810(D_8013488C, 2, gObjects[sp28].unkA6);
+        case OBJ_ITMCROWN:
+            func_80025810(D_8013488C, 2, gObjects[objIdx].unkA6);
             func_800178D4(0, 0, 0x26, -1, 0);
             break;
-        case 0x29:
+        case OBJ_ITMREMOT:
             D_80165250 = 3;
             D_80165258 = 0;
             D_80165260 = 0;
             D_80165268 = 0;
             func_800178D4(0, 0, 0x26, -1, 0);
             break;
-        case 0x2A:
+        case OBJ_ITMFREEZ:
             D_80165250 = 2;
             D_80165258 = 0;
             D_80165260 = 0;
             D_80165268 = 0;
             func_800178D4(0, 0, 0x26, -1, 0);
             break;
-        case 0x2B:
+        case OBJ_ITMSOLT:
             D_80165250 = 1;
             D_80165258 = 0;
             D_80165260 = 0;
             D_80165268 = 0;
             func_800178D4(0, 0, 0x26, -1, 0);
             break;
-        case 0x2D:
+        case OBJ_ITMSUIT:
             D_80165250 = 0;
             D_80165258 = 1;
             D_80165260 = 0;
             D_80165268 = 0;
             func_800178D4(0, 0, 0x26, -1, 0);
             break;
-        case 0x2E:
+        case OBJ_ITMTRANS:
             D_80165250 = 0;
             D_80165258 = 0;
             D_80165260 = 1;
             D_80165268 = 0;
             func_800178D4(0, 0, 0x26, -1, 0);
             break;
-        case 0x34:
+        case OBJ_ITMGLOVE:
             D_80165250 = 0;
             D_80165258 = 0;
             D_80165260 = 0;
@@ -501,10 +504,10 @@ void func_80022B54(void) {
             func_800178D4(0, 0, 0x26, -1, 0);
             break;
     }
-    gCurrentParsedObject = sp28;
+    gCurrentParsedObject = objIdx;
     D_80177A64 = 0;
-    D_80124D90[gObjects[sp28].obj_id].routine_1C();
-    Score_Update((s16) D_80124D90[gObjects[sp28].obj_id].unk6);
+    D_80124D90[gObjects[objIdx].objID].routine_1C();
+    Score_Update((s16) D_80124D90[gObjects[objIdx].objID].unk6);
     D_801775FA += 1;
 }
 
@@ -515,14 +518,14 @@ void func_80023404(void) {
         (gPlayerObject->unk106 == 0x1B5)) {
         D_8016E088 = 5;
     } else {
-        sp1C = (s32) gPlayerObject->unk104;
+        sp1C = (s32) gPlayerObject->interactingObjIdx;
         if (gObjects[sp1C].unk102 != 0) {
             D_80177648 = 1;
             D_8016E088 = 2;
         }
         gCurrentParsedObject = sp1C;
         D_80177A64 = 2;
-        D_80124D90[gObjects[sp1C].obj_id].routine_1C();
+        D_80124D90[gObjects[sp1C].objID].routine_1C();
     }
 }
 
@@ -534,27 +537,27 @@ void func_80023534(void) {
     sp1C = 0;
     if (((s32) gPlayerObject->unk10B < 0xA)) {
         if ((gPlayerObject->Vel.y <= 0.0f)) {
-            if ((D_801651A4 & 1) && (gPlayerObject->unk108 != 0x3D)) {
+            if ((D_801651A4 & 1) && (gPlayerObject->damageState != 0x3D)) {
                 sp1C = 1;
             }
         }
     }
     if (sp1C != 0) {
-        sp24 = (s32) gPlayerObject->unk104;
+        sp24 = (s32) gPlayerObject->interactingObjIdx;
         D_8016E088 = 5;
         sp20 = func_800225D8(0, sp24);
-        if ((sp20 == 1) && (gObjects[sp24].obj_id == 0xA0)) {
+        if ((sp20 == 1) && (gObjects[sp24].objID == 0xA0)) {
             D_80165242 += 1;
         }
-    } else if (gPlayerObject->unk108 == 1) {
-        sp24 = (s32) gPlayerObject->unk104;
+    } else if (gPlayerObject->damageState == 1) {
+        sp24 = gPlayerObject->interactingObjIdx;
         if (gObjects[sp24].unk102 != 0) {
             D_80177648 = 1;
             D_8016E088 = 2;
         }
         gCurrentParsedObject = sp24;
         D_80177A64 = 2;
-        D_80124D90[gObjects[sp24].obj_id].routine_1C();
+        D_80124D90[gObjects[sp24].objID].routine_1C();
     }
 }
 
@@ -562,12 +565,12 @@ void func_80023754(void) {
     s32 sp1C;
     s32 sp18;
 
-    sp1C = (s32) gPlayerObject->unk104;
+    sp1C = (s32) gPlayerObject->interactingObjIdx;
     sp18 = 0;
 
-    if (((gPlayerObject->action_state == 0x20D) || (gPlayerObject->action_state == 0x20E) || (gPlayerObject->action_state == 0x20F) ||
-         (gPlayerObject->action_state == 0x210) || (gPlayerObject->action_state == 0x211) || (gPlayerObject->action_state == 0x212) ||
-         (gPlayerObject->action_state == 0x216)) &&
+    if (((gPlayerObject->actionState == 0x20D) || (gPlayerObject->actionState == 0x20E) || (gPlayerObject->actionState == 0x20F) ||
+         (gPlayerObject->actionState == 0x210) || (gPlayerObject->actionState == 0x211) || (gPlayerObject->actionState == 0x212) ||
+         (gPlayerObject->actionState == 0x216)) &&
         (gObjects[sp1C].unk100 == 1)) {
         sp18 = 1;
     }
@@ -581,34 +584,34 @@ void func_80023754(void) {
         }
         gCurrentParsedObject = sp1C;
         D_80177A64 = 2;
-        D_80124D90[gObjects[sp1C].obj_id].routine_1C();
+        D_80124D90[gObjects[sp1C].objID].routine_1C();
     }
 }
 
 void func_80023904(void) {
     s32 sp1C;
 
-    sp1C = (s32) gPlayerObject->unk104;
+    sp1C = (s32) gPlayerObject->interactingObjIdx;
     if (gObjects[sp1C].unk102 != 0) {
         D_80177648 = 1;
         D_8016E088 = 2;
     }
     gCurrentParsedObject = sp1C;
     D_80177A64 = 2;
-    D_80124D90[gObjects[sp1C].obj_id].routine_1C();
+    D_80124D90[gObjects[sp1C].objID].routine_1C();
 }
 
 void func_800239E4(void) {
     D_8016E088 = 0;
     D_80177648 = 0;
-    if (gPlayerObject->unk104 != -1) {
+    if (gPlayerObject->interactingObjIdx != -1) {
         if (gPlayerObject->unk10A == 2) {
-            if (gPlayerObject->unk108 != -1) {
+            if (gPlayerObject->damageState != -1) {
                 D_80177648 = 1;
                 D_8016E088 = 1;
             }
         } else if (gPlayerObject->unk10A == 4) {
-            if (gPlayerObject->unk108 != -1) {
+            if (gPlayerObject->damageState != -1) {
                 switch (D_8016523E) { /* irregular */
                     case 0:
                         func_80023404();
@@ -643,40 +646,40 @@ void func_800239E4(void) {
                 if (D_8016523E == 0) {
                     D_80177648 = 1;
                     D_8016E088 = 3;
-                } else if ((D_8016523E == 4) && (gPlayerObject->unk108 == 1)) {
+                } else if ((D_8016523E == 4) && (gPlayerObject->damageState == 1)) {
                     D_80177648 = 1;
                     D_8016E088 = 3;
                 }
-            } else if (((u8) D_8016E080 != 0) && (gPlayerObject->unk108 == 1)) {
+            } else if (((u8) D_8016E080 != 0) && (gPlayerObject->damageState == 1)) {
                 D_80177648 = 1;
                 D_8016E088 = 3;
             }
             break;
     }
 
-    if (gDebugInvincibileFlag == 0) {
+    if (!gDebugInvincibileFlag) {
         if ((D_801778F4 == 0) && (D_8016E3CC == 0)) {
             if (D_80177648 == 1) {
                 if (gHealthCount != 0) {
                     gHealthCount -= 1;
                 }
                 if (gHealthCount == 0) {
-                    gPlayerObject->unk108 = 0;
+                    gPlayerObject->damageState = 0;
                 } else {
-                    gPlayerObject->unk108 = 0x3D;
+                    gPlayerObject->damageState = OBJ_DAMAGE_STATE_TAKE_DAMAGE;
                 }
             } else if (D_80177648 == 2) {
-                gPlayerObject->unk108 = 0;
+                gPlayerObject->damageState = 0;
             }
             if ((D_8016E110 == 1) && (D_8016E112 == 0)) {
                 D_8016E112 = 0xB4;
                 gHealthCount -= 1;
                 if (gHealthCount == 0) {
-                    gPlayerObject->unk108 = 0;
+                    gPlayerObject->damageState = 0;
                     D_8016E088 = 4;
                 }
             }
-        } else if ((gPlayerObject->unk108 != 0) &&
+        } else if ((gPlayerObject->damageState != 0) &&
                    (((u8) D_8016E080 == 3) || ((u8) D_8016E080 == 4) || ((u8) D_8016E080 == 5))) {
             D_8016E0D0 = 1;
         }
@@ -686,26 +689,27 @@ void func_800239E4(void) {
 void func_80023E78(void) {
     s32 sp1C;
     s32 sp18;
+
     for (sp1C = 2; sp1C < 6; sp1C++) {
-        if (gObjects[sp1C].unk104 != -1) {
-            sp18 = (s32) gObjects[sp1C].unk104;
+        if (gObjects[sp1C].interactingObjIdx != -1) {
+            sp18 = (s32) gObjects[sp1C].interactingObjIdx;
             if (gObjects[sp1C].unk10A == 1) {
-                if (gObjects[sp1C].action_state != 0x26 && gObjects[sp18].action_state != 0x26 &&
-                    (gObjects[sp1C].action_state != 0x1B && gObjects[sp18].action_state != 0x1B) &&
-                    (gObjects[sp1C].action_state != 0x13 && gObjects[sp18].action_state != 0x13)) {
-                    gObjects[sp1C].action_state = 7;
+                if (gObjects[sp1C].actionState != 0x26 && gObjects[sp18].actionState != 0x26 &&
+                    (gObjects[sp1C].actionState != 0x1B && gObjects[sp18].actionState != 0x1B) &&
+                    (gObjects[sp1C].actionState != 0x13 && gObjects[sp18].actionState != 0x13)) {
+                    gObjects[sp1C].actionState = 7;
                 }
             } else if (gObjects[sp1C].unk10A == 2) {
-                gObjects[sp1C].action_state = 7;
+                gObjects[sp1C].actionState = 7;
             } else if (gObjects[sp1C].unk10A == 4) {
-                if (((gObjects[sp18].obj_id == 0x1C8) && (gObjects[sp18].action_state == 0xC)) ||
-                    ((gObjects[sp18].obj_id == 0x1CF) && (gObjects[0xE].action_state == 0xC))) {
+                if (((gObjects[sp18].objID == OBJ_NITR_BD) && (gObjects[sp18].actionState == 0xC)) ||
+                    ((gObjects[sp18].objID == OBJ_NITR_BR) && (gObjects[14].actionState == 0xC))) {
                 } else {
-                    gObjects[sp1C].action_state = 7;
+                    gObjects[sp1C].actionState = 7;
                     func_800225D8(sp1C, sp18);
                 }
             } else if (gObjects[sp1C].unk10A == 5) {
-                gObjects[sp1C].action_state = 7;
+                gObjects[sp1C].actionState = 7;
                 func_800225D8(sp1C, sp18);
             }
         }
@@ -716,8 +720,8 @@ void func_800241CC(void) {
     s32 sp1C;
     s32 sp18;
     for (sp18 = 6; sp18 < 0xE; sp18++) {
-        if (gObjects[sp18].unk104 != -1) {
-            sp1C = (s32) gObjects[sp18].unk104;
+        if (gObjects[sp18].interactingObjIdx != -1) {
+            sp1C = (s32) gObjects[sp18].interactingObjIdx;
             if (gObjects[sp18].unk10A == 4) {
                 func_800225D8(sp18, sp1C);
             } else if (gObjects[sp18].unk10A == 5) {
@@ -727,7 +731,7 @@ void func_800241CC(void) {
     }
 }
 s32 func_800242F0(void) {
-    if (D_801765F4 == 0) {
+    if (!gGamePaused) {
         if (gActiveContPressed & CONT_START) {
             if (gCurrentLevel >= 0x80) {
                 if (D_80134C26 == 0) {
@@ -735,9 +739,9 @@ s32 func_800242F0(void) {
                     Check_PakState();
                     return 1;
                 }
-            } else if ((gPlayerObject->unk108 != 0) && (D_801778F4 == 0) && (func_80076680() == 0)) {
+            } else if ((gPlayerObject->damageState != 0) && (D_801778F4 == 0) && (func_80076680() == 0)) {
                 D_801765FC = 0;
-                D_801765F4 = 1;
+                gGamePaused = TRUE;
                 D_80176602 = 0;
                 func_800178D4(-1, 0, 0x40, -1, 0);
                 func_80016FF8(0x40);
@@ -750,11 +754,11 @@ s32 func_800242F0(void) {
     if (D_8016E3EE != 0) {
         func_80100148();
         return 1;
-    } else if ((gActiveContPressed & 0x0020) && (gShowDebugMenu != 0)) {
+    } else if ((gActiveContPressed & CONT_L) && (gShowDebugMenu != 0)) {
         D_8016E3EE = 1;
         gDebugDisplayMode = D_8016E3EC;
-        D_8016E3EC = 0x64;
-        D_8016E3F4 = 0;
+        D_8016E3EC = 0x64; // Main menu 
+        gDebugActionMenuItem = 0;
         return 1;
     } else if ((gActiveContPressed & CONT_START) || (gActiveContPressed & CONT_A)) {
         if (gShowDebugMenu != 0) {
@@ -764,7 +768,7 @@ s32 func_800242F0(void) {
             if (D_80176602 != 0) {
                 func_80069AA8(4, 0);
             } else {
-                D_801765F4 = 0;
+                gGamePaused = FALSE;
                 func_80016FF8(0x7F);
             }
         }
@@ -784,7 +788,7 @@ s32 func_800242F0(void) {
             if (D_80176602 != 0) {
                 func_80069AA8(4, 0);
             } else {
-                D_801765F4 = 0;
+                gGamePaused = 0;
                 func_80016FF8(0x7F);
             }
         } else {
@@ -811,20 +815,21 @@ void func_800246F0(void) {
 
 void func_80024744(void) {
     f32 sp6C;
-    Matrix sp2C;
+    Matrix mf;
     UpdateActiveController(FALSE);
 
     if ((gCameraType == 1) || (gCameraType == 2) || (gCameraType == 5) || (gCameraType == 6) || (gCameraType == 7) ||
         (gCameraType == 8)) {
-        guRotateF(sp2C, gView.rot.y, 0.0f, 1.0f, 0.0f);
-        guMtxXFMF(sp2C, gActiveContStickX, 0.0f, gActiveContStickY, &gActiveContStickX, &sp6C, &gActiveContStickY);
+        guRotateF(mf, gView.rot.y, 0.0f, 1.0f, 0.0f);
+        guMtxXFMF(mf, gActiveContStickX, 0.0f, gActiveContStickY, &gActiveContStickX, &sp6C, &gActiveContStickY);
     }
 
     if (gShowDebugMenu) {
         if ((gActiveContButton & (0x3000)) == 0x3000) {
             func_80069AA8(-1, 0);
         }
-        if ((gGoldBomber != 0) && ((gActiveContButton & 0x2020) == 0x2020)) {
+        // Clear level 
+        if ((gGoldBomber != 0) && ((gActiveContButton & (CONT_G | CONT_L)) == (CONT_G | CONT_L))) {
             if (gCurrentLevel < 0x80) {
                 func_80069D88(0, 1);
             } else {
@@ -833,7 +838,7 @@ void func_80024744(void) {
         }
     }
 
-    if ((D_8016E3CC == 0) && (func_800242F0() != 0)) {
+    if ((D_8016E3CC == 0) && (func_800242F0())) {
     } else if (D_8016E3CC != 0) {
     } else {
         func_8006C1DC();

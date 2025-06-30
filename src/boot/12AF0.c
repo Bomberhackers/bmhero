@@ -10,6 +10,7 @@ s32* D_8004A3D4 = NULL;
 
 s32 D_8004A3D8[3] = { 0x11, 0x13, 0x15 };
 s32 D_8004A3E4[3] = { 0x33, 0x34, 0x35 };
+
 float D_8004A3F0 = 0.01745329238f;
 
 void func_80011EF0(struct UnkStruct800122F0* arg0) {
@@ -29,7 +30,7 @@ void func_80011EF0(struct UnkStruct800122F0* arg0) {
                 D_80055D64 = D_80055D54[i].unk0;
             }
         }
-        D_80055D64 += 1;
+        D_80055D64++;
         D_8004A3D0 = malloc(D_80055D64 * 4);
         for (i = 0; i < D_80055D64; i++) {
             for (j = D_80055D58 - 1; j >= 0; j--) {
@@ -281,8 +282,6 @@ void func_80013948(struct UnkStruct800120FC* arg0) {
     arg0->unk70 = 0;
 }
 
-// void func_80013754(void *);                             /* extern */
-
 void func_80013A00(struct UnkStruct800120FC* arg0) {
     if (D_8004A3D4 != NULL) {
         free(D_8004A3D4);
@@ -324,7 +323,7 @@ void func_80013B70(f32* arg0, f32 arg1, f32 arg2, f32 arg3) {
 /*
  * Multiply two matrices and store the result in mf1
  */
-void func_80013C0C(float mf1[3][4], float mf2[3][3]) {
+void MultiplyMatrix(float mf1[3][4], float mf2[3][3]) {
     int i;
     int j;
     int k;
@@ -346,7 +345,10 @@ void func_80013C0C(float mf1[3][4], float mf2[3][3]) {
     }
 }
 
-void func_80013D68(f32 arg0[3][4], f32 arg1, f32 arg2, f32 arg3) {
+/*
+* Rotates a 3x3 matrix 
+*/
+UNUSED void Math_Mtx3_Rotate(f32 arg0[3][3], f32 x, f32 y, f32 z) {
     f32 sp34[3][3];
     f32 sp30;
     f32 sp2C;
@@ -355,15 +357,16 @@ void func_80013D68(f32 arg0[3][4], f32 arg1, f32 arg2, f32 arg3) {
     f32 sp20;
     f32 sp1C;
 
-    arg1 *= D_8004A3F0;
-    arg2 *= D_8004A3F0;
-    arg3 *= D_8004A3F0;
-    sp30 = sinf(arg1);
-    sp24 = cosf(arg1);
-    sp2C = sinf(arg2);
-    sp20 = cosf(arg2);
-    sp28 = sinf(arg3);
-    sp1C = cosf(arg3);
+    x *= D_8004A3F0;
+    y *= D_8004A3F0;
+    z *= D_8004A3F0;
+
+    sp30 = sinf(x);
+    sp24 = cosf(x);
+    sp2C = sinf(y);
+    sp20 = cosf(y);
+    sp28 = sinf(z);
+    sp1C = cosf(z);
     sp34[0][0] = (f32) (sp20 * sp1C);
     sp34[0][1] = (f32) (sp20 * sp28);
     sp34[0][2] = (f32) -sp2C;
@@ -373,10 +376,10 @@ void func_80013D68(f32 arg0[3][4], f32 arg1, f32 arg2, f32 arg3) {
     sp34[1][3] = (f32) ((sp24 * sp2C * sp1C) + (sp30 * sp28));
     sp34[2][1] = (f32) ((sp24 * sp2C * sp28) - (sp30 * sp1C));
     sp34[2][2] = (f32) (sp24 * sp20);
-    func_80013C0C(arg0, sp34);
+    MultiplyMatrix(arg0, sp34);
 }
 
-float D_8004A3F4 = 0.01745329238f;
+float sDegToRad = 0.01745329238f;
 
 void func_80013F6C(f32* arg0, f32 arg1) {
     s32 i;
@@ -385,7 +388,7 @@ void func_80013F6C(f32* arg0, f32 arg1) {
     f32 unk4[3];
     f32 sp1C[1];
 
-    sp1C[0] = arg1 * D_8004A3F4;
+    sp1C[0] = arg1 * sDegToRad;
     sp30 = sinf(sp1C[0]);
     sp2C = cosf(sp1C[0]);
 
@@ -450,8 +453,7 @@ UNUSED void func_800142F0(Gfx* arg0, struct UnkStruct_800142F0* arg1) {
     u32 sp4;
 
     sp4 = 0xFC000000;
-    sp4 |=
-        (((s32) arg1->unk0 & 0xF) << 0x14) | ((arg1->unk8 & 0x1F) << 0xF) | (arg1->unk10 << 0xC) | (arg1->unk18 << 9);
+    sp4 |= (((s32) arg1->unk0 & 0xF) << 0x14) | ((arg1->unk8 & 0x1F) << 0xF) | (arg1->unk10 << 0xC) | (arg1->unk18 << 9);
     sp4 |= ((arg1->unk20 & 0xF) << 5) | (arg1->unk28 & 0x1F);
     arg0->words.w0 = sp4;
     sp4 = (arg1->unk1C << 9) | (((arg1->unk4 & 0xF) << 0x1C) | ((arg1->unkC & 7) << 0xF) | (arg1->unk14 << 0xC));
@@ -460,17 +462,19 @@ UNUSED void func_800142F0(Gfx* arg0, struct UnkStruct_800142F0* arg1) {
     arg0->words.w1 = sp4;
 }
 
-UNUSED s32 func_80014414(u8 c) {
+// Converts a character into an integer
+UNUSED s32 ctoi(u8 c) {
     if (c >= 'a') {
         c = (c - ' ');
     }
+
     if (c >= 'A') {
         return c - '7';
     }
     return c - '0';
 }
 
-s32 func_80014414(u8); /* extern */
+s32 ctoi(u8); /* extern */
 
 UNUSED void func_8001445C(Gfx* arg0, u8* arg1) {
     s32 sp64;
@@ -479,7 +483,7 @@ UNUSED void func_8001445C(Gfx* arg0, u8* arg1) {
     register s32 temp;
 
     for (sp64 = 0; sp64 < 8; sp64++) {
-        sp1C[sp64 + 7] = temp = func_80014414(arg1[sp64]);
+        sp1C[sp64 + 7] = temp = ctoi(arg1[sp64]);
         sp1C[sp64 - 1] = temp;
     }
 
@@ -491,8 +495,8 @@ UNUSED void func_800144F4(Gfx* arg0, u8* arg1, u8* arg2) {
     UNUSED s32 sp1C[16];
 
     for (sp5C = 0; sp5C < 8; sp5C++) {
-        sp1C[sp5C] = func_80014414(arg1[sp5C]);
-        sp1C[sp5C + 8] = func_80014414(arg2[sp5C]);
+        sp1C[sp5C] = ctoi(arg1[sp5C]);
+        sp1C[sp5C + 8] = ctoi(arg2[sp5C]);
     }
 
     func_800142F0(arg0, (struct UnkStruct_800142F0*) &sp1C[0]);
@@ -584,23 +588,30 @@ UNUSED void func_80014A00(Gfx* arg0, char* arg1, char* arg2) {
     func_800146F8(arg0, arg1, arg2, arg2);
 }
 
-UNUSED f32 func_80014A44(f32 arg0) {
-    s32 sp14;
-    f32 sp10;
-    f32 spC;
-    f32 sp8;
-    f32 sp4;
+/* This function appears to calculate a polynomial approximation of the sine function
+ *  using a truncated taylor series expansion to compute the sine value for a given angle in radians.
+ *   sin(x) = x - x^3/3! + x^5/5
+ *
+ *  @param angle the angle in radians for which to calculate the sine value
+ *  @return the sine of the angle
+ */
+UNUSED f32 Math_TaylorSeries(f32 angle) {
+    s32 i;
+    f32 exponent;
+    f32 x_squared;
+    f32 factorial;
+    f32 x;
 
-    sp8 = 1.0f;
-    sp10 = arg0;
-    spC = SQ(arg0);
-    sp4 = arg0;
+    factorial = 1.0f;
+    exponent = angle;
+    x_squared = SQ(angle);
+    x = angle;
 
-    for (sp14 = 3; sp14 < 7; sp14 += 2) {
-        sp8 *= (f32) ((sp14 - 1) * sp14);
-        sp10 *= spC;
-        sp4 -= sp10 / sp8;
+    for (i = 3; i < 7; i += 2) {
+        factorial *= ((i - 1) * i); // 3! = 6, 5! = 120
+        exponent *= x_squared;      // x ^ 3
+        x -= exponent / factorial;
     }
 
-    return sp4;
+    return x;
 }

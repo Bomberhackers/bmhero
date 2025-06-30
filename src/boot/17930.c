@@ -673,7 +673,7 @@ void Init_Obj(int index) {
     s32 i;
 
     obj = &gObjects[index];
-    obj->action_state = 0;
+    obj->actionState = 0;
     obj->unkA6 = 0;
     obj->unkA8 = 0;
     obj->unkAA = 0;
@@ -699,7 +699,7 @@ void Init_Obj(int index) {
     obj->unkE0 = 0.0f;
     obj->unk132 = 0;
     obj->unkFC = -1;
-    obj->obj_id = 0;
+    obj->objID = 0;
     obj->unkE6[0] = -1;
 
     for (i = 0; i < 10; i++) {
@@ -711,8 +711,8 @@ void Init_Obj(int index) {
     obj->unk100 = 1;
     obj->unk102 = 1;
     obj->unk103 = 0;
-    obj->unk104 = -1;
-    obj->unk108 = 0;
+    obj->interactingObjIdx = -1;
+    obj->damageState = 0;
     obj->unk10A = 0;
     obj->unk10B = 0;
     obj->unk10C = 0;
@@ -1232,7 +1232,7 @@ void func_8001C464(void) {
     s32 sp28;
 
     for (sp34 = &gObjects[0xE], sp30 = 14; sp30 < 0x4E; sp34++, sp30++) {
-        if (sp34->action_state != 0) {
+        if (sp34->actionState != 0) {
             func_80019510(sp30, 1, 1);
             if (!((u8) sp34->unk130 & 1) && !(sp34->unk131 & 2) && (((sp2C = sp34->Unk140[0]) != -1))) {
                 func_8001838C();
@@ -1253,7 +1253,7 @@ void func_8001C5B8(void) {
     s32 sp28;
 
     for (sp34 = &gObjects[0xE], sp30 = 14; sp30 < 0x4E; sp34++, sp30++) {
-        if (sp34->action_state != 0) {
+        if (sp34->actionState != 0) {
             if (!((u8) sp34->unk130 & 1) && !(sp34->unk131 & 2) && (((sp2C = sp34->Unk140[3]) != -1))) {
                 func_80019510(sp30, 1, 0);
                 func_8001838C();
@@ -1275,7 +1275,7 @@ void func_8001C70C(void) {
     s32 sp2C;
 
     for (sp3C = &gObjects[0x4E], sp38 = 0x4E; sp38 < 0x8E; sp3C++, sp38++) {
-        if (sp3C->action_state != 0) {
+        if (sp3C->actionState != 0) {
             if ((char) gObjects[sp38].unk139 != 0) {
                 func_80019510(sp38, 1, 0);
             } else {
@@ -1311,7 +1311,7 @@ void func_8001C96C(void) {
 
     func_8001838C();
     for (sp34 = &gObjects[0x4E], sp30 = 0x4E; sp30 < 0x8E; sp34++, sp30++) {
-        if ((sp34->action_state != 0)) {
+        if ((sp34->actionState != 0)) {
             if (!((u8) sp34->unk130 & 1) && ((sp2C = (s32) sp34->Unk140[3]) != -1)) {
                 func_80019510(sp30, 1, 0);
                 func_8001B014(sp30, 3);
@@ -1646,7 +1646,7 @@ void InitControllers(void) {
     gControllerBits = 0;
     osCreateMesgQueue(&gContMesgQueue, &D_801776CC, 1);
     osSetEventMesg(5U, &gContMesgQueue, (void*) 1);
-    status = osContInit(&gContMesgQueue, &gControllerBits, &D_80177650);
+    status = osContInit(&gContMesgQueue, &gControllerBits, &sContStatus);
     if (status != 0) {
         // presumedly for handling if the controller had an error, but there's nothing here.
         // missing assert?
@@ -1804,11 +1804,12 @@ void func_8001E80C(void) {
             D_8016525C += 1;
         }
     }
-    D_80165284 += 1;
+    D_80165284++;
     if (D_80165284 >= D_8016527C) {
         D_80165284 = 0;
     }
-    D_8016E244 += 1;
+    //DEBUG_PRINTF("Counter: %d\n", D_80165284);
+    D_8016E244++;
 }
 
 void Set_DecompressHeap(s32* arg0) {
@@ -1887,7 +1888,7 @@ void func_8001EC1C(void) {
     D_8016E0A0 = 1;
 }
 
-void func_8001EC38(void) {
+UNUSED void func_8001EC38(void) {
     D_8016E0A0 = 0;
 }
 
@@ -1912,7 +1913,7 @@ void func_8001ECB8(void) {
     D_8016E244 = 0;
     D_8016E084 = 0;
     D_8016E08C = 0;
-    D_801765F4 = 0;
+    gGamePaused = FALSE;
     D_80176602 = 0;
     func_8001EBE8();
     func_8001EC1C();

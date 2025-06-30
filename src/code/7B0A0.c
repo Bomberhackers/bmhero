@@ -110,7 +110,7 @@ void func_80088ECC(void) {
     }
     exit = 0;
     while (exit == 0) {
-        switch (gCutsceneByteCode[0]) {
+        switch (*gCutsceneByteCode) {
             case 0x0:
                 gCutsceneLength = -1;
                 D_80134C0C = 0;

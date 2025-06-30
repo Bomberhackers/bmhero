@@ -2,6 +2,7 @@
 #define _VARIABLES_H_
 
 #include <ultra64.h>
+#include "obj.h"
 
 // externs
 
@@ -117,7 +118,6 @@ extern s16 D_80057694;
 extern s16 D_80057696;
 extern s16 D_80057698;
 extern s16 D_8005769A;
-extern s16 sSetModeMenuOption;
 extern s8 D_8005769E;
 extern s16 D_800576A2;
 extern struct UnkInputStruct_8001ABF4 D_80100560[4];
@@ -656,7 +656,7 @@ extern s8 D_8016E3D4;
 extern s8 D_8016E3DC;
 extern s8 D_8016E3EC;
 extern s8 D_8016E3EE;
-extern s16 D_8016E3F4;
+extern s16 gDebugActionMenuItem;
 extern s8 gDebugShowTimerBar;
 extern s8 gDebugDisplayMode;
 extern s8 gDebugInvincibileFlag;
@@ -677,7 +677,7 @@ extern u8 D_8016E450[];
 extern struct UnkStruct80176458 D_80176458[4];
 extern s16 D_801765C0[];
 extern s32 gCameraType;
-extern s32 D_801765F4;
+extern s32 gGamePaused;
 extern s8 D_80176602;
 extern s8 D_80176606;
 extern s8 D_8017660A;
@@ -702,7 +702,7 @@ extern s8 D_80177628;
 extern s8 D_80177630;
 extern s8 D_80177638;
 extern s8 D_80177640;
-extern OSContStatus D_80177650[];
+extern OSContStatus sContStatus[];
 extern OSContPad gContPads[4];
 extern OSMesgQueue gContMesgQueue;
 extern OSMesg D_801776CC;

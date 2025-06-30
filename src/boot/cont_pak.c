@@ -80,16 +80,16 @@ int GetSi_Status(void) {
 }
 
 void func_8001EED8(void) {
-    u8 sp1F;
+    u8 i;
 
     osContStartQuery(&gContMesgQueue);
     osRecvMesg(&gContMesgQueue, NULL, 1);
-    osContGetQuery(D_80177650);
-    for (sp1F = 0; sp1F < 4; sp1F++) {
-        if ((D_80177650[sp1F].type & 4) && (D_80177650[sp1F].type & 1) && (D_80177650[sp1F].errno == 0)) {
-            gControllerBits |= 1 << sp1F;
+    osContGetQuery(sContStatus);
+    for (i = 0; i < 4; i++) {
+        if ((sContStatus[i].type & 4) && (sContStatus[i].type & 1) && (sContStatus[i].errno == 0)) {
+            gControllerBits |= 1 << i;
         } else {
-            gControllerBits &= ~(1 << sp1F);
+            gControllerBits &= ~(1 << i);
         }
     }
 }
@@ -111,7 +111,7 @@ void func_8001F088(struct UnkStruct_8001EFD0* arg0) {
     for (sp1C = 0; sp1C < 4; sp1C++) {
         func_8001EFD0(arg0, sp1C);
         if ((gControllerBits >> sp1C) & 1) {
-            if ((D_80177650[sp1C].type & CONT_JOYPORT) && (D_80177650[sp1C].type & CONT_ABSOLUTE)) {
+            if ((sContStatus[sp1C].type & CONT_JOYPORT) && (sContStatus[sp1C].type & CONT_ABSOLUTE)) {
                 sp18 = osPfsInitPak(&gContMesgQueue, &MEMBER_ACCESS(arg0, sp1C, pfs), sp1C);
                 arg0[sp1C].unk74 = sp18;
             }
@@ -124,7 +124,7 @@ void func_8001F174(struct UnkStruct_8001EFD0* arg0, s32 arg1) {
     s32 sp18;
 
     if (((s32) gControllerBits >> arg1) & 1) {
-        if ((D_80177650[arg1].type & CONT_JOYPORT) && (D_80177650[arg1].type & CONT_ABSOLUTE)) {
+        if ((sContStatus[arg1].type & CONT_JOYPORT) && (sContStatus[arg1].type & CONT_ABSOLUTE)) {
             sp18 = osPfsInitPak(&gContMesgQueue, &MEMBER_ACCESS(arg0, arg1, pfs), arg1);
             arg0[arg1].unk74 = sp18;
         }
@@ -235,26 +235,25 @@ s32 func_8001F728(struct UnkStruct_8001EFD0* arg0, s32 arg1, OSPfsState* arg2) {
     return sp24;
 }
 
-s32 Eeprom_Write(OSMesgQueue* mq, u8* buf, u8 addr, u16 half_bytes) {
-    s32 status;
+s32 Eeprom_Write(OSMesgQueue* mq, u8* buf, u8 addr, u16 size) {
+    s32 status = 0;
 
-    status = 0;
     if (osEepromProbe(mq) != 1) {
         return CONT_RANGE_ERROR;
     }
 
-    status = osEepromLongWrite(mq, addr, buf, half_bytes);
+    status = osEepromLongWrite(mq, addr, buf, (int) size);
     return status;
 }
 
-s32 Eeprom_Read(OSMesgQueue* mq, u8* buf, u8 addr, u16 half_bytes) {
-    s32 status;
+s32 Eeprom_Read(OSMesgQueue* mq, u8* buf, u8 addr, u16 size) {
+    s32 status = 0;
 
-    status = 0;
     if (osEepromProbe(mq) != 1) {
         return CONT_RANGE_ERROR;
     }
-    status |= osEepromLongRead(mq, addr, buf, (int) half_bytes);
+    
+    status |= osEepromLongRead(mq, addr, buf, (int) size);
     return status;
 }
 

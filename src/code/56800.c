@@ -15,7 +15,7 @@ s32 func_800642E0(void) {
     s32 i;
 
     for (i = 14; i < 78; i++) {
-        if (gObjects[i].action_state == 0) {
+        if (gObjects[i].actionState == 0) {
             return i;
         }
     }
@@ -25,7 +25,7 @@ s32 func_800642E0(void) {
 // find free slot
 s32 func_80064358(s32 arg0) {
     while (arg0 < 78) {
-        if (gObjects[arg0].action_state == 0) {
+        if (gObjects[arg0].actionState == 0) {
             return arg0;
         }
         arg0++;
@@ -425,7 +425,7 @@ void func_80069D04(s32 arg0, s32 arg1) {
     if (D_8016E3CC != 0) {
         return;
     }
-    if (gPlayerObject->unk108 == 0) {
+    if (gPlayerObject->damageState == 0) {
         return;
     }
     func_80069AD8(arg0, arg1);
@@ -436,7 +436,9 @@ void func_80069D88(s32 arg0, s32 arg1) {
     if (D_8016E3CC != 0) {
         return;
     }
-    if (gPlayerObject->unk108 == 0) {
+
+    // If the player is already dead, don't clear the level
+    if (gPlayerObject->damageState == OBJ_DEATH) {
         return;
     }
     func_80069AD8(arg0, arg1);

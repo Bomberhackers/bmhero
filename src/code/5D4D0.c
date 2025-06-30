@@ -179,7 +179,7 @@ void func_8006B7BC(void) {
             if (sp24 == -1) {
                 break;
             } else {
-                gObjects[sp24].action_state = 2;
+                gObjects[sp24].actionState = 2;
                 D_8017792D = 1;
                 sp24 += 1;
             }

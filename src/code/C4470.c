@@ -9,10 +9,10 @@ void func_800D1F50(void) {
 
 void func_800D1FCC(void) {
     if (D_80177A64 == 0) {
-        gObjects[gCurrentParsedObject].action_state = 6;
+        gObjects[gCurrentParsedObject].actionState = 6;
         gObjects[gCurrentParsedObject].unk132 = 0;
-    } else if (D_80177A64 == 1 && gObjects[gCurrentParsedObject].unk108 == 1) {
-        gObjects[gCurrentParsedObject].action_state = 5;
+    } else if (D_80177A64 == 1 && gObjects[gCurrentParsedObject].damageState == 1) {
+        gObjects[gCurrentParsedObject].actionState = 5;
         gObjects[gCurrentParsedObject].unk132 = 0;
     }
 }
@@ -29,7 +29,7 @@ void func_800D20E4(void) {
         func_8001ABF4(gCurrentParsedObject, 2, 0, &D_80118600 + 0x134 / 4);
     }
     if (func_8002A1FC(gCurrentParsedObject, 360.0f) != 0) {
-        CurrentObject->action_state = 2;
+        CurrentObject->actionState = 2;
         CurrentObject->unk132 = 0;
     }
 }
@@ -46,8 +46,8 @@ void func_800D2208(void) {
         func_8001ABF4(gCurrentParsedObject, 2, 0, &D_80118600 + 0x38 / 4);
     }
     if (CurrentObject->unkA6 == 0) {
-        CurrentObject->unk108 = 1;
-        CurrentObject->action_state = 3;
+        CurrentObject->damageState = 1;
+        CurrentObject->actionState = 3;
         CurrentObject->unk132 = 0;
     } else {
         CurrentObject->unkA6 -= 1;
@@ -67,7 +67,7 @@ void func_800D2334(void) {
         func_8001ABF4(gCurrentParsedObject, 2, 0, &D_80118600 + 0x8C / 4);
     }
     if (CurrentObject->unkA6 == 0) {
-        CurrentObject->action_state = 4;
+        CurrentObject->actionState = 4;
         CurrentObject->unk132 = 0;
     } else {
         CurrentObject->unkA6 -= 1;
@@ -93,7 +93,7 @@ void func_800D247C(void) {
     }
     if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
         func_800175F0(gCurrentParsedObject, 0, 0x18, -1, 0);
-        sp34->action_state = 3;
+        sp34->actionState = 3;
         sp34->unk132 = 0;
         func_8001BBDC(gCurrentParsedObject, 1);
     }
@@ -105,18 +105,18 @@ void func_800D26A0(void) {
     CurrentObject = &gObjects[gCurrentParsedObject];
     if (CurrentObject->unk132 == 0) {
         CurrentObject->unk132 += 1;
-        gObjects[gCurrentParsedObject].unk108 = 0x32;
+        gObjects[gCurrentParsedObject].damageState = 0x32;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0x94, &D_80118530);
         func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118600 + 0xA8 / 4);
         func_8001ABF4(gCurrentParsedObject, 1, 0, &D_80118600 + 0xC4 / 4);
         func_8001ABF4(gCurrentParsedObject, 2, 0, &D_80118600 + 0xE0 / 4);
     }
-    if ((gObjects[gCurrentParsedObject].unk108) >= 2) {
-        func_8001BB34(gCurrentParsedObject, !(CurrentObject->unk108 % 2));
+    if ((gObjects[gCurrentParsedObject].damageState) >= 2) {
+        func_8001BB34(gCurrentParsedObject, !(CurrentObject->damageState % 2));
     }
-    if (CurrentObject->unk108 == 1) {
+    if (CurrentObject->damageState == 1) {
         func_8001BB34(gCurrentParsedObject, 0);
-        CurrentObject->action_state = 3;
+        CurrentObject->actionState = 3;
         CurrentObject->unk132 = 0;
     }
 }
@@ -126,7 +126,7 @@ void func_800D2870(void) {
 }
 
 void func_800D28A0(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) {
+    switch (gObjects[gCurrentParsedObject].actionState) {
         case 1:
             func_800D20E4();
             break;
@@ -152,7 +152,7 @@ void func_800D28A0(void) {
 
 void func_800D2980(void) {
     if ((D_80177A64 == 0) || (D_80177A64 == 2)) {
-        gObjects[gCurrentParsedObject].action_state = 2;
+        gObjects[gCurrentParsedObject].actionState = 2;
         gObjects[gCurrentParsedObject].unk132 = 0;
     }
 }
@@ -200,7 +200,7 @@ void func_800D2A04(void) {
     if (func_80029018(gCurrentParsedObject, 3U, 30.0f, 0.0f, 0.0f, 0.0f) != 0) {
         sp24->Vel.z = 0.0f;
         sp24->Vel.x = sp24->Vel.z;
-        sp24->action_state = 2;
+        sp24->actionState = 2;
         sp24->unk132 = 0;
     }
 }
@@ -211,7 +211,7 @@ void func_800D2D34(void) {
 
 void func_800D2D64(void) {
     if (gObjects[gCurrentParsedObject].unkE6[0] == -1) {
-        switch (gObjects[gCurrentParsedObject].action_state) {
+        switch (gObjects[gCurrentParsedObject].actionState) {
             case 1:
                 func_800D2A04();
                 break;
@@ -234,7 +234,7 @@ void func_800D2E2C(void) {
 void func_800D2EA4(void) {
     if (D_80177A64 == 0) {
         gObjects[gCurrentParsedObject].unk132 = 0;
-        gObjects[gCurrentParsedObject].action_state = 4;
+        gObjects[gCurrentParsedObject].actionState = 4;
     }
 }
 
@@ -252,7 +252,7 @@ void func_800D2F1C(void) {
         func_8001BB04(gCurrentParsedObject, 1);
     }
     if (func_8002A1FC(gCurrentParsedObject, 480.0f) != 0) {
-        sp34->action_state = 2;
+        sp34->actionState = 2;
         sp34->unk132 = 0;
     }
 }
@@ -274,8 +274,8 @@ void func_800D3048(void) {
     if ((func_800295C0(gCurrentParsedObject, &sp28, &sp24, 0.0f, 0.0f, 0.0f) == 0)) {
         if ((CurrentObject->Pos.y >= (sp28 + 90.0f))) {
             CurrentObject->Vel.y = 0.0f;
-            CurrentObject->unk108 = 1;
-            CurrentObject->action_state = 3;
+            CurrentObject->damageState = 1;
+            CurrentObject->actionState = 3;
             CurrentObject->unk132 = 0;
         }
     }
@@ -322,7 +322,7 @@ void func_800D33B0(void) {
 }
 
 void func_800D33E0(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) {
+    switch (gObjects[gCurrentParsedObject].actionState) {
         case 1:
             func_800D2F1C();
             break;
@@ -379,7 +379,7 @@ void func_800D3578(void) {
 }
 
 void func_800D36E8(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) {
+    switch (gObjects[gCurrentParsedObject].actionState) {
         case 1: {
             func_800D3578();
             break;
@@ -393,11 +393,11 @@ void func_800D375C(void) {
     struct ObjectStruct* CurrentObject;
 
     CurrentObject = &gObjects[gCurrentParsedObject];
-    if ((D_80177A64 == 0) && (CurrentObject->action_state == 2)) {
-        CurrentObject->action_state = 3;
+    if ((D_80177A64 == 0) && (CurrentObject->actionState == 2)) {
+        CurrentObject->actionState = 3;
         CurrentObject->unk132 = 0;
-    } else if ((D_80177A64 == 2) && (CurrentObject->action_state == 2)) {
-        CurrentObject->action_state = 3;
+    } else if ((D_80177A64 == 2) && (CurrentObject->actionState == 2)) {
+        CurrentObject->actionState = 3;
         CurrentObject->unk132 = 0;
     }
 }
@@ -418,7 +418,7 @@ void func_800D3824(void) {
     if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
         CurrentObject->unk48 = 0.0f;
         CurrentObject->Vel.y = CurrentObject->unk48;
-        CurrentObject->action_state = 2;
+        CurrentObject->actionState = 2;
         CurrentObject->unk132 = 0;
         func_8001BBDC(gCurrentParsedObject, 1);
     }
@@ -441,7 +441,7 @@ void func_800D3974(void) {
         CurrentObject->unkB8 = 0;
         CurrentObject->unk40 = 90.0f;
         CurrentObject->unk48 = 30.0f;
-        CurrentObject->unk108 = 1;
+        CurrentObject->damageState = 1;
         func_8001C0EC(gCurrentParsedObject, 0, 1, 0x97, &D_801187BC);
         func_8001BBDC(gCurrentParsedObject, 0);
     }
@@ -488,7 +488,7 @@ void func_800D3E54(void) {
     sp34 = &gObjects[gCurrentParsedObject];
     if (sp34->unk132 == 0) {
         sp34->unk132 = 1;
-        sp34->unk108 = 0;
+        sp34->damageState = 0;
         sp34->Vel.x = sp34->Vel.y = sp34->Vel.z = 0.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 2, 0x97, &D_801187BC);
         func_8001BBDC(gCurrentParsedObject, 0);
@@ -515,7 +515,7 @@ void func_800D3E54(void) {
 }
 
 void func_800D4064(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) {
+    switch (gObjects[gCurrentParsedObject].actionState) {
         case 1:
             func_800D3824();
             break;
@@ -565,12 +565,12 @@ void func_800D4268(void) {
     }
     sp30 = func_8001B62C(gCurrentParsedObject, 3);
     if ((sp30 >= 20.0f) && (sp30 <= 60.0f)) {
-        sp34->unk108 = 1;
+        sp34->damageState = 1;
     } else {
-        sp34->unk108 = 0;
+        sp34->damageState = 0;
     }
     if (func_8001B44C(gCurrentParsedObject, 3) != 0) {
-        sp34->action_state = 2;
+        sp34->actionState = 2;
         sp34->unk132 = 0;
     }
 }
@@ -582,12 +582,12 @@ void func_800D4430(void) {
     if (CurrentObject->unk132 == 0) {
         CurrentObject->unk132 += 1;
         CurrentObject->unkA6 = 0;
-        CurrentObject->unk108 = 0;
+        CurrentObject->damageState = 0;
         func_8001BB34(gCurrentParsedObject, 1);
         func_8001BBDC(gCurrentParsedObject, 1);
     }
     if (CurrentObject->unkA6 >= 0x2E) {
-        CurrentObject->action_state = 1;
+        CurrentObject->actionState = 1;
         CurrentObject->unk132 = 0;
     } else {
         CurrentObject->unkA6 += 1;
@@ -595,7 +595,7 @@ void func_800D4430(void) {
 }
 
 void func_800D4530(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) {
+    switch (gObjects[gCurrentParsedObject].actionState) {
         case 1:
             func_800D4268();
             break;
@@ -630,7 +630,7 @@ void func_800D464C(void) {
     if ((sp1C > -350.0f) && (sp1C < 50.0f)) {
         sp1C = gPlayerObject->Pos.x - CurrentObject->Pos.x;
         if ((sp1C > -800.0f) && (sp1C < 800.0f)) {
-            CurrentObject->action_state = 2;
+            CurrentObject->actionState = 2;
             CurrentObject->unk132 = 0;
         }
     }
@@ -666,13 +666,13 @@ void func_800D47C0(void) {
     } else if (sp3C->unkAA != 0) {
         sp3C->unkAA -= 1;
     } else {
-        sp3C->action_state = 1;
+        sp3C->actionState = 1;
         sp3C->unk132 = 0;
     }
 }
 
 void func_800D4A10(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) {
+    switch (gObjects[gCurrentParsedObject].actionState) {
         case 1:
             func_800D464C();
             break;
@@ -710,7 +710,7 @@ void func_800D4AB4(void) {
     if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, -120.0f, 60.0f) == 1) {
         sp24->Vel.z = 0.0f;
         sp24->Vel.x = sp24->Vel.z;
-        sp24->action_state = 2;
+        sp24->actionState = 2;
         sp24->unk132 = 0;
     }
 }
@@ -725,7 +725,7 @@ void func_800D4C8C(void) {
         func_80029EF8(gCurrentParsedObject, 8.0f, 1.0f);
     }
     if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, -120.0f, 60.0f) == 1) {
-        sp24->action_state = 3;
+        sp24->actionState = 3;
         sp24->unk132 = 0;
     }
 }
@@ -760,7 +760,7 @@ void func_800D4D74(void) {
         if (sp24 == 0) {
             sp2C = D_80177760[sp24];
             if (CurrentObject->Pos.y - 120.0f - sp2C >= 120.0f) {
-                CurrentObject->action_state = 4;
+                CurrentObject->actionState = 4;
                 CurrentObject->unk132 = 0;
             } else {
                 if (func_800295C0(gCurrentParsedObject, &sp38, &sp34, 0.0f, 0.0f, 0.0f) != 0) {
@@ -842,7 +842,7 @@ void func_800D5610(void) {
 }
 
 void func_800D577C(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) {
+    switch (gObjects[gCurrentParsedObject].actionState) {
         case 1:
             func_800D4AB4();
             break;
@@ -867,7 +867,7 @@ void func_800D5848(void) {
 
 void func_800D58C0(void) {
     if (D_80177A64 == 0) {
-        gObjects[gCurrentParsedObject].action_state = 4;
+        gObjects[gCurrentParsedObject].actionState = 4;
         gObjects[gCurrentParsedObject].unk132 = 0;
     }
 }
@@ -884,11 +884,11 @@ void func_800D5938(void) {
     }
     if (gObjects->Pos.y < (CurrentObject->Pos.y - 60.0f)) {
         if (func_8002A1FC(gCurrentParsedObject, 1200.0f) != 0) {
-            CurrentObject->action_state = 2;
+            CurrentObject->actionState = 2;
             CurrentObject->unk132 = 0;
         }
     } else {
-        CurrentObject->action_state = 3;
+        CurrentObject->actionState = 3;
         CurrentObject->unk132 = 0;
     }
 }
@@ -906,7 +906,7 @@ void func_800D5AA4(void) {
 
         func_8001C0EC(gCurrentParsedObject, 0, 1, 0xA8, &D_80118868);
         func_8001BBDC(gCurrentParsedObject, 0);
-        CurrentObject->unk108 = -1;
+        CurrentObject->damageState = -1;
     }
     if (CurrentObject->unkA6 != 0) {
         if (CurrentObject->unkA8 == 1 || CurrentObject->unkA8 == 3) {
@@ -967,13 +967,13 @@ void func_800D5AA4(void) {
         } else if (CurrentObject->unkA8 == 4) {
             CurrentObject->unkA6 = 1;
             CurrentObject->unkAA = 0x32;
-            CurrentObject->unk108 = 1;
+            CurrentObject->damageState = 1;
         } else if (CurrentObject->unkA8 == 5) {
             func_8001BBDC(gCurrentParsedObject, 1);
             if (func_8002A2EC(gCurrentParsedObject, 1200.0f) != 0) {
                 CurrentObject->unk132 = 0;
             } else {
-                CurrentObject->action_state = 3;
+                CurrentObject->actionState = 3;
                 CurrentObject->unk132 = 0;
             }
         }
@@ -993,7 +993,7 @@ void func_800D613C(void) {
         CurrentObject->unk44 = 5.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0xA8, &D_80118868);
         func_8001BBDC(gCurrentParsedObject, 0);
-        CurrentObject->unk108 = 1;
+        CurrentObject->damageState = 1;
     }
     CurrentObject->Vel.y = 0.0f;
     func_80029C40(gCurrentParsedObject);
@@ -1013,7 +1013,7 @@ void func_800D613C(void) {
     if ((func_8001B44C(gCurrentParsedObject, 0) != 0) && (func_8002A2EC(gCurrentParsedObject, 1200.0f) != 0)) {
         func_8001BBDC(gCurrentParsedObject, 1);
         CurrentObject->unk132 = 0;
-        CurrentObject->action_state = 2;
+        CurrentObject->actionState = 2;
     }
 }
 
@@ -1025,7 +1025,7 @@ void func_800D63C4(void) {
         CurrentObject->unk132 = 1;
         CurrentObject->Vel.x = CurrentObject->Vel.y = CurrentObject->Vel.z = 0.0f;
         CurrentObject->unkA8 = 0;
-        CurrentObject->unk108 = 0;
+        CurrentObject->damageState = 0;
         func_8001C0EC(gCurrentParsedObject, 0, 1, 0xA8, &D_80118868);
         func_8001BBDC(gCurrentParsedObject, 1);
     }
@@ -1040,7 +1040,7 @@ void func_800D63C4(void) {
 }
 
 void func_800D6540(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) {
+    switch (gObjects[gCurrentParsedObject].actionState) {
         case 1:
             func_800D5938();
             break;
@@ -1060,7 +1060,7 @@ void func_800D6540(void) {
 
 void func_800D660C(void) {
     if (D_80177A64 == 2) {
-        gObjects[gCurrentParsedObject].action_state = 2;
+        gObjects[gCurrentParsedObject].actionState = 2;
         gObjects[gCurrentParsedObject].unk132 = 0;
     }
 }
@@ -1119,10 +1119,10 @@ void func_800D6684(void) {
     func_80029D04(gCurrentParsedObject);
     if (func_80029018(gCurrentParsedObject, 3U, 30.0f, 0.0f, 0.0f, 0.0f) != 0) {
         CurrentObject->Vel.x = CurrentObject->Vel.y = CurrentObject->Vel.z = 0.0f;
-        CurrentObject->action_state = 2;
+        CurrentObject->actionState = 2;
         CurrentObject->unk132 = 0;
     } else if (CurrentObject->unkB6 == 0) {
-        CurrentObject->action_state = 2;
+        CurrentObject->actionState = 2;
         CurrentObject->unk132 = 0;
     } else {
         CurrentObject->unkB6 -= 1;
@@ -1135,7 +1135,7 @@ void func_800D6C14(void) {
 
 void func_800D6C44(void) {
     if (gObjects[gCurrentParsedObject].unkE6[0] == -1) {
-        switch (gObjects[gCurrentParsedObject].action_state) {
+        switch (gObjects[gCurrentParsedObject].actionState) {
             case 1:
                 func_800D6684();
                 break;
@@ -1156,7 +1156,7 @@ void func_800D6D0C(void) {
 void func_800D6D84(void) {
     if (D_80177A64 == 0) {
         gObjects[gCurrentParsedObject].unk132 = 0;
-        gObjects[gCurrentParsedObject].action_state = 2;
+        gObjects[gCurrentParsedObject].actionState = 2;
     }
 }
 
@@ -1239,7 +1239,7 @@ void func_800D7348(void) {
         CurrentObject->unk3C = func_80015538(CurrentObject->unk128, 180.0f);
         func_80029EF8(gCurrentParsedObject, 14.378698f, 1.06089f);
         func_8001BBDC(gCurrentParsedObject, 1);
-        CurrentObject->unk108 = 0;
+        CurrentObject->damageState = 0;
     }
     CurrentObject->Rot.y = func_80015538(CurrentObject->Rot.y, 25.0f);
     sp20 = CurrentObject->Vel.y;
@@ -1261,7 +1261,7 @@ void func_800D7348(void) {
 }
 
 void func_800D7580(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) {
+    switch (gObjects[gCurrentParsedObject].actionState) {
         case 1:
             func_800D6DFC();
             break;
@@ -1281,7 +1281,7 @@ void func_800D7614(void) {
 void func_800D768C(void) {
     if (D_80177A64 == 0) {
         gObjects[gCurrentParsedObject].unk132 = 0;
-        gObjects[gCurrentParsedObject].action_state = 2;
+        gObjects[gCurrentParsedObject].actionState = 2;
     }
 }
 
@@ -1365,7 +1365,7 @@ void func_800D7CD0(void) {
         sp24->unk3C = func_80015538(sp24->unk128, 180.0f);
         func_80029EF8(gCurrentParsedObject, 14.378698f, 1.06089f);
         func_8001BBDC(gCurrentParsedObject, 1);
-        sp24->unk108 = 0;
+        sp24->damageState = 0;
     }
     sp24->Rot.y = func_80015538(sp24->Rot.y, 25.0f);
     sp20 = sp24->Vel.y;
@@ -1387,7 +1387,7 @@ void func_800D7CD0(void) {
 }
 
 void func_800D7F08(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) {
+    switch (gObjects[gCurrentParsedObject].actionState) {
         case 1:
             func_800D7704();
             break;
@@ -1407,7 +1407,7 @@ void func_800D7F9C(void) {
 void func_800D8014(void) {
     if (D_80177A64 == 0) {
         gObjects[gCurrentParsedObject].unk132 = 0;
-        gObjects[gCurrentParsedObject].action_state = 2;
+        gObjects[gCurrentParsedObject].actionState = 2;
     }
 }
 
@@ -1488,7 +1488,7 @@ void func_800D86E4(void) {
 }
 
 void func_800D8714(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) {
+    switch (gObjects[gCurrentParsedObject].actionState) {
         case 1:
             func_800D808C();
             break;
@@ -1506,10 +1506,10 @@ void func_800D87A8(void) {
 }
 
 void func_800D8820(void) {
-    if ((D_80177A64 == 0) && (gObjects[gCurrentParsedObject].action_state == 1)) {
+    if ((D_80177A64 == 0) && (gObjects[gCurrentParsedObject].actionState == 1)) {
         gObjects[gCurrentParsedObject].unk132 = 0;
-        gObjects[gCurrentParsedObject].action_state = 2;
-        gObjects[gCurrentParsedObject].unk108 = 0;
+        gObjects[gCurrentParsedObject].actionState = 2;
+        gObjects[gCurrentParsedObject].damageState = 0;
     }
 }
 
@@ -1537,7 +1537,7 @@ void func_800D8958(void) {
 }
 
 void func_800D8A30(void) {
-    switch (gObjects[gCurrentParsedObject].action_state) {
+    switch (gObjects[gCurrentParsedObject].actionState) {
         case 1:
             func_800D88F4();
             break;

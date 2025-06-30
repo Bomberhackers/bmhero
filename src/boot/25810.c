@@ -3,6 +3,7 @@
 #include "variables.h"
 #include "25810.h"
 
+// TODO: Merge D_8004A650 into D_8004A640
 u8 D_8004A640[16] = { 'B', 'O', 'M', 'H', 'E', 'R', 'O', 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 u8 D_8004A650[7] = { 0, 255, 0, 255, 1, 0, 1 };
@@ -81,7 +82,7 @@ void func_80024E1C(s32 arg0) {
 s32 func_80024EA8(void) {
     int status;
 
-    status = Eeprom_Read(&gContMesgQueue, D_80057450, 0x0, 512);
+    status = Eeprom_Read(&gContMesgQueue, D_80057450, 0, 512);
     return status;
 }
 

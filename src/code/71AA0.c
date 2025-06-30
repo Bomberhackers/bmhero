@@ -13,7 +13,7 @@ void func_8007F580(void) {
 }
 
 void func_8007F5CC(void) {
-    gObjects[gCurrentParsedObject].obj_id = 700;
+    gObjects[gCurrentParsedObject].objID = 700;
     gObjects[gCurrentParsedObject].unkBE = 2;
     gObjects[gCurrentParsedObject].unkC0 = 0;
     gObjects[gCurrentParsedObject].unkC2 = 0x1E;
@@ -31,7 +31,7 @@ void func_8007F688(void) {
 }
 
 void func_8007F778(void) {
-    gObjects[gCurrentParsedObject].obj_id = 0x2BD;
+    gObjects[gCurrentParsedObject].objID = 0x2BD;
     gObjects[gCurrentParsedObject].unkBE = 2;
     gObjects[gCurrentParsedObject].unkC0 = 0;
     gObjects[gCurrentParsedObject].unkC2 = 0x1F;
@@ -52,7 +52,7 @@ void func_8007F834(void) {
 }
 
 void func_8007F964(void) {
-    gObjects[gCurrentParsedObject].obj_id = 0x2C5;
+    gObjects[gCurrentParsedObject].objID = 0x2C5;
     gObjects[gCurrentParsedObject].unkBE = 2;
     gObjects[gCurrentParsedObject].unkC0 = 0;
     gObjects[gCurrentParsedObject].unkC2 = 0x25;
@@ -74,7 +74,7 @@ void func_8007FB34(void) {
     struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
-    sp4->obj_id = 0x2BE;
+    sp4->objID = 0x2BE;
     sp4->unkBE = 3;
     sp4->unkC0 = 0;
     sp4->unkC2 = 0x20;
@@ -114,7 +114,7 @@ void func_8007FD5C(void) {
     struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
-    sp1C->obj_id = 0x2BF;
+    sp1C->objID = 0x2BF;
     sp1C->Vel.x = (f32) (Math_Random(3) + 0xF);
     func_8007FC98(sp1C);
 }
@@ -123,7 +123,7 @@ void func_8007FDDC(void) {
     struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
-    sp1C->obj_id = 0x2C0;
+    sp1C->objID = 0x2C0;
     sp1C->Vel.x = (f32) (Math_Random(-3) - 0xF);
     func_8007FC98(sp1C);
 }
@@ -146,7 +146,7 @@ void func_8007FF44(void) {
     struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
-    sp24->obj_id = 0x2C1;
+    sp24->objID = 0x2C1;
     sp24->Scale.z = D_8010CB10;
     sp24->Scale.x = sp24->Scale.y = sp24->Scale.z;
     sp24->unkA6 = Math_Random(5) + 8;
@@ -172,7 +172,7 @@ void func_80080198(void) {
     struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
-    sp1C->obj_id = 0x2C2;
+    sp1C->objID = 0x2C2;
     sp1C->unkA6 = Math_Random(5) + 8;
     sp1C->unkBE = 3;
     sp1C->unkC0 = 0;
@@ -192,7 +192,7 @@ void func_80080228(void) {
 }
 
 void func_80080388(void) {
-    gObjects[gCurrentParsedObject].obj_id = 0x2C3;
+    gObjects[gCurrentParsedObject].objID = 0x2C3;
     gObjects[gCurrentParsedObject].Scale.x = gObjects[gCurrentParsedObject].Scale.y =
         gObjects[gCurrentParsedObject].Scale.z = 3.0f;
     gObjects[gCurrentParsedObject].unkBE = 2;
@@ -213,7 +213,7 @@ void func_800804D0(void) {
 }
 
 void func_8008057C(void) {
-    gObjects[gCurrentParsedObject].obj_id = 0x2C4;
+    gObjects[gCurrentParsedObject].objID = 0x2C4;
     gObjects[gCurrentParsedObject].unkBE = 2;
     gObjects[gCurrentParsedObject].unkC0 = 0;
     gObjects[gCurrentParsedObject].unkC2 = 0x24;
@@ -234,7 +234,7 @@ void func_800806DC(void) {
     struct ObjectStruct* sp4;
 
     sp4 = &gObjects[gCurrentParsedObject];
-    sp4->obj_id = 0x2C6;
+    sp4->objID = 0x2C6;
     sp4->unkBE = 2;
     sp4->unkC0 = 0;
     sp4->unkC2 = 0x26;
@@ -257,7 +257,7 @@ void func_80080834(void) {
     struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
-    sp24->obj_id = 0x2C7;
+    sp24->objID = 0x2C7;
     sp24->Scale.z = D_8010CB14;
     sp24->Scale.x = sp24->Scale.y = sp24->Scale.z;
     sp24->Pos.y += 300.0f;
@@ -293,7 +293,7 @@ void func_80080AFC(void) {
     struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
-    sp24->obj_id = 0x2C8;
+    sp24->objID = 0x2C8;
     sp24->unkBE = 2;
     sp24->unkC0 = Math_Random(8);
     sp24->unkC2 = 0x27;
@@ -320,7 +320,7 @@ void func_80080C0C(void) {
 }
 
 void func_80080D00(void) {
-    gObjects[gCurrentParsedObject].obj_id = 0x2C9;
+    gObjects[gCurrentParsedObject].objID = 0x2C9;
     gObjects[gCurrentParsedObject].Scale.x = gObjects[gCurrentParsedObject].Scale.y =
         gObjects[gCurrentParsedObject].Scale.z = 3.0f;
     gObjects[gCurrentParsedObject].unkBE = 2;
@@ -345,7 +345,7 @@ void func_80080EF4(void) {
 
     sp1C = &gObjects[gCurrentParsedObject];
     func_8001BD44(gCurrentParsedObject, 0, 1, (s32) gFileArray[0x29].ptr);
-    sp1C->obj_id = 0x2CA;
+    sp1C->objID = 0x2CA;
 }
 
 void func_80080F6C(void) {
@@ -353,7 +353,7 @@ void func_80080F6C(void) {
 
     sp24 = &gObjects[gCurrentParsedObject];
     func_8001BD44(gCurrentParsedObject, 0, 1, (s32) gFileArray[0x29].ptr);
-    sp24->obj_id = 0x2CB;
+    sp24->objID = 0x2CB;
     sp24->Scale.x = sp24->Scale.y = sp24->Scale.z = 2.0f;
 }
 
@@ -378,7 +378,7 @@ void func_80081120(void) {
 
     sp24 = &gObjects[gCurrentParsedObject];
     func_8001BD44(gCurrentParsedObject, 0, 1, (s32) gFileArray[0x2A].ptr);
-    sp24->obj_id = 0x2CC;
+    sp24->objID = 0x2CC;
     sp24->Scale.x = sp24->Scale.y = sp24->Scale.z = 2.0f;
 }
 
@@ -402,7 +402,7 @@ void func_800812D4(void) {
     struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
-    sp24->obj_id = 0x2CD;
+    sp24->objID = 0x2CD;
     sp24->Scale.x = sp24->Scale.y = sp24->Scale.z = 3.0f;
     sp24->unkA6 = 0xC8;
     sp24->Vel.y = (f32) (Math_Random(5) + 2);

@@ -4,6 +4,8 @@
 #include "obj.h"
 #include "common.h"
 
+extern s16 sSetModeMenuOption; // Current Set mode menu item
+
 typedef enum { 
     MAIN_MENU, 
     RESET_MODE_MENU,
@@ -129,7 +131,7 @@ s32 func_8002B894(s32 arg0) {
     s32 sp4;
 
     for (sp4 = 0xE; sp4 < 0x4E; sp4++) {
-        if ((gObjects[sp4].action_state) && (gObjects[sp4].obj_id == D_800576A8[arg0].unk0) &&
+        if ((gObjects[sp4].actionState) && (gObjects[sp4].objID == D_800576A8[arg0].unk0) &&
             (gObjects[sp4].Pos.x == D_800576A8[arg0].unk2) && (gObjects[sp4].Pos.y == D_800576A8[arg0].unk4) &&
             (gObjects[sp4].Pos.z == D_800576A8[arg0].unk6)) {
 
@@ -144,7 +146,7 @@ void func_8002B9B8(void) {
     s32 sp1C;
 
     for (sp1C = 0xE; sp1C < 0x4E; sp1C++) {
-        if (gObjects[sp1C].action_state != 0) {
+        if (gObjects[sp1C].actionState != 0) {
             func_8001BB34(sp1C, 0);
         }
     }
@@ -235,11 +237,11 @@ void func_8002BE04(void) {
     s32 sp24;
 
     for (sp3C = 14; sp3C < 0x4E; sp3C++) {
-        if (gObjects[sp3C].action_state != 0) {
+        if (gObjects[sp3C].actionState != 0) {
             if (gObjects[sp3C].unkE6[0] == -1) {
-                sp38 = D_80124D90[gObjects[sp3C].obj_id].unk40;
-                sp34 = D_80124D90[gObjects[sp3C].obj_id].unk38->unk0;
-                sp30 = D_80124D90[gObjects[sp3C].obj_id].unk38->unk4;
+                sp38 = D_80124D90[gObjects[sp3C].objID].unk40;
+                sp34 = D_80124D90[gObjects[sp3C].objID].unk38->unk0;
+                sp30 = D_80124D90[gObjects[sp3C].objID].unk38->unk4;
                 sp2C = gObjects[sp3C].Unk140[sp34];
                 func_8001A488(sp2C);
                 if ((D_80165290[sp2C].unk20 == 0) && (sp38 != NULL)) {
@@ -249,9 +251,9 @@ void func_8002BE04(void) {
             if ((gObjects[sp3C].unkE6[0] == -1)) {
                 if ((gObjects[sp3C].Unk140[4] == -1)) {
 
-                    sp28 = D_80124D90[gObjects[sp3C].obj_id].unk44;
+                    sp28 = D_80124D90[gObjects[sp3C].objID].unk44;
 
-                    sp24 = D_80124D90[gObjects[sp3C].obj_id].unk38->unk0;
+                    sp24 = D_80124D90[gObjects[sp3C].objID].unk38->unk0;
 
                     if (sp28 != NULL) {
                         func_8001ABF4(sp3C, 0, sp24, sp28);
@@ -379,7 +381,7 @@ void func_8002CA80(void) {
     s32 sp30;
     u8 sp2F;
     u8 sp2E;
-    s32 sp28;
+    s32 i;
     s32 sp24;
     s32 sp20;
     f32 sp1C;
@@ -414,10 +416,10 @@ void func_8002CA80(void) {
     for (sp30 = 0; sp30 < 30; sp30++) {
         sp2F = 0;
 
-        for (sp28 = 0; sp28 < 8; sp28++) {
-            sp24 = func_8002C184(D_8004A660[sp28].x + player_pos_x, D_8004A660[sp28].y + player_pos_y, D_8004A660[sp28].z + player_pos_z);
+        for (i = 0; i < 8; i++) {
+            sp24 = func_8002C184(D_8004A660[i].x + player_pos_x, D_8004A660[i].y + player_pos_y, D_8004A660[i].z + player_pos_z);
             if (sp24 == 4) {
-                sp2F = sp2F | D_8004A6C0[sp28];
+                sp2F = sp2F | D_8004A6C0[i];
             }
         }
 
@@ -499,7 +501,7 @@ void func_8002D128(void) {
     if (D_8005768A == 0) {
         if (D_80057689 == 0) {
             if (func_8002CF78() & 2) {
-                if (gActiveContPressed & 0x8000) {
+                if (gActiveContPressed & CONT_A) {
                     D_80057689 = 1;
                     gPlayerObject->Vel.y = 33.29999924;
                 } else {
@@ -522,10 +524,10 @@ void func_8002D128(void) {
     } else {
         D_80057689 = 0;
         gPlayerObject->Vel.y = 0.0f;
-        if (!(gActiveContButton & 0x2000)) {
-            if (sContActiveButton & 0x8000) {
+        if (!(gActiveContButton & CONT_G)) {
+            if (sContActiveButton & CONT_A) {
                 gPlayerObject->Vel.y = 10.0f;
-            } else if (sContActiveButton & 0x4000) {
+            } else if (sContActiveButton & CONT_B) {
                 gPlayerObject->Vel.y = -10.0f;
             }
         }
@@ -586,8 +588,8 @@ void func_8002D538(void) {
     sp3C = (s32) sp44->unk0;
     sp38 = (s32) sp44->unk6;
     func_8001BD44(sp40, sp3C, sp38, (s32) gFileArray[1].ptr);
-    gPlayerObject->obj_id = sp44->unk2;
-    gPlayerObject->action_state = 1;
+    gPlayerObject->objID = sp44->unk2;
+    gPlayerObject->actionState = 1;
     if (sp24 != NULL) {
         func_8001C0EC(sp40, sp3C, 0, 1, sp24);
     }

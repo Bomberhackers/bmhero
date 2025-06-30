@@ -24,22 +24,21 @@
 
 #include <os.h>
 
-void alSynFreeVoice(ALSynth *drvr, ALVoice *voice)
-{
-    ALFilter *f;
-    ALFreeParam *update;
+void alSynFreeVoice(ALSynth* drvr, ALVoice* voice) {
+    ALFilter* f;
+    ALFreeParam* update;
 
     if (voice->pvoice) {
 
         if (voice->pvoice->offset) { /* if voice was stolen */
-            update = (ALFreeParam *)__allocParam();
+            update = (ALFreeParam*) __allocParam();
             ALFailIf(update == 0, ERR_ALSYN_NO_UPDATE);
 
             /*
              * set voice data
              */
-            update->delta  = drvr->paramSamples + voice->pvoice->offset;
-            update->type   = AL_FILTER_FREE_VOICE;
+            update->delta = drvr->paramSamples + voice->pvoice->offset;
+            update->type = AL_FILTER_FREE_VOICE;
             update->pvoice = voice->pvoice;
 
             f = voice->pvoice->channelKnob;
@@ -49,6 +48,5 @@ void alSynFreeVoice(ALSynth *drvr, ALVoice *voice)
         }
 
         voice->pvoice = 0;
-
     }
 }

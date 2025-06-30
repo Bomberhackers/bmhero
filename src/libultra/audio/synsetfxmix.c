@@ -22,10 +22,9 @@
 #include <os_internal.h>
 #include <ultraerror.h>
 
-void alSynSetFXMix(ALSynth *synth, ALVoice *v, u8 fxmix)
-{
-    ALParam  *update;
-    ALFilter *f;
+void alSynSetFXMix(ALSynth* synth, ALVoice* v, u8 fxmix) {
+    ALParam* update;
+    ALFilter* f;
 
     if (v->pvoice) {
         /*
@@ -37,13 +36,13 @@ void alSynSetFXMix(ALSynth *synth, ALVoice *v, u8 fxmix)
         /*
          * set offset and fxmix data
          */
-        update->delta  = synth->paramSamples + v->pvoice->offset;
-        update->type   = AL_FILTER_SET_FXAMT;
+        update->delta = synth->paramSamples + v->pvoice->offset;
+        update->type = AL_FILTER_SET_FXAMT;
 #if BUILD_VERSION >= VERSION_J
         if (fxmix > 127) {
             fxmix = 127;
         }
-	    update->data.i = fxmix;
+        update->data.i = fxmix;
 #else
         if (fxmix < 0) { // Not possible
             update->data.i = -fxmix;
@@ -51,10 +50,9 @@ void alSynSetFXMix(ALSynth *synth, ALVoice *v, u8 fxmix)
             update->data.i = fxmix;
         }
 #endif
-        update->next   = 0;
+        update->next = 0;
 
         f = v->pvoice->channelKnob;
-        (*f->setParam)(f, AL_FILTER_ADD_UPDATE, update);        
+        (*f->setParam)(f, AL_FILTER_ADD_UPDATE, update);
     }
 }
-

@@ -4,7 +4,7 @@
 s32 osEepromLongRead(OSMesgQueue* mq, u8 address, u8* buffer, int length) {
     s32 ret = 0;
 
-    if(address >= 0x41) {
+    if (address >= 0x41) {
         return -1;
     }
 

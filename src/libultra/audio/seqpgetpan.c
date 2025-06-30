@@ -20,8 +20,6 @@
 
 #include <libaudio.h>
 
-ALPan alSeqpGetChlPan(ALSeqPlayer *seqp, u8 chan)
-{
+ALPan alSeqpGetChlPan(ALSeqPlayer* seqp, u8 chan) {
     return seqp->chanState[chan].pan;
 }
-

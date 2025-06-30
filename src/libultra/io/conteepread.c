@@ -9,10 +9,10 @@ s32 __osEepromRead16K;
 #endif
 void __osPackEepReadData(u8 address);
 
-s32 osEepromRead(OSMesgQueue *mq, u8 address, u8 *buffer) {
+s32 osEepromRead(OSMesgQueue* mq, u8 address, u8* buffer) {
     s32 ret = 0;
     int i = 0;
-    u8 *ptr = (u8 *) &__osEepPifRam;
+    u8* ptr = (u8*) &__osEepPifRam;
     OSContStatus sdata;
     __OSContEepromFormat eepromformat;
 
@@ -40,9 +40,9 @@ s32 osEepromRead(OSMesgQueue *mq, u8 address, u8 *buffer) {
     for (i = 0; i < 4; i++) {
         ptr++;
     }
-    eepromformat = *(__OSContEepromFormat*)ptr;
+    eepromformat = *(__OSContEepromFormat*) ptr;
     ret = CHNL_ERR(eepromformat);
-    
+
     if (ret == 0) {
         for (i = 0; i < 8; i++) {
             *buffer++ = eepromformat.data[i];
@@ -53,12 +53,12 @@ s32 osEepromRead(OSMesgQueue *mq, u8 address, u8 *buffer) {
 }
 
 void __osPackEepReadData(u8 address) {
-    u8* ptr = (u8*)&__osEepPifRam.ramarray;
+    u8* ptr = (u8*) &__osEepPifRam.ramarray;
     __OSContEepromFormat eepromformat;
     int i;
 
 #if BUILD_VERSION < VERSION_J
-    for (i = 0; i < ARRLEN(__osEepPifRam.ramarray)+1; i++) {
+    for (i = 0; i < ARRLEN(__osEepPifRam.ramarray) + 1; i++) {
         __osEepPifRam.ramarray[i] = CONT_CMD_NOP;
     }
 #endif
@@ -80,7 +80,7 @@ void __osPackEepReadData(u8 address) {
         *ptr++ = 0;
     }
 
-    *(__OSContEepromFormat*)(ptr) = eepromformat;
+    *(__OSContEepromFormat*) (ptr) = eepromformat;
     ptr += sizeof(__OSContEepromFormat);
     ptr[0] = CONT_CMD_END;
 }

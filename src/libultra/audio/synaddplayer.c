@@ -21,14 +21,12 @@
 #include "synthInternals.h"
 #include <os_internal.h>
 
-void alSynAddPlayer(ALSynth *drvr, ALPlayer *client)
-{
+void alSynAddPlayer(ALSynth* drvr, ALPlayer* client) {
     OSIntMask mask = osSetIntMask(OS_IM_NONE);
 
     client->samplesLeft = drvr->curSamples;
     client->next = drvr->head;
-    drvr->head   = client;
+    drvr->head = client;
 
     osSetIntMask(mask);
 }
-

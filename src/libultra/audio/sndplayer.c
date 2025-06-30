@@ -24,32 +24,30 @@
 // TODO: this comes from a header
 #ident "$Revision: 1.17 $"
 
-void alSndpNew(ALSndPlayer *sndp, ALSndpConfig *c) 
-{    
-    u8            *ptr;
-    ALEvent       evt;
-    ALSoundState  *sState;
-    u32           i;
+void alSndpNew(ALSndPlayer* sndp, ALSndpConfig* c) {
+    u8* ptr;
+    ALEvent evt;
+    ALSoundState* sState;
+    u32 i;
 
     /*
      * Init member variables
      */
     sndp->maxSounds = c->maxSounds;
     sndp->target = -1;
-    sndp->frameTime = AL_USEC_PER_FRAME;        /* time between API events */
-    sState = (ALSoundState*)alHeapAlloc(c->heap, 1,
-                                        c->maxSounds * sizeof(ALSoundState));
+    sndp->frameTime = AL_USEC_PER_FRAME; /* time between API events */
+    sState = (ALSoundState*) alHeapAlloc(c->heap, 1, c->maxSounds * sizeof(ALSoundState));
     sndp->sndState = sState;
 
-    for(i = 0; i < c->maxSounds; i++)
-	sState[i].sound = 0;
+    for (i = 0; i < c->maxSounds; i++)
+        sState[i].sound = 0;
 
     /*
      * init the event queue
      */
     ptr = alHeapAlloc(c->heap, 1, c->maxEvents * sizeof(ALEventListItem));
-    alEvtqNew(&sndp->evtq, (ALEventListItem *)ptr, c->maxEvents);
-    
+    alEvtqNew(&sndp->evtq, (ALEventListItem*) ptr, c->maxEvents);
+
     /*
      * add ourselves to the driver
      */
@@ -63,17 +61,15 @@ void alSndpNew(ALSndPlayer *sndp, ALSndpConfig *c)
      * Start responding to API events
      */
     evt.type = AL_SNDP_API_EVT;
-    alEvtqPostEvent(&sndp->evtq, (ALEvent *)&evt, sndp->frameTime);
+    alEvtqPostEvent(&sndp->evtq, (ALEvent*) &evt, sndp->frameTime);
     sndp->nextDelta = alEvtqNextEvent(&sndp->evtq, &sndp->nextEvent);
-
 }
 
 /*************************************************************
  * Sound Player private routines
  *************************************************************/
-ALMicroTime _sndpVoiceHandler(void *node)
-{
-    ALSndPlayer *sndp = (ALSndPlayer *) node;
+ALMicroTime _sndpVoiceHandler(void* node) {
+    ALSndPlayer* sndp = (ALSndPlayer*) node;
     ALSndpEvent evt;
 
     do {
@@ -81,85 +77,83 @@ ALMicroTime _sndpVoiceHandler(void *node)
             case (AL_SNDP_API_EVT):
                 evt.common.type = AL_SNDP_API_EVT;
 #if BUILD_VERSION >= VERSION_K
-		        evt.common.state = (ALSoundState*)-1;
+                evt.common.state = (ALSoundState*) -1;
 #endif
-                alEvtqPostEvent(&sndp->evtq, (ALEvent *)&evt, sndp->frameTime);
+                alEvtqPostEvent(&sndp->evtq, (ALEvent*) &evt, sndp->frameTime);
                 break;
 
             default:
-                _handleEvent(sndp, (ALSndpEvent *)&sndp->nextEvent);
+                _handleEvent(sndp, (ALSndpEvent*) &sndp->nextEvent);
                 break;
         }
         sndp->nextDelta = alEvtqNextEvent(&sndp->evtq, &sndp->nextEvent);
-        
+
     } while (sndp->nextDelta == 0);
     sndp->curTime += sndp->nextDelta;
     return sndp->nextDelta;
 }
 
-void _handleEvent(ALSndPlayer *sndp, ALSndpEvent *event) 
-{
-    ALVoiceConfig       vc;
-    ALSound             *snd;
-    ALVoice             *voice;
-    ALPan               pan;
-    f32                 pitch;
-    ALSndpEvent         evt;
-    ALMicroTime         delta;
+void _handleEvent(ALSndPlayer* sndp, ALSndpEvent* event) {
+    ALVoiceConfig vc;
+    ALSound* snd;
+    ALVoice* voice;
+    ALPan pan;
+    f32 pitch;
+    ALSndpEvent evt;
+    ALMicroTime delta;
 
-    s16                 vol;
-    s16                 tmp;
-    s32                 vtmp;
-    ALSoundState        *state;
+    s16 vol;
+    s16 tmp;
+    s32 vtmp;
+    ALSoundState* state;
 
     state = event->common.state;
-    snd   = state->sound;
-            
+    snd = state->sound;
 
     switch (event->msg.type) {
         case (AL_SNDP_PLAY_EVT):
             if (state->state != AL_STOPPED || !snd)
                 return;
-            
-            vc.fxBus      = 0;            /* effect buss 0 */
-            vc.priority   = state->priority;
-	    vc.unityPitch = 0;
+
+            vc.fxBus = 0; /* effect buss 0 */
+            vc.priority = state->priority;
+            vc.unityPitch = 0;
 
             voice = &state->voice;
             alSynAllocVoice(sndp->drvr, voice, &vc);
 
-            vol   = (s16) ((s32) snd->envelope->attackVolume*state->vol/AL_VOL_FULL);
-            tmp   = state->pan - AL_PAN_CENTER + snd->samplePan;
-            tmp   = MAX(tmp, AL_PAN_LEFT);
-            pan   = (ALPan) MIN(tmp, AL_PAN_RIGHT);
+            vol = (s16) ((s32) snd->envelope->attackVolume * state->vol / AL_VOL_FULL);
+            tmp = state->pan - AL_PAN_CENTER + snd->samplePan;
+            tmp = MAX(tmp, AL_PAN_LEFT);
+            pan = (ALPan) MIN(tmp, AL_PAN_RIGHT);
             pitch = state->pitch;
-            delta   = snd->envelope->attackTime;
-            
+            delta = snd->envelope->attackTime;
+
             alSynStartVoice(sndp->drvr, voice, snd->wavetable);
             state->state = AL_PLAYING;
-            
+
             alSynSetPan(sndp->drvr, voice, pan);
             alSynSetVol(sndp->drvr, voice, vol, delta);
             alSynSetPitch(sndp->drvr, voice, pitch);
             alSynSetFXMix(sndp->drvr, voice, state->fxMix);
-            
-            evt.common.type     = AL_SNDP_DECAY_EVT;
-            evt.common.state    = state;
-	    delta = (ALMicroTime) _DivS32ByF32 (snd->envelope->attackTime, state->pitch);
-            alEvtqPostEvent(&sndp->evtq, (ALEvent *)&evt, delta);
+
+            evt.common.type = AL_SNDP_DECAY_EVT;
+            evt.common.state = state;
+            delta = (ALMicroTime) _DivS32ByF32(snd->envelope->attackTime, state->pitch);
+            alEvtqPostEvent(&sndp->evtq, (ALEvent*) &evt, delta);
             break;
-                
+
         case (AL_SNDP_STOP_EVT):
             if (state->state != AL_PLAYING || !snd)
                 return;
 
-	    delta = (ALMicroTime) _DivS32ByF32 (snd->envelope->releaseTime, state->pitch);
+            delta = (ALMicroTime) _DivS32ByF32(snd->envelope->releaseTime, state->pitch);
             alSynSetVol(sndp->drvr, &state->voice, 0, delta);
 
             if (delta) {
-                evt.common.type  = AL_SNDP_END_EVT;
+                evt.common.type = AL_SNDP_END_EVT;
                 evt.common.state = state;
-                alEvtqPostEvent(&sndp->evtq, (ALEvent *)&evt, delta);
+                alEvtqPostEvent(&sndp->evtq, (ALEvent*) &evt, delta);
                 state->state = AL_STOPPING;
             } else {
                 /* note: this code is repeated in AL_SNDP_END_EVT */
@@ -167,30 +161,30 @@ void _handleEvent(ALSndPlayer *sndp, ALSndpEvent *event)
                 alSynFreeVoice(sndp->drvr, &state->voice);
                 _removeEvents(&sndp->evtq, state);
                 state->state = AL_STOPPED;
-            }            
+            }
             break;
 
         case (AL_SNDP_PAN_EVT):
             state->pan = event->pan.pan;
-            if (state->state == AL_PLAYING && snd){
-                tmp   = state->pan - AL_PAN_CENTER + snd->samplePan;
-                tmp   = MAX(tmp, AL_PAN_LEFT);
-                pan   = (ALPan) MIN(tmp, AL_PAN_RIGHT);
+            if (state->state == AL_PLAYING && snd) {
+                tmp = state->pan - AL_PAN_CENTER + snd->samplePan;
+                tmp = MAX(tmp, AL_PAN_LEFT);
+                pan = (ALPan) MIN(tmp, AL_PAN_RIGHT);
                 alSynSetPan(sndp->drvr, &state->voice, pan);
             }
             break;
 
         case (AL_SNDP_PITCH_EVT):
-	    /* Limit the pitch to a practical value even though we only need */
-	    /* to limit it to a non-zero number to avoid divide by zero. */
+            /* Limit the pitch to a practical value even though we only need */
+            /* to limit it to a non-zero number to avoid divide by zero. */
             if ((state->pitch = event->pitch.pitch) < MIN_RATIO)
-		state->pitch = MIN_RATIO;
-	    
-            if (state->state == AL_PLAYING){
+                state->pitch = MIN_RATIO;
+
+            if (state->state == AL_PLAYING) {
                 alSynSetPitch(sndp->drvr, &state->voice, state->pitch);
             }
             break;
-            
+
         case (AL_SNDP_FX_EVT):
             state->fxMix = event->fx.mix;
             if (state->state == AL_PLAYING)
@@ -199,8 +193,8 @@ void _handleEvent(ALSndPlayer *sndp, ALSndpEvent *event)
 
         case (AL_SNDP_VOL_EVT):
             state->vol = event->vol.vol;
-            if (state->state == AL_PLAYING && snd){
-                vtmp  = snd->envelope->decayVolume * state->vol/AL_VOL_FULL;            
+            if (state->state == AL_PLAYING && snd) {
+                vtmp = snd->envelope->decayVolume * state->vol / AL_VOL_FULL;
                 alSynSetVol(sndp->drvr, &state->voice, (s16) vtmp, 1000);
             }
             break;
@@ -210,13 +204,13 @@ void _handleEvent(ALSndPlayer *sndp, ALSndpEvent *event)
              * The voice has theoretically reached its attack velocity,
              * set up callback for release envelope - except for a looped sound
              */
-            if (snd->envelope->decayTime != -1){
-                vtmp   = snd->envelope->decayVolume * state->vol/AL_VOL_FULL;            
-		delta = (ALMicroTime) _DivS32ByF32 (snd->envelope->decayTime, state->pitch);
+            if (snd->envelope->decayTime != -1) {
+                vtmp = snd->envelope->decayVolume * state->vol / AL_VOL_FULL;
+                delta = (ALMicroTime) _DivS32ByF32(snd->envelope->decayTime, state->pitch);
                 alSynSetVol(sndp->drvr, &state->voice, (s16) vtmp, delta);
-                evt.common.type        = AL_SNDP_STOP_EVT;
-                evt.common.state       = state;
-                alEvtqPostEvent(&sndp->evtq, (ALEvent *)&evt, delta);
+                evt.common.type = AL_SNDP_STOP_EVT;
+                evt.common.state = state;
+                alEvtqPostEvent(&sndp->evtq, (ALEvent*) &evt, delta);
             }
             break;
 
@@ -232,32 +226,31 @@ void _handleEvent(ALSndPlayer *sndp, ALSndpEvent *event)
             break;
     }
 }
-static void _removeEvents(ALEventQueue *evtq, ALSoundState *state)
-{
-    ALLink              *thisNode;
-    ALLink              *nextNode;
-    ALEventListItem     *thisItem;
-    ALEventListItem     *nextItem;
-    ALSndpEvent         *thisEvent;
-    OSIntMask           mask;
+static void _removeEvents(ALEventQueue* evtq, ALSoundState* state) {
+    ALLink* thisNode;
+    ALLink* nextNode;
+    ALEventListItem* thisItem;
+    ALEventListItem* nextItem;
+    ALSndpEvent* thisEvent;
+    OSIntMask mask;
 
     mask = osSetIntMask(OS_IM_NONE);
 
     thisNode = evtq->allocList.next;
-    while( thisNode != 0 ) {
-	nextNode = thisNode->next;
-        thisItem = (ALEventListItem *)thisNode;
-        nextItem = (ALEventListItem *)nextNode;
-        thisEvent = (ALSndpEvent *) &thisItem->evt;
-        if (thisEvent->common.state == state){
-            if( nextItem )
+    while (thisNode != 0) {
+        nextNode = thisNode->next;
+        thisItem = (ALEventListItem*) thisNode;
+        nextItem = (ALEventListItem*) nextNode;
+        thisEvent = (ALSndpEvent*) &thisItem->evt;
+        if (thisEvent->common.state == state) {
+            if (nextItem)
                 nextItem->delta += thisItem->delta;
             alUnlink(thisNode);
             alLink(thisNode, &evtq->freeList);
         }
-	thisNode = nextNode;
+        thisNode = nextNode;
     }
-    
+
     osSetIntMask(mask);
 }
 /*
@@ -278,20 +271,19 @@ static void _removeEvents(ALEventQueue *evtq, ALSoundState *state)
 #elif BUILD_VERSION < VERSION_J
 #line 278
 #endif
-static s32 _DivS32ByF32 (s32 i, f32 f)
-{
-    #define INT_MAX         2147483647      /* Should be in a limits.h file. */
-    f64	rd;
-    int	ri;
+static s32 _DivS32ByF32(s32 i, f32 f) {
+#define INT_MAX 2147483647 /* Should be in a limits.h file. */
+    f64 rd;
+    int ri;
 
-    assert(f!=0);	/* Caller must make sure we do not divide by zero! */
+    assert(f != 0); /* Caller must make sure we do not divide by zero! */
 
-    rd = i/f;		/* Store result as a double to avoid overflow. */
-    
-    if (rd > INT_MAX)	/* Limit the value if necessary. */
-	ri = INT_MAX;
+    rd = i / f; /* Store result as a double to avoid overflow. */
+
+    if (rd > INT_MAX) /* Limit the value if necessary. */
+        ri = INT_MAX;
     else
-	ri = rd;
+        ri = rd;
 
     return ri;
 }

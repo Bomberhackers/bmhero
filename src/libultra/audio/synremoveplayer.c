@@ -21,29 +21,26 @@
 #include "synthInternals.h"
 #include <os_internal.h>
 
-void alSynRemovePlayer(ALSynth *drvr, ALPlayer *client)
-{
-    ALPlayer *thing;
-    ALPlayer *prev = 0;
+void alSynRemovePlayer(ALSynth* drvr, ALPlayer* client) {
+    ALPlayer* thing;
+    ALPlayer* prev = 0;
 
-    if (drvr->head != 0)
-    {
-	OSIntMask mask = osSetIntMask(OS_IM_NONE);
+    if (drvr->head != 0) {
+        OSIntMask mask = osSetIntMask(OS_IM_NONE);
 
         for (thing = drvr->head; thing != 0; thing = thing->next) {
             if (thing == client) {
-		if(prev)
-		    prev->next = thing->next;
-		else
-		    drvr->head = thing->next;
+                if (prev)
+                    prev->next = thing->next;
+                else
+                    drvr->head = thing->next;
 
                 client->next = 0;
-		break;
+                break;
             }
-	    prev = thing;
+            prev = thing;
         }
 
-	osSetIntMask(mask);
+        osSetIntMask(mask);
     }
 }
-

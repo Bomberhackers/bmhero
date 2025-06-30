@@ -11,7 +11,7 @@ struct UnkStruct_8004A6C8
 
 extern UnkStruct80165100 D_800576A8[];
 extern float D_8004C00C;
-extern u16 D_800576A0;
+extern u16 sContActiveButton;
 extern f64 D_8004BFB8;
 extern f64 D_8004BFC0;
 
@@ -21,8 +21,8 @@ extern s32 D_8004A6C8[1][2];
 extern s32 D_8004A6CC[0x11][2];
 
 /* Function prototypes of 2BF00.c */
-void func_8002B300(void);
-void func_8002B640(f32 arg0, f32 arg1, f32 arg2);
+void Handle_ObjView(void);
+void Set_ObjView(f32 viewX, f32 viewY, f32 viewZ);
 void func_8002B670(void);
 s32 func_8002B830(void);
 s32 func_8002B894(s32 arg0);      
@@ -48,10 +48,10 @@ void func_8002E524(void);
 void func_8002E6E8(void);  
 void func_8002E8B4(void);  
 void func_8002EA68(void);  
-void func_8002EB58(void);  
-void func_8002EEB8(void);  
-void func_8002EF00(void);  
-void func_8002EF60(void);  
+void Debug_SetMode_Menu(void);  
+void Debug_ResetMode_Menu(void);  
+void Debug_SaveMode_Menu(void);  
+void Debug_ParseSetModeMenu(void);  
 void func_8002F000(void);  
 void func_8002F32C(void);  
 void func_8002F598(void);  

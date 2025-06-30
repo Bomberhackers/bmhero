@@ -1,6 +1,6 @@
 #include <ultra64.h>
 
-/* 
+/*
  *  These symbols seem to be used between code and the overlays..
  */
 
@@ -19,7 +19,8 @@ extern u32 D_80118AE4;
 void func_80330000_unk_bin_35(void) {
     s32 objIdx;
 
-    objIdx = func_80027464(1, &D_80114528, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    objIdx = func_80027464(1, &D_80114528, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                           (f32) D_80165100->unk8);
     if (objIdx != -1) {
         gObjects[objIdx].Scale.x = gObjects[objIdx].Scale.y = gObjects[objIdx].Scale.z = 1.5f;
     }
@@ -45,12 +46,12 @@ void func_803301FC_unk_bin_35(void) {
 
     obj = &gObjects[gCurrentParsedObject];
     if (D_80177A64 == 0) {
-        obj->unkA4 = 6;
+        obj->actionState = 6;
         obj->unk132 = 0;
-    } else if ((D_80177A64 == 1) && (obj->unkA4 < 6)) {
-        obj->unkA4 = 5;
+    } else if ((D_80177A64 == 1) && (obj->actionState < 6)) {
+        obj->actionState = 5;
         obj->unk132 = 0;
-        obj->unk108 = 0x14;
+        obj->damageState = 0x14;
     }
 }
 
@@ -62,7 +63,7 @@ void func_803302BC_unk_bin_35(struct ObjectStruct* obj) {
         func_8001BB04(gCurrentParsedObject, 1.0f);
     }
     if (func_8002A1FC(gCurrentParsedObject, 540.0f) != 0) {
-        obj->unkA4 = 2;
+        obj->actionState = 2;
         obj->unk132 = 0;
     }
 }
@@ -86,7 +87,7 @@ void func_803303A4_unk_bin_35(struct ObjectStruct* obj) {
     func_800295C0(gCurrentParsedObject, &sp24, &sp20, 0.0f, 0.0f, 0.0f);
     if (obj->Pos.y >= (sp24 + 150.0f)) {
         obj->Vel.y = 0.0f;
-        obj->unkA4 = 3;
+        obj->actionState = 3;
         obj->unk132 = 0;
     }
 }
@@ -100,7 +101,7 @@ void func_8033050C_unk_bin_35(struct ObjectStruct* obj) {
     func_80330118_unk_bin_35(obj, 0.0f);
     obj->unkA6 -= 1;
     if (obj->unkA6 == 0) {
-        obj->unkA4 = 4;
+        obj->actionState = 4;
         obj->unk132 = 0;
     }
 }
@@ -149,7 +150,7 @@ void func_8033074C_unk_bin_35(struct ObjectStruct* obj) {
         obj->unk100 = 1;
     }
     if (obj->unkA6 == 0) {
-        obj->unkA4 = 2;
+        obj->actionState = 2;
         obj->unk132 = 0;
         obj->unk100 = -1;
         return;
@@ -166,27 +167,27 @@ void func_8033095C_unk_bin_35(void) {
     struct ObjectStruct* obj;
 
     obj = &gObjects[gCurrentParsedObject];
-    switch (obj->unkA4) {
-    case 1:
-        func_803302BC_unk_bin_35(obj);
-        break;
-    case 2:
-        func_803303A4_unk_bin_35(obj);
-        break;
-    case 3:
-        func_8033050C_unk_bin_35(obj);
-        break;
-    case 4:
-        func_803305F0_unk_bin_35(obj);
-        break;
-    case 5:
-        func_8033074C_unk_bin_35(obj);
-        break;
-    case 6:
-        func_80330928_unk_bin_35(obj);
-        break;
-    default:
-        break;
+    switch (obj->actionState) {
+        case 1:
+            func_803302BC_unk_bin_35(obj);
+            break;
+        case 2:
+            func_803303A4_unk_bin_35(obj);
+            break;
+        case 3:
+            func_8033050C_unk_bin_35(obj);
+            break;
+        case 4:
+            func_803305F0_unk_bin_35(obj);
+            break;
+        case 5:
+            func_8033074C_unk_bin_35(obj);
+            break;
+        case 6:
+            func_80330928_unk_bin_35(obj);
+            break;
+        default:
+            break;
     }
 }
 
@@ -223,7 +224,7 @@ void func_80330A64_unk_bin_35(void) {
 }
 
 void func_80330C64_unk_bin_35(void) {
-    if (gObjects[gCurrentParsedObject].unkA4 == 1) {
+    if (gObjects[gCurrentParsedObject].actionState == 1) {
         if (FALSE) {}
         func_80330A64_unk_bin_35();
     } else {
@@ -234,7 +235,8 @@ void func_80330C64_unk_bin_35(void) {
 void func_80330CD8_unk_bin_35(void) {
     s32 objIdx;
 
-    objIdx = func_80027464(1, &D_80114534, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    objIdx = func_80027464(1, &D_80114534, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                           (f32) D_80165100->unk8);
     if (objIdx != -1) {
         gObjects[objIdx].Scale.x = gObjects[objIdx].Scale.y = gObjects[objIdx].Scale.z = 0.5f;
     }
@@ -242,7 +244,7 @@ void func_80330CD8_unk_bin_35(void) {
 
 void func_80330DF0_unk_bin_35(void) {
     if (D_80177A64 == 0) {
-        gObjects[gCurrentParsedObject].unkA4 = 5;
+        gObjects[gCurrentParsedObject].actionState = 5;
         gObjects[gCurrentParsedObject].unk132 = 0;
     }
 }
@@ -260,7 +262,6 @@ s32 func_80330E68_unk_bin_35(struct ObjectStruct* obj, s32 arg1) {
     Matrix sp74;
     Matrix sp34;
 
-
     guRotateF(sp74, obj->Rot.y, 0.0f, 1.0f, 0.0f);
     guTranslateF(sp34, obj->Pos.x, obj->Pos.y, obj->Pos.z);
     guMtxCatF(sp74, sp34, sp74);
@@ -268,11 +269,10 @@ s32 func_80330E68_unk_bin_35(struct ObjectStruct* obj, s32 arg1) {
     guMtxXFMF(sp74, -240.0f, 0.0f, (f32) arg1, &spCC, &spB4, &spC8);
     guMtxXFMF(sp74, 240.0f, 0.0f, (f32) arg1, &spC4, &spB4, &spC0);
     guMtxXFMF(sp74, 240.0f, 0.0f, -60.0f, &spBC, &spB4, &spB8);
-    if ((gPlayerObject->Pos.y >= (obj->Pos.y - 240.0f)) && (gPlayerObject->Pos.y <= (obj->Pos.y + 480.0f)) && (func_800163AC(gPlayerObject->Pos.x, gPlayerObject->Pos.z, 
-            spD4, spD0, spCC, spC8, spC4, spC0, spBC, spB8)) ) {    
-    
+    if ((gPlayerObject->Pos.y >= (obj->Pos.y - 240.0f)) && (gPlayerObject->Pos.y <= (obj->Pos.y + 480.0f)) &&
+        (func_800163AC(gPlayerObject->Pos.x, gPlayerObject->Pos.z, spD4, spD0, spCC, spC8, spC4, spC0, spBC, spB8))) {
+
         return 1;
-    
     }
     return 0;
 }
@@ -287,7 +287,7 @@ void func_80331054_unk_bin_35(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0x8B, &D_80118AD0);
     }
     if (func_80330E68_unk_bin_35(obj, 0x258) != 0) {
-        obj->unkA4 = 2;
+        obj->actionState = 2;
         obj->unk132 = 0;
     }
 }
@@ -308,7 +308,7 @@ void func_8033115C_unk_bin_35(void) {
     }
     obj->Scale.y = obj->Scale.z = obj->Scale.x;
     if ((func_8001B44C(gCurrentParsedObject, 0) != 0) && (obj->Scale.x == 1.0f)) {
-        obj->unkA4 = 3;
+        obj->actionState = 3;
         obj->unk132 = 0;
     }
 }
@@ -334,13 +334,13 @@ void func_803312E8_unk_bin_35(void) {
         if (D_8016E120 == 0) {
             D_8016E120 = 0xC1;
             D_8016E128 = gCurrentParsedObject;
-            D_8016E130 = sinf((f32) ((f64) obj->Rot.y * 0.017453292519943295)) * 20.0f;
+            D_8016E130 = sinf((f32) ((f64) obj->Rot.y * DEG_TO_RAD)) * 20.0f;
             D_8016E138 = 0.0f;
-            D_8016E1B4 = cosf((f32) ((f64) obj->Rot.y * 0.017453292519943295)) * 20.0f;
+            D_8016E1B4 = cosf((f32) ((f64) obj->Rot.y * DEG_TO_RAD)) * 20.0f;
         }
     } else {
         D_8016E120 = 0;
-        obj->unkA4 = 4;
+        obj->actionState = 4;
         obj->unk132 = 0;
     }
 }
@@ -361,7 +361,7 @@ void func_80331524_unk_bin_35(void) {
     }
     obj->Scale.y = obj->Scale.z = obj->Scale.x;
     if ((func_8001B44C(gCurrentParsedObject, 0) != 0) && ((f64) obj->Scale.x == 0.5)) {
-        obj->unkA4 = 1;
+        obj->actionState = 1;
         obj->unk132 = 0;
     }
 }
@@ -372,31 +372,32 @@ void func_803316B8_unk_bin_35(void) {
 }
 
 void func_803316F0_unk_bin_35(void) {
-    switch (gObjects[gCurrentParsedObject].unkA4) {
-    case 1:
-        func_80331054_unk_bin_35();
-        break;
-    case 2:
-        func_8033115C_unk_bin_35();
-        break;
-    case 3:
-        func_803312E8_unk_bin_35();
-        break;
-    case 4:
-        func_80331524_unk_bin_35();
-        break;
-    case 5:
-        func_803316B8_unk_bin_35();
-        break;
-    default:
-        break;
+    switch (gObjects[gCurrentParsedObject].actionState) {
+        case 1:
+            func_80331054_unk_bin_35();
+            break;
+        case 2:
+            func_8033115C_unk_bin_35();
+            break;
+        case 3:
+            func_803312E8_unk_bin_35();
+            break;
+        case 4:
+            func_80331524_unk_bin_35();
+            break;
+        case 5:
+            func_803316B8_unk_bin_35();
+            break;
+        default:
+            break;
     }
 }
 
 void func_803317C0_unk_bin_35(void) {
     s32 objIdx;
-    
-    objIdx = func_80027464(1, &D_8011454C, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+
+    objIdx = func_80027464(1, &D_8011454C, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                           (f32) D_80165100->unk8);
     if (objIdx != -1) {
         gObjects[objIdx].Scale.x = gObjects[objIdx].Scale.y = gObjects[objIdx].Scale.z = 1.5f;
     }
@@ -404,7 +405,7 @@ void func_803317C0_unk_bin_35(void) {
 
 void func_803318D8_unk_bin_35(void) {
     if (D_80177A64 == 0) {
-        gObjects[gCurrentParsedObject].unkA4 = 5;
+        gObjects[gCurrentParsedObject].actionState = 5;
     }
 }
 
@@ -445,7 +446,7 @@ void func_80331928_unk_bin_35(void) {
         obj->Pos.y = sp40;
     }
     if (func_8002A1FC(gCurrentParsedObject, 480.0f) != 0) {
-        obj->unkA4 = 2;
+        obj->actionState = 2;
         obj->unk132 = 0;
     }
 }
@@ -460,7 +461,7 @@ void func_80331BE0_unk_bin_35(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 2, 0x5A, &D_80118AE4);
     }
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
-        obj->unkA4 = 3;
+        obj->actionState = 3;
         obj->unk132 = 0;
     }
 }
@@ -487,7 +488,7 @@ void func_80331CEC_unk_bin_35(void) {
     if (func_80029018(gCurrentParsedObject, 1U, 80.0f, 0.0f, 0.0f, 0.0f) != 0) {
         obj->Vel.x = obj->Vel.y = obj->Vel.z = 0.0f;
         obj->Rot.y = obj->unk3C;
-        obj->unkA4 = 4;
+        obj->actionState = 4;
         obj->unk132 = 0;
     }
     if (func_800295C0(gCurrentParsedObject, &sp38, &sp34, 0.0f, 0.0f, 0.0f) != 0) {
@@ -506,7 +507,7 @@ void func_80331F24_unk_bin_35(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 3, 0x5A, &D_80118AE4);
     }
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
-        obj->unkA4 = 1;
+        obj->actionState = 1;
         obj->unk132 = 0;
     }
 }
@@ -516,24 +517,24 @@ void func_80331FF4_unk_bin_35(void) {
 }
 
 void func_80332024_unk_bin_35(void) {
-    switch (gObjects[gCurrentParsedObject].unkA4) {
-    case 1:
-        func_80331928_unk_bin_35();
-        break;
-    case 2:
-        func_80331BE0_unk_bin_35();
-        break;
-    case 3:
-        func_80331CEC_unk_bin_35();
-        break;
-    case 4:
-        func_80331F24_unk_bin_35();
-        break;
-    case 5:
-        func_80331FF4_unk_bin_35();
-        break;
-    default:
-        break;
+    switch (gObjects[gCurrentParsedObject].actionState) {
+        case 1:
+            func_80331928_unk_bin_35();
+            break;
+        case 2:
+            func_80331BE0_unk_bin_35();
+            break;
+        case 3:
+            func_80331CEC_unk_bin_35();
+            break;
+        case 4:
+            func_80331F24_unk_bin_35();
+            break;
+        case 5:
+            func_80331FF4_unk_bin_35();
+            break;
+        default:
+            break;
     }
 }
 
@@ -541,7 +542,8 @@ void func_803320F4_unk_bin_35(void) {
     s32 objIdx;
     s32 objIdx1;
 
-    objIdx = func_80027464(2, &D_80114558, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    objIdx = func_80027464(2, &D_80114558, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                           (f32) D_80165100->unk8);
     if (objIdx != -1) {
         gObjects[objIdx].Scale.x = gObjects[objIdx].Scale.y = gObjects[objIdx].Scale.z = 2.0f;
         objIdx1 = gObjects[objIdx].unkE8[0];
@@ -551,7 +553,7 @@ void func_803320F4_unk_bin_35(void) {
 
 void func_803322B8_unk_bin_35(void) {
     if (D_80177A64 == 0) {
-        gObjects[gCurrentParsedObject].unkA4 = 5;
+        gObjects[gCurrentParsedObject].actionState = 5;
     }
 }
 
@@ -565,7 +567,7 @@ void func_80332308_unk_bin_35(void) {
         func_8001BBDC(gCurrentParsedObject, 1);
     }
     if (func_8002A1FC(gCurrentParsedObject, 720.0f) != 0) {
-        obj->unkA4 = 2;
+        obj->actionState = 2;
         obj->unk132 = 0;
     }
 }
@@ -589,7 +591,7 @@ void func_803323F4_unk_bin_35(void) {
     }
     func_80029C40(gCurrentParsedObject);
     if (parent->unkA6 >= 8) {
-        parent->unkA4 = 3;
+        parent->actionState = 3;
         parent->unk132 = 0;
     } else {
         parent->unkA6 += 1;
@@ -634,7 +636,7 @@ void func_80332574_unk_bin_35(void) {
             parent->unkA6 = 3;
         }
     } else if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
-        parent->unkA4 = 4;
+        parent->actionState = 4;
         parent->unk132 = 0;
     }
 }
@@ -657,7 +659,7 @@ void func_80332860_unk_bin_35(void) {
     }
     func_80029C40(gCurrentParsedObject);
     if (parent->unkA6 >= 8) {
-        parent->unkA4 = 1;
+        parent->actionState = 1;
         parent->unk132 = 0;
     } else {
         parent->unkA6 += 1;
@@ -681,25 +683,25 @@ void func_80332A5C_unk_bin_35(void) {
     parent = &gObjects[gCurrentParsedObject];
     objIdx = (s32) parent->unkE8[0];
     child = &gObjects[objIdx];
-    
-    switch (gObjects[gCurrentParsedObject].unkA4) {
-    case 1:
-        func_80332308_unk_bin_35();
-        break;
-    case 2:
-        func_803323F4_unk_bin_35();
-        break;
-    case 3:
-        func_80332574_unk_bin_35();
-        break;
-    case 4:
-        func_80332860_unk_bin_35();
-        break;
-    case 5:
-        func_803329E0_unk_bin_35();
-        break;
-    default:
-        break;
+
+    switch (gObjects[gCurrentParsedObject].actionState) {
+        case 1:
+            func_80332308_unk_bin_35();
+            break;
+        case 2:
+            func_803323F4_unk_bin_35();
+            break;
+        case 3:
+            func_80332574_unk_bin_35();
+            break;
+        case 4:
+            func_80332860_unk_bin_35();
+            break;
+        case 5:
+            func_803329E0_unk_bin_35();
+            break;
+        default:
+            break;
     }
     child->Pos.y = parent->Pos.y + parent->Vel.y + (75.0f * parent->Scale.x);
     child->Pos.z = parent->Pos.z + parent->Vel.z + (30.0f * parent->Scale.x);
@@ -708,13 +710,14 @@ void func_80332A5C_unk_bin_35(void) {
 void func_80332BEC_unk_bin_35(void) {
     s16 objIdx;
 
-    objIdx = func_80027464(1, &D_80114570, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6, (f32) D_80165100->unk8);
+    objIdx = func_80027464(1, &D_80114570, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
+                           (f32) D_80165100->unk8);
     if (objIdx != -1) {
-        gObjects[objIdx].unkA4 = 1;
+        gObjects[objIdx].actionState = 1;
         gObjects[objIdx].unkA6 = 0;
         gObjects[objIdx].unk132 = 0;
         gObjects[objIdx].unk102 = 0;
-        gObjects[objIdx].unk108 = 0;
+        gObjects[objIdx].damageState = 0;
         gObjects[objIdx].Scale.x = 1.0f;
         gObjects[objIdx].Scale.y = gObjects[objIdx].Scale.z = gObjects[objIdx].Scale.x;
         func_80019448((s32) objIdx, 2, 0, 1);
@@ -727,11 +730,11 @@ void func_80332DE8_unk_bin_35(struct ObjectStruct* arg0) {
 
     objIdx = func_80027464(1, &D_80114570, arg0->Pos.x, arg0->Pos.y, arg0->Pos.z, arg0->unk3C);
     if (objIdx != -1) {
-        gObjects[objIdx].unkA4 = 2;
+        gObjects[objIdx].actionState = 2;
         gObjects[objIdx].unkA6 = 0x50;
         gObjects[objIdx].unk132 = 0;
         gObjects[objIdx].unk102 = 0;
-        gObjects[objIdx].unk108 = 0;
+        gObjects[objIdx].damageState = 0;
         gObjects[objIdx].Scale.x = 0.01f;
         gObjects[objIdx].Scale.y = gObjects[objIdx].Scale.z = gObjects[objIdx].Scale.x;
         func_80019448((s32) objIdx, 2, 0, 1);
@@ -743,7 +746,7 @@ void func_80332FC0_unk_bin_35(void) {
     if ((D_80177A64 != 0) && (D_80177A64 != 1)) {
         return;
     }
-    gObjects[gCurrentParsedObject].unkA4 = 3;
+    gObjects[gCurrentParsedObject].actionState = 3;
     gObjects[gCurrentParsedObject].unk132 = 0;
 }
 
@@ -757,7 +760,7 @@ void func_8033304C_unk_bin_35(void) {
         obj->unk48 = 0.0f;
         func_8001BB34(gCurrentParsedObject, 1);
         func_8001BB04(gCurrentParsedObject, 1);
-        D_80124D90[obj->unkE4].unk0 = 0;
+        D_80124D90[obj->objID].unk0 = 0;
     }
     func_80029C40(gCurrentParsedObject);
     func_80029D04(gCurrentParsedObject);
@@ -773,14 +776,14 @@ void func_80333140_unk_bin_35(void) {
         obj->unk48 = 0.0f;
         func_8001BB34(gCurrentParsedObject, 0);
         func_8001BB04(gCurrentParsedObject, 0);
-        D_80124D90[obj->unkE4].unk0 = 0xE;
+        D_80124D90[obj->objID].unk0 = 0xE;
     }
     func_80029C40(gCurrentParsedObject);
     func_80029D04(gCurrentParsedObject);
     if (obj->unkA6 <= 0) {
         if (obj->unk132 == 1) {
             obj->unk132 = 2;
-            obj->unk108 = 1;
+            obj->damageState = 1;
             func_8001BB34(gCurrentParsedObject, 0);
         }
         if (obj->Scale.x <= 1.0f) {
@@ -793,22 +796,22 @@ void func_80333140_unk_bin_35(void) {
 }
 
 void func_80333318_unk_bin_35(void) {
-    gObjects[gCurrentParsedObject].unk108 = 0;
+    gObjects[gCurrentParsedObject].damageState = 0;
     func_80332DE8_unk_bin_35(&gObjects[gCurrentParsedObject]);
     func_8002B0E4(gCurrentParsedObject);
 }
 
 void func_8033339C_unk_bin_35(void) {
-    switch (gObjects[gCurrentParsedObject].unkA4) {                              /* irregular */
-    case 1:
-        func_8033304C_unk_bin_35();
-        break;
-    case 2:
-        func_80333140_unk_bin_35();
-        break;
-    case 3:
-        func_80333318_unk_bin_35();
-        break;
+    switch (gObjects[gCurrentParsedObject].actionState) { /* irregular */
+        case 1:
+            func_8033304C_unk_bin_35();
+            break;
+        case 2:
+            func_80333140_unk_bin_35();
+            break;
+        case 3:
+            func_80333318_unk_bin_35();
+            break;
     }
 }
 /* Warning: struct UnkStruct_80134B54 is not defined (only forward-declared) */

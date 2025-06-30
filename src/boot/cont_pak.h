@@ -33,7 +33,7 @@ s32 func_80021158(void);
 s32 RestartPak(void);
 void Check_PakState(void);
 void Init_Pak(void);
-s32 Eeprom_Read(OSMesgQueue *mq, u8 *buf, u8 addr, u16 half_bytes);
-s32 Eeprom_Write(OSMesgQueue *mq, u8 *buf, u8 addr, u16 half_bytes);
+s32 Eeprom_Read(OSMesgQueue *mq, u8 *buf, u8 addr, u16 size);
+s32 Eeprom_Write(OSMesgQueue *mq, u8 *buf, u8 addr, u16 size);
 
 #endif /* CONT_PAK_H */

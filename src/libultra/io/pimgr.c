@@ -48,13 +48,13 @@ void osCreatePiManager(OSPri pri, OSMesgQueue* cmdQ, OSMesg* cmdBuf, s32 cmdMsgC
         return;
     }
     osCreateMesgQueue(cmdQ, cmdBuf, cmdMsgCnt);
-    osCreateMesgQueue(&piEventQueue, (OSMesg*)piEventBuf, 1);
+    osCreateMesgQueue(&piEventQueue, (OSMesg*) piEventBuf, 1);
 
     if (!__osPiAccessQueueEnabled) {
         __osPiCreateAccessQueue();
     }
 
-    osSetEventMesg(OS_EVENT_PI, &piEventQueue, (OSMesg)0x22222222);
+    osSetEventMesg(OS_EVENT_PI, &piEventQueue, (OSMesg) 0x22222222);
     oldPri = -1;
     myPri = osGetThreadPri(NULL);
 
@@ -75,7 +75,7 @@ void osCreatePiManager(OSPri pri, OSMesgQueue* cmdQ, OSMesg* cmdBuf, s32 cmdMsgC
     osStartThread(&piThread);
 
 #ifndef _FINALROM
-    osCreateThread(&ramromThread, 0, ramromMain, NULL, ramromThreadStack + 1024, (OSPri)pri - 1);
+    osCreateThread(&ramromThread, 0, ramromMain, NULL, ramromThreadStack + 1024, (OSPri) pri - 1);
     osStartThread(&ramromThread);
 #endif
     __osRestoreInt(savedMask);

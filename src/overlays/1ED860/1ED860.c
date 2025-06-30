@@ -24,7 +24,7 @@ void func_80330000_unk_bin_41() {
     objIdx = func_80027464(9, &D_80113C7C, D_80165100->unk2, D_80165100->unk4, D_80165100->unk6, D_80165100->unk8);
 
     if (objIdx != -1) {
-        gObjects[objIdx].unkA4 = 8;
+        gObjects[objIdx].actionState = 8;
         gObjects[objIdx].unkB0 = 8;
         gObjects[objIdx].unk132 = 0;
         gObjects[objIdx].Scale.x = 0.5f;
@@ -46,7 +46,7 @@ s8 func_80330244_unk_bin_41(s8 idx) {
     for (i = 0; i < gObjects[idx].unkB0; i++) {
         objIdx = gObjects[idx].unkE8[i];
 
-        gObjects[objIdx].unkA4 = 1;
+        gObjects[objIdx].actionState = 1;
         gObjects[objIdx].unk132 = 0;
         gObjects[objIdx].unkA8 = gObjects[idx].unkE6[i];
         gObjects[objIdx].unkAA = 1;
@@ -66,9 +66,9 @@ s8 func_80330244_unk_bin_41(s8 idx) {
 
 void func_8033050C_unk_bin_41() {
     if (D_80177A64 == 0) {
-        gObjects[gCurrentParsedObject].unkA4 = 3;
+        gObjects[gCurrentParsedObject].actionState = 3;
     } else if (D_80177A64 == 1) {
-        gObjects[gCurrentParsedObject].unkA4 = 4;
+        gObjects[gCurrentParsedObject].actionState = 4;
     } else {
         return;
     }
@@ -85,7 +85,7 @@ void func_803305D4_unk_bin_41() {
         obj->unkA6 = obj->unk40;
         obj->unkA6 = 0;
         obj->unkA8 = 0;
-        obj->unkE0 = func_80014E80(0x168);
+        obj->unkE0 = Math_Random(0x168);
 
         if (obj->unkAA == 1) {
             obj->unk44 = 10.0f;
@@ -97,7 +97,7 @@ void func_803305D4_unk_bin_41() {
     obj->unkD8 = obj->unk40;
 
     obj->unkA6 = func_80015538(obj->unkA6, obj->unkA8);
-    sp18 = sinf(obj->unkA6 * 0.0174532925199432955) * 40.0f;
+    sp18 = sinf(obj->unkA6 * DEG_TO_RAD) * 40.0f;
     obj->unk40 = func_80015538(sp18, 0.0f);
 
     if (obj->unk44 > 10.0f) {
@@ -113,11 +113,11 @@ void func_803305D4_unk_bin_41() {
         obj->unk132 = 2;
     }
     if (func_800BFFCC(obj, 0, obj->unkE0, 2.0f) == 0) {
-        obj->unkE0 = func_80014E80(0x168);
+        obj->unkE0 = Math_Random(0x168);
         obj->unk132 = 2;
     }
 
-    sp18 = func_80015744(obj->unk40);
+    sp18 = Math_NormalizeAngle(obj->unk40);
     obj->Rot.x = func_80015538(360.0f, -sp18);
     obj->Rot.y = obj->unk3C;
 
@@ -127,18 +127,18 @@ void func_803305D4_unk_bin_41() {
     func_8033193C_unk_bin_41();
 
     if (obj->unk132 == 2 && !func_8002A1FC(gCurrentParsedObject, 1200.0f)) {
-        obj->unkA4 = 6;
+        obj->actionState = 6;
         obj->unk132 = 0;
     }
     if (func_8002A1FC(gCurrentParsedObject, 720.0f)) {
-        obj->unkA4 = 7;
+        obj->actionState = 7;
         obj->unk132 = 0;
     }
 }
 
 void func_803309CC_unk_bin_41() {
     struct ObjectStruct* obj = &gObjects[gCurrentParsedObject];
-    struct ObjectStruct* firstObj = &gObjects[0];
+    struct ObjectStruct* firstObj = &PLAYER_OBJ;
     f32 sp1C;
 
     if (obj->unk132 == 0) {
@@ -159,7 +159,7 @@ void func_803309CC_unk_bin_41() {
 
     obj->unk3C = func_80015538(obj->unk3C, 12.0f);
 
-    sp1C = func_80015744(obj->unk40);
+    sp1C = Math_NormalizeAngle(obj->unk40);
     obj->Rot.x = func_80015538(360.0f, -sp1C);
     obj->Rot.y = obj->unk3C;
 
@@ -172,10 +172,10 @@ void func_803309CC_unk_bin_41() {
 
     if (obj->unkA6 >= 0xA) {
         if (firstObj->Pos.y + 480.0f <= obj->Pos.y) {
-            obj->unkA4 = 6;
+            obj->actionState = 6;
             obj->unk132 = 0;
             if (func_8002A1FC(gCurrentParsedObject, 720.0f) == 0) {
-                obj->unkA4 = 8;
+                obj->actionState = 8;
                 obj->unk132 = 0;
             }
         }
@@ -184,7 +184,7 @@ void func_803309CC_unk_bin_41() {
 
 s8 func_80330C3C_unk_bin_41() {
     struct ObjectStruct* obj = &gObjects[gCurrentParsedObject];
-    struct ObjectStruct* firstObj = &gObjects[0];
+    struct ObjectStruct* firstObj = &PLAYER_OBJ;
     f32 x;
     f32 xDiff;
     f32 zDiff;
@@ -226,13 +226,13 @@ s8 func_80330C3C_unk_bin_41() {
         if (func_8002A560(gCurrentParsedObject, 5.0f) == 0) {
             xDiff = gObjects->Pos.x - obj->Pos.x;
             zDiff = gObjects->Pos.z - obj->Pos.z;
-            distCalc = (s16)(sqrtf((xDiff * xDiff) + (zDiff * zDiff)) / 60.0f);
+            distCalc = (s16) (sqrtf((xDiff * xDiff) + (zDiff * zDiff)) / 60.0f);
 
             if (distCalc >= 9) {
                 distCalc = 8;
             }
 
-            obj->unk44 = (f32)(distCalc + 14);
+            obj->unk44 = (f32) (distCalc + 14);
             obj->unk48 = 8.0f;
             obj->unk132 = 3;
         }
@@ -244,7 +244,7 @@ s8 func_80330C3C_unk_bin_41() {
 
         obj->Rot.y = func_80015538(obj->Rot.y, 12.0f);
     }
-    x = func_80015744(obj->unk40);
+    x = Math_NormalizeAngle(obj->unk40);
 
     obj->Rot.x = func_80015538(360.0f, -x);
 
@@ -256,8 +256,8 @@ s8 func_80330C3C_unk_bin_41() {
     obj->unkB2++;
 
     if (firstObj->Pos.y - 480.0f >= obj->Pos.y) {
-        obj->unkA4 = 7;
-        obj->unkA4 = 5;
+        obj->actionState = 7;
+        obj->actionState = 5;
         obj->unk132 = 0;
     }
 }
@@ -282,7 +282,7 @@ void func_803310A0_unk_bin_41() {
     func_8002A8B4(gCurrentParsedObject, 12.0f);
     func_8002A9A4(gCurrentParsedObject, 2.0f);
 
-    x = func_80015744(obj->unk40);
+    x = Math_NormalizeAngle(obj->unk40);
     obj->Rot.x = func_80015538(360.0f, -x);
     obj->Rot.y = obj->unk3C;
 
@@ -291,7 +291,7 @@ void func_803310A0_unk_bin_41() {
     obj->unkA6++;
 
     if (!func_8002A1FC(gCurrentParsedObject, 720.0f)) {
-        obj->unkA4 = 8;
+        obj->actionState = 8;
         obj->unk132 = 0;
     }
 }
@@ -305,7 +305,7 @@ void func_80331248_unk_bin_41() {
         obj->unk44 = 0.0f;
         obj->unk48 = 0.0f;
         obj->unkDC = func_80015538(obj->unk3C, 180.0f);
-        obj->unkDC = func_80015538(obj->unkDC, func_80014E80(0x5A));
+        obj->unkDC = func_80015538(obj->unkDC, Math_Random(0x5A));
         obj->unkE0 = 90.0f;
     }
     if (obj->unk132 == 1) {
@@ -317,7 +317,7 @@ void func_80331248_unk_bin_41() {
     obj->unkD4 = obj->unk3C;
     obj->unkD8 = obj->unk40;
 
-    x = func_80015744(obj->unk40);
+    x = Math_NormalizeAngle(obj->unk40);
     obj->Rot.x = func_80015538(360.0f, -x);
     obj->Rot.y = obj->unk3C;
 
@@ -327,8 +327,8 @@ void func_80331248_unk_bin_41() {
     func_8033193C_unk_bin_41();
 
     if (!func_800BFF20(obj, obj->unkDC, 12.0f)) {
-        obj->unkA4 = 2;
-        obj->unkA4 = 7;
+        obj->actionState = 2;
+        obj->actionState = 7;
         obj->unk132 = 0;
     }
 }
@@ -343,11 +343,11 @@ void func_80331474_unk_bin_41() {
         obj->unk44 = 0.0f;
         obj->unk48 = 0.0f;
         obj->unkB2 = 0xC8;
-        obj->unk108 = 0;
+        obj->damageState = 0;
 
         for (i = 0; i < obj->unkB0; i++) {
             if ((objIdx = obj->unkE8[i]) != -1) {
-                gObjects[objIdx].unk108 = 0;
+                gObjects[objIdx].damageState = 0;
             }
         }
     }
@@ -381,11 +381,11 @@ void func_8033168C_unk_bin_41() {
 
     if (obj->unk132 == 0) {
         obj->unk132 = 1;
-        obj->unk108 = 0x28;
+        obj->damageState = 0x28;
 
         for (i = 0; i < obj->unkB0; i++) {
             if ((objIdx = obj->unkE8[i]) != -1) {
-                gObjects[objIdx].unk108 = 0;
+                gObjects[objIdx].damageState = 0;
             }
         }
     }
@@ -394,7 +394,7 @@ void func_8033168C_unk_bin_41() {
     func_80029C40(gCurrentParsedObject);
     func_80029D04(gCurrentParsedObject);
 
-    comp = !(obj->unk108 % 2);
+    comp = !(obj->damageState % 2);
 
     for (i = 0; i < obj->unkB0; i++) {
         if ((objIdx = obj->unkE8[i]) != -1) {
@@ -404,15 +404,15 @@ void func_8033168C_unk_bin_41() {
 
     func_8001BB34(gCurrentParsedObject, comp);
 
-    if (obj->unk108 == 1) {
-        obj->unk108 = 1;
-        obj->unkA4 = 7;
+    if (obj->damageState == 1) {
+        obj->damageState = 1;
+        obj->actionState = 7;
         obj->unk132 = 0;
 
         for (i = 0; i < obj->unkB0; i++) {
             if ((objIdx = obj->unkE8[i]) != -1) {
                 func_8001BB34(objIdx, 0);
-                gObjects[objIdx].unk108 = 0;
+                gObjects[objIdx].damageState = 0;
             }
         }
         func_8001BB34(gCurrentParsedObject, 0);
@@ -446,21 +446,21 @@ s16 func_803319F4_unk_bin_41(s16 idx) {
         obj = &gObjects[objIdx];
         sp40 = &gObjects[obj->unkA8];
 
-        factor = func_80015744(sp40->unk40);
+        factor = Math_NormalizeAngle(sp40->unk40);
 
-        addend = cosf(factor * 0.017453292519943295) * 48.0f;
-        obj->Vel.y = sinf(factor * 0.017453292519943295) * 48.0f;
+        addend = cosf(factor * DEG_TO_RAD) * 48.0f;
+        obj->Vel.y = sinf(factor * DEG_TO_RAD) * 48.0f;
         addend = 48.0f;
 
-        if (parsedObj->unkA4 == 5) {
+        if (parsedObj->actionState == 5) {
             addend = 14.0f;
             obj->Vel.y = 0.0f;
         }
 
         factor = func_80015538(sp40->unkD4, 180.0f);
 
-        obj->Vel.x = sinf(factor * 0.017453292519943295) * addend;
-        obj->Vel.z = cosf(factor * 0.017453292519943295) * addend;
+        obj->Vel.x = sinf(factor * DEG_TO_RAD) * addend;
+        obj->Vel.z = cosf(factor * DEG_TO_RAD) * addend;
         obj->Vel.y *= -1.0f;
 
         obj->Pos.x = sp40->Pos.x + obj->Vel.x;
@@ -485,7 +485,7 @@ s16 func_803319F4_unk_bin_41(s16 idx) {
 void func_80331D50_unk_bin_41() {
     s32 sp1C;
 
-    sp1C = gObjects[gCurrentParsedObject].unkA4;
+    sp1C = gObjects[gCurrentParsedObject].actionState;
 
     switch (sp1C) {
         case 8:

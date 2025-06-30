@@ -39,7 +39,7 @@ s32 osPfsChecker(OSPfs* pfs) {
     ERRCK(corrupted_init(pfs, &cache));
 
     for (j = 0; j < pfs->dir_size; j++) {
-        ERRCK(__osContRamRead(pfs->queue, pfs->channel, pfs->dir_table + j, (u8*)&tmp_dir));
+        ERRCK(__osContRamRead(pfs->queue, pfs->channel, pfs->dir_table + j, (u8*) &tmp_dir));
 
 #if BUILD_VERSION >= VERSION_J
         if (tmp_dir.company_code != 0 || tmp_dir.game_code != 0) {
@@ -77,7 +77,7 @@ s32 osPfsChecker(OSPfs* pfs) {
                 bzero(&tmp_dir, sizeof(__OSDir));
 
                 SET_ACTIVEBANK_TO_ZERO;
-                ERRCK(__osContRamWrite(pfs->queue, pfs->channel, pfs->dir_table + j, (u8*)&tmp_dir, FALSE));
+                ERRCK(__osContRamWrite(pfs->queue, pfs->channel, pfs->dir_table + j, (u8*) &tmp_dir, FALSE));
                 fixed++;
             }
         }
@@ -95,7 +95,7 @@ s32 osPfsChecker(OSPfs* pfs) {
                         return ret;
                     }
                 }
-                
+
                 if ((cc = corrupted(pfs, next_page, &cache) - cl) != 0) {
                     break;
                 }
@@ -112,7 +112,7 @@ s32 osPfsChecker(OSPfs* pfs) {
                 tmp_dir.data_sum = 0;
 
                 SET_ACTIVEBANK_TO_ZERO;
-                ERRCK(__osContRamWrite(pfs->queue, pfs->channel, pfs->dir_table + j, (u8*)&tmp_dir, FALSE));
+                ERRCK(__osContRamWrite(pfs->queue, pfs->channel, pfs->dir_table + j, (u8*) &tmp_dir, FALSE));
                 fixed++;
             }
         } else {
@@ -124,17 +124,17 @@ s32 osPfsChecker(OSPfs* pfs) {
                 tmp_dir.data_sum = 0;
 
                 SET_ACTIVEBANK_TO_ZERO;
-                ERRCK(__osContRamWrite(pfs->queue, pfs->channel, pfs->dir_table + j, (u8*)&tmp_dir, FALSE));
+                ERRCK(__osContRamWrite(pfs->queue, pfs->channel, pfs->dir_table + j, (u8*) &tmp_dir, FALSE));
                 fixed++;
             }
         }
 #endif
     }
     for (j = 0; j < pfs->dir_size; j++) {
-        ERRCK(__osContRamRead(pfs->queue, pfs->channel, pfs->dir_table + j, (u8*)&tmp_dir));
+        ERRCK(__osContRamRead(pfs->queue, pfs->channel, pfs->dir_table + j, (u8*) &tmp_dir));
 
         if (tmp_dir.company_code != 0 && tmp_dir.game_code != 0 &&
-            tmp_dir.start_page.ipage >= (u16)pfs->inode_start_page) {
+            tmp_dir.start_page.ipage >= (u16) pfs->inode_start_page) {
             file_next_node[j].ipage = tmp_dir.start_page.ipage;
         } else {
             file_next_node[j].ipage = 0;
@@ -159,7 +159,7 @@ s32 osPfsChecker(OSPfs* pfs) {
         }
 
         for (j = 0; j < pfs->dir_size; j++) {
-            while (file_next_node[j].inode_t.bank == bank && file_next_node[j].ipage >= (u16)pfs->inode_start_page) {
+            while (file_next_node[j].inode_t.bank == bank && file_next_node[j].ipage >= (u16) pfs->inode_start_page) {
                 u8 pp = file_next_node[j].inode_t.page;
                 file_next_node[j] = checked_inode.inode_page[pp] = tmp_inode.inode_page[pp];
             }
@@ -207,8 +207,7 @@ s32 corrupted_init(OSPfs* pfs, __OSInodeCache* cache) {
                 n = ((tpage.inode_t.page & 0x7F) / PFS_SECTOR_SIZE) +
                     ((tpage.inode_t.bank % PFS_BANK_LAPPED_BY) * BLOCKSIZE);
 #else
-                n = ((tpage.inode_t.page) / PFS_SECTOR_SIZE) +
-                    ((tpage.inode_t.bank % PFS_BANK_LAPPED_BY) * BLOCKSIZE);
+                n = ((tpage.inode_t.page) / PFS_SECTOR_SIZE) + ((tpage.inode_t.bank % PFS_BANK_LAPPED_BY) * BLOCKSIZE);
 #endif
                 cache->map[n] |= 1 << (bank % PFS_BANK_LAPPED_BY);
             }

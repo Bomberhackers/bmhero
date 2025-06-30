@@ -2,7 +2,7 @@
 #include "controller.h"
 #include "PR/rmon.h"
 
-#define ROUND_UP_DIVIDE(numerator, denominator) (((numerator) + (denominator)-1) / (denominator))
+#define ROUND_UP_DIVIDE(numerator, denominator) (((numerator) + (denominator) - 1) / (denominator))
 
 #if BUILD_VERSION >= VERSION_J
 
@@ -96,7 +96,7 @@ s32 osPfsAllocateFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name
     bcopy(game_name, dir.game_name, PFS_FILE_NAME_LEN);
     bcopy(ext_name, dir.ext_name, PFS_FILE_EXT_LEN);
 
-    ret = __osContRamWrite(pfs->queue, pfs->channel, pfs->dir_table + *file_no, (u8*)&dir, FALSE);
+    ret = __osContRamWrite(pfs->queue, pfs->channel, pfs->dir_table + *file_no, (u8*) &dir, FALSE);
     return ret;
 }
 
@@ -148,7 +148,7 @@ s32 __osPfsDeclearPage(OSPfs* pfs, __OSInode* inode, int file_size_in_pages, int
 
 #else
 
-static s32 __osClearPage(OSPfs *pfs, int page_num, u8 *data, u8 bank);
+static s32 __osClearPage(OSPfs* pfs, int page_num, u8* data, u8 bank);
 
 s32 osPfsAllocateFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name, u8* ext_name, int file_size_in_bytes,
                       s32* file_no) {
@@ -237,7 +237,7 @@ s32 osPfsAllocateFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name
         if (file_size_in_pages > 0 || start_page == -1) {
             return PFS_ERR_INCONSISTENT;
         }
-        
+
         backup_inode.inode_page[old_last_page].inode_t.bank = bank;
         backup_inode.inode_page[old_last_page].inode_t.page = start_page;
         ERRCK(__osPfsRWInode(pfs, &backup_inode, OS_WRITE, old_bank));
@@ -252,7 +252,7 @@ s32 osPfsAllocateFile(OSPfs* pfs, u16 company_code, u32 game_code, u8* game_name
         for (j = 0; j < ARRLEN(dir.ext_name); j++)
             dir.ext_name[j] = *ext_name++;
 
-        ERRCK(__osContRamWrite(pfs->queue, pfs->channel, pfs->dir_table + *file_no, (u8*)&dir, FALSE));
+        ERRCK(__osContRamWrite(pfs->queue, pfs->channel, pfs->dir_table + *file_no, (u8*) &dir, FALSE));
         return ret;
     } else {
         return PFS_ERR_INVALID;
@@ -279,7 +279,7 @@ s32 __osPfsDeclearPage(OSPfs* pfs, __OSInode* inode, int file_size_in_pages, int
         *first_page = -1;
         return ret;
     }
-    
+
     for (i = 0; i < ARRLEN(tmp_data); i++) {
         tmp_data[i] = 0;
     }
@@ -293,7 +293,7 @@ s32 __osPfsDeclearPage(OSPfs* pfs, __OSInode* inode, int file_size_in_pages, int
         if (inode->inode_page[j].ipage == 3) {
             inode->inode_page[old_page].inode_t.bank = bank;
             inode->inode_page[old_page].inode_t.page = j;
-            ERRCK(__osClearPage(pfs, old_page, (u8*)tmp_data, bank));
+            ERRCK(__osClearPage(pfs, old_page, (u8*) tmp_data, bank));
             old_page = j;
             (*decleared)++;
         }
@@ -307,14 +307,13 @@ s32 __osPfsDeclearPage(OSPfs* pfs, __OSInode* inode, int file_size_in_pages, int
         return ret;
     } else {
         inode->inode_page[old_page].ipage = 1;
-        ret = __osClearPage(pfs, old_page, (u8*)tmp_data, bank);
+        ret = __osClearPage(pfs, old_page, (u8*) tmp_data, bank);
         *last_page = 0;
         return ret;
     }
 }
 
-static s32 __osClearPage(OSPfs *pfs, int page_no, u8 *data, u8 bank)
-{
+static s32 __osClearPage(OSPfs* pfs, int page_no, u8* data, u8 bank) {
     int i;
     s32 ret;
     ret = 0;
@@ -361,7 +360,7 @@ s32 __osDumpInode(OSPfs* pfs) {
     rmonPrintf("dir_size %d %d\n", pfs->dir_size, pfs->inode_start_page);
 
     for (j = 0; j < pfs->dir_size; j++) {
-        __osContRamRead(pfs->queue, pfs->channel, (u16)(pfs->dir_table + (int)j), (u8*)&dir);
+        __osContRamRead(pfs->queue, pfs->channel, (u16) (pfs->dir_table + (int) j), (u8*) &dir);
         rmonPrintf("file %d game_code %d page %x c_code %d sum %d\n", j, dir.game_code, dir.start_page.ipage,
                    dir.company_code, dir.data_sum);
     }

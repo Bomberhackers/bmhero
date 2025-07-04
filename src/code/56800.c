@@ -343,7 +343,7 @@ void func_800695A0(void) {
 
     sp1C = D_8017796C;
     while (sp1C->unk0 != -1) {
-        sp18 = D_80124D90[sp1C->unk0].unk24;
+        sp18 = gObjInfo[sp1C->unk0].unk24;
         while (1) {
             if (gFileArray[sp18->unk0].ptr == NULL) {
                 func_8001EB68(sp18->unk0, sp18->unk4, sp18->unk8);
@@ -396,6 +396,7 @@ void func_80069AA8(s8 arg0, s8 arg1) {
 
 void func_8007121C(void);
 
+// Game_ClearLevel?
 void func_80069AD8(s32 arg0, s32 arg1) {
     u8 sp1F;
     u8 sp1E;

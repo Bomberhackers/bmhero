@@ -73,7 +73,7 @@ void func_800CC2E0(void) {
         sp44->unkA8 -= 1;
         sp44->unkA6 -= 1;
     }
-    gObjects[sp40].Rot.y = func_80015538(gObjects[sp40].Rot.y, (f32) sp44->unkA6);
+    gObjects[sp40].Rot.y = Math_WrapAngle(gObjects[sp40].Rot.y, (f32) sp44->unkA6);
 }
 
 void func_800CC6D8(void) {
@@ -732,7 +732,7 @@ void func_800CF968(void) {
     }
     if (sp2C->unkA6 == 0) {
         sp20 = func_8002A640(gCurrentParsedObject, 10.0f);
-        sp2C->Rot.y = func_80015538(sp2C->Rot.y, (f32) (sp20 * 0xA));
+        sp2C->Rot.y = Math_WrapAngle(sp2C->Rot.y, (f32) (sp20 * 0xA));
         sp2C->unk3C = sp2C->Rot.y;
         sp2C->unkA6 = 0xA;
     } else {
@@ -894,7 +894,7 @@ void func_800D03EC(void) {
     }
     if (sp34->unkB0 == 0) {
         sp2C = func_8002A640(gCurrentParsedObject, 10.0f);
-        sp34->Rot.y = func_80015538(sp34->Rot.y, (f32) (sp2C * 0xA));
+        sp34->Rot.y = Math_WrapAngle(sp34->Rot.y, (f32) (sp2C * 0xA));
         sp34->unk3C = sp34->Rot.y;
     } else {
         sp34->unkB0 -= 1;
@@ -1022,7 +1022,7 @@ void func_800D0CA0(void) {
         sp34->Scale.x = (f32) ((f64) sp34->Scale.x + 0.025);
         sp34->Scale.y = (f32) ((f64) sp34->Scale.y + 0.025);
         sp34->Scale.z = (f32) ((f64) sp34->Scale.z + 0.025);
-        sp34->Rot.y = func_80015538(sp34->Rot.y, 15.0f);
+        sp34->Rot.y = Math_WrapAngle(sp34->Rot.y, 15.0f);
         sp34->unk3C = sp34->Rot.y;
     } else {
         sp34->damageState = 1;

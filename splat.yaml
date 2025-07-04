@@ -44,7 +44,7 @@ segments:
     - [0x10AB0, c, boot/10AB0]
     - [0x12AF0, c, boot/12AF0]
     - [0x15700, c, boot/LZSS] # LZSS decompression routines
-    - [0x15A80, c, boot/15A80]
+    - [0x15A80, c, boot/math_util]
     - [0x17930, c, boot/17930]
     - [0x1FAB0, c, boot/cont_pak]
     - [0x21E10, c, boot/21E10]
@@ -272,7 +272,7 @@ segments:
     - [0x4AF90, .data, boot/F280]
     - [0x4AFA0, .data, boot/10AB0]
     - [0x4AFD0, .data, boot/12AF0]
-    - [0x4B000, .data, boot/15A80]
+    - [0x4B000, .data, boot/math_util]
     - [0x4B190, .data, boot/17930]
     - [0x4B1F0, .data, boot/cont_pak]
     - [0x4B240, .data, boot/25810]
@@ -306,7 +306,7 @@ segments:
     - [0x4C6C0, .rodata, boot/38D0]
     - [0x4C7B0, .rodata, boot/mem]
     - [0x4C7F0, .rodata, boot/10AB0]
-    - [0x4C810, .rodata, boot/15A80]
+    - [0x4C810, .rodata, boot/math_util]
     - [0x4C820, .rodata, boot/17930]
     - [0x4C860, .rodata, boot/cont_pak]
     - [0x4C940, .rodata, boot/21E10]
@@ -342,7 +342,9 @@ segments:
     - {start: 0x4DFF0, vram: 0x8004D3F0, type: .bss, name: boot/main}
     - {start: 0x4DFF0, vram: 0x80052D40, type: .bss, name: boot/38D0}
     - {start: 0x4DFF0, vram: 0x80053160, type: .bss, name: boot/nusys/mus/audio}
-    - {start: 0x4DFF0, vram: 0x800557E0, type:  bss, name: boot_bss_pad_2}
+    - {start: 0x4DFF0, vram: 0x800557E0, type: .bss, name: boot/F280}
+    - {start: 0x4DFF0, vram: 0x80055D50, type:  bss, name: boot_bss_pad_2}
+
     - {start: 0x4DFF0, vram: 0x80057450, type:  bss, name: boot_bss_pad_3}
     - {start: 0x4DFF0, vram: 0x80057660, type:  .bss, name: boot/2BF00} #boot_bss_pad_4
     - {start: 0x4DFF0, vram: 0x80057690, type:  bss, name: boot_bss_pad_4}
@@ -374,7 +376,7 @@ segments:
     vram: 0x8005BAD0
     subsegments:
     - [0x4DFF0, c, code/4DFF0]
-    - [0x50BC0, c, code/50BC0]
+    - [0x50BC0, c, code/debug_utils]
     - [0x520E0, c, code/520E0]
     - [0x56400, c, code/56400]
     - [0x56800, c, code/56800]
@@ -402,7 +404,7 @@ segments:
     - [auto, .data, ../src/unk_F2A40_data]
     - [0xF4DE0, .rodata, code/4DFF0]
     - [0xF4E40, rodata]
-    - [0xF5ED0, .rodata, code/50BC0]
+    - [0xF5ED0, .rodata, code/debug_utils]
     - [0xF5EF0, rodata]
     - [0xF5FE0, rodata]
     - [0xF6220, rodata]
@@ -841,7 +843,8 @@ segments:
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1ABC60, c, overlays/1ABC60/1ABC60]
-    - [0x1AEC10, data]
+    - [0x1AEC10, .data, overlays/1ABC60/1ABC60]
+    - [0x1AEC30, .rodata, overlays/1ABC60/1ABC60]
 
   - name: unk_bin_22
     type: code
@@ -1118,7 +1121,7 @@ segments:
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1FACD0, c, overlays/1FACD0/1FACD0]
-    - [0x1FE6D0, rodata]
+    - [0x1FE6D0, data]
 
   - name: unk_bin_48
     type: code
@@ -1129,7 +1132,7 @@ segments:
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1FE7A0, c, overlays/1FE7A0/1FE7A0]
-    - [0x201BA0, data]
+    - [0x201BA0, .rodata, overlays/1FE7A0/1FE7A0]
 
   - name: unk_bin_49
     type: code

@@ -96,9 +96,9 @@ void func_803305D4_unk_bin_41() {
     obj->unkD4 = obj->unk3C;
     obj->unkD8 = obj->unk40;
 
-    obj->unkA6 = func_80015538(obj->unkA6, obj->unkA8);
+    obj->unkA6 = Math_WrapAngle(obj->unkA6, obj->unkA8);
     sp18 = sinf(obj->unkA6 * DEG_TO_RAD) * 40.0f;
-    obj->unk40 = func_80015538(sp18, 0.0f);
+    obj->unk40 = Math_WrapAngle(sp18, 0.0f);
 
     if (obj->unk44 > 10.0f) {
         obj->unk44 -= 1.0f;
@@ -118,7 +118,7 @@ void func_803305D4_unk_bin_41() {
     }
 
     sp18 = Math_NormalizeAngle(obj->unk40);
-    obj->Rot.x = func_80015538(360.0f, -sp18);
+    obj->Rot.x = Math_WrapAngle(360.0f, -sp18);
     obj->Rot.y = obj->unk3C;
 
     func_80029C40(gCurrentParsedObject);
@@ -157,10 +157,10 @@ void func_803309CC_unk_bin_41() {
         }
     }
 
-    obj->unk3C = func_80015538(obj->unk3C, 12.0f);
+    obj->unk3C = Math_WrapAngle(obj->unk3C, 12.0f);
 
     sp1C = Math_NormalizeAngle(obj->unk40);
-    obj->Rot.x = func_80015538(360.0f, -sp1C);
+    obj->Rot.x = Math_WrapAngle(360.0f, -sp1C);
     obj->Rot.y = obj->unk3C;
 
     func_80029C40(gCurrentParsedObject);
@@ -242,11 +242,11 @@ s8 func_80330C3C_unk_bin_41() {
             obj->unk48 += 1.0f;
         }
 
-        obj->Rot.y = func_80015538(obj->Rot.y, 12.0f);
+        obj->Rot.y = Math_WrapAngle(obj->Rot.y, 12.0f);
     }
     x = Math_NormalizeAngle(obj->unk40);
 
-    obj->Rot.x = func_80015538(360.0f, -x);
+    obj->Rot.x = Math_WrapAngle(360.0f, -x);
 
     func_80029C40(gCurrentParsedObject);
     func_80029D04(gCurrentParsedObject);
@@ -283,7 +283,7 @@ void func_803310A0_unk_bin_41() {
     func_8002A9A4(gCurrentParsedObject, 2.0f);
 
     x = Math_NormalizeAngle(obj->unk40);
-    obj->Rot.x = func_80015538(360.0f, -x);
+    obj->Rot.x = Math_WrapAngle(360.0f, -x);
     obj->Rot.y = obj->unk3C;
 
     func_8033193C_unk_bin_41();
@@ -304,8 +304,8 @@ void func_80331248_unk_bin_41() {
         obj->unk132 = 1;
         obj->unk44 = 0.0f;
         obj->unk48 = 0.0f;
-        obj->unkDC = func_80015538(obj->unk3C, 180.0f);
-        obj->unkDC = func_80015538(obj->unkDC, Math_Random(0x5A));
+        obj->unkDC = Math_WrapAngle(obj->unk3C, 180.0f);
+        obj->unkDC = Math_WrapAngle(obj->unkDC, Math_Random(0x5A));
         obj->unkE0 = 90.0f;
     }
     if (obj->unk132 == 1) {
@@ -318,7 +318,7 @@ void func_80331248_unk_bin_41() {
     obj->unkD8 = obj->unk40;
 
     x = Math_NormalizeAngle(obj->unk40);
-    obj->Rot.x = func_80015538(360.0f, -x);
+    obj->Rot.x = Math_WrapAngle(360.0f, -x);
     obj->Rot.y = obj->unk3C;
 
     func_80029C40(gCurrentParsedObject);
@@ -457,7 +457,7 @@ s16 func_803319F4_unk_bin_41(s16 idx) {
             obj->Vel.y = 0.0f;
         }
 
-        factor = func_80015538(sp40->unkD4, 180.0f);
+        factor = Math_WrapAngle(sp40->unkD4, 180.0f);
 
         obj->Vel.x = sinf(factor * DEG_TO_RAD) * addend;
         obj->Vel.z = cosf(factor * DEG_TO_RAD) * addend;

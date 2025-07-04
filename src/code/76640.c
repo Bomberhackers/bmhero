@@ -405,7 +405,7 @@ void func_80085884(void) {
             }
         }
         if (sp1C != -1) {
-            D_80124D90[gObjects[sp1C].objID].routine3();
+            gObjInfo[gObjects[sp1C].objID].routine3();
         }
     } else {
         sp18 = D_8016E240 - 2;
@@ -419,7 +419,7 @@ void func_80085884(void) {
             sp1C = -1;
         }
         if (sp1C != -1) {
-            D_80124D90[gObjects[sp1C].objID].routine3();
+            gObjInfo[gObjects[sp1C].objID].routine3();
         }
     }
 }
@@ -440,7 +440,7 @@ void func_80085B34(f32 arg0, f32 arg1) {
     D_801651C8 = gPlayerObject->Pos.y;
     D_801651CC = gPlayerObject->Pos.z + arg1;
     D_801651D0 = gPlayerObject->unk3C;
-    D_801651D4 = func_80015634(gActiveContStickX, -gActiveContStickY);
+    D_801651D4 = Math_CalcAngleRotated(gActiveContStickX, -gActiveContStickY);
     func_80016A80(D_801651AC, D_801651B0, D_801651B4, D_801651B8, &D_801651D8[0], &D_801651D8[1], &D_801651D8[2],
                   &D_801651D8[3]);
 }
@@ -488,7 +488,7 @@ s32 func_80085D54(void) {
             gObjects[D_80165270].unkA6 == 0) {
             gObjects[D_80165270].unkA6 = 8;
             gObjects[D_80165270].unkA8 = 1;
-            if (D_8016E100 != 0) {
+            if (gObjIdx != 0) {
                 func_8007A6DC();
             }
             func_802828C0();
@@ -832,7 +832,7 @@ void func_80086ECC(void) {
             guMtxCatF((f32(*)[4]) & sp78[0], (f32(*)[4]) & sp38[0], (f32(*)[4]) & sp78[0]);
             guMtxXFMF((f32(*)[4]) & sp78[0], 0.0f, 130.0f, -18.6f, &gPlayerArmWindObject->Pos.x,
                       &gPlayerArmWindObject->Pos.y, &gPlayerArmWindObject->Pos.z);
-            gPlayerArmWindObject->Rot.y = func_80015538(gPlayerArmWindObject->Rot.y, 50.0f);
+            gPlayerArmWindObject->Rot.y = Math_WrapAngle(gPlayerArmWindObject->Rot.y, 50.0f);
         }
     } else if (gPlayerArmWindObject->objID == 0x2AC) {
         if (gPlayerArmWindObject->actionState == 1) {
@@ -1027,7 +1027,7 @@ void func_80087E14(void) {
     D_8016E090 = 0;
     D_80165242 = 0;
     D_80165248 = 0;
-    D_8016E100 = 0;
+    gObjIdx = 0;
     D_8016E108 = 0;
     D_8016E118 = 0;
     D_8016E21C = 0;

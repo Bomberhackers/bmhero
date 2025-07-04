@@ -69,7 +69,7 @@ void func_800FB05C(void) {
     }
 
     spCC = func_8002A640(gCurrentParsedObject, 10.0f);
-    obj->Rot.y = func_80015538(obj->Rot.y, (f32) (spCC * 0xA));
+    obj->Rot.y = Math_WrapAngle(obj->Rot.y, (f32) (spCC * 0xA));
     obj->unk3C = obj->Rot.y;
 
     if (func_8001B62C(gCurrentParsedObject, 3) == 30.0f) {
@@ -466,8 +466,8 @@ void func_800FCA8C(void) {
         func_8001BB34(gCurrentParsedObject, 0);
         func_80029EF8(gCurrentParsedObject, 0.0f, 0.5f);
     }
-    obj->Rot.x = func_80015538(obj->Rot.x, -2.0f);
-    obj->Rot.z = func_80015538(obj->Rot.z, -0.400000006f);
+    obj->Rot.x = Math_WrapAngle(obj->Rot.x, -2.0f);
+    obj->Rot.z = Math_WrapAngle(obj->Rot.z, -0.400000006f);
     if (obj->Rot.x < 180.0f) {
         func_8001BB34(gCurrentParsedObject, 0);
         func_8002B0E4(gCurrentParsedObject);
@@ -495,9 +495,9 @@ void func_800FCC98() {
         sp2C->unkB0 = 0;
     }
     func_8001BB34(gCurrentParsedObject, !(sp2C->damageState & 1));
-    sp2C->unkB0 = (s16) (s32) func_80015538((f32) sp2C->unkB0, 16.0f);
+    sp2C->unkB0 = (s16) (s32) Math_WrapAngle((f32) sp2C->unkB0, 16.0f);
     sp28 = sinf((f32) ((f64) sp2C->unk3C * DEG_TO_RAD)) * 20.0f;
-    sp2C->Rot.z = func_80015538(0.0f, sp28);
+    sp2C->Rot.z = Math_WrapAngle(0.0f, sp28);
     func_80029C40(gCurrentParsedObject);
     func_80029D04(gCurrentParsedObject);
     if ((sp2C->unk54 - 50.0f) > (sp2C->Pos.y + sp2C->Vel.y)) {
@@ -565,8 +565,8 @@ s32 func_800FD04C(s16 arg0, s16 arg1, s32 arg2) {
         sp38 = &gObjects[sp32];
         sp30 = (s16) arg1 - 1;
 
-        sp38->unk3C = func_80015538(sp3C->unk3C, (f32) (sp30 * 0x23));
-        sp38->unk40 = func_80015538(sp3C->unk40, (f32) (sp30 * 8));
+        sp38->unk3C = Math_WrapAngle(sp3C->unk3C, (f32) (sp30 * 0x23));
+        sp38->unk40 = Math_WrapAngle(sp3C->unk40, (f32) (sp30 * 8));
         sp38->unk40 = Math_NormalizeAngle(sp38->unk40);
         sp38->unk44 = (f32) (((s16) arg1 * 3) + 0xF);
         sp38->unk48 = sp3C->unk48;
@@ -575,7 +575,7 @@ s32 func_800FD04C(s16 arg0, s16 arg1, s32 arg2) {
         sp38->Scale.y = sp38->Scale.z = sp38->Scale.x = 0.5f;
 
         if ((u8) arg2 == 1) {
-            sp34 = func_80015538(sp3C->Rot.y, 0.0f);
+            sp34 = Math_WrapAngle(sp3C->Rot.y, 0.0f);
             sp38->Vel.x = sinf((f32) ((f64) sp34 * DEG_TO_RAD)) * 95.0f;
             sp38->Vel.z = cosf((f32) ((f64) sp34 * DEG_TO_RAD)) * 95.0f;
 
@@ -634,7 +634,7 @@ void func_800FD440(void) {
         if (obj->unkAA == 0) {
             sp2E = (-obj->unkA8 * 4) + 0xC;
         }
-        sp30 = func_80015634(PlayerObject->Pos.x - obj->Pos.x, PlayerObject->Pos.z - obj->Pos.z);
+        sp30 = Math_CalcAngleRotated(PlayerObject->Pos.x - obj->Pos.x, PlayerObject->Pos.z - obj->Pos.z);
         sp34 = func_800157EC(obj->unk3C, sp30, (f32) (sp2E + 0xC));
         if (obj->unkAA == 0) {
             sp34 *= 3;
@@ -642,19 +642,18 @@ void func_800FD440(void) {
             obj->Scale.x += 0.1000000015f;
             obj->Scale.y = obj->Scale.z = obj->Scale.x;
         }
-        obj->unk3C = func_80015538(obj->unk3C, (f32) sp34);
-        sp30 = Math_CalcAngleSimple(PlayerObject->Pos.x - obj->Pos.x,
-                                    PlayerObject->Pos.y - obj->Pos.y);
+        obj->unk3C = Math_WrapAngle(obj->unk3C, (f32) sp34);
+        sp30 = Math_CalcAngleSimple(PlayerObject->Pos.x - obj->Pos.x, PlayerObject->Pos.y - obj->Pos.y);
         sp30 = Math_NormalizeAngle(sp30);
         sp34 = func_800157EC(obj->unk40, sp30, (f32) (sp2E + 0xC));
         if (obj->unkAA == 0) {
             sp34 *= 3;
         }
-        obj->unk40 = func_80015538(obj->unk40, (f32) sp34);
+        obj->unk40 = Math_WrapAngle(obj->unk40, (f32) sp34);
     }
 
     obj->Rot.y = obj->unk3C;
-    obj->Rot.x = func_80015538(360.0f, -obj->unk40);
+    obj->Rot.x = Math_WrapAngle(360.0f, -obj->unk40);
     func_80029D8C(gCurrentParsedObject);
     if (func_800295C0(gCurrentParsedObject, &sp38, &sp3C, 0.0f, -120.0f, 0.0f) != 0) {
         func_8002B0E4(gCurrentParsedObject);

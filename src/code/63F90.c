@@ -244,8 +244,8 @@ void func_800723EC(void) {
     if ((D_801776A8 != 0.0f) || (D_80177680 != 0.0f)) {
         func_80072358();
         gDebugDispType = gLevelInfo[gCurrentLevel]->unk5;
-        gView.rot.x = func_80015538(gView.rot.x, D_801776A8);
-        gView.rot.y = func_80015538(gView.rot.y, D_80177680);
+        gView.rot.x = Math_WrapAngle(gView.rot.x, D_801776A8);
+        gView.rot.y = Math_WrapAngle(gView.rot.y, D_80177680);
     }
 }
 
@@ -776,8 +776,8 @@ void func_800745C0(void) {
     } else if (D_801775D8 < 500.0f) {
         D_801775D8 = 500.0f;
     }
-    sp64 = func_80015538(360.0f - gPlayerObject->unk3C, 180.0f);
-    sp68 = func_80015538(gView.rot.y, -sp64);
+    sp64 = Math_WrapAngle(360.0f - gPlayerObject->unk3C, 180.0f);
+    sp68 = Math_WrapAngle(gView.rot.y, -sp64);
     if ((sp68 <= 90.0f) || (sp68 >= 270.0f)) {
         if ((gPlayerObject->Vel.x == 0.0f) && (gPlayerObject->Vel.z == 0.0f)) {
             sp40 = 0;
@@ -799,7 +799,7 @@ void func_800745C0(void) {
             if (sp68 > 180.0f) {
                 sp68 = 360.0f - sp68;
             }
-            D_801775C8 = func_80015538(gView.rot.y, (f32) (sp40 * sp3C));
+            D_801775C8 = Math_WrapAngle(gView.rot.y, (f32) (sp40 * sp3C));
         }
     }
     gView.at.y = func_80071A88(gView.at.y, D_801775B0, &D_801775EF);
@@ -843,19 +843,19 @@ f32 func_80074C7C(f32 arg0, f32 arg1, f32 arg2) {
     f32 sp20;
     f32 sp1C;
 
-    sp24 = func_80015634(arg0, arg1);
-    sp24 = func_80015538(sp24, 180.0f);
+    sp24 = Math_CalcAngleRotated(arg0, arg1);
+    sp24 = Math_WrapAngle(sp24, 180.0f);
     sp24 = 360.0f - sp24;
-    sp20 = func_80015538(gView.rot.y, -sp24);
-    sp1C = func_80015538(sp20, 180.0f);
+    sp20 = Math_WrapAngle(gView.rot.y, -sp24);
+    sp1C = Math_WrapAngle(sp20, 180.0f);
     if (sp1C <= arg2) {
-        sp2C = func_80015538(gView.rot.y, -sp1C);
+        sp2C = Math_WrapAngle(gView.rot.y, -sp1C);
     } else if (sp1C >= (360.0f - arg2)) {
-        sp2C = func_80015538(gView.rot.y, 360.0f - sp1C);
+        sp2C = Math_WrapAngle(gView.rot.y, 360.0f - sp1C);
     } else if (sp1C >= 180.0f) {
-        sp2C = func_80015538(gView.rot.y, arg2);
+        sp2C = Math_WrapAngle(gView.rot.y, arg2);
     } else {
-        sp2C = func_80015538(gView.rot.y, -arg2);
+        sp2C = Math_WrapAngle(gView.rot.y, -arg2);
     }
     return sp2C;
 }
@@ -1065,9 +1065,9 @@ void func_80075288(void) {
         default: /* switch 2 */
             sp3C = D_801775A8 - D_801775FC;
             sp34 = D_801775B8 - D_8017760C;
-            sp30 = 360.0f - func_80015634(sp3C, sp34);
+            sp30 = 360.0f - Math_CalcAngleRotated(sp3C, sp34);
             D_801775C8 = sp30;
-            sp30 = func_80015538(gView.rot.y, -D_801775C8);
+            sp30 = Math_WrapAngle(gView.rot.y, -D_801775C8);
             if ((sp30 > 90.0f) && (sp30 < 270.0f)) {
                 D_801775F8 = 0x3C;
             }
@@ -1240,9 +1240,9 @@ void func_80075D68(void) {
     sp24 = D_801775A8 - sp30;
     sp20 = D_801775B0 - sp2C;
     sp1C = D_801775B8 - sp28;
-    sp18 = 360.0f - func_80015634(sp24, sp1C);
+    sp18 = 360.0f - Math_CalcAngleRotated(sp24, sp1C);
     D_801775C8 = sp18;
-    sp18 = func_80015538(gView.rot.y, -D_801775C8);
+    sp18 = Math_WrapAngle(gView.rot.y, -D_801775C8);
     if ((sp18 > 90.0f) && (sp18 < 270.0f)) {
         D_801775F8 = 0x3C;
     }

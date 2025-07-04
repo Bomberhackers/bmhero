@@ -24,7 +24,7 @@ void func_800141C4(f32* arg0, f32);
 // 15A80.c
 f32 Math_Atan2f(f32 arg0, f32 arg1);
 f32 Math_CalcAngle2D(f32 arg0, f32 arg1);
-f32 func_80015634(f32 arg0, f32 arg1);
+f32 Math_CalcAngleRotated(f32 arg0, f32 arg1);
 f32 Math_CalcAngleSimple(f32 arg0, f32 arg1);
 f32 Math_NormalizeAngle(f32 arg0);
 s32 func_800157EC(f32 arg0, f32 arg1, f32 arg2);
@@ -52,7 +52,7 @@ void func_8001E80C(void);
 void Set_BgColor(char arg0, char arg1, char arg2, char arg3);
 void func_8001D4D0();
 void Set_DecompressHeap(s32*);
-void LoadFile(s32 arg0, s32 arg1, s32 arg2);
+void LoadFile(s32 id, u32* rom_start, u32* rom_end);
 void func_8001EB68(s32, void*, void*);
 void func_8001ECB8(void);
 void func_80019C84(void);
@@ -129,7 +129,7 @@ extern void func_80069314();
 
 // 50BC0.c
 void func_8005FAA0(u8* arg0, u8* arg1);
-void debug_print_xy(int, int);
+void Debug_PrintXY(int, int);
 
 // 50BC0.c
 void func_8005FAA0(u8* arg0, u8* arg1);
@@ -167,8 +167,8 @@ s32 func_80025460(s32, s32);
 s32 func_800256E0(s32, s32, s32);
 void func_80067748(f32, f32, f32);
 s32 Math_Random(s16);
-f32 func_80015538(f32, f32);
-f32 func_80015634(f32, f32);
+f32 Math_WrapAngle(f32, f32);
+f32 Math_CalcAngleRotated(f32, f32);
 f32 Math_CalcAngleSimple(f32, f32);
 s32 Math_ComparePlanes(s64 arg0, s64 arg2, s64 arg4, s64 arg6, s64 arg8, s64 argA, s64 argC, s64 argE);
 void func_8001A928(s32 arg0);
@@ -252,7 +252,7 @@ void func_8008F078(s16*);
 void func_8008F3D4(s16*);
 void func_8008F63C(s16*);
 void func_8008F6AC(s16*);
-f32 func_80015538(f32, f32); 
+f32 Math_WrapAngle(f32, f32); 
 void Cutscene_RenderChar(s16 x, s16 y, s16 s, s16 t, s16 id);
 void func_8008B030(void);
 void Cutscene_RenderTextBG(void);
@@ -273,7 +273,7 @@ void func_8008B6E0 (s16*);
 void func_8008BA3C(void);
 void func_8008BB0C(void);
 void func_8008BC04(s16*);
-f32 func_80015538(f32 arg0, f32 arg1);
+f32 Math_WrapAngle(f32 arg0, f32 arg1);
 void func_800175F0(s32 arg0, s32 arg1, s16 arg2, s16 arg3, s32 arg4);
 void func_80017664(s32 arg0, s32 arg1, s16 arg2, s32 arg3, s32 arg4);
 void func_80019448(s32 arg0, char arg1, char arg2, char arg3);
@@ -574,7 +574,7 @@ void func_8001D284();
 void func_8001EC04(); 
 void func_8001ECB8();
 void func_800FE854();
-void Debug_SetTextColor(u8, u8, u8);
+void Debug_SetTextColor(u8 red, u8 green, u8 blue);
 void Set_DecompressHeap(s32*);
 void func_8001994C();
 s32 func_8001D1D4();
@@ -671,6 +671,6 @@ void func_8006F570(s32 arg0, s32 arg1, s32 arg2, f32 arg3, f32 arg4);
 int Decode(u8* buf_in, u8* buf_out);
 void func_8001ABF4(s32 arg0, s32 arg1, s32 arg2, void* arg3);
 s32 func_8000FD9C(struct UnkInputStruct8000FC08* arg0, Gfx** arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6);
-
+void func_80069E60(s32 arg0, s32 arg1, s32 arg2);
 
 #endif // _FUNCTIONS_H_

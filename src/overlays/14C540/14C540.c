@@ -247,10 +247,10 @@ extern f32 D_80336268_unk_bin_2;
 extern f32 D_8033626C_unk_bin_2;
 
 void func_80330E04_unk_bin_2(void) {
-    gObjects[0xA].Rot.y = func_80015538(gObjects[0xA].Rot.y, D_80336260_unk_bin_2);
-    gObjects[0xB].Rot.y = func_80015538(gObjects[0xB].Rot.y, D_80336264_unk_bin_2);
-    gObjects[0xD].Rot.y = func_80015538(gObjects[0xD].Rot.y, D_80336268_unk_bin_2);
-    gObjects[0xE].Rot.y = func_80015538(gObjects[0xE].Rot.y, D_8033626C_unk_bin_2);
+    gObjects[0xA].Rot.y = Math_WrapAngle(gObjects[0xA].Rot.y, D_80336260_unk_bin_2);
+    gObjects[0xB].Rot.y = Math_WrapAngle(gObjects[0xB].Rot.y, D_80336264_unk_bin_2);
+    gObjects[0xD].Rot.y = Math_WrapAngle(gObjects[0xD].Rot.y, D_80336268_unk_bin_2);
+    gObjects[0xE].Rot.y = Math_WrapAngle(gObjects[0xE].Rot.y, D_8033626C_unk_bin_2);
     gObjects[0xC].Pos.x = gObjects[0xB].Pos.x;
     gObjects[0xC].Pos.y = gObjects[0xB].Pos.y;
     gObjects[0xC].Pos.z = gObjects[0xB].Pos.z;

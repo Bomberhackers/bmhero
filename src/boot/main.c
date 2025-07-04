@@ -3,7 +3,7 @@
 #include "prevent_bss_reordering2.h"
 #include "1050.h"
 #include "cont_pak.h"
-
+#include "debug.h"
 //.data
 struct UnkStruct_D_004A280 D_8004A280 = { 0, 0, 0, 0, 0 };
 s32 D_8004A294 = 0;

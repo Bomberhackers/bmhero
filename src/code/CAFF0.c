@@ -37,7 +37,7 @@ void func_800D8E40(void) {
         func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118B38);
     }
 
-    sp1C->unkA6 = func_80015538(sp1C->unkA6, sp1C->unkBC);
+    sp1C->unkA6 = Math_WrapAngle(sp1C->unkA6, sp1C->unkBC);
     sp1C->Pos.x = sinf(sp1C->unkA6 * DEG_TO_RAD) * (f32) sp1C->unkBA + (f32) sp1C->unkB6;
     sp1C->Pos.y = cosf(sp1C->unkA6 * DEG_TO_RAD) * (f32) sp1C->unkBA + (f32) sp1C->unkB8;
 }
@@ -98,12 +98,12 @@ void func_800D9298(void) {
         obj->unkA6 = (s16) (s32) func_8002A46C(gCurrentParsedObject);
         obj->unkA8 = func_8002A560(gCurrentParsedObject, 2.0f);
     }
-    sp18 = func_80015538((f32) obj->unkA6, -obj->unk3C);
+    sp18 = Math_WrapAngle((f32) obj->unkA6, -obj->unk3C);
     if ((sp18 <= 7.0f) || (353.0f <= sp18)) {
         obj->actionState = 3;
         obj->unk132 = 0;
     } else {
-        obj->unk3C = func_80015538(obj->unk3C, (f32) (obj->unkA8 * 0xE));
+        obj->unk3C = Math_WrapAngle(obj->unk3C, (f32) (obj->unkA8 * 0xE));
         obj->Rot.y = obj->unk3C;
     }
 }
@@ -272,7 +272,7 @@ void func_800D9BD4(void) {
     sp3C->unkAC = 0;
     if (sp3C->unkAA != 0) {
         sp3C->unk44 = 4.0f;
-        sp3C->Rot.y = func_80015538(sp3C->Rot.y, (f32) (sp3C->unkB6 * 0xA));
+        sp3C->Rot.y = Math_WrapAngle(sp3C->Rot.y, (f32) (sp3C->unkB6 * 0xA));
         sp3C->unkA8 -= 1;
         if (sp3C->unkA8 == 0) {
             sp3C->unkAA = 0;
@@ -290,13 +290,13 @@ void func_800D9BD4(void) {
         }
     }
     if (sp3C->unkAA == 0) {
-        sp30 = func_80015634(gPlayerObject->Pos.x - sp3C->Pos.x, gPlayerObject->Pos.z - sp3C->Pos.z);
+        sp30 = Math_CalcAngleRotated(gPlayerObject->Pos.x - sp3C->Pos.x, gPlayerObject->Pos.z - sp3C->Pos.z);
         sp3C->unkB6 = func_800157EC(sp3C->unk3C, sp30, 2.0f);
-        sp3C->unk3C = func_80015538(sp3C->unk3C, (f32) (sp3C->unkB6 * 2));
+        sp3C->unk3C = Math_WrapAngle(sp3C->unk3C, (f32) (sp3C->unkB6 * 2));
         sp30 = Math_CalcAngleSimple(gPlayerObject->Pos.x - sp3C->Pos.x, gPlayerObject->Pos.y - (sp3C->Pos.y - 100.0f));
         sp30 = Math_NormalizeAngle(sp30);
         sp3C->unkB8 = func_800157EC(sp3C->unk40, sp30, 2.0f);
-        sp3C->unk40 = func_80015538(sp3C->unk40, (f32) sp3C->unkB8);
+        sp3C->unk40 = Math_WrapAngle(sp3C->unk40, (f32) sp3C->unkB8);
         sp3C->Rot.y = sp3C->unk3C;
     }
     func_80029D8C(gCurrentParsedObject);
@@ -316,8 +316,8 @@ void func_800D9BD4(void) {
         sp3C->unkAA = sp3C->unkAC;
         sp3C->unkAC = 0;
         sp3C->unkA8 = 0x12;
-        sp3C->unk3C = func_80015538(sp3C->unk3C, 180.0f);
-        sp3C->unk40 = func_80015538(sp3C->unk40, 180.0f);
+        sp3C->unk3C = Math_WrapAngle(sp3C->unk3C, 180.0f);
+        sp3C->unk40 = Math_WrapAngle(sp3C->unk40, 180.0f);
         sp3C->unk40 = Math_NormalizeAngle(sp3C->unk40);
     }
 }

@@ -2,6 +2,7 @@
 #include <ultra64.h>
 #include "2BF00.h"
 #include "obj.h"
+#include "debug.h"
 #include "common.h"
 
 extern s16 sSetModeMenuOption; // Current Set mode menu item
@@ -235,9 +236,9 @@ void func_8002BE04(void) {
     for (sp3C = 14; sp3C < 0x4E; sp3C++) {
         if (gObjects[sp3C].actionState != 0) {
             if (gObjects[sp3C].unkE6[0] == -1) {
-                sp38 = D_80124D90[gObjects[sp3C].objID].unk40;
-                sp34 = D_80124D90[gObjects[sp3C].objID].unk38->unk0;
-                sp30 = D_80124D90[gObjects[sp3C].objID].unk38->unk4;
+                sp38 = gObjInfo[gObjects[sp3C].objID].animPtr;
+                sp34 = gObjInfo[gObjects[sp3C].objID].unk38->unk0;
+                sp30 = gObjInfo[gObjects[sp3C].objID].unk38->unk4;
                 sp2C = gObjects[sp3C].Unk140[sp34];
                 func_8001A488(sp2C);
                 if ((D_80165290[sp2C].unk20 == 0) && (sp38 != NULL)) {
@@ -247,9 +248,9 @@ void func_8002BE04(void) {
             if ((gObjects[sp3C].unkE6[0] == -1)) {
                 if ((gObjects[sp3C].Unk140[4] == -1)) {
 
-                    sp28 = D_80124D90[gObjects[sp3C].objID].unk44;
+                    sp28 = gObjInfo[gObjects[sp3C].objID].unk44;
 
-                    sp24 = D_80124D90[gObjects[sp3C].objID].unk38->unk0;
+                    sp24 = gObjInfo[gObjects[sp3C].objID].unk38->unk0;
 
                     if (sp28 != NULL) {
                         func_8001ABF4(sp3C, 0, sp24, sp28);
@@ -484,7 +485,7 @@ void func_8002D128(void) {
     f32 sp1C;
 
     func_8002C92C();
-    gPlayerObject->unk3C = func_80015634(gActiveContStickX, -gActiveContStickY);
+    gPlayerObject->unk3C = Math_CalcAngleRotated(gActiveContStickX, -gActiveContStickY);
     sp1C = sqrtf((gActiveContStickX * gActiveContStickX) + (gActiveContStickY * gActiveContStickY));
     if (sp1C > 10.0f) {
         sp1C /= 2.0f;
@@ -566,7 +567,7 @@ void func_8002D538(void) {
         ;
 
     Set_DecompressHeap((s32*) 0x80280000);
-    sp30 = D_80124D90[D_80057690].unk24;
+    sp30 = gObjInfo[D_80057690].unk24;
 
     for (sp2C = 1; (s32) sp2C < 2; sp2C++) {
         DecompressFile(sp2C, sp30->unk4, sp30->unk8);
@@ -577,9 +578,9 @@ void func_8002D538(void) {
 
         sp30++;
     }
-    sp44 = D_80124D90[D_80057690].unk38;
-    sp24 = D_80124D90[D_80057690].unk40;
-    sp20 = D_80124D90[D_80057690].unk44;
+    sp44 = gObjInfo[D_80057690].unk38;
+    sp24 = gObjInfo[D_80057690].animPtr;
+    sp20 = gObjInfo[D_80057690].unk44;
     sp40 = 0;
     func_8001A958(sp40);
     sp3C = (s32) sp44->unk0;
@@ -620,7 +621,7 @@ void func_8002D768(void) {
                 D_80057690 = 0x20;
             }
 
-            if (D_80124D90[D_80057690].unk38 != 0) {
+            if (gObjInfo[D_80057690].unk38 != 0) {
                 break;
             }
         }
@@ -675,7 +676,7 @@ void func_8002D9D4(void) {
                 ;
 
             Set_DecompressHeap((s32*) D_8005768C);
-            sp24 = D_80124D90[D_80057690].unk24;
+            sp24 = gObjInfo[D_80057690].unk24;
 
             for (sp20 = 1; sp20 < 10; sp20++) {
                 if (gFileArray[sp24->unk0].ptr == NULL) {
@@ -886,10 +887,10 @@ void Debug_SaveMode(void) {
                 DEBUG_PRINTF("  ");
 
                 for (sp30 = 0; sp30 < OBJ_NAME_LEN; sp30++) {
-                    if (D_80124D90->unk48[(sp2C * 0x60) + sp30] == ' ') {
+                    if (gObjInfo->objName[(sp2C * 0x60) + sp30] == ' ') {
                         break;
                     }
-                    DEBUG_PRINTF("%c", D_80124D90->unk48[(sp2C * 0x60) + sp30]);
+                    DEBUG_PRINTF("%c", gObjInfo->objName[(sp2C * 0x60) + sp30]);
                 }
 
                 DEBUG_PRINTF(",");
@@ -917,10 +918,10 @@ void func_8002E8B4(void) {
         if ((sp2C != -1) && (D_800576A8[sp34].unk2 != 0x7530)) {
             DEBUG_PRINTF("  ");
             for (sp30 = 0; sp30 < OBJ_NAME_LEN; sp30++) {
-                if (D_80124D90->unk48[(sp2C * 0x60) + sp30] == 0x20) {
+                if (gObjInfo->objName[(sp2C * 0x60) + sp30] == 0x20) {
                     break;
                 }
-                DEBUG_PRINTF("%c", D_80124D90->unk48[(sp2C * 0x60) + sp30]);
+                DEBUG_PRINTF("%c", gObjInfo->objName[(sp2C * 0x60) + sp30]);
             }
             DEBUG_PRINTF(",");
             for (; sp30 < OBJ_NAME_LEN; sp30++) {
@@ -961,47 +962,47 @@ void Debug_SetMode_Menu(void) {
     func_8002C144(gPlayerObject->Pos.x, gPlayerObject->Pos.y, gPlayerObject->Pos.z);
     sp1C = D_80177760[D_801776E0 & 1];
     sprintf((char*) gDebugTextBuf, "SET MODE");
-    debug_print_xy(0x20, 0x10);
+    Debug_PrintXY(0x20, 0x10);
     sprintf((char*) gDebugTextBuf, "CHR=%d", D_80057690);
-    debug_print_xy(0x20, 0x20);
+    Debug_PrintXY(0x20, 0x20);
 
     for (sp20 = 0; sp20 < OBJ_NAME_LEN; sp20++) {
-        sp27 = D_80124D90[D_80057690].unk48[sp20];
+        sp27 = gObjInfo[D_80057690].objName[sp20];
         sprintf((char*) gDebugTextBuf, "%c", sp27);
-        debug_print_xy((sp20 * 8) + 0x60, 0x20);
+        Debug_PrintXY((sp20 * 8) + 0x60, 0x20);
     }
     sprintf((char*) gDebugTextBuf, "X=%d", (s32) gPlayerObject->Pos.x);
-    debug_print_xy(0x20, 0x30);
+    Debug_PrintXY(0x20, 0x30);
     sprintf((char*) gDebugTextBuf, "Y=%d(%d)", (s32) gPlayerObject->Pos.y, (s32) (gPlayerObject->Pos.y - sp1C));
-    debug_print_xy(0x20, 0x40);
+    Debug_PrintXY(0x20, 0x40);
     sprintf((char*) gDebugTextBuf, "Z=%d", (s32) gPlayerObject->Pos.z);
-    debug_print_xy(0x20, 0x50);
+    Debug_PrintXY(0x20, 0x50);
     sprintf((char*) gDebugTextBuf, "ADJUST");
-    debug_print_xy(0x20, 0x60);
+    Debug_PrintXY(0x20, 0x60);
     sprintf((char*) gDebugTextBuf, "ANGLE=%u(0x%X)", D_80057694, D_80057694);
-    debug_print_xy(0x20, 0x70);
+    Debug_PrintXY(0x20, 0x70);
     sprintf((char*) gDebugTextBuf, "PRM1=%u(0x%X)", D_80057696, D_80057696);
-    debug_print_xy(0x20, 0x80);
+    Debug_PrintXY(0x20, 0x80);
     sprintf((char*) gDebugTextBuf, "PRM2=%u(0x%X)", D_80057698, D_80057698);
-    debug_print_xy(0x20, 0x90);
+    Debug_PrintXY(0x20, 0x90);
     sprintf((char*) gDebugTextBuf, "PRM3=%u(0x%X)", D_8005769A, D_8005769A);
-    debug_print_xy(0x20, 0xA0);
+    Debug_PrintXY(0x20, 0xA0);
     sprintf((char*) gDebugTextBuf, "MOVE=%d", D_8005768A);
-    debug_print_xy(0x20, 0xB0);
+    Debug_PrintXY(0x20, 0xB0);
     sprintf((char*) gDebugTextBuf, "=");
-    debug_print_xy(0x18, (sSetModeMenuOption * 0x10) + 0x20);
+    Debug_PrintXY(0x18, (sSetModeMenuOption * 0x10) + 0x20);
 }
 
 void Debug_ResetMode_Menu(void) {
     sprintf((char*) &gDebugTextBuf, "RESET MODE : LINE=%d", D_80057692);
-    debug_print_xy(32, 16);
+    Debug_PrintXY(32, 16);
 }
 
 void Debug_SaveMode_Menu(void) {
     sprintf((char*) &gDebugTextBuf, "SAVE MODE");
-    debug_print_xy(32, 16);
+    Debug_PrintXY(32, 16);
     sprintf((char*) &gDebugTextBuf, "PRESS START BUTTON");
-    debug_print_xy(88, 100);
+    Debug_PrintXY(88, 100);
 }
 
 void Debug_ParseSetModeMenu(void) {

@@ -38,7 +38,7 @@ void func_80330118_unk_bin_35(struct ObjectStruct* obj, s32 arg1) {
             obj->unkAC = 0;
         }
     }
-    obj->Rot.y = func_80015538(obj->Rot.y, (f32) obj->unkAC);
+    obj->Rot.y = Math_WrapAngle(obj->Rot.y, (f32) obj->unkAC);
 }
 
 void func_803301FC_unk_bin_35(void) {
@@ -204,7 +204,7 @@ void func_80330A64_unk_bin_35(void) {
         obj->unk44 = 15.0f;
         obj->unkA6 = 0x28;
     }
-    obj->Rot.z = func_80015538(obj->Rot.z, 2.0f);
+    obj->Rot.z = Math_WrapAngle(obj->Rot.z, 2.0f);
     obj->Scale.x = (f32) ((f64) obj->Scale.x + 0.03);
     obj->Scale.y = (f32) ((f64) obj->Scale.y + 0.03);
     obj->Scale.z = (f32) ((f64) obj->Scale.z + 0.06);
@@ -428,7 +428,7 @@ void func_80331928_unk_bin_35(void) {
     }
     if (obj->unkB0 == 0) {
         sp38 = func_8002A640(gCurrentParsedObject, 10.0f);
-        obj->Rot.y = func_80015538(obj->Rot.y, (f32) (sp38 * 0xA));
+        obj->Rot.y = Math_WrapAngle(obj->Rot.y, (f32) (sp38 * 0xA));
         obj->unk3C = obj->Rot.y;
     } else {
         obj->unkB0 -= 1;
@@ -653,7 +653,7 @@ void func_80332860_unk_bin_35(void) {
         parent->unk132 = 1;
         parent->unkA6 = 0;
         parent->unk44 = 30.0f;
-        parent->unk3C = func_80015538(parent->Rot.y, 180.0f);
+        parent->unk3C = Math_WrapAngle(parent->Rot.y, 180.0f);
         parent->Vel.y = 0.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 2, 0x49, &D_8011730C);
     }
@@ -760,7 +760,7 @@ void func_8033304C_unk_bin_35(void) {
         obj->unk48 = 0.0f;
         func_8001BB34(gCurrentParsedObject, 1);
         func_8001BB04(gCurrentParsedObject, 1);
-        D_80124D90[obj->objID].unk0 = 0;
+        gObjInfo[obj->objID].unk0 = 0;
     }
     func_80029C40(gCurrentParsedObject);
     func_80029D04(gCurrentParsedObject);
@@ -776,7 +776,7 @@ void func_80333140_unk_bin_35(void) {
         obj->unk48 = 0.0f;
         func_8001BB34(gCurrentParsedObject, 0);
         func_8001BB04(gCurrentParsedObject, 0);
-        D_80124D90[obj->objID].unk0 = 0xE;
+        gObjInfo[obj->objID].unk0 = 0xE;
     }
     func_80029C40(gCurrentParsedObject);
     func_80029D04(gCurrentParsedObject);

@@ -1,5 +1,5 @@
 #include <ultra64.h>
-#include "macros.h"
+#include "debug.h"
 
 s32* D_8004A370 = &D_80380000;
 

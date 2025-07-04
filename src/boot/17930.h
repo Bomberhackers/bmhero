@@ -141,7 +141,7 @@ void func_8001DCEC(void);
 void func_8001E80C(void);
 void Set_DecompressHeap(s32 *arg0);
 s32 Get_DecompressHeap(void);	
-void LoadFile(s32 arg0, s32 arg1, s32 arg2);
+void LoadFile(s32 id, u32* rom_start, u32* rom_end);
 void func_8001EB68(s32 arg0, void *arg1, void *arg2);
 void func_8001EBE8(void);
 void func_8001EC04(void);

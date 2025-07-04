@@ -4,10 +4,51 @@
 #define OBJ_DEATH 0
 #define OBJ_INVENCIBLE -1
 #define OBJ_DAMAGE_STATE_TAKE_DAMAGE 61
-
 #define OBJ_DAMAGE_STATE_NORMAL 1 /* The player or object *can* receive damage */
 
 #define OBJ_NAME_LEN 20
+
+typedef enum  {
+    ACTION_NONE,
+    ACTION_IDLE
+} ActionState;
+
+typedef enum {
+    INTERACT_HIT_BY_PLAYER,
+    INTERACT_HIT_BY_ENEMY = 4,
+    INTERACT_COLLECT_ITEM = 5
+} InteractionType;
+
+
+struct UnkStruct_80026548 {
+    s8 unk0;
+    char unk1;
+    char unk2;
+    char unk3;
+    s8 unk4;
+    char unk5;
+    char unk6;
+    char unk7;
+    s16 unk8;
+    s16 unkA;
+    s16 unkC;
+    u8 unkE;
+    s8 unkF;
+    char pad10[4];
+    void* (*spawn)();
+    void* (*behaviour)();
+    void* (*destroy)();
+    struct UnkStruct_80134B54** unk20;
+    struct UnkStruct_80026548_SP24 *unk24;
+    char pad28[0x4];
+    void* (*routine3)();
+    u64 unk30;
+    struct UnkStruct_80027C00* unk38;
+    s32 pad3C;
+    void* animPtr;
+    void* unk44;
+    u8 objName[24];
+};
 
 struct ObjectStruct {
     /* 0x000 */ struct Vec3f Pos;
@@ -45,7 +86,7 @@ struct ObjectStruct {
     /* 0x0C4 */ s32 unkC4;                   /* maybe part of unkC2[9]? */
     /* 0x0C8 */ s32 unkC8;
     /* 0x0CC*/  s32 unkCC;
-    /* 0x0D0 */ s32 unkD0;
+    /* 0x0D0 */ s32 unused_unkD0;
     /* 0x0D4 */ f32 unkD4;
     /* 0x0D8 */ f32 unkD8;
     /* 0x0DC */ f32 unkDC;                          /* inferred */
@@ -61,9 +102,11 @@ struct ObjectStruct {
     /* 0x104 */ s16 interactingObjIdx; /* Seems to contain the object index that "interacts" with the object
                             *  TODO: This name is temporal
                             */
-    /* 0x106 */ s16 unk106;
+    /* 0x106 */ s16 interactingObjID;  /* Seems to contain the object ID that "interacts" with the object
+                            *  TODO: This name is temporal
+                            */
     /* 0x108 */ s16 damageState;
-    /* 0x10A */ u8 unk10A;
+    /* 0x10A */ u8 interactionType;
     /* 0x10B */ u8 unk10B;
     /* 0x10C */ u8 unk10C;
     /* 0x10D */ char pad10D[1];
@@ -399,7 +442,7 @@ typedef enum {
     OBJ_HITODE_C = 309,
     OBJ_WARU_R = 310,
     OBJ_WARU_R2 = 311,
-    OBJ_ROBO_R = 312,
+    OBJ_TRAINING_ROBO = 312, // Original name: OBJ_ROBO_R
     OBJ_FIRETAIL = 313,
     OBJ_WARU_R3 = 314,
     OBJ_GAIGA = 315,
@@ -739,6 +782,6 @@ typedef enum {
     OBJ_M221AWAT = 649,
     OBJ_MAPWOOD2 = 650,
     OBJ_EVS_WAR2  = 651
-} OBJ_IDS;
+} ObjIds;
 
 #endif /* OBJ_H */

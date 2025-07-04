@@ -181,9 +181,9 @@ void func_800D2A04(void) {
         sp24->unkAE = 4;
     } else {
         if (sp24->unkAE != 0) {
-            sp24->unkB0 = (s16) (s32) func_80015538(sp24->unk3C, (f32) -sp24->unkA8);
+            sp24->unkB0 = (s16) (s32) Math_WrapAngle(sp24->unk3C, (f32) -sp24->unkA8);
             if ((sp24->unkB0 < 6) || (sp24->unkB0 >= 0x163)) {
-                sp24->unk3C = func_80015538(sp24->unk3C, (f32) sp24->unkAA);
+                sp24->unk3C = Math_WrapAngle(sp24->unk3C, (f32) sp24->unkAA);
                 sp24->unkAE -= 1;
             } else {
                 sp24->unkAE = 0;
@@ -191,7 +191,7 @@ void func_800D2A04(void) {
         } else {
             sp24->unk3C = (f32) sp24->unkA8;
         }
-        sp24->Rot.y = func_80015538(sp24->Rot.y, (f32) sp24->unkAC);
+        sp24->Rot.y = Math_WrapAngle(sp24->Rot.y, (f32) sp24->unkAC);
     }
 
     sp24->Vel.y = 0.0f;
@@ -451,9 +451,9 @@ void func_800D3974(void) {
         CurrentObject->unkA8 = 0xA;
     }
 
-    CurrentObject->unk3C = func_80015538(CurrentObject->unk3C, 0.5f);
+    CurrentObject->unk3C = Math_WrapAngle(CurrentObject->unk3C, 0.5f);
     func_80029C40(gCurrentParsedObject);
-    CurrentObject->unkB8 = func_80015538(CurrentObject->unkB8, 10.0f);
+    CurrentObject->unkB8 = Math_WrapAngle(CurrentObject->unkB8, 10.0f);
     func_800294F0(gCurrentParsedObject, &sp30, &sp2C, 0.0f, 0.0f, 0.0f);
     CurrentObject->unk48 =
         sinf(CurrentObject->unkB8 * DEG_TO_RAD) * 30.0f + CurrentObject->unkB6 - CurrentObject->Pos.y;
@@ -1085,16 +1085,16 @@ void func_800D6684(void) {
                       gPlayerObject->Pos.z - CurrentObject->Pos.z, &sp40, &sp3C);
         CurrentObject->unkA8 = sp3C;
         if ((CurrentObject->unkA8 >= 0x2E) && (CurrentObject->unkA8 < 0xB5)) {
-            CurrentObject->unkA8 = func_80015538(45.0f, Math_Random(-0xA));
+            CurrentObject->unkA8 = Math_WrapAngle(45.0f, Math_Random(-0xA));
         } else {
             if ((CurrentObject->unkA8 >= 0xB5) && (CurrentObject->unkA8 < 0x13C)) {
-                CurrentObject->unkA8 = func_80015538(315.0f, Math_Random(-0xA));
+                CurrentObject->unkA8 = Math_WrapAngle(315.0f, Math_Random(-0xA));
             } else {
-                CurrentObject->unkA8 = func_80015538(CurrentObject->unkA8, Math_Random(-0xF));
+                CurrentObject->unkA8 = Math_WrapAngle(CurrentObject->unkA8, Math_Random(-0xF));
             }
         }
         sp40 = 360.0f - sp40;
-        CurrentObject->unk40 = func_80015538(sp40, Math_Random(-5) + 0x14);
+        CurrentObject->unk40 = Math_WrapAngle(sp40, Math_Random(-5) + 0x14);
         if (CurrentObject->unkA8 >= 0xB4) {
             CurrentObject->unkAC = -5;
         } else {
@@ -1102,9 +1102,9 @@ void func_800D6684(void) {
         }
         CurrentObject->unkAE = 0;
     } else if (CurrentObject->unkAE != 0) {
-        CurrentObject->unkB0 = func_80015538(CurrentObject->unk3C, -CurrentObject->unkA8);
+        CurrentObject->unkB0 = Math_WrapAngle(CurrentObject->unk3C, -CurrentObject->unkA8);
         if ((CurrentObject->unkB0 < 6) || (CurrentObject->unkB0 >= 0x163)) {
-            CurrentObject->unk3C = func_80015538(CurrentObject->unk3C, CurrentObject->unkAC);
+            CurrentObject->unk3C = Math_WrapAngle(CurrentObject->unk3C, CurrentObject->unkAC);
             CurrentObject->unkAE -= 1;
         } else {
             CurrentObject->unkAE = 0;
@@ -1192,7 +1192,7 @@ void func_800D6DFC(void) {
         }
     }
     if (CurrentObject->unkA6 != 0) {
-        CurrentObject->unk3C = func_80015538(CurrentObject->unk3C, 10.0f);
+        CurrentObject->unk3C = Math_WrapAngle(CurrentObject->unk3C, 10.0f);
         CurrentObject->Rot.y = CurrentObject->unk3C;
         if ((CurrentObject->unk3C - (f32) CurrentObject->unkA8) == 0.0f) {
             CurrentObject->unkA6 = 0;
@@ -1236,12 +1236,12 @@ void func_800D7348(void) {
         CurrentObject->unk132 += 1;
         CurrentObject->unkA6 = 0x1E;
         CurrentObject->unk44 = 5.0f;
-        CurrentObject->unk3C = func_80015538(CurrentObject->unk128, 180.0f);
+        CurrentObject->unk3C = Math_WrapAngle(CurrentObject->unk128, 180.0f);
         func_80029EF8(gCurrentParsedObject, 14.378698f, 1.06089f);
         func_8001BBDC(gCurrentParsedObject, 1);
         CurrentObject->damageState = 0;
     }
-    CurrentObject->Rot.y = func_80015538(CurrentObject->Rot.y, 25.0f);
+    CurrentObject->Rot.y = Math_WrapAngle(CurrentObject->Rot.y, 25.0f);
     sp20 = CurrentObject->Vel.y;
     CurrentObject->Vel.y = 0.0f;
     func_80029C40(gCurrentParsedObject);
@@ -1313,12 +1313,12 @@ void func_800D7704(void) {
             CurrentObject->unk3C = CurrentObject->unkB8;
             CurrentObject->unkA6 = 1;
             CurrentObject->unkA8 = func_8002A46C(gCurrentParsedObject);
-            CurrentObject->unkA8 = func_80015538(CurrentObject->unkA8, Math_Random(-0xF));
+            CurrentObject->unkA8 = Math_WrapAngle(CurrentObject->unkA8, Math_Random(-0xF));
             CurrentObject->unkAA = func_8002A640(gCurrentParsedObject, 10.0f);
         }
     }
     if (CurrentObject->unkA6 != 0) {
-        CurrentObject->unk3C = func_80015538(CurrentObject->unk3C, (CurrentObject->unkAA * 0xA));
+        CurrentObject->unk3C = Math_WrapAngle(CurrentObject->unk3C, (CurrentObject->unkAA * 0xA));
         CurrentObject->Rot.y = CurrentObject->unk3C;
         sp40 = CurrentObject->unk3C - CurrentObject->unkA8;
         if ((sp40 < 0xB) && (sp40 >= -0xA)) {
@@ -1362,12 +1362,12 @@ void func_800D7CD0(void) {
         sp24->unk132 += 1;
         sp24->unkA6 = 0x1E;
         sp24->unk44 = 5.0f;
-        sp24->unk3C = func_80015538(sp24->unk128, 180.0f);
+        sp24->unk3C = Math_WrapAngle(sp24->unk128, 180.0f);
         func_80029EF8(gCurrentParsedObject, 14.378698f, 1.06089f);
         func_8001BBDC(gCurrentParsedObject, 1);
         sp24->damageState = 0;
     }
-    sp24->Rot.y = func_80015538(sp24->Rot.y, 25.0f);
+    sp24->Rot.y = Math_WrapAngle(sp24->Rot.y, 25.0f);
     sp20 = sp24->Vel.y;
     sp24->Vel.y = 0.0f;
     func_80029C40(gCurrentParsedObject);
@@ -1399,7 +1399,7 @@ void func_800D7F08(void) {
     }
 }
 
-void func_800D7F9C(void) {
+void Init_ObjTrainingRobo(void) {
     func_80027464(1, &D_80114240, (f32) D_80165100->unk2, (f32) D_80165100->unk4, (f32) D_80165100->unk6,
                   (f32) D_80165100->unk8);
 }
@@ -1439,13 +1439,13 @@ void func_800D808C(void) {
             CurrentObject->unk3C = (f32) CurrentObject->unkB8;
             CurrentObject->unkA6 = 1;
             CurrentObject->unkA8 = (s16) (s32) func_8002A46C(gCurrentParsedObject);
-            CurrentObject->unkA8 = (s16) (s32) func_80015538((f32) CurrentObject->unkA8, (f32) Math_Random(-0xF));
+            CurrentObject->unkA8 = (s16) (s32) Math_WrapAngle((f32) CurrentObject->unkA8, (f32) Math_Random(-0xF));
             CurrentObject->unkAA = func_8002A640(gCurrentParsedObject, 10.0f);
             func_8001ABF4(gCurrentParsedObject, 0, 0, &D_801188DC);
         }
     }
     if (CurrentObject->unkA6 != 0) {
-        CurrentObject->unk3C = func_80015538(CurrentObject->unk3C, (f32) (CurrentObject->unkAA * 0xA));
+        CurrentObject->unk3C = Math_WrapAngle(CurrentObject->unk3C, (f32) (CurrentObject->unkAA * 0xA));
         CurrentObject->Rot.y = CurrentObject->unk3C;
         sp40 = (s32) (CurrentObject->unk3C - (f32) CurrentObject->unkA8);
         if ((sp40 < 0xB) && (sp40 >= -0xA)) {

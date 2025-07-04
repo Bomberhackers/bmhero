@@ -295,7 +295,7 @@ void func_8008CE8C(s16* arg0) {
     sp2C = arg0[1] - gObjects[sp24].Pos.x;
     sp28 = arg0[2] - gObjects[sp24].Pos.z;
 
-    gObjects[sp24].unk3C = func_80015634(sp2C, sp28);
+    gObjects[sp24].unk3C = Math_CalcAngleRotated(sp2C, sp28);
     gObjects[sp24].unk44 = sqrtf((sp2C * sp2C) + (sp28 * sp28)) / arg0[3]; // pythagoras
 
     D_80134C28[arg0[0]] = arg0[3];
@@ -1269,7 +1269,7 @@ void func_80093B64(void) {
         }
     }
 
-    sp3C->Rot.y = func_80015538(sp3C->Rot.y, 60.0f - sp3C->unkD8);
+    sp3C->Rot.y = Math_WrapAngle(sp3C->Rot.y, 60.0f - sp3C->unkD8);
 
     if (sp3C->unkAC != 0) {
         sp3C->Vel.y -= sp3C->unk4C;
@@ -1329,7 +1329,7 @@ s32 func_80094128(void) {
 
     for (sp18 = 0; sp18 < 4; sp18++) {
         sp1C = Math_Random(5);
-        if (gFileArray[D_80124D90[sp1C + 32].unk24[0].unk0].ptr != NULL) {
+        if (gFileArray[gObjInfo[sp1C + 32].unk24[0].unk0].ptr != NULL) {
             return sp1C;
         }
     }
@@ -1345,7 +1345,7 @@ void func_800941C4(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
         return;
     }
 
-    if (gFileArray[D_80124D90[arg0 + 32].unk24[0].unk0].ptr != NULL) {
+    if (gFileArray[gObjInfo[arg0 + 32].unk24[0].unk0].ptr != NULL) {
         sp34 = func_80093940(arg0 + 0x20);
         sp30 = func_80027464(1, sp34, arg1, arg2, arg3, 0.0f);
         if (sp30 != -1) {
@@ -1364,7 +1364,7 @@ void func_80094370(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
         return;
     }
 
-    if (gFileArray[D_80124D90[arg0 + 32].unk24[0].unk0].ptr != NULL) {
+    if (gFileArray[gObjInfo[arg0 + 32].unk24[0].unk0].ptr != NULL) {
         sp34 = func_80093940(arg0 + 0x20);
         sp30 = func_80027464(1, sp34, arg1, arg2, arg3, 0.0f);
 
@@ -1400,7 +1400,7 @@ void func_80094680(void) {
         sp1C->unk132 += 1;
         func_8001ABF4(gCurrentParsedObject, 0, 3, &D_801133B8);
     }
-    sp1C->Rot.y = func_80015538(sp1C->Rot.y, 4.0f);
+    sp1C->Rot.y = Math_WrapAngle(sp1C->Rot.y, 4.0f);
 }
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_8009473C.s")

@@ -347,7 +347,7 @@ void func_80331124_unk_bin_36(void) {
     }
     func_80029C40(gCurrentParsedObject);
 
-    obj->unkA6 = func_80015538(obj->unkA6, 10.0f);
+    obj->unkA6 = Math_WrapAngle(obj->unkA6, 10.0f);
     func_800294F0(gCurrentParsedObject, &y1, &y2, 0, 0.0f, 0.0f);
 
     obj->unk48 = (sinf(obj->unkA6 * DEG_TO_RAD) * 30.0f) + obj->unkB6 - obj->Pos.y;

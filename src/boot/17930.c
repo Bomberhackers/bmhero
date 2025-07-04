@@ -151,8 +151,8 @@ u8 func_800171E0(s32 arg0) {
         return 0x40;
     }
     obj = &gObjects[arg0];
-    sp38 = func_80015634(obj->Pos.x - gView.at.x, obj->Pos.z - gView.at.z);
-    sp34 = func_80015634(gView.eye.x - gView.at.x, gView.eye.z - gView.at.z);
+    sp38 = Math_CalcAngleRotated(obj->Pos.x - gView.at.x, obj->Pos.z - gView.at.z);
+    sp34 = Math_CalcAngleRotated(gView.eye.x - gView.at.x, gView.eye.z - gView.at.z);
     sp30 = obj->Pos.x - gView.at.x;
     sp2C = obj->Pos.z - gView.at.z;
 
@@ -565,7 +565,7 @@ void func_800194C4(s32 arg0) {
     func_80019448(arg0, 2, 1, 0);
 }
 
-void func_8000E680(Matrix, Matrix); /* extern */
+void Math_Mat3f_Inverse(Matrix, Matrix); /* extern */
 
 void func_80019510(s32 arg0, s32 arg1, s32 arg2) {
     Mtx spA8;
@@ -588,7 +588,7 @@ void func_80019510(s32 arg0, s32 arg1, s32 arg2) {
         D_8016E104->unk00[1] = spA8;
     } else if (arg1 == 2) {
         guMtxIdentF(sp28);
-        func_8000E680(sp28, sp68);
+        Math_Mat3f_Inverse(sp28, sp68);
         func_80013B70(sp28, gObjects[arg0].Scale.x, gObjects[arg0].Scale.y, gObjects[arg0].Scale.z);
         guMtxCatF(sp28, sp68, sp68);
         guMtxF2L(sp68, &spA8);
@@ -602,19 +602,20 @@ void func_80019510(s32 arg0, s32 arg1, s32 arg2) {
 }
 
 void func_8001994C(void) {
-    f32 sp2C;
-    f32 sp28;
+    f32 view_rot_x;
+    f32 view_rot_y;
 
     if (D_8016E134 == 0) {
-        sp2C = gView.rot.x;
-        sp28 = gView.rot.y + 90.0f;
-        if ((sp2C == 90.0f) || (sp2C == 270.0f)) {
-            sp2C -= 1.0f;
+        view_rot_x = gView.rot.x;
+        view_rot_y = gView.rot.y + 90.0f;
+        if ((view_rot_x == 90.0f) || (view_rot_x == 270.0f)) {
+            view_rot_x -= 1.0f;
         }
-        gView.eye.x = ((gView.dist * cosf((sp28 * DEG_TO_RAD))) * cosf((sp2C * DEG_TO_RAD))) + gView.at.x;
-        gView.eye.y = (sinf((sp2C * DEG_TO_RAD)) * gView.dist) + gView.at.y;
-        gView.eye.z = ((gView.dist * sinf((sp28 * DEG_TO_RAD))) * cosf((sp2C * DEG_TO_RAD))) + gView.at.z;
-        if ((sp2C >= 90.0f) && (sp2C < 270.0f)) {
+        gView.eye.x = ((gView.dist * cosf((view_rot_y * DEG_TO_RAD))) * cosf((view_rot_x * DEG_TO_RAD))) + gView.at.x;
+        gView.eye.y = (sinf((view_rot_x * DEG_TO_RAD)) * gView.dist) + gView.at.y;
+        gView.eye.z = ((gView.dist * sinf((view_rot_y * DEG_TO_RAD))) * cosf((view_rot_x * DEG_TO_RAD))) + gView.at.z;
+        
+        if ((view_rot_x >= 90.0f) && (view_rot_x < 270.0f)) {
             gView.up.y = -1.0f;
         } else {
             gView.up.y = 1.0f;
@@ -692,7 +693,7 @@ void Init_Obj(int index) {
     obj->unkC4 = 0;
     obj->unkC8 = 0;
     obj->unkCC = 0;
-    obj->unkD0 = 0;
+    obj->unused_unkD0 = 0;
     obj->unkD4 = 0.0f;
     obj->unkD8 = 0.0f;
     obj->unkDC = 0.0f;
@@ -713,10 +714,10 @@ void Init_Obj(int index) {
     obj->unk103 = 0;
     obj->interactingObjIdx = -1;
     obj->damageState = 0;
-    obj->unk10A = 0;
+    obj->interactionType = 0;
     obj->unk10B = 0;
     obj->unk10C = 0;
-    obj->unk106 = 0;
+    obj->interactingObjID = 0;
     obj->unk124 = 0.0f;
     obj->unk128 = 0.0f;
     obj->unk12C = 0.0f;
@@ -1116,7 +1117,7 @@ void func_8001BB04(s32 arg0, s32 arg1) {
 }
 
 void func_8001BB34(s32 arg0, s32 arg1) {
-    if (arg1 != 0) {
+    if (arg1) {
         gObjects[arg0].unk130 = (u8) gObjects[arg0].unk130 | 1;
     } else {
         gObjects[arg0].unk130 = (u8) gObjects[arg0].unk130 & ~1;
@@ -1182,8 +1183,8 @@ void func_8001BE6C(s32 objID, s32 arg1, s32 arg2, s32 arg3) {
     func_8001A300(sp1C);
 }
 
-void func_8001C0EC(s32 arg0, s32 arg1, s32 arg2, s32 arg3, u32* arg4) {
-    func_8001BE6C(arg0, arg1, arg2, (void*) &gFileArray[arg3].ptr[arg4[arg2]]);
+void func_8001C0EC(s32 arg0, s32 arg1, s32 arg2, s32 fileID, u32* arr) {
+    func_8001BE6C(arg0, arg1, arg2, (void*) &gFileArray[fileID].ptr[arr[arg2]]);
 }
 
 void func_8001C158(s32 arg0, s32 arg1, s32 arg2) {
@@ -1376,16 +1377,16 @@ void func_8001CDF4(s32 arg0, s32 arg1, s32 arg2, struct UnkStruct_8001CDF4* arg3
     gSPDisplayList(gMasterDisplayList++, sp24);
 }
 
-void func_8001CEF4(s32 arg0) {
-    struct ObjectStruct* sp1C;
+void func_8001CEF4(s32 objIdx) {
+    struct ObjectStruct* obj;
 
-    sp1C = &gObjects[arg0];
-    sp1C->Pos.x += sp1C->Vel.x;
-    sp1C->Pos.y += sp1C->Vel.y;
-    sp1C->Pos.z += sp1C->Vel.z;
-    sp1C->Rot.x = func_80015538(sp1C->Rot.x, sp1C->unk30.x);
-    sp1C->Rot.y = func_80015538(sp1C->Rot.y, sp1C->unk30.y);
-    sp1C->Rot.z = func_80015538(sp1C->Rot.z, sp1C->unk30.z);
+    obj = &gObjects[objIdx];
+    obj->Pos.x += obj->Vel.x;
+    obj->Pos.y += obj->Vel.y;
+    obj->Pos.z += obj->Vel.z;
+    obj->Rot.x = Math_WrapAngle(obj->Rot.x, obj->unk30.x);
+    obj->Rot.y = Math_WrapAngle(obj->Rot.y, obj->unk30.y);
+    obj->Rot.z = Math_WrapAngle(obj->Rot.z, obj->unk30.z);
 }
 
 void func_8001D000(s32 red, s32 green, s32 blue, s32 alpha) {
@@ -1812,15 +1813,15 @@ void func_8001E80C(void) {
     D_8016E244++;
 }
 
-void Set_DecompressHeap(s32* arg0) {
-    gDecompressHeap = (u8*) arg0;
+void Set_DecompressHeap(s32* addr) {
+    gDecompressHeap = (u8*) addr;
 }
 
 s32 Get_DecompressHeap(void) {
     return (s32) gDecompressHeap;
 }
 
-void LoadFile(s32 id, s32 rom_start, s32 rom_end) {
+void LoadFile(s32 id, u32* rom_start, u32* rom_end) {
     u32 heap; /* compiler-managed */
     s32 size;
 
@@ -1830,14 +1831,14 @@ void LoadFile(s32 id, s32 rom_start, s32 rom_end) {
         heap = ALIGN16((s32) heap + 1);
         gDecompressHeap = (u8*) heap;
     }
-    size = rom_end - rom_start;
+    size = (u8*) rom_end - (u8*) rom_start;
     gFileArray[id].ptr = gDecompressHeap;
 
     // Load the compressed bin to the file ptr
     load_from_rom_to_addr(rom_start, gFileArray[id].ptr, size);
 
     // Re-set the heap pointer to the new area.
-    gDecompressHeap = &gDecompressHeap[size];
+    gDecompressHeap += size;
 }
 
 /**

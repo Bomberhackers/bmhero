@@ -144,9 +144,9 @@ s32 func_80077CB0(s16 arg0, s16 arg1, s16* arg2, s16* arg3) {
     struct ObjectStruct* sp2C;
     sp30 = &gObjects[arg0];
     sp2C = &gObjects[arg1];
-    D_80134B54 = D_80124D90[sp30->objID].unk20[sp30->unkFE];
+    D_80134B54 = gObjInfo[sp30->objID].unk20[sp30->unkFE];
 
-    D_80134B58 = D_80124D90[sp2C->objID].unk20[sp2C->unkFE];
+    D_80134B58 = gObjInfo[sp2C->objID].unk20[sp2C->unkFE];
 
     sp50 = (f32) D_80134B54->unk0[0] + sp30->Pos.x;
     sp4C = (f32) D_80134B54->unk0[1] + sp30->Pos.y;
@@ -431,12 +431,12 @@ s32 func_80078AEC(s32 arg0) {
     return sp28;
 }
 
-s32 func_8007944C(void) {
-    s32 sp4;
+s32 Get_InactiveObject(void) {
+    s32 i;
 
-    for (sp4 = 2; sp4 <= 5; sp4++) {
-        if (gObjects[sp4].actionState == 0) {
-            return sp4;
+    for (i = 2; i <= 5; i++) {
+        if (gObjects[i].actionState == ACTION_NONE) {
+            return i;
         }
     }
     return -1;
@@ -643,7 +643,7 @@ void func_8007A024(void) {
     s32 sp1C;
     struct ObjectStruct* sp18;
 
-    sp1C = func_8007944C();
+    sp1C = Get_InactiveObject();
     if (sp1C != -1) {
         func_80079E9C(sp1C);
         sp18 = &gObjects[sp1C];
@@ -653,44 +653,44 @@ void func_8007A024(void) {
         sp18->Pos.y = gPlayerObject->Pos.y + 50.0f;
         sp18->Pos.z = gPlayerObject->Pos.z;
         sp18->unk3C = gPlayerObject->Rot.y;
-        D_8016E100 = (s16) sp1C;
+        gObjIdx = (s16) sp1C;
     } else {
-        D_8016E100 = 0;
+        gObjIdx = 0;
     }
 }
 
 void func_8007A120(void) {
     struct ObjectStruct* sp4;
 
-    sp4 = &gObjects[D_8016E100];
+    sp4 = &gObjects[gObjIdx];
     sp4->actionState = 0x24;
     sp4->unkB4 = (s16) (s32) gPlayerObject->unk44;
-    D_8016E100 = 0;
+    gObjIdx = 0;
 }
 
 void func_8007A1A8(void) {
-    func_8001A928((s32) D_8016E100);
-    D_8016E100 = 0;
+    func_8001A928((s32) gObjIdx);
+    gObjIdx = 0;
 }
 
 void func_8007A1E0(void) {
     struct ObjectStruct* sp1C;
     s32 sp18;
 
-    if (D_8016E100 == 0) {
-        sp18 = func_8007944C();
+    if (gObjIdx == 0) {
+        sp18 = Get_InactiveObject();
         if (sp18 != -1) {
             func_80079E9C(sp18);
         }
     } else {
-        sp18 = (s32) D_8016E100;
+        sp18 = (s32) gObjIdx;
     }
     if (sp18 != -1) {
         sp1C = &gObjects[sp18];
         sp1C->actionState = 0x21;
-        D_8016E100 = D_8016E108 = (s16) sp18;
+        gObjIdx = D_8016E108 = (s16) sp18;
     } else {
-        D_8016E100 = 0;
+        gObjIdx = 0;
     }
 }
 
@@ -698,20 +698,20 @@ void func_8007A2C0(void) {
     struct ObjectStruct* sp1C;
     s32 sp18;
 
-    if (D_8016E100 == 0) {
-        sp18 = func_8007944C();
+    if (gObjIdx == 0) {
+        sp18 = Get_InactiveObject();
         if (sp18 != -1) {
             func_80079E9C(sp18);
         }
     } else {
-        sp18 = (s32) D_8016E100;
+        sp18 = (s32) gObjIdx;
     }
     if (sp18 != -1) {
         sp1C = &gObjects[sp18];
         sp1C->actionState = 0x22;
-        D_8016E100 = D_8016E108 = sp18;
+        gObjIdx = D_8016E108 = sp18;
     } else {
-        D_8016E100 = 0;
+        gObjIdx = 0;
     }
 }
 
@@ -738,7 +738,7 @@ void func_8007A488(s32 arg0) {
     if (D_80165268 != 0) {
         arg0 += 0xA;
     }
-    sp1C = func_8007944C();
+    sp1C = Get_InactiveObject();
     if (sp1C != -1) {
         func_80079E9C(sp1C);
         sp18 = &gObjects[sp1C];
@@ -747,7 +747,7 @@ void func_8007A488(s32 arg0) {
         sp18->Pos.y = gPlayerObject->Pos.y + 50.0f;
         sp18->Pos.z = gPlayerObject->Pos.z;
         sp18->unk40 = D_8010C7E4[arg0].y;
-        sp18->unk3C = func_80015538(gPlayerObject->Rot.y, D_8010C7E4[arg0].z);
+        sp18->unk3C = Math_WrapAngle(gPlayerObject->Rot.y, D_8010C7E4[arg0].z);
         sp18->unk44 = D_8010C7E4[arg0].x;
         func_800799A8(sp1C);
         func_80079AD8(sp1C);
@@ -777,21 +777,21 @@ void func_8007A620(s32 arg0) {
 void func_8007A6DC(void) {
     struct ObjectStruct* sp1C;
 
-    sp1C = &gObjects[D_8016E100];
+    sp1C = &gObjects[gObjIdx];
     sp1C->actionState = 0x26;
     sp1C->unkD4 = gPlayerObject->Pos.y;
     sp1C->unk40 = 80.0f;
     sp1C->unk3C = gPlayerObject->Rot.y;
     sp1C->unk44 = 35.0f;
-    func_800799A8((s32) D_8016E100);
-    func_80079AD8((s32) D_8016E100);
-    D_8016E100 = 0;
+    func_800799A8((s32) gObjIdx);
+    func_80079AD8((s32) gObjIdx);
+    gObjIdx = 0;
 }
 
 void func_8007A7B4(f32 arg0, f32 arg1, f32 arg2) {
     struct ObjectStruct* sp1C;
 
-    sp1C = &gObjects[D_8016E100];
+    sp1C = &gObjects[gObjIdx];
     sp1C->actionState = 0x26;
     sp1C->unkD4 = gPlayerObject->Pos.y;
     sp1C->unk40 = 80.0f;
@@ -800,9 +800,9 @@ void func_8007A7B4(f32 arg0, f32 arg1, f32 arg2) {
     sp1C->Pos.x = sp1C->Pos.x + arg0 * sinf((f32) ((f64) gPlayerObject->Rot.y * DEG_TO_RAD));
     sp1C->Pos.y += arg1;
     sp1C->Pos.z = sp1C->Pos.z + arg2 * cosf((f32) ((f64) gPlayerObject->Rot.y * DEG_TO_RAD));
-    func_800799A8((s32) D_8016E100);
-    func_80079AD8((s32) D_8016E100);
-    D_8016E100 = 0;
+    func_800799A8((s32) gObjIdx);
+    func_80079AD8((s32) gObjIdx);
+    gObjIdx = 0;
 }
 
 extern f64 D_8010CA08;
@@ -948,7 +948,7 @@ void func_8007B004(s32 arg0) {
         func_800799A8(arg0);
         func_80079AD8(arg0);
         sp9C->damageState = 1;
-        D_8016E100 = 0;
+        gObjIdx = 0;
     }
 }
 
@@ -979,7 +979,7 @@ void func_8007B268(s32 arg0) {
             sp9C->Vel.y = gPlayerObject->Vel.y;
         }
         sp9C->damageState = 1;
-        D_8016E100 = 0;
+        gObjIdx = 0;
     }
 }
 
@@ -1120,7 +1120,7 @@ void func_8007BBD8(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
         func_8007A3A0(arg0);
         sp1C->unk3C = arg3;
     }
-    sp1C->unk3C = func_80015538(sp1C->unk3C, arg1);
+    sp1C->unk3C = Math_WrapAngle(sp1C->unk3C, arg1);
     func_800799A8(arg0);
     if (arg2 != 0.0f) {
         sp1C->Vel.y = -sp1C->Vel.y;
@@ -1148,7 +1148,7 @@ void func_8007BE30(void) {
     s32 sp1C;
     struct ObjectStruct* sp18;
 
-    sp1C = func_8007944C();
+    sp1C = Get_InactiveObject();
     if (sp1C != -1) {
         func_8007BD30(sp1C);
         sp18 = &gObjects[sp1C];
@@ -1157,26 +1157,26 @@ void func_8007BE30(void) {
         sp18->Pos.y = gPlayerObject->Pos.y;
         sp18->Pos.z = gPlayerObject->Pos.z;
         sp18->unk3C = gPlayerObject->Rot.y;
-        D_8016E100 = (s16) sp1C;
+        gObjIdx = (s16) sp1C;
     }
 }
 
 void func_8007BF18(void) {
     struct ObjectStruct* sp24;
 
-    sp24 = &gObjects[D_8016E100];
+    sp24 = &gObjects[gObjIdx];
     sp24->actionState = 0x12;
     sp24->unkD4 = gPlayerObject->Pos.y;
     sp24->unk3C = gPlayerObject->Rot.y;
     if (gPlayerObject->Pos.y < (D_801651C0 + 120.0f)) {
         sp24->unk40 = 0.0f;
     } else {
-        sp24->unk40 = func_80015538(360.0f, -gPlayerObject->Rot.x);
+        sp24->unk40 = Math_WrapAngle(360.0f, -gPlayerObject->Rot.x);
     }
     sp24->unk44 = 24.0f;
     sp24->Scale.z = 1.0f;
     sp24->Scale.x = sp24->Scale.y = sp24->Scale.z;
-    D_8016E100 = 0;
+    gObjIdx = 0;
     D_8016E2F8 = 0;
 }
 
@@ -1184,7 +1184,7 @@ void func_8007C06C(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     s32 sp1C;
     struct ObjectStruct* sp18;
 
-    sp1C = func_8007944C();
+    sp1C = Get_InactiveObject();
     if (sp1C != -1) {
         func_8007BD30(sp1C);
         sp18 = &gObjects[sp1C];
@@ -1194,7 +1194,7 @@ void func_8007C06C(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
         sp18->Pos.y = arg2;
         sp18->Pos.z = arg3;
         sp18->unk40 = 0.0f;
-        sp18->unk3C = func_80015538(gPlayerObject->Rot.y, D_8010C8FC[arg0]);
+        sp18->unk3C = Math_WrapAngle(gPlayerObject->Rot.y, D_8010C8FC[arg0]);
         sp18->unk44 = 24.0f;
         func_800799A8(sp1C);
         func_80079AD8(sp1C);
@@ -1212,12 +1212,12 @@ void func_8007C1B0(void) {
     if (sp24 >= 4) {
         sp24 = 4;
     }
-    sp20 = gObjects[D_8016E100].Pos.x;
-    sp1C = gObjects[D_8016E100].Pos.y;
-    sp18 = gObjects[D_8016E100].Pos.z;
-    func_8001A928((s32) D_8016E100);
+    sp20 = gObjects[gObjIdx].Pos.x;
+    sp1C = gObjects[gObjIdx].Pos.y;
+    sp18 = gObjects[gObjIdx].Pos.z;
+    func_8001A928((s32) gObjIdx);
     D_8016E2F8 = 0;
-    D_8016E100 = 0;
+    gObjIdx = 0;
     if (sp24 == 2) {
         func_8007C06C(1, sp20, sp1C, sp18);
         func_8007C06C(2, sp20, sp1C, sp18);
@@ -1274,8 +1274,8 @@ void func_8007C39C(s32 arg0) {
         func_80079874(arg0);
         func_80079960(arg0);
     }
-    sp24->Rot.y = func_80015538(gPlayerObject->Rot.y, 180.0f);
-    sp24->Rot.x = func_80015538(360.0f, -gPlayerObject->Rot.x);
+    sp24->Rot.y = Math_WrapAngle(gPlayerObject->Rot.y, 180.0f);
+    sp24->Rot.x = Math_WrapAngle(360.0f, -gPlayerObject->Rot.x);
 }
 
 void func_8007C640(s32 arg0) {
@@ -1343,7 +1343,7 @@ void func_8007C8A0(s32 arg0) {
 
             if ((sp3C < 0xE1000U)) {
                 if ((sp60->Pos.z < sp6C->Pos.z)) {
-                    if ((D_80124D90[sp60->objID].unk1 != 0)) {
+                    if ((gObjInfo[sp60->objID].unk1 != 0)) {
                         sp4C = sp58;
                         sp48 = sp54;
                         sp44 = sp50;
@@ -1355,15 +1355,15 @@ void func_8007C8A0(s32 arg0) {
     }
 
     if (sp34 != 64) {
-        sp68 = func_80015634(sp4C, sp44);
+        sp68 = Math_CalcAngleRotated(sp4C, sp44);
         sp64 = func_800157EC(sp6C->unk3C, sp68, 2.0f);
-        sp6C->unk3C = func_80015538(sp6C->unk3C, (f32) sp64);
+        sp6C->unk3C = Math_WrapAngle(sp6C->unk3C, (f32) sp64);
         sp68 = Math_CalcAngleSimple(sp4C, sp48);
         sp68 = Math_NormalizeAngle(sp68);
         sp64 = func_800157EC(sp6C->unk40, sp68, 2.0f);
-        sp6C->unk40 = func_80015538(sp6C->unk40, (f32) sp64);
+        sp6C->unk40 = Math_WrapAngle(sp6C->unk40, (f32) sp64);
     }
-    sp6C->Rot.y = func_80015538(sp6C->unk3C, -180.0f);
+    sp6C->Rot.y = Math_WrapAngle(sp6C->unk3C, -180.0f);
     sp6C->Rot.x = sp6C->unk40;
     func_800799A8(arg0);
     func_80079AD8(arg0);
@@ -1406,7 +1406,7 @@ void func_8007CDE8(void) {
     s32 sp1C;
     struct ObjectStruct* sp18;
 
-    sp1C = func_8007944C();
+    sp1C = Get_InactiveObject();
     if (sp1C != -1) {
         func_8007CCE8(sp1C);
         sp18 = &gObjects[sp1C];
@@ -1414,21 +1414,21 @@ void func_8007CDE8(void) {
         sp18->Pos.x = gPlayerObject->Pos.x;
         sp18->Pos.y = gPlayerObject->Pos.y;
         sp18->Pos.z = gPlayerObject->Pos.z;
-        D_8016E100 = (s16) sp1C;
+        gObjIdx = (s16) sp1C;
     }
 }
 
 void func_8007CEB8(void) {
     struct ObjectStruct* sp4;
 
-    sp4 = &gObjects[D_8016E100];
+    sp4 = &gObjects[gObjIdx];
     sp4->actionState = 0x1A;
     sp4->unkD4 = gPlayerObject->Pos.y;
     sp4->unk3C = 180.0f;
     sp4->unk40 = 0.0f;
     sp4->unk44 = 40.0f;
     sp4->Scale.x = sp4->Scale.y = sp4->Scale.z = 1.0f;
-    D_8016E100 = 0;
+    gObjIdx = 0;
     D_8016E2F8 = 0;
 }
 
@@ -1436,7 +1436,7 @@ void func_8007CF98(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     s32 sp1C;
     struct ObjectStruct* sp18;
 
-    sp1C = func_8007944C();
+    sp1C = Get_InactiveObject();
     if (sp1C != -1) {
         func_8007CCE8(sp1C);
         sp18 = &gObjects[sp1C];
@@ -1446,7 +1446,7 @@ void func_8007CF98(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
         sp18->Pos.y = arg2;
         sp18->Pos.z = arg3;
         sp18->unk40 = 0.0f;
-        sp18->unk3C = func_80015538(gPlayerObject->Rot.y, D_8010C924[arg0]);
+        sp18->unk3C = Math_WrapAngle(gPlayerObject->Rot.y, D_8010C924[arg0]);
         sp18->unk44 = 40.0f;
         func_800799A8(sp1C);
         func_80079AD8(sp1C);
@@ -1464,12 +1464,12 @@ void func_8007D0DC(void) {
     if (sp24 >= 4) {
         sp24 = 4;
     }
-    sp20 = gObjects[D_8016E100].Pos.x;
-    sp1C = gObjects[D_8016E100].Pos.y;
-    sp18 = gObjects[D_8016E100].Pos.z;
-    func_8001A928((s32) D_8016E100);
+    sp20 = gObjects[gObjIdx].Pos.x;
+    sp1C = gObjects[gObjIdx].Pos.y;
+    sp18 = gObjects[gObjIdx].Pos.z;
+    func_8001A928((s32) gObjIdx);
     D_8016E2F8 = 0;
-    D_8016E100 = 0;
+    gObjIdx = 0;
     if (sp24 == 2) {
         func_8007CF98(1, sp20, sp1C, sp18);
         func_8007CF98(2, sp20, sp1C, sp18);
@@ -1517,8 +1517,8 @@ void func_8007D2C8(s32 arg0) {
         func_80079874(arg0);
         func_80079960(arg0);
     }
-    sp24->Rot.y = func_80015538(gPlayerObject->Rot.y, 180.0f);
-    sp24->Rot.x = func_80015538(360.0f, -gPlayerObject->Rot.x);
+    sp24->Rot.y = Math_WrapAngle(gPlayerObject->Rot.y, 180.0f);
+    sp24->Rot.x = Math_WrapAngle(360.0f, -gPlayerObject->Rot.x);
 }
 
 void func_8007D508(s32 arg0) {
@@ -1603,7 +1603,7 @@ void func_8007DA44(void) {
     s32 sp1C;
     struct ObjectStruct* sp18;
 
-    sp1C = func_8007944C();
+    sp1C = Get_InactiveObject();
     if (sp1C != -1) {
         func_8007D944(sp1C);
         sp18 = &gObjects[sp1C];
@@ -1612,21 +1612,21 @@ void func_8007DA44(void) {
         sp18->Pos.y = gPlayerObject->Pos.y;
         sp18->Pos.z = gPlayerObject->Pos.z;
         sp18->unk3C = gPlayerObject->Rot.y;
-        D_8016E100 = (s16) sp1C;
+        gObjIdx = (s16) sp1C;
     }
 }
 
 void func_8007DB2C(void) {
     struct ObjectStruct* sp4;
 
-    sp4 = &gObjects[D_8016E100];
+    sp4 = &gObjects[gObjIdx];
     sp4->actionState = 0x32;
     sp4->unkD4 = gPlayerObject->Pos.y;
     sp4->unk44 = 14.0f;
     sp4->unk3C = 0.0f;
     sp4->unk40 = 270.0f;
     sp4->Scale.x = sp4->Scale.y = sp4->Scale.z = 1.0f;
-    D_8016E100 = 0;
+    gObjIdx = 0;
     D_8016E2F8 = 0;
 }
 
@@ -1634,7 +1634,7 @@ void func_8007DC0C(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
     s32 sp1C;
     struct ObjectStruct* sp18;
 
-    sp1C = func_8007944C();
+    sp1C = Get_InactiveObject();
     if (sp1C != -1) {
         func_8007D944(sp1C);
         sp18 = &gObjects[sp1C];
@@ -1644,7 +1644,7 @@ void func_8007DC0C(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
         sp18->Pos.y = arg2;
         sp18->Pos.z = arg3;
         sp18->unk40 = D_8010C94C[arg0].y;
-        sp18->unk3C = func_80015538(gPlayerObject->Rot.y, D_8010C94C[arg0].x);
+        sp18->unk3C = Math_WrapAngle(gPlayerObject->Rot.y, D_8010C94C[arg0].x);
         sp18->unk44 = 14.0f;
         func_800799A8(sp1C);
         func_80079AD8(sp1C);
@@ -1662,12 +1662,12 @@ void func_8007DD60(void) {
     if (sp24 >= 4) {
         sp24 = 4;
     }
-    sp20 = gObjects[D_8016E100].Pos.x;
-    sp1C = gObjects[D_8016E100].Pos.y;
-    sp18 = gObjects[D_8016E100].Pos.z;
-    func_8001A928((s32) D_8016E100);
+    sp20 = gObjects[gObjIdx].Pos.x;
+    sp1C = gObjects[gObjIdx].Pos.y;
+    sp18 = gObjects[gObjIdx].Pos.z;
+    func_8001A928((s32) gObjIdx);
     D_8016E2F8 = 0;
-    D_8016E100 = 0;
+    gObjIdx = 0;
     if (sp24 == 2) {
         func_8007DC0C(1, sp20, sp1C, sp18);
         func_8007DC0C(2, sp20, sp1C, sp18);

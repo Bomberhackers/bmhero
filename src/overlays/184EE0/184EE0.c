@@ -27,9 +27,9 @@ void func_80334430_unk_bin_15(void);
 void func_80334510_unk_bin_15(void);
 void func_80334540_unk_bin_15(void);
 
-struct UnkStruct_80027C00 const D_80334930_unk_bin_15 = { 0, 0x145, 0x130, 2, 1, 1, 1, 0 };
+struct UnkStruct_80027C00 const D_80334930_unk_bin_15 = { 0, OBJ_SHBASE2, 0x130, 2, 1, 1, 1, 0 };
 
-struct UnkStruct_80027C00 const D_8033493C_unk_bin_15 = { 0, 0x146, 0x132, 1, 1, 1, 1, 0 };
+struct UnkStruct_80027C00 const D_8033493C_unk_bin_15 = { 0, OBJ_SHMISS2, 0x132, 1, 1, 1, 1, 0 };
 
 struct UnkStruct_80027C00 const D_80334948_unk_bin_15[] = {
     { 0, 0x130, 0x111, 6, 5, 1, 1, 0 },    { 0, 0x131, 0x110, 2, -1, -1, -1, 1 }, { 0, 0x131, 0x110, 2, -1, -1, -1, 1 },
@@ -340,7 +340,7 @@ void func_80331708_unk_bin_15() {
         gObjects[obj->unkE8[8]].Pos.z -= 1360.0f;
     }
 
-    obj->unk40 = func_80015538(obj->unk40, 4.0f);
+    obj->unk40 = Math_WrapAngle(obj->unk40, 4.0f);
 
     if (obj->unk40 >= 180.0f) {
         obj->unk40 = 180.0f;
@@ -390,7 +390,7 @@ void func_80331E70_unk_bin_15() {
         func_80029D8C(obj->unkE8[i]);
     }
 
-    gObjects[obj->unkE8[8]].Rot.x = func_80015538(gObjects[obj->unkE8[8]].Rot.x, 180.0f);
+    gObjects[obj->unkE8[8]].Rot.x = Math_WrapAngle(gObjects[obj->unkE8[8]].Rot.x, 180.0f);
 
     if (func_8002A2EC(gCurrentParsedObject, 3600.0f)) {
 
@@ -410,7 +410,7 @@ void func_80332058_unk_bin_15() {
         obj->unkB2 = obj->actionState;
     }
 
-    obj->unk40 = func_80015538(obj->unk40, 4.0f);
+    obj->unk40 = Math_WrapAngle(obj->unk40, 4.0f);
     obj->Rot.x = 360.0f - obj->unk40;
 
     if (obj->Rot.x >= 360.0f) {
@@ -425,7 +425,7 @@ void func_80332058_unk_bin_15() {
         func_80029D8C(obj->unkE8[i]);
     }
 
-    gObjects[obj->unkE8[8]].Rot.x = func_80015538(gObjects[obj->unkE8[8]].Rot.x, 180.0f);
+    gObjects[obj->unkE8[8]].Rot.x = Math_WrapAngle(gObjects[obj->unkE8[8]].Rot.x, 180.0f);
 
     if (obj->unk40 == 0.0f) {
         obj->actionState = 8;
@@ -708,9 +708,9 @@ void func_803339E8_unk_bin_15(s32 idx, s32 arg1, f32 arg2) {
     sp18 = func_80333AE4_unk_bin_15(idx, arg1, arg2);
 
     if (sp18 < 0) {
-        unk3C = func_80015538(unk3C, -arg2);
+        unk3C = Math_WrapAngle(unk3C, -arg2);
     } else if (sp18 > 0) {
-        unk3C = func_80015538(unk3C, arg2);
+        unk3C = Math_WrapAngle(unk3C, arg2);
     } else {
         unk3C = func_80333BCC_unk_bin_15(idx, arg1);
     }
@@ -723,7 +723,7 @@ s32 func_80333AE4_unk_bin_15(s32 idx, s32 arg1, f32 arg2) {
     f32 sp18;
 
     sp1C = func_80333BCC_unk_bin_15(idx, arg1);
-    sp18 = func_80015538(sp1C, -gObjects[idx].unk3C);
+    sp18 = Math_WrapAngle(sp1C, -gObjects[idx].unk3C);
 
     if (sp18 < arg2 || 360.0f - arg2 < sp18) {
         return 0;
@@ -736,7 +736,7 @@ s32 func_80333AE4_unk_bin_15(s32 idx, s32 arg1, f32 arg2) {
 }
 
 f32 func_80333BCC_unk_bin_15(s32 idx1, s32 idx2) {
-    return func_80015634(gObjects[idx2].Pos.x - gObjects[idx1].Pos.x, gObjects[idx2].Pos.z - gObjects[idx1].Pos.z);
+    return Math_CalcAngleRotated(gObjects[idx2].Pos.x - gObjects[idx1].Pos.x, gObjects[idx2].Pos.z - gObjects[idx1].Pos.z);
 }
 
 void func_80333C58_unk_bin_15(s32 idx, s32 arg1, f32 arg2) {
@@ -747,9 +747,9 @@ void func_80333C58_unk_bin_15(s32 idx, s32 arg1, f32 arg2) {
     sp18 = func_80333D54_unk_bin_15(idx, arg1, arg2);
 
     if (sp18 < 0) {
-        unk40 = func_80015538(unk40, -arg2);
+        unk40 = Math_WrapAngle(unk40, -arg2);
     } else if (sp18 > 0) {
-        unk40 = func_80015538(unk40, arg2);
+        unk40 = Math_WrapAngle(unk40, arg2);
     } else {
         unk40 = func_80333E3C_unk_bin_15(idx, arg1);
     }
@@ -762,7 +762,7 @@ s32 func_80333D54_unk_bin_15(s32 idx, s32 arg1, f32 arg2) {
     f32 sp18;
 
     sp1C = func_80333E3C_unk_bin_15(idx, arg1);
-    sp18 = func_80015538(sp1C, -gObjects[idx].unk40);
+    sp18 = Math_WrapAngle(sp1C, -gObjects[idx].unk40);
 
     if (sp18 < arg2 || 360.0f - arg2 < sp18) {
         return 0;
@@ -818,7 +818,7 @@ void func_80334054_unk_bin_15() {
                     posY = obj->Pos.y - 100.0f;
                 }
 
-                rotBase = func_80015538(obj->Rot.y, 20.0f);
+                rotBase = Math_WrapAngle(obj->Rot.y, 20.0f);
 
                 posX = sinf((f32) ((f64) rotBase * DEG_TO_RAD)) * 200.0f + obj->Pos.x;
                 posZ = cosf((f32) ((f64) rotBase * DEG_TO_RAD)) * 200.0f + obj->Pos.z;
@@ -831,7 +831,7 @@ void func_80334054_unk_bin_15() {
                     func_80026F10(gCurrentParsedObject, objIdx);
                 }
 
-                rotBase = func_80015538(obj->Rot.y, -20.0f);
+                rotBase = Math_WrapAngle(obj->Rot.y, -20.0f);
 
                 posX = sinf((f32) ((f64) rotBase * DEG_TO_RAD)) * 200.0f + obj->Pos.x;
                 posZ = cosf((f32) ((f64) rotBase * DEG_TO_RAD)) * 200.0f + obj->Pos.z;
@@ -898,7 +898,7 @@ void func_80334540_unk_bin_15() {
 
         sp2C = func_8002A800(obj->unk40, sp30, 2.0f);
         if (sp2C != 0.0f) {
-            obj->unk40 = func_80015538(obj->unk40, 2.0f * sp2C);
+            obj->unk40 = Math_WrapAngle(obj->unk40, 2.0f * sp2C);
         }
 
         obj->Rot.y = obj->unk3C;

@@ -598,36 +598,36 @@ UNUSED void Debug_BackupMemTest_Menu(void) {
     switch (gDebugBackupMemTestMenu) { /* irregular */
         case MAIN_MENU:
             sprintf((char*) gDebugTextBuf, "BACKUP MEMORY TEST");
-            debug_print_xy(32, 32);
+            Debug_PrintXY(32, 32);
             sprintf((char*) gDebugTextBuf, "    P  I  A  N RW  F  f");
-            debug_print_xy(48, 48);
+            Debug_PrintXY(48, 48);
             for (i = 0; i < 4; i++) {
                 sprintf((char*) gDebugTextBuf, "%dp=%2d %2d %2d %2d %2d %2d %2d", i + 1, D_80056E28[i].unk70,
                         D_80056E28[i].unk74, D_80056E28[i].unk78, D_80056E28[i].unk7C, D_80056E28[i].raw,
                         D_80056E28[i].unk6C, D_80056E28[i].unk68);
 
-                debug_print_xy(48, (i * 16) + 64);
+                Debug_PrintXY(48, (i * 16) + 64);
             }
             sprintf((char*) gDebugTextBuf, "PAK DATA WRITE");
-            debug_print_xy(48, 144);
+            Debug_PrintXY(48, 144);
             sprintf((char*) gDebugTextBuf, "PAK DATA READ");
-            debug_print_xy(48, 160);
+            Debug_PrintXY(48, 160);
             sprintf((char*) gDebugTextBuf, "EEPROM DATA WRITE");
-            debug_print_xy(48, 176);
+            Debug_PrintXY(48, 176);
             sprintf((char*) gDebugTextBuf, "EEPROM DATA READ");
-            debug_print_xy(48, 192);
+            Debug_PrintXY(48, 192);
             sprintf((char*) gDebugTextBuf, "=");
-            debug_print_xy(32, (gDebugBackMemTestItem * 16) + 144);
+            Debug_PrintXY(32, (gDebugBackMemTestItem * 16) + 144);
             break;
         case UNK_MENU:
             for (i = 0; i < 16; i++) {
                 for (j = 0; j < 16; j++) {
                     sprintf((char*) gDebugTextBuf, "%c", D_8005704E[i << 5][j] + 32);
-                    debug_print_xy((j * 8) + 48, (i * 16) + 16);
+                    Debug_PrintXY((j * 8) + 48, (i * 16) + 16);
                 }
             }
             sprintf((char*) gDebugTextBuf, "=");
-            debug_print_xy(32, (gDebugBackMemTestItem * 16) + 16);
+            Debug_PrintXY(32, (gDebugBackMemTestItem * 16) + 16);
             break;
     }
 }
@@ -700,15 +700,15 @@ void Debug_ShockTest_Menu(void) {
     D_8016E3A4 = 0;
     Debug_SetTextColor(255, 255, 255);
     sprintf((char*) gDebugTextBuf, "SHOCK TEST");
-    debug_print_xy(32, 32);
+    Debug_PrintXY(32, 32);
     sprintf((char*) gDebugTextBuf, "  TOTAL TIME=%d", D_8004A630);
-    debug_print_xy(32, 64);
+    Debug_PrintXY(32, 64);
     sprintf((char*) gDebugTextBuf, "     ON TIME=%d", D_8004A634);
-    debug_print_xy(32, 80);
+    Debug_PrintXY(32, 80);
     sprintf((char*) gDebugTextBuf, "    OFF TIME=%d", D_8004A638);
-    debug_print_xy(32, 96);
+    Debug_PrintXY(32, 96);
     sprintf((char*) gDebugTextBuf, "=");
-    debug_print_xy(32, (D_8004A63C * 0x10) + 0x40);
+    Debug_PrintXY(32, (D_8004A63C * 0x10) + 0x40);
 }
 
 s32 func_80021158(void) {

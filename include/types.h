@@ -847,37 +847,6 @@ struct UnkStruct_80026548_SP24 {
     /* 0x08 */ u32 unk8;
 };
 
-struct UnkStruct_80026548 {
-    s8 unk0;
-    char unk1;
-    char unk2;
-    char unk3;
-    s8 unk4;
-    char unk5;
-    char unk6;
-    char unk7;
-    s16 unk8;
-    s16 unkA;
-    s16 unkC;
-    u8 unkE;
-    s8 unkF;
-    char pad10[4];
-    void* (*routine)();
-    void* (*routine2)();
-    void* (*routine_1C)();
-    struct UnkStruct_80134B54** unk20;
-    struct UnkStruct_80026548_SP24 *unk24;
-    char pad28[0x4];
-    void* (*routine3)();
-    u64 unk30;
-    struct UnkStruct_80027C00* unk38;
-    s32 pad3C;
-    void* unk40;
-    void* unk44;
-    u8 unk48[24];
-};
-
-
 struct UnkStruct8016C298_1
 {
     s32 unk0;

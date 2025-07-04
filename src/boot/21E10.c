@@ -66,11 +66,11 @@ s32 func_80021584(s32 arg0, s32 arg1) {
         gObjects[arg0].interactingObjIdx = (s16) arg1;
         gObjects[arg0].unk10B = sp3C;
         gObjects[arg0].unk10C = sp3A;
-        gObjects[arg0].unk106 = gObjects[arg1].objID;
+        gObjects[arg0].interactingObjID = gObjects[arg1].objID;
         gObjects[arg1].interactingObjIdx = (s16) arg0;
         gObjects[arg1].unk10B = sp3A;
         gObjects[arg1].unk10C = sp3C;
-        gObjects[arg1].unk106 = gObjects[arg0].objID;
+        gObjects[arg1].interactingObjID = gObjects[arg0].objID;
         for (sp24 = 0; sp24 < 2; sp24++) {
             if (sp24 == 0) {
                 sp20 = arg0;
@@ -80,16 +80,16 @@ s32 func_80021584(s32 arg0, s32 arg1) {
                 sp1C = arg0;
             }
             if (sp20 == 0) {
-                gObjects[sp1C].unk10A = 0;
+                gObjects[sp1C].interactionType = 0;
             } else if (sp20 < 6) {
-                gObjects[sp1C].unk10A = 1;
+                gObjects[sp1C].interactionType = 1;
             } else {
-                if (sp20 < 0xE) {
-                    gObjects[sp1C].unk10A = 2;
-                } else if (D_80124D90[gObjects[sp20].objID].unk2 == 0) {
-                    gObjects[sp1C].unk10A = 4;
+                if (sp20 < 14) {
+                    gObjects[sp1C].interactionType = 2;
+                } else if (!gObjInfo[gObjects[sp20].objID].unk2) {
+                    gObjects[sp1C].interactionType = 4;
                 } else {
-                    gObjects[sp1C].unk10A = 5;
+                    gObjects[sp1C].interactionType = 5;
                 }
             }
         }
@@ -97,12 +97,12 @@ s32 func_80021584(s32 arg0, s32 arg1) {
         sp30 = gObjects[arg1].Pos.y - gObjects[arg0].Pos.y;
         sp2C = gObjects[arg1].Pos.z - gObjects[arg0].Pos.z;
         gObjects[arg0].unk124 = sp28 = Math_CalcAngle2D(sp30, sp2C);
-        gObjects[arg1].unk124 = func_80015538(sp28, 180.0f);
+        gObjects[arg1].unk124 = Math_WrapAngle(sp28, 180.0f);
 
-        gObjects[arg0].unk128 = sp28 = func_80015634(sp34, sp2C);
-        gObjects[arg1].unk128 = func_80015538(sp28, 180.0f);
+        gObjects[arg0].unk128 = sp28 = Math_CalcAngleRotated(sp34, sp2C);
+        gObjects[arg1].unk128 = Math_WrapAngle(sp28, 180.0f);
         gObjects[arg0].unk12C = sp28 = Math_CalcAngleSimple(sp34, sp30);
-        gObjects[arg1].unk12C = func_80015538(sp28, 180.0f);
+        gObjects[arg1].unk12C = Math_WrapAngle(sp28, 180.0f);
         return TRUE;
     } else {
         return FALSE;
@@ -134,9 +134,9 @@ void func_80021BCC(void) {
                 if (sp26 != 0) {
                     gObjects[sp30].unkA6 = 0;
                     if (gPlayerObject->Pos.y < (gObjects[sp30].Pos.y + 60.0f)) {
-                        sp1C = func_80015634(gObjects[sp30].Pos.x - gObjects->Pos.x,
+                        sp1C = Math_CalcAngleRotated(gObjects[sp30].Pos.x - gObjects->Pos.x,
                                              gObjects[sp30].Pos.z - gObjects->Pos.z);
-                        sp1C = func_80015538(sp1C, 45.0f);
+                        sp1C = Math_WrapAngle(sp1C, 45.0f);
                         sp1C = (f32) (((s32) sp1C / 90) * 0x5A);
                         if (gPlayerObject->Rot.y == sp1C) {
                             if (gPlayerObject->Rot.y == 0.0f) {
@@ -160,12 +160,12 @@ void func_80021BCC(void) {
                 sp2C = gObjects[sp30].objID;
                 sp28 = 1;
                 if (D_8016523E == 6) {
-                } else if (D_80124D90[sp2C].unk2 == 0) {
+                } else if (gObjInfo[sp2C].unk2 == 0) {
                     if ((gPlayerObject->damageState != 1) && (gPlayerObject->damageState != -1)) {
                         sp28 = 0;
                     }
                 }
-                if (((u8) D_80124D90[sp2C].unk0 & 1) == 1) {
+                if (((u8) gObjInfo[sp2C].unk0 & 1) == 1) {
                     sp28 = 0;
                 }
                 if ((sp28 != 0) && (func_80021584(0, sp30) != 0)) {
@@ -186,7 +186,7 @@ void func_80021BCC(void) {
         if (func_80021210(sp34) != 0) {
             for (sp30 = 0xE; sp30 < 0x4E; sp30++) {
                 if ((func_80021210(sp30) != 0)) {
-                    if (!((u8) D_80124D90[gObjects[sp30].objID].unk0 & 2)) {
+                    if (!((u8) gObjInfo[gObjects[sp30].objID].unk0 & 2)) {
                         if (func_80021584(sp34, sp30)) {
                             break;
                         }
@@ -222,7 +222,7 @@ void func_80021BCC(void) {
         if (func_80021210(sp34) != 0) {
             for (sp30 = 0xE; sp30 < 0x4E; sp30++)
                 if ((func_80021210(sp30) != 0)) {
-                    if (!((u8) D_80124D90[gObjects[sp30].objID].unk0 & 2)) {
+                    if (!((u8) gObjInfo[gObjects[sp30].objID].unk0 & 2)) {
                         if ((func_80021584(sp34, sp30) != 0)) {
                             break;
                         }
@@ -249,7 +249,7 @@ s32 func_80022454(void) {
     s32 sp1C;
     struct ObjectStruct* sp18;
 
-    if (gPlayerObject->actionState == 0) {
+    if (gPlayerObject->actionState == ACTION_NONE) {
         return 0;
     }
 
@@ -267,11 +267,11 @@ s32 func_80022454(void) {
     return 0;
 }
 
-s32 func_80022558(s32 arg0) {
+UNUSED s32 func_80022558(s32 arg0) {
     struct UnkStruct_80022454_SP24 sp1C;
     s16 sp1A;
 
-    if ((gObjects[arg0].actionState != 0)) {
+    if ((gObjects[arg0].actionState != ACTION_NONE)) {
         if ((func_80077CB0(0, (s16) arg0, &sp1C.unk0, &sp1A) != 0)) {
             return TRUE;
         }
@@ -299,12 +299,12 @@ s32 func_800225D8(s32 arg0, s32 arg1) {
         sp28 = arg1;
     }
 
-    if ((gObjects[sp2C].unk100 != 0) && (gObjects[sp2C].damageState != -1) &&
-        (gObjects[sp2C].unk10B <= D_80124D90[gObjects[sp2C].objID].unk3)) {
+    if ((gObjects[sp2C].unk100 != 0) && (gObjects[sp2C].damageState != OBJ_INVENCIBLE) &&
+        (gObjects[sp2C].unk10B <= gObjInfo[gObjects[sp2C].objID].unk3)) {
 
         sp24 = 0;
         sp20 = (s32) gObjects[arg0].objID;
-        sp1F = D_80124D90[gObjects[sp2C].objID].unk5;
+        sp1F = gObjInfo[gObjects[sp2C].objID].unk5;
         if (sp1F & 8) {
             if ((gObjects[arg1].objID == OBJ_FFLOWER) && (sp20 != 8)) {
                 sp24 = 1;
@@ -332,15 +332,15 @@ s32 func_800225D8(s32 arg0, s32 arg1) {
         }
         if (sp24 != 0) {
             if (gObjects[sp2C].unk100 == 0) {
-                Score_Update(D_80124D90[gObjects[sp2C].objID].unk6);
+                Score_Update(gObjInfo[gObjects[sp2C].objID].unk6);
                 gCurrentParsedObject = sp28;
                 D_80177A64 = 0;
-                D_80124D90[gObjects[sp28].objID].routine_1C();
+                gObjInfo[gObjects[sp28].objID].destroy();
                 return 1;
             } else {
                 gCurrentParsedObject = sp28;
                 D_80177A64 = 1;
-                D_80124D90[gObjects[sp28].objID].routine_1C();
+                gObjInfo[gObjects[sp28].objID].destroy();
             }
         }
     }
@@ -511,16 +511,16 @@ void func_80022B54(void) {
     }
     gCurrentParsedObject = objIdx;
     D_80177A64 = 0;
-    D_80124D90[gObjects[objIdx].objID].routine_1C();
-    Score_Update((s16) D_80124D90[gObjects[objIdx].objID].unk6);
+    gObjInfo[gObjects[objIdx].objID].destroy();
+    Score_Update((s16) gObjInfo[gObjects[objIdx].objID].unk6);
     D_801775FA += 1;
 }
 
 void func_80023404(void) {
     s32 sp1C;
 
-    if ((gPlayerObject->unk106 == 0x13E) || (gPlayerObject->unk106 == 0x1B1) || (gPlayerObject->unk106 == 0x1B4) ||
-        (gPlayerObject->unk106 == 0x1B5)) {
+    if ((gPlayerObject->interactingObjID == 0x13E) || (gPlayerObject->interactingObjID == 0x1B1) ||
+        (gPlayerObject->interactingObjID == 0x1B4) || (gPlayerObject->interactingObjID == 0x1B5)) {
         D_8016E088 = 5;
     } else {
         sp1C = (s32) gPlayerObject->interactingObjIdx;
@@ -530,7 +530,7 @@ void func_80023404(void) {
         }
         gCurrentParsedObject = sp1C;
         D_80177A64 = 2;
-        D_80124D90[gObjects[sp1C].objID].routine_1C();
+        gObjInfo[gObjects[sp1C].objID].destroy();
     }
 }
 
@@ -540,7 +540,7 @@ void func_80023534(void) {
     s32 sp1C;
 
     sp1C = 0;
-    if (((s32) gPlayerObject->unk10B < 0xA)) {
+    if (((s32) gPlayerObject->unk10B < 10)) {
         if ((gPlayerObject->Vel.y <= 0.0f)) {
             if ((D_801651A4 & 1) && (gPlayerObject->damageState != 0x3D)) {
                 sp1C = 1;
@@ -551,7 +551,7 @@ void func_80023534(void) {
         sp24 = (s32) gPlayerObject->interactingObjIdx;
         D_8016E088 = 5;
         sp20 = func_800225D8(0, sp24);
-        if ((sp20 == 1) && (gObjects[sp24].objID == 0xA0)) {
+        if ((sp20 == 1) && (gObjects[sp24].objID == OBJ_NEJI)) {
             D_80165242 += 1;
         }
     } else if (gPlayerObject->damageState == 1) {
@@ -562,7 +562,7 @@ void func_80023534(void) {
         }
         gCurrentParsedObject = sp24;
         D_80177A64 = 2;
-        D_80124D90[gObjects[sp24].objID].routine_1C();
+        gObjInfo[gObjects[sp24].objID].destroy();
     }
 }
 
@@ -590,7 +590,7 @@ void func_80023754(void) {
         }
         gCurrentParsedObject = sp1C;
         D_80177A64 = 2;
-        D_80124D90[gObjects[sp1C].objID].routine_1C();
+        gObjInfo[gObjects[sp1C].objID].destroy();
     }
 }
 
@@ -604,19 +604,19 @@ void func_80023904(void) {
     }
     gCurrentParsedObject = sp1C;
     D_80177A64 = 2;
-    D_80124D90[gObjects[sp1C].objID].routine_1C();
+    gObjInfo[gObjects[sp1C].objID].destroy();
 }
 
 void func_800239E4(void) {
     D_8016E088 = 0;
     D_80177648 = 0;
     if (gPlayerObject->interactingObjIdx != -1) {
-        if (gPlayerObject->unk10A == 2) {
+        if (gPlayerObject->interactionType == 2) {
             if (gPlayerObject->damageState != -1) {
                 D_80177648 = 1;
                 D_8016E088 = 1;
             }
-        } else if (gPlayerObject->unk10A == 4) {
+        } else if (gPlayerObject->interactionType == 4) {
             if (gPlayerObject->damageState != -1) {
                 switch (D_8016523E) { /* irregular */
                     case 0:
@@ -633,7 +633,7 @@ void func_800239E4(void) {
                         break;
                 }
             }
-        } else if (gPlayerObject->unk10A == 5) {
+        } else if (gPlayerObject->interactionType == 5) {
             func_80022B54();
         }
     }
@@ -699,22 +699,22 @@ void func_80023E78(void) {
     for (sp1C = 2; sp1C < 6; sp1C++) {
         if (gObjects[sp1C].interactingObjIdx != -1) {
             sp18 = (s32) gObjects[sp1C].interactingObjIdx;
-            if (gObjects[sp1C].unk10A == 1) {
+            if (gObjects[sp1C].interactionType == 1) {
                 if (gObjects[sp1C].actionState != 0x26 && gObjects[sp18].actionState != 0x26 &&
                     (gObjects[sp1C].actionState != 0x1B && gObjects[sp18].actionState != 0x1B) &&
                     (gObjects[sp1C].actionState != 0x13 && gObjects[sp18].actionState != 0x13)) {
                     gObjects[sp1C].actionState = 7;
                 }
-            } else if (gObjects[sp1C].unk10A == 2) {
+            } else if (gObjects[sp1C].interactionType == 2) {
                 gObjects[sp1C].actionState = 7;
-            } else if (gObjects[sp1C].unk10A == 4) {
+            } else if (gObjects[sp1C].interactionType == 4) {
                 if (((gObjects[sp18].objID == OBJ_NITR_BD) && (gObjects[sp18].actionState == 0xC)) ||
                     ((gObjects[sp18].objID == OBJ_NITR_BR) && (gObjects[14].actionState == 0xC))) {
                 } else {
                     gObjects[sp1C].actionState = 7;
                     func_800225D8(sp1C, sp18);
                 }
-            } else if (gObjects[sp1C].unk10A == 5) {
+            } else if (gObjects[sp1C].interactionType == 5) {
                 gObjects[sp1C].actionState = 7;
                 func_800225D8(sp1C, sp18);
             }
@@ -728,9 +728,9 @@ void func_800241CC(void) {
     for (sp18 = 6; sp18 < 0xE; sp18++) {
         if (gObjects[sp18].interactingObjIdx != -1) {
             sp1C = (s32) gObjects[sp18].interactingObjIdx;
-            if (gObjects[sp18].unk10A == 4) {
+            if (gObjects[sp18].interactionType == 4) {
                 func_800225D8(sp18, sp1C);
-            } else if (gObjects[sp18].unk10A == 5) {
+            } else if (gObjects[sp18].interactionType == 5) {
                 func_800225D8(sp18, sp1C);
             }
         }

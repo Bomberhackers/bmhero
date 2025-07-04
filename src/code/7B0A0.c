@@ -718,8 +718,8 @@ void func_8008B0F4(void) {
         D_80134C1E -= 1;
     }
     if (D_8016E134 == 0) {
-        gMegaStruct.D_80134F34.x = func_80015538(gMegaStruct.D_80134F34.x, gMegaStruct.D_80134F5C.x);
-        gMegaStruct.D_80134F34.y = func_80015538(gMegaStruct.D_80134F34.y, gMegaStruct.D_80134F5C.y);
+        gMegaStruct.D_80134F34.x = Math_WrapAngle(gMegaStruct.D_80134F34.x, gMegaStruct.D_80134F5C.x);
+        gMegaStruct.D_80134F34.y = Math_WrapAngle(gMegaStruct.D_80134F34.y, gMegaStruct.D_80134F5C.y);
         gMegaStruct.D_80134F40 = gMegaStruct.D_80134F40 + gMegaStruct.D_80134F74;
         if (gMegaStruct.D_80134FA4.unk0 == 0) {
             gMegaStruct.D_80134F28.x += gMegaStruct.D_80134F50.x;

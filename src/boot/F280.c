@@ -1,4 +1,14 @@
+#include "prevent_bss_reordering2.h"
 #include <ultra64.h>
+
+//.bss
+Matrix D_800557E0;
+s32 D_80055820;
+Matrix D_80055828[20];
+UNUSED s32 BssPad_80055d28;
+u32 D_80055D30[3];
+u32 D_80055D40[3];
+s32 D_80055D4C;
 
 //.data
 s32 D_8004A390 = FALSE;
@@ -7,40 +17,30 @@ s32 D_8004A394 = FALSE;
 // functions
 s32 func_8000EEE8(Gfx** gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6);
 
-void func_8000E680(Matrix mf, Matrix mf1) {
-    f32 sp3C;
-    f32 sp38;
-    f32 sp34;
-    f32 sp30;
-    f32 sp2C;
-    f32 sp28;
-    f32 sp24;
-    f32 sp20;
-    f32 sp1C;
-    f32 sp18;
+void Math_Mat3f_Inverse(Matrix mf, Matrix mf1) {
+    f32 determinant;
+    f32 m00 = mf1[0][0];
+    f32 m10 = mf1[1][0];
+    f32 m20 = mf1[2][0];
+    f32 m01 = mf1[0][1];
+    f32 m11 = mf1[1][1];
+    f32 m21 = mf1[2][1];
+    f32 m02 = mf1[0][2];
+    f32 m12 = mf1[1][2];
+    f32 m22 = mf1[2][2];
 
-    sp38 = mf1[0][0];
-    sp34 = mf1[1][0];
-    sp30 = mf1[2][0];
-    sp2C = mf1[0][1];
-    sp28 = mf1[1][1];
-    sp24 = mf1[2][1];
-    sp20 = mf1[0][2];
-    sp1C = mf1[1][2];
-    sp18 = mf1[2][2];
+    determinant = ((m00 * m11 * m22) + (m10 * m21 * m02) + (m20 * m01 * m12)) -
+                  ((m00 * m21 * m12) + (m10 * m01 * m22) + (m20 * m11 * m02));
 
-    sp3C = ((sp38 * sp28 * sp18) + (sp34 * sp24 * sp20) + (sp30 * sp2C * sp1C)) -
-           ((sp38 * sp24 * sp1C) + (sp34 * sp2C * sp18) + (sp30 * sp28 * sp20));
-
-    mf[0][0] = (f32) (((sp28 * sp18) - (sp24 * sp1C)) / sp3C);
-    mf[1][0] = (f32) (((sp30 * sp1C) - (sp34 * sp18)) / sp3C);
-    mf[2][0] = (f32) (((sp34 * sp24) - (sp30 * sp28)) / sp3C);
-    mf[0][1] = (f32) (((sp24 * sp20) - (sp2C * sp18)) / sp3C);
-    mf[1][1] = (f32) (((sp38 * sp18) - (sp30 * sp20)) / sp3C);
-    mf[2][1] = (f32) (((sp30 * sp2C) - (sp38 * sp24)) / sp3C);
-    mf[0][2] = (f32) (((sp2C * sp1C) - (sp28 * sp20)) / sp3C);
-    mf[1][2] = (f32) (((sp34 * sp20) - (sp38 * sp1C)) / sp3C);
-    mf[2][2] = (f32) (((sp38 * sp28) - (sp34 * sp2C)) / sp3C);
+    mf[0][0] = ((m11 * m22) - (m21 * m12)) / determinant;
+    mf[1][0] = ((m20 * m12) - (m10 * m22)) / determinant;
+    mf[2][0] = ((m10 * m21) - (m20 * m11)) / determinant;
+    mf[0][1] = ((m21 * m02) - (m01 * m22)) / determinant;
+    mf[1][1] = ((m00 * m22) - (m20 * m02)) / determinant;
+    mf[2][1] = ((m20 * m01) - (m00 * m21)) / determinant;
+    mf[0][2] = ((m01 * m12) - (m11 * m02)) / determinant;
+    mf[1][2] = ((m10 * m02) - (m00 * m12)) / determinant;
+    mf[2][2] = ((m00 * m11) - (m10 * m01)) / determinant;
 }
 
 s32 func_8000E944(Gfx** gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7) {
@@ -100,9 +100,9 @@ s32 func_8000E944(Gfx** gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s
 
     if (sp3C != 0) {
         D_80055820 += 1;
-        guMtxCatF(mf, (D_80055820 << 6) - 0x40 + (u32) &D_80055828, (D_80055820 << 6) + (u32) &D_80055828);
+        guMtxCatF(mf, D_80055828[D_80055820 - 1], D_80055828[D_80055820]);
     }
-    guMtxF2L((D_80055820 << 6) + (u32) &D_80055828, &D_8016E104->unkE0[arg7]);
+    guMtxF2L(D_80055828[D_80055820], &D_8016E104->unkE0[arg7]);
 
     gSPMatrix(dlist++, osVirtualToPhysical(&D_8016E104->unkE0[arg7++]), G_MTX_NOPUSH | G_MTX_LOAD | G_MTX_MODELVIEW);
 
@@ -136,21 +136,20 @@ s32 func_8000EEE8(Gfx** gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s
     dlist = *gfx;
     guMtxIdentF(spA4);
 
-    gSPSegment(dlist++, spE4->unk0, (s32) (arg1 + 0x80000000));
-    gSPSegment(dlist++, spE4->unk1, (s32) (arg2 + 0x80000000));
-    gSPSegment(dlist++, spE4->unk2, (s32) (arg3 + 0x80000000));
-    gSPSegment(dlist++, spE4->unk3, (s32) (arg4 + 0x80000000));
+    gSPSegment(dlist++, spE4->unk0, OS_PHYSICAL_TO_K0(arg1));
+    gSPSegment(dlist++, spE4->unk1, OS_PHYSICAL_TO_K0(arg2));
+    gSPSegment(dlist++, spE4->unk2, OS_PHYSICAL_TO_K0(arg3));
+    gSPSegment(dlist++, spE4->unk3, OS_PHYSICAL_TO_K0(arg4));
     gDPPipelineMode(dlist++, G_PM_1PRIMITIVE);
 
     if ((spEC[arg5].unk0 == 0) || (spEC[arg5].unk0 == 5) || (spEC[arg5].unk0 == 6) || (spEC[arg5].unk0 == 8)) {
         switch (spEC[arg5].unk0) { /* irregular */
             case 5:
-                guMtxIdentF((f32(*)[4]) D_800557E0);
-                func_8000E680(D_800557E0, (D_80055820 << 6) + (u32) &D_80055828);
+                guMtxIdentF(D_800557E0);
+                Math_Mat3f_Inverse(D_800557E0, D_80055828[D_80055820]);
                 func_80013B70(D_800557E0, D_8016E3B4, D_8016E3BC, D_8016E3C4);
                 D_80055820 += 1;
-                guMtxCatF((f32(*)[4]) D_800557E0, (D_80055820 << 6) - 0x40 + (u32) &D_80055828,
-                          (D_80055820 << 6) + (u32) &D_80055828);
+                guMtxCatF(D_800557E0, D_80055828[D_80055820 - 1], D_80055828[D_80055820]);
                 spA0 += 1;
                 break;
             case 6:
@@ -184,8 +183,7 @@ s32 func_8000EEE8(Gfx** gfx, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s
         if (spEC[arg5].u.unk4_as_f != 1.0f) {
             func_80013B70(&spA4[0], spEC[arg5].u.unk4_as_f, spEC[arg5].u.unk4_as_f, spEC[arg5].u.unk4_as_f);
             D_80055820 += 1;
-            guMtxCatF((f32(*)[4]) & spA4[0], (D_80055820 << 6) - 0x40 + (u32) &D_80055828,
-                      (D_80055820 << 6) + (u32) &D_80055828);
+            guMtxCatF(spA4, D_80055828[D_80055820 - 1], D_80055828[D_80055820]);
             spA0 += 1;
         }
         guMtxF2L((D_80055820 << 6) + (u32) &D_80055828, &D_8016E104->unkE0[arg6]);
@@ -255,7 +253,7 @@ s32 func_8000F888(void* arg0, s32* arg1, s32 arg2, s32 arg3, s32* unused, s32* a
     }
     if (sp28 != 0) {
         D_80055820 += 1;
-        guMtxCatF(&sp38.m[0][0], (D_80055820 << 6) - 0x40 + (u32) &D_80055828, (D_80055820 << 6) + (u32) &D_80055828);
+        guMtxCatF(sp38.m, D_80055828[D_80055820 - 1], D_80055828[D_80055820]);
     }
     *arg1 = sp78;
     *arg5 = sp28;
@@ -286,7 +284,7 @@ s32 func_8000FC08(struct UnkInputStruct8000FC08* arg0, s32* arg1, s32 arg2, s32 
 
 s32 func_8000FD9C(struct UnkInputStruct8000FC08* arg0, Gfx** arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) {
     D_80055820 = 0;
-    guMtxL2F((D_80055820 << 6) + (u32) &D_80055828, (Mtx*) &D_8016E104->unk00[1]);
+    guMtxL2F(D_80055828[D_80055820], (Mtx*) &D_8016E104->unk00[1]);
     if (arg0->unk0 == 0) {
         arg6 = func_8000EEE8(arg1, arg2, arg3, arg4, arg5, arg0->unk28, arg6);
     } else if (arg0->unk0 == 1) {

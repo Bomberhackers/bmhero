@@ -289,21 +289,21 @@ void func_80330D10_unk_bin_20() {
     } else if (func_8001B62C(gCurrentParsedObject, 0) == 18.0f) {
         func_800175F0(gCurrentParsedObject, 0, 0x1B, -1, 0);
 
-        rotBase = func_80015538(obj->Rot.y, 16.5f);
-        addend = sqrtf(58624.0f);
-        posX = (sinf((f32) ((f64) rotBase * DEG_TO_RAD)) * addend) + obj->Pos.x;
-        posZ = (cosf((f32) ((f64) rotBase * DEG_TO_RAD)) * addend) + obj->Pos.z;
-        objIdx =
-            func_80027464(1, &D_803331B0_unk_bin_20, posX, obj->Pos.y + 240.0f, posZ, func_80015538(obj->Rot.y, 20.0f));
-        func_8001ABF4(objIdx, 0, 0, &D_80119FA4);
-        gObjects[objIdx].unkC2 = gCurrentParsedObject;
-
-        rotBase = func_80015538(obj->Rot.y, -16.5f);
+        rotBase = Math_WrapAngle(obj->Rot.y, 16.5f);
         addend = sqrtf(58624.0f);
         posX = (sinf((f32) ((f64) rotBase * DEG_TO_RAD)) * addend) + obj->Pos.x;
         posZ = (cosf((f32) ((f64) rotBase * DEG_TO_RAD)) * addend) + obj->Pos.z;
         objIdx = func_80027464(1, &D_803331B0_unk_bin_20, posX, obj->Pos.y + 240.0f, posZ,
-                               func_80015538(obj->Rot.y, -20.0f));
+                               Math_WrapAngle(obj->Rot.y, 20.0f));
+        func_8001ABF4(objIdx, 0, 0, &D_80119FA4);
+        gObjects[objIdx].unkC2 = gCurrentParsedObject;
+
+        rotBase = Math_WrapAngle(obj->Rot.y, -16.5f);
+        addend = sqrtf(58624.0f);
+        posX = (sinf((f32) ((f64) rotBase * DEG_TO_RAD)) * addend) + obj->Pos.x;
+        posZ = (cosf((f32) ((f64) rotBase * DEG_TO_RAD)) * addend) + obj->Pos.z;
+        objIdx = func_80027464(1, &D_803331B0_unk_bin_20, posX, obj->Pos.y + 240.0f, posZ,
+                               Math_WrapAngle(obj->Rot.y, -20.0f));
         func_8001ABF4(objIdx, 0, 0, &D_80119FA4);
         gObjects[objIdx].unkC2 = gCurrentParsedObject;
 
@@ -461,7 +461,7 @@ void func_80331A40_unk_bin_20() {
         gObjects[objIdx].unkC2 = gCurrentParsedObject;
         func_800175F0(gCurrentParsedObject, 0, 0x71, -1, 0);
     }
-    obj->Rot.y = func_80015538(obj->Rot.y, obj->unkD4);
+    obj->Rot.y = Math_WrapAngle(obj->Rot.y, obj->unkD4);
     obj->unk3C = obj->Rot.y;
     if (func_8001B4AC(gCurrentParsedObject, 0)) {
         obj->actionState = 0x11;

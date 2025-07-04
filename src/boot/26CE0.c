@@ -1,4 +1,5 @@
 #include <ultra64.h>
+#include "debug.h"
 
 void func_800260E0(s32 arg0) {
     D_80165118[arg0] = 0;
@@ -112,15 +113,15 @@ void func_80026548(void) {
             sp30 = sp24->Pos.x - view_x;
             sp2C = sp24->Pos.y - view_y;
             sp28 = sp24->Pos.z - view_z;
-            if ((sp24->unkE6[0] == -1) && !(D_80124D90[sp24->objID].unk4 & 1)) {
+            if ((sp24->unkE6[0] == -1) && !(gObjInfo[sp24->objID].unk4 & 1)) {
                 if ((SQ(sp30) + SQ(sp2C) + SQ(sp28)) > D_80177984) {
-                    for (sp48 = 0; sp48 < 0xA; sp48++) {
+                    for (sp48 = 0; sp48 < 10; sp48++) {
                         if (sp24->unk10E[sp48] != -1) {
                             func_800272E8(sp44);
                         }
                     }
 
-                    for (sp48 = 0; sp48 < 0xA; sp48++) {
+                    for (sp48 = 0; sp48 < 10; sp48++) {
                         if (sp24->unkE8[sp48] != -1) {
                             func_8001A928(sp24->unkE8[sp48]);
                         }
@@ -137,7 +138,7 @@ void func_80026548(void) {
             }
             if (sp1C != 0) {
                 sp24->unk131 = 0;
-                if (!(D_80124D90[sp24->objID].unk4 & 4)) {
+                if (!(gObjInfo[sp24->objID].unk4 & 4)) {
                     if (!(D_8017798C <= sp30) || !(D_80177994 >= sp30) || !(D_8017799C <= sp2C) ||
                         !(D_801779A4 >= sp2C) || !(D_801779AC.raw <= sp28) || !(D_801779B8 >= sp28)) {
                         sp24->unk131 |= 2;
@@ -166,7 +167,7 @@ void func_80026548(void) {
             sp30 = sp4C[sp40].unk2 - view_x;
             sp2C = sp4C[sp40].unk4 - view_y;
             sp28 = sp4C[sp40].unk6 - view_z;
-            if (SQ(sp30) + SQ(sp2C) + SQ(sp28) <= (D_8017797C) || (D_80124D90[sp18].unk4 & 2)) {
+            if (SQ(sp30) + SQ(sp2C) + SQ(sp28) <= (D_8017797C) || (gObjInfo[sp18].unk4 & 2)) {
                 D_80165108 = (s16) sp18;
                 D_8016510A = sp4C[sp40].unk2;
                 D_8016510C = sp4C[sp40].unk4;
@@ -178,7 +179,7 @@ void func_80026548(void) {
                 D_80165100 = &D_80165108;
                 D_80165198 = -1;
                 D_8016519C = sp40;
-                D_80124D90[sp18].routine();
+                gObjInfo[sp18].spawn();
                 if (D_80165198 != -1) {
                     gObjects[D_80165198].unkFC = (s16) sp40;
                     func_8002617C(sp40);
@@ -304,7 +305,7 @@ void func_80026F10(s32 arg0, s32 arg1) {
 void func_800272E8(s32 arg0) {
     s32 spC;
     s32 sp8;
-    UNUSED s32 sp4;
+    UNUSED s32 pad;
     s32 sp0;
 
     for (spC = 0; spC < 10; spC++) {
@@ -324,70 +325,72 @@ void func_800272E8(s32 arg0) {
     }
 }
 
-s32 func_80027464(s32 arg0, struct UnkStruct_80027C00* arg1, f32 arg2, f32 arg3, f32 arg4, f32 arg5) {
-    s32 unk24[11];
-    s32 index;
+s32 func_80027464(s32 slot, struct UnkStruct_80027C00* arg1, f32 posX, f32 posY, f32 posZ, f32 rotY) {
+    s32 obj_idx[11];
+    s32 i;
     s32 sp1C;
     s32 sp18;
 
-    for (index = 0; index < 11; index++) {
-        unk24[index] = -1;
+    // Initialize the obj_idx array
+    for (i = 0; i < 11; i++) {
+        obj_idx[i] = -1;
     }
 
-    index = 0;
-    for (sp1C = 0xE; sp1C < 0x4E; sp1C++) {
-        if (gObjects[sp1C].actionState == 0) {
-            unk24[index] = sp1C;
-            index++;
-            if (index == arg0) {
+    i = 0;
+    for (sp1C = 14; sp1C < 78; sp1C++) {
+        // Get the objects that have no action..
+        if (gObjects[sp1C].actionState == ACTION_NONE) {
+            obj_idx[i] = sp1C;
+            i++;
+            if (i == slot) {
                 break;
             }
         }
     }
 
-    if (sp1C == 0x4E) {
-        unk24[0] = -1;
+    if (sp1C == 78) {
+        obj_idx[0] = -1;
     } else {
-        index = 0;
-        for (; index < arg0;) {
-            if (unk24[index] == -1) {
+        i = 0;
+        for (; i < slot;) {
+            if (obj_idx[i] == -1) {
                 break;
             }
 
-            func_8001A928(unk24[index]);
-            func_8001BD44(unk24[index], arg1->unk0, arg1->unk6, gFileArray[arg1->unk4].ptr);
-            gObjects[unk24[index]].Pos.x = gObjects[unk24[index]].unk50 = arg2;
-            gObjects[unk24[index]].Pos.y = gObjects[unk24[index]].unk54 = arg3;
-            gObjects[unk24[index]].Pos.z = gObjects[unk24[index]].unk58 = arg4;
-            gObjects[unk24[index]].Rot.y = arg5;
-            gObjects[unk24[index]].unk3C = arg5;
-            gObjects[unk24[index]].actionState = 1;
-            gObjects[unk24[index]].objID = arg1->unk2;
-            gObjects[unk24[index]].unk100 = arg1->unk7;
-            gObjects[unk24[index]].damageState = arg1->unk8;
-            gObjects[unk24[index]].unk102 = arg1->unk9;
-            gObjects[unk24[index]].unk103 = arg1->unkA;
-            if (index > 0) {
-                gObjects[unk24[index]].unkE6[0] = unk24[0];
-                gObjects[unk24[0]].unkE6[index] = unk24[index];
+            func_8001A928(obj_idx[i]);
+            func_8001BD44(obj_idx[i], arg1->unk0, arg1->unk6, gFileArray[arg1->unk4].ptr);
+            gObjects[obj_idx[i]].Pos.x = gObjects[obj_idx[i]].unk50 = posX;
+            gObjects[obj_idx[i]].Pos.y = gObjects[obj_idx[i]].unk54 = posY;
+            gObjects[obj_idx[i]].Pos.z = gObjects[obj_idx[i]].unk58 = posZ;
+            gObjects[obj_idx[i]].Rot.y = rotY;
+            gObjects[obj_idx[i]].unk3C = rotY;
+            gObjects[obj_idx[i]].actionState = ACTION_IDLE;
+            gObjects[obj_idx[i]].objID = arg1->unk2;
+            gObjects[obj_idx[i]].unk100 = arg1->unk7;
+            gObjects[obj_idx[i]].damageState = arg1->unk8;
+            gObjects[obj_idx[i]].unk102 = arg1->unk9;
+            gObjects[obj_idx[i]].unk103 = arg1->unkA;
+            if (i > 0) {
+                gObjects[obj_idx[i]].unkE6[0] = obj_idx[0];
+                gObjects[obj_idx[0]].unkE6[i] = obj_idx[i];
             }
             arg1++;
-            index++;
+            i++;
         }
     }
 
-    for (index = 0; (unk24[index] != -1) && (index < 11); index++) {
-        for (sp18 = 0, sp1C = 0; (unk24[sp1C] != -1) && (sp1C < 11); sp1C++) {
-            if (unk24[index] != unk24[sp1C]) {
-                gObjects[unk24[index]].unk10E[sp18] = unk24[sp1C];
+    for (i = 0; (obj_idx[i] != -1) && (i < 11); i++) {
+        for (sp18 = 0, sp1C = 0; (obj_idx[sp1C] != -1) && (sp1C < 11); sp1C++) {
+            if (obj_idx[i] != obj_idx[sp1C]) {
+                gObjects[obj_idx[i]].unk10E[sp18] = obj_idx[sp1C];
                 sp18++;
             }
         }
     }
     if (D_80165198 == -1) {
-        D_80165198 = unk24[0];
+        D_80165198 = obj_idx[0];
     }
-    return unk24[0];
+    return obj_idx[0];
 }
 
 s32 func_80027B34(s32 arg0, struct UnkStruct_80027B34* arg1) {
@@ -511,7 +514,7 @@ s32 func_80028260(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5) {
     sp50 = D_80177760[sp6C];
     sp54 = D_80177730[sp6C];
     sp70 = 0;
-    sp7C = func_80015634(sp94, sp8C);
+    sp7C = Math_CalcAngleRotated(sp94, sp8C);
     for (sp4C = 0; sp4C < 3; sp4C++) {
         if (sp4C == 0) {
             sp78 = sp7C + 45.0f;
@@ -601,7 +604,7 @@ s32 func_8002894C(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4) {
     sp50 = D_80177760[sp6C];
     sp54 = D_80177730[sp6C];
     sp70 = 0;
-    sp7C = func_80015634(sp94, sp8C);
+    sp7C = Math_CalcAngleRotated(sp94, sp8C);
     for (sp4C = 0; sp4C < 3; sp4C++) {
         if (sp4C == 0) {
             sp78 = sp7C + 45.0f;
@@ -641,18 +644,18 @@ s32 func_80028E60(s32 arg0) {
     sp1C = (sp24->Pos.y + sp24->Vel.y) - sp24->unk54;
     sp18 = (sp24->Pos.z + sp24->Vel.z) - sp24->unk58;
 
-    if (((D_80124D90[gObjects[arg0].objID].unk30)) <= (SQ(sp20) + SQ(sp1C) + SQ(sp18))) {
+    if (((gObjInfo[gObjects[arg0].objID].unk30)) <= (SQ(sp20) + SQ(sp1C) + SQ(sp18))) {
         return TRUE;
     }
     return FALSE;
 }
 
-s32 func_80028FA0(s32 arg0) {
-    struct ObjectStruct* sp4;
+s32 func_80028FA0(s32 objIdx) {
+    struct ObjectStruct* obj;
 
-    sp4 = &gObjects[arg0];
-    if ((sp4->interactingObjIdx != -1)) {
-        if ((sp4->unk10A == 4)) {
+    obj = &gObjects[objIdx];
+    if ((obj->interactingObjIdx != -1)) {
+        if ((obj->interactionType == 4)) {
             return TRUE;
         }
     }
@@ -840,7 +843,7 @@ void func_80029824(s32 arg0, s32 arg1) {
             sp28 = 360.0f - sp28;
         }
     }
-    sp2C->unk3C = func_80015538(sp28, (f32) (Math_Random(-2) * 0xA));
+    sp2C->unk3C = Math_WrapAngle(sp28, (f32) (Math_Random(-2) * 0xA));
 }
 
 void func_80029A9C(s32 arg0, s32 arg1) {
@@ -850,22 +853,22 @@ void func_80029A9C(s32 arg0, s32 arg1) {
     sp2C = &gObjects[arg0];
     sp28 = sp2C->unk40;
     if (arg1 == 0) {
-        sp28 = func_80015538(sp28, 180.0f);
+        sp28 = Math_WrapAngle(sp28, 180.0f);
     }
-    sp2C->unk40 = func_80015538(sp28, (f32) (Math_Random(-2) * 0xA));
+    sp2C->unk40 = Math_WrapAngle(sp28, (f32) (Math_Random(-2) * 0xA));
 }
 
 void func_80029B60(s32 arg0) {
     struct ObjectStruct* sp1C;
     sp1C = &gObjects[arg0];
-    sp1C->unk3C = func_80015538(sp1C->unk128, 180.0f);
+    sp1C->unk3C = Math_WrapAngle(sp1C->unk128, 180.0f);
 }
 
 void func_80029BD0(s32 arg0) {
     struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[arg0];
-    sp1C->unk40 = func_80015538(sp1C->unk12C, 180.0f);
+    sp1C->unk40 = Math_WrapAngle(sp1C->unk12C, 180.0f);
 }
 
 void func_80029C40(s32 arg0) {
@@ -989,7 +992,7 @@ s32 func_8002A3A8(s32 objIdx, f32 arg1) {
 }
 
 f32 func_8002A46C(s32 objIdx) {
-    return func_80015634(gPlayerObject->Pos.x - gObjects[objIdx].Pos.x, gPlayerObject->Pos.z - gObjects[objIdx].Pos.z);
+    return Math_CalcAngleRotated(gPlayerObject->Pos.x - gObjects[objIdx].Pos.x, gPlayerObject->Pos.z - gObjects[objIdx].Pos.z);
 }
 
 f32 func_8002A4E0(s32 objIdx) {
@@ -1002,7 +1005,7 @@ s32 func_8002A560(s32 arg0, f32 arg1) {
     f32 sp18;
 
     sp1C = func_8002A46C(arg0);
-    sp18 = func_80015538(sp1C, -gObjects[arg0].unk3C);
+    sp18 = Math_WrapAngle(sp1C, -gObjects[arg0].unk3C);
     if ((sp18 < arg1) || ((360.0f - arg1) < sp18)) {
         return 0;
     }
@@ -1017,7 +1020,7 @@ s32 func_8002A640(s32 arg0, f32 arg1) {
     f32 sp18;
 
     sp1C = func_8002A46C(arg0);
-    sp18 = func_80015538(sp1C, -gObjects[arg0].Rot.y);
+    sp18 = Math_WrapAngle(sp1C, -gObjects[arg0].Rot.y);
     if ((sp18 < arg1) || ((360.0f - arg1) < sp18)) {
         return 0;
     }
@@ -1032,7 +1035,7 @@ s32 func_8002A720(s32 arg0, f32 arg1) {
     f32 sp18;
 
     sp1C = func_8002A4E0(arg0);
-    sp18 = func_80015538(sp1C, -gObjects[arg0].unk40);
+    sp18 = Math_WrapAngle(sp1C, -gObjects[arg0].unk40);
     if ((sp18 < arg1) || ((360.0f - arg1) < sp18)) {
         return 0;
     }
@@ -1045,7 +1048,7 @@ s32 func_8002A720(s32 arg0, f32 arg1) {
 s32 func_8002A800(f32 arg0, f32 arg1, f32 arg2) {
     f32 sp1C;
 
-    sp1C = func_80015538(arg1, -arg0);
+    sp1C = Math_WrapAngle(arg1, -arg0);
     if ((sp1C < arg2) || ((360.0f - arg2) < sp1C)) {
         return 0;
     }
@@ -1062,9 +1065,9 @@ void func_8002A8B4(s32 arg0, f32 arg1) {
     sp1C = gObjects[arg0].unk3C;
     sp18 = func_8002A560(arg0, arg1);
     if (sp18 < 0) {
-        sp1C = func_80015538(sp1C, -arg1);
+        sp1C = Math_WrapAngle(sp1C, -arg1);
     } else if (sp18 > 0) {
-        sp1C = func_80015538(sp1C, arg1);
+        sp1C = Math_WrapAngle(sp1C, arg1);
     } else {
         sp1C = func_8002A46C(arg0);
     }
@@ -1079,9 +1082,9 @@ void func_8002A9A4(s32 arg0, f32 arg1) {
     sp1C = gObjects[arg0].unk40;
     sp18 = func_8002A720(arg0, arg1);
     if (sp18 < 0) {
-        sp1C = func_80015538(sp1C, -arg1);
+        sp1C = Math_WrapAngle(sp1C, -arg1);
     } else if (sp18 > 0) {
-        sp1C = func_80015538(sp1C, arg1);
+        sp1C = Math_WrapAngle(sp1C, arg1);
     } else {
         sp1C = func_8002A4E0(arg0);
     }
@@ -1135,7 +1138,7 @@ void func_8002AD90(void) {
     struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[gCurrentParsedObject];
-    sp1C->Rot.y = func_80015634(gView.eye.x - sp1C->Pos.x, gView.eye.z - sp1C->Pos.z);
+    sp1C->Rot.y = Math_CalcAngleRotated(gView.eye.x - sp1C->Pos.x, gView.eye.z - sp1C->Pos.z);
     if (func_8001B44C(gCurrentParsedObject, 3) != 0) {
         func_8001A928(gCurrentParsedObject);
     }
@@ -1170,11 +1173,11 @@ void func_8002AE84(s32 ObjectIndex, s32 arg1) {
         guRotateF(sp6C, spC4->Rot.y, 0, 1.0f, 0.0f);
         guTranslateF(sp2C, spC4->Pos.x, spC4->Pos.y, spC4->Pos.z);
         guMtxCatF(sp6C, sp2C, sp6C);
-        guMtxXFMF(sp6C, D_80124D90[spC4->objID].unk8, D_80124D90[spC4->objID].unkA, D_80124D90[spC4->objID].unkC, &ox,
+        guMtxXFMF(sp6C, gObjInfo[spC4->objID].unk8, gObjInfo[spC4->objID].unkA, gObjInfo[spC4->objID].unkC, &ox,
                   &oy, (f32*) &oz);
 
-        spB0 = D_80124D90[spC4->objID].unkE / 10.0f;
-        spAC = D_80124D90[spC4->objID].unkF;
+        spB0 = gObjInfo[spC4->objID].unkE / 10.0f;
+        spAC = gObjInfo[spC4->objID].unkF;
     }
     func_8001A928(ObjectIndex);
     if ((arg1 != 0) && (spAC != -1)) {
@@ -1199,7 +1202,7 @@ void func_8002B154(void) {
     for (i = 14; i < 78; i++) {
         if (gObjects[i].actionState != 0) {
             gCurrentParsedObject = i;
-            D_80124D90[gObjects[i].objID].routine2();
+            gObjInfo[gObjects[i].objID].behaviour();
             if (gObjects[i].actionState != 0) {
                 if (gObjects[i].damageState >= 2) {
                     gObjects[i].damageState -= 1;

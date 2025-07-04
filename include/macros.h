@@ -21,11 +21,6 @@
 
 #define PLAYER_OBJ gObjects[0]
 
-#ifdef ENABLE_ISPRINT
-#define DEBUG_PRINTF osSyncPrintf
-#else
-#define DEBUG_PRINTF printf_stub
-#endif
 
 #ifndef __GNUC__
 #define __attribute__(x)

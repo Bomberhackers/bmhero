@@ -967,19 +967,19 @@ void func_80083180(s32 arg0) {
         func_803303A4();
     }
 
-block_5:;
-
+block_5:
     PlayTrack_WithVolLoop(-1, -1, 0);
     func_80000D4C();
     func_80330440();
 
-block_6:
+demo_init:
     Demo_Start(0);
+
 block_7:
     func_80000E6C();
 
     if ((sp20 = func_80330594()) == 1) {
-        goto block_6;
+        goto demo_init;
     }
 
     if (gShowDebugMenu == 1) {
@@ -1035,7 +1035,7 @@ CASE_3:
     func_8005FBD0();
     func_800880E4();
     D_8016E3D4 = 0;
-    gCurrentLevel = 0xB5;
+    gCurrentLevel = MAP_BOMBER_STAR_HUB_CUTSCENE;
     D_80177630 = 4;
     goto block_49;
 
@@ -1108,7 +1108,7 @@ block_54:
 block_56:
     PlayTrack_WithVolLoop(0x1A, -1, 1);
     func_80000C2C();
-    sp20 = func_80335DE4();
+    sp20 = func_80335DE4_unk_bin_2();
     if (sp20 != 0) {
         if (D_80177630 == 0) {
             goto block_15;
@@ -1148,8 +1148,8 @@ loop_68:
         func_80025674(D_8013488C);
         func_8002590C(D_8013488C);
 
-        if (gCurrentLevel == 0 || gCurrentLevel == 0x44 || gCurrentLevel == 0x69 || gCurrentLevel == 0x6A ||
-            gCurrentLevel == 0x6B) {
+        if (gCurrentLevel == MAP_BOMBER_BASE_ENTRANCE || gCurrentLevel == MAP_AIR_ROOM_SELECT || gCurrentLevel == MAP_ZERO_G_ENTRANCE || gCurrentLevel == MAP_MIRROR_ROOM_ENTRANCE ||
+            gCurrentLevel == MAP_NATIA_1_ENTRANCE) {
         } else {
             func_80069FD8();
             func_80069F0C(1);
@@ -1203,7 +1203,7 @@ loop_68:
             }
 
             if (D_80177630 == 0) {
-                if (gCurrentLevel == 0xA2) {
+                if (gCurrentLevel == MAP_CUTSCENE_BAGULAR_3_WIN) {
 
                     if (D_8016E3D4 == 0 || !(func_800253EC(D_8013488C) & 2)) {
                         Demo_Start(1);

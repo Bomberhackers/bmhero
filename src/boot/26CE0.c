@@ -325,7 +325,7 @@ void func_800272E8(s32 arg0) {
     }
 }
 
-s32 func_80027464(s32 slot, struct UnkStruct_80027C00* arg1, f32 posX, f32 posY, f32 posZ, f32 rotY) {
+s32 func_80027464(s32 slot, struct ObjSpawnInfo* arg1, f32 posX, f32 posY, f32 posZ, f32 rotY) {
     s32 obj_idx[11];
     s32 i;
     s32 sp1C;
@@ -357,13 +357,16 @@ s32 func_80027464(s32 slot, struct UnkStruct_80027C00* arg1, f32 posX, f32 posY,
                 break;
             }
 
+            // Initilize object
             func_8001A928(obj_idx[i]);
+
+            // Load object model
             func_8001BD44(obj_idx[i], arg1->unk0, arg1->unk6, gFileArray[arg1->unk4].ptr);
             gObjects[obj_idx[i]].Pos.x = gObjects[obj_idx[i]].unk50 = posX;
             gObjects[obj_idx[i]].Pos.y = gObjects[obj_idx[i]].unk54 = posY;
             gObjects[obj_idx[i]].Pos.z = gObjects[obj_idx[i]].unk58 = posZ;
             gObjects[obj_idx[i]].Rot.y = rotY;
-            gObjects[obj_idx[i]].unk3C = rotY;
+            gObjects[obj_idx[i]].moveAngle = rotY;
             gObjects[obj_idx[i]].actionState = ACTION_IDLE;
             gObjects[obj_idx[i]].objID = arg1->unk2;
             gObjects[obj_idx[i]].unk100 = arg1->unk7;
@@ -404,7 +407,7 @@ s32 func_80027B34(s32 arg0, struct UnkStruct_80027B34* arg1) {
     return TRUE;
 }
 
-s32 func_80027C00(s32 arg0, s32 arg1, struct UnkStruct_80027C00* arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6) {
+s32 func_80027C00(s32 arg0, s32 arg1, struct ObjSpawnInfo* arg2, f32 arg3, f32 arg4, f32 arg5, f32 arg6) {
     s32 sp24;
     s32 sp20;
     s32 sp1C;
@@ -420,7 +423,7 @@ s32 func_80027C00(s32 arg0, s32 arg1, struct UnkStruct_80027C00* arg2, f32 arg3,
     gObjects[sp24].Pos.y = gObjects[sp24].unk54 = arg4;
     gObjects[sp24].Pos.z = gObjects[sp24].unk58 = arg5;
     gObjects[sp24].Rot.y = arg6;
-    gObjects[sp24].unk3C = arg6;
+    gObjects[sp24].moveAngle = arg6;
     gObjects[sp24].actionState = 1;
     gObjects[sp24].objID = arg2->unk2;
     gObjects[sp24].unk100 = (s16) arg2->unk7;
@@ -533,8 +536,8 @@ s32 func_80028260(s32 arg0, f32 arg1, f32 arg2, f32 arg3, f32 arg4, s32 arg5) {
         if (arg5 == 0) {
             if (!(D_801776E0 & 1)) {
                 sp74 = sp50 - D_80177760[0];
-                sp74 = sp74 < 0.0f ? -sp74 : sp74;
-
+                sp74 = FABS(sp74);
+                
                 if (sp74 > (sqrtf(SQ(sp94) + SQ(sp8C)) + arg1)) {
                     sp70 = sp70 | 1 << (sp4C + 3);
                 }
@@ -819,7 +822,7 @@ void func_80029824(s32 arg0, s32 arg1) {
     f32 sp28;
 
     sp2C = &gObjects[arg0];
-    sp28 = sp2C->unk3C;
+    sp28 = sp2C->moveAngle;
     if (arg1 == 0) {
         sp28 += 180.0f;
     } else {
@@ -843,7 +846,7 @@ void func_80029824(s32 arg0, s32 arg1) {
             sp28 = 360.0f - sp28;
         }
     }
-    sp2C->unk3C = Math_WrapAngle(sp28, (f32) (Math_Random(-2) * 0xA));
+    sp2C->moveAngle = Math_WrapAngle(sp28, (f32) (Math_Random(-2) * 0xA));
 }
 
 void func_80029A9C(s32 arg0, s32 arg1) {
@@ -858,10 +861,10 @@ void func_80029A9C(s32 arg0, s32 arg1) {
     sp2C->unk40 = Math_WrapAngle(sp28, (f32) (Math_Random(-2) * 0xA));
 }
 
-void func_80029B60(s32 arg0) {
-    struct ObjectStruct* sp1C;
-    sp1C = &gObjects[arg0];
-    sp1C->unk3C = Math_WrapAngle(sp1C->unk128, 180.0f);
+void func_80029B60(s32 objIdx) {
+    struct ObjectStruct* obj = &gObjects[objIdx];
+
+    obj->moveAngle = Math_WrapAngle(obj->unk128, 180.0f);
 }
 
 void func_80029BD0(s32 arg0) {
@@ -875,8 +878,8 @@ void func_80029C40(s32 arg0) {
     struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[arg0];
-    sp1C->Vel.x = sinf((f32) ((f64) sp1C->unk3C * DEG_TO_RAD)) * sp1C->unk44;
-    sp1C->Vel.z = cosf((f32) ((f64) sp1C->unk3C * DEG_TO_RAD)) * sp1C->unk44;
+    sp1C->Vel.x = sinf((f32) ((f64) sp1C->moveAngle * DEG_TO_RAD)) * sp1C->unk44;
+    sp1C->Vel.z = cosf((f32) ((f64) sp1C->moveAngle * DEG_TO_RAD)) * sp1C->unk44;
 }
 
 void func_80029D04(s32 arg0) {
@@ -890,8 +893,8 @@ void func_80029D8C(s32 arg0) {
     struct ObjectStruct* sp24;
 
     sp24 = &gObjects[arg0];
-    sp24->Vel.x = (sp24->unk44 * cosf(sp24->unk40 * DEG_TO_RAD)) * sinf(sp24->unk3C * DEG_TO_RAD);
-    sp24->Vel.z = (sp24->unk44 * cosf(sp24->unk40 * DEG_TO_RAD)) * cosf(sp24->unk3C * DEG_TO_RAD);
+    sp24->Vel.x = (sp24->unk44 * cosf(sp24->unk40 * DEG_TO_RAD)) * sinf(sp24->moveAngle * DEG_TO_RAD);
+    sp24->Vel.z = (sp24->unk44 * cosf(sp24->unk40 * DEG_TO_RAD)) * cosf(sp24->moveAngle * DEG_TO_RAD);
     sp24->Vel.y = sinf(sp24->unk40 * DEG_TO_RAD) * sp24->unk44;
 }
 
@@ -991,7 +994,7 @@ s32 func_8002A3A8(s32 objIdx, f32 arg1) {
     return 0;
 }
 
-f32 func_8002A46C(s32 objIdx) {
+f32 Get_AngleToPlayer(s32 objIdx) {
     return Math_CalcAngleRotated(gPlayerObject->Pos.x - gObjects[objIdx].Pos.x, gPlayerObject->Pos.z - gObjects[objIdx].Pos.z);
 }
 
@@ -1004,8 +1007,8 @@ s32 func_8002A560(s32 arg0, f32 arg1) {
     f32 sp1C;
     f32 sp18;
 
-    sp1C = func_8002A46C(arg0);
-    sp18 = Math_WrapAngle(sp1C, -gObjects[arg0].unk3C);
+    sp1C = Get_AngleToPlayer(arg0);
+    sp18 = Math_WrapAngle(sp1C, -gObjects[arg0].moveAngle);
     if ((sp18 < arg1) || ((360.0f - arg1) < sp18)) {
         return 0;
     }
@@ -1019,7 +1022,7 @@ s32 func_8002A640(s32 arg0, f32 arg1) {
     f32 sp1C;
     f32 sp18;
 
-    sp1C = func_8002A46C(arg0);
+    sp1C = Get_AngleToPlayer(arg0);
     sp18 = Math_WrapAngle(sp1C, -gObjects[arg0].Rot.y);
     if ((sp18 < arg1) || ((360.0f - arg1) < sp18)) {
         return 0;
@@ -1062,17 +1065,17 @@ void func_8002A8B4(s32 arg0, f32 arg1) {
     f32 sp1C;
     s32 sp18;
 
-    sp1C = gObjects[arg0].unk3C;
+    sp1C = gObjects[arg0].moveAngle;
     sp18 = func_8002A560(arg0, arg1);
     if (sp18 < 0) {
         sp1C = Math_WrapAngle(sp1C, -arg1);
     } else if (sp18 > 0) {
         sp1C = Math_WrapAngle(sp1C, arg1);
     } else {
-        sp1C = func_8002A46C(arg0);
+        sp1C = Get_AngleToPlayer(arg0);
     }
     sp1C = sp1C;
-    gObjects[arg0].unk3C = sp1C;
+    gObjects[arg0].moveAngle = sp1C;
 }
 
 void func_8002A9A4(s32 arg0, f32 arg1) {

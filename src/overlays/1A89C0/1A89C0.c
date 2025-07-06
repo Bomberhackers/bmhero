@@ -1,12 +1,12 @@
 #include "common.h"
 
-struct UnkStruct_80027C00 const D_803331B0_unk_bin_20 = { 0, 0x1FA, 0xCA, 1, 1, 1, 1, 0 };
-struct UnkStruct_80027C00 const D_803331BC_unk_bin_20 = { 3, 0x1F9, 0x154, 2, -1, 0, 0, 0 };
-struct UnkStruct_80027C00 const D_803331C8_unk_bin_20 = { 3, 0x1FB, 0x155, 2, -1, 0, 0, 0 };
-struct UnkStruct_80027C00 const D_803331D4_unk_bin_20 = { 0, 0x1F8, 0x153, 2, -1, 1, 1, 0 };
-struct UnkStruct_80027C00 const D_803331E0_unk_bin_20 = { 0, 0x1FC, 0x156, 1, -1, 0, 0, 0 };
-struct UnkStruct_80027C00 const D_803331EC_unk_bin_20 = { 0, 0x1FD, 0x1A2, 1, -1, 0, 0, 0 };
-struct UnkStruct_80027C00 const D_803331F8_unk_bin_20 = { 0, 0x1F7, 0xC8, 0x12, 8, 1, 1, 0 };
+struct ObjSpawnInfo const D_803331B0_unk_bin_20 = { 0, OBJ_ENDL_FB2 , 0xCA, 1, OBJ_DAMAGE_STATE_NORMAL, 1, 1, 0 };
+struct ObjSpawnInfo const D_803331BC_unk_bin_20 = { 3, OBJ_ENDL_WV, 0x154, 2, OBJ_INVENCIBLE, 0, 0, 0 };
+struct ObjSpawnInfo const D_803331C8_unk_bin_20 = { 3, OBJ_ENDL_WV2, 0x155, 2, OBJ_INVENCIBLE, 0, 0, 0 };
+struct ObjSpawnInfo const D_803331D4_unk_bin_20 = { 0, OBJ_ENDL_SP, 0x153, 2, OBJ_INVENCIBLE, 1, 1, 0 };
+struct ObjSpawnInfo const D_803331E0_unk_bin_20 = { 0, OBJ_ENDL_SP2, 0x156, 1, OBJ_INVENCIBLE, 0, 0, 0 };
+struct ObjSpawnInfo const D_803331EC_unk_bin_20 = { 0, OBJ_ENDL_EF1, 0x1A2, 1, OBJ_INVENCIBLE, 0, 0, 0 };
+struct ObjSpawnInfo const D_803331F8_unk_bin_20 = { 0, OBJ_ENDL_BD2, 0xC8, 0x12, 8, 1, 1, 0 };
 
 const u32 padding[0x2] = { 0 };
 
@@ -204,7 +204,7 @@ void func_803308F0_unk_bin_20() {
     }
 
     func_8002A8B4(gCurrentParsedObject, 6.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
 
     if (func_8001B4AC(gCurrentParsedObject, 0)) {
         obj->actionState = 7;
@@ -222,7 +222,7 @@ void func_803309F8_unk_bin_20() {
     }
 
     func_8002A8B4(gCurrentParsedObject, 6.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
 
     if (func_8001B4AC(gCurrentParsedObject, 0)) {
         obj->actionState = 8;
@@ -240,7 +240,7 @@ void func_80330B00_unk_bin_20() {
     }
 
     func_8002A8B4(gCurrentParsedObject, 6.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
 
     if (func_8001B4AC(gCurrentParsedObject, 0)) {
         obj->actionState = 9;
@@ -258,7 +258,7 @@ void func_80330C08_unk_bin_20() {
     }
 
     func_8002A8B4(gCurrentParsedObject, 6.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
 
     if (func_8001B4AC(gCurrentParsedObject, 0)) {
         obj->actionState = 10;
@@ -285,7 +285,7 @@ void func_80330D10_unk_bin_20() {
     }
     if (func_8001B62C(gCurrentParsedObject, 0) < 18.0f) {
         func_8002A8B4(gCurrentParsedObject, 6.0f);
-        obj->Rot.y = obj->unk3C;
+        obj->Rot.y = obj->moveAngle;
     } else if (func_8001B62C(gCurrentParsedObject, 0) == 18.0f) {
         func_800175F0(gCurrentParsedObject, 0, 0x1B, -1, 0);
 
@@ -390,7 +390,7 @@ void func_80331518_unk_bin_20() {
     }
 
     func_8002A8B4(gCurrentParsedObject, 3.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     func_80029C40(gCurrentParsedObject);
 
     if (func_80029018(gCurrentParsedObject, 0U, 120.0f, 0.0f, 0.0f, 0.0f)) {
@@ -416,7 +416,7 @@ void func_803317C4_unk_bin_20() {
         func_8001C0EC(gCurrentParsedObject, 0, 0xC, 0xC8, &D_80119C80);
     }
     func_8002A8B4(gCurrentParsedObject, 3.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     func_80029C40(gCurrentParsedObject);
     if (func_80029018(gCurrentParsedObject, 0U, 120.0f, 0.0f, 0.0f, 0.0f)) {
         obj->unk44 = 0.0f;
@@ -462,12 +462,12 @@ void func_80331A40_unk_bin_20() {
         func_800175F0(gCurrentParsedObject, 0, 0x71, -1, 0);
     }
     obj->Rot.y = Math_WrapAngle(obj->Rot.y, obj->unkD4);
-    obj->unk3C = obj->Rot.y;
+    obj->moveAngle = obj->Rot.y;
     if (func_8001B4AC(gCurrentParsedObject, 0)) {
         obj->actionState = 0x11;
         obj->unk132 = 0;
         obj->Rot.y = 180.0f;
-        obj->unk3C = 180.0f;
+        obj->moveAngle = 180.0f;
         func_8001ABF4(gCurrentParsedObject, 3, 0, &D_80119E0C.unk118);
     }
 }
@@ -667,7 +667,7 @@ void func_803325E4_unk_bin_20() {
         if (obj->unk132 == 0) {
             obj->unk132++;
             obj->unk44 = 9.0f;
-            obj->unk3C = obj->Rot.y;
+            obj->moveAngle = obj->Rot.y;
             obj->unkA6 = 3;
         }
 

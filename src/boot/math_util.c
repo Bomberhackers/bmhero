@@ -33,6 +33,7 @@ f32 gArctanTable[100] = {
     41.98721f, 42.30219f, 42.61406f, 42.92283f, 43.22853f, 43.5312f,  43.83086f, 44.12754f, 44.42127f, 44.71208f,
 };
 
+
 s32 Math_Random(s16 range) {
     gRandSeed = (gRandSeed * 61 * 9 - 1);
 

@@ -7,8 +7,8 @@ extern u32 D_80119FE0;
 extern u32 D_8011A09C;
 extern u32 D_8011A178;
 
-struct UnkStruct_80027C00 D_80332FB0_unk_bin_21 = { 0, OBJ_BAL_LZ2, 0xCF, 2, -1, -1, 1, 0 };
-struct UnkStruct_80027C00 D_80332FBC_unk_bin_21 = { 0, OBJ_BAL_BD2, 0xCD, 16, 8, 1, 1, 0 };
+struct ObjSpawnInfo D_80332FB0_unk_bin_21 = { 0, OBJ_BAL_LZ2, 0xCF, 2, -1, -1, 1, 0 };
+struct ObjSpawnInfo D_80332FBC_unk_bin_21 = { 0, OBJ_BAL_BD2, 0xCD, 16, 8, 1, 1, 0 };
 
 void func_80330000_unk_bin_21(void) {
     s32 obj_idx;
@@ -70,7 +70,7 @@ void func_803302A0_unk_bin_21(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0xCD, &D_80119FE0);
     }
     func_8002A8B4(gCurrentParsedObject, 3.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         obj->actionState = 2;
         obj->unk132 = 0;
@@ -88,7 +88,7 @@ void func_80330410_unk_bin_21(void) {
         func_800175F0(gCurrentParsedObject, 0, 0x78, -1, 0);
     }
     func_8002A8B4(gCurrentParsedObject, 3.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         if (obj->unkA6 == 0) {
             obj->actionState = 3;
@@ -117,7 +117,7 @@ void func_8033057C_unk_bin_21(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 2, 0xCD, &D_80119FE0);
     }
     func_8002A8B4(gCurrentParsedObject, 3.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     if ((obj->Pos.y + obj->Vel.y) > 600.0f) {
         obj->Pos.y = 600.0f;
         obj->Vel.y = 0.0f;
@@ -139,7 +139,7 @@ void func_80330750_unk_bin_21(void) {
         func_800175F0(gCurrentParsedObject, 0, 0x78, -1, 0);
     }
     func_8002A8B4(gCurrentParsedObject, 3.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     if ((obj->Pos.y + obj->Vel.y) > 600.0f) {
         obj->Pos.y = 600.0f;
         obj->Vel.y = 0.0f;
@@ -166,7 +166,7 @@ void func_80330908_unk_bin_21(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 4, 0xCD, &D_80119FE0);
     }
     func_8002A8B4(gCurrentParsedObject, 3.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         obj->actionState = 6;
         obj->unk132 = 0;
@@ -183,7 +183,7 @@ void func_80330A10_unk_bin_21(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 5, 0xCD, &D_80119FE0);
     }
     func_8002A8B4(gCurrentParsedObject, 3.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         obj->actionState = 7;
         obj->unk132 = 0;
@@ -200,7 +200,7 @@ void func_80330B18_unk_bin_21(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 6, 0xCD, &D_80119FE0);
     }
     func_8002A8B4(gCurrentParsedObject, 3.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         obj->actionState = 8;
         obj->unk132 = 0;
@@ -217,7 +217,7 @@ void func_80330C20_unk_bin_21(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 7, 0xCD, &D_80119FE0);
     }
     func_8002A8B4(gCurrentParsedObject, 3.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         obj->actionState = 9;
         obj->unk132 = 0;
@@ -234,7 +234,7 @@ void func_80330D28_unk_bin_21(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 8, 0xCD, &D_80119FE0);
     }
     func_8002A8B4(gCurrentParsedObject, 3.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         obj->actionState = 0xA;
         obj->unk132 = 0;
@@ -340,7 +340,7 @@ void func_80331360_unk_bin_21(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 0xC, 0xCD, &D_80119FE0);
     }
     func_8002A8B4(gCurrentParsedObject, 3.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         obj->actionState = 0xF;
         obj->unk132 = 0;
@@ -357,7 +357,7 @@ void func_80331468_unk_bin_21(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 0xD, 0xCD, &D_80119FE0);
     }
     func_8002A8B4(gCurrentParsedObject, 3.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         obj->actionState = 0x10;
         obj->unk132 = 0;
@@ -374,7 +374,7 @@ void func_80331570_unk_bin_21(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 0xE, 0xCD, &D_80119FE0);
     }
     func_8002A8B4(gCurrentParsedObject, 3.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         obj->actionState = 0x11;
         obj->unk132 = 0;
@@ -395,7 +395,7 @@ void func_80331678_unk_bin_21(void) {
         obj->Rot.x = 0.0f;
     }
     func_8002A8B4(gCurrentParsedObject, 9.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     obj->unk40 = Math_WrapAngle(obj->unk40, -1.5f);
     obj->Rot.x = 360.0f - obj->unk40;
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
@@ -416,7 +416,7 @@ void func_803317E0_unk_bin_21(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 0x12, 0xCD, &D_80119FE0);
     }
     func_8002A8B4(gCurrentParsedObject, 9.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     if (func_8001B62C(gCurrentParsedObject, 0) == 16.0f) {
         sp20 = func_80027464(1, &D_80332FB0_unk_bin_21, obj->Pos.x, obj->Pos.y, obj->Pos.z, obj->Rot.y);
         func_8001C0EC(sp20, 0, 0, 0xCF, &D_8011A178);
@@ -468,7 +468,7 @@ void func_80331B80_unk_bin_21(void) {
         obj->unk132 += 1;
         obj->unkB2 = obj->actionState;
         func_8001C0EC(gCurrentParsedObject, 0, 0xF, 0xCD, &D_80119FE0);
-        obj->unk3C = obj->Rot.y;
+        obj->moveAngle = obj->Rot.y;
         if (obj->Rot.x != 0.0f) {
             if (obj->Rot.x > 180.0f) {
                 obj->unkD4 = 360.0f - (obj->Rot.x / 8.0f);
@@ -495,7 +495,7 @@ void func_80331D44_unk_bin_21(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 0x10, 0xCD, &D_80119FE0);
     }
     func_8002A8B4(gCurrentParsedObject, 3.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         obj->actionState = 0x17;
         obj->unk132 = 0;
@@ -512,7 +512,7 @@ void func_80331E4C_unk_bin_21(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 0x18, 0xCD, &D_80119FE0);
     }
     func_8002A8B4(gCurrentParsedObject, 3.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         obj->actionState = 0x18;
         obj->unk132 = 0;
@@ -529,7 +529,7 @@ void func_80331F54_unk_bin_21(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 0x19, 0xCD, &D_80119FE0);
     }
     func_8002A8B4(gCurrentParsedObject, 3.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         obj->actionState = 0x19;
         obj->unk132 = 0;
@@ -546,7 +546,7 @@ void func_8033205C_unk_bin_21(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 0x1A, 0xCD, &D_80119FE0);
     }
     func_8002A8B4(gCurrentParsedObject, 3.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         obj->actionState = 1;
         obj->unk132 = 0;
@@ -683,7 +683,7 @@ void func_803325A8_unk_bin_21(void) {
     obj->Rot.x = gObjects[obj->unkC2].Rot.x;
     obj->unk40 = gObjects[obj->unkC2].unk40;
     obj->Rot.y = gObjects[obj->unkC2].Rot.y;
-    obj->unk3C = gObjects[obj->unkC2].unk3C;
+    obj->moveAngle = gObjects[obj->unkC2].moveAngle;
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         obj->actionState = 2;
         obj->unk132 = 0;
@@ -703,7 +703,7 @@ void func_80332744_unk_bin_21(void) {
     obj->Rot.x = gObjects[obj->unkC2].Rot.x;
     obj->unk40 = gObjects[obj->unkC2].unk40;
     obj->Rot.y = gObjects[obj->unkC2].Rot.y;
-    obj->unk3C = gObjects[obj->unkC2].unk3C;
+    obj->moveAngle = gObjects[obj->unkC2].moveAngle;
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         obj->actionState = 3;
         obj->unk132 = 0;
@@ -723,7 +723,7 @@ void func_80332904_unk_bin_21(void) {
     obj->Rot.x = gObjects[obj->unkC2].Rot.x;
     obj->unk40 = gObjects[obj->unkC2].unk40;
     obj->Rot.y = gObjects[obj->unkC2].Rot.y;
-    obj->unk3C = gObjects[obj->unkC2].unk3C;
+    obj->moveAngle = gObjects[obj->unkC2].moveAngle;
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         obj->actionState = 4;
         obj->unk132 = 0;
@@ -742,7 +742,7 @@ void func_80332AD4_unk_bin_21(void) {
     obj->Rot.x = gObjects[obj->unkC2].Rot.x;
     obj->unk40 = gObjects[obj->unkC2].unk40;
     obj->Rot.y = gObjects[obj->unkC2].Rot.y;
-    obj->unk3C = gObjects[obj->unkC2].unk3C;
+    obj->moveAngle = gObjects[obj->unkC2].moveAngle;
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         obj->actionState = 5;
         obj->unk132 = 0;

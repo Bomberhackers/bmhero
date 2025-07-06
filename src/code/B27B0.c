@@ -7,8 +7,8 @@ void func_80069D04(s32, s32); /* extern */
 //.rodata
 extern UNK_TYPE D_80117F7C;
 extern UNK_TYPE D_80117F98;
-extern struct UnkStruct_80027C00 D_80113DFC;
-extern struct UnkStruct_80027C00 D_80113E14;
+extern struct ObjSpawnInfo D_80113DFC;
+extern struct ObjSpawnInfo D_80113E14;
 extern UNK_TYPE D_80117F44;
 extern UNK_TYPE D_80117F60;
 extern UNK_TYPE D_80117FB4;
@@ -193,7 +193,7 @@ void func_800C0F18(void) {
     if (sp3C->unk132 == 0) {
         sp3C->unk132 = 1;
         sp3C->unk44 = 0.0f;
-        sp3C->unk3C = ((sp3C->Rot.y + 180.0f) > 180.0f)
+        sp3C->moveAngle = ((sp3C->Rot.y + 180.0f) > 180.0f)
                           ? ((sp3C->Rot.y + 180.0f >= 360.0f) ? (sp3C->Rot.y + 180.0f) - 360.0f : sp3C->Rot.y + 180.0f)
                       : ((sp3C->Rot.y + 180.0f < 0.0f)) ? (sp3C->Rot.y) + 540.0f
                                                         : sp3C->Rot.y + 180.0f;

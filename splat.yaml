@@ -724,16 +724,16 @@ segments:
     - [0x15C0D0, c, overlays/15C0D0/15C0D0]
     - [0x15EE10, data]
 
-  - name: unk_bin_11
+  - name: ovl_endol
     type: code
     bss_size: 0x0 # dunno yet
     start: 0x160560
     vram: 0x80330000
     exclusive_ram_id: overlay
-    symbol_name_format: $VRAM_$SEG
+    symbol_name_format: endol_$VRAM
     subsegments:
-    - [0x160560, c, overlays/160560/160560]
-    - [0x1676F0, data]
+    - [0x160560, c, overlays/160560/endol]
+    - [0x1676F0, .rodata, overlays/160560/endol]
 
   - name: unk_bin_12
     type: code
@@ -798,7 +798,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x194F10, c, overlays/194F10/194F10]
+    - [0x194F10, c, overlays/194F10/bagular_1]
     - [0x197ED0, data]
 
   - name: unk_bin_18
@@ -809,7 +809,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x198140, c, overlays/198140/198140]
+    - [0x198140, c, overlays/198140/bagular_2]
     - [0x19C550, data]
 
   - name: unk_bin_19
@@ -820,7 +820,7 @@ segments:
     exclusive_ram_id: overlay
     symbol_name_format: $VRAM_$SEG
     subsegments:
-    - [0x19C610, c, overlays/19C610/19C610]
+    - [0x19C610, c, overlays/19C610/bagular_3]
     - [0x1A8730, data]
 
   - name: unk_bin_20
@@ -1165,7 +1165,7 @@ segments:
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x20DA60, c, overlays/20DA60/20DA60]
-    - [0x20F560, data]
+    - [0x20F560, .rodata, overlays/20DA60/20DA60]
 
   - name: unk_bin_52
     type: code

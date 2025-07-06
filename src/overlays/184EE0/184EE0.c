@@ -27,11 +27,11 @@ void func_80334430_unk_bin_15(void);
 void func_80334510_unk_bin_15(void);
 void func_80334540_unk_bin_15(void);
 
-struct UnkStruct_80027C00 const D_80334930_unk_bin_15 = { 0, OBJ_SHBASE2, 0x130, 2, 1, 1, 1, 0 };
+struct ObjSpawnInfo const D_80334930_unk_bin_15 = { 0, OBJ_SHBASE2, 0x130, 2, 1, 1, 1, 0 };
 
-struct UnkStruct_80027C00 const D_8033493C_unk_bin_15 = { 0, OBJ_SHMISS2, 0x132, 1, 1, 1, 1, 0 };
+struct ObjSpawnInfo const D_8033493C_unk_bin_15 = { 0, OBJ_SHMISS2, 0x132, 1, 1, 1, 1, 0 };
 
-struct UnkStruct_80027C00 const D_80334948_unk_bin_15[] = {
+struct ObjSpawnInfo const D_80334948_unk_bin_15[] = {
     { 0, 0x130, 0x111, 6, 5, 1, 1, 0 },    { 0, 0x131, 0x110, 2, -1, -1, -1, 1 }, { 0, 0x131, 0x110, 2, -1, -1, -1, 1 },
     { 0, 0x131, 0x110, 2, -1, -1, -1, 1 }, { 0, 0x131, 0x110, 2, -1, -1, -1, 1 }, { 0, 0x131, 0x110, 2, -1, -1, -1, 1 },
     { 0, 0x131, 0x110, 2, -1, -1, -1, 1 }, { 0, 0x131, 0x110, 2, -1, -1, -1, 1 }, { 0, 0x131, 0x110, 2, -1, -1, -1, 1 },
@@ -178,7 +178,7 @@ void func_80330E40_unk_bin_15() {
             gObjects[obj->unkE8[i]].unk44 = 10.0f;
         }
 
-        obj->unk3C = 0.0f;
+        obj->moveAngle = 0.0f;
     }
 
     if (obj->unkA6 == 0) {
@@ -213,7 +213,7 @@ void func_80330E40_unk_bin_15() {
             }
 
             func_8002A8B4(gCurrentParsedObject, obj->unkD4);
-            obj->Rot.y = obj->unk3C;
+            obj->Rot.y = obj->moveAngle;
         }
     } else {
         obj->actionState = 4;
@@ -251,7 +251,7 @@ void func_80331260_unk_bin_15() {
         obj->unk132 = 0;
         func_8001BBDC(gCurrentParsedObject, 0);
     } else if (obj->Pos.z - gPlayerObject->Pos.z > 0.0f) {
-        obj->unk3C = 0.0f;
+        obj->moveAngle = 0.0f;
         obj->unk40 = 0.0f;
         obj->Rot.y = 0.0f;
         obj->Rot.x = 0.0f;
@@ -280,7 +280,7 @@ void func_80331260_unk_bin_15() {
         }
 
         func_8002A8B4(gCurrentParsedObject, obj->unkD4);
-        obj->Rot.y = obj->unk3C;
+        obj->Rot.y = obj->moveAngle;
         obj->unk44 = 10.0f;
 
         for (i = 0; i < 9; i++) {
@@ -310,7 +310,7 @@ void func_80331708_unk_bin_15() {
         obj->Pos.y = 420.0f;
         obj->Pos.z = gPlayerObject->Pos.z + 2000.0f;
         obj->Rot.y = 0.0f;
-        obj->unk3C = obj->Rot.y;
+        obj->moveAngle = obj->Rot.y;
         obj->unk40 = obj->Rot.x = obj->Rot.z = 0.0f;
         obj->unk44 = 40.0f;
         obj->unkB6 = 0;
@@ -324,7 +324,7 @@ void func_80331708_unk_bin_15() {
             gObjects[obj->unkE8[i]].Rot.y = obj->Rot.y;
             gObjects[obj->unkE8[i]].Rot.z = obj->Rot.z;
 
-            gObjects[obj->unkE8[i]].unk3C = obj->unk3C;
+            gObjects[obj->unkE8[i]].moveAngle = obj->moveAngle;
             gObjects[obj->unkE8[i]].unk44 = obj->unk44;
             gObjects[obj->unkE8[i]].unk40 = obj->unk40;
         }
@@ -492,7 +492,7 @@ void func_803325F8_unk_bin_15() {
     obj->Pos.y = 420.0f;
     obj->Pos.z = gPlayerObject->Pos.z + 2000.0f;
     obj->Rot.y = 0.0f;
-    obj->unk3C = obj->Rot.y;
+    obj->moveAngle = obj->Rot.y;
     obj->unk40 = obj->Rot.x = obj->Rot.z = 0.0f;
     obj->unk44 = 0.0f;
     obj->unkB6 = 0;
@@ -506,7 +506,7 @@ void func_803325F8_unk_bin_15() {
         gObjects[obj->unkE8[i]].Rot.y = obj->Rot.y;
         gObjects[obj->unkE8[i]].Rot.z = obj->Rot.z;
 
-        gObjects[obj->unkE8[i]].unk3C = obj->unk3C;
+        gObjects[obj->unkE8[i]].moveAngle = obj->moveAngle;
         gObjects[obj->unkE8[i]].unk44 = obj->unk44;
         gObjects[obj->unkE8[i]].unk40 = obj->unk40;
     }
@@ -543,14 +543,14 @@ void func_80332C94_unk_bin_15() {
 
         obj->unkC2 = 0x3C;
         obj->unk44 = 0.0f;
-        obj->unk3C = 0.0f;
+        obj->moveAngle = 0.0f;
         obj->unk40 = 0.0f;
 
         for (i = 0; i < 9; i++) {
             gObjects[obj->unkE8[i]].unk30.x = Math_Random(0x12);
             gObjects[obj->unkE8[i]].unk30.y = Math_Random(0x12);
 
-            gObjects[obj->unkE8[i]].unk3C = Math_Random(0x167);
+            gObjects[obj->unkE8[i]].moveAngle = Math_Random(0x167);
             gObjects[obj->unkE8[i]].unk44 = Math_Random(0x1E);
             gObjects[obj->unkE8[i]].unk40 = Math_Random(0x167);
         }
@@ -693,29 +693,29 @@ void func_80333308_unk_bin_15() {
         }
     }
 
-    gObjects[obj->unkE8[0]].unk3C = func_80333BCC_unk_bin_15(obj->unkE8[0], gCurrentParsedObject);
+    gObjects[obj->unkE8[0]].moveAngle = func_80333BCC_unk_bin_15(obj->unkE8[0], gCurrentParsedObject);
 
     for (i = 1; i < 9; i++) {
-        gObjects[obj->unkE8[i]].unk3C = func_80333BCC_unk_bin_15(obj->unkE8[i], obj->unkE6[i]);
+        gObjects[obj->unkE8[i]].moveAngle = func_80333BCC_unk_bin_15(obj->unkE8[i], obj->unkE6[i]);
     }
 }
 
 void func_803339E8_unk_bin_15(s32 idx, s32 arg1, f32 arg2) {
-    f32 unk3C;
+    f32 moveAngle;
     s32 sp18;
 
-    unk3C = gObjects[idx].unk3C;
+    moveAngle = gObjects[idx].moveAngle;
     sp18 = func_80333AE4_unk_bin_15(idx, arg1, arg2);
 
     if (sp18 < 0) {
-        unk3C = Math_WrapAngle(unk3C, -arg2);
+        moveAngle = Math_WrapAngle(moveAngle, -arg2);
     } else if (sp18 > 0) {
-        unk3C = Math_WrapAngle(unk3C, arg2);
+        moveAngle = Math_WrapAngle(moveAngle, arg2);
     } else {
-        unk3C = func_80333BCC_unk_bin_15(idx, arg1);
+        moveAngle = func_80333BCC_unk_bin_15(idx, arg1);
     }
 
-    gObjects[idx].unk3C = unk3C;
+    gObjects[idx].moveAngle = moveAngle;
 }
 
 s32 func_80333AE4_unk_bin_15(s32 idx, s32 arg1, f32 arg2) {
@@ -723,7 +723,7 @@ s32 func_80333AE4_unk_bin_15(s32 idx, s32 arg1, f32 arg2) {
     f32 sp18;
 
     sp1C = func_80333BCC_unk_bin_15(idx, arg1);
-    sp18 = Math_WrapAngle(sp1C, -gObjects[idx].unk3C);
+    sp18 = Math_WrapAngle(sp1C, -gObjects[idx].moveAngle);
 
     if (sp18 < arg2 || 360.0f - arg2 < sp18) {
         return 0;
@@ -849,7 +849,7 @@ void func_80334054_unk_bin_15() {
             }
         } else {
             func_8002A8B4(gCurrentParsedObject, 3.0f);
-            obj->Rot.y = obj->unk3C;
+            obj->Rot.y = obj->moveAngle;
             obj->unk132--;
         }
     }
@@ -888,7 +888,7 @@ void func_80334540_unk_bin_15() {
         obj->unk132++;
         obj->unk44 = 20.0f;
         obj->Rot.y = gObjects[obj->unkC2].Rot.y;
-        obj->unk3C = obj->Rot.y;
+        obj->moveAngle = obj->Rot.y;
         obj->unkA6 = 0x14;
         obj->unkA8 = 0x3C;
     }
@@ -901,7 +901,7 @@ void func_80334540_unk_bin_15() {
             obj->unk40 = Math_WrapAngle(obj->unk40, 2.0f * sp2C);
         }
 
-        obj->Rot.y = obj->unk3C;
+        obj->Rot.y = obj->moveAngle;
         obj->Rot.x = 360.0f - obj->unk40;
 
         if (obj->Rot.x >= 360.0f) {
@@ -910,7 +910,7 @@ void func_80334540_unk_bin_15() {
 
         func_8002A8B4(gCurrentParsedObject, 3.0f);
 
-        obj->Rot.y = obj->unk3C;
+        obj->Rot.y = obj->moveAngle;
         obj->unkA6--;
     } else {
         obj->unkA6--;

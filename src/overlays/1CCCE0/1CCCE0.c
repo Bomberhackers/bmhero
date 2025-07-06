@@ -4,12 +4,12 @@
  *  These symbols seem to be used between code and the overlays..
  */
 
-extern struct UnkStruct_80027C00 D_80114528;
-extern struct UnkStruct_80027C00 D_80114534;
-extern struct UnkStruct_80027C00 D_80114540;
-extern struct UnkStruct_80027C00 D_8011454C;
-extern struct UnkStruct_80027C00 D_80114558;
-extern struct UnkStruct_80027C00 D_80114570;
+extern struct ObjSpawnInfo D_80114528;
+extern struct ObjSpawnInfo D_80114534;
+extern struct ObjSpawnInfo D_80114540;
+extern struct ObjSpawnInfo D_8011454C;
+extern struct ObjSpawnInfo D_80114558;
+extern struct ObjSpawnInfo D_80114570;
 extern u32 D_8011730C;
 extern UNK_TYPE D_80117C94;
 extern u32 D_80118ACC;
@@ -110,7 +110,7 @@ void func_803305F0_unk_bin_35(struct ObjectStruct* obj) {
     if (obj->unk132 == 0) {
         obj->unk132 = 1;
         obj->unk44 = 0.0f;
-        obj->unk3C = func_8002A46C(gCurrentParsedObject);
+        obj->moveAngle = Get_AngleToPlayer(gCurrentParsedObject);
     }
     if (func_80028FA0(gCurrentParsedObject) != 0) {
         func_80029B60(gCurrentParsedObject);
@@ -122,7 +122,7 @@ void func_803305F0_unk_bin_35(struct ObjectStruct* obj) {
     obj->Vel.y = 0.0f;
     func_80029C40(gCurrentParsedObject);
     if (func_80029018(gCurrentParsedObject, 4U, 30.0f, 0.0f, 0.0f, 0.0f) != 0) {
-        obj->unk3C = func_8002A46C(gCurrentParsedObject);
+        obj->moveAngle = Get_AngleToPlayer(gCurrentParsedObject);
     }
 }
 
@@ -199,7 +199,7 @@ void func_80330A64_unk_bin_35(void) {
     sp20 = FALSE;
     if (obj->unk132 == 0) {
         obj->unk132 += 1;
-        obj->unk3C = obj->Rot.y;
+        obj->moveAngle = obj->Rot.y;
         obj->unk40 = 0.0f;
         obj->unk44 = 15.0f;
         obj->unkA6 = 0x28;
@@ -429,7 +429,7 @@ void func_80331928_unk_bin_35(void) {
     if (obj->unkB0 == 0) {
         sp38 = func_8002A640(gCurrentParsedObject, 10.0f);
         obj->Rot.y = Math_WrapAngle(obj->Rot.y, (f32) (sp38 * 0xA));
-        obj->unk3C = obj->Rot.y;
+        obj->moveAngle = obj->Rot.y;
     } else {
         obj->unkB0 -= 1;
     }
@@ -476,8 +476,8 @@ void func_80331CEC_unk_bin_35(void) {
     if (obj->unk132 == 0) {
         obj->unk132 += 1;
         obj->unk44 = 25.0f;
-        sp30 = (s32) func_8002A46C(gCurrentParsedObject);
-        obj->unk3C = (f32) sp30;
+        sp30 = (s32) Get_AngleToPlayer(gCurrentParsedObject);
+        obj->moveAngle = (f32) sp30;
         func_8001C0EC(gCurrentParsedObject, 0, 4, 0x5A, &D_80118AE4);
     }
     if (func_80028FA0(gCurrentParsedObject) != 0) {
@@ -487,7 +487,7 @@ void func_80331CEC_unk_bin_35(void) {
     func_80029C40(gCurrentParsedObject);
     if (func_80029018(gCurrentParsedObject, 1U, 80.0f, 0.0f, 0.0f, 0.0f) != 0) {
         obj->Vel.x = obj->Vel.y = obj->Vel.z = 0.0f;
-        obj->Rot.y = obj->unk3C;
+        obj->Rot.y = obj->moveAngle;
         obj->actionState = 4;
         obj->unk132 = 0;
     }
@@ -584,7 +584,7 @@ void func_803323F4_unk_bin_35(void) {
         parent->unk132 = 1;
         parent->unkA6 = 0;
         parent->unk44 = 30.0f;
-        parent->unk3C = parent->Rot.y;
+        parent->moveAngle = parent->Rot.y;
         parent->Vel.y = 0.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0x49, &D_8011730C);
         func_8001BBDC(gCurrentParsedObject, 0);
@@ -653,7 +653,7 @@ void func_80332860_unk_bin_35(void) {
         parent->unk132 = 1;
         parent->unkA6 = 0;
         parent->unk44 = 30.0f;
-        parent->unk3C = Math_WrapAngle(parent->Rot.y, 180.0f);
+        parent->moveAngle = Math_WrapAngle(parent->Rot.y, 180.0f);
         parent->Vel.y = 0.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 2, 0x49, &D_8011730C);
     }
@@ -728,7 +728,7 @@ void func_80332BEC_unk_bin_35(void) {
 void func_80332DE8_unk_bin_35(struct ObjectStruct* arg0) {
     s16 objIdx;
 
-    objIdx = func_80027464(1, &D_80114570, arg0->Pos.x, arg0->Pos.y, arg0->Pos.z, arg0->unk3C);
+    objIdx = func_80027464(1, &D_80114570, arg0->Pos.x, arg0->Pos.y, arg0->Pos.z, arg0->moveAngle);
     if (objIdx != -1) {
         gObjects[objIdx].actionState = 2;
         gObjects[objIdx].unkA6 = 0x50;

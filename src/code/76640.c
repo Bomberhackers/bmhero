@@ -439,7 +439,7 @@ void func_80085B34(f32 arg0, f32 arg1) {
     D_801651C4 = gPlayerObject->Pos.x + arg0;
     D_801651C8 = gPlayerObject->Pos.y;
     D_801651CC = gPlayerObject->Pos.z + arg1;
-    D_801651D0 = gPlayerObject->unk3C;
+    D_801651D0 = gPlayerObject->moveAngle;
     D_801651D4 = Math_CalcAngleRotated(gActiveContStickX, -gActiveContStickY);
     func_80016A80(D_801651AC, D_801651B0, D_801651B4, D_801651B8, &D_801651D8[0], &D_801651D8[1], &D_801651D8[2],
                   &D_801651D8[3]);
@@ -636,7 +636,7 @@ s32 func_80085D54(void) {
             if (sp40 <= D_80177760[sp38]) {
                 if ((gPlayerObject->damageState != 0x3D) && (gPlayerObject->damageState != 0)) {
                     func_802844D4();
-                    gPlayerObject->unk3C = (f32) (D_80177750[sp38] * 0x5A);
+                    gPlayerObject->moveAngle = (f32) (D_80177750[sp38] * 0x5A);
                     return 1;
                 }
             }
@@ -901,7 +901,7 @@ void func_80087694(void) {
 void func_80087994(void) {
     UNUSED s16 sp20;
 
-    if ((gPlayerObject->damageState >= 2) && (gPlayerObject->damageState < 0x3D)) {
+    if ((gPlayerObject->damageState >= 2) && (gPlayerObject->damageState < 61)) {
         gPlayerObject->damageState -= 1;
     }
     if (D_8016E0D0 != 0) {
@@ -1164,7 +1164,7 @@ void func_80088694(void) {
     gPlayerObject->Pos.y = D_8016E43C;
     gPlayerObject->Pos.z = D_8016E440;
     gPlayerObject->Rot.y = D_8016E444;
-    gPlayerObject->unk3C = gPlayerObject->Rot.y;
+    gPlayerObject->moveAngle = gPlayerObject->Rot.y;
     gPlayerObject->damageState = 1;
     func_80087E14();
     func_8006828C();
@@ -1212,7 +1212,7 @@ void func_800889A8(void) {
     gPlayerObject->Pos.y = D_8016E43C;
     gPlayerObject->Pos.z = D_8016E440;
     gPlayerObject->Rot.y = D_8016E444;
-    gPlayerObject->unk3C = gPlayerObject->Rot.y;
+    gPlayerObject->moveAngle = gPlayerObject->Rot.y;
     func_80087E14();
     func_8006828C();
     func_80085B34(0.0f, 0.0f);

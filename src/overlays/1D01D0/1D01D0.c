@@ -1,8 +1,8 @@
 #include "common.h"
 
-extern struct UnkStruct_80027C00 D_8011457C;
-extern struct UnkStruct_80027C00 D_80114588;
-extern struct UnkStruct_80027C00 D_80114594;
+extern struct ObjSpawnInfo D_8011457C;
+extern struct ObjSpawnInfo D_80114588;
+extern struct ObjSpawnInfo D_80114594;
 
 u8 func_80330000_unk_bin_36(f32 arg0, f32 arg1, f32 arg2);
 void func_80330090_unk_bin_36(void);
@@ -94,7 +94,7 @@ void func_803302E4_unk_bin_36() {
         return;
     } else {
         func_8002A8B4(gCurrentParsedObject, 1.0f);
-        obj->Rot.y = obj->unk3C;
+        obj->Rot.y = obj->moveAngle;
     }
 
     if (obj->unk44 > 26.0f) {
@@ -243,7 +243,7 @@ void func_80330AF0_unk_bin_36() {
     }
 
     func_8002A8B4(gCurrentParsedObject, 1.0f);
-    obj->Rot.y = obj->unk3C;
+    obj->Rot.y = obj->moveAngle;
 
     if (obj->unk44 > 26.0f) {
         obj->unk44 = 26.0f;
@@ -338,7 +338,7 @@ void func_80331124_unk_bin_36(void) {
         obj->unkA6 = 0;
         obj->unkA8 *= 0x64;
         obj->unkB6 = obj->Pos.y;
-        obj->unk3C = (Math_Random(0xA) & 1) * 0xB4 + 0x5A;
+        obj->moveAngle = (Math_Random(0xA) & 1) * 0xB4 + 0x5A;
         obj->unk44 = 4.0f;
         obj->unk40 = 90.0f;
         obj->unk48 = 30.0f;
@@ -358,10 +358,10 @@ void func_80331124_unk_bin_36(void) {
         obj->unkA8 = 0;
     }
     if (obj->unkA8 == 0) {
-        if (obj->unk3C == 90.0f) {
-            obj->unk3C = 270.0f;
+        if (obj->moveAngle == 90.0f) {
+            obj->moveAngle = 270.0f;
         } else {
-            obj->unk3C = 90.0f;
+            obj->moveAngle = 90.0f;
         }
 
         obj->unkA8 = (Math_Random(0xA) & 1) + 1;

@@ -95,16 +95,16 @@ void func_800D9298(void) {
     obj = &gObjects[gCurrentParsedObject];
     if (obj->unk132 == 0) {
         obj->unk132 = 1;
-        obj->unkA6 = (s16) (s32) func_8002A46C(gCurrentParsedObject);
+        obj->unkA6 = (s16) (s32) Get_AngleToPlayer(gCurrentParsedObject);
         obj->unkA8 = func_8002A560(gCurrentParsedObject, 2.0f);
     }
-    sp18 = Math_WrapAngle((f32) obj->unkA6, -obj->unk3C);
+    sp18 = Math_WrapAngle((f32) obj->unkA6, -obj->moveAngle);
     if ((sp18 <= 7.0f) || (353.0f <= sp18)) {
         obj->actionState = 3;
         obj->unk132 = 0;
     } else {
-        obj->unk3C = Math_WrapAngle(obj->unk3C, (f32) (obj->unkA8 * 0xE));
-        obj->Rot.y = obj->unk3C;
+        obj->moveAngle = Math_WrapAngle(obj->moveAngle, (f32) (obj->unkA8 * 0xE));
+        obj->Rot.y = obj->moveAngle;
     }
 }
 
@@ -186,8 +186,8 @@ void func_800D97A4(void) {
         sp2C->unk132 += 1;
         sp2C->unkA6 = 0xA;
         sp2C->unk44 = 20.0f;
-        sp2C->unk3C = func_8002A46C(gCurrentParsedObject);
-        sp2C->Rot.y = sp2C->unk3C;
+        sp2C->moveAngle = Get_AngleToPlayer(gCurrentParsedObject);
+        sp2C->Rot.y = sp2C->moveAngle;
     }
     sp2C->unkA8 = 0;
     if (sp2C->unkA6 == 0) {
@@ -261,7 +261,7 @@ void func_800D9BD4(void) {
     if (sp3C->unk132 == 0) {
         sp3C->unk132 = 1;
         sp3C->unk44 = 4.0f;
-        sp3C->unk3C = sp3C->Rot.y;
+        sp3C->moveAngle = sp3C->Rot.y;
         sp3C->unk40 = 0.0f;
         sp3C->unkA8 = 0;
         sp3C->unkAA = 0;
@@ -291,13 +291,13 @@ void func_800D9BD4(void) {
     }
     if (sp3C->unkAA == 0) {
         sp30 = Math_CalcAngleRotated(gPlayerObject->Pos.x - sp3C->Pos.x, gPlayerObject->Pos.z - sp3C->Pos.z);
-        sp3C->unkB6 = func_800157EC(sp3C->unk3C, sp30, 2.0f);
-        sp3C->unk3C = Math_WrapAngle(sp3C->unk3C, (f32) (sp3C->unkB6 * 2));
+        sp3C->unkB6 = func_800157EC(sp3C->moveAngle, sp30, 2.0f);
+        sp3C->moveAngle = Math_WrapAngle(sp3C->moveAngle, (f32) (sp3C->unkB6 * 2));
         sp30 = Math_CalcAngleSimple(gPlayerObject->Pos.x - sp3C->Pos.x, gPlayerObject->Pos.y - (sp3C->Pos.y - 100.0f));
         sp30 = Math_NormalizeAngle(sp30);
         sp3C->unkB8 = func_800157EC(sp3C->unk40, sp30, 2.0f);
         sp3C->unk40 = Math_WrapAngle(sp3C->unk40, (f32) sp3C->unkB8);
-        sp3C->Rot.y = sp3C->unk3C;
+        sp3C->Rot.y = sp3C->moveAngle;
     }
     func_80029D8C(gCurrentParsedObject);
     if (func_80029018(gCurrentParsedObject, 3U, 60.0f, 0.0f, 0.0f, 0.0f) != 0) {
@@ -316,7 +316,7 @@ void func_800D9BD4(void) {
         sp3C->unkAA = sp3C->unkAC;
         sp3C->unkAC = 0;
         sp3C->unkA8 = 0x12;
-        sp3C->unk3C = Math_WrapAngle(sp3C->unk3C, 180.0f);
+        sp3C->moveAngle = Math_WrapAngle(sp3C->moveAngle, 180.0f);
         sp3C->unk40 = Math_WrapAngle(sp3C->unk40, 180.0f);
         sp3C->unk40 = Math_NormalizeAngle(sp3C->unk40);
     }

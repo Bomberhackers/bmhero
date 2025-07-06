@@ -76,8 +76,8 @@ extern u8 unk_bin_9_ROM_END[];        // 0x15C0D0
 extern u8 unk_bin_10_ROM_START[];     // 0x15C0D0
 extern u8 unk_bin_10_ROM_END[];       // 0x160560
 
-extern u8 unk_bin_11_ROM_START[];     // 0x160560
-extern u8 unk_bin_11_ROM_END[];       // 0x167950
+extern u8 ovl_endol_ROM_START[];     // 0x160560
+extern u8 ovl_endol_ROM_END[];       // 0x167950
 
 extern u8 unk_bin_12_ROM_START[];     // 0x167950
 extern u8 unk_bin_12_ROM_END[];       // 0x16D650

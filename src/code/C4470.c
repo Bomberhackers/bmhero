@@ -1,4 +1,5 @@
 #include "common.h"
+#include "debug.h"
 
 void func_800D1F50(void) {
     UNUSED s32 sp24;
@@ -18,59 +19,59 @@ void func_800D1FCC(void) {
 }
 
 void func_800D20E4(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 = 1;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 = 1;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0x94, &D_80118530);
         func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118600 + 0xFC / 4);
         func_8001ABF4(gCurrentParsedObject, 1, 0, &D_80118600 + 0x118 / 4);
         func_8001ABF4(gCurrentParsedObject, 2, 0, &D_80118600 + 0x134 / 4);
     }
     if (func_8002A1FC(gCurrentParsedObject, 360.0f) != 0) {
-        CurrentObject->actionState = 2;
-        CurrentObject->unk132 = 0;
+        obj->actionState = 2;
+        obj->unk132 = 0;
     }
 }
 
 void func_800D2208(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 = 1;
-        CurrentObject->unkA6 = 0x28;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 = 1;
+        obj->unkA6 = 0x28;
         func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118600);
         func_8001ABF4(gCurrentParsedObject, 1, 0, &D_80118600 + 0x1C / 4);
         func_8001ABF4(gCurrentParsedObject, 2, 0, &D_80118600 + 0x38 / 4);
     }
-    if (CurrentObject->unkA6 == 0) {
-        CurrentObject->damageState = 1;
-        CurrentObject->actionState = 3;
-        CurrentObject->unk132 = 0;
+    if (obj->unkA6 == 0) {
+        obj->damageState = 1;
+        obj->actionState = 3;
+        obj->unk132 = 0;
     } else {
-        CurrentObject->unkA6 -= 1;
+        obj->unkA6 -= 1;
     }
 }
 
 void func_800D2334(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 = 1;
-        CurrentObject->unkA6 = 0x14;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 = 1;
+        obj->unkA6 = 0x14;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0x94, &D_80118530);
         func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118600 + 0x54 / 4);
         func_8001ABF4(gCurrentParsedObject, 1, 0, &D_80118600 + 0x70 / 4);
         func_8001ABF4(gCurrentParsedObject, 2, 0, &D_80118600 + 0x8C / 4);
     }
-    if (CurrentObject->unkA6 == 0) {
-        CurrentObject->actionState = 4;
-        CurrentObject->unk132 = 0;
+    if (obj->unkA6 == 0) {
+        obj->actionState = 4;
+        obj->unk132 = 0;
     } else {
-        CurrentObject->unkA6 -= 1;
+        obj->unkA6 -= 1;
     }
 }
 
@@ -100,11 +101,11 @@ void func_800D247C(void) {
 }
 
 void func_800D26A0(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 += 1;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 += 1;
         gObjects[gCurrentParsedObject].damageState = 0x32;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0x94, &D_80118530);
         func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118600 + 0xA8 / 4);
@@ -112,12 +113,12 @@ void func_800D26A0(void) {
         func_8001ABF4(gCurrentParsedObject, 2, 0, &D_80118600 + 0xE0 / 4);
     }
     if ((gObjects[gCurrentParsedObject].damageState) >= 2) {
-        func_8001BB34(gCurrentParsedObject, !(CurrentObject->damageState % 2));
+        func_8001BB34(gCurrentParsedObject, !(obj->damageState % 2));
     }
-    if (CurrentObject->damageState == 1) {
+    if (obj->damageState == 1) {
         func_8001BB34(gCurrentParsedObject, 0);
-        CurrentObject->actionState = 3;
-        CurrentObject->unk132 = 0;
+        obj->actionState = 3;
+        obj->unk132 = 0;
     }
 }
 
@@ -170,7 +171,7 @@ void func_800D2A04(void) {
 
     if (sp24->unkA6 != 0) {
         sp24->unkA6 -= 1;
-        sp24->unkA8 = (s16) (s32) func_8002A46C(gCurrentParsedObject);
+        sp24->unkA8 = (s16) (s32) Get_AngleToPlayer(gCurrentParsedObject);
         if (sp24->unkA8 >= 0xB4) {
             sp24->unkAA = -5;
             sp24->unkAC = -4;
@@ -181,15 +182,15 @@ void func_800D2A04(void) {
         sp24->unkAE = 4;
     } else {
         if (sp24->unkAE != 0) {
-            sp24->unkB0 = (s16) (s32) Math_WrapAngle(sp24->unk3C, (f32) -sp24->unkA8);
+            sp24->unkB0 = (s16) (s32) Math_WrapAngle(sp24->moveAngle, (f32) -sp24->unkA8);
             if ((sp24->unkB0 < 6) || (sp24->unkB0 >= 0x163)) {
-                sp24->unk3C = Math_WrapAngle(sp24->unk3C, (f32) sp24->unkAA);
+                sp24->moveAngle = Math_WrapAngle(sp24->moveAngle, (f32) sp24->unkAA);
                 sp24->unkAE -= 1;
             } else {
                 sp24->unkAE = 0;
             }
         } else {
-            sp24->unk3C = (f32) sp24->unkA8;
+            sp24->moveAngle = (f32) sp24->unkA8;
         }
         sp24->Rot.y = Math_WrapAngle(sp24->Rot.y, (f32) sp24->unkAC);
     }
@@ -258,25 +259,25 @@ void func_800D2F1C(void) {
 }
 
 void func_800D3048(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
     f32 sp28;
     f32 sp24;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 += 1;
-        CurrentObject->unk44 = 0.0f;
-        CurrentObject->unk40 = 90.0f;
-        CurrentObject->unk48 = 8.0f;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 += 1;
+        obj->unk44 = 0.0f;
+        obj->unk40 = 90.0f;
+        obj->unk48 = 8.0f;
         func_8001BB04(gCurrentParsedObject, 0);
     }
     func_80029D04(gCurrentParsedObject);
     if ((func_800295C0(gCurrentParsedObject, &sp28, &sp24, 0.0f, 0.0f, 0.0f) == 0)) {
-        if ((CurrentObject->Pos.y >= (sp28 + 90.0f))) {
-            CurrentObject->Vel.y = 0.0f;
-            CurrentObject->damageState = 1;
-            CurrentObject->actionState = 3;
-            CurrentObject->unk132 = 0;
+        if ((obj->Pos.y >= (sp28 + 90.0f))) {
+            obj->Vel.y = 0.0f;
+            obj->damageState = 1;
+            obj->actionState = 3;
+            obj->unk132 = 0;
         }
     }
 }
@@ -292,7 +293,7 @@ void func_800D31A8(void) {
         sp3C->unk132 = 1;
         sp3C->unkAC = 0;
         sp3C->unk44 = 0.0f;
-        sp3C->unk3C = func_8002A46C(gCurrentParsedObject);
+        sp3C->moveAngle = Get_AngleToPlayer(gCurrentParsedObject);
         func_8001ABF4(
             gCurrentParsedObject, 0, 0,
             &D_80118784 +
@@ -354,27 +355,27 @@ void func_800D3568(void) {
 }
 
 void func_800D3578(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
     s32 sp20;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 = 1;
-        CurrentObject->unkA6 = 0x1E;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 = 1;
+        obj->unkA6 = 0x1E;
         func_8001BB34(gCurrentParsedObject, 1);
     }
-    if (CurrentObject->unkA6 == 0) {
-        if (CurrentObject->unkA8 < 2) {
+    if (obj->unkA6 == 0) {
+        if (obj->unkA8 < 2) {
             sp20 =
-                func_80027464(1, &D_80114120, CurrentObject->Pos.x, CurrentObject->Pos.y, CurrentObject->Pos.z, 0.0f);
+                func_80027464(1, &D_80114120, obj->Pos.x, obj->Pos.y, obj->Pos.z, 0.0f);
             if (sp20 != -1) {
-                gObjects[sp20].unkBA = CurrentObject->unkBA;
-                CurrentObject->unkA6 = 0x1E;
-                CurrentObject->unkA8 += 1;
+                gObjects[sp20].unkBA = obj->unkBA;
+                obj->unkA6 = 0x1E;
+                obj->unkA8 += 1;
             }
         }
     } else {
-        CurrentObject->unkA6 -= 1;
+        obj->unkA6 -= 1;
     }
 }
 
@@ -390,94 +391,94 @@ void func_800D36E8(void) {
 }
 
 void func_800D375C(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if ((D_80177A64 == 0) && (CurrentObject->actionState == 2)) {
-        CurrentObject->actionState = 3;
-        CurrentObject->unk132 = 0;
-    } else if ((D_80177A64 == 2) && (CurrentObject->actionState == 2)) {
-        CurrentObject->actionState = 3;
-        CurrentObject->unk132 = 0;
+    obj = &gObjects[gCurrentParsedObject];
+    if ((D_80177A64 == 0) && (obj->actionState == 2)) {
+        obj->actionState = 3;
+        obj->unk132 = 0;
+    } else if ((D_80177A64 == 2) && (obj->actionState == 2)) {
+        obj->actionState = 3;
+        obj->unk132 = 0;
     }
 }
 
 void func_800D3824(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 = 1;
-        CurrentObject->unk44 = 0.0f;
-        CurrentObject->unk40 = 90.0f;
-        CurrentObject->unk48 = 5.0f;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 = 1;
+        obj->unk44 = 0.0f;
+        obj->unk40 = 90.0f;
+        obj->unk48 = 5.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0x97, &D_801187BC);
     }
     func_80029C40(gCurrentParsedObject);
     func_80029D04(gCurrentParsedObject);
     if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
-        CurrentObject->unk48 = 0.0f;
-        CurrentObject->Vel.y = CurrentObject->unk48;
-        CurrentObject->actionState = 2;
-        CurrentObject->unk132 = 0;
+        obj->unk48 = 0.0f;
+        obj->Vel.y = obj->unk48;
+        obj->actionState = 2;
+        obj->unk132 = 0;
         func_8001BBDC(gCurrentParsedObject, 1);
     }
 }
 
 void func_800D3974(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
     f32 sp30;
     f32 sp2C;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 = 1;
-        CurrentObject->unkA8 = 0xA;
-        CurrentObject->unkAC = (s16) (s32) CurrentObject->Pos.x;
-        CurrentObject->unkAE = (s16) (s32) CurrentObject->Pos.z;
-        CurrentObject->unk3C = (f32) Math_Random(0x168);
-        CurrentObject->unk44 = 4.0f;
-        CurrentObject->unkB6 = (s16) (s32) CurrentObject->Pos.y;
-        CurrentObject->unkB8 = 0;
-        CurrentObject->unk40 = 90.0f;
-        CurrentObject->unk48 = 30.0f;
-        CurrentObject->damageState = 1;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 = 1;
+        obj->unkA8 = 0xA;
+        obj->unkAC = (s16) (s32) obj->Pos.x;
+        obj->unkAE = (s16) (s32) obj->Pos.z;
+        obj->moveAngle = (f32) Math_Random(0x168);
+        obj->unk44 = 4.0f;
+        obj->unkB6 = (s16) (s32) obj->Pos.y;
+        obj->unkB8 = 0;
+        obj->unk40 = 90.0f;
+        obj->unk48 = 30.0f;
+        obj->damageState = 1;
         func_8001C0EC(gCurrentParsedObject, 0, 1, 0x97, &D_801187BC);
         func_8001BBDC(gCurrentParsedObject, 0);
     }
 
-    if ((CurrentObject->unkA8 == 0) && (func_80028FA0(gCurrentParsedObject) != 0)) {
+    if ((obj->unkA8 == 0) && (func_80028FA0(gCurrentParsedObject) != 0)) {
         func_80029B60(gCurrentParsedObject);
-        CurrentObject->unkA8 = 0xA;
+        obj->unkA8 = 0xA;
     }
 
-    CurrentObject->unk3C = Math_WrapAngle(CurrentObject->unk3C, 0.5f);
+    obj->moveAngle = Math_WrapAngle(obj->moveAngle, 0.5f);
     func_80029C40(gCurrentParsedObject);
-    CurrentObject->unkB8 = Math_WrapAngle(CurrentObject->unkB8, 10.0f);
+    obj->unkB8 = Math_WrapAngle(obj->unkB8, 10.0f);
     func_800294F0(gCurrentParsedObject, &sp30, &sp2C, 0.0f, 0.0f, 0.0f);
-    CurrentObject->unk48 =
-        sinf(CurrentObject->unkB8 * DEG_TO_RAD) * 30.0f + CurrentObject->unkB6 - CurrentObject->Pos.y;
+    obj->unk48 =
+        sinf(obj->unkB8 * DEG_TO_RAD) * 30.0f + obj->unkB6 - obj->Pos.y;
     func_80029D04(gCurrentParsedObject);
 
     if (func_80029018(gCurrentParsedObject, 3U, 60.0f, 0.0f, 0.0f, 0.0f) != 0) {
         func_80029824(gCurrentParsedObject, func_800297DC());
-        CurrentObject->unkA8 = 0xA;
+        obj->unkA8 = 0xA;
     }
-    if (CurrentObject->unkA8 == 0) {
-        CurrentObject->unkB0 = (CurrentObject->Pos.x - CurrentObject->unkAC);
-        CurrentObject->unkB2 = (CurrentObject->Pos.z - CurrentObject->unkAE);
-        if ((CurrentObject->unkB0 >= 0x190) || (CurrentObject->unkB0 < -0x18F)) {
+    if (obj->unkA8 == 0) {
+        obj->unkB0 = (obj->Pos.x - obj->unkAC);
+        obj->unkB2 = (obj->Pos.z - obj->unkAE);
+        if ((obj->unkB0 >= 0x190) || (obj->unkB0 < -0x18F)) {
             func_80029824(gCurrentParsedObject, func_800297DC());
-            CurrentObject->unkA8 = 0xA;
+            obj->unkA8 = 0xA;
         } else {
-            if ((CurrentObject->unkB2 >= 0x190) || (CurrentObject->unkB2 < -0x18F)) {
+            if ((obj->unkB2 >= 0x190) || (obj->unkB2 < -0x18F)) {
                 func_80029824(gCurrentParsedObject, func_800297DC());
-                CurrentObject->unkA8 = 0xA;
+                obj->unkA8 = 0xA;
             }
         }
     }
-    if (CurrentObject->unkA8 != 0) {
-        CurrentObject->unkA8 -= 1;
+    if (obj->unkA8 != 0) {
+        obj->unkA8 -= 1;
     }
 }
 
@@ -576,21 +577,21 @@ void func_800D4268(void) {
 }
 
 void func_800D4430(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 += 1;
-        CurrentObject->unkA6 = 0;
-        CurrentObject->damageState = 0;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 += 1;
+        obj->unkA6 = 0;
+        obj->damageState = 0;
         func_8001BB34(gCurrentParsedObject, 1);
         func_8001BBDC(gCurrentParsedObject, 1);
     }
-    if (CurrentObject->unkA6 >= 0x2E) {
-        CurrentObject->actionState = 1;
-        CurrentObject->unk132 = 0;
+    if (obj->unkA6 >= 0x2E) {
+        obj->actionState = 1;
+        obj->unk132 = 0;
     } else {
-        CurrentObject->unkA6 += 1;
+        obj->unkA6 += 1;
     }
 }
 
@@ -616,22 +617,22 @@ void stub_unknown_800D45C4() {
 }
 
 void func_800D464C(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
     UNUSED s32 sp20;
     f32 sp1C;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 += 1;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 += 1;
         func_8001BB34(gCurrentParsedObject, 1);
         func_8001BB04(gCurrentParsedObject, 1);
     }
-    sp1C = (gPlayerObject->Pos.y + 750.0f) - CurrentObject->Pos.y;
+    sp1C = (gPlayerObject->Pos.y + 750.0f) - obj->Pos.y;
     if ((sp1C > -350.0f) && (sp1C < 50.0f)) {
-        sp1C = gPlayerObject->Pos.x - CurrentObject->Pos.x;
+        sp1C = gPlayerObject->Pos.x - obj->Pos.x;
         if ((sp1C > -800.0f) && (sp1C < 800.0f)) {
-            CurrentObject->actionState = 2;
-            CurrentObject->unk132 = 0;
+            obj->actionState = 2;
+            obj->unk132 = 0;
         }
     }
 }
@@ -653,7 +654,7 @@ void func_800D47C0(void) {
         if (sp3C->unkA6 == 0) {
             sp38 = func_80027464(1, &D_80114150, sp3C->Pos.x, sp3C->Pos.y, sp3C->Pos.z, 0.0f);
             if (sp38 != -1) {
-                gObjects[sp38].Rot.y = gObjects[sp38].unk3C = sp3C->Rot.y;
+                gObjects[sp38].Rot.y = gObjects[sp38].moveAngle = sp3C->Rot.y;
                 sp3C->unkA6 = 0x96;
             }
         } else {
@@ -732,7 +733,7 @@ void func_800D4C8C(void) {
 
 void func_800D4D74(void) {
     // something something "circle of 120.0f OR 140.0f size"
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
     f32 sp38;
     f32 sp34;
     s32 sp30;
@@ -740,104 +741,104 @@ void func_800D4D74(void) {
     s32 sp28;
     s32 sp24;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 = 1;
-        CurrentObject->unkA6 = 0;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 = 1;
+        obj->unkA6 = 0;
         func_8001BBDC(gCurrentParsedObject, 0);
     }
 
-    if (CurrentObject->unkA6 == 0) {
-        CurrentObject->unk44 = 13.0f;
-        CurrentObject->Vel.y = 0.0f;
+    if (obj->unkA6 == 0) {
+        obj->unk44 = 13.0f;
+        obj->Vel.y = 0.0f;
         func_80029C40(gCurrentParsedObject);
-        sp30 = sinf(CurrentObject->unk3C * DEG_TO_RAD) * 120.0f + CurrentObject->Pos.x;
-        sp28 = cosf(CurrentObject->unk3C * DEG_TO_RAD) * 120.0f + CurrentObject->Pos.z;
-        sp2C = (s32) (CurrentObject->Pos.y - 120.0f);
+        sp30 = sinf(obj->moveAngle * DEG_TO_RAD) * 120.0f + obj->Pos.x;
+        sp28 = cosf(obj->moveAngle * DEG_TO_RAD) * 120.0f + obj->Pos.z;
+        sp2C = (s32) (obj->Pos.y - 120.0f);
 
         func_80067748((f32) sp30, (f32) sp2C, (f32) sp28);
         sp24 = D_801776E0 & 1;
         if (sp24 == 0) {
             sp2C = D_80177760[sp24];
-            if (CurrentObject->Pos.y - 120.0f - sp2C >= 120.0f) {
-                CurrentObject->actionState = 4;
-                CurrentObject->unk132 = 0;
+            if (obj->Pos.y - 120.0f - sp2C >= 120.0f) {
+                obj->actionState = 4;
+                obj->unk132 = 0;
             } else {
                 if (func_800295C0(gCurrentParsedObject, &sp38, &sp34, 0.0f, 0.0f, 0.0f) != 0) {
-                    CurrentObject->Pos.y = sp34;
+                    obj->Pos.y = sp34;
                 } else {
-                    CurrentObject->Pos.y = sp38;
+                    obj->Pos.y = sp38;
                 }
-                CurrentObject->Pos.y += 120.0f;
+                obj->Pos.y += 120.0f;
             }
         } else {
             if (func_800295C0(gCurrentParsedObject, &sp38, &sp34, 0.0f, 0.0f, 0.0f) != 0) {
-                CurrentObject->Pos.y = sp34;
+                obj->Pos.y = sp34;
             } else {
-                CurrentObject->Pos.y = sp38;
+                obj->Pos.y = sp38;
             }
 
-            CurrentObject->Pos.y += 120.0f;
-            CurrentObject->unkA6 = 9;
-            CurrentObject->unk44 = 0.0f;
-            CurrentObject->Vel.z = 0.0f;
-            CurrentObject->Vel.x = CurrentObject->Vel.z;
-            CurrentObject->unkA8 = (s16) (s32) (CurrentObject->unk3C - 90.0f);
+            obj->Pos.y += 120.0f;
+            obj->unkA6 = 9;
+            obj->unk44 = 0.0f;
+            obj->Vel.z = 0.0f;
+            obj->Vel.x = obj->Vel.z;
+            obj->unkA8 = (s16) (s32) (obj->moveAngle - 90.0f);
 
-            if (CurrentObject->unkA8 < 0) {}
-            CurrentObject->unkAA = (s16) (s32) (CurrentObject->unk3C + 90.0f);
-            if (CurrentObject->unkAA >= 0x168) {}
+            if (obj->unkA8 < 0) {}
+            obj->unkAA = (s16) (s32) (obj->moveAngle + 90.0f);
+            if (obj->unkAA >= 0x168) {}
 
-            sp30 = sinf(CurrentObject->unkA8 * DEG_TO_RAD) * 140.0f + CurrentObject->Pos.x;
-            sp28 = cosf(CurrentObject->unkA8 * DEG_TO_RAD) * 140.0f + CurrentObject->Pos.z;
-            sp2C = CurrentObject->Pos.y - 120.0f;
+            sp30 = sinf(obj->unkA8 * DEG_TO_RAD) * 140.0f + obj->Pos.x;
+            sp28 = cosf(obj->unkA8 * DEG_TO_RAD) * 140.0f + obj->Pos.z;
+            sp2C = obj->Pos.y - 120.0f;
 
             func_80067748(sp30, sp2C, sp28);
             sp24 = D_801776E0 & 1;
-            if (sp24 == 0 && CurrentObject->Pos.y - 120.0f - D_80177760[sp24] <= 120.0f) {
-                CurrentObject->unkB6 = -0xA;
+            if (sp24 == 0 && obj->Pos.y - 120.0f - D_80177760[sp24] <= 120.0f) {
+                obj->unkB6 = -0xA;
             } else {
-                sp30 = sinf(CurrentObject->unkAA * DEG_TO_RAD) * 140.0f + CurrentObject->Pos.x;
-                sp28 = cosf(CurrentObject->unkAA * DEG_TO_RAD) * 140.0f + CurrentObject->Pos.z;
-                sp2C = CurrentObject->Pos.y - 120.0f;
+                sp30 = sinf(obj->unkAA * DEG_TO_RAD) * 140.0f + obj->Pos.x;
+                sp28 = cosf(obj->unkAA * DEG_TO_RAD) * 140.0f + obj->Pos.z;
+                sp2C = obj->Pos.y - 120.0f;
 
                 func_80067748(sp30, sp2C, sp28);
                 sp24 = D_801776E0 & 1;
 
-                if (sp24 == 0 && CurrentObject->Pos.y - 120.0f - D_80177760[sp24] <= 120.0f) {
-                    CurrentObject->unkB6 = 0xA;
+                if (sp24 == 0 && obj->Pos.y - 120.0f - D_80177760[sp24] <= 120.0f) {
+                    obj->unkB6 = 0xA;
                 } else {
                     func_8002B114(gCurrentParsedObject);
                 }
             }
         }
     } else {
-        CurrentObject->unk3C += CurrentObject->unkB6;
-        CurrentObject->Rot.y = CurrentObject->unk3C;
-        CurrentObject->unkA6 -= 1;
+        obj->moveAngle += obj->unkB6;
+        obj->Rot.y = obj->moveAngle;
+        obj->unkA6 -= 1;
     }
 }
 
 void func_800D5610(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 = 1;
-        CurrentObject->unkA6 = 0x1E;
-        CurrentObject->unkD8 = 6.0f;
-        CurrentObject->unk44 = 12.0f;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 = 1;
+        obj->unkA6 = 0x1E;
+        obj->unkD8 = 6.0f;
+        obj->unk44 = 12.0f;
         func_80029EF8(gCurrentParsedObject, 2.0f, 0.75f);
     }
-    if (CurrentObject->unkA6 == 0) {
+    if (obj->unkA6 == 0) {
         func_8002B0E4(gCurrentParsedObject);
     } else {
         func_80029C40(gCurrentParsedObject);
-        if (CurrentObject->unkA6 < 0x19) {
-            CurrentObject->Pos.y -= CurrentObject->unkD8;
-            CurrentObject->unkD8 = (f32) ((f64) CurrentObject->unkD8 + 0.5);
+        if (obj->unkA6 < 0x19) {
+            obj->Pos.y -= obj->unkD8;
+            obj->unkD8 = (f32) ((f64) obj->unkD8 + 0.5);
         }
-        CurrentObject->unkA6 -= 1;
+        obj->unkA6 -= 1;
     }
 }
 
@@ -873,69 +874,69 @@ void func_800D58C0(void) {
 }
 
 void func_800D5938(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 += 1;
-        CurrentObject->Vel.x = CurrentObject->Vel.y = CurrentObject->Vel.z = 0.0f;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 += 1;
+        obj->Vel.x = obj->Vel.y = obj->Vel.z = 0.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 1, 0xA8, &D_80118868);
         func_8001BBDC(gCurrentParsedObject, 1);
     }
-    if (gObjects->Pos.y < (CurrentObject->Pos.y - 60.0f)) {
+    if (gObjects->Pos.y < (obj->Pos.y - 60.0f)) {
         if (func_8002A1FC(gCurrentParsedObject, 1200.0f) != 0) {
-            CurrentObject->actionState = 2;
-            CurrentObject->unk132 = 0;
+            obj->actionState = 2;
+            obj->unk132 = 0;
         }
     } else {
-        CurrentObject->actionState = 3;
-        CurrentObject->unk132 = 0;
+        obj->actionState = 3;
+        obj->unk132 = 0;
     }
 }
 
 void func_800D5AA4(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
     s32 sp40;
     f32 sp3C;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 += 1;
-        CurrentObject->Vel.x = CurrentObject->Vel.y = CurrentObject->Vel.z = 0.0f;
-        CurrentObject->unkA6 = CurrentObject->unkA8 = CurrentObject->unkAA = 0;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 += 1;
+        obj->Vel.x = obj->Vel.y = obj->Vel.z = 0.0f;
+        obj->unkA6 = obj->unkA8 = obj->unkAA = 0;
 
         func_8001C0EC(gCurrentParsedObject, 0, 1, 0xA8, &D_80118868);
         func_8001BBDC(gCurrentParsedObject, 0);
-        CurrentObject->damageState = -1;
+        obj->damageState = -1;
     }
-    if (CurrentObject->unkA6 != 0) {
-        if (CurrentObject->unkA8 == 1 || CurrentObject->unkA8 == 3) {
+    if (obj->unkA6 != 0) {
+        if (obj->unkA8 == 1 || obj->unkA8 == 3) {
             if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
-                CurrentObject->unkA6 = 0;
-                CurrentObject->unkA8 += 1;
+                obj->unkA6 = 0;
+                obj->unkA8 += 1;
                 func_8001BBDC(gCurrentParsedObject, 1);
             }
-        } else if (CurrentObject->unkA8 == 3) {
+        } else if (obj->unkA8 == 3) {
             if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
-                CurrentObject->unkA6 = 0;
-                CurrentObject->unkA8 += 1;
+                obj->unkA6 = 0;
+                obj->unkA8 += 1;
                 func_8001C0EC(gCurrentParsedObject, 0, 1, 0xA8, &D_80118868);
                 func_8001BBDC(gCurrentParsedObject, 1);
             }
         } else {
-            if (CurrentObject->unkA8 == 0 || CurrentObject->unkA8 == 2) {
-                if (CurrentObject->unkAA == 0) {
-                    CurrentObject->unkA6 = 0;
-                    CurrentObject->unkA8++;
+            if (obj->unkA8 == 0 || obj->unkA8 == 2) {
+                if (obj->unkAA == 0) {
+                    obj->unkA6 = 0;
+                    obj->unkA8++;
                 } else {
-                    CurrentObject->unkAA--;
+                    obj->unkAA--;
                 }
-            } else if (CurrentObject->unkA8 == 4) {
-                if (CurrentObject->unkAA < 0x28 && CurrentObject->unkAA >= 0x10) {
-                    sp3C = CurrentObject->unkAA & 0xF;
+            } else if (obj->unkA8 == 4) {
+                if (obj->unkAA < 0x28 && obj->unkAA >= 0x10) {
+                    sp3C = obj->unkAA & 0xF;
                     if (sp3C == 3.0f || sp3C == 6.0f || sp3C == 9.0f) {
-                        sp40 = func_80027464(1, &D_80114168, CurrentObject->Pos.x, CurrentObject->Pos.y - 20.0f,
-                                             CurrentObject->Pos.z + 80.0f, CurrentObject->Rot.y);
+                        sp40 = func_80027464(1, &D_80114168, obj->Pos.x, obj->Pos.y - 20.0f,
+                                             obj->Pos.z + 80.0f, obj->Rot.y);
                         if (sp40 != -1) {
                             func_8001ABF4(sp40, 0, 3, &D_80118898);
 
@@ -944,97 +945,97 @@ void func_800D5AA4(void) {
                         }
                     }
                 }
-                if (CurrentObject->unkAA == 0) {
-                    CurrentObject->unkA6 = 0;
-                    CurrentObject->unkA8++;
+                if (obj->unkAA == 0) {
+                    obj->unkA6 = 0;
+                    obj->unkA8++;
                 } else {
-                    CurrentObject->unkAA -= 1;
+                    obj->unkAA -= 1;
                 }
             }
         }
     } else {
-        if (CurrentObject->unkA8 == 0 || CurrentObject->unkA8 == 2) {
-            CurrentObject->unkA6 = 1;
-            CurrentObject->unkAA = 5;
-        } else if (CurrentObject->unkA8 == 1) {
+        if (obj->unkA8 == 0 || obj->unkA8 == 2) {
+            obj->unkA6 = 1;
+            obj->unkAA = 5;
+        } else if (obj->unkA8 == 1) {
             func_8001C0EC(gCurrentParsedObject, 0, 1, 0xA8, &D_80118868);
             func_8001BBDC(gCurrentParsedObject, 0);
-            CurrentObject->unkA6 = 1;
-        } else if (CurrentObject->unkA8 == 3) {
+            obj->unkA6 = 1;
+        } else if (obj->unkA8 == 3) {
             func_8001C0EC(gCurrentParsedObject, 0, 2, 0xA8, &D_80118868);
             func_8001BBDC(gCurrentParsedObject, 0);
-            CurrentObject->unkA6 = 1;
-        } else if (CurrentObject->unkA8 == 4) {
-            CurrentObject->unkA6 = 1;
-            CurrentObject->unkAA = 0x32;
-            CurrentObject->damageState = 1;
-        } else if (CurrentObject->unkA8 == 5) {
+            obj->unkA6 = 1;
+        } else if (obj->unkA8 == 4) {
+            obj->unkA6 = 1;
+            obj->unkAA = 0x32;
+            obj->damageState = 1;
+        } else if (obj->unkA8 == 5) {
             func_8001BBDC(gCurrentParsedObject, 1);
             if (func_8002A2EC(gCurrentParsedObject, 1200.0f) != 0) {
-                CurrentObject->unk132 = 0;
+                obj->unk132 = 0;
             } else {
-                CurrentObject->actionState = 3;
-                CurrentObject->unk132 = 0;
+                obj->actionState = 3;
+                obj->unk132 = 0;
             }
         }
     }
 }
 
 void func_800D613C(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
     f32 sp28;
     f32 sp24;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 += 1;
-        CurrentObject->unkA6 = Math_Random(0xA) & 1;
-        CurrentObject->unk3C = (f32) ((CurrentObject->unkA6 * 0xB4) + 0x5A);
-        CurrentObject->unk44 = 5.0f;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 += 1;
+        obj->unkA6 = Math_Random(0xA) & 1;
+        obj->moveAngle = (f32) ((obj->unkA6 * 0xB4) + 0x5A);
+        obj->unk44 = 5.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0xA8, &D_80118868);
         func_8001BBDC(gCurrentParsedObject, 0);
-        CurrentObject->damageState = 1;
+        obj->damageState = 1;
     }
-    CurrentObject->Vel.y = 0.0f;
+    obj->Vel.y = 0.0f;
     func_80029C40(gCurrentParsedObject);
     if (func_80029018(gCurrentParsedObject, 4U, 180.0f, 0.0f, 0.0f, 0.0f) != 0) {
-        if (CurrentObject->unk3C == 90.0f) {
-            CurrentObject->unk3C = 270.0f;
+        if (obj->moveAngle == 90.0f) {
+            obj->moveAngle = 270.0f;
         } else {
-            CurrentObject->unk3C = 90.0f;
+            obj->moveAngle = 90.0f;
         }
     }
     if (func_800295C0(gCurrentParsedObject, &sp28, &sp24, 0.0f, 60.0f, 0.0f) != 0) {
-        CurrentObject->Pos.y = sp24;
+        obj->Pos.y = sp24;
     } else {
-        CurrentObject->Pos.y = sp28;
+        obj->Pos.y = sp28;
     }
-    CurrentObject->Pos.y += 60.0f;
+    obj->Pos.y += 60.0f;
     if ((func_8001B44C(gCurrentParsedObject, 0) != 0) && (func_8002A2EC(gCurrentParsedObject, 1200.0f) != 0)) {
         func_8001BBDC(gCurrentParsedObject, 1);
-        CurrentObject->unk132 = 0;
-        CurrentObject->actionState = 2;
+        obj->unk132 = 0;
+        obj->actionState = 2;
     }
 }
 
 void func_800D63C4(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 = 1;
-        CurrentObject->Vel.x = CurrentObject->Vel.y = CurrentObject->Vel.z = 0.0f;
-        CurrentObject->unkA8 = 0;
-        CurrentObject->damageState = 0;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 = 1;
+        obj->Vel.x = obj->Vel.y = obj->Vel.z = 0.0f;
+        obj->unkA8 = 0;
+        obj->damageState = 0;
         func_8001C0EC(gCurrentParsedObject, 0, 1, 0xA8, &D_80118868);
         func_8001BBDC(gCurrentParsedObject, 1);
     }
-    if (CurrentObject->Rot.z >= 180.0f) {
-        CurrentObject->unkA8 += 1;
+    if (obj->Rot.z >= 180.0f) {
+        obj->unkA8 += 1;
     } else {
-        CurrentObject->Rot.z += 10.0f;
+        obj->Rot.z += 10.0f;
     }
-    if (CurrentObject->unkA8 == 0xF) {
+    if (obj->unkA8 == 0xF) {
         func_8002B0E4(gCurrentParsedObject);
     }
 }
@@ -1066,66 +1067,66 @@ void func_800D660C(void) {
 }
 
 void func_800D6684(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
     f32 sp40;
     f32 sp3C;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 += 1;
-        CurrentObject->unk44 = 12.0f;
-        CurrentObject->unk48 = 5.0f;
-        CurrentObject->unkA6 = 1;
-        CurrentObject->unkB6 = 0x32;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 += 1;
+        obj->unk44 = 12.0f;
+        obj->unk48 = 5.0f;
+        obj->unkA6 = 1;
+        obj->unkB6 = 0x32;
     }
-    if (CurrentObject->unkA6 != 0) {
-        CurrentObject->unkA6 -= 1;
-        func_800158B4(gPlayerObject->Pos.x - CurrentObject->Pos.x,
-                      (gPlayerObject->Pos.y + 60.0f) - CurrentObject->Pos.y,
-                      gPlayerObject->Pos.z - CurrentObject->Pos.z, &sp40, &sp3C);
-        CurrentObject->unkA8 = sp3C;
-        if ((CurrentObject->unkA8 >= 0x2E) && (CurrentObject->unkA8 < 0xB5)) {
-            CurrentObject->unkA8 = Math_WrapAngle(45.0f, Math_Random(-0xA));
+    if (obj->unkA6 != 0) {
+        obj->unkA6 -= 1;
+        func_800158B4(gPlayerObject->Pos.x - obj->Pos.x,
+                      (gPlayerObject->Pos.y + 60.0f) - obj->Pos.y,
+                      gPlayerObject->Pos.z - obj->Pos.z, &sp40, &sp3C);
+        obj->unkA8 = sp3C;
+        if ((obj->unkA8 >= 0x2E) && (obj->unkA8 < 0xB5)) {
+            obj->unkA8 = Math_WrapAngle(45.0f, Math_Random(-0xA));
         } else {
-            if ((CurrentObject->unkA8 >= 0xB5) && (CurrentObject->unkA8 < 0x13C)) {
-                CurrentObject->unkA8 = Math_WrapAngle(315.0f, Math_Random(-0xA));
+            if ((obj->unkA8 >= 0xB5) && (obj->unkA8 < 0x13C)) {
+                obj->unkA8 = Math_WrapAngle(315.0f, Math_Random(-0xA));
             } else {
-                CurrentObject->unkA8 = Math_WrapAngle(CurrentObject->unkA8, Math_Random(-0xF));
+                obj->unkA8 = Math_WrapAngle(obj->unkA8, Math_Random(-0xF));
             }
         }
         sp40 = 360.0f - sp40;
-        CurrentObject->unk40 = Math_WrapAngle(sp40, Math_Random(-5) + 0x14);
-        if (CurrentObject->unkA8 >= 0xB4) {
-            CurrentObject->unkAC = -5;
+        obj->unk40 = Math_WrapAngle(sp40, Math_Random(-5) + 0x14);
+        if (obj->unkA8 >= 0xB4) {
+            obj->unkAC = -5;
         } else {
-            CurrentObject->unkAC = 5;
+            obj->unkAC = 5;
         }
-        CurrentObject->unkAE = 0;
-    } else if (CurrentObject->unkAE != 0) {
-        CurrentObject->unkB0 = Math_WrapAngle(CurrentObject->unk3C, -CurrentObject->unkA8);
-        if ((CurrentObject->unkB0 < 6) || (CurrentObject->unkB0 >= 0x163)) {
-            CurrentObject->unk3C = Math_WrapAngle(CurrentObject->unk3C, CurrentObject->unkAC);
-            CurrentObject->unkAE -= 1;
+        obj->unkAE = 0;
+    } else if (obj->unkAE != 0) {
+        obj->unkB0 = Math_WrapAngle(obj->moveAngle, -obj->unkA8);
+        if ((obj->unkB0 < 6) || (obj->unkB0 >= 0x163)) {
+            obj->moveAngle = Math_WrapAngle(obj->moveAngle, obj->unkAC);
+            obj->unkAE -= 1;
         } else {
-            CurrentObject->unkAE = 0;
+            obj->unkAE = 0;
         }
     } else {
-        CurrentObject->unk3C = CurrentObject->unkA8;
+        obj->moveAngle = obj->unkA8;
     }
-    CurrentObject->Scale.x = CurrentObject->Scale.x + 0.0100000000000000002;
-    CurrentObject->Scale.y = CurrentObject->Scale.y + 0.0100000000000000002;
-    CurrentObject->Scale.z = CurrentObject->Scale.z + 0.0100000000000000002;
+    obj->Scale.x = obj->Scale.x + 0.0100000000000000002;
+    obj->Scale.y = obj->Scale.y + 0.0100000000000000002;
+    obj->Scale.z = obj->Scale.z + 0.0100000000000000002;
     func_80029C40(gCurrentParsedObject);
     func_80029D04(gCurrentParsedObject);
     if (func_80029018(gCurrentParsedObject, 3U, 30.0f, 0.0f, 0.0f, 0.0f) != 0) {
-        CurrentObject->Vel.x = CurrentObject->Vel.y = CurrentObject->Vel.z = 0.0f;
-        CurrentObject->actionState = 2;
-        CurrentObject->unk132 = 0;
-    } else if (CurrentObject->unkB6 == 0) {
-        CurrentObject->actionState = 2;
-        CurrentObject->unk132 = 0;
+        obj->Vel.x = obj->Vel.y = obj->Vel.z = 0.0f;
+        obj->actionState = 2;
+        obj->unk132 = 0;
+    } else if (obj->unkB6 == 0) {
+        obj->actionState = 2;
+        obj->unk132 = 0;
     } else {
-        CurrentObject->unkB6 -= 1;
+        obj->unkB6 -= 1;
     }
 }
 
@@ -1161,102 +1162,102 @@ void func_800D6D84(void) {
 }
 
 void func_800D6DFC(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
     f32 sp40;
     f32 sp3C;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 = 1;
-        CurrentObject->unkA6 = CurrentObject->unkA8 = CurrentObject->unkB6 = 0;
-        CurrentObject->unk44 = 0.0f;
-        CurrentObject->Rot.y = CurrentObject->unk3C;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 = 1;
+        obj->unkA6 = obj->unkA8 = obj->unkB6 = 0;
+        obj->unk44 = 0.0f;
+        obj->Rot.y = obj->moveAngle;
         func_80017664(gCurrentParsedObject, 0, 0x59, -1, 0);
     }
-    if ((CurrentObject->unkB6 == 0) && (CurrentObject->unkA6 == 0) && (func_80028FA0(gCurrentParsedObject) != 0)) {
-        CurrentObject->unkB6 = 5;
-        CurrentObject->unkB8 = (s16) (s32) CurrentObject->unk3C;
-        CurrentObject->unk44 = 8.0f;
-        CurrentObject->unk3C += 180.0f;
-        if (CurrentObject->unk3C >= 360.0f) {
-            CurrentObject->unk3C -= 360.0f;
+    if ((obj->unkB6 == 0) && (obj->unkA6 == 0) && (func_80028FA0(gCurrentParsedObject) != 0)) {
+        obj->unkB6 = 5;
+        obj->unkB8 = (s16) (s32) obj->moveAngle;
+        obj->unk44 = 8.0f;
+        obj->moveAngle += 180.0f;
+        if (obj->moveAngle >= 360.0f) {
+            obj->moveAngle -= 360.0f;
         }
     }
-    if (CurrentObject->unkB6 != 0) {
-        CurrentObject->unkB6 -= 1;
-        if (CurrentObject->unkB6 == 0) {
-            CurrentObject->unk44 = CurrentObject->Vel.x = CurrentObject->Vel.z = 0;
-            CurrentObject->unkA8 = (s16) (s32) CurrentObject->unk3C;
-            CurrentObject->unk3C = (f32) CurrentObject->unkB8;
-            CurrentObject->unkA6 = 1;
+    if (obj->unkB6 != 0) {
+        obj->unkB6 -= 1;
+        if (obj->unkB6 == 0) {
+            obj->unk44 = obj->Vel.x = obj->Vel.z = 0;
+            obj->unkA8 = (s16) (s32) obj->moveAngle;
+            obj->moveAngle = (f32) obj->unkB8;
+            obj->unkA6 = 1;
         }
     }
-    if (CurrentObject->unkA6 != 0) {
-        CurrentObject->unk3C = Math_WrapAngle(CurrentObject->unk3C, 10.0f);
-        CurrentObject->Rot.y = CurrentObject->unk3C;
-        if ((CurrentObject->unk3C - (f32) CurrentObject->unkA8) == 0.0f) {
-            CurrentObject->unkA6 = 0;
+    if (obj->unkA6 != 0) {
+        obj->moveAngle = Math_WrapAngle(obj->moveAngle, 10.0f);
+        obj->Rot.y = obj->moveAngle;
+        if ((obj->moveAngle - (f32) obj->unkA8) == 0.0f) {
+            obj->unkA6 = 0;
         }
     } else {
-        if (CurrentObject->unk44 < 12.0f) {
-            CurrentObject->unk44 = (f32) ((f64) CurrentObject->unk44 + 0.25);
+        if (obj->unk44 < 12.0f) {
+            obj->unk44 = (f32) ((f64) obj->unk44 + 0.25);
         }
-        CurrentObject->Vel.y = 0.0f;
+        obj->Vel.y = 0.0f;
         func_80029C40(gCurrentParsedObject);
-        if (CurrentObject->unkA6 == 0) {
+        if (obj->unkA6 == 0) {
             if (func_80029018(gCurrentParsedObject, 1U, 60.0f, 0.0f, 0.0f, 0.0f) != 0) {
-                CurrentObject->Vel.x = CurrentObject->Vel.y = CurrentObject->Vel.z = 0;
-                if (CurrentObject->unkB6 == 0) {
-                    CurrentObject->unkB6 = 5;
-                    CurrentObject->unkB8 = (s16) (s32) CurrentObject->unk3C;
-                    CurrentObject->unk44 = 8.0f;
-                    CurrentObject->unk3C += 180.0f;
-                    if (CurrentObject->unk3C >= 360.0f) {
-                        CurrentObject->unk3C -= 360.0f;
+                obj->Vel.x = obj->Vel.y = obj->Vel.z = 0;
+                if (obj->unkB6 == 0) {
+                    obj->unkB6 = 5;
+                    obj->unkB8 = (s16) (s32) obj->moveAngle;
+                    obj->unk44 = 8.0f;
+                    obj->moveAngle += 180.0f;
+                    if (obj->moveAngle >= 360.0f) {
+                        obj->moveAngle -= 360.0f;
                     }
                 } else {
-                    CurrentObject->unkB6 = 1;
+                    obj->unkB6 = 1;
                 }
             }
             if (func_800295C0(gCurrentParsedObject, &sp40, &sp3C, 0.0f, 0.0f, 0.0f) != 0) {
-                CurrentObject->Pos.y = sp3C;
+                obj->Pos.y = sp3C;
             } else {
-                CurrentObject->Pos.y = sp40;
+                obj->Pos.y = sp40;
             }
         }
     }
 }
 
 void func_800D7348(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
     f32 sp20;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 += 1;
-        CurrentObject->unkA6 = 0x1E;
-        CurrentObject->unk44 = 5.0f;
-        CurrentObject->unk3C = Math_WrapAngle(CurrentObject->unk128, 180.0f);
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 += 1;
+        obj->unkA6 = 0x1E;
+        obj->unk44 = 5.0f;
+        obj->moveAngle = Math_WrapAngle(obj->unk128, 180.0f);
         func_80029EF8(gCurrentParsedObject, 14.378698f, 1.06089f);
         func_8001BBDC(gCurrentParsedObject, 1);
-        CurrentObject->damageState = 0;
+        obj->damageState = 0;
     }
-    CurrentObject->Rot.y = Math_WrapAngle(CurrentObject->Rot.y, 25.0f);
-    sp20 = CurrentObject->Vel.y;
-    CurrentObject->Vel.y = 0.0f;
+    obj->Rot.y = Math_WrapAngle(obj->Rot.y, 25.0f);
+    sp20 = obj->Vel.y;
+    obj->Vel.y = 0.0f;
     func_80029C40(gCurrentParsedObject);
     if (func_80029018(gCurrentParsedObject, 0U, 60.0f, 0.0f, 0.0f, 0.0f) != 0) {
-        CurrentObject->Vel.z = 0.0f;
-        CurrentObject->Vel.x = CurrentObject->Vel.z;
+        obj->Vel.z = 0.0f;
+        obj->Vel.x = obj->Vel.z;
     }
-    CurrentObject->Vel.y = sp20;
+    obj->Vel.y = sp20;
     if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, 0.0f, 60.0f) == 1) {
-        CurrentObject->unkA6 = 0;
+        obj->unkA6 = 0;
     }
-    if (CurrentObject->unkA6 == 0) {
+    if (obj->unkA6 == 0) {
         func_8002B0E4(gCurrentParsedObject);
     } else {
-        CurrentObject->unkA6 -= 1;
+        obj->unkA6 -= 1;
     }
 }
 
@@ -1286,68 +1287,68 @@ void func_800D768C(void) {
 }
 
 void func_800D7704(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
     f32 sp48;
     f32 sp44;
     s32 sp40;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 = 1;
-        CurrentObject->unkA6 = CurrentObject->unkA8 = CurrentObject->unkB6 = 0;
-        CurrentObject->unk44 = 0.0f;
-        CurrentObject->unk3C = Math_Random(0x168);
-        CurrentObject->Rot.y = CurrentObject->unk3C;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 = 1;
+        obj->unkA6 = obj->unkA8 = obj->unkB6 = 0;
+        obj->unk44 = 0.0f;
+        obj->moveAngle = Math_Random(0x168);
+        obj->Rot.y = obj->moveAngle;
         func_80017664(gCurrentParsedObject, 0, 0x59, -1, 0);
     }
-    if ((CurrentObject->unkB6 == 0) && (CurrentObject->unkA6 == 0) && (func_80028FA0(gCurrentParsedObject) != 0)) {
-        CurrentObject->unkB6 = 5;
-        CurrentObject->unkB8 = CurrentObject->unk3C;
-        CurrentObject->unk44 = 8.0f;
+    if ((obj->unkB6 == 0) && (obj->unkA6 == 0) && (func_80028FA0(gCurrentParsedObject) != 0)) {
+        obj->unkB6 = 5;
+        obj->unkB8 = obj->moveAngle;
+        obj->unk44 = 8.0f;
         func_80029B60(gCurrentParsedObject);
     }
-    if (CurrentObject->unkB6 != 0) {
-        CurrentObject->unkB6 -= 1;
-        if (CurrentObject->unkB6 == 0) {
-            CurrentObject->unk44 = CurrentObject->Vel.x = CurrentObject->Vel.z = 0.0f;
-            CurrentObject->unk3C = CurrentObject->unkB8;
-            CurrentObject->unkA6 = 1;
-            CurrentObject->unkA8 = func_8002A46C(gCurrentParsedObject);
-            CurrentObject->unkA8 = Math_WrapAngle(CurrentObject->unkA8, Math_Random(-0xF));
-            CurrentObject->unkAA = func_8002A640(gCurrentParsedObject, 10.0f);
+    if (obj->unkB6 != 0) {
+        obj->unkB6 -= 1;
+        if (obj->unkB6 == 0) {
+            obj->unk44 = obj->Vel.x = obj->Vel.z = 0.0f;
+            obj->moveAngle = obj->unkB8;
+            obj->unkA6 = 1;
+            obj->unkA8 = Get_AngleToPlayer(gCurrentParsedObject);
+            obj->unkA8 = Math_WrapAngle(obj->unkA8, Math_Random(-0xF));
+            obj->unkAA = func_8002A640(gCurrentParsedObject, 10.0f);
         }
     }
-    if (CurrentObject->unkA6 != 0) {
-        CurrentObject->unk3C = Math_WrapAngle(CurrentObject->unk3C, (CurrentObject->unkAA * 0xA));
-        CurrentObject->Rot.y = CurrentObject->unk3C;
-        sp40 = CurrentObject->unk3C - CurrentObject->unkA8;
+    if (obj->unkA6 != 0) {
+        obj->moveAngle = Math_WrapAngle(obj->moveAngle, (obj->unkAA * 0xA));
+        obj->Rot.y = obj->moveAngle;
+        sp40 = obj->moveAngle - obj->unkA8;
         if ((sp40 < 0xB) && (sp40 >= -0xA)) {
-            CurrentObject->unkA6 = 0;
-        } else if (CurrentObject->unkAA == 0) {
-            CurrentObject->unkA6 = 0;
+            obj->unkA6 = 0;
+        } else if (obj->unkAA == 0) {
+            obj->unkA6 = 0;
         }
     } else {
-        if (CurrentObject->unk44 < 12.0f) {
-            CurrentObject->unk44 = CurrentObject->unk44 + 0.25;
+        if (obj->unk44 < 12.0f) {
+            obj->unk44 = obj->unk44 + 0.25;
         }
-        CurrentObject->Vel.y = 0.0f;
+        obj->Vel.y = 0.0f;
         func_80029C40(gCurrentParsedObject);
-        if (CurrentObject->unkA6 == 0) {
+        if (obj->unkA6 == 0) {
             if (func_80029018(gCurrentParsedObject, 1U, 60.0f, 0.0f, 0.0f, 0.0f) != 0) {
-                CurrentObject->Vel.x = CurrentObject->Vel.y = CurrentObject->Vel.z = 0.0f;
-                if (CurrentObject->unkB6 == 0) {
-                    CurrentObject->unkB6 = 5;
-                    CurrentObject->unkB8 = CurrentObject->unk3C;
-                    CurrentObject->unk44 = 8.0f;
+                obj->Vel.x = obj->Vel.y = obj->Vel.z = 0.0f;
+                if (obj->unkB6 == 0) {
+                    obj->unkB6 = 5;
+                    obj->unkB8 = obj->moveAngle;
+                    obj->unk44 = 8.0f;
                     func_80029824(gCurrentParsedObject, func_800297DC());
                 } else {
-                    CurrentObject->unkB6 = 1;
+                    obj->unkB6 = 1;
                 }
             }
             if (func_800295C0(gCurrentParsedObject, &sp48, &sp44, 0.0f, 0.0f, 0.0f) != 0) {
-                CurrentObject->Pos.y = sp44;
+                obj->Pos.y = sp44;
             } else {
-                CurrentObject->Pos.y = sp48;
+                obj->Pos.y = sp48;
             }
         }
     }
@@ -1362,7 +1363,7 @@ void func_800D7CD0(void) {
         sp24->unk132 += 1;
         sp24->unkA6 = 0x1E;
         sp24->unk44 = 5.0f;
-        sp24->unk3C = Math_WrapAngle(sp24->unk128, 180.0f);
+        sp24->moveAngle = Math_WrapAngle(sp24->unk128, 180.0f);
         func_80029EF8(gCurrentParsedObject, 14.378698f, 1.06089f);
         func_8001BBDC(gCurrentParsedObject, 1);
         sp24->damageState = 0;
@@ -1412,73 +1413,77 @@ void func_800D8014(void) {
 }
 
 void func_800D808C(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
     f32 sp48;
     f32 sp44;
     s32 sp40;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 = 1;
-        CurrentObject->unkA6 = CurrentObject->unkA8 = CurrentObject->unkB6 = 0;
-        CurrentObject->unk44 = 0.0f;
-        CurrentObject->unk3C = (f32) Math_Random(0x168);
-        CurrentObject->Rot.y = CurrentObject->unk3C;
+    obj = &gObjects[gCurrentParsedObject];
+//    DEBUG_PRINTF("unk132: %d!\n", obj->unk132);
+
+    // Initialize the object
+    if (obj->unk132 == 0) {
+        obj->unk132 = 1;
+        obj->unkA6 = obj->unkA8 = obj->unkB6 = 0;
+        obj->unk44 = 0.0f;
+        obj->moveAngle = (f32) Math_Random(0x168);
+        obj->Rot.y = obj->moveAngle;
         func_8001ABF4(gCurrentParsedObject, 0, 0, &D_801188DC + 0x1C / 4);
     }
-    if ((CurrentObject->unkB6 == 0) && (CurrentObject->unkA6 == 0) && (func_80028FA0(gCurrentParsedObject) != 0)) {
-        CurrentObject->unkB6 = 5;
-        CurrentObject->unkB8 = (s16) (s32) CurrentObject->unk3C;
-        CurrentObject->unk44 = 6.0f;
+
+    if ((obj->unkB6 == 0) && (obj->unkA6 == 0) && (func_80028FA0(gCurrentParsedObject))) {
+        obj->unkB6 = 5;
+        obj->unkB8 = (s16) (s32) obj->moveAngle;
+        obj->unk44 = 6.0f;
         func_80029B60(gCurrentParsedObject);
     }
-    if (CurrentObject->unkB6 != 0) {
-        CurrentObject->unkB6 -= 1;
-        if (CurrentObject->unkB6 == 0) {
-            CurrentObject->unk44 = CurrentObject->Vel.x = CurrentObject->Vel.z = 0.0f;
-            CurrentObject->unk3C = (f32) CurrentObject->unkB8;
-            CurrentObject->unkA6 = 1;
-            CurrentObject->unkA8 = (s16) (s32) func_8002A46C(gCurrentParsedObject);
-            CurrentObject->unkA8 = (s16) (s32) Math_WrapAngle((f32) CurrentObject->unkA8, (f32) Math_Random(-0xF));
-            CurrentObject->unkAA = func_8002A640(gCurrentParsedObject, 10.0f);
+    if (obj->unkB6 != 0) {
+        obj->unkB6 -= 1;
+        if (obj->unkB6 == 0) {
+            obj->unk44 = obj->Vel.x = obj->Vel.z = 0.0f;
+            obj->moveAngle = (f32) obj->unkB8;
+            obj->unkA6 = 1;
+            obj->unkA8 = (s16) (s32) Get_AngleToPlayer(gCurrentParsedObject);
+            obj->unkA8 = (s16) (s32) Math_WrapAngle((f32) obj->unkA8, (f32) Math_Random(-15));
+            obj->unkAA = func_8002A640(gCurrentParsedObject, 10.0f);
             func_8001ABF4(gCurrentParsedObject, 0, 0, &D_801188DC);
         }
     }
-    if (CurrentObject->unkA6 != 0) {
-        CurrentObject->unk3C = Math_WrapAngle(CurrentObject->unk3C, (f32) (CurrentObject->unkAA * 0xA));
-        CurrentObject->Rot.y = CurrentObject->unk3C;
-        sp40 = (s32) (CurrentObject->unk3C - (f32) CurrentObject->unkA8);
+    if (obj->unkA6 != 0) {
+        obj->moveAngle = Math_WrapAngle(obj->moveAngle, (f32) (obj->unkAA * 0xA));
+        obj->Rot.y = obj->moveAngle;
+        sp40 = (s32) (obj->moveAngle - (f32) obj->unkA8);
         if ((sp40 < 0xB) && (sp40 >= -0xA)) {
-            CurrentObject->unkA6 = 0;
+            obj->unkA6 = 0;
             func_8001ABF4(gCurrentParsedObject, 0, 0, &D_801188DC + 0x1C / 4);
-        } else if (CurrentObject->unkAA == 0) {
-            CurrentObject->unkA6 = 0;
+        } else if (obj->unkAA == 0) {
+            obj->unkA6 = 0;
             func_8001ABF4(gCurrentParsedObject, 0, 0, &D_801188DC + 0x1C / 4);
         }
     } else {
-        if (CurrentObject->unk44 < 8.0f) {
-            CurrentObject->unk44 = (f32) ((f64) CurrentObject->unk44 + 0.25);
+        if (obj->unk44 < 8.0f) {
+            obj->unk44 = (f32) ((f64) obj->unk44 + 0.25);
         }
-        CurrentObject->Vel.y = 0.0f;
+        obj->Vel.y = 0.0f;
         func_80029C40(gCurrentParsedObject);
-        if (CurrentObject->unkA6 == 0) {
+        if (obj->unkA6 == 0) {
             if (func_80029018(gCurrentParsedObject, 4U, 60.0f, 0.0f, -30.0f, 0.0f) != 0) {
-                CurrentObject->Vel.x = CurrentObject->Vel.y = CurrentObject->Vel.z = 0.0f;
-                if (CurrentObject->unkB6 == 0) {
-                    CurrentObject->unkB6 = 5;
-                    CurrentObject->unkB8 = (s16) (s32) CurrentObject->unk3C;
-                    CurrentObject->unk44 = 6.0f;
+                obj->Vel.x = obj->Vel.y = obj->Vel.z = 0.0f;
+                if (obj->unkB6 == 0) {
+                    obj->unkB6 = 5;
+                    obj->unkB8 = (s16) (s32) obj->moveAngle;
+                    obj->unk44 = 6.0f;
                     func_80029824(gCurrentParsedObject, func_800297DC());
                 } else {
-                    CurrentObject->unkB6 = 1;
+                    obj->unkB6 = 1;
                 }
             }
             if (func_800295C0(gCurrentParsedObject, &sp48, &sp44, 0.0f, -30.0f, 0.0f) != 0) {
-                CurrentObject->Pos.y = sp44;
+                obj->Pos.y = sp44;
             } else {
-                CurrentObject->Pos.y = sp48;
+                obj->Pos.y = sp48;
             }
-            CurrentObject->Pos.y += 30.0f;
+            obj->Pos.y += 30.0f;
         }
     }
 }
@@ -1514,11 +1519,11 @@ void func_800D8820(void) {
 }
 
 void func_800D88F4(void) {
-    struct ObjectStruct* CurrentObject;
+    struct ObjectStruct* obj;
 
-    CurrentObject = &gObjects[gCurrentParsedObject];
-    if (CurrentObject->unk132 == 0) {
-        CurrentObject->unk132 = 1;
+    obj = &gObjects[gCurrentParsedObject];
+    if (obj->unk132 == 0) {
+        obj->unk132 = 1;
     }
 }
 

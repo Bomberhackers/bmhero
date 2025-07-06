@@ -1,3 +1,4 @@
+Get_AngleToPlayer = 0x8002A46C;
 Update_ObjPyonPyon = 0x800C38A8;
 Init_ObjTrainingRobo = 0x800D7F9C;
 Math_CalcAngleRotated = 0x80015634;
@@ -4180,7 +4181,7 @@ unk_bin_7_ROM_START = 0x157A00; // defined:true
 unk_bin_8_ROM_START = 0x15A0F0; // defined:true
 unk_bin_9_ROM_START = 0x15A7D0; // defined:true
 unk_bin_10_ROM_START = 0x15C0D0; // defined:true
-unk_bin_11_ROM_START = 0x160560; // defined:true
+ovl_endol_ROM_START = 0x160560; // defined:true
 unk_bin_12_ROM_START = 0x167950; // defined:true
 unk_bin_13_ROM_START = 0x16D650; // defined:true
 unk_bin_14_ROM_START = 0x175420; // defined:true

@@ -9,7 +9,7 @@ extern f32 D_801133E8;
 extern u32 D_801131F0;
 extern f64 D_801133E0;
 extern UNK_TYPE D_801133B8[];
-extern struct UnkStruct_80027C00 D_801133D4; // rodata...?
+extern struct ObjSpawnInfo D_801133D4; // rodata...?
 
 void func_8008E4A4(u32);
 void func_8008E788(u32, s16); /* extern */
@@ -276,7 +276,7 @@ void func_8008CD2C(s16* arg0) {
     sp4 = D_80134D48[arg0[0]].ObjectID;
 
     gObjects[sp4].unk44 = arg0[1] / 10.0f;
-    gObjects[sp4].unk3C = arg0[2] / 10.0f;
+    gObjects[sp4].moveAngle = arg0[2] / 10.0f;
 
     if (arg0[1] == 0) {
         gObjects[sp4].unk60 = 0.0f;
@@ -295,7 +295,7 @@ void func_8008CE8C(s16* arg0) {
     sp2C = arg0[1] - gObjects[sp24].Pos.x;
     sp28 = arg0[2] - gObjects[sp24].Pos.z;
 
-    gObjects[sp24].unk3C = Math_CalcAngleRotated(sp2C, sp28);
+    gObjects[sp24].moveAngle = Math_CalcAngleRotated(sp2C, sp28);
     gObjects[sp24].unk44 = sqrtf((sp2C * sp2C) + (sp28 * sp28)) / arg0[3]; // pythagoras
 
     D_80134C28[arg0[0]] = arg0[3];
@@ -330,8 +330,8 @@ void func_8008D188(s16 arg0) {
     s16 sp1E;
 
     sp24 = D_80134D48[(s16) arg0].ObjectID;
-    gObjects[sp24].Vel.x = gObjects[sp24].unk44 * sinf(gObjects[sp24].unk3C * DEG_TO_RAD); // 1°
-    gObjects[sp24].Vel.z = gObjects[sp24].unk44 * cosf(gObjects[sp24].unk3C * DEG_TO_RAD);
+    gObjects[sp24].Vel.x = gObjects[sp24].unk44 * sinf(gObjects[sp24].moveAngle * DEG_TO_RAD); // 1°
+    gObjects[sp24].Vel.z = gObjects[sp24].unk44 * cosf(gObjects[sp24].moveAngle * DEG_TO_RAD);
 
     if (D_80134D48[arg0].unkE == 0) {
         func_8008DA20(arg0);
@@ -648,11 +648,11 @@ void func_8008E9DC(s16 arg0) {
     UNUSED s32 sp4;
 
     spC = D_80134D48[arg0].ObjectID;
-    gObjects[spC].unk3C += gObjects[spC].unk5C;
+    gObjects[spC].moveAngle += gObjects[spC].unk5C;
     gObjects[spC].unk44 += gObjects[spC].unk60;
 
     if (D_80134D48[arg0].unkC == 1) {
-        gObjects[spC].Rot.y = gObjects[spC].unk3C + gObjects[spC].unk5C;
+        gObjects[spC].Rot.y = gObjects[spC].moveAngle + gObjects[spC].unk5C;
     }
 }
 
@@ -1219,12 +1219,12 @@ void func_80093810(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/7E1E0/func_800938C4.s")
 
-struct UnkStruct_80027C00* func_80093940(s32 arg0) {
+struct ObjSpawnInfo* func_80093940(s32 arg0) {
     return D_80113294[arg0];
 }
 
 void func_80093968(void) {
-    struct UnkStruct_80027C00* sp24;
+    struct ObjSpawnInfo* sp24;
     s32 sp20;
 
     sp24 = func_80093940((s32) D_80165100->unk0);
@@ -1338,7 +1338,7 @@ s32 func_80094128(void) {
 }
 
 void func_800941C4(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
-    struct UnkStruct_80027C00* sp34;
+    struct ObjSpawnInfo* sp34;
     s32 sp30;
 
     if (arg0 == 0xC) {
@@ -1357,7 +1357,7 @@ void func_800941C4(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
 }
 
 void func_80094370(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
-    struct UnkStruct_80027C00* sp34;
+    struct ObjSpawnInfo* sp34;
     s32 sp30;
 
     if (arg0 == 0xC) {

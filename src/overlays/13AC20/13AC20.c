@@ -233,8 +233,8 @@ void func_80280A7C_code_extra_3(void) {
 }
 
 void func_80280B30_code_extra_3(void) {
-    gPlayerObject->Vel.x = sinf((f32) ((f64) gPlayerObject->unk3C * DEG_TO_RAD)) * gPlayerObject->unk44;
-    gPlayerObject->Vel.z = cosf((f32) ((f64) gPlayerObject->unk3C * DEG_TO_RAD)) * gPlayerObject->unk44;
+    gPlayerObject->Vel.x = sinf((f32) ((f64) gPlayerObject->moveAngle * DEG_TO_RAD)) * gPlayerObject->unk44;
+    gPlayerObject->Vel.z = cosf((f32) ((f64) gPlayerObject->moveAngle * DEG_TO_RAD)) * gPlayerObject->unk44;
 }
 
 void func_80280BD8_code_extra_3(void) {
@@ -358,7 +358,7 @@ void func_802810FC_code_extra_3(void) {
 void func_802811A8_code_extra_3(void) {
     func_80280724_code_extra_3();
     func_802807EC_code_extra_3();
-    gPlayerObject->unk3C = 180.0f;
+    gPlayerObject->moveAngle = 180.0f;
     func_80280B30_code_extra_3();
 }
 

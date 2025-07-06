@@ -828,7 +828,7 @@ struct UnkStruct_80027B34 {
     /* 0xC*/ s8 unkC;
 };
 
-struct UnkStruct_80027C00 {
+struct ObjSpawnInfo {
     /* 0x0 */ s8 unk0;
     /* 0x2 */ s16 unk2;
     /* 0x4 */ s16 unk4;
@@ -1230,6 +1230,8 @@ typedef struct UnkStruct_80119E0C {
     void* unkFC;
     u8 unk100[0x18];
     void* unk118;
+    u8 unk11C[0x18];
+    void* unk134;
 } UnkStruct_80119E0C;
 
 struct UnkStruct_D_004A280 {

@@ -776,7 +776,7 @@ void func_800745C0(void) {
     } else if (D_801775D8 < 500.0f) {
         D_801775D8 = 500.0f;
     }
-    sp64 = Math_WrapAngle(360.0f - gPlayerObject->unk3C, 180.0f);
+    sp64 = Math_WrapAngle(360.0f - gPlayerObject->moveAngle, 180.0f);
     sp68 = Math_WrapAngle(gView.rot.y, -sp64);
     if ((sp68 <= 90.0f) || (sp68 >= 270.0f)) {
         if ((gPlayerObject->Vel.x == 0.0f) && (gPlayerObject->Vel.z == 0.0f)) {

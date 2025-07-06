@@ -738,7 +738,7 @@ void Init_Obj(int index) {
     obj->unk30.x = 0.0f;
     obj->unk30.y = 0.0f;
     obj->unk30.z = 0.0f;
-    obj->unk3C = 0.0f;
+    obj->moveAngle = 0.0f;
     obj->unk40 = 0.0f;
     obj->unk44 = 0.0f;
     obj->unk48 = 0.0f;
@@ -1360,7 +1360,7 @@ void func_8001CD50(s32 arg0, f32 arg1) {
     func_8001CAAC(arg0, arg1);
 }
 
-void func_8001CD88(s32 arg0, u32 arg1) {
+UNUSED void func_8001CD88(s32 arg0, u32 arg1) {
     func_80019510(arg0, 0, 1);
     gSPDisplayList(gMasterDisplayList++, arg1);
 }

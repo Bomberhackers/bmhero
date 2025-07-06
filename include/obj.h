@@ -43,7 +43,7 @@ struct UnkStruct_80026548 {
     char pad28[0x4];
     void* (*routine3)();
     u64 unk30;
-    struct UnkStruct_80027C00* unk38;
+    struct ObjSpawnInfo* unk38;
     s32 pad3C;
     void* animPtr;
     void* unk44;
@@ -56,7 +56,7 @@ struct ObjectStruct {
     /* 0x018 */ struct Vec3f Rot;
     /* 0x024 */ struct Vec3f Vel;
     /* 0x030 */ struct Vec3f unk30;
-    /* 0x03C */ f32 unk3C;
+    /* 0x03C */ f32 moveAngle; // Movement angle
     /* 0x040 */ f32 unk40;
     /* 0x044 */ f32 unk44;
     /* 0x048 */ f32 unk48;
@@ -545,7 +545,7 @@ typedef enum {
     OBJ_M221AFLW = 412,
     OBJ_SUIRYU = 413,
     OBJ_M25_PR = 414,
-    OBJ_ENDL_ST = 415,
+    OBJ_ENDL_ST = 415, // Object ids for Endol
     OBJ_ENDL_BD = 416,
     OBJ_ENDL_DD = 417,
     OBJ_ENDL_FB = 418,

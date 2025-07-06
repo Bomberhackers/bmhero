@@ -285,8 +285,8 @@ void func_80000FF4(u32 id) {
 }
 
 void func_80001058(void) {
-    load_from_rom_to_addr(&unk_bin_11_ROM_START, (void*) 0x80330000,
-                          (u32) &unk_bin_11_ROM_END - (u32) &unk_bin_11_ROM_START);
+    load_from_rom_to_addr(&ovl_endol_ROM_START, (void*) 0x80330000,
+                          (u32) &ovl_endol_ROM_END - (u32) &ovl_endol_ROM_START);
     load_from_rom_to_addr(&unk_bin_26_ROM_START, (void*) 0x8032E000,
                           (u32) &unk_bin_26_ROM_END - (u32) &unk_bin_26_ROM_START);
 }
@@ -473,6 +473,7 @@ void func_80001A20(void) {
 }
 
 void func_80001A64(void) {
+    //?
 }
 
 void thread6_func(void* arg) {

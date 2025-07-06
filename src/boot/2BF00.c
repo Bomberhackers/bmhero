@@ -477,15 +477,15 @@ s32 func_8002CF78(void) {
 }
 
 void func_8002D080(void) {
-    gPlayerObject->Vel.x = sinf((f32) ((f64) gPlayerObject->unk3C * DEG_TO_RAD)) * gPlayerObject->unk44;
-    gPlayerObject->Vel.z = cosf((f32) ((f64) gPlayerObject->unk3C * DEG_TO_RAD)) * gPlayerObject->unk44;
+    gPlayerObject->Vel.x = sinf((f32) ((f64) gPlayerObject->moveAngle * DEG_TO_RAD)) * gPlayerObject->unk44;
+    gPlayerObject->Vel.z = cosf((f32) ((f64) gPlayerObject->moveAngle * DEG_TO_RAD)) * gPlayerObject->unk44;
 }
 
 void func_8002D128(void) {
     f32 sp1C;
 
     func_8002C92C();
-    gPlayerObject->unk3C = Math_CalcAngleRotated(gActiveContStickX, -gActiveContStickY);
+    gPlayerObject->moveAngle = Math_CalcAngleRotated(gActiveContStickX, -gActiveContStickY);
     sp1C = sqrtf((gActiveContStickX * gActiveContStickX) + (gActiveContStickY * gActiveContStickY));
     if (sp1C > 10.0f) {
         sp1C /= 2.0f;
@@ -550,7 +550,7 @@ void func_8002D128(void) {
 }
 
 void func_8002D538(void) {
-    struct UnkStruct_80027C00* sp44;
+    struct ObjSpawnInfo* sp44;
     s32 sp40;
     s32 sp3C;
     s32 sp38;

@@ -192,7 +192,7 @@ void func_80080228(void) {
 }
 
 void func_80080388(void) {
-    gObjects[gCurrentParsedObject].objID = 0x2C3;
+    gObjects[gCurrentParsedObject].objID = 707;
     gObjects[gCurrentParsedObject].Scale.x = gObjects[gCurrentParsedObject].Scale.y =
         gObjects[gCurrentParsedObject].Scale.z = 3.0f;
     gObjects[gCurrentParsedObject].unkBE = 2;
@@ -427,7 +427,26 @@ void func_800813B8(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_800816FC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/71AA0/func_800818CC.s")
+void func_800818CC(void) {
+    struct ObjectStruct* sp1C;
+    s32 sp18;
+
+    func_8001838C();
+    
+    for (sp18 = 0x8F, sp1C = &gObjects[0x8F]; sp18 < 0xCF; sp18++, sp1C++) {
+        if (sp1C->actionState != 0) {
+            if ((sp1C->objID == 714) || (sp1C->objID == 715) || (sp1C->objID == 716)) {
+                if (func_8001C1A8(sp18, 0) != 0) {
+                    func_8001838C();
+                    func_8001B014(sp18, 0);
+                    func_8001C384(sp18, 0);
+                }
+            } else {
+                func_8001CDF4(sp18, sp1C->unkC0, sp1C->unkBE, gFileArray[sp1C->unkC2].ptr);
+            }
+        }
+    } 
+}
 
 void func_800819E0(void) {
     s32 i;

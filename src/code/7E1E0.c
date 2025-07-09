@@ -33,7 +33,7 @@ void func_8008BCC0(void) {
 
     sp24 = D_80134D48->ObjectID;
     if (D_80134C28[0] == 0) {
-        gObjects->unk44 = 0.0f;
+        gObjects->moveSpeed = 0.0f;
         D_80134D48->unkC = 0;
         D_80134C28[0] = -1;
     } else if (D_80134C28[0] != -1) {
@@ -112,7 +112,7 @@ void func_8008C128(void) {
             sp1C = D_80134D48[sp1A].ObjectID;
 
             if (D_80134C28[sp1A] == 0) {
-                gObjects[sp1C].unk44 = 0;
+                gObjects[sp1C].moveSpeed = 0;
                 D_80134D48[sp1A].unkC = 0;
                 D_80134C28[sp1A] = -1;
             } else if (D_80134C28[sp1A] != -1) {
@@ -275,7 +275,7 @@ void func_8008CD2C(s16* arg0) {
 
     sp4 = D_80134D48[arg0[0]].ObjectID;
 
-    gObjects[sp4].unk44 = arg0[1] / 10.0f;
+    gObjects[sp4].moveSpeed = arg0[1] / 10.0f;
     gObjects[sp4].moveAngle = arg0[2] / 10.0f;
 
     if (arg0[1] == 0) {
@@ -296,7 +296,7 @@ void func_8008CE8C(s16* arg0) {
     sp28 = arg0[2] - gObjects[sp24].Pos.z;
 
     gObjects[sp24].moveAngle = Math_CalcAngleRotated(sp2C, sp28);
-    gObjects[sp24].unk44 = sqrtf((sp2C * sp2C) + (sp28 * sp28)) / arg0[3]; // pythagoras
+    gObjects[sp24].moveSpeed = sqrtf((sp2C * sp2C) + (sp28 * sp28)) / arg0[3]; // pythagoras
 
     D_80134C28[arg0[0]] = arg0[3];
 
@@ -330,8 +330,8 @@ void func_8008D188(s16 arg0) {
     s16 sp1E;
 
     sp24 = D_80134D48[(s16) arg0].ObjectID;
-    gObjects[sp24].Vel.x = gObjects[sp24].unk44 * sinf(gObjects[sp24].moveAngle * DEG_TO_RAD); // 1°
-    gObjects[sp24].Vel.z = gObjects[sp24].unk44 * cosf(gObjects[sp24].moveAngle * DEG_TO_RAD);
+    gObjects[sp24].Vel.x = gObjects[sp24].moveSpeed * sinf(gObjects[sp24].moveAngle * DEG_TO_RAD); // 1°
+    gObjects[sp24].Vel.z = gObjects[sp24].moveSpeed * cosf(gObjects[sp24].moveAngle * DEG_TO_RAD);
 
     if (D_80134D48[arg0].unkE == 0) {
         func_8008DA20(arg0);
@@ -649,7 +649,7 @@ void func_8008E9DC(s16 arg0) {
 
     spC = D_80134D48[arg0].ObjectID;
     gObjects[spC].moveAngle += gObjects[spC].unk5C;
-    gObjects[spC].unk44 += gObjects[spC].unk60;
+    gObjects[spC].moveSpeed += gObjects[spC].unk60;
 
     if (D_80134D48[arg0].unkC == 1) {
         gObjects[spC].Rot.y = gObjects[spC].moveAngle + gObjects[spC].unk5C;

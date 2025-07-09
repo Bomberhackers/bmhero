@@ -52,7 +52,7 @@ void func_80330330_unk_bin_48(void) {
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
         sp2C->unk132 = 1;
-        sp2C->unk44 = (f32) sp2C->unkAC;
+        sp2C->moveSpeed = (f32) sp2C->unkAC;
         sp2C->unk48 = 0.0f;
         sp2C->unkA6 = sp2C->unkAA;
         sp2C->moveAngle = (f32) (sp2C->unkA8 * 0x5A);
@@ -63,7 +63,7 @@ void func_80330330_unk_bin_48(void) {
     if (func_80029018(gCurrentParsedObject, 4U, 120.0f, 0.0f, 0.0f, 0.0f) != 0) {
         func_80029824(gCurrentParsedObject, func_800297DC());
     }
-    sp2C->unkA6 = (s16) (s32) ((f32) sp2C->unkA6 - sp2C->unk44);
+    sp2C->unkA6 = (s16) (s32) ((f32) sp2C->unkA6 - sp2C->moveSpeed);
     if (sp2C->unkA6 <= 0) {
         sp2C->actionState = 1;
         sp2C->unk132 = 0;
@@ -108,7 +108,7 @@ void func_80330788_unk_bin_48(void) {
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
         sp24->unk132 = 1;
-        sp24->unk44 = 2.0f;
+        sp24->moveSpeed = 2.0f;
         sp24->unk48 = 0.0f;
         sp24->unkA6 = 0x168;
         func_800175F0(gCurrentParsedObject, 0, 0x37, -1, 0);

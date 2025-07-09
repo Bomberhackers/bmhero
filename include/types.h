@@ -325,7 +325,7 @@ struct UnkStruct80165290 {
     /* 0x38 */ u32 unk38;
     /* 0x4C */ void* unk3C;
     /* 0x40 */ u32 unk40;
-    /* 0x44 */ void* unk44;
+    /* 0x44 */ void* unk_44;
     /* 0x48 */ u32 unk48;
     /* 0x4C */ u32 unk4C;
     /* 0x50 */ u32 unk50;
@@ -988,7 +988,7 @@ struct UnkStruct80177778 {
     u32 unk38;
     u32 unk3C;
     u32 unk40;
-    u32 unk44;
+    u32 unk_44;
 };
 
 struct UnkBigStruct_8006B64C

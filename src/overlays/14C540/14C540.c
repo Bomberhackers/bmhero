@@ -33,7 +33,7 @@ extern f32 D_803362F8_unk_bin_2;
 extern f32 D_803362FC_unk_bin_2;
 extern f32 D_80336300_unk_bin_2;
 extern f32 D_80336304_unk_bin_2;
-extern s32 D_803363C0;
+extern s32 sGamePaused;
 extern s8 D_803363C4;
 extern UNK_TYPE D_803361BC_unk_bin_2;
 extern s8 D_803363C4;
@@ -75,13 +75,13 @@ extern f32 D_80336350_unk_bin_2;
 extern s32 D_803363BC;
 extern s8 D_803363C4;
 
-void func_80330000_unk_bin_2(void) {
-    D_803363C0 = 1;
+void SetGamePaused(void) {
+    sGamePaused = 1;
 }
 
 s32 func_8033001C_unk_bin_2(s32 arg0) {
     if (*gContButtonPressed & CONT_A) {
-        if (D_803363C0 == 0) {
+        if (!sGamePaused) {
             func_800178D4(-1, 0, 0x40, -1, 0);
             D_803363C4 = 0;
             return 1;
@@ -95,10 +95,10 @@ s32 func_8033001C_unk_bin_2(s32 arg0) {
         D_803363C4 = 0;
         return 2;
     } else if ((arg0 == 1) || (arg0 == -1)) {
-        D_803363C0 ^= 1;
+        sGamePaused ^= 1;
         func_800178D4(-1, 0, 0x3F, -1, 0);
     }
-    D_803363C4 = D_803363C0 + 1;
+    D_803363C4 = sGamePaused + 1;
     return 0;
 }
 
@@ -608,7 +608,7 @@ void func_80334BE0_unk_bin_2(void) {
             D_80324990 = -1;
         } else if ((sp30 == 2) || (sp30 == 1)) {
             D_80324990 = 1;
-        } else if (*gContButtonPressed & 0x8000) {
+        } else if (*gContButtonPressed & CONT_A) {
             if (D_80336361 == D_80134801) {
                 D_80324990 = 2;
                 D_80324992 = 0xA;
@@ -619,8 +619,8 @@ void func_80334BE0_unk_bin_2(void) {
                 D_80324990 = 2;
                 D_80324992 = 0x46;
             }
-        } else if (*gContButtonPressed & 0x4000) {
-            func_80330000_unk_bin_2();
+        } else if (*gContButtonPressed & CONT_B) {
+            SetGamePaused();
             D_80134800 = 3;
             func_800178D4(-1, 0, 0x41, -1, 0);
         }

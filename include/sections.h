@@ -94,14 +94,14 @@ extern u8 unk_bin_15_ROM_END[];       // 0x189940
 extern u8 unk_bin_16_ROM_START[];     // 0x189940
 extern u8 unk_bin_16_ROM_END[];       // 0x194F10
 
-extern u8 unk_bin_17_ROM_START[];     // 0x194F10
-extern u8 unk_bin_17_ROM_END[];       // 0x198140
+extern u8 ovl_bagular_1_ROM_START[];     // 0x194F10
+extern u8 ovl_bagular_1_ROM_END[];       // 0x198140
 
-extern u8 unk_bin_18_ROM_START[];     // 0x198140
-extern u8 unk_bin_18_ROM_END[];       // 0x19C610
+extern u8 ovl_bagular_2_ROM_START[];     // 0x198140
+extern u8 ovl_bagular_2_ROM_END[];       // 0x19C610
 
-extern u8 unk_bin_19_ROM_START[];     // 0x19C610
-extern u8 unk_bin_19_ROM_END[];       // 0x1A89C0
+extern u8 ovl_bagular_3_ROM_START[];     // 0x19C610
+extern u8 ovl_bagular_3_ROM_END[];       // 0x1A89C0
 
 extern u8 unk_bin_20_ROM_START[];     // 0x1A89C0
 extern u8 unk_bin_20_ROM_END[];       // 0x1ABC60

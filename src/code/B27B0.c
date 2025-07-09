@@ -45,7 +45,7 @@ void func_800C04C4(void) {
     sp44 = &gObjects[gCurrentParsedObject];
     if (sp44->unk132 == 0) {
         sp44->unk132 = 1;
-        sp44->unk44 = 0.0f;
+        sp44->moveSpeed = 0.0f;
         sp44->unk48 = (f32) sp44->unkAE;
 
         sp44->unk40 =
@@ -158,7 +158,7 @@ void func_800C0CC0(void) {
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
         sp24->unk132 = 1;
-        sp24->unk44 = 0.0f;
+        sp24->moveSpeed = 0.0f;
         sp24->unk48 = 0.0f;
         func_8001C0EC(gCurrentParsedObject, 0, sp24->unkA8, 0x12B, &D_80117F08);
     }
@@ -170,7 +170,7 @@ void func_800C0D78(void) {
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
         sp24->unk132 = 1;
-        sp24->unk44 = 0.0f;
+        sp24->moveSpeed = 0.0f;
         sp24->unk48 = 0.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 1, 0x12B, (u32*) &D_80117F08);
         func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80117F7C);
@@ -192,7 +192,7 @@ void func_800C0F18(void) {
     sp3C = &gObjects[gCurrentParsedObject];
     if (sp3C->unk132 == 0) {
         sp3C->unk132 = 1;
-        sp3C->unk44 = 0.0f;
+        sp3C->moveSpeed = 0.0f;
         sp3C->moveAngle = ((sp3C->Rot.y + 180.0f) > 180.0f)
                           ? ((sp3C->Rot.y + 180.0f >= 360.0f) ? (sp3C->Rot.y + 180.0f) - 360.0f : sp3C->Rot.y + 180.0f)
                       : ((sp3C->Rot.y + 180.0f < 0.0f)) ? (sp3C->Rot.y) + 540.0f

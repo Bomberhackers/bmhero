@@ -704,7 +704,7 @@ void func_endol_80332CD0(void) {
         func_8001ABF4(gCurrentParsedObject, 3, 0, &D_80119E0C.unk134);
         sp2C->Vel.z = 0.0f;
         sp2C->Vel.x = sp2C->Vel.z;
-        sp2C->unk44 = 0.0f;
+        sp2C->moveSpeed = 0.0f;
     }
     sp2C->Rot.y = Math_WrapAngle(sp2C->Rot.y, gObjects[sp2C->unkBA].unkD4);
     sp2C->moveAngle = sp2C->Rot.y;
@@ -853,12 +853,12 @@ void func_endol_8033381C(void) {
         sp24->unkB2 = sp24->actionState;
         func_8001C0EC(gCurrentParsedObject, 0, 0xB, 0xC8, D_80119C80);
     }
-    sp24->unk44 = 6.0f;
+    sp24->moveSpeed = 6.0f;
     func_8002A8B4(gCurrentParsedObject, 3.0f);
     sp24->Rot.y = sp24->moveAngle;
     func_80029C40(gCurrentParsedObject);
     if (func_80029018(gCurrentParsedObject, 0U, 120.0f, 0.0f, 0.0f, 0.0f) != 0) {
-        sp24->unk44 = 0.0f;
+        sp24->moveSpeed = 0.0f;
         sp24->Vel.z = 0.0f;
         sp24->Vel.x = sp24->Vel.z;
     }
@@ -877,18 +877,18 @@ void func_endol_803339AC(void) {
         sp24->unkB2 = sp24->actionState;
         func_8001C0EC(gCurrentParsedObject, 0, 0xC, 0xC8, D_80119C80);
     }
-    sp24->unk44 = 6.0f;
+    sp24->moveSpeed = 6.0f;
     func_8002A8B4(gCurrentParsedObject, 3.0f);
     sp24->Rot.y = sp24->moveAngle;
     func_80029C40(gCurrentParsedObject);
     if (func_80029018(gCurrentParsedObject, 0U, 120.0f, 0.0f, 0.0f, 0.0f) != 0) {
-        sp24->unk44 = 0.0f;
+        sp24->moveSpeed = 0.0f;
         sp24->Vel.z = 0.0f;
         sp24->Vel.x = sp24->Vel.z;
     }
     if (func_8001B4AC(gCurrentParsedObject, 0) != 0) {
         if (func_8002A1FC(gCurrentParsedObject, 540.0f) != 0) {
-            sp24->unk44 = 0.0f;
+            sp24->moveSpeed = 0.0f;
             sp24->Vel.z = 0.0f;
             sp24->Vel.x = sp24->Vel.z;
             sp24->actionState = 0x20;
@@ -1191,7 +1191,7 @@ void func_endol_80334EEC(void) {
         func_8001ABF4(gCurrentParsedObject, 2, 0, &D_80119E0C.unkAC[0x34]);
         sp24->unkAA = 1;
         func_800175F0(gCurrentParsedObject, 0, 0x1A, -1, 0);
-        sp24->unk44 = 0.0f;
+        sp24->moveSpeed = 0.0f;
         sp24->Vel.z = 0.0f;
         sp24->Vel.x = sp24->Vel.z;
     }
@@ -1263,7 +1263,7 @@ void func_endol_80335300(void) {
         sp3C->unk132 += 1;
         sp3C->Vel.z = 0.0f;
         sp3C->Vel.x = sp3C->Vel.z;
-        sp3C->unk44 = 0.0f;
+        sp3C->moveSpeed = 0.0f;
         sp3C->unkB2 = sp3C->actionState;
         func_8001C0EC(gCurrentParsedObject, 0, 0x18, 0xC8, D_80119C80);
         func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80119E0C);
@@ -1611,12 +1611,12 @@ void func_endol_803363A8(void) {
         sp24->unk132 += 1;
         sp24->unkB2 = sp24->actionState;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0xCB, &D_80119FC0);
-        sp24->unk44 = 10.0f;
+        sp24->moveSpeed = 10.0f;
         sp24->moveAngle = sp24->Rot.y;
         sp24->unkA6 = 0x14;
     }
     if (sp24->unkA6 == 0) {
-        sp24->unk44 = 0.0f;
+        sp24->moveSpeed = 0.0f;
         sp24->Vel.z = 0.0f;
         sp24->Vel.x = sp24->Vel.z;
         sp24->actionState = 3;
@@ -1681,7 +1681,7 @@ void func_endol_803367D0(void) {
         sp24->unkB2 = sp24->actionState;
         sp24->unkA8 = 0x14;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0xCB, &D_80119FC0);
-        sp24->unk44 = 10.0f;
+        sp24->moveSpeed = 10.0f;
         sp24->moveAngle = Math_WrapAngle(sp24->Rot.y, 180.0f);
     }
 
@@ -1759,7 +1759,7 @@ void func_endol_80336B8C(void) {
     if (gObjects[0xE].actionState == 0x2B) {
         if (sp1C->unk132 == 0) {
             sp1C->unk132 += 1;
-            sp1C->unk44 = 9.0f;
+            sp1C->moveSpeed = 9.0f;
             sp1C->moveAngle = gObjects[0xE].moveAngle;
             sp1C->Rot.y = sp1C->moveAngle;
             sp1C->unkA6 = 3;
@@ -1767,12 +1767,12 @@ void func_endol_80336B8C(void) {
         if (sp1C->unkA6 == 0) {
             sp1C->actionState = 2;
             sp1C->unk132 = 0;
-            sp1C->unk44 = 0.0f;
+            sp1C->moveSpeed = 0.0f;
             sp1C->Vel.z = 0.0f;
             sp1C->Vel.x = sp1C->Vel.z;
         } else {
             func_80029C40(gCurrentParsedObject);
-            sp1C->unk44 += 9.0f;
+            sp1C->moveSpeed += 9.0f;
             sp1C->unkA6 -= 1;
         }
     }
@@ -1784,7 +1784,7 @@ void func_endol_80336D14(void) {
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
         sp24->unk132 += 1;
-        sp24->unk44 = 42.0f;
+        sp24->moveSpeed = 42.0f;
         sp24->unkA6 = 0xA;
         sp24->Vel.y = -12.0f;
     }

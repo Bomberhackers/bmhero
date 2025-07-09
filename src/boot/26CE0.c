@@ -878,8 +878,8 @@ void func_80029C40(s32 arg0) {
     struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[arg0];
-    sp1C->Vel.x = sinf((f32) ((f64) sp1C->moveAngle * DEG_TO_RAD)) * sp1C->unk44;
-    sp1C->Vel.z = cosf((f32) ((f64) sp1C->moveAngle * DEG_TO_RAD)) * sp1C->unk44;
+    sp1C->Vel.x = sinf((f32) ((f64) sp1C->moveAngle * DEG_TO_RAD)) * sp1C->moveSpeed;
+    sp1C->Vel.z = cosf((f32) ((f64) sp1C->moveAngle * DEG_TO_RAD)) * sp1C->moveSpeed;
 }
 
 void func_80029D04(s32 arg0) {
@@ -893,9 +893,9 @@ void func_80029D8C(s32 arg0) {
     struct ObjectStruct* sp24;
 
     sp24 = &gObjects[arg0];
-    sp24->Vel.x = (sp24->unk44 * cosf(sp24->unk40 * DEG_TO_RAD)) * sinf(sp24->moveAngle * DEG_TO_RAD);
-    sp24->Vel.z = (sp24->unk44 * cosf(sp24->unk40 * DEG_TO_RAD)) * cosf(sp24->moveAngle * DEG_TO_RAD);
-    sp24->Vel.y = sinf(sp24->unk40 * DEG_TO_RAD) * sp24->unk44;
+    sp24->Vel.x = (sp24->moveSpeed * cosf(sp24->unk40 * DEG_TO_RAD)) * sinf(sp24->moveAngle * DEG_TO_RAD);
+    sp24->Vel.z = (sp24->moveSpeed * cosf(sp24->unk40 * DEG_TO_RAD)) * cosf(sp24->moveAngle * DEG_TO_RAD);
+    sp24->Vel.y = sinf(sp24->unk40 * DEG_TO_RAD) * sp24->moveSpeed;
 }
 
 void func_80029EF8(s32 arg0, f32 arg1, f32 arg2) {

@@ -172,10 +172,10 @@ void func_80330E40_unk_bin_15() {
     if (obj->unk132 == 0) {
         obj->unk132++;
         obj->unkB2 = obj->actionState;
-        obj->unk44 = 10.0f;
+        obj->moveSpeed = 10.0f;
 
         for (i = 0; i < 9; i++) {
-            gObjects[obj->unkE8[i]].unk44 = 10.0f;
+            gObjects[obj->unkE8[i]].moveSpeed = 10.0f;
         }
 
         obj->moveAngle = 0.0f;
@@ -240,10 +240,10 @@ void func_80331260_unk_bin_15() {
     }
 
     if (obj->Pos.z - gPlayerObject->Pos.z > 1800.0f) {
-        obj->unk44 = 10.0f;
+        obj->moveSpeed = 10.0f;
 
         for (i = 0; i < 9; i++) {
-            gObjects[obj->unkE8[i]].unk44 = 10.0f;
+            gObjects[obj->unkE8[i]].moveSpeed = 10.0f;
         }
 
         obj->unkA6 = 0;
@@ -255,10 +255,10 @@ void func_80331260_unk_bin_15() {
         obj->unk40 = 0.0f;
         obj->Rot.y = 0.0f;
         obj->Rot.x = 0.0f;
-        obj->unk44 = 20.0f;
+        obj->moveSpeed = 20.0f;
 
         for (i = 0; i < 9; i++) {
-            gObjects[obj->unkE8[i]].unk44 = 20.0f;
+            gObjects[obj->unkE8[i]].moveSpeed = 20.0f;
         }
     } else {
         func_800158B4(obj->Pos.x - gPlayerObject->Pos.x, obj->Pos.y - gPlayerObject->Pos.y - 50.0f,
@@ -281,10 +281,10 @@ void func_80331260_unk_bin_15() {
 
         func_8002A8B4(gCurrentParsedObject, obj->unkD4);
         obj->Rot.y = obj->moveAngle;
-        obj->unk44 = 10.0f;
+        obj->moveSpeed = 10.0f;
 
         for (i = 0; i < 9; i++) {
-            gObjects[obj->unkE8[i]].unk44 = 10.0f;
+            gObjects[obj->unkE8[i]].moveSpeed = 10.0f;
         }
     }
 
@@ -312,7 +312,7 @@ void func_80331708_unk_bin_15() {
         obj->Rot.y = 0.0f;
         obj->moveAngle = obj->Rot.y;
         obj->unk40 = obj->Rot.x = obj->Rot.z = 0.0f;
-        obj->unk44 = 40.0f;
+        obj->moveSpeed = 40.0f;
         obj->unkB6 = 0;
 
         for (i = 0; i < 9; i++) {
@@ -325,7 +325,7 @@ void func_80331708_unk_bin_15() {
             gObjects[obj->unkE8[i]].Rot.z = obj->Rot.z;
 
             gObjects[obj->unkE8[i]].moveAngle = obj->moveAngle;
-            gObjects[obj->unkE8[i]].unk44 = obj->unk44;
+            gObjects[obj->unkE8[i]].moveSpeed = obj->moveSpeed;
             gObjects[obj->unkE8[i]].unk40 = obj->unk40;
         }
 
@@ -377,10 +377,10 @@ void func_80331E70_unk_bin_15() {
     if (obj->unk132 == 0) {
         obj->unk132++;
         obj->unkB2 = obj->actionState;
-        obj->unk44 = 40.0f;
+        obj->moveSpeed = 40.0f;
 
         for (i = 0; i < 9; i++) {
-            gObjects[obj->unkE8[i]].unk44 = obj->unk44;
+            gObjects[obj->unkE8[i]].moveSpeed = obj->moveSpeed;
         }
     }
     func_80333308_unk_bin_15();
@@ -441,10 +441,10 @@ void func_8033226C_unk_bin_15() {
     if (obj->unk132 == 0) {
         obj->unk132++;
         obj->unkB2 = obj->actionState;
-        obj->unk44 = 40.0f;
+        obj->moveSpeed = 40.0f;
 
         for (i = 0; i < 9; i++) {
-            gObjects[obj->unkE8[i]].unk44 = obj->unk44;
+            gObjects[obj->unkE8[i]].moveSpeed = obj->moveSpeed;
         }
     }
     func_80333308_unk_bin_15();
@@ -494,7 +494,7 @@ void func_803325F8_unk_bin_15() {
     obj->Rot.y = 0.0f;
     obj->moveAngle = obj->Rot.y;
     obj->unk40 = obj->Rot.x = obj->Rot.z = 0.0f;
-    obj->unk44 = 0.0f;
+    obj->moveSpeed = 0.0f;
     obj->unkB6 = 0;
 
     for (i = 0; i < 9; i++) {
@@ -507,7 +507,7 @@ void func_803325F8_unk_bin_15() {
         gObjects[obj->unkE8[i]].Rot.z = obj->Rot.z;
 
         gObjects[obj->unkE8[i]].moveAngle = obj->moveAngle;
-        gObjects[obj->unkE8[i]].unk44 = obj->unk44;
+        gObjects[obj->unkE8[i]].moveSpeed = obj->moveSpeed;
         gObjects[obj->unkE8[i]].unk40 = obj->unk40;
     }
 
@@ -542,7 +542,7 @@ void func_80332C94_unk_bin_15() {
         obj->unkB2 = obj->actionState;
 
         obj->unkC2 = 0x3C;
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
         obj->moveAngle = 0.0f;
         obj->unk40 = 0.0f;
 
@@ -551,7 +551,7 @@ void func_80332C94_unk_bin_15() {
             gObjects[obj->unkE8[i]].unk30.y = Math_Random(0x12);
 
             gObjects[obj->unkE8[i]].moveAngle = Math_Random(0x167);
-            gObjects[obj->unkE8[i]].unk44 = Math_Random(0x1E);
+            gObjects[obj->unkE8[i]].moveSpeed = Math_Random(0x1E);
             gObjects[obj->unkE8[i]].unk40 = Math_Random(0x167);
         }
 
@@ -886,7 +886,7 @@ void func_80334540_unk_bin_15() {
 
     if (obj->unk132 == 0) {
         obj->unk132++;
-        obj->unk44 = 20.0f;
+        obj->moveSpeed = 20.0f;
         obj->Rot.y = gObjects[obj->unkC2].Rot.y;
         obj->moveAngle = obj->Rot.y;
         obj->unkA6 = 0x14;

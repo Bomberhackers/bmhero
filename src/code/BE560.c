@@ -324,7 +324,7 @@ void func_800CD808(void) {
     if (sp5C->unk132 == 0) {
         sp5C->unk132 += 1;
         sp5C->unkA6 = 0x14;
-        sp5C->unk44 = 5.0f;
+        sp5C->moveSpeed = 5.0f;
         sp5C->moveAngle = 0.0f;
         gObjects[sp58].unkA6 = (s16) (s32) (gObjects[sp58].Pos.y - sp5C->Pos.y);
         func_8001C0EC(gCurrentParsedObject, 0, 1, 0x8C, &D_801182D4);
@@ -354,7 +354,7 @@ void func_800CD808(void) {
 
     gObjects[sp58].moveAngle = gObjects[sp54].moveAngle = gObjects[sp50].moveAngle = sp5C->moveAngle;
     if ((sp5C->unkA6 - sp5C->unkBA) == 0) {
-        sp5C->unk44 = 0.0f;
+        sp5C->moveSpeed = 0.0f;
 
         sp5C->Vel.x = sp5C->Vel.y = sp5C->Vel.z = 0.0f;
 
@@ -458,7 +458,7 @@ void func_800CE51C(void) {
     if (sp5C->unk132 == 0) {
         sp5C->unk132 += 1;
         sp5C->unkA6 = 0x14;
-        sp5C->unk44 = 5.0f;
+        sp5C->moveSpeed = 5.0f;
         sp5C->moveAngle = 180.0f;
         gObjects[sp58].unkA6 = (s16) (s32) (gObjects[sp58].Pos.y - sp5C->Pos.y);
         func_8001C0EC(gCurrentParsedObject, 0, 1, 0x8C, &D_801182D4);
@@ -488,7 +488,7 @@ void func_800CE51C(void) {
 
     gObjects[sp58].moveAngle = gObjects[sp54].moveAngle = gObjects[sp50].moveAngle = sp5C->moveAngle;
     if ((sp5C->unkA6 - sp5C->unkBA) == 0) {
-        sp5C->unk44 = 0.0f;
+        sp5C->moveSpeed = 0.0f;
 
         sp5C->Vel.x = sp5C->Vel.y = sp5C->Vel.z = 0.0f;
 
@@ -724,7 +724,7 @@ void func_800CF968(void) {
     if (sp2C->unk132 == 0) {
         sp2C->unk132 += 1;
         sp2C->unkA6 = 0xA;
-        sp2C->unk44 = 14.0f;
+        sp2C->moveSpeed = 14.0f;
     }
     if (func_80028FA0(gCurrentParsedObject) != 0) {
         sp2C->actionState = 3;
@@ -805,7 +805,7 @@ void func_800CFEC4(void) {
     if (sp24->unk132 == 0) {
         sp24->unk132 += 1;
         sp24->unkA8 = 0x14;
-        sp24->unk44 = 8.0f;
+        sp24->moveSpeed = 8.0f;
         sp24->moveAngle = Get_AngleToPlayer(gCurrentParsedObject);
         func_80029EF8(gCurrentParsedObject, 0.0f, 1.5f);
         func_8001C0EC(gCurrentParsedObject, 0, 1, 0x92, &D_80118514);
@@ -842,7 +842,7 @@ void func_800D0194(void) {
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
         sp24->unk132 += 1;
-        sp24->unk44 = 0.0f;
+        sp24->moveSpeed = 0.0f;
         sp24->damageState = 1;
         func_80029EF8(gCurrentParsedObject, 10.0f, 1.0f);
         func_8001C0EC(gCurrentParsedObject, 0, 3, 0x92, &D_80118514);
@@ -881,7 +881,7 @@ void func_800D03EC(void) {
     if (sp34->unk132 == 0) {
         sp34->unk132 += 1;
         sp34->unkB0 = 0;
-        sp34->unk44 = 0.0f;
+        sp34->moveSpeed = 0.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 4, 0x92, &D_80118514);
     }
     if (func_80028FA0(gCurrentParsedObject) != 0) {
@@ -889,7 +889,7 @@ void func_800D03EC(void) {
         sp34->unkB0 = 0xA;
     }
     if (func_8001B62C(gCurrentParsedObject, 0) == 8.0f) {
-        sp34->unk44 = 4.0f;
+        sp34->moveSpeed = 4.0f;
         func_80029EF8(gCurrentParsedObject, 6.666667f, 0.350877f);
     }
     if (sp34->unkB0 == 0) {
@@ -906,7 +906,7 @@ void func_800D03EC(void) {
         func_80029824(gCurrentParsedObject, func_800297DC());
     }
     sp34->Vel.y = sp30;
-    if ((func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, 0.0f, 60.0f) == 1) && (sp34->unk44 != 0.0f)) {
+    if ((func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, 0.0f, 60.0f) == 1) && (sp34->moveSpeed != 0.0f)) {
         sp34->actionState = 4;
         sp34->unk132 = 0;
         func_8001BBDC(gCurrentParsedObject, 1);
@@ -1038,7 +1038,7 @@ void func_800D0F98(void) {
     sp3C = &gObjects[gCurrentParsedObject];
     if (sp3C->unk132 == 0) {
         sp3C->unk132 += 1;
-        sp3C->unk44 = 5.0f;
+        sp3C->moveSpeed = 5.0f;
         sp3C->unkA6 = 1;
         sp3C->unkA8 = 0;
         sp3C->Vel.x = sp3C->Vel.y = sp3C->Vel.z = 0.0f;
@@ -1177,7 +1177,7 @@ void func_800D1870(void) {
     sp3C = &gObjects[gCurrentParsedObject];
     if (sp3C->unk132 == 0) {
         sp3C->unk132 += 1;
-        sp3C->unk44 = 5.0f;
+        sp3C->moveSpeed = 5.0f;
         sp3C->unkA6 = 1;
         sp3C->unkA8 = 2;
         sp3C->unkB6 = 0x1E;

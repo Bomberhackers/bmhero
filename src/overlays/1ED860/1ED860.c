@@ -30,7 +30,7 @@ void func_80330000_unk_bin_41() {
         gObjects[objIdx].Scale.x = 0.5f;
         gObjects[objIdx].Scale.y = 0.5f;
         gObjects[objIdx].Scale.z = 0.5f;
-        gObjects[objIdx].unk44 = 10.0f;
+        gObjects[objIdx].moveSpeed = 10.0f;
         gObjects[objIdx].unk48 = 6.0f;
         gObjects[objIdx].unkAA = 1;
         func_80019448(objIdx, 2, 0, 1);
@@ -88,7 +88,7 @@ void func_803305D4_unk_bin_41() {
         obj->unkE0 = Math_Random(0x168);
 
         if (obj->unkAA == 1) {
-            obj->unk44 = 10.0f;
+            obj->moveSpeed = 10.0f;
             obj->unk48 = 6.0f;
             obj->unkAA = 0;
         }
@@ -100,8 +100,8 @@ void func_803305D4_unk_bin_41() {
     sp18 = sinf(obj->unkA6 * DEG_TO_RAD) * 40.0f;
     obj->unk40 = Math_WrapAngle(sp18, 0.0f);
 
-    if (obj->unk44 > 10.0f) {
-        obj->unk44 -= 1.0f;
+    if (obj->moveSpeed > 10.0f) {
+        obj->moveSpeed -= 1.0f;
     }
     if (obj->unk48 > 6.0f) {
         obj->unk48 -= 1.0f;
@@ -143,7 +143,7 @@ void func_803309CC_unk_bin_41() {
 
     if (obj->unk132 == 0) {
         obj->unk132 = 1;
-        obj->unk44 = 14.0f;
+        obj->moveSpeed = 14.0f;
         obj->unk48 = 14.0f;
         obj->unkE0 = 90.0f;
         obj->unkA6 = 0;
@@ -196,7 +196,7 @@ s8 func_80330C3C_unk_bin_41() {
         obj->unkE0 = 270.0f;
 
         if (obj->unkAA == 1) {
-            obj->unk44 = 10.0f;
+            obj->moveSpeed = 10.0f;
             obj->unk48 = 6.0f;
             obj->unkAA = 0;
         }
@@ -208,8 +208,8 @@ s8 func_80330C3C_unk_bin_41() {
     obj->unkD8 = obj->unk40;
 
     if (obj->unk132 == 1) {
-        if (obj->unk44 > 0.0f) {
-            obj->unk44 -= 1.0f;
+        if (obj->moveSpeed > 0.0f) {
+            obj->moveSpeed -= 1.0f;
         }
         if (obj->unk48 > 0.0f) {
             obj->unk48 -= 1.0f;
@@ -232,7 +232,7 @@ s8 func_80330C3C_unk_bin_41() {
                 distCalc = 8;
             }
 
-            obj->unk44 = (f32) (distCalc + 14);
+            obj->moveSpeed = (f32) (distCalc + 14);
             obj->unk48 = 8.0f;
             obj->unk132 = 3;
         }
@@ -269,7 +269,7 @@ void func_803310A0_unk_bin_41() {
 
     if (obj->unk132 == 0) {
         obj->unk132 = 1;
-        obj->unk44 = 14.0f;
+        obj->moveSpeed = 14.0f;
         obj->unk48 = 14.0f;
         obj->unkA6 = 0;
     }
@@ -302,7 +302,7 @@ void func_80331248_unk_bin_41() {
 
     if (obj->unk132 == 0) {
         obj->unk132 = 1;
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
         obj->unk48 = 0.0f;
         obj->unkDC = Math_WrapAngle(obj->moveAngle, 180.0f);
         obj->unkDC = Math_WrapAngle(obj->unkDC, Math_Random(0x5A));
@@ -340,7 +340,7 @@ void func_80331474_unk_bin_41() {
 
     if (obj->unk132 == 0) {
         obj->unk132 = 1;
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
         obj->unk48 = 0.0f;
         obj->unkB2 = 0xC8;
         obj->damageState = 0;
@@ -472,7 +472,7 @@ s16 func_803319F4_unk_bin_41(s16 idx) {
 
         obj->moveAngle = sp40->moveAngle;
         obj->unk40 = sp40->unk40;
-        obj->unk44 = sp40->unk44;
+        obj->moveSpeed = sp40->moveSpeed;
 
         obj->unk48 = sp40->unk48;
         obj->unkD4 = sp40->unkD4;

@@ -168,7 +168,7 @@ u8 func_800171E0(s32 arg0) {
 }
 
 s16 func_80017460(s32 obj_idx) {
-    s32 magnitude;
+    s32 distance;
     struct ObjectStruct* obj;
     f32 distX;
     f32 distY;
@@ -183,13 +183,13 @@ s16 func_80017460(s32 obj_idx) {
     distY = gView.at.y - obj->Pos.y;
     distZ = gView.at.z - obj->Pos.z;
 
-    magnitude = (s32) sqrtf(SQ(distX) + SQ(distY) + SQ(distZ));
-    if (magnitude >= 961) {
-        magnitude = 960;
-    } else if (magnitude < 480) {
-        magnitude = 480;
+    distance = (s32) sqrtf(SQ(distX) + SQ(distY) + SQ(distZ));
+    if (distance >= 961) {
+        distance = 960;
+    } else if (distance < 480) {
+        distance = 480;
     }
-    sp1A = (s16) (60960 / magnitude);
+    sp1A = (s16) (60960 / distance);
     return sp1A;
 }
 
@@ -740,7 +740,7 @@ void Init_Obj(int index) {
     obj->unk30.z = 0.0f;
     obj->moveAngle = 0.0f;
     obj->unk40 = 0.0f;
-    obj->unk44 = 0.0f;
+    obj->moveSpeed = 0.0f;
     obj->unk48 = 0.0f;
     obj->unk4C = 0.0f;
     obj->unk5C = 0.0f;
@@ -794,7 +794,7 @@ void func_8001A300(s32 id) {
     sp4->unk38 = D_80055D60;
     sp4->unk3C = D_8004A3D0;
     sp4->unk40 = D_80055D64;
-    sp4->unk44 = D_8004A3D4;
+    sp4->unk_44 = D_8004A3D4;
     sp4->unk48 = D_80055D68;
     sp4->unk4C = D_80055D30[0];
     sp4->unk50 = D_80055D30[1];
@@ -815,7 +815,7 @@ void func_8001A488(s32 id) {
     D_80055D60 = sp4->unk38;
     D_8004A3D0 = sp4->unk3C;
     D_80055D64 = sp4->unk40;
-    D_8004A3D4 = sp4->unk44;
+    D_8004A3D4 = sp4->unk_44;
     D_80055D68 = sp4->unk48;
     D_80055D30[0] = sp4->unk4C;
     D_80055D30[1] = sp4->unk50;

@@ -1,3 +1,6 @@
+// Overlay bss?
+sGamePaused = 0x803363C0;
+
 Get_AngleToPlayer = 0x8002A46C;
 Update_ObjPyonPyon = 0x800C38A8;
 Init_ObjTrainingRobo = 0x800D7F9C;
@@ -4187,9 +4190,9 @@ unk_bin_13_ROM_START = 0x16D650; // defined:true
 unk_bin_14_ROM_START = 0x175420; // defined:true
 unk_bin_15_ROM_START = 0x184EE0; // defined:true
 unk_bin_16_ROM_START = 0x189940; // defined:true
-unk_bin_17_ROM_START = 0x194F10; // defined:true
-unk_bin_18_ROM_START = 0x198140; // defined:true
-unk_bin_19_ROM_START = 0x19C610; // defined:true
+ovl_bagular_1_ROM_START = 0x194F10; // defined:true
+ovl_bagular_2_ROM_START = 0x198140; // defined:true
+ovl_bagular_3_ROM_START = 0x19C610; // defined:true
 unk_bin_20_ROM_START = 0x1A89C0; // defined:true
 unk_bin_21_ROM_START = 0x1ABC60; // defined:true
 unk_bin_22_ROM_START = 0x1AECD0; // defined:true

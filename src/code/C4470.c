@@ -164,7 +164,7 @@ void func_800D2A04(void) {
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
         sp24->unk132 += 1;
-        sp24->unk44 = 30.0f;
+        sp24->moveSpeed = 30.0f;
         sp24->unkA6 = 1;
         func_8001BBDC(gCurrentParsedObject, 1);
     }
@@ -266,7 +266,7 @@ void func_800D3048(void) {
     obj = &gObjects[gCurrentParsedObject];
     if (obj->unk132 == 0) {
         obj->unk132 += 1;
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
         obj->unk40 = 90.0f;
         obj->unk48 = 8.0f;
         func_8001BB04(gCurrentParsedObject, 0);
@@ -292,15 +292,15 @@ void func_800D31A8(void) {
     if (sp3C->unk132 == 0) {
         sp3C->unk132 = 1;
         sp3C->unkAC = 0;
-        sp3C->unk44 = 0.0f;
+        sp3C->moveSpeed = 0.0f;
         sp3C->moveAngle = Get_AngleToPlayer(gCurrentParsedObject);
         func_8001ABF4(
             gCurrentParsedObject, 0, 0,
             &D_80118784 +
                 0x1C / 4); // this line WILL have to be refactored later, but we gotta figure out WHAT this is first
     }
-    if (sp3C->unk44 != 12.0f) {
-        sp3C->unk44 = (f32) ((f64) sp3C->unk44 + 0.5);
+    if (sp3C->moveSpeed != 12.0f) {
+        sp3C->moveSpeed = (f32) ((f64) sp3C->moveSpeed + 0.5);
     }
     if (func_80028FA0(gCurrentParsedObject) != 0) {
         func_80029B60(gCurrentParsedObject);
@@ -409,7 +409,7 @@ void func_800D3824(void) {
     obj = &gObjects[gCurrentParsedObject];
     if (obj->unk132 == 0) {
         obj->unk132 = 1;
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
         obj->unk40 = 90.0f;
         obj->unk48 = 5.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0x97, &D_801187BC);
@@ -437,7 +437,7 @@ void func_800D3974(void) {
         obj->unkAC = (s16) (s32) obj->Pos.x;
         obj->unkAE = (s16) (s32) obj->Pos.z;
         obj->moveAngle = (f32) Math_Random(0x168);
-        obj->unk44 = 4.0f;
+        obj->moveSpeed = 4.0f;
         obj->unkB6 = (s16) (s32) obj->Pos.y;
         obj->unkB8 = 0;
         obj->unk40 = 90.0f;
@@ -695,7 +695,7 @@ void func_800D4AB4(void) {
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
         sp24->unk132 += 1;
-        sp24->unk44 = 0.0f;
+        sp24->moveSpeed = 0.0f;
         func_80029EF8(gCurrentParsedObject, 0.0f, 2.0f);
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0xB3, &D_80118864);
         func_8001BBDC(gCurrentParsedObject, 1);
@@ -722,7 +722,7 @@ void func_800D4C8C(void) {
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
         sp24->unk132 += 1;
-        sp24->unk44 = 0.0f;
+        sp24->moveSpeed = 0.0f;
         func_80029EF8(gCurrentParsedObject, 8.0f, 1.0f);
     }
     if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, -120.0f, 60.0f) == 1) {
@@ -749,7 +749,7 @@ void func_800D4D74(void) {
     }
 
     if (obj->unkA6 == 0) {
-        obj->unk44 = 13.0f;
+        obj->moveSpeed = 13.0f;
         obj->Vel.y = 0.0f;
         func_80029C40(gCurrentParsedObject);
         sp30 = sinf(obj->moveAngle * DEG_TO_RAD) * 120.0f + obj->Pos.x;
@@ -780,7 +780,7 @@ void func_800D4D74(void) {
 
             obj->Pos.y += 120.0f;
             obj->unkA6 = 9;
-            obj->unk44 = 0.0f;
+            obj->moveSpeed = 0.0f;
             obj->Vel.z = 0.0f;
             obj->Vel.x = obj->Vel.z;
             obj->unkA8 = (s16) (s32) (obj->moveAngle - 90.0f);
@@ -827,7 +827,7 @@ void func_800D5610(void) {
         obj->unk132 = 1;
         obj->unkA6 = 0x1E;
         obj->unkD8 = 6.0f;
-        obj->unk44 = 12.0f;
+        obj->moveSpeed = 12.0f;
         func_80029EF8(gCurrentParsedObject, 2.0f, 0.75f);
     }
     if (obj->unkA6 == 0) {
@@ -991,7 +991,7 @@ void func_800D613C(void) {
         obj->unk132 += 1;
         obj->unkA6 = Math_Random(0xA) & 1;
         obj->moveAngle = (f32) ((obj->unkA6 * 0xB4) + 0x5A);
-        obj->unk44 = 5.0f;
+        obj->moveSpeed = 5.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0xA8, &D_80118868);
         func_8001BBDC(gCurrentParsedObject, 0);
         obj->damageState = 1;
@@ -1074,7 +1074,7 @@ void func_800D6684(void) {
     obj = &gObjects[gCurrentParsedObject];
     if (obj->unk132 == 0) {
         obj->unk132 += 1;
-        obj->unk44 = 12.0f;
+        obj->moveSpeed = 12.0f;
         obj->unk48 = 5.0f;
         obj->unkA6 = 1;
         obj->unkB6 = 0x32;
@@ -1170,14 +1170,14 @@ void func_800D6DFC(void) {
     if (obj->unk132 == 0) {
         obj->unk132 = 1;
         obj->unkA6 = obj->unkA8 = obj->unkB6 = 0;
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
         obj->Rot.y = obj->moveAngle;
         func_80017664(gCurrentParsedObject, 0, 0x59, -1, 0);
     }
     if ((obj->unkB6 == 0) && (obj->unkA6 == 0) && (func_80028FA0(gCurrentParsedObject) != 0)) {
         obj->unkB6 = 5;
         obj->unkB8 = (s16) (s32) obj->moveAngle;
-        obj->unk44 = 8.0f;
+        obj->moveSpeed = 8.0f;
         obj->moveAngle += 180.0f;
         if (obj->moveAngle >= 360.0f) {
             obj->moveAngle -= 360.0f;
@@ -1186,7 +1186,7 @@ void func_800D6DFC(void) {
     if (obj->unkB6 != 0) {
         obj->unkB6 -= 1;
         if (obj->unkB6 == 0) {
-            obj->unk44 = obj->Vel.x = obj->Vel.z = 0;
+            obj->moveSpeed = obj->Vel.x = obj->Vel.z = 0;
             obj->unkA8 = (s16) (s32) obj->moveAngle;
             obj->moveAngle = (f32) obj->unkB8;
             obj->unkA6 = 1;
@@ -1199,8 +1199,8 @@ void func_800D6DFC(void) {
             obj->unkA6 = 0;
         }
     } else {
-        if (obj->unk44 < 12.0f) {
-            obj->unk44 = (f32) ((f64) obj->unk44 + 0.25);
+        if (obj->moveSpeed < 12.0f) {
+            obj->moveSpeed = (f32) ((f64) obj->moveSpeed + 0.25);
         }
         obj->Vel.y = 0.0f;
         func_80029C40(gCurrentParsedObject);
@@ -1210,7 +1210,7 @@ void func_800D6DFC(void) {
                 if (obj->unkB6 == 0) {
                     obj->unkB6 = 5;
                     obj->unkB8 = (s16) (s32) obj->moveAngle;
-                    obj->unk44 = 8.0f;
+                    obj->moveSpeed = 8.0f;
                     obj->moveAngle += 180.0f;
                     if (obj->moveAngle >= 360.0f) {
                         obj->moveAngle -= 360.0f;
@@ -1236,7 +1236,7 @@ void func_800D7348(void) {
     if (obj->unk132 == 0) {
         obj->unk132 += 1;
         obj->unkA6 = 0x1E;
-        obj->unk44 = 5.0f;
+        obj->moveSpeed = 5.0f;
         obj->moveAngle = Math_WrapAngle(obj->unk128, 180.0f);
         func_80029EF8(gCurrentParsedObject, 14.378698f, 1.06089f);
         func_8001BBDC(gCurrentParsedObject, 1);
@@ -1296,7 +1296,7 @@ void func_800D7704(void) {
     if (obj->unk132 == 0) {
         obj->unk132 = 1;
         obj->unkA6 = obj->unkA8 = obj->unkB6 = 0;
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
         obj->moveAngle = Math_Random(0x168);
         obj->Rot.y = obj->moveAngle;
         func_80017664(gCurrentParsedObject, 0, 0x59, -1, 0);
@@ -1304,13 +1304,13 @@ void func_800D7704(void) {
     if ((obj->unkB6 == 0) && (obj->unkA6 == 0) && (func_80028FA0(gCurrentParsedObject) != 0)) {
         obj->unkB6 = 5;
         obj->unkB8 = obj->moveAngle;
-        obj->unk44 = 8.0f;
+        obj->moveSpeed = 8.0f;
         func_80029B60(gCurrentParsedObject);
     }
     if (obj->unkB6 != 0) {
         obj->unkB6 -= 1;
         if (obj->unkB6 == 0) {
-            obj->unk44 = obj->Vel.x = obj->Vel.z = 0.0f;
+            obj->moveSpeed = obj->Vel.x = obj->Vel.z = 0.0f;
             obj->moveAngle = obj->unkB8;
             obj->unkA6 = 1;
             obj->unkA8 = Get_AngleToPlayer(gCurrentParsedObject);
@@ -1328,8 +1328,8 @@ void func_800D7704(void) {
             obj->unkA6 = 0;
         }
     } else {
-        if (obj->unk44 < 12.0f) {
-            obj->unk44 = obj->unk44 + 0.25;
+        if (obj->moveSpeed < 12.0f) {
+            obj->moveSpeed = obj->moveSpeed + 0.25;
         }
         obj->Vel.y = 0.0f;
         func_80029C40(gCurrentParsedObject);
@@ -1339,7 +1339,7 @@ void func_800D7704(void) {
                 if (obj->unkB6 == 0) {
                     obj->unkB6 = 5;
                     obj->unkB8 = obj->moveAngle;
-                    obj->unk44 = 8.0f;
+                    obj->moveSpeed = 8.0f;
                     func_80029824(gCurrentParsedObject, func_800297DC());
                 } else {
                     obj->unkB6 = 1;
@@ -1362,7 +1362,7 @@ void func_800D7CD0(void) {
     if (sp24->unk132 == 0) {
         sp24->unk132 += 1;
         sp24->unkA6 = 0x1E;
-        sp24->unk44 = 5.0f;
+        sp24->moveSpeed = 5.0f;
         sp24->moveAngle = Math_WrapAngle(sp24->unk128, 180.0f);
         func_80029EF8(gCurrentParsedObject, 14.378698f, 1.06089f);
         func_8001BBDC(gCurrentParsedObject, 1);
@@ -1419,13 +1419,11 @@ void func_800D808C(void) {
     s32 sp40;
 
     obj = &gObjects[gCurrentParsedObject];
-//    DEBUG_PRINTF("unk132: %d!\n", obj->unk132);
 
-    // Initialize the object
     if (obj->unk132 == 0) {
         obj->unk132 = 1;
         obj->unkA6 = obj->unkA8 = obj->unkB6 = 0;
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
         obj->moveAngle = (f32) Math_Random(0x168);
         obj->Rot.y = obj->moveAngle;
         func_8001ABF4(gCurrentParsedObject, 0, 0, &D_801188DC + 0x1C / 4);
@@ -1434,13 +1432,13 @@ void func_800D808C(void) {
     if ((obj->unkB6 == 0) && (obj->unkA6 == 0) && (func_80028FA0(gCurrentParsedObject))) {
         obj->unkB6 = 5;
         obj->unkB8 = (s16) (s32) obj->moveAngle;
-        obj->unk44 = 6.0f;
+        obj->moveSpeed = 6.0f;
         func_80029B60(gCurrentParsedObject);
     }
     if (obj->unkB6 != 0) {
         obj->unkB6 -= 1;
         if (obj->unkB6 == 0) {
-            obj->unk44 = obj->Vel.x = obj->Vel.z = 0.0f;
+            obj->moveSpeed = obj->Vel.x = obj->Vel.z = 0.0f;
             obj->moveAngle = (f32) obj->unkB8;
             obj->unkA6 = 1;
             obj->unkA8 = (s16) (s32) Get_AngleToPlayer(gCurrentParsedObject);
@@ -1461,8 +1459,8 @@ void func_800D808C(void) {
             func_8001ABF4(gCurrentParsedObject, 0, 0, &D_801188DC + 0x1C / 4);
         }
     } else {
-        if (obj->unk44 < 8.0f) {
-            obj->unk44 = (f32) ((f64) obj->unk44 + 0.25);
+        if (obj->moveSpeed < 8.0f) {
+            obj->moveSpeed += 0.25;
         }
         obj->Vel.y = 0.0f;
         func_80029C40(gCurrentParsedObject);
@@ -1472,7 +1470,7 @@ void func_800D808C(void) {
                 if (obj->unkB6 == 0) {
                     obj->unkB6 = 5;
                     obj->unkB8 = (s16) (s32) obj->moveAngle;
-                    obj->unk44 = 6.0f;
+                    obj->moveSpeed = 6.0f;
                     func_80029824(gCurrentParsedObject, func_800297DC());
                 } else {
                     obj->unkB6 = 1;

@@ -70,7 +70,7 @@ void func_803300E8_unk_bin_20() {
         obj->unk132 = 0;
         obj->Vel.z = 0.0f;
         obj->Vel.x = obj->Vel.z;
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
 
         func_8001BBDC(gCurrentParsedObject, 1);
     } else if (D_80177A64 == 1) {
@@ -371,7 +371,7 @@ void func_80331518_unk_bin_20() {
     if (obj->unk132 == 0) {
         obj->unk132++;
         obj->unkB2 = obj->actionState;
-        obj->unk44 = 4.0f;
+        obj->moveSpeed = 4.0f;
 
         func_8001C0EC(gCurrentParsedObject, 0, 0xB, 0xC8, &D_80119C80);
         func_8001ABF4(gCurrentParsedObject, 1, 0, &D_80119E0C.unk70);
@@ -385,7 +385,7 @@ void func_80331518_unk_bin_20() {
         }
     } else if (obj->unk132 == 2) {
         obj->unk132 = 1;
-        obj->unk44 = 4.0f;
+        obj->moveSpeed = 4.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 0xB, 0xC8, &D_80119C80);
     }
 
@@ -394,7 +394,7 @@ void func_80331518_unk_bin_20() {
     func_80029C40(gCurrentParsedObject);
 
     if (func_80029018(gCurrentParsedObject, 0U, 120.0f, 0.0f, 0.0f, 0.0f)) {
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
         obj->Vel.z = 0.0f;
         obj->Vel.x = obj->Vel.z;
         obj->actionState = 5;
@@ -419,7 +419,7 @@ void func_803317C4_unk_bin_20() {
     obj->Rot.y = obj->moveAngle;
     func_80029C40(gCurrentParsedObject);
     if (func_80029018(gCurrentParsedObject, 0U, 120.0f, 0.0f, 0.0f, 0.0f)) {
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
         obj->Vel.z = 0.0f;
         obj->Vel.x = obj->Vel.z;
         obj->actionState = 5;
@@ -432,13 +432,13 @@ void func_803317C4_unk_bin_20() {
             obj->unk132 = 0;
             obj->Vel.z = 0.0f;
             obj->Vel.x = obj->Vel.z;
-            obj->unk44 = 0.0f;
+            obj->moveSpeed = 0.0f;
         } else if (func_8002A1FC(gCurrentParsedObject, 300.0f)) {
             obj->actionState = 5;
             obj->unk132 = 0;
             obj->Vel.z = 0.0f;
             obj->Vel.x = obj->Vel.z;
-            obj->unk44 = 0.0f;
+            obj->moveSpeed = 0.0f;
         } else {
             obj->actionState = 0xE;
             obj->unk132 = 2;
@@ -666,7 +666,7 @@ void func_803325E4_unk_bin_20() {
     if (gObjects[obj->unkC2].actionState == 0xB) {
         if (obj->unk132 == 0) {
             obj->unk132++;
-            obj->unk44 = 9.0f;
+            obj->moveSpeed = 9.0f;
             obj->moveAngle = obj->Rot.y;
             obj->unkA6 = 3;
         }
@@ -674,12 +674,12 @@ void func_803325E4_unk_bin_20() {
         if (obj->unkA6 == 0) {
             obj->actionState = 2;
             obj->unk132 = 0;
-            obj->unk44 = 0.0f;
+            obj->moveSpeed = 0.0f;
             obj->Vel.z = 0.0f;
             obj->Vel.x = obj->Vel.z;
         } else {
             func_80029C40(gCurrentParsedObject);
-            obj->unk44 += 9.0f;
+            obj->moveSpeed += 9.0f;
             obj->unkA6--;
         }
     }
@@ -690,14 +690,14 @@ void func_80332774_unk_bin_20() {
 
     if (obj->unk132 == 0) {
         obj->unk132++;
-        obj->unk44 = 30.0f;
+        obj->moveSpeed = 30.0f;
         obj->unkA6 = 0xC;
         obj->Vel.y = -8.0f;
     }
     if (obj->unkA6 == 0) {
         obj->actionState = 3;
         obj->unk132 = 0;
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
         obj->Vel.x = obj->Vel.y = obj->Vel.z = 0.0f;
     } else {
         func_80029C40(gCurrentParsedObject);
@@ -713,14 +713,14 @@ void func_80332908_unk_bin_20(void) {
 
     if (obj->unk132 == 0) {
         obj->unk132++;
-        obj->unk44 = 30.0f;
+        obj->moveSpeed = 30.0f;
         obj->unkA6 = 0xA;
         obj->Vel.y = -8.0f;
     }
 
     func_80029C40(gCurrentParsedObject);
 
-    obj->unk44 -= 3.0f;
+    obj->moveSpeed -= 3.0f;
     obj->Vel.y -= 4.0f;
 
     if (func_80029018(gCurrentParsedObject, 3U, 30.0f, 0.0f, 0.0f, 0.0f)) {

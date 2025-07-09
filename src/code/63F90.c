@@ -15,31 +15,34 @@ extern s32 D_80177644;
 extern s32 D_8017764C;
 extern s32 D_80177660;
 
-void func_80071A70(s32 arg0) {
+UNUSED void func_80071A70(s32 arg0) {
     D_801775EF = arg0;
 }
 
-f32 func_80071A88(f32 arg0, f32 arg1, s8* arg2) {
-    f32 spC;
-    f32 sp8;
-    f32 sp4;
+f32 func_80071A88(f32 y, f32 x, s8* divisor) {
+    f32 temp_dist;
+    f32 dist;
+    f32 ret;
 
-    if (*arg2 == 0) {
-        sp4 = arg1;
+    if (*divisor == 0) {
+        ret = x;
     } else {
-        sp8 = arg1 - arg0;
-        spC = sp8;
-        if (spC < 0.0f) {
-            sp8 = -spC;
+        dist = x - y;
+        temp_dist = dist;
+
+        // If the number is negative, we make it positive
+        if (temp_dist < 0.0f) {
+            dist = -temp_dist;
         }
-        if (sp8 < 4.0f) {
-            *arg2 = 0;
-            sp4 = arg1;
+
+        if (dist < 4.0f) {
+            *divisor = 0;
+            ret = x;
         } else {
-            sp4 = (spC / (f32) *arg2) + arg0;
+            ret = (temp_dist / (f32) *divisor) + y;
         }
     }
-    return sp4;
+    return ret;
 }
 
 extern f32 D_801775B0;
@@ -75,7 +78,7 @@ void func_80071B50(f32 arg0) {
 extern f32 D_801775C0;
 extern f32 D_801775D8;
 
-void func_80071CF4(s32 arg0) {
+void func_80071CF4(s32 update) {
     UNUSED f32 player_x;
     UNUSED f32 player_y;
     UNUSED f32 player_z;
@@ -84,7 +87,7 @@ void func_80071CF4(s32 arg0) {
     player_y = gPlayerObject->Pos.y;
     player_z = gPlayerObject->Pos.z;
 
-    if (arg0 == 0) {
+    if (!update) {
         D_801775B0 = gView.at.y;
         D_801775C0 = gView.rot.x;
         D_801775D8 = gView.dist;
@@ -118,10 +121,10 @@ void func_80071E28(void) {
         sp4 = (f32) ((f64) gView.rot.x + 358.0);
         gView.rot.x = sp4 - (f32) (((s32) sp4 / 360) * 0x168);
     }
-    if (*gContCurrButton & 0x400) {
+    if (*gContCurrButton & CONT_DOWN) {
         gView.dist = gView.dist + 10.0f;
     }
-    if (*gContCurrButton & 0x800) {
+    if (*gContCurrButton & CONT_UP) {
         gView.dist = gView.dist - 10.0f;
         if (gView.dist < 200.0f) {
             gView.dist = 200.0f;
@@ -209,18 +212,18 @@ void func_800723EC(void) {
     sp24 = 0;
     sp20 = 0;
     if (sp1C != 0) {
-        if (gActiveContButton & 2) {
+        if (gActiveContButton & CONT_C) {
             sp24 = 1;
             if (D_80177680 < 30.0f) {
                 D_80177680 += 2.0f;
             }
-        } else if (gActiveContButton & 1) {
+        } else if (gActiveContButton & CONT_F) {
             sp24 = 1;
             if (D_80177680 > -30.0f) {
                 D_80177680 -= 2.0f;
             }
         }
-        if (gActiveContButton & 8) {
+        if (gActiveContButton & CONT_E) {
             sp20 = 1;
             if (D_801776A8 < 20.0f) {
                 D_801776A8 += 1.0f;
@@ -356,7 +359,7 @@ void func_80072B08(void) {
         sp4C = -sp4C;
     }
     if (sp64 == sp68) {
-        sp50 = 0.8f; // TO CHECK
+        sp50 = 0.8f; 
     } else {
         sp50 = (f32) ((((f64) sp4C * -0.2) / 960.0) + 1.0);
     }

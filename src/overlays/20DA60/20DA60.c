@@ -121,7 +121,7 @@ void func_80338938_unk_bin_51(void) {
     sp2C = &gObjects[gCurrentParsedObject];
     if (sp2C->unk132 == 0) {
         sp2C->unk132 = 1;
-        sp2C->unk44 = 4.0f;
+        sp2C->moveSpeed = 4.0f;
         sp2C->unk40 = 90.0f;
         func_8001BB34(gCurrentParsedObject, 0);
     }
@@ -195,7 +195,7 @@ s16 func_80338DBC_unk_bin_51(s16 arg0) {
         sp20->Pos.z = sp24->Pos.z + sp20->Vel.z;
         sp20->Pos.y = sp24->Pos.y + sp20->Vel.y;
         sp20->Rot.y = sp24->Rot.y;
-        sp20->unk44 = 0.0f;
+        sp20->moveSpeed = 0.0f;
         sp20->unk48 = 0.0f;
         sp20->damageState = -1;
         sp1C = 1;
@@ -284,7 +284,7 @@ void func_80339310_unk_bin_51(void) {
     }
     if (sp34->damageState == 1) {
         sp34->damageState = 0;
-        sp34->unk44 = 4.0f;
+        sp34->moveSpeed = 4.0f;
         sp34->actionState = 1;
         sp34->unkAC = 0;
         func_8001BB34(gCurrentParsedObject, 0);
@@ -326,7 +326,7 @@ void func_80339734_unk_bin_51(void) {
     sp34 = &gObjects[gCurrentParsedObject];
     if (sp34->unk132 == 0) {
         sp34->unk132 = 1;
-        sp34->unk44 = 16.0f;
+        sp34->moveSpeed = 16.0f;
         sp34->unk48 = 12.0f;
         sp34->unk40 = 270.0f;
         sp34->unkA6 = 0;

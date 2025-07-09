@@ -32,7 +32,7 @@ struct UnkStruct80052D84 {
     s8 *unk38;
     void *unk3C;
     f32 unk40;
-    s16 unk44;
+    s16 moveSpeed;
     s16 unk46;
     s16 unk48;
     s16 unk4A;

@@ -42,9 +42,9 @@ s32 D_8005766C;
 s32 D_80057670;
 s32 D_80057674;
 f32 D_80057678;
-f32 D_8005767C;
-f32 D_80057680;
-f32 D_80057684;
+f32 sPlayerObjPosX;
+f32 sPlayerObjPosY;
+f32 sPlayerObjPosZ;
 s8 sDebugSetModeMenu;
 s8 D_80057689;
 s8 D_8005768A;
@@ -248,7 +248,7 @@ void func_8002BE04(void) {
             if ((gObjects[sp3C].unkE6[0] == -1)) {
                 if ((gObjects[sp3C].Unk140[4] == -1)) {
 
-                    sp28 = gObjInfo[gObjects[sp3C].objID].unk44;
+                    sp28 = gObjInfo[gObjects[sp3C].objID].moveSpeed;
 
                     sp24 = gObjInfo[gObjects[sp3C].objID].unk38->unk0;
 
@@ -319,7 +319,7 @@ s32 func_8002C184(f32 x, f32 y, f32 z) {
                                 &sp5C, &sp58),
                   (sp64 != 0.0f)) ||
                  (sp60 != 0.0f) || (sp5C != 0.0f) || (sp58 != 0.0f))) {
-                sp6C = func_800162F0(D_8005767C, D_80057684, sp64, sp60, sp5C, sp58);
+                sp6C = func_800162F0(sPlayerObjPosX, sPlayerObjPosZ, sp64, sp60, sp5C, sp58);
                 sp68 = func_800162F0(x, z, sp64, sp60, sp5C, sp58);
                 if (sp6C != sp68) {
                     return 1;
@@ -338,7 +338,7 @@ s32 func_8002C184(f32 x, f32 y, f32 z) {
                                 &sp5C, &sp58),
                   (sp64 != 0.0f)) ||
                  (sp60 != 0.0f) || (sp5C != 0.0f) || (sp58 != 0.0f))) {
-                sp6C = func_800162F0(D_8005767C, D_80057684, sp64, sp60, sp5C, sp58);
+                sp6C = func_800162F0(sPlayerObjPosX, sPlayerObjPosZ, sp64, sp60, sp5C, sp58);
                 sp68 = func_800162F0(x, z, sp64, sp60, sp5C, sp58);
 
                 if (sp6C != sp68) {
@@ -362,9 +362,9 @@ void func_8002C92C(void) {
     D_80057670 = D_80177720[sp1C];
     D_80057674 = D_80177730[sp1C];
     D_80057678 = D_80177760[sp1C];
-    D_8005767C = gPlayerObject->Pos.x;
-    D_80057680 = gPlayerObject->Pos.y;
-    D_80057684 = gPlayerObject->Pos.z;
+    sPlayerObjPosX = gPlayerObject->Pos.x;
+    sPlayerObjPosY = gPlayerObject->Pos.y;
+    sPlayerObjPosZ = gPlayerObject->Pos.z;
 }
 
 void func_8002CA80(void) {
@@ -477,11 +477,11 @@ s32 func_8002CF78(void) {
 }
 
 void func_8002D080(void) {
-    gPlayerObject->Vel.x = sinf((f32) ((f64) gPlayerObject->moveAngle * DEG_TO_RAD)) * gPlayerObject->unk44;
-    gPlayerObject->Vel.z = cosf((f32) ((f64) gPlayerObject->moveAngle * DEG_TO_RAD)) * gPlayerObject->unk44;
+    gPlayerObject->Vel.x = sinf((f32) ((f64) gPlayerObject->moveAngle * DEG_TO_RAD)) * gPlayerObject->moveSpeed;
+    gPlayerObject->Vel.z = cosf((f32) ((f64) gPlayerObject->moveAngle * DEG_TO_RAD)) * gPlayerObject->moveSpeed;
 }
 
-void func_8002D128(void) {
+void Debug_HandleObjMovement(void) {
     f32 sp1C;
 
     func_8002C92C();
@@ -489,12 +489,12 @@ void func_8002D128(void) {
     sp1C = sqrtf((gActiveContStickX * gActiveContStickX) + (gActiveContStickY * gActiveContStickY));
     if (sp1C > 10.0f) {
         sp1C /= 2.0f;
-        gPlayerObject->unk44 = sp1C;
-        if (gPlayerObject->unk44 >= 20.0f) {
-            gPlayerObject->unk44 = 20.0f;
+        gPlayerObject->moveSpeed = sp1C;
+        if (gPlayerObject->moveSpeed >= 20.0f) {
+            gPlayerObject->moveSpeed = 20.0f;
         }
     } else {
-        gPlayerObject->unk44 = 0.0f;
+        gPlayerObject->moveSpeed = 0.0f;
     }
     if (D_8005768A == 0) {
         if (D_80057689 == 0) {
@@ -580,7 +580,7 @@ void func_8002D538(void) {
     }
     sp44 = gObjInfo[D_80057690].unk38;
     sp24 = gObjInfo[D_80057690].animPtr;
-    sp20 = gObjInfo[D_80057690].unk44;
+    sp20 = gObjInfo[D_80057690].moveSpeed;
     sp40 = 0;
     func_8001A958(sp40);
     sp3C = (s32) sp44->unk0;
@@ -767,17 +767,17 @@ void Debug_Parse_SetModeMenuOptions(void) {
             break;
         case SET_MODE_OPTION_MOVE:
             func_8002C144(gPlayerObject->Pos.x, gPlayerObject->Pos.y + 60.0f, gPlayerObject->Pos.z);
-            if (!(D_801776E0 & 1)) {
-                if (sContActiveButton & 0x200) {
-                    if ((--D_8005768A) < 0) {
-                        D_8005768A = 2;
-                    }
-                } else if (sContActiveButton & 0x100) {
-                    if ((++D_8005768A) >= 3) {
-                        D_8005768A = 0;
-                    }
+            if ((D_801776E0 & 1) == 0) {
+            if (sContActiveButton & 0x200) {
+                if ((--D_8005768A) < 0) {
+                    D_8005768A = 2;
+                }
+            } else if (sContActiveButton & 0x100) {
+                if ((++D_8005768A) > 2) {
+                    D_8005768A = 0;
                 }
             }
+        }
             break;
     }
 }
@@ -878,7 +878,7 @@ void Debug_SaveMode(void) {
     if (gActiveContPressed & 0x1000) {
         DEBUG_PRINTF("<SAVE>\n");
 
-        for (sp34 = 0; sp34 < 0x80; sp34++) {
+        for (sp34 = 0; sp34 < 128; sp34++) {
 
             sp2C = (s32) D_800576A8[sp34].unk0;
 
@@ -890,7 +890,7 @@ void Debug_SaveMode(void) {
                     if (gObjInfo->objName[(sp2C * 0x60) + sp30] == ' ') {
                         break;
                     }
-                    DEBUG_PRINTF("%c", gObjInfo->objName[(sp2C * 0x60) + sp30]);
+                    DEBUG_PRINTF("%c", gObjInfo->objName[(sp2C * 96) + sp30]);
                 }
 
                 DEBUG_PRINTF(",");
@@ -1028,7 +1028,7 @@ void Debug_SetupSetMode(void) {
     sDebugSetModeMenu = 0;
     D_80057689 = 0;
     D_8005768A = 1;
-    D_80057690 = 0x20;
+    D_80057690 = 32;
     D_8005769E = 0;
     D_80057692 = 0;
     D_80057694 = 0;
@@ -1088,7 +1088,7 @@ void func_8002F32C(void) {
     func_8002EA68();
     if (sDebugSetModeMenu == MAIN_MENU) {
         func_8002D768();
-        func_8002D128();
+        Debug_HandleObjMovement();
         Debug_Parse_SetModeMenuOptions();
         func_8002D9D4();
     } else if (sDebugSetModeMenu == RESET_MODE_MENU) {

@@ -180,7 +180,7 @@ void func_800FB804(void) {
     obj = &gObjects[gCurrentParsedObject];
     if (obj->unk132 == 0) {
         obj->unk132 += 1;
-        obj->unk44 = 8.0f;
+        obj->moveSpeed = 8.0f;
         obj->unkA6 = 0x14;
         func_80029EF8(gCurrentParsedObject, 2.0f, 0.5f);
     }
@@ -337,7 +337,7 @@ void func_800FC2E4(void) {
     obj = &gObjects[gCurrentParsedObject];
     if (obj->unk132 == 0) {
         obj->unk132 = 1;
-        obj->unk44 = 3.0f;
+        obj->moveSpeed = 3.0f;
         obj->unk48 = 0.0f;
         obj->moveAngle = (f32) (obj->unkA8 * 0x5A);
     }
@@ -362,7 +362,7 @@ void func_800FC2E4(void) {
         }
     }
 
-    obj->unkA6 = (s16) (s32) ((f32) obj->unkA6 - obj->unk44);
+    obj->unkA6 = (s16) (s32) ((f32) obj->unkA6 - obj->moveSpeed);
     if (obj->unk54 - 50.0f > obj->Pos.y + obj->Vel.y) {
         obj->Pos.y = obj->unk54 - 50.0f;
         obj->Vel.y = 0.0f;
@@ -399,7 +399,7 @@ void func_800FC6BC(void) {
     obj = &gObjects[gCurrentParsedObject];
     if (obj->unk132 == 0) {
         obj->unk132 = 1;
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
         obj->unk48 = (f32) (obj->unkAA * 2);
         obj->unk40 = 90.0f;
         func_8001BBDC(gCurrentParsedObject, 1);
@@ -430,7 +430,7 @@ void func_800FC8D0(void) {
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
         sp24->unk132 = 1;
-        sp24->unk44 = 0.0f;
+        sp24->moveSpeed = 0.0f;
         sp24->unk48 = 0.0f;
         sp24->unkB0 = 0x44;
         func_8001ABF4(gCurrentParsedObject, 0, 0, &D_801175A8);
@@ -457,7 +457,7 @@ void func_800FCA8C(void) {
     obj = &gObjects[gCurrentParsedObject];
     if (obj->unk132 == 0) {
         obj->unk132 = 1;
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
         obj->unk48 = 0.0f;
         obj->unkB2 = 0x3C;
         obj->damageState = 0;
@@ -568,7 +568,7 @@ s32 func_800FD04C(s16 arg0, s16 arg1, s32 arg2) {
         sp38->moveAngle = Math_WrapAngle(sp3C->moveAngle, (f32) (sp30 * 0x23));
         sp38->unk40 = Math_WrapAngle(sp3C->unk40, (f32) (sp30 * 8));
         sp38->unk40 = Math_NormalizeAngle(sp38->unk40);
-        sp38->unk44 = (f32) (((s16) arg1 * 3) + 0xF);
+        sp38->moveSpeed = (f32) (((s16) arg1 * 3) + 0xF);
         sp38->unk48 = sp3C->unk48;
         sp38->unkA6 = 0;
         sp38->unkB2 = (sp30 * 0xA) + 0x64;
@@ -585,7 +585,7 @@ s32 func_800FD04C(s16 arg0, s16 arg1, s32 arg2) {
 
             sp38->moveAngle = Get_AngleToPlayer(gCurrentParsedObject);
             sp38->unk40 = 90.0f;
-            sp38->unk44 = 10.0f;
+            sp38->moveSpeed = 10.0f;
             sp38->unk48 = 0.0f;
             sp38->unkA6 = 0x12;
             sp38->unkB2 = 0x32;

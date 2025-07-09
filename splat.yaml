@@ -790,38 +790,42 @@ segments:
     - [0x189940, c, overlays/189940/189940]
     - [0x194B90, data]
 
-  - name: unk_bin_17
+  - name: ovl_bagular_1
     type: code
     bss_size: 0x0 # dunno yet
     start: 0x194F10
     vram: 0x80330000
     exclusive_ram_id: overlay
-    symbol_name_format: $VRAM_$SEG
+    symbol_name_format: bagular1_$VRAM
     subsegments:
     - [0x194F10, c, overlays/194F10/bagular_1]
-    - [0x197ED0, data]
+    - [0x197ED0, .data, overlays/194F10/bagular_1]
+    - [0x1980F0, .rodata, overlays/194F10/bagular_1]
 
-  - name: unk_bin_18
+  - name: ovl_bagular_2
     type: code
     bss_size: 0x0 # dunno yet
     start: 0x198140
     vram: 0x80330000
     exclusive_ram_id: overlay
-    symbol_name_format: $VRAM_$SEG
+    symbol_name_format: bagular2_$VRAM
     subsegments:
     - [0x198140, c, overlays/198140/bagular_2]
-    - [0x19C550, data]
+    - [0x19C550, .data, overlays/198140/bagular_2]
+    - [0x19C5C0, .rodata, overlays/198140/bagular_2]
 
-  - name: unk_bin_19
+
+  - name: ovl_bagular_3
     type: code
     bss_size: 0x0 # dunno yet
     start: 0x19C610
     vram: 0x80330000
     exclusive_ram_id: overlay
-    symbol_name_format: $VRAM_$SEG
+    symbol_name_format: bagular3_$VRAM
     subsegments:
     - [0x19C610, c, overlays/19C610/bagular_3]
-    - [0x1A8730, data]
+    - [0x1A8730, .data, overlays/19C610/bagular_3]
+    - [0x1A8810, .rodata, overlays/19C610/bagular_3]
 
   - name: unk_bin_20
     type: code

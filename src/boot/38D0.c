@@ -2012,7 +2012,7 @@ void func_80008CF4(s16 arg0) {
                 case 0xA4:
                     sp2C = D_80052D80->unk4;
                     sp38->unk3C = sp38->unk38 = ((u32) sp2C + sp2C[sp34[0]]);
-                    sp38->unk44 = (s16) ((sp34[1] << 8) + sp34[2]);
+                    sp38->moveSpeed = (s16) ((sp34[1] << 8) + sp34[2]);
                     sp38->unk46 = (s16) ((sp34[3] << 8) + sp34[4]);
                     sp38->unk4C = 0;
                     sp38->unk4A = 0;
@@ -2190,8 +2190,8 @@ void func_80009BA4(struct UnkStruct80052D5C* arg0, struct UnkStruct80052D84* arg
     }
 useless_2:;
     if (arg1->unk4 & 0x20) {
-        if (arg1->unk44 != 0) {
-            arg1->unk44 = (s16) (arg1->unk44 - 1);
+        if (arg1->moveSpeed != 0) {
+            arg1->moveSpeed = (s16) (arg1->moveSpeed - 1);
         } else {
             if (arg1->unk4C == 0) {
                 arg1->unk4C = *arg1->unk38;

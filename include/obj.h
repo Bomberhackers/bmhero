@@ -27,7 +27,7 @@ struct UnkStruct_80026548 {
     char unk3;
     s8 unk4;
     char unk5;
-    char unk6;
+    char scorePoints;
     char unk7;
     s16 unk8;
     s16 unkA;
@@ -46,7 +46,7 @@ struct UnkStruct_80026548 {
     struct ObjSpawnInfo* unk38;
     s32 pad3C;
     void* animPtr;
-    void* unk44;
+    void* moveSpeed;
     u8 objName[24];
 };
 
@@ -58,7 +58,7 @@ struct ObjectStruct {
     /* 0x030 */ struct Vec3f unk30;
     /* 0x03C */ f32 moveAngle; // Movement angle
     /* 0x040 */ f32 unk40;
-    /* 0x044 */ f32 unk44;
+    /* 0x044 */ f32 moveSpeed; // Movement velocity (scalar)
     /* 0x048 */ f32 unk48;
     /* 0x04C */ f32 unk4C;
     /* 0x050 */ f32 unk50;

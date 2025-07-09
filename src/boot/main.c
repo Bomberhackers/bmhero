@@ -281,7 +281,7 @@ void func_80000F8C(u32 id) {
 void func_80000FF4(u32 id) {
     u32 rom_offset = (D_8010BC30[id] - 0x80300000);
 
-    load_from_rom_to_addr((u32) &unk_bin_53_ROM_START + rom_offset, &D_8016E450, 0x800);
+    load_from_rom_to_addr((u32) &unk_bin_53_ROM_START + rom_offset, D_8016E450, 0x800);
 }
 
 void func_80001058(void) {
@@ -320,22 +320,22 @@ void func_800011E8(void) {
 }
 
 void func_8000124C(void) {
-    load_from_rom_to_addr(&unk_bin_17_ROM_START, (void*) 0x80330000,
-                          (u32) &unk_bin_17_ROM_END - (u32) &unk_bin_17_ROM_START);
+    load_from_rom_to_addr(&ovl_bagular_1_ROM_START, (void*) 0x80330000,
+                          (u32) &ovl_bagular_1_ROM_END - (u32) &ovl_bagular_1_ROM_START);
     load_from_rom_to_addr(&unk_bin_31_ROM_START, (void*) 0x8032E000,
                           (u32) &unk_bin_31_ROM_END - (u32) &unk_bin_31_ROM_START);
 }
 
 void func_800012B0(void) {
-    load_from_rom_to_addr(&unk_bin_18_ROM_START, (void*) 0x80330000,
-                          (u32) &unk_bin_18_ROM_END - (u32) &unk_bin_18_ROM_START);
+    load_from_rom_to_addr(&ovl_bagular_2_ROM_START, (void*) 0x80330000,
+                          (u32) &ovl_bagular_2_ROM_END - (u32) &ovl_bagular_2_ROM_START);
     load_from_rom_to_addr(&unk_bin_32_ROM_START, (void*) 0x8032E000,
                           (u32) &unk_bin_32_ROM_END - (u32) &unk_bin_32_ROM_START);
 }
 
 void func_80001314(void) {
-    load_from_rom_to_addr(&unk_bin_19_ROM_START, (void*) 0x80330000,
-                          (u32) &unk_bin_19_ROM_END - (u32) &unk_bin_19_ROM_START);
+    load_from_rom_to_addr(&ovl_bagular_3_ROM_START, (void*) 0x80330000,
+                          (u32) &ovl_bagular_3_ROM_END - (u32) &ovl_bagular_3_ROM_START);
     load_from_rom_to_addr(&unk_bin_33_ROM_START, (void*) 0x8032E000,
                           (u32) &unk_bin_33_ROM_END - (u32) &unk_bin_33_ROM_START);
 }

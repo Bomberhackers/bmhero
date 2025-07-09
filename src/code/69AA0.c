@@ -535,16 +535,16 @@ void func_800799A8(s32 arg0) {
 
     sp24 = &gObjects[arg0];
     sp24->Vel.x =
-        (sp24->unk44 * cosf((f32) ((f64) sp24->unk40 * DEG_TO_RAD))) * sinf((f32) ((f64) sp24->moveAngle * DEG_TO_RAD));
+        (sp24->moveSpeed * cosf((f32) ((f64) sp24->unk40 * DEG_TO_RAD))) * sinf((f32) ((f64) sp24->moveAngle * DEG_TO_RAD));
     sp24->Vel.z =
-        (sp24->unk44 * cosf((f32) ((f64) sp24->unk40 * DEG_TO_RAD))) * cosf((f32) ((f64) sp24->moveAngle * DEG_TO_RAD));
+        (sp24->moveSpeed * cosf((f32) ((f64) sp24->unk40 * DEG_TO_RAD))) * cosf((f32) ((f64) sp24->moveAngle * DEG_TO_RAD));
 }
 
 void func_80079AD8(s32 arg0) {
     struct ObjectStruct* sp1C;
 
     sp1C = &gObjects[arg0];
-    sp1C->Vel.y = sinf((f32) ((f64) sp1C->unk40 * DEG_TO_RAD)) * sp1C->unk44;
+    sp1C->Vel.y = sinf((f32) ((f64) sp1C->unk40 * DEG_TO_RAD)) * sp1C->moveSpeed;
 }
 
 void func_80079B60(s32 arg0) {
@@ -664,7 +664,7 @@ void func_8007A120(void) {
 
     sp4 = &gObjects[gObjIdx];
     sp4->actionState = 0x24;
-    sp4->unkB4 = (s16) (s32) gPlayerObject->unk44;
+    sp4->unkB4 = (s16) (s32) gPlayerObject->moveSpeed;
     gObjIdx = 0;
 }
 
@@ -723,7 +723,7 @@ void func_8007A3A0(s32 arg0) {
         sp1C->actionState = 0x2A;
         sp1C->unkD4 = gPlayerObject->Pos.y;
         sp1C->unkB6 = 0;
-        sp1C->unk44 = 30.0f;
+        sp1C->moveSpeed = 30.0f;
         sp1C->moveAngle = gPlayerObject->Rot.y;
         sp1C->unk40 = 0.0f;
         func_800799A8(arg0);
@@ -748,7 +748,7 @@ void func_8007A488(s32 arg0) {
         sp18->Pos.z = gPlayerObject->Pos.z;
         sp18->unk40 = D_8010C7E4[arg0].y;
         sp18->moveAngle = Math_WrapAngle(gPlayerObject->Rot.y, D_8010C7E4[arg0].z);
-        sp18->unk44 = D_8010C7E4[arg0].x;
+        sp18->moveSpeed = D_8010C7E4[arg0].x;
         func_800799A8(sp1C);
         func_80079AD8(sp1C);
     }
@@ -782,7 +782,7 @@ void func_8007A6DC(void) {
     sp1C->unkD4 = gPlayerObject->Pos.y;
     sp1C->unk40 = 80.0f;
     sp1C->moveAngle = gPlayerObject->Rot.y;
-    sp1C->unk44 = 35.0f;
+    sp1C->moveSpeed = 35.0f;
     func_800799A8((s32) gObjIdx);
     func_80079AD8((s32) gObjIdx);
     gObjIdx = 0;
@@ -796,7 +796,7 @@ void func_8007A7B4(f32 arg0, f32 arg1, f32 arg2) {
     sp1C->unkD4 = gPlayerObject->Pos.y;
     sp1C->unk40 = 80.0f;
     sp1C->moveAngle = gPlayerObject->Rot.y;
-    sp1C->unk44 = 35.0f;
+    sp1C->moveSpeed = 35.0f;
     sp1C->Pos.x = sp1C->Pos.x + arg0 * sinf((f32) ((f64) gPlayerObject->Rot.y * DEG_TO_RAD));
     sp1C->Pos.y += arg1;
     sp1C->Pos.z = sp1C->Pos.z + arg2 * cosf((f32) ((f64) gPlayerObject->Rot.y * DEG_TO_RAD));
@@ -903,9 +903,9 @@ void func_8007AD60(s32 arg0) {
             }
             sp1C->moveAngle = gPlayerObject->Rot.y;
             if (D_80165268 == 0) {
-                sp1C->unk44 = ((f32) sp1C->unkB4 / 3.0f) + 28.0f + (f32) gFireCount;
+                sp1C->moveSpeed = ((f32) sp1C->unkB4 / 3.0f) + 28.0f + (f32) gFireCount;
             } else {
-                sp1C->unk44 = ((f32) sp1C->unkB4 / 3.0f) + 60.0f + (f32) gFireCount;
+                sp1C->moveSpeed = ((f32) sp1C->unkB4 / 3.0f) + 60.0f + (f32) gFireCount;
             }
             func_800799A8(arg0);
             func_80079AD8(arg0);
@@ -942,7 +942,7 @@ void func_8007B004(s32 arg0) {
     if (sp98 == 6) {
         sp9C->actionState = 0x28;
         sp9C->unkD4 = gPlayerObject->Pos.y;
-        sp9C->unk44 = 0.0f;
+        sp9C->moveSpeed = 0.0f;
         sp9C->moveAngle = gPlayerObject->Rot.y;
         sp9C->unk40 = 0.0f;
         func_800799A8(arg0);
@@ -967,7 +967,7 @@ void func_8007B268(s32 arg0) {
     if (sp9C->unkA8 == 0x64) {
         sp9C->actionState = 0x29;
         sp9C->unkD4 = gPlayerObject->Pos.y;
-        sp9C->unk44 = 0.0f;
+        sp9C->moveSpeed = 0.0f;
         sp9C->moveAngle = gPlayerObject->Rot.y;
         sp9C->unk40 = 0.0f;
         func_800799A8(arg0);
@@ -1173,7 +1173,7 @@ void func_8007BF18(void) {
     } else {
         sp24->unk40 = Math_WrapAngle(360.0f, -gPlayerObject->Rot.x);
     }
-    sp24->unk44 = 24.0f;
+    sp24->moveSpeed = 24.0f;
     sp24->Scale.z = 1.0f;
     sp24->Scale.x = sp24->Scale.y = sp24->Scale.z;
     gObjIdx = 0;
@@ -1195,7 +1195,7 @@ void func_8007C06C(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
         sp18->Pos.z = arg3;
         sp18->unk40 = 0.0f;
         sp18->moveAngle = Math_WrapAngle(gPlayerObject->Rot.y, D_8010C8FC[arg0]);
-        sp18->unk44 = 24.0f;
+        sp18->moveSpeed = 24.0f;
         func_800799A8(sp1C);
         func_80079AD8(sp1C);
     }
@@ -1426,7 +1426,7 @@ void func_8007CEB8(void) {
     sp4->unkD4 = gPlayerObject->Pos.y;
     sp4->moveAngle = 180.0f;
     sp4->unk40 = 0.0f;
-    sp4->unk44 = 40.0f;
+    sp4->moveSpeed = 40.0f;
     sp4->Scale.x = sp4->Scale.y = sp4->Scale.z = 1.0f;
     gObjIdx = 0;
     D_8016E2F8 = 0;
@@ -1447,7 +1447,7 @@ void func_8007CF98(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
         sp18->Pos.z = arg3;
         sp18->unk40 = 0.0f;
         sp18->moveAngle = Math_WrapAngle(gPlayerObject->Rot.y, D_8010C924[arg0]);
-        sp18->unk44 = 40.0f;
+        sp18->moveSpeed = 40.0f;
         func_800799A8(sp1C);
         func_80079AD8(sp1C);
     }
@@ -1622,7 +1622,7 @@ void func_8007DB2C(void) {
     sp4 = &gObjects[gObjIdx];
     sp4->actionState = 0x32;
     sp4->unkD4 = gPlayerObject->Pos.y;
-    sp4->unk44 = 14.0f;
+    sp4->moveSpeed = 14.0f;
     sp4->moveAngle = 0.0f;
     sp4->unk40 = 270.0f;
     sp4->Scale.x = sp4->Scale.y = sp4->Scale.z = 1.0f;
@@ -1645,7 +1645,7 @@ void func_8007DC0C(s32 arg0, f32 arg1, f32 arg2, f32 arg3) {
         sp18->Pos.z = arg3;
         sp18->unk40 = D_8010C94C[arg0].y;
         sp18->moveAngle = Math_WrapAngle(gPlayerObject->Rot.y, D_8010C94C[arg0].x);
-        sp18->unk44 = 14.0f;
+        sp18->moveSpeed = 14.0f;
         func_800799A8(sp1C);
         func_80079AD8(sp1C);
     }

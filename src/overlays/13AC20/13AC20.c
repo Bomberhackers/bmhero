@@ -204,21 +204,21 @@ void func_802807EC_code_extra_3(void) {
     } else {
         sp4 = 10.0f;
     }
-    if (gPlayerObject->unk44 <= sp4) {
-        gPlayerObject->unk44 = (f32) ((f64) gPlayerObject->unk44 + 0.2);
-        if (gPlayerObject->unk44 > sp4) {
-            gPlayerObject->unk44 = sp4;
+    if (gPlayerObject->moveSpeed <= sp4) {
+        gPlayerObject->moveSpeed = (f32) ((f64) gPlayerObject->moveSpeed + 0.2);
+        if (gPlayerObject->moveSpeed > sp4) {
+            gPlayerObject->moveSpeed = sp4;
         }
     } else {
-        gPlayerObject->unk44 = (f32) ((f64) gPlayerObject->unk44 - 0.2);
-        if (gPlayerObject->unk44 < sp4) {
-            gPlayerObject->unk44 = sp4;
+        gPlayerObject->moveSpeed = (f32) ((f64) gPlayerObject->moveSpeed - 0.2);
+        if (gPlayerObject->moveSpeed < sp4) {
+            gPlayerObject->moveSpeed = sp4;
         }
     }
-    if (gPlayerObject->unk44 <= -7.0f) {
-        gPlayerObject->unk44 = -7.0f;
-    } else if (gPlayerObject->unk44 >= 10.0f) {
-        gPlayerObject->unk44 = 10.0f;
+    if (gPlayerObject->moveSpeed <= -7.0f) {
+        gPlayerObject->moveSpeed = -7.0f;
+    } else if (gPlayerObject->moveSpeed >= 10.0f) {
+        gPlayerObject->moveSpeed = 10.0f;
     }
 }
 
@@ -233,8 +233,8 @@ void func_80280A7C_code_extra_3(void) {
 }
 
 void func_80280B30_code_extra_3(void) {
-    gPlayerObject->Vel.x = sinf((f32) ((f64) gPlayerObject->moveAngle * DEG_TO_RAD)) * gPlayerObject->unk44;
-    gPlayerObject->Vel.z = cosf((f32) ((f64) gPlayerObject->moveAngle * DEG_TO_RAD)) * gPlayerObject->unk44;
+    gPlayerObject->Vel.x = sinf((f32) ((f64) gPlayerObject->moveAngle * DEG_TO_RAD)) * gPlayerObject->moveSpeed;
+    gPlayerObject->Vel.z = cosf((f32) ((f64) gPlayerObject->moveAngle * DEG_TO_RAD)) * gPlayerObject->moveSpeed;
 }
 
 void func_80280BD8_code_extra_3(void) {
@@ -253,15 +253,15 @@ void func_80280C84_code_extra_3(void) {
     s32 sp20;
 
     gPlayerObject->actionState = 0x12D;
-    if (gPlayerObject->unk44 == 0.0f) {
+    if (gPlayerObject->moveSpeed == 0.0f) {
         sp26 = 0;
-    } else if (gPlayerObject->unk44 < -4.0f) {
+    } else if (gPlayerObject->moveSpeed < -4.0f) {
         sp26 = 6;
-    } else if (gPlayerObject->unk44 < 0.0f) {
+    } else if (gPlayerObject->moveSpeed < 0.0f) {
         sp26 = 5;
-    } else if (gPlayerObject->unk44 <= 4.0f) {
+    } else if (gPlayerObject->moveSpeed <= 4.0f) {
         sp26 = 1;
-    } else if (gPlayerObject->unk44 <= 7.0f) {
+    } else if (gPlayerObject->moveSpeed <= 7.0f) {
         sp26 = 2;
     } else {
         sp26 = 3;

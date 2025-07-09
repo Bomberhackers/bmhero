@@ -30,7 +30,7 @@ void func_803300D0_unk_bin_21(void) {
         obj->actionState = 0x1A;
         obj->unk132 = 0;
         obj->Vel.x = obj->Vel.y = obj->Vel.z = 0.0f;
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
         func_8001BBDC(gCurrentParsedObject, 1);
     } else if (D_80177A64 == 1) {
         obj->damageState = 0x78;
@@ -46,7 +46,7 @@ void func_803300D0_unk_bin_21(void) {
                 obj->actionState = 0xD;
                 obj->unk132 = 0;
                 obj->Vel.x = obj->Vel.y = obj->Vel.z = 0.0f;
-                obj->unk44 = 0.0f;
+                obj->moveSpeed = 0.0f;
                 break;
             default:
                 obj->actionState = obj->unkB2;
@@ -250,7 +250,7 @@ void func_80330E30_unk_bin_21(void) {
         obj->unk132 += 1;
         obj->unkB2 = obj->actionState;
         obj->unk40 = 340.0f;
-        obj->unk44 = 42.0f;
+        obj->moveSpeed = 42.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 9, 0xCD, &D_80119FE0);
         func_800175F0(gCurrentParsedObject, 0, 0x79, -1, 0);
     }
@@ -295,7 +295,7 @@ void func_8033108C_unk_bin_21(void) {
         obj->Vel.y = 0.0f;
         obj->Vel.z = 0.0f;
         obj->Vel.x = obj->Vel.z;
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
         obj->unk40 = 0.0f;
     } else {
         obj->unkA6 -= 1;
@@ -755,7 +755,7 @@ void func_80332C88_unk_bin_21(void) {
     if (obj->unk132 == 0) {
         obj->unk132 += 1;
         obj->unkB2 = obj->actionState;
-        obj->unk44 = 30.0f;
+        obj->moveSpeed = 30.0f;
         obj->unkA6 = 2;
         func_8001C0EC(gCurrentParsedObject, 0, 4, 0xCF, &D_8011A178);
     }

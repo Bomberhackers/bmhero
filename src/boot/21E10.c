@@ -332,7 +332,7 @@ s32 func_800225D8(s32 arg0, s32 arg1) {
         }
         if (sp24 != 0) {
             if (gObjects[sp2C].unk100 == 0) {
-                Score_Update(gObjInfo[gObjects[sp2C].objID].unk6);
+                Score_Update(gObjInfo[gObjects[sp2C].objID].scorePoints);
                 gCurrentParsedObject = sp28;
                 D_80177A64 = 0;
                 gObjInfo[gObjects[sp28].objID].destroy();
@@ -512,7 +512,7 @@ void func_80022B54(void) {
     gCurrentParsedObject = objIdx;
     D_80177A64 = 0;
     gObjInfo[gObjects[objIdx].objID].destroy();
-    Score_Update((s16) gObjInfo[gObjects[objIdx].objID].unk6);
+    Score_Update((s16) gObjInfo[gObjects[objIdx].objID].scorePoints);
     D_801775FA += 1;
 }
 

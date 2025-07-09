@@ -59,7 +59,7 @@ void func_800C16BC(void) {
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
         sp24->unk132 += 1;
-        sp24->unk44 = 0.0f;
+        sp24->moveSpeed = 0.0f;
         func_80029EF8(gCurrentParsedObject, 12.0f, 0.75f);
         func_8001BBDC(gCurrentParsedObject, 0);
     }
@@ -95,10 +95,10 @@ void func_800C187C(void) {
         func_8001C0EC(gCurrentParsedObject, 0, 3, 0x48, &D_80117FF0);
     }
     if (sp3C->unkB2 == 0) {
-        sp3C->unk44 = 5.0f;
+        sp3C->moveSpeed = 5.0f;
     } else {
         sp3C->unkB2 -= 1;
-        sp3C->unk44 = 0.0f;
+        sp3C->moveSpeed = 0.0f;
     }
     if (func_80028FA0(gCurrentParsedObject) != 0) {
         func_80029B60(gCurrentParsedObject);
@@ -223,7 +223,7 @@ void func_800C2004(void) {
     sp34 = &gObjects[gCurrentParsedObject];
     if (sp34->unk132 == 0) {
         sp34->unk132 += 1;
-        sp34->unk44 = 8.0f;
+        sp34->moveSpeed = 8.0f;
         sp34->unkA6 = (s16) (s32) Get_AngleToPlayer(gCurrentParsedObject);
         sp34->unkA6 += Math_Random(0x2D);
         if (sp34->unkA6 >= 0x168) {
@@ -318,7 +318,7 @@ void func_800C2624(void) {
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
         sp24->unk132 += 1;
-        sp24->unk44 = 0.0f;
+        sp24->moveSpeed = 0.0f;
         func_80029EF8(gCurrentParsedObject, 17.142857f, 2.142857f);
         func_8001BBDC(gCurrentParsedObject, 0);
     }
@@ -342,7 +342,7 @@ void func_800C27B0(void) {
     sp34 = &gObjects[gCurrentParsedObject];
     if (sp34->unk132 == 0) {
         sp34->unk132 += 1;
-        sp34->unk44 = 10.0f;
+        sp34->moveSpeed = 10.0f;
         sp34->unkA6 = 0x3C;
         func_8001BBDC(gCurrentParsedObject, 0);
         func_8001C0EC(gCurrentParsedObject, 0, 2, 0x48, &D_80117FF0);
@@ -464,7 +464,7 @@ void func_800C2EC8(void) {
     struct ObjectStruct* sp24;
 
     sp24 = &gObjects[gCurrentParsedObject];
-    sp24->unk44 = 0.0f;
+    sp24->moveSpeed = 0.0f;
     if (sp24->unk132 == 0) {
         sp24->unk132 += 1;
         sp24->unkA6 = 1;
@@ -490,7 +490,7 @@ void func_800C304C(void) {
     s32 sp20;
 
     sp24 = &gObjects[gCurrentParsedObject];
-    sp24->unk44 = 0.0f;
+    sp24->moveSpeed = 0.0f;
     if (sp24->unk132 == 0) {
         sp24->unk132 += 1;
         func_80029EF8(gCurrentParsedObject, 14.378698f, 1.06089f);
@@ -513,7 +513,7 @@ void func_800C31D4(void) {
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
         sp24->unk132 += 1;
-        sp24->unk44 = 5.0f;
+        sp24->moveSpeed = 5.0f;
         sp24->unkA6 = 1;
         sp24->unkA8 = 0;
     }
@@ -553,7 +553,7 @@ void func_800C3454(void) {
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
         sp24->unk132 += 1;
-        sp24->unk44 = 5.0f;
+        sp24->moveSpeed = 5.0f;
         func_80029EF8(gCurrentParsedObject, 17.647058f, 0.980392f);
         func_8001C0EC(gCurrentParsedObject, 0, 2, 0x52, &D_801180FC);
         func_80017664(gCurrentParsedObject, 0, 0x56, -1, 0);
@@ -570,7 +570,7 @@ void func_800C3454(void) {
     }
     sp24->Vel.y = sp20;
     if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, 0.0f, 60.0f) == 1) {
-        sp24->unk44 = 0.0f;
+        sp24->moveSpeed = 0.0f;
         if (func_8001B44C(gCurrentParsedObject, 0) != 0) {
             sp24->actionState = 1;
             sp24->unk132 = 0;
@@ -586,7 +586,7 @@ void func_800C3670(void) {
     if (sp24->unk132 == 0) {
         sp24->unk132 += 1;
         sp24->unkA6 = 0x1E;
-        sp24->unk44 = 5.0f;
+        sp24->moveSpeed = 5.0f;
         sp24->moveAngle = Math_WrapAngle(sp24->unk128, 180.0f);
         func_80029EF8(gCurrentParsedObject, 17.647058f, 0.980392f);
         func_8001BBDC(gCurrentParsedObject, 1);
@@ -684,7 +684,7 @@ void func_800C3C10(void) {
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
         sp24->unk132 += 1;
-        sp24->unk44 = 10.0f;
+        sp24->moveSpeed = 10.0f;
         func_80029EF8(gCurrentParsedObject, 20.0f, 2.0f);
         func_8001C0EC(gCurrentParsedObject, 0, 1, 0x55, &D_80118108);
         func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118138 + 7);
@@ -712,7 +712,7 @@ void func_800C3E18(void) {
     sp24 = &gObjects[gCurrentParsedObject];
     if (sp24->unk132 == 0) {
         sp24->unk132 += 1;
-        sp24->unk44 = 0.0f;
+        sp24->moveSpeed = 0.0f;
         func_80029EF8(gCurrentParsedObject, 10.0f, 3.0f);
     }
     if (func_80029F58(gCurrentParsedObject, 0.0f, 0.0f, -107.0f, 60.0f) == 1) {
@@ -829,7 +829,7 @@ void func_800C4584(void) {
         func_8001ABF4(sp30, 0, 0, &D_80118138 + 7);
         func_8001C0EC(sp2C, 0, 1, 0x55, &D_80118108);
         func_8001ABF4(sp2C, 0, 0, &D_80118138 + 7);
-        sp34->unk44 = gObjects[sp30].unk44 = gObjects[sp2C].unk44 = 0.0f;
+        sp34->moveSpeed = gObjects[sp30].moveSpeed = gObjects[sp2C].moveSpeed = 0.0f;
         func_80029EF8(gCurrentParsedObject, 13.333334f, 1.34f);
         func_80029EF8(sp30, 13.333334f, 1.34f);
         func_80029EF8(sp2C, 13.333334f, 1.34f);
@@ -873,7 +873,7 @@ void func_800C4C08(void) {
     sp2C = gObjects[gCurrentParsedObject].unkE8[1];
     if (sp34->unk132 == 0) {
         sp34->unk132 += 1;
-        sp34->unk44 = 0.0f;
+        sp34->moveSpeed = 0.0f;
         func_80029EF8(gCurrentParsedObject, 10.0f, 3.0f);
         func_80029EF8(sp30, 10.0f, 3.0f);
         func_80029EF8(sp2C, 10.0f, 3.0f);
@@ -937,7 +937,7 @@ void func_800C5148(void) {
         func_8001ABF4(sp30, 0, 0, &D_80118138 + 7);
         func_8001C0EC(sp2C, 0, 1, 0x55, &D_80118108);
         func_8001ABF4(sp2C, 0, 0, &D_80118138 + 7);
-        sp34->unk44 = gObjects[sp30].unk44 = gObjects[sp2C].unk44 = 9.0f;
+        sp34->moveSpeed = gObjects[sp30].moveSpeed = gObjects[sp2C].moveSpeed = 9.0f;
         func_80029EF8(gCurrentParsedObject, 12.000001f, 0.571429f);
         func_80029EF8(sp30, 12.000001f, 0.571429f);
         func_80029EF8(sp2C, 12.000001f, 0.571429f);
@@ -988,7 +988,7 @@ void func_800C5888(void) {
     sp2C = gObjects[gCurrentParsedObject].unkE8[1];
     if (sp34->unk132 == 0) {
         sp34->unk132 += 1;
-        sp34->unk44 = 0.0f;
+        sp34->moveSpeed = 0.0f;
         func_80029EF8(gCurrentParsedObject, 10.0f, 3.0f);
         func_80029EF8(sp30, 10.0f, 3.0f);
         func_80029EF8(sp2C, 10.0f, 3.0f);
@@ -1155,7 +1155,7 @@ void func_800C639C(void) {
     sp34 = &gObjects[gCurrentParsedObject];
     if (sp34->unk132 == 0) {
         sp34->unk132 += 1;
-        sp34->unk44 = 3.0f;
+        sp34->moveSpeed = 3.0f;
         sp34->unkA6 = 1;
         sp34->unkA8 = 0;
         sp34->unkB0 = 0;
@@ -1309,7 +1309,7 @@ void func_800C6DF0(void) {
     sp34 = &gObjects[gCurrentParsedObject];
     if (sp34->unk132 == 0) {
         sp34->unk132 += 1;
-        sp34->unk44 = 6.0f;
+        sp34->moveSpeed = 6.0f;
         sp34->unkA6 = 1;
         sp34->unkA8 = 0;
         sp34->unkB0 = 0;
@@ -1564,7 +1564,7 @@ void func_800C7FE4(void) {
     sp34 = gObjects[gCurrentParsedObject].unkE8[1];
     if (sp3C->unk132 == 0) {
         sp3C->unk132 += 1;
-        sp3C->unk44 = 5.0f;
+        sp3C->moveSpeed = 5.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 1, 0x5B, &D_8011817C);
         func_8001BBDC(gCurrentParsedObject, 0);
         func_8001C0EC(sp38, 0, 1, 0x5B, &D_8011817C);
@@ -1716,10 +1716,10 @@ void func_800C8CC8(void) {
         sp3C->unkB0 = 0;
     }
     if (sp3C->unkB2 == 0) {
-        sp3C->unk44 = 5.0f;
+        sp3C->moveSpeed = 5.0f;
     } else {
         sp3C->unkB2 -= 1;
-        sp3C->unk44 = 0.0f;
+        sp3C->moveSpeed = 0.0f;
     }
     if (func_80028FA0(gCurrentParsedObject) != 0) {
         func_80029B60(gCurrentParsedObject);
@@ -1940,7 +1940,7 @@ void func_800C9B14(void) {
     sp34 = &gObjects[gCurrentParsedObject];
     if (sp34->unk132 == 0) {
         sp34->unk132 += 1;
-        sp34->unk44 = 8.0f;
+        sp34->moveSpeed = 8.0f;
         sp34->unkA6 = (s16) (s32) Get_AngleToPlayer(gCurrentParsedObject);
         sp34->unkA6 += Math_Random(0x2D);
         if (sp34->unkA6 >= 0x168) {
@@ -2044,7 +2044,7 @@ void func_800CA140(void) {
     if (sp2C->unk132 == 0) {
         sp2C->unk132 += 1;
         sp2C->unkA6 = 0x28;
-        sp2C->unk44 = 10.0f;
+        sp2C->moveSpeed = 10.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 1, 0x68, &D_801181F0);
         func_8001C0EC(gCurrentParsedObject, 3, 1, 0x68, &D_80118200);
     }
@@ -2073,7 +2073,7 @@ void func_800CA2D4(void) {
     if (sp2C->unk132 == 0) {
         sp2C->unk132 += 1;
         sp2C->unkA6 = 2;
-        sp2C->unk44 = 10.0f;
+        sp2C->moveSpeed = 10.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 2, 0x68, &D_801181F0);
         func_8001C0EC(gCurrentParsedObject, 3, 2, 0x68, &D_80118200);
     }
@@ -2125,7 +2125,7 @@ void func_800CA6DC(void) {
     sp34 = &gObjects[gCurrentParsedObject];
     if (sp34->unk132 == 0) {
         sp34->unk132 += 1;
-        sp34->unk44 = 0.0f;
+        sp34->moveSpeed = 0.0f;
         sp34->moveAngle = 0.0f;
         func_80029EF8(gCurrentParsedObject, 5.0f, 1.0f);
     }
@@ -2168,7 +2168,7 @@ void func_800CAC6C(void) {
     if (sp24->unk132 == 0) {
         sp24->unk132 += 1;
         sp24->unkA6 = 0x1E;
-        sp24->unk44 = 0.0f;
+        sp24->moveSpeed = 0.0f;
         sp24->unk40 = 90.0f;
         sp24->unk48 = 10.0f;
         sp24->damageState = 1;
@@ -2232,7 +2232,7 @@ void func_800CB0DC(void) {
     if (sp24->unk132 == 0) {
         sp24->unk132 += 1;
         sp24->unkA6 = 0x1E;
-        sp24->unk44 = 0.0f;
+        sp24->moveSpeed = 0.0f;
         sp24->unk40 = 270.0f;
         sp24->unk48 = 10.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0x68, &D_801181F0);
@@ -2280,7 +2280,7 @@ void func_800CB3D8(void) {
     sp44 = &gObjects[gCurrentParsedObject];
     if (sp44->unk132 == 0) {
         sp44->unk132 = 1;
-        sp44->unk44 = 20.0f;
+        sp44->moveSpeed = 20.0f;
         sp44->moveAngle = sp44->Rot.y;
         sp44->unk40 = 0.0f;
         sp44->unkA8 = 0xF;
@@ -2402,7 +2402,7 @@ void func_800CBB58(void) {
     sp34 = &gObjects[gCurrentParsedObject];
     if (sp34->unk132 == 0) {
         sp34->unk132 += 1;
-        sp34->unk44 = 8.0f;
+        sp34->moveSpeed = 8.0f;
         sp34->unkA6 = Math_Random(4);
         sp34->moveAngle = (f32) D_80114E40[sp34->unkA6];
         sp34->Rot.x = (f32) D_80114E48[sp34->unkA6];
@@ -2447,7 +2447,7 @@ void func_800CBB58(void) {
         func_800CB834(gCurrentParsedObject);
         sp34->Rot.z = 0.0f;
         sp34->Rot.x = sp34->Rot.z;
-        sp34->unk44 = 0.0f;
+        sp34->moveSpeed = 0.0f;
         sp34->actionState = 1;
         sp34->unk132 = 0;
     }

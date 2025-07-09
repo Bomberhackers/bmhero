@@ -78,7 +78,7 @@ void func_803302E4_unk_bin_36() {
         obj->unk132++;
         obj->unkB2 = obj->actionState;
         func_80029EF8(gCurrentParsedObject, 0, 1.0f);
-        obj->unk44 = 8.0f;
+        obj->moveSpeed = 8.0f;
         obj->unkA6 = 0x96;
     }
 
@@ -97,10 +97,10 @@ void func_803302E4_unk_bin_36() {
         obj->Rot.y = obj->moveAngle;
     }
 
-    if (obj->unk44 > 26.0f) {
-        obj->unk44 = 26.0f;
+    if (obj->moveSpeed > 26.0f) {
+        obj->moveSpeed = 26.0f;
     } else {
-        obj->unk44 += 1.0f;
+        obj->moveSpeed += 1.0f;
     }
 
     ySave = obj->Vel.y;
@@ -227,7 +227,7 @@ void func_80330AF0_unk_bin_36() {
         obj->unk132++;
         obj->unkB2 = obj->actionState;
         func_80029EF8(gCurrentParsedObject, 0, 1.0f);
-        obj->unk44 = 8.0f;
+        obj->moveSpeed = 8.0f;
     }
 
     if (func_80028FA0(gCurrentParsedObject)) {
@@ -237,7 +237,7 @@ void func_80330AF0_unk_bin_36() {
     if (obj->Pos.z - gPlayerObject->Pos.z > 600.0f) {
         obj->Vel.z = 0.0f;
         obj->Vel.x = obj->Vel.y = obj->Vel.z;
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
 
         return;
     }
@@ -245,10 +245,10 @@ void func_80330AF0_unk_bin_36() {
     func_8002A8B4(gCurrentParsedObject, 1.0f);
     obj->Rot.y = obj->moveAngle;
 
-    if (obj->unk44 > 26.0f) {
-        obj->unk44 = 26.0f;
+    if (obj->moveSpeed > 26.0f) {
+        obj->moveSpeed = 26.0f;
     } else {
-        obj->unk44 += 1.0f;
+        obj->moveSpeed += 1.0f;
     }
 
     ySave = obj->Vel.y;
@@ -339,7 +339,7 @@ void func_80331124_unk_bin_36(void) {
         obj->unkA8 *= 0x64;
         obj->unkB6 = obj->Pos.y;
         obj->moveAngle = (Math_Random(0xA) & 1) * 0xB4 + 0x5A;
-        obj->unk44 = 4.0f;
+        obj->moveSpeed = 4.0f;
         obj->unk40 = 90.0f;
         obj->unk48 = 30.0f;
         func_8001ABF4(gCurrentParsedObject, 0, 0, &D_80118BA4.unk0);

@@ -75,7 +75,7 @@ void func_803303A4_unk_bin_35(struct ObjectStruct* obj) {
     if (obj->unk132 == 0) {
         obj->unk132 += 1;
         obj->unkAC = 0;
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
         obj->unk40 = 90.0f;
         obj->unk48 = 50.0f;
         func_8001BB04(gCurrentParsedObject, 0);
@@ -109,15 +109,15 @@ void func_8033050C_unk_bin_35(struct ObjectStruct* obj) {
 void func_803305F0_unk_bin_35(struct ObjectStruct* obj) {
     if (obj->unk132 == 0) {
         obj->unk132 = 1;
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
         obj->moveAngle = Get_AngleToPlayer(gCurrentParsedObject);
     }
     if (func_80028FA0(gCurrentParsedObject) != 0) {
         func_80029B60(gCurrentParsedObject);
     }
     func_80330118_unk_bin_35(obj, 0);
-    if (obj->unk44 < 10.0f) {
-        obj->unk44 = (f32) ((f64) obj->unk44 + 0.5);
+    if (obj->moveSpeed < 10.0f) {
+        obj->moveSpeed = (f32) ((f64) obj->moveSpeed + 0.5);
     }
     obj->Vel.y = 0.0f;
     func_80029C40(gCurrentParsedObject);
@@ -201,7 +201,7 @@ void func_80330A64_unk_bin_35(void) {
         obj->unk132 += 1;
         obj->moveAngle = obj->Rot.y;
         obj->unk40 = 0.0f;
-        obj->unk44 = 15.0f;
+        obj->moveSpeed = 15.0f;
         obj->unkA6 = 0x28;
     }
     obj->Rot.z = Math_WrapAngle(obj->Rot.z, 2.0f);
@@ -418,7 +418,7 @@ void func_80331928_unk_bin_35(void) {
     obj = &gObjects[gCurrentParsedObject];
     if (obj->unk132 == 0) {
         obj->unk132 += 1;
-        obj->unk44 = 5.0f;
+        obj->moveSpeed = 5.0f;
         obj->unkB0 = 0;
         func_8001C0EC(gCurrentParsedObject, 0, 1, 0x5A, &D_80118AE4);
     }
@@ -475,7 +475,7 @@ void func_80331CEC_unk_bin_35(void) {
     obj = &gObjects[gCurrentParsedObject];
     if (obj->unk132 == 0) {
         obj->unk132 += 1;
-        obj->unk44 = 25.0f;
+        obj->moveSpeed = 25.0f;
         sp30 = (s32) Get_AngleToPlayer(gCurrentParsedObject);
         obj->moveAngle = (f32) sp30;
         func_8001C0EC(gCurrentParsedObject, 0, 4, 0x5A, &D_80118AE4);
@@ -583,7 +583,7 @@ void func_803323F4_unk_bin_35(void) {
     if (parent->unk132 == 0) {
         parent->unk132 = 1;
         parent->unkA6 = 0;
-        parent->unk44 = 30.0f;
+        parent->moveSpeed = 30.0f;
         parent->moveAngle = parent->Rot.y;
         parent->Vel.y = 0.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 0, 0x49, &D_8011730C);
@@ -652,7 +652,7 @@ void func_80332860_unk_bin_35(void) {
     if (parent->unk132 == 0) {
         parent->unk132 = 1;
         parent->unkA6 = 0;
-        parent->unk44 = 30.0f;
+        parent->moveSpeed = 30.0f;
         parent->moveAngle = Math_WrapAngle(parent->Rot.y, 180.0f);
         parent->Vel.y = 0.0f;
         func_8001C0EC(gCurrentParsedObject, 0, 2, 0x49, &D_8011730C);
@@ -756,7 +756,7 @@ void func_8033304C_unk_bin_35(void) {
     obj = &gObjects[gCurrentParsedObject];
     if (obj->unk132 == 0) {
         obj->unk132 = 1;
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
         obj->unk48 = 0.0f;
         func_8001BB34(gCurrentParsedObject, 1);
         func_8001BB04(gCurrentParsedObject, 1);
@@ -772,7 +772,7 @@ void func_80333140_unk_bin_35(void) {
     obj = &gObjects[gCurrentParsedObject];
     if (obj->unk132 == 0) {
         obj->unk132 = 1;
-        obj->unk44 = 0.0f;
+        obj->moveSpeed = 0.0f;
         obj->unk48 = 0.0f;
         func_8001BB34(gCurrentParsedObject, 0);
         func_8001BB04(gCurrentParsedObject, 0);

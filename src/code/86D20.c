@@ -963,7 +963,7 @@ void func_8009878C(void) {
     }
 }
 
-extern struct Vec3f D_8011482C[];
+extern Vec3f D_8011482C[];
 
 void func_80098864(s32 arg0, s32 arg1, s32 arg2) {
     struct ObjectStruct* spAC;

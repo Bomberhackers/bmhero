@@ -469,7 +469,7 @@ void func_8008DD54(s16 arg0) {
 }
 
 s32 func_8008E074(s32 arg0, f32* arg1, f32 arg2) {
-    struct Vec3f sp1C;
+    Vec3f sp1C;
 
     sp1C.z = gObjects[arg0].Pos.x + gObjects[arg0].Vel.x;
     sp1C.y = gObjects[arg0].Pos.y + gObjects[arg0].Vel.y + arg2;

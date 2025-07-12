@@ -20,9 +20,9 @@ extern s32 D_801348A4;
 extern s32 D_801348A8;
 extern u8 D_801348AC;
 extern s32 D_80103CDC[];
-extern struct Vec3f D_80324998[];
-extern struct Vec3f D_8032499C[];
-extern struct Vec3f D_803249A0[];
+extern Vec3f D_80324998[];
+extern Vec3f D_8032499C[];
+extern Vec3f D_803249A0[];
 extern s32 D_801039D0;
 
 

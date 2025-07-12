@@ -84,7 +84,7 @@ s32 func_8001AA60(void);
 u8 func_8001AB30(s32 arg0);	
 u8 func_8001AB94(s32 arg0);	
 u8 func_8001ABC4(s32 arg0);	
-void func_8001ABF4(s32 arg0, s32 arg1, s32 arg2, void *arg3);
+void func_8001ABF4(s32 arg0, s32 arg1, s32 arg2, struct UnkStruct8016C298_1 *arg3); // Public
 void func_8001AD6C(s32 arg0);
 void func_8001B014(s32 arg0, s32 arg1);
 void func_8001B234(s32 arg0, s32 arg1, s32 arg2);

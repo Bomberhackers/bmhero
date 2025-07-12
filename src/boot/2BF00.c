@@ -22,7 +22,7 @@ typedef enum {
     SET_MODE_OPTION_MOVE
 } SET_MODE_MENU_OPTIONS;
 
-struct Vec3f D_8004A660[8] = {
+Vec3f D_8004A660[8] = {
     { 0.0f, 0.0f, -29.0f },  { 29.0f, 0.0f, 0.0f },  { 0.0f, 0.0f, 29.0f },  { -29.0f, 0.0f, 0.0f },
     { 0.0f, 59.0f, -29.0f }, { 29.0f, 59.0f, 0.0f }, { 0.0f, 59.0f, 29.0f }, { -29.0f, 59.0f, 0.0f },
 };

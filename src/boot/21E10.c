@@ -244,7 +244,9 @@ void func_80021BCC(void) {
 
 s32 func_80022454(void) {
     // TODO: Move this
-    struct UnkStruct_80022454_SP24 sp24;
+    struct {
+        s16 unk0;
+    } sp24;
     s16 sp22;
     s32 sp1C;
     struct ObjectStruct* sp18;
@@ -268,7 +270,9 @@ s32 func_80022454(void) {
 }
 
 UNUSED s32 func_80022558(s32 arg0) {
-    struct UnkStruct_80022454_SP24 sp1C;
+    struct {
+        s16 unk0;
+    } sp1C;
     s16 sp1A;
 
     if ((gObjects[arg0].actionState != ACTION_NONE)) {

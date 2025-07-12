@@ -1,7 +1,6 @@
 #ifndef F280_H
 #define F280_H
 
-// Public things
 typedef struct UnkStruct_F280_s {
     UNK_TYPE unk0;
     Vec3f unk4;
@@ -19,7 +18,7 @@ typedef struct  {
 
 typedef struct {
     Vec3f unk0;
-    Vec3f unkC; 
+    Vec3f unkC;
     Vec3f unk18;
 } UnkStruct_8000F888;
 
@@ -30,7 +29,6 @@ s32 func_8000F888(UnkStruct_8000F888* arg0, Gfx** arg1, s32 arg2, UNUSED s32 arg
 s32 func_8000FC08(struct UnkInputStruct8000FC08* arg0, Gfx** arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6);
 
 // Public
-
 void Math_Mat3f_Inverse(Matrix mf, Matrix mf1);
 s32 func_8000FD9C(struct UnkInputStruct8000FC08* arg0, Gfx** arg1, UnkStruct_F280_1* arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6);
 #endif /* F280_H */

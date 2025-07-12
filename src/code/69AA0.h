@@ -56,7 +56,7 @@ extern struct Vec2f D_8010C94C[];
 extern s16 D_80134B5C;
 extern s16 D_80134B5E;
 extern struct UnkStruct8016C298_1 D_801163DC[];
-extern struct Vec3f D_8010C7E4[];
+extern Vec3f D_8010C7E4[];
 extern s16 D_8010C74C;
 extern s32 D_8016E258;
 extern u8 D_80177960;

@@ -87,26 +87,130 @@ void func_80060278(void) {
     LoadFile(0, unk_bin_0_2_ROM_START, unk_bin_0_2_ROM_END);
 
     // why compare like this??
-    if (&D_80321428 != D_80324994) {
+    if (D_80321428 != D_80324994->unk0) {
         DecompressFile(0x1A, &_64C3C0_ROM_START, &_64C3C0_ROM_END);
     }
 }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/520E0/func_8006031C.s")
+void func_8006031C(struct UnkStruct_8006031C* arg0) {
+    s32 sp1C;
+    s32 sp18;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/520E0/func_80060450.s")
+    for (sp1C = 0;; sp1C++) {
+        sp18 = arg0[sp1C].idx;
+        if (sp18 == -1) {
+            break;
+        }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/520E0/func_800604A8.s")
+        if (gFileArray[D_80324994->unk0[sp18].unk0].ptr == NULL) {
+            if (D_80321428 != D_80324994->unk0) {
+                DecompressFile(D_80324994->unk0[sp18].unk0, D_80324994->unk0[sp18].unk4, D_80324994->unk0[sp18].unk8);
+            } else {
+                LoadFile((s32) D_80324994->unk0[sp18].unk0, (u32*) D_80324994->unk0[sp18].unk4,
+                         (u32*) D_80324994->unk0[sp18].unk8);
+            }
+        }
+    }
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/520E0/func_80060628.s")
+void func_80060450(s32 arg0, s32 arg1) {
+    func_8001ABF4(arg0, 0, 0, D_80324994[arg1].unk0[0].unk10);
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/520E0/func_80060808.s")
+void func_800604A8(s32 arg0) {
+    if (gObjects[arg0].actionState == 0) {
+        return;
+    }
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/520E0/func_800608B8.s")
+    gObjects[arg0].actionState = 0;
+    gObjects[arg0].Pos.x = 0.0f;
+    gObjects[arg0].Pos.y = 0.0f;
+    gObjects[arg0].Pos.z = 0.0f;
+    gObjects[arg0].Scale.x = 0.0f;
+    gObjects[arg0].Scale.y = 0.0f;
+    gObjects[arg0].unkD4 = 0.0f;
+    gObjects[arg0].unkD8 = 0.0f;
+    gObjects[arg0].objID = 0;
+}
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/520E0/func_80060BA4.s")
+void func_80060628(struct UnkStruct_8006031C* arg0) {
+    s32 sp4;
+    s32 sp0;
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/520E0/func_80060E40.s")
+    for (sp4 = 0;; sp4++) {
+        if (arg0[sp4].idx == -1) {
+            break;
+        }
+
+        sp0 = arg0[sp4].unk4;
+        gObjects[sp0].actionState = 0;
+        gObjects[sp0].Pos.x = 0.0f;
+        gObjects[sp0].Pos.y = 0.0f;
+        gObjects[sp0].Pos.z = 0.0f;
+        gObjects[sp0].Scale.x = 0.0f;
+        gObjects[sp0].Scale.y = 0.0f;
+        gObjects[sp0].unkD4 = 0.0f;
+        gObjects[sp0].unkD8 = 0.0f;
+        gObjects[sp0].objID = 0;
+    }
+}
+
+void func_80060808(s32 arg0, s32 arg1) {
+    if (D_80324994[arg0].unk0[0].unkC == 1) {
+        func_80060450(arg1, arg0);
+    } else {
+        func_8001BD44(arg1, (s32) D_80324994[arg0].unk0[0].unkC, (s32) D_80324994[arg0].unk0[0].unkD,
+                      (s32) gFileArray[D_80324994[arg0].unk0[0].unk0].ptr);
+    }
+}
+
+void func_800608B8(struct UnkStruct_8006031C* arg0) {
+    s32 sp1C;
+    s32 sp18;
+
+    func_8006031C(arg0);
+    for (sp1C = 0;; sp1C++) {
+        if (arg0[sp1C].idx == -1) {
+            break;
+        }
+        sp18 = arg0[sp1C].unk4;
+        gObjects[sp18].actionState = 1;
+        gObjects[sp18].Pos.x = arg0[sp1C].unk8;
+        gObjects[sp18].Pos.y = arg0[sp1C].unkC;
+        gObjects[sp18].Pos.z = arg0[sp1C].unk10;
+        gObjects[sp18].Scale.x = arg0[sp1C].unk14;
+        gObjects[sp18].Scale.y = arg0[sp1C].unk18;
+        gObjects[sp18].unkD4 = arg0[sp1C].unk1C;
+        gObjects[sp18].unkD8 = arg0[sp1C].unk20;
+        gObjects[sp18].objID = (s16) arg0[sp1C].idx;
+        func_80060808(arg0[sp1C].idx, sp18);
+    }
+}
+
+void func_80060BA4(struct UnkStruct_8006031C* arg0, s32 arg1) {
+    s32 sp1C;
+
+    sp1C = arg0[arg1].unk4;
+        gObjects[sp1C].actionState = 1;
+        gObjects[sp1C].Pos.x = arg0[arg1].unk8;
+        gObjects[sp1C].Pos.y = arg0[arg1].unkC;
+        gObjects[sp1C].Pos.z = arg0[arg1].unk10;
+        gObjects[sp1C].Scale.x = arg0[arg1].unk14;
+        gObjects[sp1C].Scale.y = arg0[arg1].unk18;
+        gObjects[sp1C].unkD4 = arg0[arg1].unk1C;
+        gObjects[sp1C].unkD8 = arg0[arg1].unk20;
+        gObjects[sp1C].objID = (s16) arg0[arg1].idx;
+    func_80060808(arg0[arg1].idx, sp1C);
+}
+
+void func_80060E40(s32 arg0, s32 arg1) {
+    if (gObjects[arg1].actionState != 0) {
+        return;
+    }
+    gObjects[arg1].actionState = 1;
+    gObjects[arg1].objID = (s16) arg0;
+    func_80060808(arg0, arg1);
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/520E0/func_80060F00.s")
 

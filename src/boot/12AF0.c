@@ -5,6 +5,9 @@
 #include "macros.h"
 #include "12AF0.h"
 
+#define SECOND_ROW 4
+#define THIRD_ROW 8
+
 s32* D_8004A3D0 = NULL;
 s32* D_8004A3D4 = NULL;
 
@@ -302,28 +305,28 @@ void func_80013A00(struct UnkStruct800120FC* arg0) {
     free(arg0);
 }
 
-void func_80013AE0(f32* arg0, f32 arg1, f32 arg2, f32 arg3) {
+void func_80013AE0(f32* mFP, f32 x, f32 y, f32 z) {
     int i;
 
     for (i = 0; i < 4; i++) {
-        arg0[i + 12] += ((arg0[i] * arg1) + (arg0[i + 4] * arg2) + (arg0[i + 8] * arg3));
+        mFP[i + 12] += ((mFP[i] * x) + (mFP[i + SECOND_ROW] * y) + (mFP[i + THIRD_ROW] * z));
     }
 }
 
-void func_80013B70(f32* arg0, f32 arg1, f32 arg2, f32 arg3) {
-    int i;
+void Math_Mat3f_Scale(f32* mFP, f32 x, f32 y, f32 z) {
+    int col;
 
-    for (i = 0; i < 3; i++) {
-        arg0[i] = arg0[i] * arg1;
-        arg0[i + 4] = (f32) (arg0[i + 4] * arg2);
-        arg0[i + 8] = (f32) (arg0[i + 8] * arg3);
+    for (col = 0; col < 3; col++) {
+        mFP[col] *= x; // First row
+        mFP[col + SECOND_ROW] *= y;
+        mFP[col + THIRD_ROW] *= z;
     }
 }
 
 /*
  * Multiply two matrices and store the result in mf1
  */
-void MultiplyMatrix(float mf1[3][4], float mf2[3][3]) {
+UNUSED void Math_Mat3f_Multiply(float mf1[3][4], float mf2[3][3]) {
     int i;
     int j;
     int k;
@@ -348,7 +351,7 @@ void MultiplyMatrix(float mf1[3][4], float mf2[3][3]) {
 /*
  * Rotates a 3x3 matrix
  */
-UNUSED void Math_Mtx3_Rotate(f32 arg0[3][3], f32 x, f32 y, f32 z) {
+UNUSED void Math_Mat3f_Rotate(f32 arg0[4][4], f32 x, f32 y, f32 z) {
     f32 sp34[3][3];
     f32 sp30;
     f32 sp2C;
@@ -376,75 +379,72 @@ UNUSED void Math_Mtx3_Rotate(f32 arg0[3][3], f32 x, f32 y, f32 z) {
     sp34[1][3] = (f32) ((sp24 * sp2C * sp1C) + (sp30 * sp28));
     sp34[2][1] = (f32) ((sp24 * sp2C * sp28) - (sp30 * sp1C));
     sp34[2][2] = (f32) (sp24 * sp20);
-    MultiplyMatrix(arg0, sp34);
+    Math_Mat3f_Multiply(arg0, sp34);
 }
 
-float sDegToRad = 0.01745329238f;
+static float sDegToRad = 0.01745329238f;
 
-void func_80013F6C(f32* arg0, f32 arg1) {
-    s32 i;
-    f32 sp30;
-    f32 sp2C;
-    f32 unk4[3];
-    f32 sp1C[1];
+void Math_Mat3f_RotatePitch(f32* mFP, f32 x) {
+    s32 col;
+    f32 cos;
+    f32 sin;
+    f32 row[4];
 
-    sp1C[0] = arg1 * sDegToRad;
-    sp30 = sinf(sp1C[0]);
-    sp2C = cosf(sp1C[0]);
+    row[0] = x * sDegToRad;
+    cos = sinf(row[0]);
+    sin = cosf(row[0]);
 
-    for (i = 0; i < 3; i++) {
-        unk4[i - 1] = arg0[i + 4];
+    for (col = 0; col < 3; col++) {
+        row[col] = mFP[col + SECOND_ROW];
     }
 
-    for (i = 0; i < 3; i++) {
-        arg0[i + 4] = (unk4[i - 1] * sp2C) + (arg0[i + 8] * sp30);
-        arg0[i + 8] = ((-unk4[i - 1] * sp30)) + (arg0[i + 8] * sp2C);
-    }
-}
-
-float D_8004A3F8 = 0.01745329238f;
-
-void func_80014098(f32* arg0, f32 arg1) {
-    s32 i;
-    f32 sp30;
-    f32 sp2C;
-    f32 unk4[3];
-    f32 sp1C[1];
-
-    sp1C[0] = arg1 * D_8004A3F8;
-    sp30 = sinf(sp1C[0]);
-    sp2C = cosf(sp1C[0]);
-
-    for (i = 0; i < 3; i++) {
-        unk4[i - 1] = arg0[i];
-    }
-
-    for (i = 0; i < 3; i++) {
-        arg0[i] = (unk4[i - 1] * sp2C) - (arg0[i + 8] * sp30);
-        arg0[i + 8] = ((unk4[i - 1] * sp30)) + (arg0[i + 8] * sp2C);
+    for (col = 0; col < 3; col++) {
+        mFP[col + SECOND_ROW] = (row[col] * sin) + (mFP[col + THIRD_ROW] * cos);
+        mFP[col + THIRD_ROW] = ((-row[col] * cos)) + (mFP[col + THIRD_ROW] * sin);
     }
 }
 
-float D_8004A3FC = 0.01745329238f;
+static float sDegToRad1 = 0.01745329238f;
 
-void func_800141C4(f32* arg0, f32 arg1) {
-    s32 i;
-    f32 sp30;
-    f32 sp2C;
-    f32 unk4[3];
-    f32 sp1C[1];
+void Math_Mat3f_RotateYaw(f32* mFP, f32 y) {
+    s32 col;
+    f32 sin;
+    f32 cos;
+    f32 row[4];
 
-    sp1C[0] = arg1 * D_8004A3FC;
-    sp30 = sinf(sp1C[0]);
-    sp2C = cosf(sp1C[0]);
+    row[0] = y * sDegToRad1;
+    sin = sinf(row[0]);
+    cos = cosf(row[0]);
 
-    for (i = 0; i < 3; i++) {
-        unk4[i - 1] = arg0[i];
+    for (col = 0; col < 3; col++) {
+        row[col] = mFP[col];
     }
 
-    for (i = 0; i < 3; i++) {
-        arg0[i] = (unk4[i - 1] * sp2C) + (arg0[i + 4] * sp30);
-        arg0[i + 4] = ((-unk4[i - 1] * sp30)) + (arg0[i + 4] * sp2C);
+    for (col = 0; col < 3; col++) {
+        mFP[col] = (row[col] * cos) - (mFP[col + THIRD_ROW] * sin);
+        mFP[col + THIRD_ROW] = ((row[col] * sin)) + (mFP[col + THIRD_ROW] * cos);
+    }
+}
+
+static float sDegToRad2 = 0.01745329238f;
+
+void Math_Mat3f_RotateRoll(f32* mFP, f32 z) {
+    s32 col;
+    f32 sin;
+    f32 cos;
+    f32 row[4];
+
+    row[0] = z * sDegToRad2;
+    sin = sinf(row[0]);
+    cos = cosf(row[0]);
+
+    for (col = 0; col < 3; col++) {
+        row[col] = mFP[col];
+    }
+
+    for (col = 0; col < 3; col++) {
+        mFP[col] = (row[col] * cos) + (mFP[col + SECOND_ROW] * sin);
+        mFP[col + SECOND_ROW] = ((-row[col] * sin)) + (mFP[col + SECOND_ROW] * cos);
     }
 }
 

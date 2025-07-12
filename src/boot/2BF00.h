@@ -15,7 +15,7 @@ extern u16 sContActiveButton;
 extern f64 D_8004BFB8;
 extern f64 D_8004BFC0;
 
-extern struct Vec3f D_8004A660[];
+extern Vec3f D_8004A660[];
 extern u8 D_8004A6C0[];
 extern s32 D_8004A6C8[1][2];
 extern s32 D_8004A6CC[0x11][2];

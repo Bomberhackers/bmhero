@@ -51,11 +51,11 @@ struct UnkStruct_80026548 {
 };
 
 struct ObjectStruct {
-    /* 0x000 */ struct Vec3f Pos;
-    /* 0x00C */ struct Vec3f Scale;
-    /* 0x018 */ struct Vec3f Rot;
-    /* 0x024 */ struct Vec3f Vel;
-    /* 0x030 */ struct Vec3f unk30;
+    /* 0x000 */ Vec3f Pos;
+    /* 0x00C */ Vec3f Scale;
+    /* 0x018 */ Vec3f Rot;
+    /* 0x024 */ Vec3f Vel;
+    /* 0x030 */ Vec3f unk30;
     /* 0x03C */ f32 moveAngle; // Movement angle
     /* 0x040 */ f32 unk40;
     /* 0x044 */ f32 moveSpeed; // Movement velocity (scalar)

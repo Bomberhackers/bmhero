@@ -1,8 +1,8 @@
 #include <ultra64.h>
 
-struct Vec3f D_8004A3A0 = { 0.0f, 0.0f, 0.0f };
-struct Vec3f D_8004A3AC = { 0.0f, 0.0f, 0.0f };
-struct Vec3f D_8004A3B8 = { 1.0f, 1.0f, 1.0f };
+Vec3f D_8004A3A0 = { 0.0f, 0.0f, 0.0f };
+Vec3f D_8004A3AC = { 0.0f, 0.0f, 0.0f };
+Vec3f D_8004A3B8 = { 1.0f, 1.0f, 1.0f };
 
 // functions
 void func_8000FEB0(struct UnkInputStruct8000FEB0* arg0);                                     // in file

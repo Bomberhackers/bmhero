@@ -206,7 +206,7 @@ ovl -= nonMatchingASMOvl
 
 bootSize = 289200
 codeSize = 674384
-ovlSize = 212420 # .text sections
+ovlSize = 850112 # .text sections
 
 total = src + nonMatchingASM
 srcPct = 100 * src / total

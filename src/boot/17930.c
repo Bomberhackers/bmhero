@@ -3,6 +3,7 @@
 #include "1050.h"
 #include "12AF0.h"
 #include "17930.h"
+#include "F280.h"
 #include "functions.h"
 
 typedef enum {
@@ -589,7 +590,7 @@ void func_80019510(s32 arg0, s32 arg1, s32 arg2) {
     } else if (arg1 == 2) {
         guMtxIdentF(sp28);
         Math_Mat3f_Inverse(sp28, sp68);
-        func_80013B70(sp28, gObjects[arg0].Scale.x, gObjects[arg0].Scale.y, gObjects[arg0].Scale.z);
+        Math_Mat3f_Scale(sp28, gObjects[arg0].Scale.x, gObjects[arg0].Scale.y, gObjects[arg0].Scale.z);
         guMtxCatF(sp28, sp68, sp68);
         guMtxF2L(sp68, &spA8);
         D_8016E104->unkE0[D_8016E3A4] = spA8;
@@ -939,7 +940,7 @@ u8 func_8001ABC4(s32 arg0) {
 
 // extern u8 D_8004A5E0[];
 
-void func_8001ABF4(s32 arg0, s32 arg1, s32 arg2, void* arg3) {
+void func_8001ABF4(s32 arg0, s32 arg1, s32 arg2, struct UnkStruct8016C298_1* arg3) {
     s32 sp1C;
 
     if ((sp1C = gObjects[arg0].Unk148[arg1]) != -1) {

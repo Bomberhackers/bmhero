@@ -191,7 +191,7 @@ void func_8007F24C(void) {
 void func_8007F3F0(void) {
     struct ObjectStruct* sp34;
     s32 sp30;
-    struct Vec3f sp24;
+    Vec3f sp24;
 
     func_8001838C();
     for (sp30 = 6, sp34 = gObjects + 6; sp30 < 0xE; sp30++, sp34++) {

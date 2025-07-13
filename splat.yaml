@@ -1027,7 +1027,7 @@ segments:
     symbol_name_format: $VRAM_$SEG
     subsegments:
     - [0x1D9110, c, overlays/1D9110/1D9110]
-    - [0x1E3E80, data]
+    - [0x1E3E80, .rodata, overlays/1D9110/1D9110]
 
   - name: unk_bin_39
     type: code

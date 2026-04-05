@@ -1459,7 +1459,7 @@ void func_8001D3CC(void) {
 extern char D_302B8[];
 extern char D_302D8[];
 
-extern UNK_TYPE D_80200000;
+extern u32 D_80200000;
 extern UNK_TYPE D_80225800;
 void func_8001D440(void) {
     D_80340000->unk18148[0] = 2;
@@ -1501,6 +1501,8 @@ void stub1() {
 void stub2() {
 }
 
+extern u32 _binary_assets_gspF3DEX_fifoTextStart_bin_start[];
+
 void Create_GfxTask(void) {
     struct UnkStruct8016E10C* gfx_task;
     struct UnkStruct8016E10C* cur_task = D_8016E10C;
@@ -1521,7 +1523,7 @@ void Create_GfxTask(void) {
     gfx_task->task.t.ucode_boot_size = (u32) rspbootTextEnd - (u32) rspbootTextStart;
     gfx_task->task.t.ucode = (u64*) rspbootTextEnd; // this is probably F3DEX Data start. TODO: Rename
     gfx_task->task.t.ucode_size = 0x1000;
-    gfx_task->task.t.ucode_data = (u64*) gspF3DEX_fifoTextStart_bin;
+    gfx_task->task.t.ucode_data = (u64*) _binary_assets_gspF3DEX_fifoTextStart_bin_start;
     gfx_task->task.t.ucode_data_size = 0x800;
     gfx_task->task.t.dram_stack = D_801D04B0;
     gfx_task->task.t.dram_stack_size = 0x400;

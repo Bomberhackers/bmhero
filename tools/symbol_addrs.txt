@@ -4555,3 +4555,5 @@ D_8016E418 = 0x8016E418; //defined:true size:0x4
 D_8016E410 = 0x8016E410; //defined:true size:0x4
 func_80280E74_code_extra_3 = 0x80280E74; //defined:true
 gNoRumblePak = 0x80056E20; //defined:true
+D_80200000 = 0x80200000;
+aspMainTextStart = 0x80059460;

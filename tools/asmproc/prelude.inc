@@ -32,12 +32,11 @@
     .size \label, . - \label
 .endm
 
-
 # A label referenced by a jumptable.
-.macro jlabel label
+.macro jlabel label, visibility=global
+    .\visibility \label
     \label:
 .endm
-
 
 # Label to signal the symbol haven't been matched yet.
 .macro nonmatching label, size=1

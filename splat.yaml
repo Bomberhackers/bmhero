@@ -9,6 +9,7 @@ options:
   base_path: .
   ld_script_path: bmhero.ld
   platform: n64
+  hasm_in_src_path: True
   ld_legacy_generation: true
   detect_redundant_function_end: true
   gfx_ucode: f3dex

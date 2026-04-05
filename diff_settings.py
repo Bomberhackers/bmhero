@@ -1,15 +1,8 @@
-import os
+#!/usr/bin/env python3
 
 def apply(config, args):
-    basename = 'bmhero'
-    if os.path.exists(f'build/{basename}.bin'):
-        version = 'us'
-    elif os.path.exists(f'build/{basename}.eu.bin'):
-        version = 'eu'
-    else:
-        version = 'us'
-
-    config['baseimg'] = f'baserom.z64'
-    config['myimg'] = f'build/{basename}.z64'
-    config['mapfile'] = f'build/{basename}.map'
-    config['source_directories'] = ['src', 'include']
+    config['baseimg'] = 'baserom.z64'
+    config['myimg'] = 'build/bmhero.z64'
+    config['mapfile'] = 'build/bmhero.map'
+    config['source_directories'] = ['.']
+    config["objdump_flags"] = ["-Mreg-names=32"]

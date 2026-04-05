@@ -208,6 +208,8 @@ static void __amMain(void* arg) {
     alClose(&__am.g);
 }
 
+extern u32 _binary_assets_4DD30_bin_start[];
+
 static s32 __amHandleFrameMsg(AudioInfo* info, AudioInfo* lastInfo) {
     s16* audioPtr;
     Acmd* cmdp;
@@ -247,8 +249,8 @@ static s32 __amHandleFrameMsg(AudioInfo* info, AudioInfo* lastInfo) {
     t->list.t.ucode_boot = (u64*) rspbootTextStart;
     t->list.t.ucode_boot_size = ((int) rspbootTextEnd - (int) rspbootTextStart);
     t->list.t.flags = 0;               // OS_TASK_DP_WAIT;
-    t->list.t.ucode = _4A060_data__s;  // aspMainTextStart
-    t->list.t.ucode_data = _4DD30_bin; // aspMainDataStart
+    t->list.t.ucode = _4A060_data__s;  // aspMainTextStart = 0x80059460; (4A060)
+    t->list.t.ucode_data = _binary_assets_4DD30_bin_start; // aspMainDataStart _4DD30_bin
     t->list.t.ucode_data_size = SP_UCODE_DATA_SIZE;
     t->list.t.dram_stack = (u64*) NULL;
     t->list.t.dram_stack_size = 0;

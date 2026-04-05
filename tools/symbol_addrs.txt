@@ -4557,3 +4557,7 @@ func_80280E74_code_extra_3 = 0x80280E74; //defined:true
 gNoRumblePak = 0x80056E20; //defined:true
 D_80200000 = 0x80200000;
 aspMainTextStart = 0x80059460;
+func_8005F96C = 0x8005F96C;
+func_8005FAA0 = 0x8005FAA0;
+func_800695A0 = 0x800695A0;
+func_8006E088 = 0x8006E088;

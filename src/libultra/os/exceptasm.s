@@ -147,7 +147,7 @@ glabel __osException
     /* 3B79C 8003AB9C 112A00B0 */  beq        $t1, $t2, .L8003AE60
     /* 3B7A0 8003ABA0 00000000 */   nop
     /* 3B7A4 8003ABA4 240A002C */  addiu      $t2, $zero, 0x2C
-    /* 3B7A8 8003ABA8 112A00FF */  beq        $t1, $t2, .L8003AFA8
+    /* 3B7A8 8003ABA8 112A00FF */  beq        $t1, $t2, handle_CpU
     /* 3B7AC 8003ABAC 00000000 */   nop
     /* 3B7B0 8003ABB0 240A0000 */  addiu      $t2, $zero, 0x0
     /* 3B7B4 8003ABB4 152A00C3 */  bne        $t1, $t2, .L8003AEC4
@@ -180,7 +180,7 @@ glabel __osException
   jlabel .L8003AC10
     /* 3B810 8003AC10 40095800 */  mfc0       $t1, $11 /* handwritten instruction */
     /* 3B814 8003AC14 40895800 */  mtc0       $t1, $11 /* handwritten instruction */
-    /* 3B818 8003AC18 0C00EBBD */  jal        func_8003AEF4
+    /* 3B818 8003AC18 0C00EBBD */  jal        send_mesg
     /* 3B81C 8003AC1C 24040018 */   addiu     $a0, $zero, 0x18
     /* 3B820 8003AC20 3C01FFFF */  lui        $at, (0xFFFF7FFF >> 16)
     /* 3B824 8003AC24 34217FFF */  ori        $at, $at, (0xFFFF7FFF & 0xFFFF)
@@ -205,7 +205,7 @@ glabel __osException
     /* 3B86C 8003AC6C 10000082 */  b          .L8003AE78
     /* 3B870 8003AC70 00000000 */   nop
   .L8003AC74:
-    /* 3B874 8003AC74 0C00EBBD */  jal        func_8003AEF4
+    /* 3B874 8003AC74 0C00EBBD */  jal        send_mesg
     /* 3B878 8003AC78 00000000 */   nop
     /* 3B87C 8003AC7C 1000FFD0 */  b          .L8003ABC0
     /* 3B880 8003AC80 00000000 */   nop
@@ -228,14 +228,14 @@ glabel __osException
     /* 3B8C0 8003ACC0 3231003E */  andi       $s1, $s1, 0x3E
     /* 3B8C4 8003ACC4 11800007 */  beqz       $t4, .L8003ACE4
     /* 3B8C8 8003ACC8 AC290010 */   sw        $t1, %lo(D_A4040010)($at)
-    /* 3B8CC 8003ACCC 0C00EBBD */  jal        func_8003AEF4
+    /* 3B8CC 8003ACCC 0C00EBBD */  jal        send_mesg
     /* 3B8D0 8003ACD0 24040020 */   addiu     $a0, $zero, 0x20
     /* 3B8D4 8003ACD4 12200038 */  beqz       $s1, .L8003ADB8
     /* 3B8D8 8003ACD8 00000000 */   nop
     /* 3B8DC 8003ACDC 10000005 */  b          .L8003ACF4
     /* 3B8E0 8003ACE0 00000000 */   nop
   .L8003ACE4:
-    /* 3B8E4 8003ACE4 0C00EBBD */  jal        func_8003AEF4
+    /* 3B8E4 8003ACE4 0C00EBBD */  jal        send_mesg
     /* 3B8E8 8003ACE8 24040058 */   addiu     $a0, $zero, 0x58
     /* 3B8EC 8003ACEC 12200032 */  beqz       $s1, .L8003ADB8
     /* 3B8F0 8003ACF0 00000000 */   nop
@@ -245,7 +245,7 @@ glabel __osException
     /* 3B8FC 8003ACFC 3C01A440 */   lui       $at, %hi(D_A4400010)
     /* 3B900 8003AD00 32310037 */  andi       $s1, $s1, 0x37
     /* 3B904 8003AD04 AC200010 */  sw         $zero, %lo(D_A4400010)($at)
-    /* 3B908 8003AD08 0C00EBBD */  jal        func_8003AEF4
+    /* 3B908 8003AD08 0C00EBBD */  jal        send_mesg
     /* 3B90C 8003AD0C 24040038 */   addiu     $a0, $zero, 0x38
     /* 3B910 8003AD10 12200029 */  beqz       $s1, .L8003ADB8
     /* 3B914 8003AD14 00000000 */   nop
@@ -257,7 +257,7 @@ glabel __osException
     /* 3B928 8003AD28 3C01A450 */  lui        $at, %hi(D_A450000C)
     /* 3B92C 8003AD2C 3231003B */  andi       $s1, $s1, 0x3B
     /* 3B930 8003AD30 AC29000C */  sw         $t1, %lo(D_A450000C)($at)
-    /* 3B934 8003AD34 0C00EBBD */  jal        func_8003AEF4
+    /* 3B934 8003AD34 0C00EBBD */  jal        send_mesg
     /* 3B938 8003AD38 24040030 */   addiu     $a0, $zero, 0x30
     /* 3B93C 8003AD3C 1220001E */  beqz       $s1, .L8003ADB8
     /* 3B940 8003AD40 00000000 */   nop
@@ -267,7 +267,7 @@ glabel __osException
     /* 3B94C 8003AD4C 3C01A480 */   lui       $at, %hi(D_A4800018)
     /* 3B950 8003AD50 3231003D */  andi       $s1, $s1, 0x3D
     /* 3B954 8003AD54 AC200018 */  sw         $zero, %lo(D_A4800018)($at)
-    /* 3B958 8003AD58 0C00EBBD */  jal        func_8003AEF4
+    /* 3B958 8003AD58 0C00EBBD */  jal        send_mesg
     /* 3B95C 8003AD5C 24040028 */   addiu     $a0, $zero, 0x28
     /* 3B960 8003AD60 12200015 */  beqz       $s1, .L8003ADB8
     /* 3B964 8003AD64 00000000 */   nop
@@ -279,7 +279,7 @@ glabel __osException
     /* 3B978 8003AD78 3C01A460 */  lui        $at, %hi(D_A4600010)
     /* 3B97C 8003AD7C 3231002F */  andi       $s1, $s1, 0x2F
     /* 3B980 8003AD80 AC290010 */  sw         $t1, %lo(D_A4600010)($at)
-    /* 3B984 8003AD84 0C00EBBD */  jal        func_8003AEF4
+    /* 3B984 8003AD84 0C00EBBD */  jal        send_mesg
     /* 3B988 8003AD88 24040040 */   addiu     $a0, $zero, 0x40
     /* 3B98C 8003AD8C 1220000A */  beqz       $s1, .L8003ADB8
     /* 3B990 8003AD90 00000000 */   nop
@@ -291,7 +291,7 @@ glabel __osException
     /* 3B9A4 8003ADA4 3C01A430 */  lui        $at, %hi(D_A4300000)
     /* 3B9A8 8003ADA8 3231001F */  andi       $s1, $s1, 0x1F
     /* 3B9AC 8003ADAC AC290000 */  sw         $t1, %lo(D_A4300000)($at)
-    /* 3B9B0 8003ADB0 0C00EBBD */  jal        func_8003AEF4
+    /* 3B9B0 8003ADB0 0C00EBBD */  jal        send_mesg
     /* 3B9B4 8003ADB4 24040048 */   addiu     $a0, $zero, 0x48
   .L8003ADB8:
     /* 3B9B8 8003ADB8 2401FBFF */  addiu      $at, $zero, -0x401
@@ -312,7 +312,7 @@ glabel __osException
   .L8003ADF0:
     /* 3B9F0 8003ADF0 240A0001 */  addiu      $t2, $zero, 0x1
     /* 3B9F4 8003ADF4 AD2A0000 */  sw         $t2, 0x0($t1)
-    /* 3B9F8 8003ADF8 0C00EBBD */  jal        func_8003AEF4
+    /* 3B9F8 8003ADF8 0C00EBBD */  jal        send_mesg
     /* 3B9FC 8003ADFC 24040070 */   addiu     $a0, $zero, 0x70
     /* 3BA00 8003AE00 3C0A8005 */  lui        $t2, %hi(__osRunQueue)
     /* 3BA04 8003AE04 8D4AB578 */  lw         $t2, %lo(__osRunQueue)($t2)
@@ -326,7 +326,7 @@ glabel __osException
     /* 3BA20 8003AE20 2401FDFF */  addiu      $at, $zero, -0x201
     /* 3BA24 8003AE24 01014024 */  and        $t0, $t0, $at
     /* 3BA28 8003AE28 40886800 */  mtc0       $t0, $13 /* handwritten instruction */
-    /* 3BA2C 8003AE2C 0C00EBBD */  jal        func_8003AEF4
+    /* 3BA2C 8003AE2C 0C00EBBD */  jal        send_mesg
     /* 3BA30 8003AE30 24040008 */   addiu     $a0, $zero, 0x8
     /* 3BA34 8003AE34 2401FDFF */  addiu      $at, $zero, -0x201
     /* 3BA38 8003AE38 1000FF61 */  b          .L8003ABC0
@@ -335,7 +335,7 @@ glabel __osException
     /* 3BA40 8003AE40 2401FEFF */  addiu      $at, $zero, -0x101
     /* 3BA44 8003AE44 01014024 */  and        $t0, $t0, $at
     /* 3BA48 8003AE48 40886800 */  mtc0       $t0, $13 /* handwritten instruction */
-    /* 3BA4C 8003AE4C 0C00EBBD */  jal        func_8003AEF4
+    /* 3BA4C 8003AE4C 0C00EBBD */  jal        send_mesg
     /* 3BA50 8003AE50 24040000 */   addiu     $a0, $zero, 0x0
     /* 3BA54 8003AE54 2401FEFF */  addiu      $at, $zero, -0x101
     /* 3BA58 8003AE58 1000FF59 */  b          .L8003ABC0
@@ -343,7 +343,7 @@ glabel __osException
   .L8003AE60:
     /* 3BA60 8003AE60 24090001 */  addiu      $t1, $zero, 0x1
     /* 3BA64 8003AE64 A7490012 */  sh         $t1, 0x12($k0) /* handwritten instruction */
-    /* 3BA68 8003AE68 0C00EBBD */  jal        func_8003AEF4
+    /* 3BA68 8003AE68 0C00EBBD */  jal        send_mesg
     /* 3BA6C 8003AE6C 24040050 */   addiu     $a0, $zero, 0x50
     /* 3BA70 8003AE70 10000001 */  b          .L8003AE78
     /* 3BA74 8003AE74 00000000 */   nop
@@ -377,16 +377,15 @@ glabel __osException
     /* 3BAD8 8003AED8 A7490012 */  sh         $t1, 0x12($k0) /* handwritten instruction */
     /* 3BADC 8003AEDC 400A4000 */  mfc0       $t2, $8 /* handwritten instruction */
     /* 3BAE0 8003AEE0 AF4A0124 */  sw         $t2, 0x124($k0) /* handwritten instruction */
-    /* 3BAE4 8003AEE4 0C00EBBD */  jal        func_8003AEF4
+    /* 3BAE4 8003AEE4 0C00EBBD */  jal        send_mesg
     /* 3BAE8 8003AEE8 24040060 */   addiu     $a0, $zero, 0x60
     /* 3BAEC 8003AEEC 0800EC4D */  j          __osDispatchThread
     /* 3BAF0 8003AEF0 00000000 */   nop
 endlabel __osException
 
-/* Handwritten function */
-nonmatching func_8003AEF4, 0xE8
+nonmatching send_mesg, 0xB4
 
-glabel func_8003AEF4
+glabel send_mesg
     /* 3BAF4 8003AEF4 3C0A8006 */  lui        $t2, %hi(__osEventStateTab)
     /* 3BAF8 8003AEF8 254AA380 */  addiu      $t2, $t2, %lo(__osEventStateTab)
     /* 3BAFC 8003AEFC 01445021 */  addu       $t2, $t2, $a0
@@ -435,7 +434,12 @@ glabel func_8003AEF4
   .L8003AFA0:
     /* 3BBA0 8003AFA0 02400008 */  jr         $s2
     /* 3BBA4 8003AFA4 00000000 */   nop
-  .L8003AFA8:
+endlabel send_mesg
+
+/* Handwritten function */
+nonmatching handle_CpU, 0x34
+
+glabel handle_CpU
     /* 3BBA8 8003AFA8 3C013000 */  lui        $at, (0x30000000 >> 16)
     /* 3BBAC 8003AFAC 01014824 */  and        $t1, $t0, $at
     /* 3BBB0 8003AFB0 00094F02 */  srl        $t1, $t1, 28
@@ -449,7 +453,7 @@ glabel func_8003AEF4
     /* 3BBD0 8003AFD0 AF490018 */  sw         $t1, 0x18($k0) /* handwritten instruction */
     /* 3BBD4 8003AFD4 1000FFB5 */  b          .L8003AEAC
     /* 3BBD8 8003AFD8 AF5B0118 */   sw        $k1, 0x118($k0) /* handwritten instruction */
-endlabel func_8003AEF4
+endlabel handle_CpU
 
 /* Handwritten function */
 nonmatching __osEnqueueAndYield, 0x100

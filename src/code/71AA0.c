@@ -983,13 +983,13 @@ void func_80083180(s32 arg0) {
     if (!(gControllerBits & 1)) {
         PlayTrack_WithVolLoop(-1, -1, 0);
         func_80000DAC();
-        func_803303A4();
+        func_803303A4_unk_bin_6();
     }
 
 block_5:
     PlayTrack_WithVolLoop(-1, -1, 0);
     func_80000D4C();
-    func_80330440();
+    func_80330440_unk_bin_5();
 
 demo_init:
     Demo_Start(0);
@@ -997,7 +997,7 @@ demo_init:
 block_7:
     func_80000E6C();
 
-    if ((sp20 = func_80330594()) == 1) {
+    if ((sp20 = func_80330594_unk_bin_8()) == 1) {
         goto demo_init;
     }
 
@@ -1039,7 +1039,7 @@ CASE_1:
 
     while (TRUE) {
         func_80000ECC();
-        sp20 = func_803316CC(sp20);
+        sp20 = func_803316CC_unk_bin_9(sp20);
         if (sp20 != 6) {
             func_80000E0C();
             func_8033248C(sp20, 1);
@@ -1060,7 +1060,7 @@ CASE_3:
 
 loop_37:
     func_80000F2C();
-    sp20 = func_8033148C();
+    sp20 = func_8033148C_unk_bin_10();
 
     if (sp20 == 0) {
         PlayTrack_WithVolLoop(-1, -1, 0);

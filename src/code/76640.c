@@ -908,19 +908,19 @@ void func_80087994(void) {
         return;
     }
     if (D_8016523E == 0) {
-        func_8028AA70();
+        func_8028AA70_code_extra_0();
     } else if (D_8016523E == 1) {
-        func_802838DC();
+        func_802838DC_code_extra_1();
     } else if (D_8016523E == 2) {
-        func_802823A4();
+        func_802823A4_code_extra_2();
     } else if (D_8016523E == 3) {
-        func_80281314();
+        func_80281314_code_extra_3();
     } else if (D_8016523E == 4) {
         func_8028117C_code_extra_4();
     } else if (D_8016523E == 5) {
-        func_802860F8();
+        func_802860F8_code_extra_5();
     } else if (D_8016523E == 6) {
-        func_80282F24();
+        func_80282F24_code_extra_6();
     }
     func_80086D50();
     func_80086ECC();
@@ -930,19 +930,19 @@ void func_80087B1C(void) {
     func_8001BB34(0, 0);
     func_8001BB34(1, 0);
     if (D_8016523E == 0) {
-        func_8028ADB0();
+        func_8028ADB0_code_extra_0();
     } else if (D_8016523E == 1) {
-        func_80283A40();
+        func_80283A40_code_extra_1();
     } else if (D_8016523E == 2) {
-        func_802824DC();
+        func_802824DC_code_extra_2();
     } else if (D_8016523E == 3) {
-        func_802813E4();
+        func_802813E4_code_extra_3();
     } else if (D_8016523E == 4) {
-        func_802812AC();
+        func_802812AC_code_extra_4();
     } else if (D_8016523E == 5) {
-        func_80286374();
+        func_80286374_code_extra_5();
     } else if (D_8016523E == 6) {
-        func_802831BC();
+        func_802831BC_code_extra_6();
     }
     func_80086D50();
     func_80086ECC();

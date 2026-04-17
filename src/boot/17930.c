@@ -636,7 +636,7 @@ void func_80019B7C(void) {
 void func_80019BC8(s32 arg0) {
     D_80165290[arg0].unk24 = 0.0f;
     D_80165290[arg0].unk18 = 0;
-    D_80165290[arg0].unk1C = 0;
+    D_80165290[arg0].modelTag = 0;
     D_80165290[arg0].unk20 = 0;
     D_80165290[arg0].unk16 = 0;
     D_80165290[arg0].unk15 = 0;
@@ -832,9 +832,9 @@ void func_8001A5F8(s32 id) {
         func_80011DD0(D_80165290[id].unk20);
         D_80165290[id].unk20 = 0;
     }
-    if (D_80165290[id].unk1C != 0) {
-        func_800105D8(D_80165290[id].unk1C);
-        D_80165290[id].unk1C = 0;
+    if (D_80165290[id].modelTag != 0) {
+        func_800105D8(D_80165290[id].modelTag);
+        D_80165290[id].modelTag = 0;
     }
     if (D_8016E3AC != NULL) {
         func_80013A00(D_8016E3AC);
@@ -1152,7 +1152,7 @@ void func_8001BD44(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     D_80165290[sp1C].unk0 = arg3;
     func_8001A2A0();
     D_8016E3AC = func_800122F0(arg3);
-    D_80165290[sp1C].unk1C = func_80010408(arg3, arg2);
+    D_80165290[sp1C].modelTag = func_80010408(arg3, arg2);
     func_8001A300(sp1C);
 }
 
@@ -1172,10 +1172,10 @@ void func_8001BE6C(s32 objID, s32 arg1, s32 arg2, s32 arg3) {
             D_8016E3AC = NULL;
         }
         D_8016E3AC = func_800122F0(arg3);
-        D_80165290[sp1C].unk20 = func_8001191C(D_80165290[sp1C].unk1C, 0);
+        D_80165290[sp1C].unk20 = func_8001191C(D_80165290[sp1C].modelTag, 0);
         D_80165290[sp1C].unk15 = 0;
     } else {
-        D_80165290[sp1C].unk20 = func_8001191C(D_80165290[sp1C].unk1C, arg2);
+        D_80165290[sp1C].unk20 = func_8001191C(D_80165290[sp1C].modelTag, arg2);
         D_80165290[sp1C].unk15 = arg2;
     }
     D_80165290[sp1C].unk14 = arg2;
@@ -1224,7 +1224,7 @@ void func_8001C384(s32 arg0, s32 arg1) {
     sp2C = (s32) gObjects[arg0].Unk140[arg1];
     func_8001A488(sp2C);
     sp28 = D_80165290[sp2C].unk0;
-    D_8016E3A4 = func_8000FD9C(D_80165290[sp2C].unk1C, &gMasterDisplayList, sp28, sp28, sp28, sp28, D_8016E3A4);
+    D_8016E3A4 = func_8000FD9C(D_80165290[sp2C].modelTag, &gMasterDisplayList, sp28, sp28, sp28, sp28, D_8016E3A4);
 }
 
 void func_8001C464(void) {
@@ -1242,7 +1242,7 @@ void func_8001C464(void) {
                 func_8001A488(sp2C);
                 sp28 = D_80165290[sp2C].unk0;
                 D_8016E3A4 =
-                    func_8000FD9C(D_80165290[sp2C].unk1C, &gMasterDisplayList, sp28, sp28, sp28, sp28, D_8016E3A4);
+                    func_8000FD9C(D_80165290[sp2C].modelTag, &gMasterDisplayList, sp28, sp28, sp28, sp28, D_8016E3A4);
             }
         }
     }
@@ -1263,7 +1263,7 @@ void func_8001C5B8(void) {
                 func_8001A488(sp2C);
                 sp28 = D_80165290[sp2C].unk0;
                 D_8016E3A4 =
-                    func_8000FD9C(D_80165290[sp2C].unk1C, &gMasterDisplayList, sp28, sp28, sp28, sp28, D_8016E3A4);
+                    func_8000FD9C(D_80165290[sp2C].modelTag, &gMasterDisplayList, sp28, sp28, sp28, sp28, D_8016E3A4);
             }
         }
     }
@@ -1298,7 +1298,7 @@ void func_8001C70C(void) {
                     func_8001A488(sp34);
                     sp30 = D_80165290[sp34].unk0;
                     D_8016E3A4 =
-                        func_8000FD9C(D_80165290[sp34].unk1C, &gMasterDisplayList, sp30, sp30, sp30, sp30, D_8016E3A4);
+                        func_8000FD9C(D_80165290[sp34].modelTag, &gMasterDisplayList, sp30, sp30, sp30, sp30, D_8016E3A4);
                 }
             }
         }
@@ -1320,7 +1320,7 @@ void func_8001C96C(void) {
                 func_8001A488(sp2C);
                 sp28 = D_80165290[sp2C].unk0;
                 D_8016E3A4 =
-                    func_8000FD9C(D_80165290[sp2C].unk1C, &gMasterDisplayList, sp28, sp28, sp28, sp28, D_8016E3A4);
+                    func_8000FD9C(D_80165290[sp2C].modelTag, &gMasterDisplayList, sp28, sp28, sp28, sp28, D_8016E3A4);
             }
         }
     }
@@ -1466,8 +1466,9 @@ void func_8001D440(void) {
     D_80340000->unk18168 = &D_80200000;
     *((s16*) (D_302B8 + (s32) &D_80340000)) = 2;
     *((s32*) (D_302D8 + (s32) &D_80340000)) = &D_80225800;
-    osViSetSpecialFeatures(0x42);
+    osViSetSpecialFeatures(OS_VI_DITHER_FILTER_ON | OS_VI_GAMMA_OFF);
 }
+
 extern UNK_TYPE D_801DA800;
 
 void func_8001D4D0(void) {

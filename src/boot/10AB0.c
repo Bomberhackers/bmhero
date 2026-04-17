@@ -5,13 +5,13 @@ Vec3f D_8004A3AC = { 0.0f, 0.0f, 0.0f };
 Vec3f D_8004A3B8 = { 1.0f, 1.0f, 1.0f };
 
 // functions
-void func_8000FEB0(struct UnkInputStruct8000FEB0* arg0);                                     // in file
+void func_8000FEB0(Vec3f* arg0);                                     // in file
 void func_8000FF44(struct UnkInputStruct8000FF44* arg0);                                     // in file
 void func_8001000C(struct UnkInputStruct8000FF44* arg0);                                     // in file
 void func_80010098(struct UnkInputStruct80010098* arg0);                                     // in file
 void* func_800100E8(void* arg0, s32 arg1);                                                   // in file
 void func_80010350(struct UnkInputStruct80010350* arg0);                                     // in file
-struct UnkStruct80010408_SP2C* func_80010408(struct UnkInputStruct80010408* arg0, u32 arg1); // externally called
+struct ModelTag* func_80010408(struct UnkInputStruct80010408* arg0, u32 arg1); // externally called
 void func_800105D8(struct UnkStruct800105D8* arg0);                                          // externally called
 void func_80010634(struct UnkInputStruct80010098* arg0, s32 arg1, s32 arg2);                 // in file
 f32 func_800108D0(struct UnkInputStruct800108D0* arg0, f32 arg1);                            // in file
@@ -30,10 +30,10 @@ void* func_8001191C(struct UnkStruct80010408_SP2C* arg0, s32 arg1);          // 
 void func_80011D18(struct UnkStruct80011D18* arg0);                          // in file
 void func_80011DD0(struct UnkStruct80011DD0* arg0);                          // externally called
 
-void func_8000FEB0(struct UnkInputStruct8000FEB0* arg0) {
-    arg0->unk0 = D_8004A3A0;
-    arg0->unkC = D_8004A3AC;
-    arg0->unk18 = D_8004A3B8;
+void func_8000FEB0(Vec3f* verts) {
+    verts[0] = D_8004A3A0;
+    verts[1] = D_8004A3AC;
+    verts[2] = D_8004A3B8;
 }
 
 void func_8000FF44(struct UnkInputStruct8000FF44* arg0) {
@@ -104,42 +104,43 @@ void func_80010350(struct UnkInputStruct80010350* arg0) {
     free(arg0);
 }
 
-struct UnkStruct80010408_SP2C* func_80010408(struct UnkInputStruct80010408* arg0, u32 arg1) {
-    struct UnkStruct80010408_SP2C* sp2C;
+// create Model Tag struct
+struct ModelTag* func_80010408(struct UnkInputStruct80010408* arg0, u32 arg1) {
+    struct ModelTag* modelTag;
     struct UnkInputStruct80010408_Inner* sp28;
-    s32 sp24;
+    s32 i;
 
     sp28 = arg0->unkC;
     if (arg0->unk4 <= arg1) {
         return NULL;
     }
-    sp2C = malloc(sizeof(struct UnkStruct80010408_SP2C));
-    func_8000FEB0(&sp2C->unk4);
+    modelTag = malloc(sizeof(struct ModelTag));
+    func_8000FEB0(&modelTag->verts);
     switch (sp28[arg1].unk0) { /* irregular */
         case 0:
         case 5:
         case 6:
-            sp2C->unk0 = 0;
-            sp2C->unk28 = (void*) arg1;
+            modelTag->type = 0;
+            modelTag->data.dl = (void*) arg1;
             break;
         case 1:
             D_80055D4C = 0;
-            sp2C->unk0 = 1;
-            sp2C->unk28 = func_800100E8(NULL, sp28[arg1].unk4);
+            modelTag->type = 1;
+            modelTag->data.dl = func_800100E8(NULL, sp28[arg1].unk4);
             break;
         default:
             break;
     }
 
-    for (sp24 = 0; sp24 < 3; sp24++) {
-        D_80055D30[sp24] = D_8016E3AC[sp24 + 3];
+    for (i = 0; i < 3; i++) {
+        D_80055D30[i] = D_8016E3AC[i + 3];
     }
 
-    for (sp24 = 0; sp24 < 3; sp24++) {
-        D_80055D40[sp24] = D_8016E3AC[sp24 + 6];
+    for (i = 0; i < 3; i++) {
+        D_80055D40[i] = D_8016E3AC[i + 6];
     }
 
-    return sp2C;
+    return modelTag;
 }
 
 void func_800105D8(struct UnkStruct800105D8* arg0) {
@@ -469,7 +470,7 @@ void* func_8001191C(struct UnkStruct80010408_SP2C* arg0, s32 arg1) {
                 sp3C = malloc(sp48 * 4);
                 sp2C->unk14 = sp3C;
                 sp2C->unk18 = (s32*) sp48;
-                sp2C->unk1C = func_800117F8(arg0->unk28);
+                sp2C->modelTag = func_800117F8(arg0->unk28);
                 sp2C->unk20 = -1;
                 sp2C->unk24 = -1;
                 for (sp58 = 0; sp58 < sp48; sp58++) {

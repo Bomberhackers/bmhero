@@ -54,30 +54,30 @@ s32 D_8005768C;
 void Handle_ObjView(void) {
     f32 sp4;
 
-    if (gActiveContButton & 0x2000) {
-        if (gActiveContButton & 8) {
+    if (gActiveContButton & Z_TRIG) {
+        if (gActiveContButton & U_CBUTTONS) {
             gView.dist = gView.dist - 10.0f;
             if (gView.dist < 100.0f) {
                 gView.dist = 100.0f;
             }
         }
-        if (gActiveContButton & CONT_D) {
+        if (gActiveContButton & D_CBUTTONS) {
             gView.dist = gView.dist + 10.0f;
         }
     } else {
-        if (gActiveContButton & CONT_C) {
+        if (gActiveContButton & L_CBUTTONS) {
             sp4 = (f32) ((f64) gView.rot.y + 2.0);
             gView.rot.y = sp4 - (f32) (((s32) sp4 / 360) * 0x168);
         }
-        if (gActiveContButton & CONT_F) {
+        if (gActiveContButton & R_CBUTTONS) {
             sp4 = (f32) ((f64) gView.rot.y + 358.0);
             gView.rot.y = sp4 - (f32) (((s32) sp4 / 360) * 0x168);
         }
-        if (gActiveContButton & CONT_E) {
+        if (gActiveContButton & U_CBUTTONS) {
             sp4 = (f32) ((f64) gView.rot.x + 2.0);
             gView.rot.x = sp4 - (f32) (((s32) sp4 / 360) * 0x168);
         }
-        if (gActiveContButton & CONT_D) {
+        if (gActiveContButton & D_CBUTTONS) {
             sp4 = (f32) ((f64) gView.rot.x + 358.0);
             gView.rot.x = sp4 - (f32) (((s32) sp4 / 360) * 0x168);
         }
@@ -169,53 +169,53 @@ void func_8002BAC8(void) {
     }
     pressed_button = 0;
     if (D_800576A2 == 0) {
-        if (gActiveContPressed & CONT_RIGHT) {
+        if (gActiveContPressed & R_JPAD) {
             D_800576A2 = 0xF;
-            pressed_button = CONT_RIGHT;
-        } else if (gActiveContPressed & CONT_LEFT) {
+            pressed_button = R_JPAD;
+        } else if (gActiveContPressed & L_JPAD) {
             D_800576A2 = 0xF;
-            pressed_button = CONT_LEFT;
-        } else if (gActiveContPressed & CONT_UP) {
+            pressed_button = L_JPAD;
+        } else if (gActiveContPressed & U_JPAD) {
             D_800576A2 = 0xF;
-            pressed_button = CONT_UP;
-        } else if (gActiveContPressed & CONT_DOWN) {
+            pressed_button = U_JPAD;
+        } else if (gActiveContPressed & D_JPAD) {
             D_800576A2 = 0xF;
-            pressed_button = CONT_DOWN;
-        } else if (gActiveContPressed & CONT_A) {
+            pressed_button = D_JPAD;
+        } else if (gActiveContPressed & A_BUTTON) {
             D_800576A2 = 0xF;
-            pressed_button = CONT_A;
-        } else if (gActiveContPressed & CONT_B) {
+            pressed_button = A_BUTTON;
+        } else if (gActiveContPressed & B_BUTTON) {
             D_800576A2 = 0xF;
-            pressed_button = CONT_B;
+            pressed_button = B_BUTTON;
         }
-    } else if (gActiveContButton & CONT_RIGHT) {
+    } else if (gActiveContButton & R_JPAD) {
         if (D_800576A2 == 1) {
-            pressed_button = CONT_RIGHT;
+            pressed_button = R_JPAD;
             D_800576A2 = 2;
         }
-    } else if (gActiveContButton & CONT_LEFT) {
+    } else if (gActiveContButton & L_JPAD) {
         if (D_800576A2 == 1) {
-            pressed_button = CONT_LEFT;
+            pressed_button = L_JPAD;
             D_800576A2 = 2;
         }
-    } else if (gActiveContButton & CONT_UP) {
+    } else if (gActiveContButton & U_JPAD) {
         if (D_800576A2 == 1) {
-            pressed_button = CONT_UP;
+            pressed_button = U_JPAD;
             D_800576A2 = 2;
         }
-    } else if (gActiveContButton & CONT_DOWN) {
+    } else if (gActiveContButton & D_JPAD) {
         if (D_800576A2 == 1) {
-            pressed_button = CONT_DOWN;
+            pressed_button = D_JPAD;
             D_800576A2 = 2;
         }
-    } else if (gActiveContButton & CONT_A) {
+    } else if (gActiveContButton & A_BUTTON) {
         if (D_800576A2 == 1) {
-            pressed_button = CONT_A;
+            pressed_button = A_BUTTON;
             D_800576A2 = 2;
         }
-    } else if (gActiveContButton & CONT_B) {
+    } else if (gActiveContButton & B_BUTTON) {
         if (D_800576A2 == 1) {
-            pressed_button = CONT_B;
+            pressed_button = B_BUTTON;
             D_800576A2 = 2;
         }
     } else {
@@ -522,10 +522,10 @@ void Debug_HandleObjMovement(void) {
     } else {
         D_80057689 = 0;
         gPlayerObject->Vel.y = 0.0f;
-        if (!(gActiveContButton & CONT_G)) {
-            if (sContActiveButton & CONT_A) {
+        if (!(gActiveContButton & Z_TRIG)) {
+            if (sContActiveButton & A_BUTTON) {
                 gPlayerObject->Vel.y = 10.0f;
-            } else if (sContActiveButton & CONT_B) {
+            } else if (sContActiveButton & B_BUTTON) {
                 gPlayerObject->Vel.y = -10.0f;
             }
         }
@@ -601,13 +601,13 @@ void func_8002D768(void) {
     s32 sp1C;
 
     sp1C = 0;
-    if (gActiveContButton & CONT_G) {
-        if (gActiveContPressed & CONT_A) {
+    if (gActiveContButton & Z_TRIG) {
+        if (gActiveContPressed & A_BUTTON) {
             sp1C = 1;
-        } else if (gActiveContButton & CONT_B) {
+        } else if (gActiveContButton & B_BUTTON) {
             sp1C = -1;
         }
-        if (gActiveContButton & CONT_R) {
+        if (gActiveContButton & R_TRIG) {
             sp1C *= 0xA;
         }
     }
@@ -1055,7 +1055,7 @@ void Debug_SetupSetMode(void) {
     func_80000FF4(gCurrentLevel);
     func_8006707C();
     func_800695A0();
-    func_8006E088();
+    Skybox_LoadFromID();
     func_8002629C();
     gLevelInfo[gCurrentLevel]->unk24();
     gLevelInfo[gCurrentLevel]->unk28();

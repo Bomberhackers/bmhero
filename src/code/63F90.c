@@ -212,18 +212,18 @@ void func_800723EC(void) {
     sp24 = 0;
     sp20 = 0;
     if (sp1C != 0) {
-        if (gActiveContButton & CONT_C) {
+        if (gActiveContButton & L_CBUTTONS) {
             sp24 = 1;
             if (D_80177680 < 30.0f) {
                 D_80177680 += 2.0f;
             }
-        } else if (gActiveContButton & CONT_F) {
+        } else if (gActiveContButton & R_CBUTTONS) {
             sp24 = 1;
             if (D_80177680 > -30.0f) {
                 D_80177680 -= 2.0f;
             }
         }
-        if (gActiveContButton & CONT_E) {
+        if (gActiveContButton & U_CBUTTONS) {
             sp20 = 1;
             if (D_801776A8 < 20.0f) {
                 D_801776A8 += 1.0f;

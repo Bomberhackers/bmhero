@@ -54,7 +54,7 @@ void func_800889A8();
 void func_8007E720();
 void func_80069E38();
 void func_8006AA0C();
-void func_8006D6F4();
+void Skybox_ProcessDraw();
 void func_80087C58();
 void func_8007E678();
 void func_8006E7CC();

@@ -283,7 +283,7 @@ struct UnkStruct80165290_Unk20_Unk10 {
     u32 unk10;
     u32 unk14;
     u32 unk18;
-    u32 unk1C;
+    u32 modelTag;
     u32 unk20;
     u32 unk24;
 };
@@ -297,6 +297,15 @@ struct UnkStruct80165290_Unk20 {
     char pad14[0x8];
 };
 
+struct ModelTag {
+    /* 0x00 */ u32 type; // 0 = geometry, 1 = object
+    /* 0x04 */ Vec3f verts[3]; // could be verts, but why need 3? are you drawing a Tri or something?
+    union RawData {
+        /* 0x28 */ u32 raw;  // geometry chunk ID
+        /* 0x28 */ void *dl; // ptr to model
+    } data;
+}; // size:0x2C
+
 struct UnkStruct80165290 {
     /* 0x00 */ s32 unk0;
     char pad4[0x10];
@@ -305,7 +314,7 @@ struct UnkStruct80165290 {
     /* 0x16 */ u8 unk16;
     char pad17[0x1];
     /* 0x18 */ void* unk18;
-    /* 0x1C */ struct UnkStruct80010408_SP2C* unk1C;
+    /* 0x1C */ struct ModelTag* modelTag;
     /* 0x20 */ u32 unk20;
     /* 0x24 */ f32 unk24;
     /* 0x28 */ void* unk28;

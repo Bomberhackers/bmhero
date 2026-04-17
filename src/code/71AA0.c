@@ -526,7 +526,7 @@ void func_80081D78(void) {
     func_80000FF4(gCurrentLevel);
     func_8006707C();
     func_800695A0();
-    func_8006E088();
+    Skybox_LoadFromID();
     func_8002629C();
     func_80069700();
     gLevelInfo[gCurrentLevel]->unk24();
@@ -597,11 +597,12 @@ void func_800821E0(void) {
 
     func_8001D4D0();
     if (D_80177A20 < 2) {
-        if (D_8017792E == 0) {
+        // if we arent using a skybox, do not draw one. Instead use the color BGs set for a static color BG.
+        if (gSkyboxID == 0) {
             Debug_SetBg(1, (s32) D_80177932, (s32) D_80177934, (s32) D_80177938);
         } else {
             Debug_SetBg(0, 0, 0, 0);
-            func_8006D6F4();
+            Skybox_ProcessDraw();
         }
     } else {
         Debug_SetBg(1, 0, 0, 0);

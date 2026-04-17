@@ -793,7 +793,7 @@ s32 func_800242F0(void) {
         return 1;
     } else if (D_801765FC == 0) {
         return 1;
-    } else if (!(gActiveContButton & 0x1000)) {
+    } else if (!(gActiveContButton & START_BUTTON)) {
         if ((D_801765FC > 0) && (D_801765FC < 0xA)) {
             if (D_80176602 != 0) {
                 func_80069AA8(4, 0);
@@ -835,11 +835,11 @@ void func_80024744(void) {
     }
 
     if (gShowDebugMenu) {
-        if ((gActiveContButton & (0x3000)) == 0x3000) {
+        if ((gActiveContButton & (Z_TRIG | START_BUTTON)) == (Z_TRIG | START_BUTTON)) {
             func_80069AA8(-1, 0);
         }
         // Clear level
-        if ((gGoldBomber != 0) && ((gActiveContButton & (CONT_G | CONT_L)) == (CONT_G | CONT_L))) {
+        if ((gGoldBomber != 0) && ((gActiveContButton & (Z_TRIG | L_TRIG)) == (Z_TRIG | L_TRIG))) {
             if (gCurrentLevel < 0x80) {
                 func_80069D88(0, 1);
             } else {
@@ -882,7 +882,7 @@ void func_80024744(void) {
             func_800816FC();
             func_8008B0F4();
             func_80076374();
-            func_8006DDF4();
+            Skybox_ProcessMove();
             func_800663EC();
             func_800654AC();
             func_8006AD28();

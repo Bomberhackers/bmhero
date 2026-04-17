@@ -280,13 +280,13 @@ s32 func_8000FC08(struct UnkInputStruct8000FC08* arg0, Gfx** arg1, s32 arg2, s32
     return arg6;
 }
 
-s32 func_8000FD9C(struct UnkInputStruct8000FC08* arg0, Gfx** arg1, UnkStruct_F280_1* arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) {
+s32 func_8000FD9C(struct UnkInputStruct8000FC08* arg0, Gfx** gfx, UnkStruct_F280_1* arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6) {
     D_80055820 = 0;
     guMtxL2F(D_80055828[D_80055820], (Mtx*) &D_8016E104->unk00[1]);
     if (arg0->unk0 == 0) {
-        arg6 = func_8000EEE8(arg1, arg2, arg3, arg4, arg5, arg0->unk28, arg6);
+        arg6 = func_8000EEE8(gfx, arg2, arg3, arg4, arg5, arg0->unk28, arg6);
     } else if (arg0->unk0 == 1) {
-        arg6 = func_8000FC08(arg0->unk28, arg1, arg2, arg3, arg4, arg5, arg6);
+        arg6 = func_8000FC08(arg0->unk28, gfx, arg2, arg3, arg4, arg5, arg6);
     }
     return arg6;
 }

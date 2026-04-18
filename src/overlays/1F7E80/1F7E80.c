@@ -2,6 +2,8 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/1F7E80/1F7E80/func_80338000_unk_bin_45.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/overlays/1F7E80/1F7E80/func_80338140_unk_bin_45.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/1F7E80/1F7E80/func_80338150_unk_bin_45.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/1F7E80/1F7E80/func_803381FC_unk_bin_45.s")

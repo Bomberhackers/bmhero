@@ -4569,3 +4569,4 @@ gSkyboxID = 0x8017792E;
 gSkyboxImageBase = 0x801775AC;
 gSkyboxImageOffset = 0x801775B4;
 func_800BCBD0 = 0x800BCBD0;
+func_80338140_unk_bin_45 = 0x80338140; // segment:unk_bin_45

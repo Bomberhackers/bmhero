@@ -40,6 +40,10 @@
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/1E7490/1E7490/func_80332200_unk_bin_40.s")
 
+#pragma GLOBAL_ASM("asm/nonmatchings/overlays/1E7490/1E7490/func_8033233C_unk_bin_40.s")
+
+#pragma GLOBAL_ASM("asm/nonmatchings/overlays/1E7490/1E7490/func_8033234C_unk_bin_40.s")
+
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/1E7490/1E7490/func_8033235C_unk_bin_40.s")
 
 #pragma GLOBAL_ASM("asm/nonmatchings/overlays/1E7490/1E7490/func_80332554_unk_bin_40.s")

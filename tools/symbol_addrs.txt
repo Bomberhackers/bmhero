@@ -4568,3 +4568,4 @@ gSkyboxType = 0x80177930;
 gSkyboxID = 0x8017792E;
 gSkyboxImageBase = 0x801775AC;
 gSkyboxImageOffset = 0x801775B4;
+func_800BCBD0 = 0x800BCBD0;

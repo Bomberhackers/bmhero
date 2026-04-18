@@ -1856,8 +1856,11 @@ void func_800BCB04(void) {
 }
 
 void func_800BCBC0(void) {
-    return;
-    return;
+
+}
+
+void func_800BCBD0(void) {
+
 }
 
 void func_800BCBE0(void) {

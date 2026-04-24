@@ -1141,14 +1141,14 @@ void func_8001BC84(s32 arg0, s32 arg1, s32 arg2) {
     }
 }
 
-void func_8001BD44(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+void func_8001BD44(s32 objId, s32 arg1, s32 arg2, s32 arg3) {
     s32 sp1C;
 
-    if (gObjects[arg0].Unk140[arg1] != -1) {
+    if (gObjects[objId].Unk140[arg1] != -1) {
         return;
     }
     sp1C = func_8001A988();
-    gObjects[arg0].Unk140[arg1] = sp1C;
+    gObjects[objId].Unk140[arg1] = sp1C;
     D_80165290[sp1C].unk0 = arg3;
     func_8001A2A0();
     D_8016E3AC = func_800122F0(arg3);

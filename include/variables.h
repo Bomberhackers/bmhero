@@ -838,4 +838,8 @@ extern s16 D_8016E0A4;
 extern u8 D_801776E4;
 extern UNK_TYPE D_80177770[];
 extern u8 D_8004A650[];
+extern u8 D_80104C70[][6];
+extern s32 D_801777F0[];
+extern u8 D_801765D9[];
+
 #endif // VARIABLES_H

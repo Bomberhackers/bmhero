@@ -235,7 +235,85 @@ void func_80065C20(void) {
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_800660DC.s")
 
-#pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_800663EC.s")
+// do view culling for geometry level chunks
+void func_800663EC(void) {
+    s32 sp64;
+    s32 sp60;
+    s32 sp5C;
+    s32 sp58;
+    s32 pad3;
+    s32 pad2;
+    s32 pad1;
+    s32 sp48;
+    s32 sp44;
+    s32 pad0;
+    s32 sp3C;
+    s32 pad5;
+    struct UnkStruct80108238 * sp34;
+    u8 sp33;
+
+
+    sp34 = D_80108238[gCurrentLevel];
+    func_80065AEC(gView.at.x, gView.at.y, gView.at.z, &sp60, &sp5C, &sp58);
+    func_800660DC(sp60, sp5C, sp58, D_80104C70[gDebugDispType][0], D_80104C70[gDebugDispType][1], D_80104C70[gDebugDispType][2], D_80104C70[gDebugDispType][3], D_80104C70[gDebugDispType][4], D_80104C70[gDebugDispType][5]);
+
+    for(sp48 = 0x4E; sp48 < 0x8E; sp48++) {
+        if (gObjects[sp48].actionState != 0) {
+            sp44 = 0;
+            for(sp3C = 0; sp3C < 0x40; sp3C++) {
+                if (D_801777F0[sp3C] != 0) {
+                    if (gObjects[sp48].actionState == D_801777F0[sp3C]) {
+                        if (D_8017794C[D_801777F0[sp3C]].unkB[-16] < 8) {
+                            sp33 = D_8017794C[D_801777F0[sp3C]].unkB[-17];
+                            if (D_801765D9[sp33 << 1] != 0) {
+                                func_8001AD6C(sp48);
+                            }
+                        } else {
+                            func_8001AD6C(sp48);
+                        }
+                        D_801777F0[sp3C] = 0;
+                        sp44 = 1;
+                        break;
+                    }
+                }
+            }
+            if (sp44 == 0) {
+                func_8001A928(sp48);
+            }
+        }
+    }
+    for(sp3C = 0; sp3C < 0x40; sp3C++) {
+        if (D_801777F0[sp3C] != 0) {
+            for(sp48 = 0x4E; sp48 < 0x8E; sp48++) {
+                if (gObjects[sp48].actionState == 0) {
+                    sp64 = (s32)D_801777F0[sp3C] - 1;
+                    func_8001A928(sp48);
+                    if (D_80177928 != 0) {
+                        if (D_8017794C[sp64].unk0 != 0xFF) {
+                            func_8001BD44(sp48, 0, D_8017794C[sp64].unk0, (u8*)gFileArray[0x1B].ptr + sp34->unk20);
+                        }
+                    } else {
+                        if (D_8017794C[sp64].unk1 != 0xFF) {
+                            func_8001BD44(sp48, 0, D_8017794C[sp64].unk1, (u8*)gFileArray[0x1B].ptr + sp34->unk14);
+                        }
+                        if (D_8017794C[sp64].unk2 != 0xFF) {
+                            func_8001BD44(sp48, 1, D_8017794C[sp64].unk2, (u8*)gFileArray[0x1B].ptr + sp34->unk18);
+                        }
+                        if (D_8017794C[sp64].unk3 != 0xFF) {
+                            func_8001BD44(sp48, 3, D_8017794C[sp64].unk3, (u8*)gFileArray[0x1B].ptr + sp34->unk1C);
+                        }
+                    }
+                    func_80065D88(sp48, D_8017794C, sp64);
+                    gObjects[sp48].actionState = sp64 + 1;
+                    gObjects[sp48].Pos.x = D_8017794C[sp64].unk4;
+                    gObjects[sp48].Pos.y = D_8017794C[sp64].unk6;
+                    gObjects[sp48].Pos.z = D_8017794C[sp64].unk8;
+                    break;
+                }
+            }
+        }
+    }
+}
 
 #pragma GLOBAL_ASM("asm/nonmatchings/code/56800/func_800669E0.s")
 

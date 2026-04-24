@@ -315,7 +315,7 @@ void func_80339628_unk_bin_51(void) {
 void func_80339714_unk_bin_51(void) {
 }
 
-static void stub_unk_bin_51(void) { 
+void func_80339724_unk_bin_51(void) {
 }
 
 void func_80339734_unk_bin_51(void) {

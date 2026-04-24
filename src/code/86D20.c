@@ -345,7 +345,7 @@ void func_800960B4(void) {
 }
 
 void func_8009612C(struct ObjectStruct* arg0) {
-    if (D_801765D9[arg0->unkA6].unk0 == 0) {
+    if (D_801765D8[arg0->unkA6][1] == 0) {
         func_8001B6BC(gCurrentParsedObject, 0, 0.0f);
     } else {
         func_8001B6BC(gCurrentParsedObject, 0, 14.0f);
@@ -375,7 +375,7 @@ void func_80096254(void) {
         func_800175F0(gCurrentParsedObject, 0, 0x61, -1, 0);
     }
     if (sp24->damageState == 1) {
-        D_801765D8[sp24->unkA6].unk1 = (u8) (D_801765D8[sp24->unkA6].unk1 ^ 1);
+        D_801765D8[sp24->unkA6][1] = (u8) (D_801765D8[sp24->unkA6][1] ^ 1);
         func_8009612C(sp24);
         sp24->actionState = 1;
     }

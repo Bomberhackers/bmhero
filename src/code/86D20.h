@@ -12,15 +12,8 @@ struct UnkStruct8011486C
     s32 unk4;
 };
 
-struct UnkStruct801765D9
-{
-    char unk0;
-    char unk1;
-};
-
 extern struct UnkStruct8011486C D_8011486C[4];
-extern struct UnkStruct801765D9 D_801765D9[];
-extern struct UnkStruct801765D9 D_801765D8[];
+extern u8 D_801765D8[][2];
 extern s16 D_80114820[];
 extern s16 D_8011B92C[];
 extern struct ObjSpawnInfo D_801147F0;

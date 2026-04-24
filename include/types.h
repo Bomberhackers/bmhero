@@ -1048,7 +1048,9 @@ struct UnkStruct80108238 {
     u32 unk8;
     u32 unkC;
     u32 unk10;
-    u8 pad14[0xC];
+    u32 unk14;
+    u32 unk18;
+    u32 unk1C;
     u32 unk20;
 };
 
@@ -1065,7 +1067,14 @@ struct UnkStruct_80057450 {
 };
 
 struct UnkStruct8017794C {
-    char pad0[0xB];
+    u8 unk0;
+    u8 unk1;
+    u8 unk2;
+    u8 unk3;
+    s16 unk4;
+    s16 unk6;
+    s16 unk8;
+    char fillerA[0x1];
     u8 unkB[1];
     char padC[0x4];
 };
